@@ -1,0 +1,11 @@
+{
+  "name": "harmony-3d-utils",
+  "version": "0.0.1",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "dependencies": {
+    "gl-matrix": "^3.4.3",
+    "harmony-3d": "github:baldurstod/harmony-3d"
+  }
+}
