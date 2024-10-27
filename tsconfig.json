@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es2023",
+    "target": "ES2022",
     "module": "ES2022",
     "moduleResolution": "Bundler",
     "esModuleInterop": false,
@@ -8,6 +8,7 @@
     "skipLibCheck": true,
     "declaration": true,
     "declarationMap": true,
-    "outDir": "dist"
+    "outDir": "dist",
+    "declarationDir": "dist/dts",
   }
 }
