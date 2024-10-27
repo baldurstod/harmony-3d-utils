@@ -2,6 +2,8 @@ import { NodeImageEditor } from 'harmony-3d';
 import { NodeImageEditorGui } from 'harmony-3d';
 import { Texture } from 'harmony-3d';
 
+export declare function getLegacyPaintKit(id: number): string | number;
+
 export declare class PaintKitDefinitions {
     #private;
     static warpaintDefinitionsPromise: Promise<any>;
@@ -11,6 +13,8 @@ export declare class PaintKitDefinitions {
     static setWarpaintDefinitions(warpaintDefinitions: any): void;
     static getDefinition(cMsgProtoDefID: any): Promise<any>;
 }
+
+export declare function setLegacyPaintKit(oldId: number, newId: string): void;
 
 export declare class TextureCombiner {
     #private;

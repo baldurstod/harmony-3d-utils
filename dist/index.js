@@ -1,6 +1,14 @@
 import { Graphics, TextureManager, Source1TextureManager, DEG_TO_RAD, DEFAULT_TEXTURE_SIZE, NodeImageEditor, NodeImageEditorGui } from 'harmony-3d';
 import { vec2 } from 'gl-matrix';
 
+const legacyPaintKits = new Map();
+function setLegacyPaintKit(oldId, newId) {
+    legacyPaintKits.set(oldId, newId.replace(/\~\d+/, ''));
+}
+function getLegacyPaintKit(id) {
+    return legacyPaintKits.get(id) ?? id;
+}
+
 const TYPE_STRING_TO_INT = {
     'DEF_TYPE_PAINTKIT_VARIABLES': 6,
     'DEF_TYPE_PAINTKIT_OPERATION': 7,
@@ -40,11 +48,6 @@ class PaintKitDefinitions {
         }
         return null;
     }
-}
-
-const legacyPaintKits = new Map();
-function getLegacyPaintKit(id) {
-    return legacyPaintKits.get(id) ?? id;
 }
 
 const NTAB = 32;
@@ -886,4 +889,4 @@ function ParseRangeThenDivideBy(output, input, div = 255) {
     output.high /= div;
 }
 
-export { PaintKitDefinitions, TextureCombiner };
+export { PaintKitDefinitions, TextureCombiner, getLegacyPaintKit, setLegacyPaintKit };
