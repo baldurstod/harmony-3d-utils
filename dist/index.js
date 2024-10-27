@@ -1,6 +1,47 @@
 import { Graphics, TextureManager, Source1TextureManager, DEG_TO_RAD, DEFAULT_TEXTURE_SIZE, NodeImageEditor, NodeImageEditorGui } from 'harmony-3d';
 import { vec2 } from 'gl-matrix';
 
+const TYPE_STRING_TO_INT = {
+    'DEF_TYPE_PAINTKIT_VARIABLES': 6,
+    'DEF_TYPE_PAINTKIT_OPERATION': 7,
+    'DEF_TYPE_PAINTKIT_ITEM_DEFINITION': 8,
+    'DEF_TYPE_PAINTKIT_DEFINITION': 9,
+    'DEF_TYPE_HEADER_ONLY': 10,
+};
+class PaintKitDefinitions {
+    static warpaintDefinitionsPromise;
+    static warpaintDefinitions;
+    static #warpaintDefinitionsURL = '';
+    static setWarpaintDefinitionsURL(url) {
+        this.#warpaintDefinitionsURL = url;
+    }
+    static getWarpaintDefinitions() {
+        if (!this.warpaintDefinitionsPromise) {
+            this.warpaintDefinitionsPromise = new Promise(async (resolve, reject) => {
+                let reponse = await fetch(this.#warpaintDefinitionsURL);
+                this.warpaintDefinitions = await reponse.json();
+                resolve(this.warpaintDefinitions);
+            });
+        }
+        return this.warpaintDefinitionsPromise;
+    }
+    static setWarpaintDefinitions(warpaintDefinitions) {
+        this.warpaintDefinitionsPromise = new Promise(async (resolve) => {
+            resolve(warpaintDefinitions);
+        });
+    }
+    static async getDefinition(cMsgProtoDefID) {
+        let warpaintDefinitions = await this.getWarpaintDefinitions();
+        if (warpaintDefinitions) {
+            let type = warpaintDefinitions[String(TYPE_STRING_TO_INT[String(cMsgProtoDefID.type)] ?? cMsgProtoDefID.type)];
+            if (type) {
+                return type[String(cMsgProtoDefID.defindex)];
+            }
+        }
+        return null;
+    }
+}
+
 const legacyPaintKits = new Map();
 function getLegacyPaintKit(id) {
     return legacyPaintKits.get(id) ?? id;
@@ -87,47 +128,6 @@ class UniformRandomStream {
             n = this.#generateRandomNumber();
         } while (n > maxAcceptable);
         return low + (n % x);
-    }
-}
-
-const TYPE_STRING_TO_INT = {
-    'DEF_TYPE_PAINTKIT_VARIABLES': 6,
-    'DEF_TYPE_PAINTKIT_OPERATION': 7,
-    'DEF_TYPE_PAINTKIT_ITEM_DEFINITION': 8,
-    'DEF_TYPE_PAINTKIT_DEFINITION': 9,
-    'DEF_TYPE_HEADER_ONLY': 10,
-};
-class PaintKitDefinitions {
-    static warpaintDefinitionsPromise;
-    static warpaintDefinitions;
-    static #warpaintDefinitionsURL = '';
-    static setWarpaintDefinitionsURL(url) {
-        this.#warpaintDefinitionsURL = url;
-    }
-    static getWarpaintDefinitions() {
-        if (!this.warpaintDefinitionsPromise) {
-            this.warpaintDefinitionsPromise = new Promise(async (resolve, reject) => {
-                let reponse = await fetch(this.#warpaintDefinitionsURL);
-                this.warpaintDefinitions = await reponse.json();
-                resolve(this.warpaintDefinitions);
-            });
-        }
-        return this.warpaintDefinitionsPromise;
-    }
-    static setWarpaintDefinitions(warpaintDefinitions) {
-        this.warpaintDefinitionsPromise = new Promise(async (resolve) => {
-            resolve(warpaintDefinitions);
-        });
-    }
-    static async getDefinition(cMsgProtoDefID) {
-        let warpaintDefinitions = await this.getWarpaintDefinitions();
-        if (warpaintDefinitions) {
-            let type = warpaintDefinitions[String(TYPE_STRING_TO_INT[String(cMsgProtoDefID.type)] ?? cMsgProtoDefID.type)];
-            if (type) {
-                return type[String(cMsgProtoDefID.defindex)];
-            }
-        }
-        return null;
     }
 }
 
@@ -886,4 +886,4 @@ function ParseRangeThenDivideBy(output, input, div = 255) {
     output.high /= div;
 }
 
-export { TextureCombiner };
+export { PaintKitDefinitions, TextureCombiner };
