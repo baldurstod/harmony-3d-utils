@@ -33,4 +33,29 @@ export declare class TextureCombiner {
     static combinePaint(paintKitDefId: number, wearLevel: number, weaponDefIndex: string, outputTextureName: string, outputTexture: Texture, seed?: bigint): Promise<unknown>;
 }
 
+export declare class WeaponManager {
+    #private;
+    static weapons: {};
+    static collections: {};
+    static weaponName: string;
+    static paintkitName: string;
+    static asyncRequestId: number;
+    static _protoElements: any;
+    static protoDefs: null;
+    static shouldRequestItems: boolean;
+    static itemsDef: null;
+    static itemsReady: boolean;
+    static containerPerWeapon: any;
+    static itemQueue: Array<any>;
+    static currentItem: any;
+    static weaponId: number;
+    static initPaintKitDefinitions(url: string): Promise<void>;
+    static initView(container?: HTMLElement, editorContainer?: HTMLElement): void;
+    static _addWeapon(paintKit: any, weaponPaint: number, weapon: string, defindex: number, itemDefinitionIndex: number, descToken: string): void;
+    static getItemList(cMsgPaintKit_Definition: any): any;
+    static refreshPaint(item: any): void;
+    static refreshItem(item: any): void;
+    static processNextItemInQueue(): void;
+}
+
 export { }
