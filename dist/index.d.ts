@@ -58,4 +58,6 @@ export declare class WeaponManager {
     static processNextItemInQueue(): void;
 }
 
+export declare const WeaponManagerEventTarget: EventTarget;
+
 export { }

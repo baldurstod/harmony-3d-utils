@@ -1178,4 +1178,4 @@ winger_pistol : 50
 }
 */
 
-export { PaintKitDefinitions, TextureCombiner, WeaponManager, getLegacyPaintKit, setLegacyPaintKit };
+export { PaintKitDefinitions, TextureCombiner, WeaponManager, WeaponManagerEventTarget, getLegacyPaintKit, setLegacyPaintKit };
