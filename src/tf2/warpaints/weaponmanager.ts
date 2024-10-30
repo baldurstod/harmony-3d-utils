@@ -75,14 +75,14 @@ export class WeaponManager {
 			for (let weaponName in itemList) {
 				let itemDefinition = paintKitItemDefinitions[itemList[weaponName]];
 				if (itemDefinition) {
-					this._addWeapon(paintKit, paintKit.header.defindex, weaponName, itemList[weaponName], itemDefinition.itemDefinitionIndex, descToken);
+					this.#addWeapon(paintKit, paintKit.header.defindex, weaponName, itemList[weaponName], itemDefinition.itemDefinitionIndex, descToken);
 				}
 			}
 		}
 		return;
 	}
 
-	static _addWeapon(paintKit: any, weaponPaint: number, weapon: string, defindex: number, itemDefinitionIndex: number, descToken: string) {
+	static #addWeapon(paintKit: any, weaponPaint: number, weapon: string, defindex: number, itemDefinitionIndex: number, descToken: string) {
 		//let wep = this.itemsDef?.[itemDefinitionIndex] || this.itemsDef?.[itemDefinitionIndex + '~0'] ;
 		let wep = { name: weapon };
 		if (wep) {
