@@ -30,7 +30,7 @@ export class WeaponManager {
 	static itemsReady = false;
 
 	static containerPerWeapon: any = {};
-	static itemQueue: Array<any> = [];
+	static #itemQueue: Array<any> = [];
 	static currentItem: any;
 	static weaponId = 0;
 
@@ -224,14 +224,17 @@ export class WeaponManager {
 			this.refreshPaint();
 		}*/
 
-	static refreshItem(item: any) {
-		this.itemQueue.push(item);
+	static refreshItem(item: any, clearQueue = false) {
+		if (clearQueue) {
+			this.#itemQueue = [];
+		}
+		this.#itemQueue.push(item);
 		this.processNextItemInQueue();
 	}
 
 	static processNextItemInQueue() {
-		if (!this.currentItem && this.itemQueue.length) {
-			this.currentItem = this.itemQueue.shift();
+		if (!this.currentItem && this.#itemQueue.length) {
+			this.currentItem = this.#itemQueue.shift();
 			let ci = this.currentItem;
 
 			let { name: textureName, texture } = Source1TextureManager.addInternalTexture();

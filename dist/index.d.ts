@@ -46,15 +46,13 @@ export declare class WeaponManager {
     static itemsDef: null;
     static itemsReady: boolean;
     static containerPerWeapon: any;
-    static itemQueue: Array<any>;
     static currentItem: any;
     static weaponId: number;
     static initPaintKitDefinitions(url: string): Promise<void>;
     static initView(container?: HTMLElement, editorContainer?: HTMLElement): void;
-    static _addWeapon(paintKit: any, weaponPaint: number, weapon: string, defindex: number, itemDefinitionIndex: number, descToken: string): void;
     static getItemList(cMsgPaintKit_Definition: any): any;
     static refreshPaint(item: any): void;
-    static refreshItem(item: any): void;
+    static refreshItem(item: any, clearQueue?: boolean): void;
     static processNextItemInQueue(): void;
 }
 

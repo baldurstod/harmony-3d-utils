@@ -904,7 +904,7 @@ class WeaponManager {
     static itemsDef = null;
     static itemsReady = false;
     static containerPerWeapon = {};
-    static itemQueue = [];
+    static #itemQueue = [];
     static currentItem;
     static weaponId = 0;
     static async initPaintKitDefinitions(url) {
@@ -942,13 +942,13 @@ class WeaponManager {
             for (let weaponName in itemList) {
                 let itemDefinition = paintKitItemDefinitions[itemList[weaponName]];
                 if (itemDefinition) {
-                    this._addWeapon(paintKit, paintKit.header.defindex, weaponName, itemList[weaponName], itemDefinition.itemDefinitionIndex, descToken);
+                    this.#addWeapon(paintKit, paintKit.header.defindex, weaponName, itemList[weaponName], itemDefinition.itemDefinitionIndex, descToken);
                 }
             }
         }
         return;
     }
-    static _addWeapon(paintKit, weaponPaint, weapon, defindex, itemDefinitionIndex, descToken) {
+    static #addWeapon(paintKit, weaponPaint, weapon, defindex, itemDefinitionIndex, descToken) {
         //let wep = this.itemsDef?.[itemDefinitionIndex] || this.itemsDef?.[itemDefinitionIndex + '~0'] ;
         let wep = { name: weapon };
         if (wep) {
@@ -1083,13 +1083,16 @@ class WeaponManager {
             this.weapon = weapon;
             this.refreshPaint();
         }*/
-    static refreshItem(item) {
-        this.itemQueue.push(item);
+    static refreshItem(item, clearQueue = false) {
+        if (clearQueue) {
+            this.#itemQueue = [];
+        }
+        this.#itemQueue.push(item);
         this.processNextItemInQueue();
     }
     static processNextItemInQueue() {
-        if (!this.currentItem && this.itemQueue.length) {
-            this.currentItem = this.itemQueue.shift();
+        if (!this.currentItem && this.#itemQueue.length) {
+            this.currentItem = this.#itemQueue.shift();
             let ci = this.currentItem;
             let { name: textureName, texture } = Source1TextureManager.addInternalTexture();
             texture.setAlphaBits(8);
