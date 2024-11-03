@@ -21,8 +21,15 @@ export class TextureCombiner {
 	static pixelArray = null;
 	static lookupNodes = new Map();
 	static nodeImageEditor = new NodeImageEditor();
-	static nodeImageEditorGui = new NodeImageEditorGui(this.nodeImageEditor);
+	static #nodeImageEditorGui?: NodeImageEditorGui;// = new NodeImageEditorGui(this.nodeImageEditor);
 	static variables: any = {};
+
+	static initNodeImageEditorGui(): NodeImageEditorGui {
+		if (!this.#nodeImageEditorGui) {
+			this.#nodeImageEditorGui = new NodeImageEditorGui(this.nodeImageEditor);
+		}
+		return this.#nodeImageEditorGui;
+	}
 
 	static setTextureSize(textureSize: number) {
 		this.#textureSize = textureSize;

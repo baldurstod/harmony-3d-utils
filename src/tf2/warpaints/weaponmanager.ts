@@ -63,7 +63,7 @@ export class WeaponManager {
 		}
 
 		if (editorContainer) {
-			editorContainer.append(TextureCombiner.nodeImageEditorGui.htmlElement);
+			editorContainer.append(TextureCombiner.initNodeImageEditorGui().htmlElement);
 		}
 	}
 

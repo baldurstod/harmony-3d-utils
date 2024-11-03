@@ -434,8 +434,14 @@ class TextureCombiner {
     static pixelArray = null;
     static lookupNodes = new Map();
     static nodeImageEditor = new NodeImageEditor();
-    static nodeImageEditorGui = new NodeImageEditorGui(this.nodeImageEditor);
+    static #nodeImageEditorGui; // = new NodeImageEditorGui(this.nodeImageEditor);
     static variables = {};
+    static initNodeImageEditorGui() {
+        if (!this.#nodeImageEditorGui) {
+            this.#nodeImageEditorGui = new NodeImageEditorGui(this.nodeImageEditor);
+        }
+        return this.#nodeImageEditorGui;
+    }
     static setTextureSize(textureSize) {
         this.#textureSize = textureSize;
         this.nodeImageEditor.textureSize = textureSize;
@@ -931,7 +937,7 @@ class WeaponManager {
             container.appendChild(this.#htmlPaintsDiv);
         }
         if (editorContainer) {
-            editorContainer.append(TextureCombiner.nodeImageEditorGui.htmlElement);
+            editorContainer.append(TextureCombiner.initNodeImageEditorGui().htmlElement);
         }
     }
     static #addPaintKit(paintKit, descToken) {

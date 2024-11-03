@@ -24,8 +24,8 @@ export declare class TextureCombiner {
     static pixelArray: null;
     static lookupNodes: Map<any, any>;
     static nodeImageEditor: NodeImageEditor;
-    static nodeImageEditorGui: NodeImageEditorGui;
     static variables: any;
+    static initNodeImageEditorGui(): NodeImageEditorGui;
     static setTextureSize(textureSize: number): void;
     static set team(t: number);
     static get team(): number;
