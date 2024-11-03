@@ -897,23 +897,30 @@ function ParseRangeThenDivideBy(output, input, div = 255) {
 
 const WeaponManagerEventTarget = new EventTarget();
 class WeaponManager {
-    static #htmlWeaponsDiv;
-    static #htmlPaintsDiv;
-    static weapons = {};
-    static collections = {};
-    static weaponName = '';
-    static paintkitName = '';
-    static asyncRequestId = 0;
-    static _protoElements = {};
-    static protoDefs = null;
-    static shouldRequestItems = true;
-    static itemsDef = null;
-    static itemsReady = false;
-    static containerPerWeapon = {};
-    static #itemQueue = [];
-    static currentItem;
-    static weaponId = 0;
-    static async initPaintKitDefinitions(url) {
+    static #instance;
+    #htmlWeaponsDiv;
+    #htmlPaintsDiv;
+    weapons = {};
+    collections = {};
+    weaponName = '';
+    paintkitName = '';
+    asyncRequestId = 0;
+    _protoElements = {};
+    protoDefs = null;
+    shouldRequestItems = true;
+    itemsDef = null;
+    itemsReady = false;
+    containerPerWeapon = {};
+    #itemQueue = [];
+    currentItem;
+    weaponId = 0;
+    constructor() {
+        if (WeaponManager.#instance) {
+            return WeaponManager.#instance;
+        }
+        WeaponManager.#instance = this;
+    }
+    async initPaintKitDefinitions(url) {
         let response = await fetch(url);
         this.protoDefs = await response.json();
         let definitions = await PaintKitDefinitions.getWarpaintDefinitions();
@@ -927,7 +934,7 @@ class WeaponManager {
             }
         }
     }
-    static initView(container, editorContainer) {
+    initView(container, editorContainer) {
         this.#htmlWeaponsDiv = document.createElement('div');
         this.#htmlWeaponsDiv.className = 'weaponsDiv';
         this.#htmlPaintsDiv = document.createElement('div');
@@ -940,7 +947,7 @@ class WeaponManager {
             editorContainer.append(TextureCombiner.initNodeImageEditorGui().htmlElement);
         }
     }
-    static #addPaintKit(paintKit, descToken) {
+    #addPaintKit(paintKit, descToken) {
         let cMsgPaintKit_Definition = this._protoElements[9][paintKit.header.defindex];
         let paintKitItemDefinitions = this._protoElements[8];
         if (cMsgPaintKit_Definition) {
@@ -954,7 +961,7 @@ class WeaponManager {
         }
         return;
     }
-    static #addWeapon(paintKit, weaponPaint, weapon, defindex, itemDefinitionIndex, descToken) {
+    #addWeapon(paintKit, weaponPaint, weapon, defindex, itemDefinitionIndex, descToken) {
         //let wep = this.itemsDef?.[itemDefinitionIndex] || this.itemsDef?.[itemDefinitionIndex + '~0'] ;
         let wep = { name: weapon };
         if (wep) {
@@ -962,7 +969,7 @@ class WeaponManager {
             if (!weaponDiv) {
                 weaponDiv = document.createElement('div');
                 weaponDiv.className = 'weaponDiv';
-                this.#htmlPaintsDiv.appendChild(weaponDiv);
+                this.#htmlPaintsDiv?.appendChild(weaponDiv);
                 this.containerPerWeapon[wep.name] = weaponDiv;
                 //weaponDiv.innerHTML = wep.name;
                 let input = document.createElement('input');
@@ -985,7 +992,7 @@ class WeaponManager {
             //weaponDiv.weaponPaint = weaponPaint;
             weaponDiv.weapon = weapon;
             weaponDiv.itemDefinitionIndex = itemDefinitionIndex;
-            this.#htmlWeaponsDiv.appendChild(weaponDiv);
+            this.#htmlWeaponsDiv?.appendChild(weaponDiv);
             //this.#addPaintKit2(paintKit, subContainer, weapon, itemDefinitionIndex);
             WeaponManagerEventTarget.dispatchEvent(new CustomEvent('addpaintkit', {
                 detail: {
@@ -998,7 +1005,7 @@ class WeaponManager {
         }
     }
     /*
-        static #addPaintKit2(paintKit, parent, weapon, itemDefinitionIndex) {
+         #addPaintKit2(paintKit, parent, weapon, itemDefinitionIndex) {
             var paintKitDiv = document.createElement('div');
             parent.appendChild(paintKitDiv);
             paintKitDiv.className = 'paintDiv';
@@ -1016,7 +1023,7 @@ class WeaponManager {
         }
         /*
     /*
-        static handlePaintClick() {
+         handlePaintClick() {
             let currentModel = '';
             if (this.itemDefinitionIndex) {
                 let itemDef = this.itemsDef[this.itemDefinitionIndex] || this.itemsDef[this.itemDefinitionIndex + '~0'];
@@ -1032,7 +1039,7 @@ class WeaponManager {
             this.refreshPaint();
         }*/
     /*
-        static handleWeaponClick() {
+         handleWeaponClick() {
             currentModel = '';
             if (this.itemDefinitionIndex) {
                 let itemDef = this.itemsDef[this.itemDefinitionIndex] || this.itemsDef[this.itemDefinitionIndex + '~0'];
@@ -1048,7 +1055,7 @@ class WeaponManager {
             this.refreshPaint();
         }
     */
-    static getItemList(cMsgPaintKit_Definition) {
+    getItemList(cMsgPaintKit_Definition) {
         let itemList = {};
         for (let propertyName in cMsgPaintKit_Definition) {
             let paintKitDefinitionItem = cMsgPaintKit_Definition[propertyName];
@@ -1072,11 +1079,11 @@ class WeaponManager {
         }
         return itemList;
     }
-    static refreshPaint(item) {
+    refreshPaint(item) {
         this.refreshItem(item);
     }
     /*
-        static handleCollectionClick(event) {
+         handleCollectionClick(event) {
             if (this.collectionBody.style.display == 'none') {
                 this.collectionBody.style.display = null;
                 this.collectionBody.style.display = '';
@@ -1085,18 +1092,18 @@ class WeaponManager {
             }
         }*/
     /*
-        static setWeapon(weapon) {
+         setWeapon(weapon) {
             this.weapon = weapon;
             this.refreshPaint();
         }*/
-    static refreshItem(item, clearQueue = false) {
+    refreshItem(item, clearQueue = false) {
         if (clearQueue) {
             this.#itemQueue = [];
         }
         this.#itemQueue.push(item);
         this.processNextItemInQueue();
     }
-    static processNextItemInQueue() {
+    processNextItemInQueue() {
         if (!this.currentItem && this.#itemQueue.length) {
             this.currentItem = this.#itemQueue.shift();
             let ci = this.currentItem;

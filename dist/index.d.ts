@@ -35,25 +35,26 @@ export declare class TextureCombiner {
 
 export declare class WeaponManager {
     #private;
-    static weapons: {};
-    static collections: {};
-    static weaponName: string;
-    static paintkitName: string;
-    static asyncRequestId: number;
-    static _protoElements: any;
-    static protoDefs: null;
-    static shouldRequestItems: boolean;
-    static itemsDef: null;
-    static itemsReady: boolean;
-    static containerPerWeapon: any;
-    static currentItem: any;
-    static weaponId: number;
-    static initPaintKitDefinitions(url: string): Promise<void>;
-    static initView(container?: HTMLElement, editorContainer?: HTMLElement): void;
-    static getItemList(cMsgPaintKit_Definition: any): any;
-    static refreshPaint(item: any): void;
-    static refreshItem(item: any, clearQueue?: boolean): void;
-    static processNextItemInQueue(): void;
+    weapons: {};
+    collections: {};
+    weaponName: string;
+    paintkitName: string;
+    asyncRequestId: number;
+    _protoElements: any;
+    protoDefs: null;
+    shouldRequestItems: boolean;
+    itemsDef: null;
+    itemsReady: boolean;
+    containerPerWeapon: any;
+    currentItem: any;
+    weaponId: number;
+    constructor();
+    initPaintKitDefinitions(url: string): Promise<void>;
+    initView(container?: HTMLElement, editorContainer?: HTMLElement): void;
+    getItemList(cMsgPaintKit_Definition: any): any;
+    refreshPaint(item: any): void;
+    refreshItem(item: any, clearQueue?: boolean): void;
+    processNextItemInQueue(): void;
 }
 
 export declare const WeaponManagerEventTarget: EventTarget;
