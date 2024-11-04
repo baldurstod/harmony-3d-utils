@@ -1,4 +1,4 @@
-import { Graphics, TextureManager, Source1TextureManager, DEG_TO_RAD, DEFAULT_TEXTURE_SIZE, NodeImageEditor, NodeImageEditorGui } from 'harmony-3d';
+import { Graphics, TextureManager, Source1TextureManager, DEG_TO_RAD, DEFAULT_TEXTURE_SIZE, NodeImageEditor } from 'harmony-3d';
 import { vec2 } from 'gl-matrix';
 
 const legacyPaintKits = new Map();
@@ -434,14 +434,16 @@ class TextureCombiner {
     static pixelArray = null;
     static lookupNodes = new Map();
     static nodeImageEditor = new NodeImageEditor();
-    static #nodeImageEditorGui; // = new NodeImageEditorGui(this.nodeImageEditor);
+    //static #nodeImageEditorGui?: NodeImageEditorGui;// = new NodeImageEditorGui(this.nodeImageEditor);
     static variables = {};
-    static initNodeImageEditorGui() {
-        if (!this.#nodeImageEditorGui) {
-            this.#nodeImageEditorGui = new NodeImageEditorGui(this.nodeImageEditor);
+    /*
+        static initNodeImageEditorGui(): NodeImageEditorGui {
+            if (!this.#nodeImageEditorGui) {
+                this.#nodeImageEditorGui = new NodeImageEditorGui(this.nodeImageEditor);
+            }
+            return this.#nodeImageEditorGui;
         }
-        return this.#nodeImageEditorGui;
-    }
+            */
     static setTextureSize(textureSize) {
         this.#textureSize = textureSize;
         this.nodeImageEditor.textureSize = textureSize;
@@ -934,7 +936,7 @@ class WeaponManager {
             }
         }
     }
-    initView(container, editorContainer) {
+    initView(container) {
         this.#htmlWeaponsDiv = document.createElement('div');
         this.#htmlWeaponsDiv.className = 'weaponsDiv';
         this.#htmlPaintsDiv = document.createElement('div');
@@ -942,9 +944,6 @@ class WeaponManager {
         if (container) {
             container.appendChild(this.#htmlWeaponsDiv);
             container.appendChild(this.#htmlPaintsDiv);
-        }
-        if (editorContainer) {
-            editorContainer.append(TextureCombiner.initNodeImageEditorGui().htmlElement);
         }
     }
     #addPaintKit(paintKit, descToken) {

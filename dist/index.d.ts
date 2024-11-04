@@ -1,5 +1,4 @@
 import { NodeImageEditor } from 'harmony-3d';
-import { NodeImageEditorGui } from 'harmony-3d';
 import { Texture } from 'harmony-3d';
 
 export declare function getLegacyPaintKit(id: number): string | number;
@@ -25,7 +24,6 @@ export declare class TextureCombiner {
     static lookupNodes: Map<any, any>;
     static nodeImageEditor: NodeImageEditor;
     static variables: any;
-    static initNodeImageEditorGui(): NodeImageEditorGui;
     static setTextureSize(textureSize: number): void;
     static set team(t: number);
     static get team(): number;
@@ -50,7 +48,7 @@ export declare class WeaponManager {
     weaponId: number;
     constructor();
     initPaintKitDefinitions(url: string): Promise<void>;
-    initView(container?: HTMLElement, editorContainer?: HTMLElement): void;
+    initView(container?: HTMLElement): void;
     getItemList(cMsgPaintKit_Definition: any): any;
     refreshPaint(item: any): void;
     refreshItem(item: any, clearQueue?: boolean): void;

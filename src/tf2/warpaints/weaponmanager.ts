@@ -59,7 +59,7 @@ export class WeaponManager {
 		}
 	}
 
-	initView(container?: HTMLElement, editorContainer?: HTMLElement) {
+	initView(container?: HTMLElement) {
 		this.#htmlWeaponsDiv = document.createElement('div');
 		this.#htmlWeaponsDiv.className = 'weaponsDiv';
 		this.#htmlPaintsDiv = document.createElement('div');
@@ -68,10 +68,6 @@ export class WeaponManager {
 		if (container) {
 			container.appendChild(this.#htmlWeaponsDiv);
 			container.appendChild(this.#htmlPaintsDiv);
-		}
-
-		if (editorContainer) {
-			editorContainer.append(TextureCombiner.initNodeImageEditorGui().htmlElement);
 		}
 	}
 

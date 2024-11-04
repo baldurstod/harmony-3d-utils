@@ -1,5 +1,5 @@
 import { vec2 } from 'gl-matrix';
-import { Graphics, NodeImageEditor, NodeImageEditorGui, Source1TextureManager, DEFAULT_TEXTURE_SIZE, DEG_TO_RAD, TextureManager, Texture, IntArrayNode, Node, ApplySticker, TextureLookup } from 'harmony-3d';
+import { NodeImageEditor, DEFAULT_TEXTURE_SIZE, Texture, IntArrayNode } from 'harmony-3d';
 import { getLegacyPaintKit } from './legacypaintkits';
 import { UniformRandomStream } from './uniformrandomstream';
 import { PaintKitDefinitions } from './paintkitdefinitions';
@@ -21,15 +21,16 @@ export class TextureCombiner {
 	static pixelArray = null;
 	static lookupNodes = new Map();
 	static nodeImageEditor = new NodeImageEditor();
-	static #nodeImageEditorGui?: NodeImageEditorGui;// = new NodeImageEditorGui(this.nodeImageEditor);
+	//static #nodeImageEditorGui?: NodeImageEditorGui;// = new NodeImageEditorGui(this.nodeImageEditor);
 	static variables: any = {};
-
-	static initNodeImageEditorGui(): NodeImageEditorGui {
-		if (!this.#nodeImageEditorGui) {
-			this.#nodeImageEditorGui = new NodeImageEditorGui(this.nodeImageEditor);
+	/*
+		static initNodeImageEditorGui(): NodeImageEditorGui {
+			if (!this.#nodeImageEditorGui) {
+				this.#nodeImageEditorGui = new NodeImageEditorGui(this.nodeImageEditor);
+			}
+			return this.#nodeImageEditorGui;
 		}
-		return this.#nodeImageEditorGui;
-	}
+			*/
 
 	static setTextureSize(textureSize: number) {
 		this.#textureSize = textureSize;
