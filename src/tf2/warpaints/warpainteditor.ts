@@ -13,8 +13,6 @@ export class WarpaintEditor {
 
 	init(container: HTMLElement) {
 		container.append(this.#nodeImageEditorGui.htmlElement);
-		if (!this.#nodeImageEditorGui) {
-			this.#nodeImageEditorGui = new NodeImageEditorGui(TextureCombiner.nodeImageEditor);
-		}
+		this.#nodeImageEditorGui.setNodeImageEditor(TextureCombiner.nodeImageEditor);
 	}
 }
