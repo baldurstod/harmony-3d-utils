@@ -31,6 +31,12 @@ export declare class TextureCombiner {
     static combinePaint(paintKitDefId: number, wearLevel: number, weaponDefIndex: string, outputTextureName: string, outputTexture: Texture, seed?: bigint): Promise<unknown>;
 }
 
+export declare class WarpaintEditor {
+    #private;
+    constructor();
+    init(container: HTMLElement): void;
+}
+
 export declare class WeaponManager {
     #private;
     weapons: {};
