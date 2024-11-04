@@ -1,4 +1,4 @@
-import { Graphics, TextureManager, Source1TextureManager, DEG_TO_RAD, DEFAULT_TEXTURE_SIZE, NodeImageEditor } from 'harmony-3d';
+import { Graphics, TextureManager, Source1TextureManager, DEG_TO_RAD, DEFAULT_TEXTURE_SIZE, NodeImageEditor, NodeImageEditorGui } from 'harmony-3d';
 import { vec2 } from 'gl-matrix';
 
 const legacyPaintKits = new Map();
@@ -897,6 +897,23 @@ function ParseRangeThenDivideBy(output, input, div = 255) {
     output.high /= div;
 }
 
+class WarpaintEditor {
+    static #instance;
+    #nodeImageEditorGui = new NodeImageEditorGui();
+    constructor() {
+        if (WarpaintEditor.#instance) {
+            return WarpaintEditor.#instance;
+        }
+        WarpaintEditor.#instance = this;
+    }
+    init(container) {
+        container.append(this.#nodeImageEditorGui.htmlElement);
+        if (!this.#nodeImageEditorGui) {
+            this.#nodeImageEditorGui = new NodeImageEditorGui(TextureCombiner.nodeImageEditor);
+        }
+    }
+}
+
 const WeaponManagerEventTarget = new EventTarget();
 class WeaponManager {
     static #instance;
@@ -1193,4 +1210,4 @@ winger_pistol : 50
 }
 */
 
-export { PaintKitDefinitions, TextureCombiner, WeaponManager, WeaponManagerEventTarget, getLegacyPaintKit, setLegacyPaintKit };
+export { PaintKitDefinitions, TextureCombiner, WarpaintEditor, WeaponManager, WeaponManagerEventTarget, getLegacyPaintKit, setLegacyPaintKit };
