@@ -13,16 +13,24 @@ import { ApplyStickerStage, Sticker } from './stages/applysticker';
 const texturePathPrefixRemoveMe = '../gamecontent/tf2/materials/';//TODOv3 : put in constants
 
 export class TextureCombiner {
-	static #textureSize = DEFAULT_TEXTURE_SIZE;
-	static #team = 0;
-	static paintIds = {};
-	static imageExtension = '.vtf';
-	static textureApplyStickerNode = 'apply_sticker';
-	static pixelArray = null;
-	static lookupNodes = new Map();
-	static nodeImageEditor = new NodeImageEditor();
+	static #instance: TextureCombiner;
+	#textureSize = DEFAULT_TEXTURE_SIZE;
+	#team = 0;
+	paintIds = {};
+	imageExtension = '.vtf';
+	textureApplyStickerNode = 'apply_sticker';
+	pixelArray = null;
+	lookupNodes = new Map();
+	nodeImageEditor = new NodeImageEditor();
 	//static #nodeImageEditorGui?: NodeImageEditorGui;// = new NodeImageEditorGui(this.nodeImageEditor);
-	static variables: any = {};
+	variables: any = {};
+
+	constructor() {
+		if (TextureCombiner.#instance) {
+			return TextureCombiner.#instance;
+		}
+		TextureCombiner.#instance = this;
+	}
 	/*
 		static initNodeImageEditorGui(): NodeImageEditorGui {
 			if (!this.#nodeImageEditorGui) {
@@ -32,24 +40,24 @@ export class TextureCombiner {
 		}
 			*/
 
-	static setTextureSize(textureSize: number) {
+	 setTextureSize(textureSize: number) {
 		this.#textureSize = textureSize;
 		this.nodeImageEditor.textureSize = textureSize;
 	}
 
-	static set team(t) {
+	 set team(t) {
 		this.#team = t;
 	}
 
-	static get team() {
+	 get team() {
 		return this.#team;
 	}
 
-	static async _getDefindex(CMsgProtoDefID: any) {
+	 async _getDefindex(CMsgProtoDefID: any) {
 		return PaintKitDefinitions.getDefinition(CMsgProtoDefID);
 	}
 
-	static async combinePaint(paintKitDefId: number, wearLevel: number, weaponDefIndex: string, outputTextureName: string, outputTexture: Texture, seed: bigint = 0n) {
+	 async combinePaint(paintKitDefId: number, wearLevel: number, weaponDefIndex: string, outputTextureName: string, outputTexture: Texture, seed: bigint = 0n) {
 		this.lookupNodes = new Map();
 		let combinePaintPromise = new Promise(async (resolve, reject) => {
 			let finalPromise;
@@ -158,7 +166,7 @@ export class TextureCombiner {
 		return combinePaintPromise;
 	}
 
-	static async #setupVariables(paintKitDefinition: any, wearLevel: number, item: any) {
+	 async #setupVariables(paintKitDefinition: any, wearLevel: number, item: any) {
 		this.variables = {};
 
 		if (item) {
@@ -183,7 +191,7 @@ export class TextureCombiner {
 		}
 	}
 
-	static #addVariables(variableArray: Array<any>) {
+	 #addVariables(variableArray: Array<any>) {
 		if (variableArray) {
 			for (let i = 0; i < variableArray.length; i++) {
 				let v = variableArray[i];
@@ -192,7 +200,7 @@ export class TextureCombiner {
 		}
 	}
 
-	static #addVariables2(variableArray: Array<any>) {
+	 #addVariables2(variableArray: Array<any>) {
 		if (variableArray) {
 			for (let i = 0; i < variableArray.length; i++) {
 				let v = variableArray[i];
@@ -203,7 +211,7 @@ export class TextureCombiner {
 		}
 	}
 
-	static async #processOperationNodeArray(operationNodeArray: Array<any>/*, parentStage: Stage*/) {
+	 async #processOperationNodeArray(operationNodeArray: Array<any>/*, parentStage: Stage*/) {
 		let chidren: Array<Stage> = [];
 		for (var i = 0; i < operationNodeArray.length; i++) {
 			let child = await this.#processOperationNode(operationNodeArray[i]/*, parentStage*/);
@@ -218,7 +226,7 @@ export class TextureCombiner {
 		return chidren;
 	}
 
-	static #getStageName(stage: any) {
+	 #getStageName(stage: any) {
 		switch (true) {
 			case stage.textureLookup != undefined:
 				return 'textureLookup';
@@ -244,7 +252,7 @@ export class TextureCombiner {
 
 	}
 
-	static async #processOperationNode(operationNode: any/*, parentStage: Stage/*, parentStage*//*, inputs*/): Promise<Stage | undefined | Array<Stage>> {
+	 async #processOperationNode(operationNode: any/*, parentStage: Stage/*, parentStage*//*, inputs*/): Promise<Stage | undefined | Array<Stage>> {
 		let subStage = null;
 		if (operationNode.stage) {
 			let stage = operationNode.stage;
@@ -306,7 +314,7 @@ console.error('node or subnode is null', node, subNode);
 		return subStage;
 	}
 
-	static #processCombineStage(stage: any, combineMode: string) {
+	 #processCombineStage(stage: any, combineMode: string) {
 		let node = this.nodeImageEditor.addNode(combineMode);
 
 		let combineStage = new CombineStage(node, combineMode);
@@ -350,7 +358,7 @@ console.error('node or subnode is null', node, subNode);
 			return node;
 		}*/
 
-	static #processTextureStage(stage: any) {
+	 #processTextureStage(stage: any) {
 		let node = null;
 
 		var texture;
@@ -408,7 +416,7 @@ console.error('node or subnode is null', node, subNode);
 		return textureStage;
 	}
 
-	static #processSelectStage(stage: any) {
+	 #processSelectStage(stage: any) {
 		let selectParametersNode = this.nodeImageEditor.addNode('int array', { length: 16 });
 
 		let selectNode = this.nodeImageEditor.addNode('select');
@@ -434,7 +442,7 @@ console.error('node or subnode is null', node, subNode);
 		return selectStage;
 	}
 
-	static #processApplyStickerStage(stage: any) {
+	 #processApplyStickerStage(stage: any) {
 		let applyStickerNode = this.nodeImageEditor.addNode(this.textureApplyStickerNode);
 		let applyStickerStage = new ApplyStickerStage(applyStickerNode);
 
@@ -476,7 +484,7 @@ console.error('node or subnode is null', node, subNode);
 		return applyStickerStage;
 	}
 
-	static #getVarField(field: any) {
+	 #getVarField(field: any) {
 		if (!field) { return null; }
 		if (field.variable) {
 			let v = this.variables[field.variable];

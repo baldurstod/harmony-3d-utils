@@ -17,18 +17,19 @@ export declare function setLegacyPaintKit(oldId: number, newId: string): void;
 
 export declare class TextureCombiner {
     #private;
-    static paintIds: {};
-    static imageExtension: string;
-    static textureApplyStickerNode: string;
-    static pixelArray: null;
-    static lookupNodes: Map<any, any>;
-    static nodeImageEditor: NodeImageEditor;
-    static variables: any;
-    static setTextureSize(textureSize: number): void;
-    static set team(t: number);
-    static get team(): number;
-    static _getDefindex(CMsgProtoDefID: any): Promise<any>;
-    static combinePaint(paintKitDefId: number, wearLevel: number, weaponDefIndex: string, outputTextureName: string, outputTexture: Texture, seed?: bigint): Promise<unknown>;
+    paintIds: {};
+    imageExtension: string;
+    textureApplyStickerNode: string;
+    pixelArray: null;
+    lookupNodes: Map<any, any>;
+    nodeImageEditor: NodeImageEditor;
+    variables: any;
+    constructor();
+    setTextureSize(textureSize: number): void;
+    set team(t: number);
+    get team(): number;
+    _getDefindex(CMsgProtoDefID: any): Promise<any>;
+    combinePaint(paintKitDefId: number, wearLevel: number, weaponDefIndex: string, outputTextureName: string, outputTexture: Texture, seed?: bigint): Promise<unknown>;
 }
 
 export declare class WarpaintEditor {

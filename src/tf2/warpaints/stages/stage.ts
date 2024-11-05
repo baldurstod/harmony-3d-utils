@@ -3,11 +3,6 @@ import { UniformRandomStream } from '../uniformrandomstream';
 
 let blackTexture: Texture;
 
-Graphics.ready.then(() => {
-	blackTexture = TextureManager.createFlatTexture([0, 0, 0])
-	blackTexture.addUser(1);
-});
-
 export class Stage {
 	static #textures = new Map();
 	texturePath: string = '';
@@ -17,6 +12,12 @@ export class Stage {
 	#nextSibling?: Stage;
 	constructor(node: Node) {
 		this.node = node;
+		if (!blackTexture) {
+			new Graphics().ready.then(() => {
+				blackTexture = TextureManager.createFlatTexture([0, 0, 0])
+				blackTexture.addUser(1);
+			});
+		}
 	}
 
 	computeRandomValues(currentIndexObject: { currentIndex: number }, pRNGs: Array<UniformRandomStream>, nRNGCount: number) {
