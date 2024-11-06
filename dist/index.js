@@ -917,7 +917,7 @@ class WarpaintEditor {
     }
     init(container) {
         container.append(this.#nodeImageEditorGui.htmlElement);
-        this.#nodeImageEditorGui.setNodeImageEditor(TextureCombiner.nodeImageEditor);
+        this.#nodeImageEditorGui.setNodeImageEditor(new TextureCombiner().nodeImageEditor);
     }
 }
 
@@ -1133,7 +1133,7 @@ class WeaponManager {
             let { name: textureName, texture } = Source1TextureManager.addInternalTexture();
             texture.setAlphaBits(8);
             if (ci.paintKitId !== null) {
-                let promise = TextureCombiner.combinePaint(ci.paintKitId, ci.paintKitWear, ci.id.replace(/\~\d+/, ''), textureName, texture, ci.paintKitSeed);
+                let promise = new TextureCombiner().combinePaint(ci.paintKitId, ci.paintKitWear, ci.id.replace(/\~\d+/, ''), textureName, texture, ci.paintKitSeed);
                 ci.sourceModel.materialsParams['WeaponSkin'] = textureName;
                 //this._textureCombiner.nodeImageEditor.setOutputTextureName(textureName);
                 promise.then((e) => {
