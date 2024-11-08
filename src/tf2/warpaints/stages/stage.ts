@@ -1,5 +1,5 @@
 import { ApplySticker, Graphics, Node, Source1TextureManager, Texture, TextureLookup, TextureManager } from 'harmony-3d';
-import { UniformRandomStream } from '../uniformrandomstream';
+import { UniformRandomStream } from 'harmony-tf2-utils';
 
 let blackTexture: Texture;
 

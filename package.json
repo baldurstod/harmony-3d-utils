@@ -1,12 +1,13 @@
 {
   "name": "harmony-3d-utils",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "dependencies": {
     "gl-matrix": "^3.4.3",
-    "harmony-3d": "github:baldurstod/harmony-3d"
+    "harmony-3d": "github:baldurstod/harmony-3d",
+    "harmony-tf2-utils": "github:baldurstod/harmony-tf2-utils"
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^12.1.1",

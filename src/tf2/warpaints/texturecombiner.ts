@@ -1,14 +1,12 @@
 import { vec2 } from 'gl-matrix';
 import { NodeImageEditor, DEFAULT_TEXTURE_SIZE, Texture, IntArrayNode } from 'harmony-3d';
-import { getLegacyPaintKit } from './legacypaintkits';
-import { UniformRandomStream } from './uniformrandomstream';
-import { PaintKitDefinitions } from './paintkitdefinitions';
 import { Range } from './stages/parameters';
 import { Stage } from './stages/stage';
 import { CombineStage } from './stages/combine';
 import { TextureStage } from './stages/texture';
 import { SelectStage, TEXTURE_LOOKUP_NODE } from './stages/select';
 import { ApplyStickerStage, Sticker } from './stages/applysticker';
+import { getLegacyPaintKit, PaintKitDefinitions, UniformRandomStream } from 'harmony-tf2-utils';
 
 const texturePathPrefixRemoveMe = '../gamecontent/tf2/materials/';//TODOv3 : put in constants
 

@@ -1,7 +1,7 @@
 import { DEG_TO_RAD } from 'harmony-3d';
 import { Stage } from './stage';
-import { UniformRandomStream } from '../uniformrandomstream';
 import { Range } from './parameters';
+import { UniformRandomStream } from 'harmony-tf2-utils';
 
 
 class TextureStageParameters {

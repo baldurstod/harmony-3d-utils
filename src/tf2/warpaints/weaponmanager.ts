@@ -1,6 +1,6 @@
 import { Source1TextureManager } from 'harmony-3d';
-import { PaintKitDefinitions } from './paintkitdefinitions';
 import { TextureCombiner } from './texturecombiner';
+import { PaintKitDefinitions } from 'harmony-tf2-utils';
 
 export const WeaponManagerEventTarget = new EventTarget();
 

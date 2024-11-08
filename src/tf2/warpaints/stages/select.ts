@@ -1,6 +1,6 @@
 import { Node, NodeImageEditor, TextureLookup } from 'harmony-3d';
 import { Stage } from './stage';
-import { UniformRandomStream } from '../uniformrandomstream';
+import { UniformRandomStream } from 'harmony-tf2-utils';
 
 export const TEXTURE_LOOKUP_NODE = 'texture lookup';
 
