@@ -1,5 +1,23 @@
 import { NodeImageEditor } from 'harmony-3d';
+import { Repository } from 'harmony-3d';
+import { RepositoryEntry } from 'harmony-3d';
 import { Texture } from 'harmony-3d';
+
+export declare function defineRepository(): void;
+
+export declare function defineRepositoryEntry(): void;
+
+export declare class RepositoryElement extends HTMLElement {
+    #private;
+    constructor(repository?: Repository);
+    setRepository(repository?: Repository): void;
+}
+
+export declare class RepositoryEntryElement extends HTMLElement {
+    #private;
+    constructor();
+    setRepositoryEntry(repositoryEntry?: RepositoryEntry): void;
+}
 
 export declare class TextureCombiner {
     #private;

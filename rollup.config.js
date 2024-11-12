@@ -1,6 +1,7 @@
 import fs from 'fs';
 import child_process from 'child_process';
 import typescript from '@rollup/plugin-typescript';
+import css from 'rollup-plugin-import-css';
 
 const TEMP_BUILD = './dist/dts/index.js';
 
@@ -12,6 +13,7 @@ export default [
 			format: 'esm',
 		},
 		plugins: [
+			css(),
 			typescript(),
 			{
 				name: 'postbuild-commands',
@@ -23,6 +25,7 @@ export default [
 		external: [
 			'harmony-3d',
 			'harmony-tf2-utils',
+			'harmony-ui',
 			'gl-matrix',
 		],
 	},
