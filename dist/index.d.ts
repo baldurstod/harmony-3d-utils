@@ -7,10 +7,18 @@ export declare function defineRepository(): void;
 
 export declare function defineRepositoryEntry(): void;
 
+export declare enum RepositoryDisplayMode {
+    Flat = "flat",
+    Tree = "tree"
+}
+
 export declare class RepositoryElement extends HTMLElement {
     #private;
     constructor(repository?: Repository);
     setRepository(repository?: Repository): void;
+    setDisplayMode(mode: RepositoryDisplayMode): void;
+    attributeChangedCallback(name: string, oldValue: string, newValue: string): void;
+    static get observedAttributes(): string[];
 }
 
 export declare class RepositoryEntryElement extends HTMLElement {

@@ -1169,23 +1169,27 @@ function defineRepositoryEntry() {
 
 var repositoryCSS = ":host {\n\theight: 1rem;\n\tbackground-color: aliceblue;\n\tdisplay: block;\n}\n";
 
+var RepositoryDisplayMode;
+(function (RepositoryDisplayMode) {
+    RepositoryDisplayMode["Flat"] = "flat";
+    RepositoryDisplayMode["Tree"] = "tree";
+})(RepositoryDisplayMode || (RepositoryDisplayMode = {}));
 class RepositoryElement extends HTMLElement {
     #shadowRoot;
     #repository;
+    #displayMode = RepositoryDisplayMode.Flat;
     constructor(repository) {
         super();
         this.#shadowRoot = this.attachShadow({ mode: 'closed' });
         shadowRootStyle(this.#shadowRoot, repositoryCSS);
-        /*
-                this.#shadowRoot = createShadowRoot('div', {
-                    childs: [
-                        //this.#htmlLeftPanel = createElement('div', { class: 'loadout-application-left-panel' }),
-                    ],
-                });*/
         this.setRepository(repository);
     }
     setRepository(repository) {
         this.#repository = repository;
+        this.#updateHTML();
+    }
+    setDisplayMode(mode) {
+        this.#displayMode = mode;
         this.#updateHTML();
     }
     async #updateHTML() {
@@ -1197,11 +1201,50 @@ class RepositoryElement extends HTMLElement {
         if (response.error) {
             return;
         }
+        if (!response.root) {
+            return;
+        }
+        defineRepositoryEntry();
+        switch (this.#displayMode) {
+            case RepositoryDisplayMode.Flat:
+                this.#updateFlat(response.root);
+                break;
+            case RepositoryDisplayMode.Tree:
+                this.#updateTree(response.root);
+                break;
+        }
+    }
+    async #updateFlat(root) {
+        defineRepositoryEntry();
+        /*
+        const entryview: RepositoryEntryElement = createElement('harmony3d-repository-entry', {
+            parent: this.#shadowRoot,
+        }) as RepositoryEntryElement;
+*/
+        //console.info(root.getAllChilds());
+        for (const entry of root.getAllChilds()) {
+            const entryview = createElement('harmony3d-repository-entry', {
+                parent: this.#shadowRoot,
+            });
+            entryview.setRepositoryEntry(entry);
+        }
+    }
+    async #updateTree(root) {
         defineRepositoryEntry();
         const entryview = createElement('harmony3d-repository-entry', {
             parent: this.#shadowRoot,
         });
-        entryview.setRepositoryEntry(response.root);
+        entryview.setRepositoryEntry(root);
+    }
+    attributeChangedCallback(name, oldValue, newValue) {
+        switch (name) {
+            case 'display-mode':
+                this.setDisplayMode(newValue);
+                break;
+        }
+    }
+    static get observedAttributes() {
+        return ['display-mode'];
     }
 }
 let definedRepository = false;
@@ -1212,4 +1255,4 @@ function defineRepository() {
     }
 }
 
-export { RepositoryElement, RepositoryEntryElement, TextureCombiner, WarpaintEditor, WeaponManager, WeaponManagerEventTarget, defineRepository, defineRepositoryEntry };
+export { RepositoryDisplayMode, RepositoryElement, RepositoryEntryElement, TextureCombiner, WarpaintEditor, WeaponManager, WeaponManagerEventTarget, defineRepository, defineRepositoryEntry };
