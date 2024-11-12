@@ -1178,14 +1178,18 @@ class RepositoryElement extends HTMLElement {
     #shadowRoot;
     #repository;
     #displayMode = RepositoryDisplayMode.Flat;
-    constructor(repository) {
+    #filter;
+    constructor() {
         super();
         this.#shadowRoot = this.attachShadow({ mode: 'closed' });
         shadowRootStyle(this.#shadowRoot, repositoryCSS);
-        this.setRepository(repository);
     }
     setRepository(repository) {
         this.#repository = repository;
+        this.#updateHTML();
+    }
+    setFilter(filter) {
+        this.#filter = filter;
         this.#updateHTML();
     }
     setDisplayMode(mode) {
@@ -1222,7 +1226,7 @@ class RepositoryElement extends HTMLElement {
         }) as RepositoryEntryElement;
 */
         //console.info(root.getAllChilds());
-        for (const entry of root.getAllChilds()) {
+        for (const entry of root.getAllChilds(this.#filter)) {
             const entryview = createElement('harmony3d-repository-entry', {
                 parent: this.#shadowRoot,
             });

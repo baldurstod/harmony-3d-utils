@@ -1,6 +1,7 @@
 import { NodeImageEditor } from 'harmony-3d';
 import { Repository } from 'harmony-3d';
 import { RepositoryEntry } from 'harmony-3d';
+import { RepositoryFilter } from 'harmony-3d';
 import { Texture } from 'harmony-3d';
 
 export declare function defineRepository(): void;
@@ -14,8 +15,9 @@ export declare enum RepositoryDisplayMode {
 
 export declare class RepositoryElement extends HTMLElement {
     #private;
-    constructor(repository?: Repository);
+    constructor();
     setRepository(repository?: Repository): void;
+    setFilter(filter?: RepositoryFilter): void;
     setDisplayMode(mode: RepositoryDisplayMode): void;
     attributeChangedCallback(name: string, oldValue: string, newValue: string): void;
     static get observedAttributes(): string[];

@@ -1,4 +1,4 @@
-import { Repository, RepositoryEntry } from 'harmony-3d';
+import { Repository, RepositoryEntry, RepositoryFilter } from 'harmony-3d';
 import { createElement, createShadowRoot, shadowRootStyle } from 'harmony-ui';
 import { defineRepositoryEntry, RepositoryEntryElement } from './repositoryentry';
 import repositoryCSS from '../css/repository.css';
@@ -12,17 +12,21 @@ export class RepositoryElement extends HTMLElement {
 	#shadowRoot: ShadowRoot;
 	#repository?: Repository;
 	#displayMode: RepositoryDisplayMode = RepositoryDisplayMode.Flat;
-	constructor(repository?: Repository) {
+	#filter?: RepositoryFilter
+	constructor() {
 		super();
 
 		this.#shadowRoot = this.attachShadow({ mode: 'closed' });
 		shadowRootStyle(this.#shadowRoot, repositoryCSS);
-
-		this.setRepository(repository);
 	}
 
 	setRepository(repository?: Repository) {
 		this.#repository = repository;
+		this.#updateHTML();
+	}
+
+	setFilter(filter?: RepositoryFilter) {
+		this.#filter = filter;
 		this.#updateHTML();
 	}
 
@@ -65,7 +69,7 @@ export class RepositoryElement extends HTMLElement {
 		}) as RepositoryEntryElement;
 */
 		//console.info(root.getAllChilds());
-		for (const entry of root.getAllChilds()) {
+		for (const entry of root.getAllChilds(this.#filter)) {
 			const entryview: RepositoryEntryElement = createElement('harmony3d-repository-entry', {
 				parent: this.#shadowRoot,
 			}) as RepositoryEntryElement;
