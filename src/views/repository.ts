@@ -12,7 +12,8 @@ export class RepositoryElement extends HTMLElement {
 	#shadowRoot: ShadowRoot;
 	#repository?: Repository;
 	#displayMode: RepositoryDisplayMode = RepositoryDisplayMode.Flat;
-	#filter?: RepositoryFilter
+	#filter?: RepositoryFilter;
+	#htmlCustomContent?: HTMLElement;
 	constructor() {
 		super();
 
@@ -33,6 +34,15 @@ export class RepositoryElement extends HTMLElement {
 	setDisplayMode(mode: RepositoryDisplayMode) {
 		this.#displayMode = mode;
 		this.#updateHTML();
+	}
+
+	setCustomContent(content?: HTMLElement) {
+		if (content) {
+			this.#htmlCustomContent = content.cloneNode(true) as HTMLElement;
+			this.#htmlCustomContent.slot = 'custom';
+		} else {
+			this.#htmlCustomContent = content;
+		}
 	}
 
 	async #updateHTML() {
@@ -72,6 +82,10 @@ export class RepositoryElement extends HTMLElement {
 					directoryclick: (event: Event) => this.dispatchEvent(cloneEvent(event)),
 				},
 			}) as RepositoryEntryElement;
+
+			if (this.#htmlCustomContent) {
+				entryview.append(this.#htmlCustomContent.cloneNode(true));
+			}
 
 			entryview.setRepositoryEntry(entry);
 		}

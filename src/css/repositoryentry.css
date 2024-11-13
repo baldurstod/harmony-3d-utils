@@ -1,3 +1,12 @@
+.header {
+	display: flex;
+}
+
 .self {
-	height: 1rem;
+	flex: 1;
+}
+
+.custom {
+	display: block;
+	flex: 0;
 }

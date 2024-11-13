@@ -1086,7 +1086,7 @@ winger_pistol : 50
 }
 */
 
-var repositoryEntryCSS = ".self {\n\theight: 1rem;\n}\n";
+var repositoryEntryCSS = ".header {\n\tdisplay: flex;\n}\n\n.self {\n\tflex: 1;\n}\n\n.custom {\n\tdisplay: block;\n\tflex: 0;\n}\n";
 
 class RepositoryEntryElement extends HTMLElement {
     #shadowRoot;
@@ -1098,12 +1098,22 @@ class RepositoryEntryElement extends HTMLElement {
         super();
         this.#shadowRoot = this.attachShadow({ mode: 'closed' });
         shadowRootStyle(this.#shadowRoot, repositoryEntryCSS);
-        this.#htmlSelf = createElement('div', {
-            class: 'self',
+        createElement('div', {
+            class: 'header',
             parent: this.#shadowRoot,
-            events: {
-                click: () => this.#click(),
-            }
+            childs: [
+                this.#htmlSelf = createElement('div', {
+                    class: 'self',
+                    events: {
+                        click: () => this.#click(),
+                    },
+                }),
+                createElement('slot', {
+                    class: 'custom',
+                    name: 'custom',
+                    parent: this.#shadowRoot,
+                })
+            ],
         });
         this.#htmlChilds = createElement('div', {
             class: 'childs',
@@ -1167,7 +1177,7 @@ function defineRepositoryEntry() {
     }
 }
 
-var repositoryCSS = ":host {\n\theight: 1rem;\n\tbackground-color: aliceblue;\n\tdisplay: block;\n}\n";
+var repositoryCSS = "";
 
 var RepositoryDisplayMode;
 (function (RepositoryDisplayMode) {
@@ -1179,6 +1189,7 @@ class RepositoryElement extends HTMLElement {
     #repository;
     #displayMode = RepositoryDisplayMode.Flat;
     #filter;
+    #htmlCustomContent;
     constructor() {
         super();
         this.#shadowRoot = this.attachShadow({ mode: 'closed' });
@@ -1195,6 +1206,15 @@ class RepositoryElement extends HTMLElement {
     setDisplayMode(mode) {
         this.#displayMode = mode;
         this.#updateHTML();
+    }
+    setCustomContent(content) {
+        if (content) {
+            this.#htmlCustomContent = content.cloneNode(true);
+            this.#htmlCustomContent.slot = 'custom';
+        }
+        else {
+            this.#htmlCustomContent = content;
+        }
     }
     async #updateHTML() {
         this.#shadowRoot.innerHTML = '';
@@ -1228,6 +1248,9 @@ class RepositoryElement extends HTMLElement {
                     directoryclick: (event) => this.dispatchEvent(cloneEvent(event)),
                 },
             });
+            if (this.#htmlCustomContent) {
+                entryview.append(this.#htmlCustomContent.cloneNode(true));
+            }
             entryview.setRepositoryEntry(entry);
         }
     }

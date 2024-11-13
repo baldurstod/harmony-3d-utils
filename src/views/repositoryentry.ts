@@ -13,12 +13,22 @@ export class RepositoryEntryElement extends HTMLElement {
 		this.#shadowRoot = this.attachShadow({ mode: 'closed' });
 		shadowRootStyle(this.#shadowRoot, repositoryEntryCSS);
 
-		this.#htmlSelf = createElement('div', {
-			class: 'self',
+		createElement('div', {
+			class: 'header',
 			parent: this.#shadowRoot,
-			events: {
-				click: () => this.#click(),
-			}
+			childs: [
+				this.#htmlSelf = createElement('div', {
+					class: 'self',
+					events: {
+						click: () => this.#click(),
+					},
+				}),
+				createElement('slot', {
+					class: 'custom',
+					name: 'custom',
+					parent: this.#shadowRoot,
+				})
+			],
 		});
 
 		this.#htmlChilds = createElement('div', {
@@ -48,7 +58,8 @@ export class RepositoryEntryElement extends HTMLElement {
 
 				entryview.setRepositoryEntry(entry);
 
-			}}
+			}
+		}
 	}
 
 	#click() {
