@@ -1239,7 +1239,7 @@ class RepositoryElement extends HTMLElement {
                 },
             });
             entryview.setRepositoryEntry(entry);
-            this.dispatchEvent(new CustomEvent('entrycreated', { detail: entryview }));
+            this.dispatchEvent(new CustomEvent('entrycreated', { detail: { entry: entry, view: entryview } }));
         }
     }
     async #updateTree(root) {
@@ -1252,7 +1252,7 @@ class RepositoryElement extends HTMLElement {
             },
         });
         entryview.setRepositoryEntry(root);
-        this.dispatchEvent(new CustomEvent('entrycreated', { detail: entryview }));
+        this.dispatchEvent(new CustomEvent('entrycreated', { detail: { entry: root, view: entryview } }));
     }
     attributeChangedCallback(name, oldValue, newValue) {
         switch (name) {

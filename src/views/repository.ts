@@ -74,7 +74,7 @@ export class RepositoryElement extends HTMLElement {
 			}) as RepositoryEntryElement;
 
 			entryview.setRepositoryEntry(entry);
-			this.dispatchEvent(new CustomEvent('entrycreated', { detail: entryview }));
+			this.dispatchEvent(new CustomEvent('entrycreated', { detail: { entry: entry, view: entryview } }));
 		}
 	}
 
@@ -89,7 +89,7 @@ export class RepositoryElement extends HTMLElement {
 		}) as RepositoryEntryElement;
 
 		entryview.setRepositoryEntry(root);
-		this.dispatchEvent(new CustomEvent('entrycreated', { detail: entryview }));
+		this.dispatchEvent(new CustomEvent('entrycreated', { detail: { entry: root, view: entryview } }));
 	}
 
 	attributeChangedCallback(name: string, oldValue: string, newValue: string) {
