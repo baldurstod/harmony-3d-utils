@@ -1189,7 +1189,6 @@ class RepositoryElement extends HTMLElement {
     #repository;
     #displayMode = RepositoryDisplayMode.Flat;
     #filter;
-    #htmlCustomContent;
     constructor() {
         super();
         this.#shadowRoot = this.attachShadow({ mode: 'closed' });
@@ -1206,15 +1205,6 @@ class RepositoryElement extends HTMLElement {
     setDisplayMode(mode) {
         this.#displayMode = mode;
         this.#updateHTML();
-    }
-    setCustomContent(content) {
-        if (content) {
-            this.#htmlCustomContent = content.cloneNode(true);
-            this.#htmlCustomContent.slot = 'custom';
-        }
-        else {
-            this.#htmlCustomContent = content;
-        }
     }
     async #updateHTML() {
         this.#shadowRoot.innerHTML = '';
@@ -1248,10 +1238,8 @@ class RepositoryElement extends HTMLElement {
                     directoryclick: (event) => this.dispatchEvent(cloneEvent(event)),
                 },
             });
-            if (this.#htmlCustomContent) {
-                entryview.append(this.#htmlCustomContent.cloneNode(true));
-            }
             entryview.setRepositoryEntry(entry);
+            this.dispatchEvent(new CustomEvent('entrycreated', { detail: entryview }));
         }
     }
     async #updateTree(root) {
@@ -1264,6 +1252,7 @@ class RepositoryElement extends HTMLElement {
             },
         });
         entryview.setRepositoryEntry(root);
+        this.dispatchEvent(new CustomEvent('entrycreated', { detail: entryview }));
     }
     attributeChangedCallback(name, oldValue, newValue) {
         switch (name) {

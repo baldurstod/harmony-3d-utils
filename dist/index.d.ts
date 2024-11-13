@@ -19,7 +19,6 @@ export declare class RepositoryElement extends HTMLElement {
     setRepository(repository?: Repository): void;
     setFilter(filter?: RepositoryFilter): void;
     setDisplayMode(mode: RepositoryDisplayMode): void;
-    setCustomContent(content?: HTMLElement): void;
     attributeChangedCallback(name: string, oldValue: string, newValue: string): void;
     static get observedAttributes(): string[];
 }

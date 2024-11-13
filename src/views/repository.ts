@@ -13,7 +13,6 @@ export class RepositoryElement extends HTMLElement {
 	#repository?: Repository;
 	#displayMode: RepositoryDisplayMode = RepositoryDisplayMode.Flat;
 	#filter?: RepositoryFilter;
-	#htmlCustomContent?: HTMLElement;
 	constructor() {
 		super();
 
@@ -34,15 +33,6 @@ export class RepositoryElement extends HTMLElement {
 	setDisplayMode(mode: RepositoryDisplayMode) {
 		this.#displayMode = mode;
 		this.#updateHTML();
-	}
-
-	setCustomContent(content?: HTMLElement) {
-		if (content) {
-			this.#htmlCustomContent = content.cloneNode(true) as HTMLElement;
-			this.#htmlCustomContent.slot = 'custom';
-		} else {
-			this.#htmlCustomContent = content;
-		}
 	}
 
 	async #updateHTML() {
@@ -83,11 +73,8 @@ export class RepositoryElement extends HTMLElement {
 				},
 			}) as RepositoryEntryElement;
 
-			if (this.#htmlCustomContent) {
-				entryview.append(this.#htmlCustomContent.cloneNode(true));
-			}
-
 			entryview.setRepositoryEntry(entry);
+			this.dispatchEvent(new CustomEvent('entrycreated', { detail: entryview }));
 		}
 	}
 
@@ -102,6 +89,7 @@ export class RepositoryElement extends HTMLElement {
 		}) as RepositoryEntryElement;
 
 		entryview.setRepositoryEntry(root);
+		this.dispatchEvent(new CustomEvent('entrycreated', { detail: entryview }));
 	}
 
 	attributeChangedCallback(name: string, oldValue: string, newValue: string) {
