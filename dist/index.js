@@ -1,7 +1,7 @@
 import { Graphics, TextureManager, Source1TextureManager, DEG_TO_RAD, DEFAULT_TEXTURE_SIZE, NodeImageEditor, NodeImageEditorGui } from 'harmony-3d';
 import { vec2 } from 'gl-matrix';
 import { PaintKitDefinitions, getLegacyPaintKit, UniformRandomStream } from 'harmony-tf2-utils';
-import { shadowRootStyle, createElement, I18n, hide, show } from 'harmony-ui';
+import { shadowRootStyle, createElement, I18n, hide, show, cloneEvent } from 'harmony-ui';
 
 class Range {
     low;
@@ -1220,15 +1220,13 @@ class RepositoryElement extends HTMLElement {
     }
     async #updateFlat(root) {
         defineRepositoryEntry();
-        /*
-        const entryview: RepositoryEntryElement = createElement('harmony3d-repository-entry', {
-            parent: this.#shadowRoot,
-        }) as RepositoryEntryElement;
-*/
-        //console.info(root.getAllChilds());
         for (const entry of root.getAllChilds(this.#filter)) {
             const entryview = createElement('harmony3d-repository-entry', {
                 parent: this.#shadowRoot,
+                events: {
+                    fileclick: (event) => this.dispatchEvent(cloneEvent(event)),
+                    directoryclick: (event) => this.dispatchEvent(cloneEvent(event)),
+                },
             });
             entryview.setRepositoryEntry(entry);
         }
@@ -1237,6 +1235,10 @@ class RepositoryElement extends HTMLElement {
         defineRepositoryEntry();
         const entryview = createElement('harmony3d-repository-entry', {
             parent: this.#shadowRoot,
+            events: {
+                fileclick: (event) => this.dispatchEvent(cloneEvent(event)),
+                directoryclick: (event) => this.dispatchEvent(cloneEvent(event)),
+            },
         });
         entryview.setRepositoryEntry(root);
     }

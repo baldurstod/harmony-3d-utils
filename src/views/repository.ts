@@ -1,5 +1,5 @@
 import { Repository, RepositoryEntry, RepositoryFilter } from 'harmony-3d';
-import { createElement, createShadowRoot, shadowRootStyle } from 'harmony-ui';
+import { cloneEvent, createElement, createShadowRoot, shadowRootStyle } from 'harmony-ui';
 import { defineRepositoryEntry, RepositoryEntryElement } from './repositoryentry';
 import repositoryCSS from '../css/repository.css';
 
@@ -63,15 +63,14 @@ export class RepositoryElement extends HTMLElement {
 
 	async #updateFlat(root: RepositoryEntry) {
 		defineRepositoryEntry();
-		/*
-		const entryview: RepositoryEntryElement = createElement('harmony3d-repository-entry', {
-			parent: this.#shadowRoot,
-		}) as RepositoryEntryElement;
-*/
-		//console.info(root.getAllChilds());
+
 		for (const entry of root.getAllChilds(this.#filter)) {
 			const entryview: RepositoryEntryElement = createElement('harmony3d-repository-entry', {
 				parent: this.#shadowRoot,
+				events: {
+					fileclick: (event: Event) => this.dispatchEvent(cloneEvent(event)),
+					directoryclick: (event: Event) => this.dispatchEvent(cloneEvent(event)),
+				},
 			}) as RepositoryEntryElement;
 
 			entryview.setRepositoryEntry(entry);
@@ -82,6 +81,10 @@ export class RepositoryElement extends HTMLElement {
 		defineRepositoryEntry();
 		const entryview: RepositoryEntryElement = createElement('harmony3d-repository-entry', {
 			parent: this.#shadowRoot,
+			events: {
+				fileclick: (event: Event) => this.dispatchEvent(cloneEvent(event)),
+				directoryclick: (event: Event) => this.dispatchEvent(cloneEvent(event)),
+			},
 		}) as RepositoryEntryElement;
 
 		entryview.setRepositoryEntry(root);
