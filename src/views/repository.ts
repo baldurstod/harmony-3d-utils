@@ -35,6 +35,10 @@ export class RepositoryElement extends HTMLElement {
 		this.#updateHTML();
 	}
 
+	adoptStyleSheet(styleSheet: CSSStyleSheet) {
+		this.#shadowRoot.adoptedStyleSheets.push(styleSheet);
+	}
+
 	async #updateHTML() {
 		this.#shadowRoot.innerHTML = '';
 		if (!this.#repository) {

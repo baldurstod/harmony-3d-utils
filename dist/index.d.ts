@@ -19,6 +19,7 @@ export declare class RepositoryElement extends HTMLElement {
     setRepository(repository?: Repository): void;
     setFilter(filter?: RepositoryFilter): void;
     setDisplayMode(mode: RepositoryDisplayMode): void;
+    adoptStyleSheet(styleSheet: CSSStyleSheet): void;
     attributeChangedCallback(name: string, oldValue: string, newValue: string): void;
     static get observedAttributes(): string[];
 }

@@ -1206,6 +1206,9 @@ class RepositoryElement extends HTMLElement {
         this.#displayMode = mode;
         this.#updateHTML();
     }
+    adoptStyleSheet(styleSheet) {
+        this.#shadowRoot.adoptedStyleSheets.push(styleSheet);
+    }
     async #updateHTML() {
         this.#shadowRoot.innerHTML = '';
         if (!this.#repository) {
