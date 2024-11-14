@@ -1,5 +1,13 @@
+:host {
+	--harmony-2d-manipulator-shadow-hover-bg-color: var(--harmony-2d-manipulator-hover-bg-color, red);
+}
+
 .header {
 	display: flex;
+}
+
+.header:hover {
+	background-color: var(--harmony-2d-manipulator-shadow-hover-bg-color);
 }
 
 .self {

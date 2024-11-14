@@ -1086,7 +1086,7 @@ winger_pistol : 50
 }
 */
 
-var repositoryEntryCSS = ".header {\n\tdisplay: flex;\n}\n\n.self {\n\tflex: 1;\n}\n\n.custom {\n\tdisplay: block;\n\tflex: 0;\n}\n";
+var repositoryEntryCSS = ":host {\n\t--harmony-2d-manipulator-shadow-hover-bg-color: var(--harmony-2d-manipulator-hover-bg-color, red);\n}\n\n.header {\n\tdisplay: flex;\n}\n\n.header:hover {\n\tbackground-color: var(--harmony-2d-manipulator-shadow-hover-bg-color);\n}\n\n.self {\n\tflex: 1;\n}\n\n.custom {\n\tdisplay: block;\n\tflex: 0;\n}\n";
 
 class RepositoryEntryElement extends HTMLElement {
     #shadowRoot;
