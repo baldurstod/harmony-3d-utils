@@ -1,5 +1,6 @@
 import { Repository, RepositoryEntry, RepositoryFilter } from 'harmony-3d';
 import { cloneEvent, createElement, createShadowRoot, shadowRootStyle } from 'harmony-ui';
+import { closeSVG } from 'harmony-svg';
 import { defineRepositoryEntry, RepositoryEntryElement } from './repositoryentry';
 import repositoryCSS from '../css/repository.css';
 
@@ -10,6 +11,8 @@ export enum RepositoryDisplayMode {
 
 export class RepositoryElement extends HTMLElement {
 	#shadowRoot: ShadowRoot;
+	#htmlTitle: HTMLElement;
+	#htmlEntries: HTMLElement;
 	#repository?: Repository;
 	#displayMode: RepositoryDisplayMode = RepositoryDisplayMode.Flat;
 	#filter?: RepositoryFilter;
@@ -18,6 +21,29 @@ export class RepositoryElement extends HTMLElement {
 
 		this.#shadowRoot = this.attachShadow({ mode: 'closed' });
 		shadowRootStyle(this.#shadowRoot, repositoryCSS);
+
+		createElement('div', {
+			parent: this.#shadowRoot,
+			class: 'header',
+			childs: [
+				this.#htmlTitle = createElement('div', {class: 'title'}),
+				createElement('div', {
+					class: 'close',
+					parent: this.#shadowRoot,
+					child: createElement('span', { innerHTML: closeSVG }),
+					events: {
+						click: () => {
+							this.remove();
+							this.dispatchEvent(new CustomEvent('close'));
+						},
+					},
+				}),
+			]
+		});
+
+		this.#htmlEntries = createElement('div', {
+			parent: this.#shadowRoot,
+		});
 	}
 
 	setRepository(repository?: Repository) {
@@ -40,7 +66,8 @@ export class RepositoryElement extends HTMLElement {
 	}
 
 	async #updateHTML() {
-		this.#shadowRoot.innerHTML = '';
+		this.#htmlTitle.innerText = this.#repository?.name ?? '';
+		this.#htmlEntries.innerText = '';
 		if (!this.#repository) {
 			return;
 		}
@@ -70,7 +97,7 @@ export class RepositoryElement extends HTMLElement {
 
 		for (const entry of root.getAllChilds(this.#filter)) {
 			const entryview: RepositoryEntryElement = createElement('harmony3d-repository-entry', {
-				parent: this.#shadowRoot,
+				parent: this.#htmlEntries,
 				events: {
 					fileclick: (event: Event) => this.dispatchEvent(cloneEvent(event)),
 					directoryclick: (event: Event) => this.dispatchEvent(cloneEvent(event)),
@@ -85,7 +112,7 @@ export class RepositoryElement extends HTMLElement {
 	async #updateTree(root: RepositoryEntry) {
 		defineRepositoryEntry();
 		const entryview: RepositoryEntryElement = createElement('harmony3d-repository-entry', {
-			parent: this.#shadowRoot,
+			parent: this.#htmlEntries,
 			events: {
 				fileclick: (event: Event) => this.dispatchEvent(cloneEvent(event)),
 				directoryclick: (event: Event) => this.dispatchEvent(cloneEvent(event)),

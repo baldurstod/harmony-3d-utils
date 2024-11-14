@@ -2,6 +2,7 @@ import { Graphics, TextureManager, Source1TextureManager, DEG_TO_RAD, DEFAULT_TE
 import { vec2 } from 'gl-matrix';
 import { PaintKitDefinitions, getLegacyPaintKit, UniformRandomStream } from 'harmony-tf2-utils';
 import { shadowRootStyle, createElement, I18n, hide, show, cloneEvent } from 'harmony-ui';
+import { closeSVG } from 'harmony-svg';
 
 class Range {
     low;
@@ -1086,7 +1087,7 @@ winger_pistol : 50
 }
 */
 
-var repositoryEntryCSS = ":host {\n\t--harmony-2d-manipulator-shadow-hover-bg-color: var(--harmony-2d-manipulator-hover-bg-color, red);\n}\n\n.header {\n\tdisplay: flex;\n}\n\n.header:hover {\n\tbackground-color: var(--harmony-2d-manipulator-shadow-hover-bg-color);\n}\n\n.self {\n\tflex: 1;\n}\n\n.custom {\n\tdisplay: block;\n\tflex: 0;\n}\n";
+var repositoryEntryCSS = ":host {\n\t--harmony-2d-manipulator-shadow-hover-bg-color: var(--harmony-2d-manipulator-hover-bg-color, red);\n\tuser-select: none;\n}\n\n.header {\n\tdisplay: flex;\n}\n\n.header:hover {\n\tbackground-color: var(--harmony-2d-manipulator-shadow-hover-bg-color);\n}\n\n.self {\n\tflex: 1;\n}\n\n.custom {\n\tdisplay: block;\n\tflex: 0;\n}\n";
 
 class RepositoryEntryElement extends HTMLElement {
     #shadowRoot;
@@ -1177,7 +1178,7 @@ function defineRepositoryEntry() {
     }
 }
 
-var repositoryCSS = "";
+var repositoryCSS = ":host {\n\tuser-select: none;\n\tpadding: 0.5rem;\n\tmargin: 0.5rem;\n\tdisplay: flex;\n\tflex-direction: column;\n\tborder: 0.1rem solid;\n}\n\n.header {\n\tdisplay: flex;\n}\n\n.title {\n\tflex: 1;\n}\n\n.close {\n\tcursor: pointer;\n}\n";
 
 var RepositoryDisplayMode;
 (function (RepositoryDisplayMode) {
@@ -1186,6 +1187,8 @@ var RepositoryDisplayMode;
 })(RepositoryDisplayMode || (RepositoryDisplayMode = {}));
 class RepositoryElement extends HTMLElement {
     #shadowRoot;
+    #htmlTitle;
+    #htmlEntries;
     #repository;
     #displayMode = RepositoryDisplayMode.Flat;
     #filter;
@@ -1193,6 +1196,27 @@ class RepositoryElement extends HTMLElement {
         super();
         this.#shadowRoot = this.attachShadow({ mode: 'closed' });
         shadowRootStyle(this.#shadowRoot, repositoryCSS);
+        createElement('div', {
+            parent: this.#shadowRoot,
+            class: 'header',
+            childs: [
+                this.#htmlTitle = createElement('div', { class: 'title' }),
+                createElement('div', {
+                    class: 'close',
+                    parent: this.#shadowRoot,
+                    child: createElement('span', { innerHTML: closeSVG }),
+                    events: {
+                        click: () => {
+                            this.remove();
+                            this.dispatchEvent(new CustomEvent('close'));
+                        },
+                    },
+                }),
+            ]
+        });
+        this.#htmlEntries = createElement('div', {
+            parent: this.#shadowRoot,
+        });
     }
     setRepository(repository) {
         this.#repository = repository;
@@ -1210,7 +1234,8 @@ class RepositoryElement extends HTMLElement {
         this.#shadowRoot.adoptedStyleSheets.push(styleSheet);
     }
     async #updateHTML() {
-        this.#shadowRoot.innerHTML = '';
+        this.#htmlTitle.innerText = this.#repository?.name ?? '';
+        this.#htmlEntries.innerText = '';
         if (!this.#repository) {
             return;
         }
@@ -1235,7 +1260,7 @@ class RepositoryElement extends HTMLElement {
         defineRepositoryEntry();
         for (const entry of root.getAllChilds(this.#filter)) {
             const entryview = createElement('harmony3d-repository-entry', {
-                parent: this.#shadowRoot,
+                parent: this.#htmlEntries,
                 events: {
                     fileclick: (event) => this.dispatchEvent(cloneEvent(event)),
                     directoryclick: (event) => this.dispatchEvent(cloneEvent(event)),
@@ -1248,7 +1273,7 @@ class RepositoryElement extends HTMLElement {
     async #updateTree(root) {
         defineRepositoryEntry();
         const entryview = createElement('harmony3d-repository-entry', {
-            parent: this.#shadowRoot,
+            parent: this.#htmlEntries,
             events: {
                 fileclick: (event) => this.dispatchEvent(cloneEvent(event)),
                 directoryclick: (event) => this.dispatchEvent(cloneEvent(event)),
