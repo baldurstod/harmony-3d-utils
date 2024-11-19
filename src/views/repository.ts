@@ -1,7 +1,7 @@
 import { Repository, RepositoryEntry, RepositoryFilter } from 'harmony-3d';
 import { cloneEvent, createElement, createShadowRoot, shadowRootStyle } from 'harmony-ui';
 import { closeSVG } from 'harmony-svg';
-import { defineRepositoryEntry, RepositoryEntryElement } from './repositoryentry';
+import { defineRepositoryEntry, HTMLRepositoryEntryElement } from './repositoryentry';
 import repositoryCSS from '../css/repository.css';
 
 export enum RepositoryDisplayMode {
@@ -9,7 +9,7 @@ export enum RepositoryDisplayMode {
 	Tree = 'tree',
 }
 
-export class RepositoryElement extends HTMLElement {
+export class HTMLRepositoryElement extends HTMLElement {
 	#shadowRoot: ShadowRoot;
 	#htmlTitle: HTMLElement;
 	#htmlEntries: HTMLElement;
@@ -26,7 +26,7 @@ export class RepositoryElement extends HTMLElement {
 			parent: this.#shadowRoot,
 			class: 'header',
 			childs: [
-				this.#htmlTitle = createElement('div', {class: 'title'}),
+				this.#htmlTitle = createElement('div', { class: 'title' }),
 				createElement('div', {
 					class: 'close',
 					parent: this.#shadowRoot,
@@ -96,13 +96,13 @@ export class RepositoryElement extends HTMLElement {
 		defineRepositoryEntry();
 
 		for (const entry of root.getAllChilds(this.#filter)) {
-			const entryview: RepositoryEntryElement = createElement('harmony3d-repository-entry', {
+			const entryview: HTMLRepositoryEntryElement = createElement('harmony3d-repository-entry', {
 				parent: this.#htmlEntries,
 				events: {
 					fileclick: (event: Event) => this.dispatchEvent(cloneEvent(event)),
 					directoryclick: (event: Event) => this.dispatchEvent(cloneEvent(event)),
 				},
-			}) as RepositoryEntryElement;
+			}) as HTMLRepositoryEntryElement;
 
 			entryview.setRepositoryEntry(entry);
 			this.dispatchEvent(new CustomEvent('entrycreated', { detail: { entry: entry, view: entryview } }));
@@ -111,13 +111,13 @@ export class RepositoryElement extends HTMLElement {
 
 	async #updateTree(root: RepositoryEntry) {
 		defineRepositoryEntry();
-		const entryview: RepositoryEntryElement = createElement('harmony3d-repository-entry', {
+		const entryview: HTMLRepositoryEntryElement = createElement('harmony3d-repository-entry', {
 			parent: this.#htmlEntries,
 			events: {
 				fileclick: (event: Event) => this.dispatchEvent(cloneEvent(event)),
 				directoryclick: (event: Event) => this.dispatchEvent(cloneEvent(event)),
 			},
-		}) as RepositoryEntryElement;
+		}) as HTMLRepositoryEntryElement;
 
 		entryview.setRepositoryEntry(root);
 		this.dispatchEvent(new CustomEvent('entrycreated', { detail: { entry: root, view: entryview } }));
@@ -138,7 +138,7 @@ export class RepositoryElement extends HTMLElement {
 let definedRepository = false;
 export function defineRepository() {
 	if (window.customElements && !definedRepository) {
-		customElements.define('harmony3d-repository', RepositoryElement);
+		customElements.define('harmony3d-repository', HTMLRepositoryElement);
 		definedRepository = true;
 	}
 }

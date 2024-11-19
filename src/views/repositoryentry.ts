@@ -2,7 +2,7 @@ import { RepositoryEntry } from 'harmony-3d';
 import { createElement, hide, I18n, shadowRootStyle, show } from 'harmony-ui';
 import repositoryEntryCSS from '../css/repositoryentry.css';
 
-export class RepositoryEntryElement extends HTMLElement {
+export class HTMLRepositoryEntryElement extends HTMLElement {
 	#shadowRoot: ShadowRoot;
 	#repositoryEntry?: RepositoryEntry;
 	#htmlSelf: HTMLElement;
@@ -52,9 +52,9 @@ export class RepositoryEntryElement extends HTMLElement {
 		if (this.#repositoryEntry) {
 			for (const entry of this.#repositoryEntry.getChilds()) {
 
-				const entryview: RepositoryEntryElement = createElement('harmony3d-repository-entry', {
+				const entryview: HTMLRepositoryEntryElement = createElement('harmony3d-repository-entry', {
 					parent: this.#htmlChilds,
-				}) as RepositoryEntryElement;
+				}) as HTMLRepositoryEntryElement;
 
 				entryview.setRepositoryEntry(entry);
 
@@ -99,7 +99,7 @@ export class RepositoryEntryElement extends HTMLElement {
 let definedRepositoryEntry = false;
 export function defineRepositoryEntry() {
 	if (window.customElements && !definedRepositoryEntry) {
-		customElements.define('harmony3d-repository-entry', RepositoryEntryElement);
+		customElements.define('harmony3d-repository-entry', HTMLRepositoryEntryElement);
 		definedRepositoryEntry = true;
 	}
 }

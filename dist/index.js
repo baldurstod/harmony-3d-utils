@@ -1089,7 +1089,7 @@ winger_pistol : 50
 
 var repositoryEntryCSS = ":host {\n\t--harmony-2d-manipulator-shadow-hover-bg-color: var(--harmony-2d-manipulator-hover-bg-color, red);\n\tuser-select: none;\n}\n\n.header {\n\tdisplay: flex;\n}\n\n.header:hover {\n\tbackground-color: var(--harmony-2d-manipulator-shadow-hover-bg-color);\n}\n\n.self {\n\tflex: 1;\n}\n\n.custom {\n\tdisplay: block;\n\tflex: 0;\n}\n";
 
-class RepositoryEntryElement extends HTMLElement {
+class HTMLRepositoryEntryElement extends HTMLElement {
     #shadowRoot;
     #repositoryEntry;
     #htmlSelf;
@@ -1173,7 +1173,7 @@ class RepositoryEntryElement extends HTMLElement {
 let definedRepositoryEntry = false;
 function defineRepositoryEntry() {
     if (window.customElements && !definedRepositoryEntry) {
-        customElements.define('harmony3d-repository-entry', RepositoryEntryElement);
+        customElements.define('harmony3d-repository-entry', HTMLRepositoryEntryElement);
         definedRepositoryEntry = true;
     }
 }
@@ -1185,7 +1185,7 @@ var RepositoryDisplayMode;
     RepositoryDisplayMode["Flat"] = "flat";
     RepositoryDisplayMode["Tree"] = "tree";
 })(RepositoryDisplayMode || (RepositoryDisplayMode = {}));
-class RepositoryElement extends HTMLElement {
+class HTMLRepositoryElement extends HTMLElement {
     #shadowRoot;
     #htmlTitle;
     #htmlEntries;
@@ -1296,9 +1296,9 @@ class RepositoryElement extends HTMLElement {
 let definedRepository = false;
 function defineRepository() {
     if (window.customElements && !definedRepository) {
-        customElements.define('harmony3d-repository', RepositoryElement);
+        customElements.define('harmony3d-repository', HTMLRepositoryElement);
         definedRepository = true;
     }
 }
 
-export { RepositoryDisplayMode, RepositoryElement, RepositoryEntryElement, TextureCombiner, WarpaintEditor, WeaponManager, WeaponManagerEventTarget, defineRepository, defineRepositoryEntry };
+export { HTMLRepositoryElement, HTMLRepositoryEntryElement, RepositoryDisplayMode, TextureCombiner, WarpaintEditor, WeaponManager, WeaponManagerEventTarget, defineRepository, defineRepositoryEntry };

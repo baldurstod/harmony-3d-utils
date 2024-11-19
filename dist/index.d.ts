@@ -8,12 +8,7 @@ export declare function defineRepository(): void;
 
 export declare function defineRepositoryEntry(): void;
 
-export declare enum RepositoryDisplayMode {
-    Flat = "flat",
-    Tree = "tree"
-}
-
-export declare class RepositoryElement extends HTMLElement {
+export declare class HTMLRepositoryElement extends HTMLElement {
     #private;
     constructor();
     setRepository(repository?: Repository): void;
@@ -24,10 +19,15 @@ export declare class RepositoryElement extends HTMLElement {
     static get observedAttributes(): string[];
 }
 
-export declare class RepositoryEntryElement extends HTMLElement {
+export declare class HTMLRepositoryEntryElement extends HTMLElement {
     #private;
     constructor();
     setRepositoryEntry(repositoryEntry?: RepositoryEntry): void;
+}
+
+export declare enum RepositoryDisplayMode {
+    Flat = "flat",
+    Tree = "tree"
 }
 
 export declare class TextureCombiner {
