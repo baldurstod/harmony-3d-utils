@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Test 2d manipulator</title>
+</head>
+
+<body>
+	<harmony3d-timeline id="timeline">
+	</harmony3d-timeline>
+</body>
+<script type="module">
+	import { defineTimelineElement, Harmony3D, HarmonyUi } from '../dist/harmony-3d-utils.browser.js';
+	const manipulator = document.getElementById('timeline');
+	defineTimelineElement();
+
+	const timeline = new Harmony3D.Timeline();
+
+</script>
+
+</html>

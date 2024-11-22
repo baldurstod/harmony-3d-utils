@@ -9,9 +9,11 @@
     "harmony-3d": "github:baldurstod/harmony-3d",
     "harmony-svg": "github:baldurstod/harmony-svg",
     "harmony-tf2-utils": "github:baldurstod/harmony-tf2-utils",
-    "harmony-ui": "github:baldurstod/harmony-ui"
+    "harmony-ui": "github:baldurstod/harmony-ui",
+    "harmony-vpk": "github:baldurstod/harmony-vpk"
   },
   "devDependencies": {
+    "@rollup/plugin-node-resolve": "^15.3.0",
     "@rollup/plugin-typescript": "^12.1.1",
     "rollup": "^4.24.2",
     "rollup-plugin-import-css": "^3.5.6",

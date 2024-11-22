@@ -2,6 +2,7 @@ import fs from 'fs';
 import child_process from 'child_process';
 import typescript from '@rollup/plugin-typescript';
 import css from 'rollup-plugin-import-css';
+import { nodeResolve } from '@rollup/plugin-node-resolve';
 
 const TEMP_BUILD = './dist/dts/index.js';
 
@@ -14,7 +15,11 @@ export default [
 		},
 		plugins: [
 			css(),
-			typescript(),
+			typescript({
+				"declaration": true,
+				"declarationMap": true,
+				"declarationDir": "dist/dts",
+			}),
 			{
 				name: 'postbuild-commands',
 				closeBundle: async () => {
@@ -28,6 +33,21 @@ export default [
 			'harmony-ui',
 			'harmony-svg',
 			'gl-matrix',
+		],
+	},
+	{
+		input: './src/browser.ts',
+		output: {
+			file: './dist/harmony-3d-utils.browser.js',
+			format: 'esm'
+		},
+		plugins: [
+			css(),
+			typescript(),
+			nodeResolve({
+				dedupe: ['gl-matrix', 'harmony-ui', 'harmony-3d'],
+			}),
+
 		],
 	},
 ];
