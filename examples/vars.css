@@ -1,0 +1,92 @@
+@media (prefers-color-scheme: light){
+	body{
+		--background-primary: #fff;
+		--background-secondary: #eee;
+		--background-tertiary: #c8c8c8;
+		--background-quaternary: #b1b1b1;
+
+		--border-primary:  #cdcdcd;
+		--border-secondary:  #cdcdcd;
+
+		--text-primary: #1b1b1b;
+		--text-secondary: #4e4e4e;
+		--text-inactive: #9e9e9ea6;
+		--text-link: #0069c2;
+		--text-invert: #fff;
+
+		--accent-primary: #0085f2;
+
+		--scrollbar-bg: transparent;
+		--scrollbar-color: rgba(0, 0, 0, 0.25);
+
+		--theme-bg-color: #D7D3CB;
+		--theme-popup-bg-color: #CCCCCC;
+		--theme-text-color: #111111;
+		--theme-text-bg-color: 238 238 238;
+
+		--theme-text-color-warning:#ff6a00;
+		--theme-filter-invert-light:invert(100%);
+
+		--main-bg-color-bright: #D7D3CB;
+		--main-bg-color-dark: #DEDAD4;
+
+		--theme-context-menu-bg-color: #ccc;
+		--theme-context-menu-item-bg-color: #ccc;
+		--theme-context-menu-item-selected-bg-color: #ccc;
+		--theme-context-menu-submenu-bg-color: #ccc;
+		--theme-context-menu-submenu-fg-color: #777;
+		--theme-context-menu-item-hover-bg-color: #fff;
+
+		--theme-scene-explorer-bg-color: #ddd;
+		--theme-scene-explorer-entity-selected-bg-color: #fff;
+		--theme-scene-explorer-entity-drag-bg-color: red;
+		--theme-scene-explorer-entity-header-hover-bg-color: #fff;
+		--theme-file-selector-item-hover-bg-color: #eee;
+	}
+}
+@media (prefers-color-scheme: dark){
+	body{
+		--background-primary: #1b1b1b;
+		--background-secondary: #101822;
+		--background-tertiary: #343434;
+		--background-quaternary: #4e4e4e;
+
+		--border-primary:  #858585;
+		--border-secondary:  #696969;
+
+		--text-primary: #fff;
+		--text-secondary: #cdcdcd;
+		--text-inactive: #cdcdcda6;
+		--text-link: #8cb4ff;
+		--text-invert: #1b1b1b;
+
+		--accent-primary: #5e9eff;
+
+		--scrollbar-bg: transparent;
+		--scrollbar-color: rgba(255, 255, 255, 0.25);
+
+		--theme-bg-color: #21252b;
+		--theme-popup-bg-color: #333333;
+		--theme-text-color: #EEEEEE;
+		--theme-text-bg-color: 17 17 17;
+
+		--theme-text-color-warning:orange;
+		--theme-filter-invert-dark:invert(100%);
+
+		--main-bg-color-bright: #41454d;
+		--main-bg-color-dark: #21252b;
+
+		--theme-context-menu-bg-color: #333333;
+		--theme-context-menu-item-bg-color: #333333;
+		--theme-context-menu-item-selected-bg-color: #333333;
+		--theme-context-menu-submenu-bg-color: #333333;
+		--theme-context-menu-submenu-fg-color: #888888;
+		--theme-context-menu-item-hover-bg-color: #000000;
+
+		--theme-scene-explorer-bg-color: #222222;
+		--theme-scene-explorer-entity-selected-bg-color: #000000;
+		--theme-scene-explorer-entity-drag-bg-color: red;
+		--theme-scene-explorer-entity-header-hover-bg-color: #000000;
+		--theme-file-selector-item-hover-bg-color: #0F0F0F;
+	}
+}

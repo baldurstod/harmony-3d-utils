@@ -1,0 +1,40 @@
+:host {
+	display: flex;
+	width: 100%;
+	background-color: black;
+	flex-direction: column;
+	user-select: none;
+}
+
+.timeline {
+	background-color: blueviolet;
+}
+
+.group {
+	background-color: chocolate;
+}
+
+.channel {
+	background-color: darkgreen;
+}
+
+.clip {
+	background-color: darkmagenta;
+}
+
+.group .content {
+	/*padding: 1rem;*/
+	border: 0.05rem solid;
+}
+
+.clip {
+	display: inline-block;
+	position: absolute;
+}
+
+.clip .content {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+
+}

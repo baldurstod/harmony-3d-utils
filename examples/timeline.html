@@ -4,6 +4,8 @@
 <head>
 	<meta charset="utf-8">
 	<title>Test 2d manipulator</title>
+	<link rel="stylesheet" href="vars.css">
+	<link rel="stylesheet" href="html.css">
 </head>
 
 <body>
@@ -11,12 +13,45 @@
 	</harmony3d-timeline>
 </body>
 <script type="module">
+</script>
+<script type="module">
+	let initTf2Once = false;
+
 	import { defineTimelineElement, Harmony3D, HarmonyUi } from '../dist/harmony-3d-utils.browser.js';
-	const manipulator = document.getElementById('timeline');
 	defineTimelineElement();
-
+	/*
 	const timeline = new Harmony3D.Timeline();
+	const channel = new Harmony3D.TimelineChannel('Channel');
+	timeline.addchild(channel);
+	htmlTimeline.setTimelineElement(timeline);
+	*/
 
+	testTf2Choreo();
+
+
+
+
+	async function initTf2() {
+		if (initTf2Once) {
+			return;
+		}
+		const TF2_REPOSITORY = 'https://tf2content.loadout.tf/'
+		new Harmony3D.Repositories().addRepository(new Harmony3D.WebRepository('tf2', TF2_REPOSITORY));
+		await new Harmony3D.ChoreographiesManager().init('tf2', './scenes/scenes.image');
+
+	}
+
+	async function testTf2Choreo() {
+		await initTf2();
+		const choreo = await new Harmony3D.ChoreographiesManager().getChoreography('scenes\\player\\demoman\\low\\taunt_brutalLegend.vcd');
+		console.info(choreo);
+
+
+		const htmlTimeline = document.getElementById('timeline');
+		htmlTimeline.setTimelineElement(choreo.toTimelineElement());
+		//console.info(choreo.toTimelineElement());
+
+	}
 </script>
 
 </html>

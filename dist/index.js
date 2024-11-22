@@ -1,7 +1,7 @@
-import { Graphics, TextureManager, Source1TextureManager, DEG_TO_RAD, DEFAULT_TEXTURE_SIZE, NodeImageEditor, NodeImageEditorGui } from 'harmony-3d';
+import { Graphics, TextureManager, Source1TextureManager, DEG_TO_RAD, DEFAULT_TEXTURE_SIZE, NodeImageEditor, NodeImageEditorGui, TimelineElementType } from 'harmony-3d';
 import { vec2 } from 'gl-matrix';
 import { PaintKitDefinitions, getLegacyPaintKit, UniformRandomStream } from 'harmony-tf2-utils';
-import { shadowRootStyle, createElement, I18n, hide, show, cloneEvent } from 'harmony-ui';
+import { shadowRootStyle, createElement, show, hide, I18n, cloneEvent } from 'harmony-ui';
 import { closeSVG } from 'harmony-svg';
 
 class Range {
@@ -1087,6 +1087,117 @@ winger_pistol : 50
 }
 */
 
+var timelineCSS = ":host {\n\tdisplay: flex;\n\twidth: 100%;\n\tbackground-color: black;\n\tflex-direction: column;\n\tuser-select: none;\n}\n\n.timeline {\n\tbackground-color: blueviolet;\n}\n\n.group {\n\tbackground-color: chocolate;\n}\n\n.channel {\n\tbackground-color: darkgreen;\n}\n\n.clip {\n\tbackground-color: darkmagenta;\n}\n\n.group .content {\n\t/*padding: 1rem;*/\n\tborder: 0.05rem solid;\n}\n\n.clip {\n\tdisplay: inline-block;\n\tposition: absolute;\n}\n\n.clip .content {\n\toverflow: hidden;\n\twhite-space: nowrap;\n\ttext-overflow: ellipsis;\n\n}\n";
+
+class HTMLTimelineElement extends HTMLElement {
+    #shadowRoot;
+    #htmlContainer;
+    #htmlHeader;
+    #htmlContent;
+    #childs = new Map();
+    #timelineElement;
+    constructor() {
+        super();
+        this.#shadowRoot = this.attachShadow({ mode: 'closed' });
+        shadowRootStyle(this.#shadowRoot, timelineCSS);
+        this.#htmlContainer = createElement('div', {
+            parent: this.#shadowRoot,
+            childs: [
+                this.#htmlHeader = createElement('div', { class: 'header', parent: this.#shadowRoot, }),
+                this.#htmlContent = createElement('div', { class: 'content', parent: this.#shadowRoot, }),
+            ]
+        });
+    }
+    setTimelineElement(timelineElement) {
+        this.#timelineElement = timelineElement;
+        this.#updateHTML();
+    }
+    #updateHTML() {
+        this.#htmlHeader.innerText = '';
+        this.#htmlContent.innerText = '';
+        if (!this.#timelineElement) {
+            return;
+        }
+        switch (this.#timelineElement.type) {
+            case TimelineElementType.Timeline:
+                this.#updateTimeline();
+                break;
+            case TimelineElementType.Group:
+                this.#updateGroup();
+                break;
+            case TimelineElementType.Channel:
+                this.#updateChannel();
+                break;
+            case TimelineElementType.Clip:
+                this.#updateClip();
+                break;
+            default:
+                //throw 'code this case ' + this.#timelineElement.type;
+                console.error('code this case ' + this.#timelineElement.type);
+        }
+    }
+    #updateTimeline() {
+        this.#htmlContainer.classList.add('timeline');
+        this.#htmlHeader.innerText = this.#timelineElement.getPropertyValue('name');
+        this.#htmlContent.append(this.#getChild(this.#timelineElement.getRoot()));
+    }
+    #updateGroup() {
+        this.#htmlContainer.classList.add('group');
+        const name = this.#timelineElement.getPropertyValue('name');
+        if (name) {
+            show(this.#htmlHeader);
+            this.#htmlHeader.innerText = name;
+        }
+        else {
+            hide(this.#htmlHeader);
+        }
+        const htmlChild = createElement('div', { class: 'childs', parent: this.#htmlContent });
+        for (const child of this.#timelineElement.getChilds()) {
+            htmlChild.append(this.#getChild(child));
+        }
+    }
+    #updateChannel() {
+        this.#htmlContainer.classList.add('channel');
+        const name = this.#timelineElement.getPropertyValue('name');
+        if (name) {
+            show(this.#htmlHeader);
+            this.#htmlHeader.innerText = name;
+        }
+        else {
+            hide(this.#htmlHeader);
+        }
+    }
+    #updateClip() {
+        this.#htmlContainer.classList.add('clip');
+        const name = this.#timelineElement.getPropertyValue('name');
+        if (name) {
+            show(this.#htmlHeader);
+            this.#htmlHeader.innerText = name;
+        }
+        else {
+            hide(this.#htmlHeader);
+        }
+        this.style.left = `${this.#timelineElement.getStartTime()}px`;
+        this.style.width = `${this.#timelineElement.getEndTime()}px`;
+    }
+    #getChild(element) {
+        let html = this.#childs.get(element);
+        if (!html) {
+            html = createElement('harmony3d-timeline');
+            html.setTimelineElement(element);
+            this.#childs.set(element, html);
+        }
+        return html;
+    }
+}
+let definedTimelineElement = false;
+function defineTimelineElement() {
+    if (window.customElements && !definedTimelineElement) {
+        customElements.define('harmony3d-timeline', HTMLTimelineElement);
+        definedTimelineElement = true;
+    }
+}
+
 var repositoryEntryCSS = ":host {\n\t--harmony-2d-manipulator-shadow-hover-bg-color: var(--harmony-2d-manipulator-hover-bg-color, red);\n\tuser-select: none;\n}\n\n.header {\n\tdisplay: flex;\n}\n\n.header:hover {\n\tbackground-color: var(--harmony-2d-manipulator-shadow-hover-bg-color);\n}\n\n.self {\n\tflex: 1;\n}\n\n.custom {\n\tdisplay: block;\n\tflex: 0;\n}\n";
 
 class HTMLRepositoryEntryElement extends HTMLElement {
@@ -1301,4 +1412,4 @@ function defineRepository() {
     }
 }
 
-export { HTMLRepositoryElement, HTMLRepositoryEntryElement, RepositoryDisplayMode, TextureCombiner, WarpaintEditor, WeaponManager, WeaponManagerEventTarget, defineRepository, defineRepositoryEntry };
+export { HTMLRepositoryElement, HTMLRepositoryEntryElement, HTMLTimelineElement, RepositoryDisplayMode, TextureCombiner, WarpaintEditor, WeaponManager, WeaponManagerEventTarget, defineRepository, defineRepositoryEntry, defineTimelineElement };
