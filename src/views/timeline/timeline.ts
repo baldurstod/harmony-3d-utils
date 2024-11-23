@@ -8,8 +8,9 @@ export class HTMLTimelineElement extends HTMLElement {
 	#htmlHeader: HTMLElement;
 	#htmlContent: HTMLElement;
 
-	#childs = new Map<TimelineElement, HTMLTimelineElement>();
-	#timelineElement?: TimelineElement;
+	#childs = new Map<TimelineElement, any/*TODO: proper type*/>();
+
+	#timeline?: Timeline;
 	constructor() {
 		super();
 
@@ -17,6 +18,7 @@ export class HTMLTimelineElement extends HTMLElement {
 		shadowRootStyle(this.#shadowRoot, timelineCSS);
 
 		this.#htmlContainer = createElement('div', {
+			class: 'timeline',
 			parent: this.#shadowRoot,
 			childs: [
 				this.#htmlHeader = createElement('div', { class: 'header', parent: this.#shadowRoot, }),
@@ -25,75 +27,130 @@ export class HTMLTimelineElement extends HTMLElement {
 		});
 	}
 
-	setTimelineElement(timelineElement?: TimelineElement) {
-		this.#timelineElement = timelineElement;
+	setTimeline(timeline?: Timeline) {
+		this.#timeline = timeline;
 		this.#updateHTML();
+	}
+
+	#updateElement(element: TimelineElement) {
+		if (element == this.#timeline) {
+			this.#updateHTML();
+		} else {
+			switch (element.type) {
+				case TimelineElementType.Group:
+					this.#updateGroup(element as TimelineGroup);
+					break;
+				case TimelineElementType.Channel:
+					this.#updateChannel(element as TimelineChannel);
+					break;
+				case TimelineElementType.Clip:
+					this.#updateClip(element as TimelineClip);
+					break;
+				default:
+					//throw 'code this case ' + this.#timeline.type;
+					console.error('code this case ' + element.type);
+			}
+
+		}
 	}
 
 	#updateHTML() {
 		this.#htmlHeader.innerText = '';
 		this.#htmlContent.innerText = '';
 
-		if (!this.#timelineElement) {
+		if (!this.#timeline) {
+			return;
+		}
+		//this.#updateTimeline();
+
+		this.#htmlHeader.innerText = (this.#timeline as TimelineElement).getPropertyValue('name');
+		const root = this.#timeline?.getRoot();
+		if (!root) {
 			return;
 		}
 
-		switch (this.#timelineElement.type) {
-			case TimelineElementType.Timeline:
-				this.#updateTimeline();
-				break;
-			case TimelineElementType.Group:
-				this.#updateGroup();
-				break;
-			case TimelineElementType.Channel:
-				this.#updateChannel();
-				break;
-			case TimelineElementType.Clip:
-				this.#updateClip();
-				break;
-			default:
-				//throw 'code this case ' + this.#timelineElement.type;
-				console.error('code this case ' + this.#timelineElement.type);
+		const h = this.#getChild(root);
+		if (h) {
+			this.#htmlContent.replaceChildren(h.html);
 		}
+
+		this.#updateElement(root);
 	}
 
-	#updateTimeline() {
-		this.#htmlContainer.classList.add('timeline');
-		this.#htmlHeader.innerText = (this.#timelineElement as TimelineElement).getPropertyValue('name');
-		this.#htmlContent.append(this.#getChild((this.#timelineElement as Timeline).getRoot()));
-	}
+	#updateGroup(group: TimelineGroup) {
+		const htmlGroup = this.#getChild(group);
+		if (!htmlGroup) {
+			return;
+		}
 
-	#updateGroup() {
-		this.#htmlContainer.classList.add('group');
-		const name = (this.#timelineElement as TimelineGroup).getPropertyValue('name') as string;
+		//this.#htmlContainer.classList.add('group');
+		const name = group.getName();
 		if (name) {
-			show(this.#htmlHeader);
-			this.#htmlHeader.innerText = name;
+			show(htmlGroup.htmlHeader);
+			htmlGroup.htmlHeader.innerText = name;
 		} else {
-			hide(this.#htmlHeader);
+			hide(htmlGroup.htmlHeader);
 		}
 
-		const htmlChild = createElement('div', { class: 'childs', parent: this.#htmlContent });
-		for (const child of (this.#timelineElement as TimelineGroup).getChilds()) {
-			htmlChild.append(this.#getChild(child));
+		for (const child of group.getChilds()) {
+			const h = this.#getChild(child);
+			if (h) {
+				//this.#htmlContent.replaceChildren(h.html);
+				htmlGroup.htmlContent.append(h.html);
+				this.#updateElement(child);
+			}
 		}
 	}
 
-	#updateChannel() {
+	#updateChannel(channel: TimelineChannel) {
+		const htmlChannel = this.#getChild(channel);
+		if (!htmlChannel) {
+			return;
+		}
+
+		//this.#htmlContainer.classList.add('group');
+		const name = channel.getName();
+		if (name) {
+			show(htmlChannel.htmlHeader);
+			htmlChannel.htmlHeader.innerText = name;
+		} else {
+			hide(htmlChannel.htmlHeader);
+		}
+
+		for (const clip of channel.getClips()) {
+			const h = this.#getChild(clip);
+			if (h) {
+				//this.#htmlContent.replaceChildren(h.html);
+				htmlChannel.htmlContent.append(h.html);
+				this.#updateElement(clip);
+			}
+		}
+		/*
 		this.#htmlContainer.classList.add('channel');
-		const name = (this.#timelineElement as TimelineChannel).getPropertyValue('name') as string;
+		const name = (this.#timeline as TimelineChannel).getPropertyValue('name') as string;
 		if (name) {
 			show(this.#htmlHeader);
 			this.#htmlHeader.innerText = name;
 		} else {
 			hide(this.#htmlHeader);
 		}
+			*/
 
 	}
 
-	#updateClip() {
+	#updateClip(clip: TimelineClip) {
+		const htmlClip = this.#getChild(clip);
+		if (!htmlClip) {
+			return;
+		}
+
+		htmlClip.html.innerText = clip.getName();
+		htmlClip.html.style.left = `${clip.getStartTime()}px`;
+		htmlClip.html.style.width = `${clip.getLength()}px`;
+
+		/*
 		this.#htmlContainer.classList.add('clip');
-		const name = (this.#timelineElement as TimelineClip).getPropertyValue('name') as string;
+		const name = (this.#timeline as TimelineClip).getPropertyValue('name') as string;
 		if (name) {
 			show(this.#htmlHeader);
 			this.#htmlHeader.innerText = name;
@@ -101,19 +158,77 @@ export class HTMLTimelineElement extends HTMLElement {
 			hide(this.#htmlHeader);
 		}
 
-		this.style.left = `${(this.#timelineElement as TimelineClip).getStartTime()}px`;
-		this.style.width = `${(this.#timelineElement as TimelineClip).getLength()}px`;
+		*/
 
 	}
 
-	#getChild(element: TimelineElement): HTMLTimelineElement {
-		let html: HTMLTimelineElement | undefined = this.#childs.get(element);
+	#getChild(element: TimelineElement): { [key: string]: HTMLElement, html: HTMLElement } | undefined {
+		let html: any/*TODO: fix type*/ = this.#childs.get(element);
 		if (!html) {
-			html = createElement('harmony3d-timeline') as HTMLTimelineElement;
-			html.setTimelineElement(element);
+			//html = createElement('div') as HTMLTimelineElement;
+			//html.setTimelineElement(element);
+
+			html = this.#createChild(element);
 			this.#childs.set(element, html);
 		}
 		return html;
+	}
+
+	#createChild(element: TimelineElement): { [key: string]: HTMLElement, html: HTMLElement } | undefined {
+		let htmlHeader, htmlContent;
+		switch (element.type) {
+			case TimelineElementType.Group:
+				const htmlGroup = createElement('div', {
+					class: 'group',
+					childs: [
+						htmlHeader = createElement('div', { class: 'header' }),
+						htmlContent = createElement('div', { class: 'content' }),
+					]
+				});
+
+
+				return {
+					html: htmlGroup,
+					htmlHeader: htmlHeader,
+					htmlContent: htmlContent,
+				};
+
+
+			case TimelineElementType.Channel:
+				const htmlChannel = createElement('div', {
+					class: 'channel',
+					childs: [
+						htmlHeader = createElement('div', { class: 'header' }),
+						htmlContent = createElement('div', { class: 'content' }),
+					]
+				});
+
+
+				return {
+					html: htmlChannel,
+					htmlHeader: htmlHeader,
+					htmlContent: htmlContent,
+				};
+
+			case TimelineElementType.Clip:
+				const htmlClip = createElement('div', {
+					class: 'clip',
+					childs: [
+						htmlHeader = createElement('div', { class: 'header' }),
+						htmlContent = createElement('div', { class: 'content' }),
+					]
+				});
+
+
+				return {
+					html: htmlClip,
+					htmlHeader: htmlHeader,
+					htmlContent: htmlContent,
+				};
+			default:
+				//throw 'code this case ' + this.#timeline.type;
+				console.error('code this case ' + element.type);
+		}
 	}
 }
 

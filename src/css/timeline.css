@@ -4,10 +4,14 @@
 	background-color: black;
 	flex-direction: column;
 	user-select: none;
+	--group-padding: var(--harmony3d-timeline-group-padding, 0.5rem);
+	--clip-height: var(--harmony3d-timeline-clip-height, 2rem);
+	--time-scale: var(--harmony3d-timeline-time-scale, 2rem);/* size of 1 second */
 }
 
 .timeline {
 	background-color: blueviolet;
+	position: relative;
 }
 
 .group {
@@ -18,16 +22,18 @@
 	background-color: darkgreen;
 }
 
-.clip {
-	background-color: darkmagenta;
-}
-
-.group .content {
+.group>.content {
 	/*padding: 1rem;*/
 	border: 0.05rem solid;
 }
 
+.channel>.content {
+	height: 2rem;
+	overflow: auto;
+}
+
 .clip {
+	background-color: darkmagenta;
 	display: inline-block;
 	position: absolute;
 }
