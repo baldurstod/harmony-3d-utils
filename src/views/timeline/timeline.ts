@@ -5,12 +5,14 @@ import timelineCSS from '../../css/timeline.css';
 export class HTMLTimelineElement extends HTMLElement {
 	#shadowRoot: ShadowRoot;
 	#htmlContainer: HTMLElement;
-	#htmlHeader: HTMLElement;
+	#htmlRuler: HTMLElement;
 	#htmlContent: HTMLElement;
 
 	#childs = new Map<TimelineElement, any/*TODO: proper type*/>();
 
 	#timeline?: Timeline;
+	#timescale = 30;
+	#timelineOffset = 0;
 	constructor() {
 		super();
 
@@ -21,7 +23,7 @@ export class HTMLTimelineElement extends HTMLElement {
 			class: 'timeline',
 			parent: this.#shadowRoot,
 			childs: [
-				this.#htmlHeader = createElement('div', { class: 'header', parent: this.#shadowRoot, }),
+				this.#htmlRuler = createElement('ul', { class: 'ruler-x', parent: this.#shadowRoot, innerHTML: '<li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>' }),
 				this.#htmlContent = createElement('div', { class: 'content', parent: this.#shadowRoot, }),
 			]
 		});
@@ -55,15 +57,15 @@ export class HTMLTimelineElement extends HTMLElement {
 	}
 
 	#updateHTML() {
-		this.#htmlHeader.innerText = '';
+		//this.#htmlHeader.innerText = '';
 		this.#htmlContent.innerText = '';
 
 		if (!this.#timeline) {
 			return;
 		}
-		//this.#updateTimeline();
+		this.#updateTime();
 
-		this.#htmlHeader.innerText = (this.#timeline as TimelineElement).getPropertyValue('name');
+		//this.#htmlHeader.innerText = (this.#timeline as TimelineElement).getPropertyValue('name');
 		const root = this.#timeline?.getRoot();
 		if (!root) {
 			return;
@@ -75,6 +77,14 @@ export class HTMLTimelineElement extends HTMLElement {
 		}
 
 		this.#updateElement(root);
+	}
+
+	#updateTime() {
+		//const rect = this.#htmlTimeline.getBoundingClientRect();
+		//const width = rect.width;
+
+		//const ticks =
+
 	}
 
 	#updateGroup(group: TimelineGroup) {
@@ -229,6 +239,10 @@ export class HTMLTimelineElement extends HTMLElement {
 				//throw 'code this case ' + this.#timeline.type;
 				console.error('code this case ' + element.type);
 		}
+	}
+
+	setOffsetX(offset: number) {
+		this.#htmlContainer.style.setProperty('--timeline-offset-x', String(offset));
 	}
 }
 

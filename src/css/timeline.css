@@ -6,7 +6,26 @@
 	user-select: none;
 	--group-padding: var(--harmony3d-timeline-group-padding, 0.5rem);
 	--clip-height: var(--harmony3d-timeline-clip-height, 2rem);
-	--time-scale: var(--harmony3d-timeline-time-scale, 2rem);/* size of 1 second */
+	--time-scale: var(--harmony3d-timeline-time-scale, 2rem);
+
+	--ruler-num-c: #888;
+	--ruler-num-fz: 10px;
+	--ruler-num-pi: 0.75ch;
+	--ruler-unit: 1px;
+	--ruler-x: 1;
+	--ruler-y: 1;
+
+	--ruler1-bdw: 1px;
+	--ruler1-c: #BBB;
+	--ruler1-h: 8px;
+	--ruler1-space: 5;
+
+	--ruler2-bdw: 1px;
+	--ruler2-c: #BBB;
+	--ruler2-h: 20px;
+	--ruler2-space: 50;
+
+	--timeline-offset-x: 0;
 }
 
 .timeline {
@@ -43,4 +62,63 @@
 	white-space: nowrap;
 	text-overflow: ellipsis;
 
+}
+
+
+.ruler-x {
+	position: relative;
+	/* Low ticks */
+	--ruler1-bdw: 1px;
+	--ruler1-c: #BBB;
+	--ruler1-h: 8px;
+	--ruler1-space: 5;
+
+	/* Tall ticks */
+	--ruler2-bdw: 1px;
+	--ruler2-c: #BBB;
+	--ruler2-h: 20px;
+	--ruler2-space: 50;
+
+
+	background-image:
+		linear-gradient(90deg, var(--ruler1-c) 0 var(--ruler1-bdw), transparent 0),
+		linear-gradient(90deg, var(--ruler2-c) 0 var(--ruler2-bdw), transparent 0);
+	background-repeat: repeat-x;
+	background-size:
+		calc(var(--ruler-unit) * var(--ruler1-space)) var(--ruler1-h),
+		calc(var(--ruler-unit) * var(--ruler2-space)) var(--ruler2-h);
+	background-position-x: calc(var(--ruler-unit) * var(--timeline-offset-x)), calc(var(--ruler-unit) * var(--timeline-offset-x));
+	--offset-count: round(down, var(--timeline-offset-x), var(--ruler2-space));
+	--offset-count: round(down, var(--timeline-offset-x) / var(--ruler2-space), 1);
+
+	padding-left: calc(var(--ruler-unit) * (var(--timeline-offset-x) - var(--offset-count) * var(--ruler2-space)));
+	color: var(--ruler-num-c);
+	counter-reset: d calc(-1 - var(--offset-count));
+	display: flex;
+	font-size: var(--ruler-num-fz);
+	height: var(--ruler2-h);
+	inset-block-start: 0;
+	/*inset-inline-start: calc(var(--ruler-unit) * var(--ruler2-space));*/
+	line-height: 1;
+	list-style: none;
+	margin: 0;
+	opacity: var(--ruler-x);
+	overflow: hidden;
+	/*padding: 0;*/
+	position: relative;
+	width: 100%;
+}
+
+
+
+.ruler-x li {
+	align-self: flex-end;
+	counter-increment: d;
+	flex: 0 0 calc(var(--ruler-unit) * var(--ruler2-space));
+}
+
+.ruler-x li::after {
+	content: counter(d);
+	line-height: 1;
+	padding-inline-start: var(--ruler-num-pi);
 }
