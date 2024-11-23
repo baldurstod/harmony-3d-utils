@@ -12,7 +12,10 @@ export class HTMLTimelineElement extends HTMLElement {
 
 	#timeline?: Timeline;
 	#timescale = 30;
-	#timelineOffset = 0;
+	#timeOffset = 0;
+	#startTimeOffset = 0;
+	#dragRuler = false;
+	#dragRulerStartOffsetX = 0;
 	constructor() {
 		super();
 
@@ -23,10 +26,20 @@ export class HTMLTimelineElement extends HTMLElement {
 			class: 'timeline',
 			parent: this.#shadowRoot,
 			childs: [
-				this.#htmlRuler = createElement('ul', { class: 'ruler-x', parent: this.#shadowRoot, innerHTML: '<li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>' }),
+				this.#htmlRuler = createElement('ul', {
+					class: 'ruler-x',
+					parent: this.#shadowRoot,
+					innerHTML: '<li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>',
+					events: {
+						mousedown: (event: MouseEvent) => this.#startDragRuler(event),
+					}
+				}),
 				this.#htmlContent = createElement('div', { class: 'content', parent: this.#shadowRoot, }),
 			]
 		});
+
+		document.addEventListener('mousemove', (event: MouseEvent) => this.#handleMouseMove(event));
+		document.addEventListener('mouseup', (event: MouseEvent) => this.#handleMouseUp(event));
 	}
 
 	setTimeline(timeline?: Timeline) {
@@ -241,8 +254,39 @@ export class HTMLTimelineElement extends HTMLElement {
 		}
 	}
 
-	setOffsetX(offset: number) {
+	setTimeOffset(offset: number) {
 		this.#htmlContainer.style.setProperty('--timeline-offset-x', String(offset));
+		this.#timeOffset = offset;
+	}
+
+	#startDragRuler(event: MouseEvent) {
+		if (this.#dragRuler) {
+			return;
+		}
+		this.#htmlRuler.classList.add('grabbing');
+		this.#dragRuler = true;
+		this.#dragRulerStartOffsetX = event.offsetX;
+		this.#startTimeOffset = this.#timeOffset;
+	}
+
+	#handleMouseMove(event: MouseEvent) {
+		if (!this.#dragRuler) {
+			return;
+		}
+
+		this.#moveRuler(event.offsetX);
+	}
+
+	#handleMouseUp(event: MouseEvent) {
+		if (!this.#dragRuler) {
+			return;
+		}
+		this.#htmlRuler.classList.remove('grabbing');
+		this.#dragRuler = false;
+	}
+
+	#moveRuler(offsetX: number) {
+		this.setTimeOffset(this.#startTimeOffset + offsetX - this.#dragRulerStartOffsetX);
 	}
 }
 

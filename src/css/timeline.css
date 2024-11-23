@@ -66,6 +66,7 @@
 
 
 .ruler-x {
+	cursor: grab;
 	position: relative;
 	/* Low ticks */
 	--ruler1-bdw: 1px;
@@ -109,12 +110,17 @@
 	width: 100%;
 }
 
+.ruler-x.grabbing {
+	cursor: grabbing;
+}
+
 
 
 .ruler-x li {
 	align-self: flex-end;
 	counter-increment: d;
 	flex: 0 0 calc(var(--ruler-unit) * var(--ruler2-space));
+	pointer-events: none;
 }
 
 .ruler-x li::after {
