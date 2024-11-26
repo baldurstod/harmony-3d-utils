@@ -789,6 +789,9 @@ class WarpaintEditor {
         container.append(this.#nodeImageEditorGui.htmlElement);
         this.#nodeImageEditorGui.setNodeImageEditor(new TextureCombiner().nodeImageEditor);
     }
+    getGui() {
+        return this.#nodeImageEditorGui;
+    }
 }
 
 const WeaponManagerEventTarget = new EventTarget();
@@ -1087,107 +1090,252 @@ winger_pistol : 50
 }
 */
 
-var timelineCSS = ":host {\n\tdisplay: flex;\n\twidth: 100%;\n\tbackground-color: black;\n\tflex-direction: column;\n\tuser-select: none;\n}\n\n.timeline {\n\tbackground-color: blueviolet;\n}\n\n.group {\n\tbackground-color: chocolate;\n}\n\n.channel {\n\tbackground-color: darkgreen;\n}\n\n.clip {\n\tbackground-color: darkmagenta;\n}\n\n.group .content {\n\t/*padding: 1rem;*/\n\tborder: 0.05rem solid;\n}\n\n.clip {\n\tdisplay: inline-block;\n\tposition: absolute;\n}\n\n.clip .content {\n\toverflow: hidden;\n\twhite-space: nowrap;\n\ttext-overflow: ellipsis;\n\n}\n";
+var timelineCSS = ":host {\n\tdisplay: flex;\n\twidth: 100%;\n\tbackground-color: black;\n\tflex-direction: column;\n\tuser-select: none;\n\t--group-padding: var(--harmony3d-timeline-group-padding, 0.5rem);\n\t--clip-height: var(--harmony3d-timeline-clip-height, 2rem);\n\t--time-scale: var(--harmony3d-timeline-time-scale, 2rem);\n\n\t--ruler-num-c: #888;\n\t--ruler-num-fz: 10px;\n\t--ruler-num-pi: 0.75ch;\n\t--ruler-unit: 1px;\n\t--ruler-x: 1;\n\t--ruler-y: 1;\n\n\t--ruler1-bdw: 1px;\n\t--ruler1-c: #BBB;\n\t--ruler1-h: 8px;\n\t--ruler1-space: 5;\n\n\t--ruler2-bdw: 1px;\n\t--ruler2-c: #BBB;\n\t--ruler2-h: 20px;\n\t--ruler2-space: 50;\n\n\t--timeline-offset-x: 0;\n}\n\n.timeline {\n\tbackground-color: blueviolet;\n\tposition: relative;\n}\n\n.group {\n\tbackground-color: chocolate;\n}\n\n.channel {\n\tbackground-color: darkgreen;\n}\n\n.group>.content {\n\t/*padding: 1rem;*/\n\tborder: 0.05rem solid;\n}\n\n.channel>.content {\n\theight: 2rem;\n\toverflow: auto;\n}\n\n.clip {\n\tbackground-color: darkmagenta;\n\tdisplay: inline-block;\n\tposition: absolute;\n}\n\n.clip .content {\n\toverflow: hidden;\n\twhite-space: nowrap;\n\ttext-overflow: ellipsis;\n\n}\n\n\n.ruler-x {\n\tcursor: grab;\n\tposition: relative;\n\t/* Low ticks */\n\t--ruler1-bdw: 1px;\n\t--ruler1-c: #BBB;\n\t--ruler1-h: 8px;\n\t--ruler1-space: 5;\n\n\t/* Tall ticks */\n\t--ruler2-bdw: 1px;\n\t--ruler2-c: #BBB;\n\t--ruler2-h: 20px;\n\t--ruler2-space: 50;\n\n\n\tbackground-image:\n\t\tlinear-gradient(90deg, var(--ruler1-c) 0 var(--ruler1-bdw), transparent 0),\n\t\tlinear-gradient(90deg, var(--ruler2-c) 0 var(--ruler2-bdw), transparent 0);\n\tbackground-repeat: repeat-x;\n\tbackground-size:\n\t\tcalc(var(--ruler-unit) * var(--ruler1-space)) var(--ruler1-h),\n\t\tcalc(var(--ruler-unit) * var(--ruler2-space)) var(--ruler2-h);\n\tbackground-position-x: calc(var(--ruler-unit) * var(--timeline-offset-x)), calc(var(--ruler-unit) * var(--timeline-offset-x));\n\t--offset-count: round(down, var(--timeline-offset-x), var(--ruler2-space));\n\t--offset-count: round(down, var(--timeline-offset-x) / var(--ruler2-space), 1);\n\n\tpadding-left: calc(var(--ruler-unit) * (var(--timeline-offset-x) - var(--offset-count) * var(--ruler2-space)));\n\tcolor: var(--ruler-num-c);\n\tcounter-reset: d calc(-1 - var(--offset-count));\n\tdisplay: flex;\n\tfont-size: var(--ruler-num-fz);\n\theight: var(--ruler2-h);\n\tinset-block-start: 0;\n\t/*inset-inline-start: calc(var(--ruler-unit) * var(--ruler2-space));*/\n\tline-height: 1;\n\tlist-style: none;\n\tmargin: 0;\n\topacity: var(--ruler-x);\n\toverflow: hidden;\n\t/*padding: 0;*/\n\tposition: relative;\n\twidth: 100%;\n}\n\n.ruler-x.grabbing {\n\tcursor: grabbing;\n}\n\n\n\n.ruler-x li {\n\talign-self: flex-end;\n\tcounter-increment: d;\n\tflex: 0 0 calc(var(--ruler-unit) * var(--ruler2-space));\n\tpointer-events: none;\n}\n\n.ruler-x li::after {\n\tcontent: counter(d);\n\tline-height: 1;\n\tpadding-inline-start: var(--ruler-num-pi);\n}\n\n.cursor {\n\tposition: absolute;\n\theight: 100%;\n\twidth: 1rem;\n}\n";
 
 class HTMLTimelineElement extends HTMLElement {
     #shadowRoot;
     #htmlContainer;
-    #htmlHeader;
+    #htmlRuler;
     #htmlContent;
+    #htmlCursor;
     #childs = new Map();
-    #timelineElement;
+    #timeline;
+    #timescale = 30;
+    #timeOffset = 0;
+    #startTimeOffset = 0;
+    #dragRuler = false;
+    #dragRulerStartOffsetX = 0;
     constructor() {
         super();
         this.#shadowRoot = this.attachShadow({ mode: 'closed' });
         shadowRootStyle(this.#shadowRoot, timelineCSS);
         this.#htmlContainer = createElement('div', {
+            class: 'timeline',
             parent: this.#shadowRoot,
             childs: [
-                this.#htmlHeader = createElement('div', { class: 'header', parent: this.#shadowRoot, }),
-                this.#htmlContent = createElement('div', { class: 'content', parent: this.#shadowRoot, }),
+                this.#htmlRuler = createElement('ul', {
+                    class: 'ruler-x',
+                    innerHTML: '<li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>',
+                    events: {
+                        mousedown: (event) => this.#startDragRuler(event),
+                    }
+                }),
+                this.#htmlContent = createElement('div', { class: 'content' }),
+                this.#htmlCursor = createElement('div', { class: 'cursor' }),
             ]
         });
+        document.addEventListener('mousemove', (event) => this.#handleMouseMove(event));
+        document.addEventListener('mouseup', (event) => this.#handleMouseUp(event));
     }
-    setTimelineElement(timelineElement) {
-        this.#timelineElement = timelineElement;
+    setTimeline(timeline) {
+        this.#timeline = timeline;
         this.#updateHTML();
     }
+    #updateElement(element) {
+        if (element == this.#timeline) {
+            this.#updateHTML();
+        }
+        else {
+            switch (element.type) {
+                case TimelineElementType.Group:
+                    this.#updateGroup(element);
+                    break;
+                case TimelineElementType.Channel:
+                    this.#updateChannel(element);
+                    break;
+                case TimelineElementType.Clip:
+                    this.#updateClip(element);
+                    break;
+                default:
+                    //throw 'code this case ' + this.#timeline.type;
+                    console.error('code this case ' + element.type);
+            }
+        }
+    }
     #updateHTML() {
-        this.#htmlHeader.innerText = '';
+        //this.#htmlHeader.innerText = '';
         this.#htmlContent.innerText = '';
-        if (!this.#timelineElement) {
+        if (!this.#timeline) {
             return;
         }
-        switch (this.#timelineElement.type) {
-            case TimelineElementType.Timeline:
-                this.#updateTimeline();
-                break;
-            case TimelineElementType.Group:
-                this.#updateGroup();
-                break;
-            case TimelineElementType.Channel:
-                this.#updateChannel();
-                break;
-            case TimelineElementType.Clip:
-                this.#updateClip();
-                break;
-            default:
-                //throw 'code this case ' + this.#timelineElement.type;
-                console.error('code this case ' + this.#timelineElement.type);
+        this.#updateTime();
+        //this.#htmlHeader.innerText = (this.#timeline as TimelineElement).getPropertyValue('name');
+        const root = this.#timeline?.getRoot();
+        if (!root) {
+            return;
         }
+        const h = this.#getChild(root);
+        if (h) {
+            this.#htmlContent.replaceChildren(h.html);
+        }
+        this.#updateElement(root);
     }
-    #updateTimeline() {
-        this.#htmlContainer.classList.add('timeline');
-        this.#htmlHeader.innerText = this.#timelineElement.getPropertyValue('name');
-        this.#htmlContent.append(this.#getChild(this.#timelineElement.getRoot()));
+    #updateTime() {
+        //const rect = this.#htmlTimeline.getBoundingClientRect();
+        //const width = rect.width;
+        //const ticks =
     }
-    #updateGroup() {
-        this.#htmlContainer.classList.add('group');
-        const name = this.#timelineElement.getPropertyValue('name');
+    #updateGroup(group) {
+        const htmlGroup = this.#getChild(group);
+        if (!htmlGroup) {
+            return;
+        }
+        //this.#htmlContainer.classList.add('group');
+        const name = group.getName();
         if (name) {
-            show(this.#htmlHeader);
-            this.#htmlHeader.innerText = name;
+            show(htmlGroup.htmlHeader);
+            htmlGroup.htmlHeader.innerText = name;
         }
         else {
-            hide(this.#htmlHeader);
+            hide(htmlGroup.htmlHeader);
         }
-        const htmlChild = createElement('div', { class: 'childs', parent: this.#htmlContent });
-        for (const child of this.#timelineElement.getChilds()) {
-            htmlChild.append(this.#getChild(child));
+        for (const child of group.getChilds()) {
+            const h = this.#getChild(child);
+            if (h) {
+                //this.#htmlContent.replaceChildren(h.html);
+                htmlGroup.htmlContent.append(h.html);
+                this.#updateElement(child);
+            }
         }
     }
-    #updateChannel() {
+    #updateChannel(channel) {
+        const htmlChannel = this.#getChild(channel);
+        if (!htmlChannel) {
+            return;
+        }
+        //this.#htmlContainer.classList.add('group');
+        const name = channel.getName();
+        if (name) {
+            show(htmlChannel.htmlHeader);
+            htmlChannel.htmlHeader.innerText = name;
+        }
+        else {
+            hide(htmlChannel.htmlHeader);
+        }
+        for (const clip of channel.getClips()) {
+            const h = this.#getChild(clip);
+            if (h) {
+                //this.#htmlContent.replaceChildren(h.html);
+                htmlChannel.htmlContent.append(h.html);
+                this.#updateElement(clip);
+            }
+        }
+        /*
         this.#htmlContainer.classList.add('channel');
-        const name = this.#timelineElement.getPropertyValue('name');
+        const name = (this.#timeline as TimelineChannel).getPropertyValue('name') as string;
         if (name) {
             show(this.#htmlHeader);
             this.#htmlHeader.innerText = name;
-        }
-        else {
+        } else {
             hide(this.#htmlHeader);
         }
+            */
     }
-    #updateClip() {
+    #updateClip(clip) {
+        const htmlClip = this.#getChild(clip);
+        if (!htmlClip) {
+            return;
+        }
+        htmlClip.html.innerText = clip.getName();
+        htmlClip.html.style.left = `${clip.getStartTime()}px`;
+        htmlClip.html.style.width = `${clip.getLength()}px`;
+        /*
         this.#htmlContainer.classList.add('clip');
-        const name = this.#timelineElement.getPropertyValue('name');
+        const name = (this.#timeline as TimelineClip).getPropertyValue('name') as string;
         if (name) {
             show(this.#htmlHeader);
             this.#htmlHeader.innerText = name;
-        }
-        else {
+        } else {
             hide(this.#htmlHeader);
         }
-        this.style.left = `${this.#timelineElement.getStartTime()}px`;
-        this.style.width = `${this.#timelineElement.getEndTime()}px`;
+
+        */
     }
     #getChild(element) {
-        let html = this.#childs.get(element);
+        let html /*TODO: fix type*/ = this.#childs.get(element);
         if (!html) {
-            html = createElement('harmony3d-timeline');
-            html.setTimelineElement(element);
+            //html = createElement('div') as HTMLTimelineElement;
+            //html.setTimelineElement(element);
+            html = this.#createChild(element);
             this.#childs.set(element, html);
         }
         return html;
+    }
+    #createChild(element) {
+        let htmlHeader, htmlContent;
+        switch (element.type) {
+            case TimelineElementType.Group:
+                const htmlGroup = createElement('div', {
+                    class: 'group',
+                    childs: [
+                        htmlHeader = createElement('div', { class: 'header' }),
+                        htmlContent = createElement('div', { class: 'content' }),
+                    ]
+                });
+                return {
+                    html: htmlGroup,
+                    htmlHeader: htmlHeader,
+                    htmlContent: htmlContent,
+                };
+            case TimelineElementType.Channel:
+                const htmlChannel = createElement('div', {
+                    class: 'channel',
+                    childs: [
+                        htmlHeader = createElement('div', { class: 'header' }),
+                        htmlContent = createElement('div', { class: 'content' }),
+                    ]
+                });
+                return {
+                    html: htmlChannel,
+                    htmlHeader: htmlHeader,
+                    htmlContent: htmlContent,
+                };
+            case TimelineElementType.Clip:
+                const htmlClip = createElement('div', {
+                    class: 'clip',
+                    childs: [
+                        htmlHeader = createElement('div', { class: 'header' }),
+                        htmlContent = createElement('div', { class: 'content' }),
+                    ]
+                });
+                return {
+                    html: htmlClip,
+                    htmlHeader: htmlHeader,
+                    htmlContent: htmlContent,
+                };
+            default:
+                //throw 'code this case ' + this.#timeline.type;
+                console.error('code this case ' + element.type);
+        }
+    }
+    setTimeOffset(offset) {
+        this.#htmlContainer.style.setProperty('--timeline-offset-x', String(offset));
+        this.#timeOffset = offset;
+    }
+    #startDragRuler(event) {
+        if (this.#dragRuler) {
+            return;
+        }
+        this.#htmlRuler.classList.add('grabbing');
+        this.#dragRuler = true;
+        this.#dragRulerStartOffsetX = event.offsetX;
+        this.#startTimeOffset = this.#timeOffset;
+    }
+    #handleMouseMove(event) {
+        if (!this.#dragRuler) {
+            return;
+        }
+        this.#moveRuler(event.offsetX);
+    }
+    #handleMouseUp(event) {
+        if (!this.#dragRuler) {
+            return;
+        }
+        this.#htmlRuler.classList.remove('grabbing');
+        this.#dragRuler = false;
+    }
+    #moveRuler(offsetX) {
+        this.setTimeOffset(this.#startTimeOffset + offsetX - this.#dragRulerStartOffsetX);
     }
 }
 let definedTimelineElement = false;

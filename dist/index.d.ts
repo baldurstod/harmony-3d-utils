@@ -1,12 +1,16 @@
 import { NodeImageEditor } from 'harmony-3d';
+import { NodeImageEditorGui } from 'harmony-3d';
 import { Repository } from 'harmony-3d';
 import { RepositoryEntry } from 'harmony-3d';
 import { RepositoryFilter } from 'harmony-3d';
 import { Texture } from 'harmony-3d';
+import { Timeline } from 'harmony-3d';
 
 export declare function defineRepository(): void;
 
 export declare function defineRepositoryEntry(): void;
+
+export declare function defineTimelineElement(): void;
 
 export declare class HTMLRepositoryElement extends HTMLElement {
     #private;
@@ -23,6 +27,13 @@ export declare class HTMLRepositoryEntryElement extends HTMLElement {
     #private;
     constructor();
     setRepositoryEntry(repositoryEntry?: RepositoryEntry): void;
+}
+
+export declare class HTMLTimelineElement extends HTMLElement {
+    #private;
+    constructor();
+    setTimeline(timeline?: Timeline): void;
+    setTimeOffset(offset: number): void;
 }
 
 export declare enum RepositoryDisplayMode {
@@ -51,6 +62,7 @@ export declare class WarpaintEditor {
     #private;
     constructor();
     init(container: HTMLElement): void;
+    getGui(): NodeImageEditorGui;
 }
 
 export declare class WeaponManager {

@@ -4,7 +4,7 @@
  */
 // Configuration Constants
 var EPSILON$3 = 0.000001;
-var ARRAY_TYPE$1 = typeof Float32Array !== 'undefined' ? Float32Array : Array;
+var ARRAY_TYPE = typeof Float32Array !== 'undefined' ? Float32Array : Array;
 var RANDOM = Math.random;
 /**
  * Sets the type of array used when creating new vectors and matrices
@@ -13,7 +13,7 @@ var RANDOM = Math.random;
  */
 
 function setMatrixArrayType(type) {
-  ARRAY_TYPE$1 = type;
+  ARRAY_TYPE = type;
 }
 var degree = Math.PI / 180;
 /**
@@ -52,7 +52,7 @@ if (!Math.hypot) Math.hypot = function () {
 var common$1 = /*#__PURE__*/Object.freeze({
   __proto__: null,
   EPSILON: EPSILON$3,
-  get ARRAY_TYPE () { return ARRAY_TYPE$1; },
+  get ARRAY_TYPE () { return ARRAY_TYPE; },
   RANDOM: RANDOM,
   setMatrixArrayType: setMatrixArrayType,
   toRadian: toRadian,
@@ -70,10 +70,10 @@ var common$1 = /*#__PURE__*/Object.freeze({
  * @returns {mat2} a new 2x2 matrix
  */
 
-function create$9() {
-  var out = new ARRAY_TYPE$1(4);
+function create$8() {
+  var out = new ARRAY_TYPE(4);
 
-  if (ARRAY_TYPE$1 != Float32Array) {
+  if (ARRAY_TYPE != Float32Array) {
     out[1] = 0;
     out[2] = 0;
   }
@@ -90,7 +90,7 @@ function create$9() {
  */
 
 function clone$8(a) {
-  var out = new ARRAY_TYPE$1(4);
+  var out = new ARRAY_TYPE(4);
   out[0] = a[0];
   out[1] = a[1];
   out[2] = a[2];
@@ -137,7 +137,7 @@ function identity$5(out) {
  */
 
 function fromValues$8(m00, m01, m10, m11) {
-  var out = new ARRAY_TYPE$1(4);
+  var out = new ARRAY_TYPE(4);
   out[0] = m00;
   out[1] = m01;
   out[2] = m10;
@@ -493,7 +493,7 @@ var sub$6 = subtract$7;
 
 var mat2 = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  create: create$9,
+  create: create$8,
   clone: clone$8,
   copy: copy$8,
   identity: identity$5,
@@ -546,10 +546,10 @@ var mat2 = /*#__PURE__*/Object.freeze({
  * @returns {mat2d} a new 2x3 matrix
  */
 
-function create$8() {
-  var out = new ARRAY_TYPE$1(6);
+function create$7() {
+  var out = new ARRAY_TYPE(6);
 
-  if (ARRAY_TYPE$1 != Float32Array) {
+  if (ARRAY_TYPE != Float32Array) {
     out[1] = 0;
     out[2] = 0;
     out[4] = 0;
@@ -568,7 +568,7 @@ function create$8() {
  */
 
 function clone$7(a) {
-  var out = new ARRAY_TYPE$1(6);
+  var out = new ARRAY_TYPE(6);
   out[0] = a[0];
   out[1] = a[1];
   out[2] = a[2];
@@ -623,7 +623,7 @@ function identity$4(out) {
  */
 
 function fromValues$7(a, b, c, d, tx, ty) {
-  var out = new ARRAY_TYPE$1(6);
+  var out = new ARRAY_TYPE(6);
   out[0] = a;
   out[1] = b;
   out[2] = c;
@@ -1009,7 +1009,7 @@ var sub$5 = subtract$6;
 
 var mat2d = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  create: create$8,
+  create: create$7,
   clone: clone$7,
   copy: copy$7,
   identity: identity$4,
@@ -1047,10 +1047,10 @@ var mat2d = /*#__PURE__*/Object.freeze({
  * @returns {mat3} a new 3x3 matrix
  */
 
-function create$7() {
-  var out = new ARRAY_TYPE$1(9);
+function create$6() {
+  var out = new ARRAY_TYPE(9);
 
-  if (ARRAY_TYPE$1 != Float32Array) {
+  if (ARRAY_TYPE != Float32Array) {
     out[1] = 0;
     out[2] = 0;
     out[3] = 0;
@@ -1092,7 +1092,7 @@ function fromMat4$1(out, a) {
  */
 
 function clone$6(a) {
-  var out = new ARRAY_TYPE$1(9);
+  var out = new ARRAY_TYPE(9);
   out[0] = a[0];
   out[1] = a[1];
   out[2] = a[2];
@@ -1140,7 +1140,7 @@ function copy$6(out, a) {
  */
 
 function fromValues$6(m00, m01, m02, m10, m11, m12, m20, m21, m22) {
-  var out = new ARRAY_TYPE$1(9);
+  var out = new ARRAY_TYPE(9);
   out[0] = m00;
   out[1] = m01;
   out[2] = m02;
@@ -1816,7 +1816,7 @@ var sub$4 = subtract$5;
 
 var mat3 = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  create: create$7,
+  create: create$6,
   fromMat4: fromMat4$1,
   clone: clone$6,
   copy: copy$6,
@@ -1861,10 +1861,10 @@ var mat3 = /*#__PURE__*/Object.freeze({
  * @returns {mat4} a new 4x4 matrix
  */
 
-function create$6() {
-  var out = new ARRAY_TYPE$1(16);
+function create$5() {
+  var out = new ARRAY_TYPE(16);
 
-  if (ARRAY_TYPE$1 != Float32Array) {
+  if (ARRAY_TYPE != Float32Array) {
     out[1] = 0;
     out[2] = 0;
     out[3] = 0;
@@ -1893,7 +1893,7 @@ function create$6() {
  */
 
 function clone$5(a) {
-  var out = new ARRAY_TYPE$1(16);
+  var out = new ARRAY_TYPE(16);
   out[0] = a[0];
   out[1] = a[1];
   out[2] = a[2];
@@ -1962,7 +1962,7 @@ function copy$5(out, a) {
  */
 
 function fromValues$5(m00, m01, m02, m03, m10, m11, m12, m13, m20, m21, m22, m23, m30, m31, m32, m33) {
-  var out = new ARRAY_TYPE$1(16);
+  var out = new ARRAY_TYPE(16);
   out[0] = m00;
   out[1] = m01;
   out[2] = m02;
@@ -2878,7 +2878,7 @@ function fromRotationTranslation$1(out, q, v) {
  */
 
 function fromQuat2(out, a) {
-  var translation = new ARRAY_TYPE$1(3);
+  var translation = new ARRAY_TYPE(3);
   var bx = -a[0],
       by = -a[1],
       bz = -a[2],
@@ -2955,7 +2955,7 @@ function getScaling(out, mat) {
  */
 
 function getRotation(out, mat) {
-  var scaling = new ARRAY_TYPE$1(3);
+  var scaling = new ARRAY_TYPE(3);
   getScaling(scaling, mat);
   var is1 = 1 / scaling[0];
   var is2 = 1 / scaling[1];
@@ -3762,7 +3762,7 @@ var sub$3 = subtract$4;
 
 var mat4 = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  create: create$6,
+  create: create$5,
   clone: clone$5,
   copy: copy$5,
   fromValues: fromValues$5,
@@ -3826,10 +3826,10 @@ var mat4 = /*#__PURE__*/Object.freeze({
  * @returns {vec3} a new 3D vector
  */
 
-function create$5() {
-  var out = new ARRAY_TYPE$1(3);
+function create$4() {
+  var out = new ARRAY_TYPE(3);
 
-  if (ARRAY_TYPE$1 != Float32Array) {
+  if (ARRAY_TYPE != Float32Array) {
     out[0] = 0;
     out[1] = 0;
     out[2] = 0;
@@ -3845,7 +3845,7 @@ function create$5() {
  */
 
 function clone$4(a) {
-  var out = new ARRAY_TYPE$1(3);
+  var out = new ARRAY_TYPE(3);
   out[0] = a[0];
   out[1] = a[1];
   out[2] = a[2];
@@ -3874,7 +3874,7 @@ function length$5(a) {
  */
 
 function fromValues$4(x, y, z) {
-  var out = new ARRAY_TYPE$1(3);
+  var out = new ARRAY_TYPE(3);
   out[0] = x;
   out[1] = y;
   out[2] = z;
@@ -4570,7 +4570,7 @@ var sqrLen$4 = squaredLength$4;
  */
 
 var forEach$2 = function () {
-  var vec = create$5();
+  var vec = create$4();
   return function (a, stride, offset, count, fn, arg) {
     var i, l;
 
@@ -4604,7 +4604,7 @@ var forEach$2 = function () {
 
 var vec3 = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  create: create$5,
+  create: create$4,
   clone: clone$4,
   length: length$5,
   fromValues: fromValues$4,
@@ -4665,10 +4665,10 @@ var vec3 = /*#__PURE__*/Object.freeze({
  * @returns {vec4} a new 4D vector
  */
 
-function create$4() {
-  var out = new ARRAY_TYPE$1(4);
+function create$3() {
+  var out = new ARRAY_TYPE(4);
 
-  if (ARRAY_TYPE$1 != Float32Array) {
+  if (ARRAY_TYPE != Float32Array) {
     out[0] = 0;
     out[1] = 0;
     out[2] = 0;
@@ -4685,7 +4685,7 @@ function create$4() {
  */
 
 function clone$3(a) {
-  var out = new ARRAY_TYPE$1(4);
+  var out = new ARRAY_TYPE(4);
   out[0] = a[0];
   out[1] = a[1];
   out[2] = a[2];
@@ -4703,7 +4703,7 @@ function clone$3(a) {
  */
 
 function fromValues$3(x, y, z, w) {
-  var out = new ARRAY_TYPE$1(4);
+  var out = new ARRAY_TYPE(4);
   out[0] = x;
   out[1] = y;
   out[2] = z;
@@ -5283,7 +5283,7 @@ var sqrLen$3 = squaredLength$3;
  */
 
 var forEach$1 = function () {
-  var vec = create$4();
+  var vec = create$3();
   return function (a, stride, offset, count, fn, arg) {
     var i, l;
 
@@ -5319,7 +5319,7 @@ var forEach$1 = function () {
 
 var vec4 = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  create: create$4,
+  create: create$3,
   clone: clone$3,
   fromValues: fromValues$3,
   copy: copy$3,
@@ -5373,10 +5373,10 @@ var vec4 = /*#__PURE__*/Object.freeze({
  * @returns {quat} a new quaternion
  */
 
-function create$3() {
-  var out = new ARRAY_TYPE$1(4);
+function create$2() {
+  var out = new ARRAY_TYPE(4);
 
-  if (ARRAY_TYPE$1 != Float32Array) {
+  if (ARRAY_TYPE != Float32Array) {
     out[0] = 0;
     out[1] = 0;
     out[2] = 0;
@@ -5992,7 +5992,7 @@ var equals$3 = equals$4;
  */
 
 var rotationTo = function () {
-  var tmpvec3 = create$5();
+  var tmpvec3 = create$4();
   var xUnitVec3 = fromValues$4(1, 0, 0);
   var yUnitVec3 = fromValues$4(0, 1, 0);
   return function (out, a, b) {
@@ -6033,8 +6033,8 @@ var rotationTo = function () {
  */
 
 var sqlerp = function () {
-  var temp1 = create$3();
-  var temp2 = create$3();
+  var temp1 = create$2();
+  var temp2 = create$2();
   return function (out, a, b, c, d, t) {
     slerp(temp1, a, d, t);
     slerp(temp2, b, c, t);
@@ -6054,7 +6054,7 @@ var sqlerp = function () {
  */
 
 var setAxes = function () {
-  var matr = create$7();
+  var matr = create$6();
   return function (out, view, right, up) {
     matr[0] = right[0];
     matr[3] = right[1];
@@ -6071,7 +6071,7 @@ var setAxes = function () {
 
 var quat = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  create: create$3,
+  create: create$2,
   identity: identity$1,
   setAxisAngle: setAxisAngle,
   getAxisAngle: getAxisAngle,
@@ -6126,10 +6126,10 @@ var quat = /*#__PURE__*/Object.freeze({
  * @returns {quat2} a new dual quaternion [real -> rotation, dual -> translation]
  */
 
-function create$2() {
-  var dq = new ARRAY_TYPE$1(8);
+function create$1() {
+  var dq = new ARRAY_TYPE(8);
 
-  if (ARRAY_TYPE$1 != Float32Array) {
+  if (ARRAY_TYPE != Float32Array) {
     dq[0] = 0;
     dq[1] = 0;
     dq[2] = 0;
@@ -6151,7 +6151,7 @@ function create$2() {
  */
 
 function clone$1(a) {
-  var dq = new ARRAY_TYPE$1(8);
+  var dq = new ARRAY_TYPE(8);
   dq[0] = a[0];
   dq[1] = a[1];
   dq[2] = a[2];
@@ -6178,7 +6178,7 @@ function clone$1(a) {
  */
 
 function fromValues$1(x1, y1, z1, w1, x2, y2, z2, w2) {
-  var dq = new ARRAY_TYPE$1(8);
+  var dq = new ARRAY_TYPE(8);
   dq[0] = x1;
   dq[1] = y1;
   dq[2] = z1;
@@ -6204,7 +6204,7 @@ function fromValues$1(x1, y1, z1, w1, x2, y2, z2, w2) {
  */
 
 function fromRotationTranslationValues(x1, y1, z1, w1, x2, y2, z2) {
-  var dq = new ARRAY_TYPE$1(8);
+  var dq = new ARRAY_TYPE(8);
   dq[0] = x1;
   dq[1] = y1;
   dq[2] = z1;
@@ -6297,9 +6297,9 @@ function fromRotation(out, q) {
 
 function fromMat4(out, a) {
   //TODO Optimize this
-  var outer = create$3();
+  var outer = create$2();
   getRotation(outer, a);
-  var t = new ARRAY_TYPE$1(3);
+  var t = new ARRAY_TYPE(3);
   getTranslation$1(t, a);
   fromRotationTranslation(out, outer, t);
   return out;
@@ -6947,7 +6947,7 @@ function equals$2(a, b) {
 
 var quat2 = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  create: create$2,
+  create: create$1,
   clone: clone$1,
   fromValues: fromValues$1,
   fromRotationTranslationValues: fromRotationTranslationValues,
@@ -6999,10 +6999,10 @@ var quat2 = /*#__PURE__*/Object.freeze({
  * @returns {vec2} a new 2D vector
  */
 
-function create$1() {
-  var out = new ARRAY_TYPE$1(2);
+function create() {
+  var out = new ARRAY_TYPE(2);
 
-  if (ARRAY_TYPE$1 != Float32Array) {
+  if (ARRAY_TYPE != Float32Array) {
     out[0] = 0;
     out[1] = 0;
   }
@@ -7017,7 +7017,7 @@ function create$1() {
  */
 
 function clone(a) {
-  var out = new ARRAY_TYPE$1(2);
+  var out = new ARRAY_TYPE(2);
   out[0] = a[0];
   out[1] = a[1];
   return out;
@@ -7031,7 +7031,7 @@ function clone(a) {
  */
 
 function fromValues(x, y) {
-  var out = new ARRAY_TYPE$1(2);
+  var out = new ARRAY_TYPE(2);
   out[0] = x;
   out[1] = y;
   return out;
@@ -7582,7 +7582,7 @@ var sqrLen = squaredLength;
  */
 
 var forEach = function () {
-  var vec = create$1();
+  var vec = create();
   return function (a, stride, offset, count, fn, arg) {
     var i, l;
 
@@ -7614,7 +7614,7 @@ var forEach = function () {
 
 var vec2 = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  create: create$1,
+  create: create,
   clone: clone,
   fromValues: fromValues,
   copy: copy,
@@ -7677,7 +7677,7 @@ var index$2 = /*#__PURE__*/Object.freeze({
 
 const checkOutlineSVG = '<svg xmlns="http://www.w3.org/2000/svg"  height="24" viewBox="0 -960 960 960" width="24" fill="currentColor"><path d="m 381,-240 424,-424 -57,-56 -368,367 -169,-170 -57,57 z m 0,113 -339,-339 169,-170 170,170 366,-367 172,168 z"/><path fill="#ffffff" d="m 381,-240 424,-424 -57,-56 -368,367 -169,-170 -57,57 z m 366,-593 c -498,-84.66667 -249,-42.33333 0,0 z"/></svg>';
 
-const closeSVG$1 = '<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="currentColor"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>';
+const closeSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="currentColor"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>';
 
 const folderOpenSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h240l80 80h320q33 0 56.5 23.5T880-640H447l-80-80H160v480l96-320h684L837-217q-8 26-29.5 41.5T760-160H160Zm84-80h516l72-240H316l-72 240Zm0 0 72-240-72 240Zm-84-400v-80 80Z"/></svg>';
 
@@ -7704,27 +7704,27 @@ function shadowRootStyleSync(shadowRoot, cssText) {
     shadowRoot.adoptedStyleSheets.push(sheet);
 }
 
-function createElement$1(tagName, options) {
+function createElement(tagName, options) {
     const element = document.createElement(tagName);
-    createElementOptions$1(element, options);
+    createElementOptions(element, options);
     return element;
 }
 function createElementNS(namespaceURI, tagName, options) {
     const element = document.createElementNS(namespaceURI, tagName);
-    createElementOptions$1(element, options);
+    createElementOptions(element, options);
     return element;
 }
-function createShadowRoot$1(tagName, options, mode = 'closed') {
+function createShadowRoot(tagName, options, mode = 'closed') {
     const element = document.createElement(tagName);
     const shadowRoot = element.attachShadow({ mode: mode });
-    createElementOptions$1(element, options, shadowRoot);
+    createElementOptions(element, options, shadowRoot);
     return shadowRoot;
 }
 function updateElement(element, options) {
-    createElementOptions$1(element, options);
+    createElementOptions(element, options);
     return element;
 }
-function append$2(element, child) {
+function append$1(element, child) {
     if (child === null || child === undefined) {
         return;
     }
@@ -7735,7 +7735,7 @@ function append$2(element, child) {
         element.append(child);
     }
 }
-function createElementOptions$1(element, options, shadowRoot) {
+function createElementOptions(element, options, shadowRoot) {
     if (options) {
         for (const optionName in options) {
             const optionValue = options[optionName];
@@ -7775,10 +7775,10 @@ function createElementOptions$1(element, options, shadowRoot) {
                     optionValue.append(element);
                     break;
                 case 'child':
-                    append$2(shadowRoot ?? element, optionValue);
+                    append$1(shadowRoot ?? element, optionValue);
                     break;
                 case 'childs':
-                    optionValue.forEach((entry) => append$2(shadowRoot ?? element, entry));
+                    optionValue.forEach((entry) => append$1(shadowRoot ?? element, entry));
                     break;
                 case 'events':
                     for (let eventType in optionValue) {
@@ -7793,7 +7793,7 @@ function createElementOptions$1(element, options, shadowRoot) {
                     break;
                 case 'hidden':
                     if (optionValue) {
-                        hide$1(element);
+                        hide(element);
                     }
                     break;
                 case 'attributes':
@@ -7808,11 +7808,11 @@ function createElementOptions$1(element, options, shadowRoot) {
                     element.slot = optionValue;
                     break;
                 case 'adoptStyle':
-                    adoptStyleSheet$1(shadowRoot ?? element, optionValue);
+                    adoptStyleSheet(shadowRoot ?? element, optionValue);
                     break;
                 case 'adoptStyles':
                     optionValue.forEach((entry) => {
-                        adoptStyleSheet$1(shadowRoot ?? element, entry);
+                        adoptStyleSheet(shadowRoot ?? element, entry);
                     });
                     break;
                 default:
@@ -7828,7 +7828,7 @@ function createElementOptions$1(element, options, shadowRoot) {
         options.elementCreated?.(element, shadowRoot);
     }
 }
-async function adoptStyleSheet$1(element, cssText) {
+async function adoptStyleSheet(element, cssText) {
     const sheet = new CSSStyleSheet;
     await sheet.replace(cssText);
     if (element.adoptStyleSheet) {
@@ -7840,7 +7840,7 @@ async function adoptStyleSheet$1(element, cssText) {
         }
     }
 }
-function display$1(htmlElement, visible) {
+function display(htmlElement, visible) {
     if (htmlElement == undefined) {
         return;
     }
@@ -7855,10 +7855,10 @@ function display$1(htmlElement, visible) {
     }
 }
 function show(htmlElement) {
-    display$1(htmlElement, true);
+    display(htmlElement, true);
 }
-function hide$1(htmlElement) {
-    display$1(htmlElement, false);
+function hide(htmlElement) {
+    display(htmlElement, false);
 }
 function toggle(htmlElement) {
     if (!(htmlElement instanceof HTMLElement)) {
@@ -7876,11 +7876,11 @@ function isVisible(htmlElement) {
 }
 const visible = isVisible;
 function styleInject(css) {
-    document.head.append(createElement$1('style', { textContent: css }));
+    document.head.append(createElement('style', { textContent: css }));
 }
 
-const I18N_DELAY_BEFORE_REFRESH$1 = 100;
-class I18n$1 {
+const I18N_DELAY_BEFORE_REFRESH = 100;
+class I18n {
     static #lang = 'english';
     static #translations = new Map();
     static #executing = false;
@@ -7977,7 +7977,7 @@ class I18n$1 {
     }
     static i18n() {
         if (!this.#refreshTimeout) {
-            this.#refreshTimeout = setTimeout(() => this.#i18n(), I18N_DELAY_BEFORE_REFRESH$1);
+            this.#refreshTimeout = setTimeout(() => this.#i18n(), I18N_DELAY_BEFORE_REFRESH);
         }
     }
     static #i18n() {
@@ -8058,24 +8058,24 @@ function injectGlobalCss() {
     injected = true;
 }
 
-var ManipulatorDirection$1;
+var ManipulatorDirection;
 (function (ManipulatorDirection) {
     ManipulatorDirection["All"] = "all";
     ManipulatorDirection["X"] = "x";
     ManipulatorDirection["Y"] = "y";
     ManipulatorDirection["None"] = "none";
-})(ManipulatorDirection$1 || (ManipulatorDirection$1 = {}));
+})(ManipulatorDirection || (ManipulatorDirection = {}));
 function getDirection(s) {
     switch (s) {
         case 'x':
-            return ManipulatorDirection$1.X;
+            return ManipulatorDirection.X;
         case 'y':
-            return ManipulatorDirection$1.Y;
+            return ManipulatorDirection.Y;
         case 'none':
-            return ManipulatorDirection$1.None;
+            return ManipulatorDirection.None;
         case 'all':
         default:
-            return ManipulatorDirection$1.All;
+            return ManipulatorDirection.All;
     }
 }
 const CORNERS = [[-1, -1], [1, -1], [-1, 1], [1, 1]];
@@ -8086,29 +8086,29 @@ const SNAP_POSITION = 20; // Pixels
 const SNAP_ROTATION = 15; // Degrees
 const DEG_TO_RAD$1 = Math.PI / 180;
 const RAD_TO_DEG$1 = 180 / Math.PI;
-var ManipulatorCorner$1;
+var ManipulatorCorner;
 (function (ManipulatorCorner) {
     ManipulatorCorner[ManipulatorCorner["None"] = -1] = "None";
     ManipulatorCorner[ManipulatorCorner["TopLeft"] = 0] = "TopLeft";
     ManipulatorCorner[ManipulatorCorner["TopRight"] = 1] = "TopRight";
     ManipulatorCorner[ManipulatorCorner["BottomLeft"] = 2] = "BottomLeft";
     ManipulatorCorner[ManipulatorCorner["BottomRight"] = 3] = "BottomRight";
-})(ManipulatorCorner$1 || (ManipulatorCorner$1 = {}));
-var ManipulatorSide$1;
+})(ManipulatorCorner || (ManipulatorCorner = {}));
+var ManipulatorSide;
 (function (ManipulatorSide) {
     ManipulatorSide[ManipulatorSide["None"] = -1] = "None";
     ManipulatorSide[ManipulatorSide["Top"] = 0] = "Top";
     ManipulatorSide[ManipulatorSide["Bottom"] = 1] = "Bottom";
     ManipulatorSide[ManipulatorSide["Left"] = 2] = "Left";
     ManipulatorSide[ManipulatorSide["Right"] = 3] = "Right";
-})(ManipulatorSide$1 || (ManipulatorSide$1 = {}));
+})(ManipulatorSide || (ManipulatorSide = {}));
 class HTMLHarmony2dManipulatorElement extends HTMLElement {
     #shadowRoot;
     #htmlQuad;
-    #translationMode = ManipulatorDirection$1.All;
+    #translationMode = ManipulatorDirection.All;
     #canRotate = true;
-    #scale = ManipulatorDirection$1.All;
-    #skew = ManipulatorDirection$1.All;
+    #scale = ManipulatorDirection.All;
+    #skew = ManipulatorDirection.All;
     #htmlScaleCorners = [];
     #htmlResizeSides = [];
     #htmlRotator;
@@ -8122,8 +8122,8 @@ class HTMLHarmony2dManipulatorElement extends HTMLElement {
     #previousHeight = -1;
     #rotation = 0;
     #previousRotation = 0;
-    #dragCorner = ManipulatorCorner$1.None;
-    #dragSide = ManipulatorSide$1.None;
+    #dragCorner = ManipulatorCorner.None;
+    #dragSide = ManipulatorSide.None;
     #dragThis = false;
     #dragRotator = false;
     #startPageX = 0;
@@ -8147,10 +8147,10 @@ class HTMLHarmony2dManipulatorElement extends HTMLElement {
         super();
         this.#shadowRoot = this.attachShadow({ mode: 'closed' });
         shadowRootStyle(this.#shadowRoot, manipulator2dCSS);
-        this.#htmlQuad = createElement$1('div', {
+        this.#htmlQuad = createElement('div', {
             parent: this.#shadowRoot,
             class: 'manipulator',
-            child: this.#htmlRotator = createElement$1('div', {
+            child: this.#htmlRotator = createElement('div', {
                 class: 'rotator',
                 events: {
                     mousedown: (event) => {
@@ -8181,7 +8181,7 @@ class HTMLHarmony2dManipulatorElement extends HTMLElement {
             }
         });
         for (let i = 0; i < 4; i++) {
-            const htmlCorner = createElement$1('div', {
+            const htmlCorner = createElement('div', {
                 class: 'corner',
                 parent: this.#htmlQuad,
                 events: {
@@ -8195,7 +8195,7 @@ class HTMLHarmony2dManipulatorElement extends HTMLElement {
             this.#htmlScaleCorners.push(htmlCorner);
         }
         for (let i = 0; i < 4; i++) {
-            const htmlCorner = createElement$1('div', {
+            const htmlCorner = createElement('div', {
                 class: 'side',
                 parent: this.#htmlQuad,
                 events: {
@@ -8240,7 +8240,7 @@ class HTMLHarmony2dManipulatorElement extends HTMLElement {
         }
         this.#htmlScaleCorners[this.#dragCorner].classList.remove('grabbing');
         this.classList.remove('grabbing');
-        this.#dragCorner = ManipulatorCorner$1.None;
+        this.#dragCorner = ManipulatorCorner.None;
     }
     #stopDragSide(event) {
         if (this.#dragSide < 0) {
@@ -8248,7 +8248,7 @@ class HTMLHarmony2dManipulatorElement extends HTMLElement {
         }
         this.#htmlResizeSides[this.#dragSide].classList.remove('grabbing');
         this.classList.remove('grabbing');
-        this.#dragSide = ManipulatorSide$1.None;
+        this.#dragSide = ManipulatorSide.None;
     }
     #startTranslate(event) {
         if (this.#dragging) {
@@ -8305,7 +8305,7 @@ class HTMLHarmony2dManipulatorElement extends HTMLElement {
             */
     }
     #resize(event) {
-        if (this.#dragCorner > ManipulatorCorner$1.None || this.#dragSide > ManipulatorSide$1.None) {
+        if (this.#dragCorner > ManipulatorCorner.None || this.#dragSide > ManipulatorSide.None) {
             this.#deltaResize(event);
             this.#refresh();
         }
@@ -8354,16 +8354,16 @@ class HTMLHarmony2dManipulatorElement extends HTMLElement {
         }));
     }
     getTopLeft() {
-        return this.getCorner(ManipulatorCorner$1.TopLeft);
+        return this.getCorner(ManipulatorCorner.TopLeft);
     }
     getTopRight() {
-        return this.getCorner(ManipulatorCorner$1.TopRight);
+        return this.getCorner(ManipulatorCorner.TopRight);
     }
     getBottomLeft() {
-        return this.getCorner(ManipulatorCorner$1.BottomLeft);
+        return this.getCorner(ManipulatorCorner.BottomLeft);
     }
     getBottomRight() {
-        return this.getCorner(ManipulatorCorner$1.BottomRight);
+        return this.getCorner(ManipulatorCorner.BottomRight);
     }
     getCorner(i) {
         if (i < 0 || i >= 4) {
@@ -8447,14 +8447,14 @@ class HTMLHarmony2dManipulatorElement extends HTMLElement {
             return a.x * b.x + a.y * b.y;
         }
         const delta = this.#getDelta(event);
-        if (!event.shiftKey && this.#dragCorner > ManipulatorCorner$1.None) {
+        if (!event.shiftKey && this.#dragCorner > ManipulatorCorner.None) {
             const c = SCALE_CORNERS[this.#dragCorner];
             const v = { x: c[0] * Math.cos(this.#rotation) - c[1] * Math.sin(this.#rotation), y: c[0] * Math.sin(this.#rotation) + c[1] * Math.cos(this.#rotation) };
             const d = dot(delta, v) * 0.5;
             delta.x = v.x * d;
             delta.y = v.y * d;
         }
-        if (this.#dragSide > ManipulatorSide$1.None) {
+        if (this.#dragSide > ManipulatorSide.None) {
             const c = SCALE_SIDES[this.#dragSide];
             const v = { x: c[0] * Math.cos(this.#rotation) - c[1] * Math.sin(this.#rotation), y: c[0] * Math.sin(this.#rotation) + c[1] * Math.cos(this.#rotation) };
             const d = dot(delta, v);
@@ -8506,33 +8506,33 @@ class HTMLHarmony2dManipulatorElement extends HTMLElement {
             const deltaWidth = w - this.#startWidth;
             const deltaHeight = h - this.#startHeight;
             switch (this.#dragSide) {
-                case ManipulatorSide$1.Left:
+                case ManipulatorSide.Left:
                     w += deltaWidth;
                     break;
-                case ManipulatorSide$1.Right:
+                case ManipulatorSide.Right:
                     w += deltaWidth;
                     l -= deltaWidth;
                     break;
-                case ManipulatorSide$1.Top:
+                case ManipulatorSide.Top:
                     h += deltaHeight;
                     break;
-                case ManipulatorSide$1.Bottom:
+                case ManipulatorSide.Bottom:
                     h += deltaHeight;
                     t -= deltaHeight;
                     break;
             }
-            if (this.#dragCorner > ManipulatorCorner$1.None) {
+            if (this.#dragCorner > ManipulatorCorner.None) {
                 w += deltaWidth;
                 h += deltaHeight;
             }
             switch (this.#dragCorner) {
-                case ManipulatorCorner$1.TopRight:
+                case ManipulatorCorner.TopRight:
                     l -= deltaWidth;
                     break;
-                case ManipulatorCorner$1.BottomLeft:
+                case ManipulatorCorner.BottomLeft:
                     t -= deltaHeight;
                     break;
-                case ManipulatorCorner$1.BottomRight:
+                case ManipulatorCorner.BottomRight:
                     l -= deltaWidth;
                     t -= deltaHeight;
                     break;
@@ -8557,8 +8557,8 @@ class HTMLHarmony2dManipulatorElement extends HTMLElement {
         };
     }
     #resizeMatrix() {
-        const a = (this.#dragCorner == ManipulatorCorner$1.BottomRight) || (this.#dragCorner == ManipulatorCorner$1.TopRight) || this.#dragSide == ManipulatorSide$1.Right ? 1 : 0;
-        const b = (this.#dragCorner == ManipulatorCorner$1.BottomRight) || (this.#dragCorner == ManipulatorCorner$1.BottomLeft) || this.#dragSide == ManipulatorSide$1.Left || this.#dragSide == ManipulatorSide$1.Bottom ? 1 : 0;
+        const a = (this.#dragCorner == ManipulatorCorner.BottomRight) || (this.#dragCorner == ManipulatorCorner.TopRight) || this.#dragSide == ManipulatorSide.Right ? 1 : 0;
+        const b = (this.#dragCorner == ManipulatorCorner.BottomRight) || (this.#dragCorner == ManipulatorCorner.BottomLeft) || this.#dragSide == ManipulatorSide.Left || this.#dragSide == ManipulatorSide.Bottom ? 1 : 0;
         const c = a === 1 ? 0 : 1;
         const d = b === 1 ? 0 : 1;
         return {
@@ -8688,8 +8688,8 @@ class HTMLHarmonyAccordionElement extends HTMLElement {
         if (item.tagName == 'ITEM') {
             let header = item.getElementsByTagName('header')[0];
             let content = item.getElementsByTagName('content')[0];
-            const htmlItemHeader = createElement$1('div', { class: 'header' });
-            const htmlItemContent = createElement$1('div', { class: 'content' });
+            const htmlItemHeader = createElement('div', { class: 'header' });
+            const htmlItemContent = createElement('div', { class: 'content' });
             htmlItemHeader.addEventListener('click', () => this.#toggle(htmlItemHeader));
             htmlItemHeader.append(header);
             htmlItemContent.append(content);
@@ -8702,14 +8702,14 @@ class HTMLHarmonyAccordionElement extends HTMLElement {
         }
     }
     createItem(header, content) {
-        let item = createElement$1('item', { childs: [header, content] });
+        let item = createElement('item', { childs: [header, content] });
         this.#shadowRoot.append(item);
         return item;
     }
     #refresh() {
         this.innerHTML = '';
         for (let [header, content] of this.#items) {
-            let htmlItem = createElement$1('div', { class: 'item' });
+            let htmlItem = createElement('div', { class: 'item' });
             htmlItem.append(header, content);
             this.#shadowRoot.append(htmlItem);
         }
@@ -8946,10 +8946,10 @@ class HTMLHarmonyColorPickerElement extends HTMLElement {
         document.addEventListener('mousemove', event => this.#handleMouseMove(event));
         this.#shadowRoot = this.attachShadow({ mode: 'closed' });
         shadowRootStyle(this.#shadowRoot, colorPickerCSS);
-        this.#htmlHuePicker = createElement$1('div', {
+        this.#htmlHuePicker = createElement('div', {
             parent: this.#shadowRoot,
             id: 'hue-picker',
-            child: this.#htmlHueSelector = createElement$1('div', {
+            child: this.#htmlHueSelector = createElement('div', {
                 id: 'hue-selector',
                 class: 'selector',
                 events: {
@@ -8963,10 +8963,10 @@ class HTMLHarmonyColorPickerElement extends HTMLElement {
                 },
             },
         });
-        this.#htmlMainPicker = createElement$1('div', {
+        this.#htmlMainPicker = createElement('div', {
             parent: this.#shadowRoot,
             id: 'main-picker',
-            child: this.#htmlMainSelector = createElement$1('div', {
+            child: this.#htmlMainSelector = createElement('div', {
                 id: 'main-selector',
                 class: 'selector',
                 events: {
@@ -8980,11 +8980,11 @@ class HTMLHarmonyColorPickerElement extends HTMLElement {
                 },
             },
         });
-        this.#htmlAlphaPicker = createElement$1('div', {
+        this.#htmlAlphaPicker = createElement('div', {
             parent: this.#shadowRoot,
             id: 'alpha-picker',
             class: 'alpha-background',
-            child: this.#htmlAlphaSelector = createElement$1('div', {
+            child: this.#htmlAlphaSelector = createElement('div', {
                 id: 'alpha-selector',
                 class: 'selector',
                 events: {
@@ -8998,23 +8998,23 @@ class HTMLHarmonyColorPickerElement extends HTMLElement {
                 },
             },
         });
-        this.#htmlInput = createElement$1('input', {
+        this.#htmlInput = createElement('input', {
             parent: this.#shadowRoot,
             id: 'input',
             events: {
                 change: () => this.#updateHex(this.#htmlInput.value),
             }
         });
-        this.#htmlSample = createElement$1('div', {
+        this.#htmlSample = createElement('div', {
             parent: this.#shadowRoot,
             id: 'sample',
             class: 'alpha-background',
         });
-        createElement$1('div', {
+        createElement('div', {
             parent: this.#shadowRoot,
             id: 'buttons',
             childs: [
-                this.#htmlOk = createElement$1('button', {
+                this.#htmlOk = createElement('button', {
                     parent: this.#shadowRoot,
                     i18n: '#ok',
                     events: {
@@ -9024,7 +9024,7 @@ class HTMLHarmonyColorPickerElement extends HTMLElement {
                         },
                     },
                 }),
-                this.#htmlCancel = createElement$1('button', {
+                this.#htmlCancel = createElement('button', {
                     parent: this.#shadowRoot,
                     i18n: '#cancel',
                     events: {
@@ -9186,7 +9186,7 @@ class HTMLHarmonyContextMenuElement extends HTMLElement {
     }
     connectedCallback() {
         if (this.#doOnce) {
-            I18n$1.observeElement(this.#shadowRoot);
+            I18n.observeElement(this.#shadowRoot);
             shadowRootStyle(this.#shadowRoot, contextMenuCSS);
             let callback = (entries, observer) => {
                 entries.forEach(() => {
@@ -9227,14 +9227,14 @@ class HTMLHarmonyContextMenuElement extends HTMLElement {
         this.#checkSize();
     }
     addItem(item, userData) {
-        let htmlItem = createElement$1('div', {
+        let htmlItem = createElement('div', {
             class: 'harmony-context-menu-item',
         });
         if (!item) {
             htmlItem.classList.add('separator');
         }
         else {
-            const htmlItemTitle = createElement$1('div', {
+            const htmlItemTitle = createElement('div', {
                 class: 'harmony-context-menu-item-title',
             });
             if (item.i18n) {
@@ -9253,7 +9253,7 @@ class HTMLHarmonyContextMenuElement extends HTMLElement {
                 htmlItem.classList.add('disabled');
             }
             if (item.submenu) {
-                const htmlSubMenu = createElement$1('div', {
+                const htmlSubMenu = createElement('div', {
                     class: 'submenu',
                 });
                 this.#subMenus.set(htmlItem, htmlSubMenu);
@@ -9304,14 +9304,14 @@ class HTMLHarmonyCopyElement extends HTMLElement {
     #htmlCopied;
     constructor() {
         super();
-        this.#htmlCopied = createElement$1('div', { class: 'harmony-copy-copied' });
+        this.#htmlCopied = createElement('div', { class: 'harmony-copy-copied' });
         this.addEventListener('click', () => this.#copy());
     }
     connectedCallback() {
         if (this.#doOnce) {
             this.#doOnce = false;
             this.append(this.#htmlCopied);
-            hide$1(this.#htmlCopied);
+            hide(this.#htmlCopied);
         }
     }
     async #copy() {
@@ -9321,7 +9321,7 @@ class HTMLHarmonyCopyElement extends HTMLElement {
             show(this.#htmlCopied);
             await navigator.clipboard.writeText(text);
             this.#htmlCopied.classList.add('harmony-copy-copied-end');
-            setTimeout(() => { this.#htmlCopied.classList.remove('harmony-copy-copied-end'); hide$1(this.#htmlCopied); }, 1000);
+            setTimeout(() => { this.#htmlCopied.classList.remove('harmony-copy-copied-end'); hide(this.#htmlCopied); }, 1000);
         }
         catch (e) {
             console.log(e);
@@ -9349,8 +9349,8 @@ class HTMLHarmonyTooltipElement extends HTMLElement {
         super();
         this.#shadowRoot = this.attachShadow({ mode: 'closed' });
         shadowRootStyle(this.#shadowRoot, tooltipCSS);
-        I18n$1.observeElement(this.#shadowRoot);
-        this.#htmlText = createElement$1('div', {
+        I18n.observeElement(this.#shadowRoot);
+        this.#htmlText = createElement('div', {
             class: 'tooltip',
             parent: this.#shadowRoot,
         });
@@ -9394,33 +9394,33 @@ class HTMLHarmonyFileInputElement extends HTMLElement {
         super();
         this.#shadowRoot = this.attachShadow({ mode: 'closed' });
         shadowRootStyle(this.#shadowRoot, fileInputCSS);
-        I18n$1.observeElement(this.#shadowRoot);
+        I18n.observeElement(this.#shadowRoot);
         defineHarmonyTooltip();
-        createElement$1('label', {
+        createElement('label', {
             parent: this.#shadowRoot,
             childs: [
-                createElement$1('span', {
+                createElement('span', {
                     class: 'icon',
                     innerHTML: folderOpenSVG,
                 }),
-                this.#htmlText = createElement$1('span', {
+                this.#htmlText = createElement('span', {
                     class: 'text',
                 }),
-                this.#htmlHelp = createElement$1('span', {
+                this.#htmlHelp = createElement('span', {
                     class: 'tooltip',
                     hidden: true,
                     childs: [
-                        createElement$1('span', {
+                        createElement('span', {
                             class: 'info',
                             innerHTML: infoSVG,
                         }),
-                        this.#htmlTooltip = createElement$1('harmony-tooltip', {
+                        this.#htmlTooltip = createElement('harmony-tooltip', {
                             i18n: '',
                             'data-position': 'bottom',
                         }),
                     ]
                 }),
-                this.#htmlInput = createElement$1('input', {
+                this.#htmlInput = createElement('input', {
                     type: 'file',
                     hidden: true,
                     events: {
@@ -9455,7 +9455,7 @@ class HTMLHarmonyFileInputElement extends HTMLElement {
                 break;
             case 'data-tooltip-i18n':
                 if (newValue == '') {
-                    hide$1(this.#htmlHelp);
+                    hide(this.#htmlHelp);
                 }
                 else {
                     show(this.#htmlHelp);
@@ -9491,8 +9491,8 @@ class HTMLHarmonyLabelPropertyElement extends HTMLElement {
         super();
         this.#shadowRoot = this.attachShadow({ mode: 'closed' });
         shadowRootStyle(this.#shadowRoot, labelPropertyCSS);
-        this.#htmlLabel = createElement$1('label', { i18n: '', parent: this.#shadowRoot });
-        this.#htmlProperty = createElement$1('span', { parent: this.#shadowRoot });
+        this.#htmlLabel = createElement('label', { i18n: '', parent: this.#shadowRoot });
+        this.#htmlProperty = createElement('span', { parent: this.#shadowRoot });
     }
     set label(label) {
         this.#htmlLabel.setAttribute('data-i18n', label);
@@ -9535,7 +9535,7 @@ class HTMLHarmonyPaletteElement extends HTMLElement {
     }
     connectedCallback() {
         if (!this.#initialized) {
-            I18n$1.observeElement(this.#shadowRoot);
+            I18n.observeElement(this.#shadowRoot);
             shadowRootStyle(this.#shadowRoot, paletteCSS);
             this.#initialized = true;
             this.#processChilds();
@@ -9567,7 +9567,7 @@ class HTMLHarmonyPaletteElement extends HTMLElement {
         this.innerHTML = '';
         this.#colorElements.clear();
         for (const [colorHex, color] of this.#colors) {
-            const element = createElement$1('div', {
+            const element = createElement('div', {
                 parent: this.#shadowRoot,
                 class: 'color',
                 'data-color': colorHex,
@@ -9712,14 +9712,14 @@ class HTMLHarmonyPanelElement extends HTMLElement {
         //this.addEventListener('mouseenter', event => this._handleMouseEnter(event));
         //this.addEventListener('mousemove', event => this._handleMouseMove(event));
         //this.addEventListener('mouseleave', event => this._handleMouseLeave(event));
-        this.htmlTitle = createElement$1('div', {
+        this.htmlTitle = createElement('div', {
             className: 'title',
             parent: this.#shadowRoot,
             events: {
                 click: () => this.#toggleCollapse(),
             }
         });
-        this.htmlContent = createElement$1('div', {
+        this.htmlContent = createElement('div', {
             className: 'content',
             parent: this.#shadowRoot,
         });
@@ -10131,15 +10131,15 @@ class HTMLHarmonyRadioElement extends HTMLElement {
     constructor() {
         super();
         this.#shadowRoot = this.attachShadow({ mode: 'closed' });
-        this.#htmlLabel = createElement$1('div', { class: 'label' });
+        this.#htmlLabel = createElement('div', { class: 'label' });
         this.#initObserver();
     }
     connectedCallback() {
         if (this.#doOnce) {
-            I18n$1.observeElement(this.#shadowRoot);
+            I18n.observeElement(this.#shadowRoot);
             shadowRootStyle(this.#shadowRoot, radioCSS);
             this.#shadowRoot.prepend(this.#htmlLabel);
-            hide$1(this.#htmlLabel);
+            hide(this.#htmlLabel);
             this.#processChilds();
             this.#doOnce = false;
         }
@@ -10159,7 +10159,7 @@ class HTMLHarmonyRadioElement extends HTMLElement {
             this.select(htmlButton.value, true);
         }
         this.#shadowRoot.append(htmlButton);
-        I18n$1.updateElement(htmlButton);
+        I18n.updateElement(htmlButton);
     }
     append(...params) {
         for (const param of params) {
@@ -10285,14 +10285,14 @@ class HTMLHarmonySlideshowElement extends HTMLElement {
         this.#doOnceOptions = options;
         this.#initObserver();
         this.#shadowRoot = this.attachShadow({ mode: 'closed' });
-        I18n$1.observeElement(this.#shadowRoot);
+        I18n.observeElement(this.#shadowRoot);
         shadowRootStyleSync(this.#shadowRoot, slideshowCSS); // sync version is used to ensure style is loaded before computation occurs
-        this.#htmlImages = createElement$1('div', {
+        this.#htmlImages = createElement('div', {
             class: 'images',
             parent: this.#shadowRoot,
-            child: this.#htmlImagesOuter = createElement$1('div', {
+            child: this.#htmlImagesOuter = createElement('div', {
                 class: 'images-outer',
-                child: this.#htmlImagesInner = createElement$1('div', {
+                child: this.#htmlImagesInner = createElement('div', {
                     class: 'images-inner',
                 }),
                 events: {
@@ -10302,29 +10302,29 @@ class HTMLHarmonySlideshowElement extends HTMLElement {
                 },
             }),
         });
-        createElement$1('div', {
+        createElement('div', {
             class: 'controls',
             parent: this.#shadowRoot,
             childs: [
-                createElement$1('div', {
+                createElement('div', {
                     class: 'previous-image',
                     events: {
                         click: (event) => { this.previousImage(); this.setAutoPlay(false); },
                     },
                 }),
-                createElement$1('div', {
+                createElement('div', {
                     class: 'next-image',
                     events: {
                         click: (event) => { this.nextImage(); this.setAutoPlay(false); },
                     },
                 }),
-                this.#htmlPlayButton = createElement$1('div', {
+                this.#htmlPlayButton = createElement('div', {
                     class: 'play',
                     events: {
                         click: () => this.play(true),
                     },
                 }),
-                this.#htmlPauseButton = createElement$1('div', {
+                this.#htmlPauseButton = createElement('div', {
                     class: 'pause',
                     events: {
                         click: () => this.play(false),
@@ -10336,15 +10336,15 @@ class HTMLHarmonySlideshowElement extends HTMLElement {
                 mouseleave: (event) => event.target.style.opacity = '0',
             },
         });
-        this.#htmlZoomImage = createElement$1('img');
-        this.#htmlZoomContainer = createElement$1('div', {
+        this.#htmlZoomImage = createElement('img');
+        this.#htmlZoomContainer = createElement('div', {
             class: 'zoom',
             parent: document.body,
             childs: [
                 this.#htmlZoomImage,
             ]
         });
-        this.#htmlThumbnails = createElement$1('div', {
+        this.#htmlThumbnails = createElement('div', {
             class: 'thumbnails',
             parent: this.#shadowRoot,
         });
@@ -10386,7 +10386,7 @@ class HTMLHarmonySlideshowElement extends HTMLElement {
     disconnectedCallback() {
         if (this.#htmlZoomContainer) {
             this.#htmlZoomContainer.remove();
-            hide$1(this.#htmlZoomContainer);
+            hide(this.#htmlZoomContainer);
         }
     }
     addImage(htmlImage) {
@@ -10437,7 +10437,7 @@ class HTMLHarmonySlideshowElement extends HTMLElement {
         this.#smoothScrollTransitionTime = options.smoothScrollTransitionTime ?? DEFAULT_SCROLL_TRANSITION_TIME;
         if (options.images) {
             for (let image of options.images) {
-                const htmlImage = createElement$1('img');
+                const htmlImage = createElement('img');
                 htmlImage.src = image;
                 this.addImage(htmlImage);
             }
@@ -10482,12 +10482,12 @@ class HTMLHarmonySlideshowElement extends HTMLElement {
     setAutoPlay(autoPlay) {
         this.#autoPlay = autoPlay && this.#dynamic;
         if (autoPlay) {
-            hide$1(this.#htmlPlayButton);
+            hide(this.#htmlPlayButton);
             show(this.#htmlPauseButton);
         }
         else {
             show(this.#htmlPlayButton);
-            hide$1(this.#htmlPauseButton);
+            hide(this.#htmlPauseButton);
         }
     }
     play(autoPlay) {
@@ -10560,7 +10560,7 @@ class HTMLHarmonySlideshowElement extends HTMLElement {
                 }
                 break;
             case 'mouseout':
-                hide$1(this.#htmlZoomContainer);
+                hide(this.#htmlZoomContainer);
                 break;
         }
     }
@@ -10606,7 +10606,7 @@ class HTMLHarmonySelectElement extends HTMLElement {
     constructor() {
         super();
         this.#shadowRoot = this.attachShadow({ mode: 'closed' });
-        this.#htmlSelect = createElement$1('select', { parent: this.#shadowRoot });
+        this.#htmlSelect = createElement('select', { parent: this.#shadowRoot });
     }
     connectedCallback() {
         shadowRootStyle(this.#shadowRoot, selectCSS);
@@ -10720,19 +10720,19 @@ class HTMLHarmonySplitterElement extends HTMLElement {
         super();
         this.#shadowRoot = this.attachShadow({ mode: 'closed' });
         shadowRootStyleSync(this.#shadowRoot, splitterCSS); // sync version is used to ensure style is loaded before computation occurs
-        this.#htmlPanel1 = createElement$1('slot', {
+        this.#htmlPanel1 = createElement('slot', {
             class: 'panel',
             name: '1',
             parent: this.#shadowRoot,
         });
-        this.#htmlGutter = createElement$1('div', {
+        this.#htmlGutter = createElement('div', {
             class: 'gutter',
             parent: this.#shadowRoot,
             /*events: {
                 mousedown: event => this.#handleMouseDown(event),
             },*/
         });
-        this.#htmlPanel2 = createElement$1('slot', {
+        this.#htmlPanel2 = createElement('slot', {
             class: 'panel',
             name: '2',
             parent: this.#shadowRoot,
@@ -10829,16 +10829,16 @@ class HTMLHarmonySwitchElement extends HTMLElement {
         super();
         this.#shadowRoot = this.attachShadow({ mode: 'closed' });
         shadowRootStyle(this.#shadowRoot, switchCSS);
-        this.#htmlLabel = createElement$1('div', { class: 'harmony-switch-label' });
-        this.#htmlSwitchOuter = createElement$1('span', {
+        this.#htmlLabel = createElement('div', { class: 'harmony-switch-label' });
+        this.#htmlSwitchOuter = createElement('span', {
             class: 'harmony-switch-outer',
-            child: this.#htmlSwitchInner = createElement$1('span', { class: 'harmony-switch-inner' }),
+            child: this.#htmlSwitchInner = createElement('span', { class: 'harmony-switch-inner' }),
         });
         this.addEventListener('click', () => this.toggle());
     }
     connectedCallback() {
         if (this.#doOnce) {
-            I18n$1.observeElement(this.#shadowRoot);
+            I18n.observeElement(this.#shadowRoot);
             this.#shadowRoot.append(this.#htmlLabel, this.#htmlSwitchOuter);
             this.#htmlSwitchOuter.append(this.#htmlSwitchInner);
             this.#refresh();
@@ -10943,7 +10943,7 @@ class HTMLHarmonyTabElement extends HTMLElement {
     #group;
     constructor() {
         super();
-        this.#header = createElement$1('div', {
+        this.#header = createElement('div', {
             class: 'harmony-tab-label',
             ...(this.getAttribute('data-i18n')) && { i18n: this.getAttribute('data-i18n') },
             ...(this.getAttribute('data-text')) && { innerText: this.getAttribute('data-text') },
@@ -10997,7 +10997,7 @@ class HTMLHarmonyTabElement extends HTMLElement {
                 this.dispatchEvent(new CustomEvent('deactivated'));
             }
         }
-        display$1(this, active);
+        display(this, active);
         if (active) {
             this.#header.classList.add('activated');
         }
@@ -11046,16 +11046,16 @@ class HTMLHarmonyTabGroupElement extends HTMLElement {
     constructor() {
         super();
         this.#shadowRoot = this.attachShadow({ mode: 'closed' });
-        this.#header = createElement$1('div', {
+        this.#header = createElement('div', {
             class: 'harmony-tab-group-header',
         });
-        this.#content = createElement$1('div', {
+        this.#content = createElement('div', {
             class: 'harmony-tab-group-content',
         });
     }
     connectedCallback() {
         if (this.#doOnce) {
-            I18n$1.observeElement(this.#shadowRoot);
+            I18n.observeElement(this.#shadowRoot);
             shadowRootStyle(this.#shadowRoot, tabGroupCSS);
             shadowRootStyle(this.#shadowRoot, tabCSS);
             this.#shadowRoot.append(this.#header, this.#content);
@@ -11116,7 +11116,7 @@ class HTMLHarmonyToggleButtonElement extends HTMLElement {
     constructor() {
         super();
         this.#shadowRoot = this.attachShadow({ mode: 'closed' });
-        I18n$1.observeElement(this.#shadowRoot);
+        I18n.observeElement(this.#shadowRoot);
         shadowRootStyle(this.#shadowRoot, toggleButtonCSS);
         this.addEventListener('click', () => this.#click());
         this.#initObserver();
@@ -11161,14 +11161,14 @@ class HTMLHarmonyToggleButtonElement extends HTMLElement {
             this.state = toBool(newValue);
         }
         if (name == 'src-on') {
-            this.#buttonOn = this.#buttonOn ?? createElement$1('span', {
+            this.#buttonOn = this.#buttonOn ?? createElement('span', {
                 class: 'i18n-title toggle-button-on',
                 hidden: true,
             });
             this.#buttonOn.style.backgroundImage = `url(${newValue})`;
         }
         if (name == 'src-off') {
-            this.#buttonOff = this.#buttonOff ?? createElement$1('span', {
+            this.#buttonOff = this.#buttonOff ?? createElement('span', {
                 class: 'i18n-title toggle-button-off',
             });
             this.#buttonOff.style.backgroundImage = `url(${newValue})`;
@@ -11188,10 +11188,10 @@ class HTMLHarmonyToggleButtonElement extends HTMLElement {
     #refresh() {
         if (this.#state) {
             show(this.#buttonOn);
-            hide$1(this.#buttonOff);
+            hide(this.#buttonOff);
         }
         else {
-            hide$1(this.#buttonOn);
+            hide(this.#buttonOn);
             show(this.#buttonOff);
         }
     }
@@ -11248,14 +11248,14 @@ var index$1 = /*#__PURE__*/Object.freeze({
   HTMLHarmonyTabGroupElement: HTMLHarmonyTabGroupElement,
   HTMLHarmonyToggleButtonElement: HTMLHarmonyToggleButtonElement,
   HTMLHarmonyTooltipElement: HTMLHarmonyTooltipElement,
-  I18n: I18n$1,
-  get ManipulatorCorner () { return ManipulatorCorner$1; },
-  get ManipulatorDirection () { return ManipulatorDirection$1; },
-  get ManipulatorSide () { return ManipulatorSide$1; },
+  I18n: I18n,
+  get ManipulatorCorner () { return ManipulatorCorner; },
+  get ManipulatorDirection () { return ManipulatorDirection; },
+  get ManipulatorSide () { return ManipulatorSide; },
   cloneEvent: cloneEvent,
-  createElement: createElement$1,
+  createElement: createElement,
   createElementNS: createElementNS,
-  createShadowRoot: createShadowRoot$1,
+  createShadowRoot: createShadowRoot,
   defineHarmony2dManipulator: defineHarmony2dManipulator,
   defineHarmonyAccordion: defineHarmonyAccordion,
   defineHarmonyColorPicker: defineHarmonyColorPicker,
@@ -11274,10 +11274,10 @@ var index$1 = /*#__PURE__*/Object.freeze({
   defineHarmonyTabGroup: defineHarmonyTabGroup,
   defineHarmonyToggleButton: defineHarmonyToggleButton,
   defineHarmonyTooltip: defineHarmonyTooltip,
-  display: display$1,
+  display: display,
   documentStyle: documentStyle,
   documentStyleSync: documentStyleSync,
-  hide: hide$1,
+  hide: hide,
   isVisible: isVisible,
   shadowRootStyle: shadowRootStyle,
   shadowRootStyleSync: shadowRootStyleSync,
@@ -11288,531 +11288,34 @@ var index$1 = /*#__PURE__*/Object.freeze({
   visible: visible
 });
 
+const contentCopySVG = '<svg height="24" viewBox="0 -960 960 960" width="24" fill="currentColor"><path d="M360-240q-33 0-56.5-23.5T280-320v-480q0-33 23.5-56.5T360-880h360q33 0 56.5 23.5T800-800v480q0 33-23.5 56.5T720-240H360Zm0-80h360v-480H360v480ZM200-80q-33 0-56.5-23.5T120-160v-560h80v560h440v80H200Zm160-240v-480 480Z"/></svg>';
+
+const dragPanSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M480-80 310-250l57-57 73 73v-206H235l73 72-58 58L80-480l169-169 57 57-72 72h206v-206l-73 73-57-57 170-170 170 170-57 57-73-73v206h205l-73-72 58-58 170 170-170 170-57-57 73-73H520v205l72-73 58 58L480-80Z"/></svg>';
+
+const panZoomSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M120-120v-240h80v104l124-124 56 56-124 124h104v80H120Zm516-460-56-56 124-124H600v-80h240v240h-80v-104L636-580Z"/></svg>';
+
+const pauseSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="currentColor"><path d="M560-200v-560h160v560H560Zm-320 0v-560h160v560H240Z"/></svg>';
+
+const playSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="currentColor"><path d="M320-200v-560l440 280-440 280Z"/></svg>';
+
+const restartSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M440-122q-121-15-200.5-105.5T160-440q0-66 26-126.5T260-672l57 57q-38 34-57.5 79T240-440q0 88 56 155.5T440-202v80Zm80 0v-80q87-16 143.5-83T720-440q0-100-70-170t-170-70h-3l44 44-56 56-140-140 140-140 56 56-44 44h3q134 0 227 93t93 227q0 121-79.5 211.5T520-122Z"/></svg>';
+
+const rotateSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M482-160q-134 0-228-93t-94-227v-7l-64 64-56-56 160-160 160 160-56 56-64-64v7q0 100 70.5 170T482-240q26 0 51-6t49-18l60 60q-38 22-78 33t-82 11Zm278-161L600-481l56-56 64 64v-7q0-100-70.5-170T478-720q-26 0-51 6t-49 18l-60-60q38-22 78-33t82-11q134 0 228 93t94 227v7l64-64 56 56-160 160Z"/></svg>';
+
+const visibilityOffSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor"><path d="M0 0h24v24H0zm0 0h24v24H0zm0 0h24v24H0zm0 0h24v24H0z" fill="none"/><path d="M12 7c2.76 0 5 2.24 5 5 0 .65-.13 1.26-.36 1.83l2.92 2.92c1.51-1.26 2.7-2.89 3.43-4.75-1.73-4.39-6-7.5-11-7.5-1.4 0-2.74.25-3.98.7l2.16 2.16C10.74 7.13 11.35 7 12 7zM2 4.27l2.28 2.28.46.46C3.08 8.3 1.78 10.02 1 12c1.73 4.39 6 7.5 11 7.5 1.55 0 3.03-.3 4.38-.84l.42.42L19.73 22 21 20.73 3.27 3 2 4.27zM7.53 9.8l1.55 1.55c-.05.21-.08.43-.08.65 0 1.66 1.34 3 3 3 .22 0 .44-.03.65-.08l1.55 1.55c-.67.33-1.41.53-2.2.53-2.76 0-5-2.24-5-5 0-.79.2-1.53.53-2.2zm4.31-.78l3.15 3.15.02-.16c0-1.66-1.34-3-3-3l-.17.01z"/></svg>';
+
+const visibilityOnSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>';
+
+const zoomInSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="currentColor"><path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Zm-40-60v-80h-80v-80h80v-80h80v80h80v80h-80v80h-80Z"/></svg>';
+
+const zoomOutSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="currentColor"><path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400ZM280-540v-80h200v80H280Z"/></svg>';
+
 function SaveFile(file) {
     var link = document.createElement('a');
     link.setAttribute('href', URL.createObjectURL(file));
     link.setAttribute('download', file.name);
     link.click();
 }
-
-const closeSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="currentColor"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>';
-
-const contentCopySVG = '<svg height="24" viewBox="0 -960 960 960" width="24" fill="currentColor"><path d="M360-240q-33 0-56.5-23.5T280-320v-480q0-33 23.5-56.5T360-880h360q33 0 56.5 23.5T800-800v480q0 33-23.5 56.5T720-240H360Zm0-80h360v-480H360v480ZM200-80q-33 0-56.5-23.5T120-160v-560h80v560h440v80H200Zm160-240v-480 480Z"/></svg>';
-
-function createElement(tagName, options) {
-    const element = document.createElement(tagName);
-    createElementOptions(element, options);
-    return element;
-}
-function createShadowRoot(tagName, options, mode = 'closed') {
-    const element = document.createElement(tagName);
-    const shadowRoot = element.attachShadow({ mode: mode });
-    createElementOptions(element, options, shadowRoot);
-    return shadowRoot;
-}
-function append$1(element, child) {
-    if (child === null || child === undefined) {
-        return;
-    }
-    if (child instanceof ShadowRoot) {
-        element.append(child.host);
-    }
-    else {
-        element.append(child);
-    }
-}
-function createElementOptions(element, options, shadowRoot) {
-    if (options) {
-        for (const optionName in options) {
-            const optionValue = options[optionName];
-            switch (optionName) {
-                case 'class':
-                    element.classList.add(...optionValue.split(' '));
-                    break;
-                case 'i18n':
-                    element.setAttribute('data-i18n', optionValue);
-                    element.innerHTML = optionValue;
-                    element.classList.add('i18n');
-                    break;
-                case 'i18n-title':
-                    element.setAttribute('data-i18n-title', optionValue);
-                    element.classList.add('i18n-title');
-                    break;
-                case 'i18n-placeholder':
-                    element.setAttribute('data-i18n-placeholder', optionValue);
-                    element.classList.add('i18n-placeholder');
-                    break;
-                case 'i18n-label':
-                    element.setAttribute('data-i18n-label', optionValue);
-                    element.classList.add('i18n-label');
-                    break;
-                case 'i18n-json':
-                    element.setAttribute('data-i18n-json', JSON.stringify(optionValue));
-                    element.classList.add('i18n');
-                    break;
-                case 'i18n-values':
-                    element.setAttribute('data-i18n-values', JSON.stringify(optionValue));
-                    element.classList.add('i18n');
-                    break;
-                case 'parent':
-                    optionValue.append(element);
-                    break;
-                case 'child':
-                    append$1(shadowRoot ?? element, optionValue);
-                    break;
-                case 'childs':
-                    optionValue.forEach((entry) => append$1(shadowRoot ?? element, entry));
-                    break;
-                case 'events':
-                    for (let eventType in optionValue) {
-                        let eventParams = optionValue[eventType];
-                        if (typeof eventParams === 'function') {
-                            element.addEventListener(eventType, eventParams);
-                        }
-                        else {
-                            element.addEventListener(eventType, eventParams.listener, eventParams.options);
-                        }
-                    }
-                    break;
-                case 'hidden':
-                    if (optionValue) {
-                        hide(element);
-                    }
-                    break;
-                case 'attributes':
-                    for (let attributeName in optionValue) {
-                        element.setAttribute(attributeName, optionValue[attributeName]);
-                    }
-                    break;
-                case 'list':
-                    element.setAttribute(optionName, optionValue);
-                    break;
-                case 'adoptStyle':
-                    adoptStyleSheet(shadowRoot ?? element, optionValue);
-                    break;
-                case 'adoptStyles':
-                    optionValue.forEach((entry) => {
-                        adoptStyleSheet(shadowRoot ?? element, entry);
-                    });
-                    break;
-                default:
-                    if (optionName.startsWith('data-')) {
-                        element.setAttribute(optionName, optionValue);
-                    }
-                    else {
-                        element[optionName] = optionValue;
-                    }
-                    break;
-            }
-        }
-        options.elementCreated?.(element, shadowRoot);
-    }
-}
-async function adoptStyleSheet(element, cssText) {
-    const sheet = new CSSStyleSheet;
-    await sheet.replace(cssText);
-    if (element.adoptStyleSheet) {
-        element.adoptStyleSheet(sheet);
-    }
-    else {
-        if (element.adoptedStyleSheets) {
-            element.adoptedStyleSheets.push(sheet);
-        }
-    }
-}
-function display(htmlElement, visible) {
-    if (htmlElement == undefined) {
-        return;
-    }
-    if (htmlElement instanceof ShadowRoot) {
-        htmlElement = htmlElement.host;
-    }
-    if (visible) {
-        htmlElement.style.display = '';
-    }
-    else {
-        htmlElement.style.display = 'none';
-    }
-}
-function hide(htmlElement) {
-    display(htmlElement, false);
-}
-
-const I18N_DELAY_BEFORE_REFRESH = 100;
-class I18n {
-    static #lang = 'english';
-    static #translations = new Map();
-    static #executing = false;
-    static #refreshTimeout;
-    static #observerConfig = { childList: true, subtree: true, attributeFilter: ['i18n', 'data-i18n-json', 'data-i18n-values'] };
-    static #observer;
-    static #observed = new Set();
-    static start() {
-        this.observeElement(document.body);
-    }
-    static setOptions(options) {
-        if (options.translations) {
-            for (let translation of options.translations) {
-                this.addTranslation(translation);
-            }
-        }
-        this.i18n();
-    }
-    static addTranslation(translation) {
-        this.#translations.set(translation.lang, translation);
-    }
-    static #initObserver() {
-        if (this.#observer) {
-            return;
-        }
-        const callback = async (mutationsList, observer) => {
-            for (let mutation of mutationsList) {
-                if (mutation.type === 'childList') {
-                    for (let node of mutation.addedNodes) {
-                        if (node instanceof HTMLElement) {
-                            this.updateElement(node);
-                        }
-                    }
-                }
-                else if (mutation.type === 'attributes') {
-                    this.updateElement(mutation.target);
-                }
-            }
-        };
-        this.#observer = new MutationObserver(callback);
-    }
-    static observeElement(element) {
-        this.#observed.add(element);
-        this.#initObserver();
-        this.#observer?.observe(element, this.#observerConfig);
-        this.updateElement(element);
-    }
-    static #processList(parentNode, className, attribute, subElement) {
-        const elements = parentNode.querySelectorAll('.' + className);
-        if (parentNode.classList?.contains(className)) {
-            this.#processElement(parentNode, attribute, subElement);
-        }
-        for (let element of elements) {
-            this.#processElement(element, attribute, subElement);
-        }
-    }
-    static #processJSON(parentNode) {
-        const className = 'i18n';
-        const elements = parentNode.querySelectorAll('.' + className);
-        if (parentNode.classList?.contains(className)) {
-            this.#processElementJSON(parentNode);
-        }
-        for (let element of elements) {
-            this.#processElementJSON(element);
-        }
-    }
-    static #processElement(htmlElement, attribute, subElement) {
-        let dataLabel = htmlElement.getAttribute(attribute);
-        if (dataLabel) {
-            htmlElement[subElement] = this.getString(dataLabel);
-        }
-    }
-    static #processElementJSON(htmlElement) {
-        const str = htmlElement.getAttribute('data-i18n-json');
-        if (!str) {
-            return;
-        }
-        const dataJSON = JSON.parse(str);
-        if (!dataJSON) {
-            return;
-        }
-        let valuesJSON;
-        const values = htmlElement.getAttribute('data-i18n-values');
-        if (values) {
-            valuesJSON = JSON.parse(values);
-        }
-        else {
-            valuesJSON = dataJSON.values;
-        }
-        const innerHTML = dataJSON.innerHTML;
-        if (innerHTML) {
-            htmlElement.innerHTML = this.formatString(innerHTML, valuesJSON);
-        }
-    }
-    static i18n() {
-        if (!this.#refreshTimeout) {
-            this.#refreshTimeout = setTimeout(() => this.#i18n(), I18N_DELAY_BEFORE_REFRESH);
-        }
-    }
-    static #i18n() {
-        this.#refreshTimeout = null;
-        if (this.#executing) {
-            return;
-        }
-        this.#executing = true;
-        for (const element of this.#observed) {
-            this.#processList(element, 'i18n', 'data-i18n', 'innerHTML');
-            this.#processList(element, 'i18n-title', 'data-i18n-title', 'title');
-            this.#processList(element, 'i18n-placeholder', 'data-i18n-placeholder', 'placeholder');
-            this.#processList(element, 'i18n-label', 'data-i18n-label', 'label');
-            this.#processJSON(element);
-        }
-        this.#executing = false;
-        return;
-    }
-    static updateElement(htmlElement) {
-        this.#processList(htmlElement, 'i18n', 'data-i18n', 'innerHTML');
-        this.#processList(htmlElement, 'i18n-title', 'data-i18n-title', 'title');
-        this.#processList(htmlElement, 'i18n-placeholder', 'data-i18n-placeholder', 'placeholder');
-        this.#processList(htmlElement, 'i18n-label', 'data-i18n-label', 'label');
-        this.#processJSON(htmlElement);
-    }
-    static set lang(lang) {
-        throw 'Deprecated, use setLang() instead';
-    }
-    static setLang(lang) {
-        if (this.#lang != lang) {
-            this.#lang = lang;
-            this.i18n();
-        }
-    }
-    static getString(s) {
-        const strings = this.#translations.get(this.#lang)?.strings;
-        if (strings) {
-            let s2 = strings[s];
-            if (typeof s2 == 'string') {
-                return s2;
-            }
-            else {
-                console.warn('Missing translation for key ' + s);
-                return s;
-            }
-        }
-        return s;
-    }
-    static formatString(s, values) {
-        let str = this.getString(s);
-        for (let key in values) {
-            str = str.replace(new RegExp("\\\${" + key + "\\}", "gi"), values[key]);
-        }
-        return str;
-    }
-    static get authors() {
-        throw 'Deprecated, use getAuthors() instead';
-    }
-    static getAuthors() {
-        return this.#translations.get(this.#lang)?.authors ?? [];
-    }
-}
-
-var ManipulatorDirection;
-(function (ManipulatorDirection) {
-    ManipulatorDirection["All"] = "all";
-    ManipulatorDirection["X"] = "x";
-    ManipulatorDirection["Y"] = "y";
-    ManipulatorDirection["None"] = "none";
-})(ManipulatorDirection || (ManipulatorDirection = {}));
-var ManipulatorCorner;
-(function (ManipulatorCorner) {
-    ManipulatorCorner[ManipulatorCorner["None"] = -1] = "None";
-    ManipulatorCorner[ManipulatorCorner["TopLeft"] = 0] = "TopLeft";
-    ManipulatorCorner[ManipulatorCorner["TopRight"] = 1] = "TopRight";
-    ManipulatorCorner[ManipulatorCorner["BottomLeft"] = 2] = "BottomLeft";
-    ManipulatorCorner[ManipulatorCorner["BottomRight"] = 3] = "BottomRight";
-})(ManipulatorCorner || (ManipulatorCorner = {}));
-var ManipulatorSide;
-(function (ManipulatorSide) {
-    ManipulatorSide[ManipulatorSide["None"] = -1] = "None";
-    ManipulatorSide[ManipulatorSide["Top"] = 0] = "Top";
-    ManipulatorSide[ManipulatorSide["Bottom"] = 1] = "Bottom";
-    ManipulatorSide[ManipulatorSide["Left"] = 2] = "Left";
-    ManipulatorSide[ManipulatorSide["Right"] = 3] = "Right";
-})(ManipulatorSide || (ManipulatorSide = {}));
-
-var notificationManagerCSS = ":host, .notification-manager{\r\n\tposition: absolute;\r\n\tz-index: 100;\r\n\tbottom: 0px;\r\n\twidth: 100%;\r\n\tdisplay: flex;\r\n\tflex-direction: column-reverse;\r\n\tmax-height: 50%;\r\n\toverflow-y: auto;\r\n}\r\n.notification-manager-notification{\r\n\tbackground-color: var(--theme-popup-bg-color);\r\n\tcolor: var(--theme-text-color);\r\n\tfont-size: 1.5em;\r\n\tpadding: 4px;\r\n\tdisplay: flex;\r\n\talign-items: center;\r\n}\r\n.notification-manager-notification-content{\r\n\toverflow: auto;\r\n\tflex: 1;\r\n\tmax-width: calc(100% - 20px);\r\n}\r\n.notification-manager-notification-close{\r\n\tfill: currentColor;\r\n\tcursor: pointer;\r\n}\r\n.notification-manager-notification-copy{\r\n\tfill: currentColor;\r\n\tcursor: pointer;\r\n\ttransition: all 0.3s ease-in 0s;\r\n}\r\n.notification-manager-notification-copy-success{\r\n\ttransform: rotate(1turn);\r\n}\r\n.notification-manager-notification-close > svg{\r\n\twidth: 20px;\r\n\tmargin: 5px;\r\n}\r\n.notification-manager-notification-success{\r\n\tbackground-color: #5aa822ff;\r\n}\r\n.notification-manager-notification-warning{\r\n\tbackground-color: #c78a17ff;\r\n}\r\n.notification-manager-notification-error{\r\n\tbackground-color: #c71717ff;\r\n}\r\n.notification-manager-notification-info{\r\n\tbackground-color: #2e88e8ff;\r\n}\r\n";
-
-const NOTIFICATION_CLASSNAME = 'notification-manager-notification';
-class Notification {
-    #htmlElement;
-    timeout = 0;
-    content;
-    type;
-    constructor(content, type, ttl) {
-        this.content = content;
-        this.type = type;
-        this.setTtl(ttl);
-    }
-    setTtl(ttl) {
-        if (ttl) {
-            clearTimeout(this.timeout);
-            this.timeout = setTimeout(() => NotificationManager.closeNofication(this), ttl * 1000);
-        }
-    }
-    get view() {
-        if (!this.#htmlElement) {
-            let htmlElementContent;
-            this.#htmlElement = createElement('div', {
-                className: NOTIFICATION_CLASSNAME,
-                childs: [
-                    htmlElementContent = createElement('div', {
-                        className: NOTIFICATION_CLASSNAME + '-content',
-                    }),
-                    createElement('div', {
-                        className: NOTIFICATION_CLASSNAME + '-copy',
-                        innerHTML: contentCopySVG,
-                        events: {
-                            click: async (event) => {
-                                try {
-                                    if (this.#htmlElement) {
-                                        await navigator.clipboard.writeText(this.#htmlElement.innerText);
-                                        event.target.parentElement?.classList.toggle(NOTIFICATION_CLASSNAME + '-copy-success');
-                                    }
-                                }
-                                catch (e) {
-                                    console.error(e);
-                                }
-                            },
-                        }
-                    }),
-                    createElement('div', {
-                        className: NOTIFICATION_CLASSNAME + '-close',
-                        innerHTML: closeSVG,
-                        events: {
-                            click: () => NotificationManager.closeNofication(this),
-                        }
-                    }),
-                ]
-            });
-            if (this.type) {
-                this.#htmlElement.classList.add(NOTIFICATION_CLASSNAME + '-' + this.type);
-            }
-            if (this.content instanceof HTMLElement) {
-                htmlElementContent.append(this.content);
-            }
-            else {
-                htmlElementContent.innerHTML = this.content;
-            }
-        }
-        return this.#htmlElement;
-    }
-}
-class NotificationManager {
-    //static #htmlElement: HTMLElement;
-    static #htmlParent = document.body;
-    static #shadowRoot;
-    static #nofifications = new Set();
-    static {
-        this.#createHtml();
-    }
-    static setParent(htmlParent) {
-        this.#htmlParent = htmlParent;
-        this.#htmlParent.append(this.#shadowRoot.host);
-    }
-    static #createHtml() {
-        this.#shadowRoot = createShadowRoot('div', {
-            class: 'notification-manager',
-            parent: this.#htmlParent,
-            adoptStyle: notificationManagerCSS,
-        });
-        //this.#shadowRoot = this.#htmlElement.attachShadow({ mode: 'closed' });
-        //shadowRootStyle(this.#shadowRoot, notificationManagerCSS);
-        I18n.observeElement(this.#shadowRoot);
-    }
-    static #getNotification(content, type, ttl) {
-        for (let notification of this.#nofifications) {
-            if ((notification.content == content) && (notification.type == type)) {
-                notification.setTtl(ttl);
-                return notification;
-            }
-        }
-        return new Notification(content, type, ttl);
-    }
-    static addNotification(content, type, ttl) {
-        let notification = this.#getNotification(content, type, ttl);
-        this.#nofifications.add(notification);
-        this.#shadowRoot.append(notification.view);
-    }
-    static closeNofication(notification) {
-        this.#nofifications.delete(notification);
-        notification.view.remove();
-    }
-}
-
-/**
- * Common utilities
- * @module glMatrix
- */
-var ARRAY_TYPE = typeof Float32Array !== 'undefined' ? Float32Array : Array;
-if (!Math.hypot) Math.hypot = function () {
-  var y = 0,
-      i = arguments.length;
-
-  while (i--) {
-    y += arguments[i] * arguments[i];
-  }
-
-  return Math.sqrt(y);
-};
-
-/**
- * 2 Dimensional Vector
- * @module vec2
- */
-
-/**
- * Creates a new, empty vec2
- *
- * @returns {vec2} a new 2D vector
- */
-
-function create() {
-  var out = new ARRAY_TYPE(2);
-
-  if (ARRAY_TYPE != Float32Array) {
-    out[0] = 0;
-    out[1] = 0;
-  }
-
-  return out;
-}
-/**
- * Perform some operation over an array of vec2s.
- *
- * @param {Array} a the array of vectors to iterate over
- * @param {Number} stride Number of elements between the start of each vec2. If 0 assumes tightly packed
- * @param {Number} offset Number of elements to skip at the beginning of the array
- * @param {Number} count Number of vec2s to iterate over. If 0 iterates over entire array
- * @param {Function} fn Function to call for each vector in the array
- * @param {Object} [arg] additional argument to pass to fn
- * @returns {Array} a
- * @function
- */
-
-(function () {
-  var vec = create();
-  return function (a, stride, offset, count, fn, arg) {
-    var i, l;
-
-    if (!stride) {
-      stride = 2;
-    }
-
-    if (!offset) {
-      offset = 0;
-    }
-
-    if (count) {
-      l = Math.min(count * stride + offset, a.length);
-    } else {
-      l = a.length;
-    }
-
-    for (i = offset; i < l; i += stride) {
-      vec[0] = a[i];
-      vec[1] = a[i + 1];
-      fn(vec, vec, arg);
-      a[i] = vec[0];
-      a[i + 1] = vec[1];
-    }
-
-    return a;
-  };
-})();
 
 class Shortcut {
     #contexts;
@@ -21363,8 +20866,8 @@ class FBXCluster extends FBXSubDeformer {
 	#link;
 	#indexes = [];
 	#weights = [];
-	#transformMatrix = create$6();
-	#transformLinkMatrix = create$6();
+	#transformMatrix = create$5();
+	#transformLinkMatrix = create$5();
 	#transformParentMatrix;
 	constructor(manager, name) {
 		super(manager, name);
@@ -22294,19 +21797,23 @@ function flipY(data, header) {
     }
 }
 
-const pauseSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="currentColor"><path d="M560-200v-560h160v560H560Zm-320 0v-560h160v560H240Z"/></svg>';
-
-const playSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="currentColor"><path d="M320-200v-560l440 280-440 280Z"/></svg>';
-
-const restartSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M440-122q-121-15-200.5-105.5T160-440q0-66 26-126.5T260-672l57 57q-38 34-57.5 79T240-440q0 88 56 155.5T440-202v80Zm80 0v-80q87-16 143.5-83T720-440q0-100-70-170t-170-70h-3l44 44-56 56-140-140 140-140 56 56-44 44h3q134 0 227 93t93 227q0 121-79.5 211.5T520-122Z"/></svg>';
-
-const visibilityOffSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor"><path d="M0 0h24v24H0zm0 0h24v24H0zm0 0h24v24H0zm0 0h24v24H0z" fill="none"/><path d="M12 7c2.76 0 5 2.24 5 5 0 .65-.13 1.26-.36 1.83l2.92 2.92c1.51-1.26 2.7-2.89 3.43-4.75-1.73-4.39-6-7.5-11-7.5-1.4 0-2.74.25-3.98.7l2.16 2.16C10.74 7.13 11.35 7 12 7zM2 4.27l2.28 2.28.46.46C3.08 8.3 1.78 10.02 1 12c1.73 4.39 6 7.5 11 7.5 1.55 0 3.03-.3 4.38-.84l.42.42L19.73 22 21 20.73 3.27 3 2 4.27zM7.53 9.8l1.55 1.55c-.05.21-.08.43-.08.65 0 1.66 1.34 3 3 3 .22 0 .44-.03.65-.08l1.55 1.55c-.67.33-1.41.53-2.2.53-2.76 0-5-2.24-5-5 0-.79.2-1.53.53-2.2zm4.31-.78l3.15 3.15.02-.16c0-1.66-1.34-3-3-3l-.17.01z"/></svg>';
-
-const visibilityOnSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>';
-
-const zoomInSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="currentColor"><path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Zm-40-60v-80h-80v-80h80v-80h80v80h80v80h-80v80h-80Z"/></svg>';
-
-const zoomOutSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="currentColor"><path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400ZM280-540v-80h200v80H280Z"/></svg>';
+function setTimeoutPromise(timeout, signal) {
+    return new Promise((resolve, reject) => {
+        const timeoutID = setTimeout(resolve, timeout);
+        if (signal) {
+            if (signal.aborted) {
+                clearTimeout(timeoutID);
+                reject('aborted');
+            }
+            else {
+                signal.addEventListener('abort', () => {
+                    clearTimeout(timeoutID);
+                    reject('aborted');
+                });
+            }
+        }
+    });
+}
 
 //import { File } from 'node:buffer';
 var VpkError;
@@ -32541,14 +32048,14 @@ function murmurhash2_32_gc(str, seed) {
 
 // From http://paulbourke.net/geometry/polygonise/
 class TRIANGLE {
-    p = [create$5(), create$5(), create$5()];
+    p = [create$4(), create$4(), create$4()];
 }
 class GRIDCELL {
     p = [];
     val;
     constructor() {
         for (let i = 0; i < 8; ++i) {
-            this.p.push(create$5());
+            this.p.push(create$4());
         }
         this.val = new Float32Array(8);
     }
@@ -32859,7 +32366,7 @@ function Polygonise(/*GRIDCELL */ grid, /*double */ isolevel, /*TRIANGLE **/ tri
     //XYZ vertlist[12];
     let vertlist = [];
     for (let i = 0; i < 12; ++i) {
-        vertlist.push(create$5());
+        vertlist.push(create$4());
     }
     /*
         Determine the index into the edge table which
@@ -32942,7 +32449,7 @@ function Polygonise(/*GRIDCELL */ grid, /*double */ isolevel, /*TRIANGLE **/ tri
 */
 function VertexInterp(isolevel, p1, p2, valp1, valp2) {
     let mu;
-    let p = create$5();
+    let p = create$4();
     if (Math.abs(isolevel - valp1) < 0.00001)
         return (p1);
     if (Math.abs(isolevel - valp2) < 0.00001)
@@ -33025,7 +32532,7 @@ class BackGround {
     }
 }
 
-create$5();
+create$4();
 class ColorBackground extends BackGround {
     #color = fromValues$3(0, 0, 0, 1);
     constructor(params = {}) {
@@ -33041,7 +32548,7 @@ class ColorBackground extends BackGround {
     setColor(color) {
         copy$3(this.#color, color);
     }
-    getColor(out = create$4()) {
+    getColor(out = create$3()) {
         copy$3(out, this.#color);
     }
     dispose() {
@@ -33739,7 +33246,7 @@ class BoxBufferGeometry extends BufferGeometry {
         var gridY1 = gridY + 1;
         var vertexCounter = 0;
         var ix, iy;
-        var vector = create$5();
+        var vector = create$4();
         // generate vertices, normals and uvs
         for (iy = 0; iy < gridY1; iy++) {
             var y = iy * segmentHeight - heightHalf;
@@ -33938,7 +33445,7 @@ class Material {
     name;
     #renderFace = RenderFace.Front;
     #renderLights = true;
-    #color = create$4();
+    #color = create$3();
     #alphaTest;
     #alphaTestReference;
     #cullingMode;
@@ -34210,7 +33717,7 @@ class Material {
             this.removeDefine('ALPHA_TEST');
         }
     }
-    getColorMapSize(size = create$1()) {
+    getColorMapSize(size = create()) {
         if (this.colorMap) {
             size[0] = this.colorMap.width;
             size[1] = this.colorMap.height;
@@ -34373,12 +33880,12 @@ const EntityObserver = new EntityObserverClass();
 
 const pickList = new Map();
 
-const tempVec3$y = create$5();
-const tempMin = create$5();
-const tempMax = create$5();
+const tempVec3$y = create$4();
+const tempMin = create$4();
+const tempMax = create$4();
 class BoundingBox {
-    min = create$5();
-    max = create$5();
+    min = create$4();
+    max = create$4();
     empty = true;
     setPoints(points) {
         this.reset();
@@ -34426,13 +33933,13 @@ class BoundingBox {
     get center() {
         return this.getCenter();
     }
-    getCenter(center = create$5()) {
+    getCenter(center = create$4()) {
         return lerp$5(center, this.min, this.max, 0.5);
     }
     get size() {
         return this.getSize();
     }
-    getSize(size = create$5()) {
+    getSize(size = create$4()) {
         return sub$2(size, this.max, this.min);
     }
 }
@@ -34622,14 +34129,14 @@ function FileNameFromPath(path) {
     let endIndex = path.lastIndexOf('.');
     return path.slice(startIndex, endIndex == -1 ? undefined : endIndex);
 }
-function stringToVec3(s, v = create$5()) {
+function stringToVec3(s, v = create$4()) {
     let arr = s.split(' ');
     if (arr.length == 3) {
         return set$4(v, Number(arr[0]), Number(arr[1]), Number(arr[2]));
     }
     return v;
 }
-function stringToQuat(s, q = create$3()) {
+function stringToQuat(s, q = create$2()) {
     let arr = s.split(' ');
     if (arr.length == 4) {
         return set$2(q, Number(arr[0]), Number(arr[1]), Number(arr[2]), Number(arr[3]));
@@ -34640,18 +34147,18 @@ function stringToQuat(s, q = create$3()) {
 const X_VECTOR = fromValues$4(1, 0, 0);
 const Y_VECTOR = fromValues$4(0, 1, 0);
 const Z_VECTOR$2 = fromValues$4(0, 0, 1);
-const tempVec3_1$3 = create$5();
-const tempVec3_2$a = create$5();
-const tempVec3_3$2 = create$5();
-const tempVec3_4$1 = create$5();
-const tempQuat$d = create$3();
-const tempQuat2$1 = create$3();
-const tempQuat3 = create$3();
-const tempMat4$4 = create$6();
+const tempVec3_1$3 = create$4();
+const tempVec3_2$a = create$4();
+const tempVec3_3$2 = create$4();
+const tempVec3_4$1 = create$4();
+const tempQuat$d = create$2();
+const tempQuat2$1 = create$2();
+const tempQuat3 = create$2();
+const tempMat4$4 = create$5();
 const _upVector = fromValues$4(0, 0, 1);
 let incrementalPickingId = 0;
-const IDENTITY_QUAT$1 = create$3();
-const IDENTITY_VEC3 = create$5();
+const IDENTITY_QUAT$1 = create$2();
+const IDENTITY_VEC3 = create$4();
 const UNITY_VEC3 = fromValues$4(1, 1, 1);
 class Entity {
     static addSubMenu;
@@ -34663,7 +34170,7 @@ class Entity {
     #receiveShadow;
     #visible;
     #playing = true;
-    #worldMatrix = create$6();
+    #worldMatrix = create$5();
     #name;
     #children = new Set();
     #attributes = new Map();
@@ -34671,11 +34178,11 @@ class Entity {
     enumerable = true;
     animable = false;
     resetable = false;
-    _position = create$5();
-    _quaternion = create$3();
+    _position = create$4();
+    _quaternion = create$2();
     _scale = clone$4(UNITY_VEC3);
-    _mvMatrix = create$6();
-    _normalMatrix = create$7();
+    _mvMatrix = create$5();
+    _normalMatrix = create$6();
     _parent = null;
     materialsParams = {};
     isRenderable = false;
@@ -34739,7 +34246,7 @@ class Entity {
             EntityObserver.propertyChanged(this, 'position', oldValue, position);
         }
     }
-    getPosition(position = create$5()) {
+    getPosition(position = create$4()) {
         return copy$4(position, this._position);
     }
     set position(position) {
@@ -34750,7 +34257,7 @@ class Entity {
         // TODO: deprecate
         return this.getPosition();
     }
-    getWorldPosition(vec = create$5()) {
+    getWorldPosition(vec = create$4()) {
         if (this._parent) {
             this._parent.getWorldPosition(vec);
             this._parent.getWorldQuaternion(tempQuat$d);
@@ -34776,7 +34283,7 @@ class Entity {
             this.position = position;
         }
     }
-    getWorldQuaternion(q = create$3()) {
+    getWorldQuaternion(q = create$2()) {
         if (this._parent) {
             this._parent.getWorldQuaternion(q);
             mul$2(q, q, this._quaternion);
@@ -34796,7 +34303,7 @@ class Entity {
             copy$2(this._quaternion, quaternion);
         }
     }
-    getWorldScale(vec = create$5()) {
+    getWorldScale(vec = create$4()) {
         if (this._parent) {
             this._parent.getWorldScale(vec);
             mul$4(vec, vec, this._scale);
@@ -34816,7 +34323,7 @@ class Entity {
             EntityObserver.propertyChanged(this, 'quaternion', oldValue, this._quaternion);
         }
     }
-    getQuaternion(quaternion = create$3()) {
+    getQuaternion(quaternion = create$2()) {
         return copy$2(quaternion, this._quaternion);
     }
     set quaternion(quaternion) {
@@ -35086,24 +34593,30 @@ class Entity {
     }
     rotateX(rad) {
         rotateX$1(this._quaternion, this._quaternion, rad);
+        this.locked = true;
     }
     rotateY(rad) {
         rotateY$1(this._quaternion, this._quaternion, rad);
+        this.locked = true;
     }
     rotateZ(rad) {
         rotateZ$1(this._quaternion, this._quaternion, rad);
+        this.locked = true;
     }
     rotateGlobalX(rad) {
         rotateX$1(tempQuat$d, IDENTITY_QUAT$1, rad);
         mul$2(this._quaternion, tempQuat$d, this._quaternion);
+        this.locked = true;
     }
     rotateGlobalY(rad) {
         rotateY$1(tempQuat$d, IDENTITY_QUAT$1, rad);
         mul$2(this._quaternion, tempQuat$d, this._quaternion);
+        this.locked = true;
     }
     rotateGlobalZ(rad) {
         rotateZ$1(tempQuat$d, IDENTITY_QUAT$1, rad);
         mul$2(this._quaternion, tempQuat$d, this._quaternion);
+        this.locked = true;
     }
     /**
      * Makes this object look at the specified location.
@@ -35175,7 +34688,7 @@ class Entity {
         }
         return childs;
     }
-    getBoundsModelSpace(min = create$5(), max = create$5()) {
+    getBoundsModelSpace(min = create$4(), max = create$4()) {
         //TODO: deprecate
         if (this.#children.size > 0) {
             min[0] = Infinity;
@@ -35645,10 +35158,10 @@ class MaterialManager {
     }
 }
 
-let v0 = create$5();
-let v1$3 = create$5();
-let v2$2 = create$5();
-let v3$2 = create$5();
+let v0 = create$4();
+let v1$3 = create$4();
+let v2$2 = create$4();
+let v3$2 = create$4();
 function getBarycentricCoordinates(out, position, a, b, c) {
     sub$2(v0, c, a);
     sub$2(v1$3, b, a);
@@ -35700,19 +35213,19 @@ class Intersection {
 }
 
 const EPSILON$1 = 1e-7;
-const edge1 = create$5();
-const edge2 = create$5();
-const h = create$5();
-const h2 = create$5();
-const s = create$5();
-const q$2 = create$5();
-const m = create$6();
-const _segCenter = create$5();
-const _segDir = create$5();
-const _diff = create$5();
+const edge1 = create$4();
+const edge2 = create$4();
+const h = create$4();
+const h2 = create$4();
+const s = create$4();
+const q$2 = create$4();
+const m = create$5();
+const _segCenter = create$4();
+const _segDir = create$4();
+const _diff = create$4();
 class Ray {
-    origin = create$5();
-    direction = create$5();
+    origin = create$4();
+    direction = create$4();
     constructor(origin, direction) {
         if (origin) {
             copy$4(this.origin, origin);
@@ -35912,7 +35425,7 @@ class FileSelectorDirectory extends HTMLElement {
     #parentDirectory;
     constructor() {
         super();
-        this.#header = createElement$1('div', {
+        this.#header = createElement('div', {
             class: 'file-selector-directory-header',
             events: {
                 click: (event) => {
@@ -35924,7 +35437,7 @@ class FileSelectorDirectory extends HTMLElement {
                 }
             },
         });
-        this.#content = createElement$1('div', { class: 'file-selector-directory-content' });
+        this.#content = createElement('div', { class: 'file-selector-directory-content' });
     }
     childExpanded(child) {
         for (let enumeratedChild of this.#content.children) {
@@ -35939,7 +35452,7 @@ class FileSelectorDirectory extends HTMLElement {
     }
     collapse() {
         this.#expanded = false;
-        hide$1(this.#content);
+        hide(this.#content);
     }
     setFile(file) {
         this.#file = file;
@@ -35958,7 +35471,7 @@ class FileSelectorDirectory extends HTMLElement {
     }
     set visible(visible) {
         this.#visible = visible;
-        display$1(this, visible);
+        display(this, visible);
         if (visible) {
             this.#updateHtml();
         }
@@ -36003,7 +35516,7 @@ class FileSelectorDirectory extends HTMLElement {
             visible = this.#matchFilter(this.#file);
         }
         this.#visible = visible;
-        display$1(this, visible);
+        display(this, visible);
         return visible;
     }
     #matchFilter(file) {
@@ -36061,7 +35574,7 @@ class FileSelectorDirectory extends HTMLElement {
             this.refreshFilter();
         }
         else {
-            hide$1(this.#content);
+            hide(this.#content);
         }
     }
 }
@@ -36093,7 +35606,7 @@ class FileSelectorFile extends HTMLElement {
     }
     set visible(visible) {
         this.#visible = visible;
-        display$1(this, visible);
+        display(this, visible);
         if (visible) {
             this.#updateHtml();
         }
@@ -36145,7 +35658,7 @@ class FileSelectorTile extends HTMLElement {
     }
     set visible(visible) {
         this.#visible = visible;
-        display$1(this, visible);
+        display(this, visible);
         if (visible) {
             this.#updateHtml();
         }
@@ -36177,11 +35690,11 @@ class FileSelector extends HTMLElement {
         this.#initHtml();
     }
     #initHtml() {
-        this.#header = createElement$1('div', { class: 'file-selector-header' });
-        this.#content = createElement$1('div', { class: 'file-selector-content' });
-        let htmlDisplayPropertiesSpan = createElement$1('span', { parent: this.#header });
+        this.#header = createElement('div', { class: 'file-selector-header' });
+        this.#content = createElement('div', { class: 'file-selector-content' });
+        let htmlDisplayPropertiesSpan = createElement('span', { parent: this.#header });
         let treeViewId = 'display_tree_view';
-        createElement$1('input', {
+        createElement('input', {
             parent: htmlDisplayPropertiesSpan,
             type: 'checkbox',
             id: treeViewId,
@@ -36190,9 +35703,9 @@ class FileSelector extends HTMLElement {
                 change: () => this.tileView = !this.#tileView
             }
         });
-        createElement$1('label', { i18n: '#display_tree_view', parent: htmlDisplayPropertiesSpan, htmlFor: treeViewId });
-        let htmlFilter = createElement$1('div', { class: 'file-selector-filter', parent: this.#header });
-        createElement$1('input', {
+        createElement('label', { i18n: '#display_tree_view', parent: htmlDisplayPropertiesSpan, htmlFor: treeViewId });
+        let htmlFilter = createElement('div', { class: 'file-selector-filter', parent: this.#header });
+        createElement('input', {
             parent: htmlFilter,
             events: {
                 input: (event) => {
@@ -36295,7 +35808,7 @@ class FileSelector extends HTMLElement {
                 for (let rootFile of this.#fileList.files) {
                     let fileList = this.#getFileList(rootFile);
                     for (let file of fileList) {
-                        const tile = createElement$1('file-selector-tile', { parent: this.#content });
+                        const tile = createElement('file-selector-tile', { parent: this.#content });
                         tile.selector = this;
                         tile.setFile(file);
                         this.#htmlTiles.push(tile);
@@ -36309,7 +35822,7 @@ class FileSelector extends HTMLElement {
                 let expandDirectory = this.#fileList.files.length == 1;
                 for (let rootFile of this.#fileList.files) {
                     this.#getFileList(rootFile); //Just add path
-                    const root = createElement$1('file-selector-directory', { parent: this.#content });
+                    const root = createElement('file-selector-directory', { parent: this.#content });
                     root.selector = this;
                     root.setFile(rootFile);
                     this.#htmlDirectories.push(root);
@@ -36351,7 +35864,7 @@ class Interaction {
 
         this.#htmlColorPicker.hide();*/
         defineHarmonyColorPicker();
-        this.#htmlColorPicker = createElement$1('harmony-color-picker', {
+        this.#htmlColorPicker = createElement('harmony-color-picker', {
             parent: this.#htmlElement,
             hidden: true,
             events: {
@@ -36360,12 +35873,12 @@ class Interaction {
                         this.#htmlColorPickeronChange(event.detail);
                     }
                 },
-                ok: () => hide$1(this.#htmlColorPicker),
+                ok: () => hide(this.#htmlColorPicker),
                 cancel: () => {
                     if (this.#htmlColorPickerCancel) {
                         this.#htmlColorPickerCancel();
                     }
-                    hide$1(this.#htmlColorPicker);
+                    hide(this.#htmlColorPicker);
                 },
             },
         });
@@ -36386,7 +35899,7 @@ class Interaction {
     static show() {
         this.#htmlElement.style.display = '';
         this.#htmlInput.style.display = 'none';
-        hide$1(this.#htmlColorPicker);
+        hide(this.#htmlColorPicker);
     }
     static hide() {
         this.#htmlElement.style.display = 'none';
@@ -36530,20 +36043,20 @@ class Interaction {
     }
 }
 
-const tempVec3$x = create$5();
-let v1$2 = create$5();
-let v2$1 = create$5();
-let v3$1 = create$5();
-let n1$1 = create$5();
-let n2$1 = create$5();
-let n3$1 = create$5();
-let uv1$1 = create$1();
-let uv2$1 = create$1();
-let uv3$1 = create$1();
-let intersectionPoint$1 = create$5();
-let intersectionNormal$2 = create$5();
+const tempVec3$x = create$4();
+let v1$2 = create$4();
+let v2$1 = create$4();
+let v3$1 = create$4();
+let n1$1 = create$4();
+let n2$1 = create$4();
+let n3$1 = create$4();
+let uv1$1 = create();
+let uv2$1 = create();
+let uv3$1 = create();
+let intersectionPoint$1 = create$4();
+let intersectionNormal$2 = create$4();
 let ray$1 = new Ray();
-let uv$1 = create$1();
+let uv$1 = create();
 class Mesh extends Entity {
     #geometry;
     #material;
@@ -36633,7 +36146,7 @@ class Mesh extends Entity {
     toString() {
         return 'Mesh ' + super.toString();
     }
-    getBoundsModelSpace(min = create$5(), max = create$5()) {
+    getBoundsModelSpace(min = create$4(), max = create$4()) {
         min[0] = Infinity;
         min[1] = Infinity;
         min[2] = Infinity;
@@ -37476,7 +36989,7 @@ class Scene extends Entity {
 }
 registerEntity(Scene);
 
-const tempVec3$w = create$5();
+const tempVec3$w = create$4();
 class CubeBackground extends BackGround {
     #box = new Box();
     #scene = new Scene();
@@ -37535,11 +37048,11 @@ var CameraProjection;
     CameraProjection[CameraProjection["Orthographic"] = 1] = "Orthographic";
     CameraProjection[CameraProjection["Mixed"] = 2] = "Mixed";
 })(CameraProjection || (CameraProjection = {}));
-const tempQuat$c = create$3();
-const tempVec3$v = create$5();
-create$5();
-const proj1 = create$6();
-const proj2 = create$6();
+const tempQuat$c = create$2();
+const tempVec3$v = create$4();
+create$4();
+const proj1 = create$5();
+const proj2 = create$5();
 const DEFAULT_NEAR_PLANE = 1;
 const DEFAULT_FAR_PLANE = 1000;
 const DEFAULT_ORTHO_ZOOM = 1;
@@ -37564,15 +37077,15 @@ class Camera extends Entity {
     #right;
     #top;
     #bottom;
-    #cameraMatrix = create$6();
-    #projectionMatrix = create$6();
+    #cameraMatrix = create$5();
+    #projectionMatrix = create$5();
     #verticalFov;
     #aspectRatio;
     #dirtyCameraMatrix = true;
     #dirtyProjectionMatrix = true;
-    #projectionMatrixInverse = create$6();
-    #worldMatrixInverse = create$6();
-    #upVector = create$5();
+    #projectionMatrixInverse = create$5();
+    #worldMatrixInverse = create$5();
+    #upVector = create$4();
     isPerspective;
     isOrthographic;
     #tanHalfVerticalFov;
@@ -37947,7 +37460,7 @@ class Pass {
 
 class ClearPass extends Pass {
     swapBuffers = false;
-    #clearColor = create$4();
+    #clearColor = create$3();
     #clearDepth = false;
     #clearStencil = false;
     constructor(clearColor, clearDepth, clearStencil) {
@@ -38047,7 +37560,7 @@ class GrainPass extends Pass {
         super();
         let material = new ShaderMaterial({ shaderSource: 'grain' });
         material.addUser(this);
-        material.uniforms['uGrainParams'] = create$4();
+        material.uniforms['uGrainParams'] = create$3();
         material.depthTest = false;
         this.quad = new FullScreenQuad({ material: material });
         this.camera = camera;
@@ -38192,7 +37705,7 @@ function fillNoiseTexture(texture, width = 64, height = 64, needCubeMap = false)
     if (texture) {
         let byteArray = new Uint8Array(width * height * 3);
         let pixelIndex = 0;
-        let randomVec3 = create$5();
+        let randomVec3 = create$4();
         for (let i = 0; i < width; i++) {
             for (let j = 0; j < height; j++) {
                 random$5(randomVec3, 255.0);
@@ -38452,15 +37965,15 @@ const MAX_HARDWARE_BONES = 256;
 const TEXTURE_CLEANUP_DELAY = 100000;
 
 class WebGLRenderingState {
-    static #viewport = create$4();
-    static #scissor = create$4();
+    static #viewport = create$3();
+    static #scissor = create$3();
     static #enabledCapabilities = [];
     // clear values
-    static #clearColor = create$4();
+    static #clearColor = create$3();
     static #clearDepth = 1.0;
     static #clearStencil = 0;
     // Masking
-    static #colorMask = create$4();
+    static #colorMask = create$3();
     static #depthMask = true;
     static #stencilMask;
     // Depth
@@ -38501,7 +38014,7 @@ class WebGLRenderingState {
             copy$3(this.#clearColor, clearColor);
         }
     }
-    static getClearColor(out = create$4()) {
+    static getClearColor(out = create$3()) {
         return copy$3(out, this.#clearColor);
     }
     static clearDepth(clearDepth) {
@@ -38726,18 +38239,18 @@ class WebGLStats {
         ++this.#drawElements;
     }
     static #initHtml() {
-        this.#htmlElement = createElement$1('div');
+        this.#htmlElement = createElement('div');
     }
     static #updateHtml() {
         this.#htmlElement.innerText = '';
         this.#htmlElement.append(String(this.#fps));
-        this.#htmlElement.append(createElement$1('br'), `drawElements : ${this.#drawElements}`);
-        this.#htmlElement.append(createElement$1('br'), `renderTime : ${this.#renderTimeMean.toPrecision(3)}`);
-        this.#htmlElement.append(createElement$1('br'), `textures : ${this.#textures}`);
+        this.#htmlElement.append(createElement('br'), `drawElements : ${this.#drawElements}`);
+        this.#htmlElement.append(createElement('br'), `renderTime : ${this.#renderTimeMean.toPrecision(3)}`);
+        this.#htmlElement.append(createElement('br'), `textures : ${this.#textures}`);
         for (const [mode, count] of this.#primitivePerMode) {
             //let count = this.primitivePerMode[mode];
             if (count > 0) {
-                this.#htmlElement.append(createElement$1('br'), `${mode} : ${count}`);
+                this.#htmlElement.append(createElement('br'), `${mode} : ${count}`);
             }
         }
     }
@@ -39058,8 +38571,8 @@ class Program {
     }
 }
 
-const tempViewProjectionMatrix = create$6();
-const lightDirection = create$5();
+const tempViewProjectionMatrix = create$5();
+const lightDirection = create$4();
 function getDefinesAsString(material) {
     let defines = [];
     for (let [name, value] of Object.entries(material.defines)) {
@@ -39140,9 +38653,9 @@ class Renderer {
     applyMaterial(program, material) {
     }
     setupLights(renderList, camera, program, viewMatrix) {
-        let lightPositionCameraSpace = create$5(); //TODO: do not create a vec3
-        let lightPositionWorldSpace = create$5(); //TODO: do not create a vec3
-        let colorIntensity = create$5(); //TODO: do not create a vec3
+        let lightPositionCameraSpace = create$4(); //TODO: do not create a vec3
+        let lightPositionWorldSpace = create$4(); //TODO: do not create a vec3
+        let colorIntensity = create$4(); //TODO: do not create a vec3
         let pointLights = renderList.pointLights; //scene.getChildList(PointLight);
         let spotLights = renderList.spotLights;
         let shadow;
@@ -39210,7 +38723,7 @@ class Renderer {
         program.setUniformValue('uSpotShadowMap[0]', spotShadowMap);
         program.setUniformValue('uSpotShadowMatrix[0]', spotShadowMatrix);
         let ambientLights = renderList.ambientLights; //scene.getChildList(AmbientLight);
-        let ambientAccumulator = create$5(); //TODO: do not create a vec3
+        let ambientAccumulator = create$4(); //TODO: do not create a vec3
         for (let ambientLight of ambientLights) {
             if (ambientLight.visible) {
                 scaleAndAdd$2(ambientAccumulator, ambientAccumulator, ambientLight.color, ambientLight.intensity);
@@ -39404,10 +38917,10 @@ class Renderer {
 }
 
 const CLEAR_COLOR$1 = fromValues$3(1, 0, 1, 1);
-const a$a = create$4();
-const mapSize = create$1();
-const lightPos = create$5();
-const viewPort = create$4();
+const a$a = create$3();
+const mapSize = create();
+const lightPos = create$4();
+const viewPort = create$3();
 class ShadowMap {
     #graphics;
     #glContext;
@@ -39620,8 +39133,8 @@ var ShaderDebugMode;
 class Graphics {
     static #instance;
     #pixelRatio = /*window.devicePixelRatio ?? */ 1.0;
-    #viewport = create$4();
-    #scissor = create$4();
+    #viewport = create$3();
+    #scissor = create$3();
     #extensions = new Map();
     #autoResize = false;
     isWebGL = false;
@@ -39936,7 +39449,7 @@ class Graphics {
         GraphicsEvents.resize(width, height);
         return [previousWidth, previousHeight];
     }
-    getSize(ret = create$1()) {
+    getSize(ret = create()) {
         ret[0] = this.#width;
         ret[1] = this.#height;
         return ret;
@@ -40255,8 +39768,8 @@ class RenderTarget {
     #frameBuffer = new Framebuffer(this.#target);
     #depthRenderbuffer;
     #texture;
-    #scissor = create$4();
-    #viewport = create$4();
+    #scissor = create$3();
+    #viewport = create$3();
     #scissorTest = false;
     #depthBuffer;
     #stencilBuffer;
@@ -40345,7 +39858,7 @@ class RenderTarget {
 }
 
 const CLEAR_COLOR = fromValues$3(0, 0, 0, 0);
-let tempVec2$4 = create$1();
+let tempVec2$4 = create();
 class OutlinePass extends Pass {
     #edgedetectionMaterial;
     #copyMaterial;
@@ -40567,7 +40080,7 @@ class SketchPass extends Pass {
     }
 }
 
-let tempVec2$3 = create$1();
+let tempVec2$3 = create();
 class Composer {
     #width = 0;
     #height = 0;
@@ -40721,13 +40234,13 @@ const xUnitVec3$1 = fromValues$4(1, 0, 0);
 fromValues$4(0, 1, 0);
 const zUnitVec3$2 = fromValues$4(0, 0, 1);
 const minusZUnitVec3 = fromValues$4(0, 0, -1);
-const tempVec3$u = create$5();
+const tempVec3$u = create$4();
 const spherical$1 = new Spherical();
 class FirstPersonControl extends CameraControl {
     #enableDamping = false;
     #dampingFactor = 0.05;
     #sphericalDelta = new Spherical();
-    #rotateDelta = create$1();
+    #rotateDelta = create();
     movementSpeed = 1.0;
     lookSpeed = 0.005;
     #rotateSpeed = 0.3;
@@ -40758,8 +40271,8 @@ class FirstPersonControl extends CameraControl {
     #startLat = 0;
     #startLon = 0;
     #click = false;
-    #q = create$3();
-    #quatInverse = create$3();
+    #q = create$2();
+    #quatInverse = create$2();
     #clickOffsetX;
     #clickOffsetY;
     constructor(camera, htmlElement) {
@@ -41143,8 +40656,8 @@ registerEntity(Target);
 // Zoom - middle mouse, or mousewheel / touch: two-finger spread or squish
 // Pan - right mouse, or left mouse + ctrl/meta/shiftKey, or arrow keys / touch: two-finger move
 const zUnitVec3$1 = fromValues$4(0, 0, 1);
-const tempVec3$t = create$5();
-const tempVec3_2$9 = create$5();
+const tempVec3$t = create$4();
+const tempVec3_2$9 = create$4();
 const spherical = new Spherical();
 // Mouse buttons
 const MOUSE = { LEFT: 0, MIDDLE: 1, RIGHT: 2, ROTATE: 0, DOLLY: 1, PAN: 2, NONE: -1 };
@@ -41188,26 +40701,26 @@ class OrbitControl extends CameraControl {
     #screenSpacePanning = false; // if true, pan in screen-space
     #keyPanSpeed = 7.0; // pixels moved per arrow key push
     #enableKeys = true;
-    #position0 = create$5();
+    #position0 = create$4();
     #mouseButtons = [MOUSE.ROTATE, MOUSE.DOLLY, MOUSE.PAN];
     #state = STATE.NONE;
     #scale = 1.0;
-    #q = create$3();
-    #quatInverse = create$3();
-    #lastPosition = create$5();
-    #lastQuaternion = create$3();
+    #q = create$2();
+    #quatInverse = create$2();
+    #lastPosition = create$4();
+    #lastQuaternion = create$2();
     #sphericalDelta = new Spherical();
-    #panOffset = create$5();
+    #panOffset = create$4();
     #zoomChanged = false;
-    #rotateStart = create$1();
-    #rotateEnd = create$1();
-    #rotateDelta = create$1();
-    #panStart = create$1();
-    #panEnd = create$1();
-    #panDelta = create$1();
-    #dollyStart = create$1();
-    #dollyEnd = create$1();
-    #dollyDelta = create$1();
+    #rotateStart = create();
+    #rotateEnd = create();
+    #rotateDelta = create();
+    #panStart = create();
+    #panEnd = create();
+    #panDelta = create();
+    #dollyStart = create();
+    #dollyEnd = create();
+    #dollyDelta = create();
     constructor(camera, htmlElement) {
         super(camera, htmlElement);
         //TODO end
@@ -41873,7 +41386,7 @@ MapControls.prototype = Object.create(EventTarget.prototype);
 MapControls.prototype.constructor = MapControls;*/
 
 const Z_VECTOR$1 = fromValues$4(0, 0, 1);
-const tempQuat$b = create$3();
+const tempQuat$b = create$2();
 class RotationControl extends Entity {
     #rotationSpeed = 1;
     #axis = clone$4(Z_VECTOR$1);
@@ -41920,7 +41433,7 @@ var TranslationMode;
 })(TranslationMode || (TranslationMode = {}));
 class TranslationControl extends Entity {
     #speed = 1;
-    #startPoint = create$5();
+    #startPoint = create$4();
     #endPoint = fromValues$4(10, 0, 0);
     #mode = TranslationMode.Bounce;
     #percent = 0;
@@ -42153,8 +41666,8 @@ class ConeBufferGeometry extends BufferGeometry {
         this.count = this.#indices.length;
     }
     #generateCone(radius, height, segments) {
-        var normal = create$5();
-        var vertex = create$5();
+        var normal = create$4();
+        var vertex = create$4();
         let thetaPerSegment = TWO_PI / segments;
         //let halfHeight = height / 2.0;
         for (let segmentId = 0; segmentId <= segments; ++segmentId) {
@@ -42258,8 +41771,8 @@ class CylinderBufferGeometry extends BufferGeometry {
         this.count = this.#indices.length;
     }
     generateCylinder(radius, height, segments) {
-        var normal = create$5();
-        var vertex = create$5();
+        var normal = create$4();
+        var vertex = create$4();
         let thetaPerSegment = TWO_PI / segments;
         let halfHeight = height / 2.0;
         for (let segmentId = 0; segmentId <= segments; ++segmentId) {
@@ -42499,8 +42012,8 @@ class SphereBufferGeometry extends BufferGeometry {
         var ix, iy;
         var index = 0;
         var grid = [];
-        var vertex = create$5();
-        var normal = create$5();
+        var vertex = create$4();
+        var normal = create$4();
         // buffers
         var indices = [];
         var vertices = [];
@@ -42556,11 +42069,11 @@ class SphereBufferGeometry extends BufferGeometry {
     }
 }
 
-let intersectionPoint1 = create$5();
-let intersectionPoint2 = create$5();
-let intersectionNormal$1 = create$5();
-const tempVec3$s = create$5();
-let v$f = create$5();
+let intersectionPoint1 = create$4();
+let intersectionPoint2 = create$4();
+let intersectionNormal$1 = create$4();
+const tempVec3$s = create$4();
+let v$f = create$4();
 class Sphere extends Mesh {
     radius;
     segments;
@@ -42645,15 +42158,15 @@ const PLANE_LENGTH = ARROW_LENGTH / 3;
 const HALF_PLANE_LENGTH = PLANE_LENGTH / 2;
 const TIP_LENGTH = 1;
 const RADIUS = 5;
-const X_COLOR = [1, 0, 0, 1];
-const Y_COLOR = [0, 1, 0, 1];
-const Z_COLOR = [0, 0, 1, 1];
-const XY_COLOR = [1, 1, 0, 0.2];
-const XZ_COLOR = [1, 0, 1, 0.2];
-const YZ_COLOR = [0, 1, 1, 0.2];
-const GREY_COLOR = [0.2, 0.2, 0.2, 1];
-const SCREEN_COLOR = [1.0, 0.0, 1.0, 1];
-const SELECTED_COLOR = [1, 1, 0, 1];
+const X_COLOR = fromValues$3(1, 0, 0, 1);
+const Y_COLOR = fromValues$3(0, 1, 0, 1);
+const Z_COLOR = fromValues$3(0, 0, 1, 1);
+const XY_COLOR = fromValues$3(1, 1, 0, 0.2);
+const XZ_COLOR = fromValues$3(1, 0, 1, 0.2);
+const YZ_COLOR = fromValues$3(0, 1, 1, 0.2);
+const GREY_COLOR = fromValues$3(0.2, 0.2, 0.2, 1);
+const SCREEN_COLOR = fromValues$3(1.0, 0.0, 1.0, 1);
+const SELECTED_COLOR = fromValues$3(1, 1, 0, 1);
 const ORIENTATION_WORLD = 0;
 const xUnitVec3 = fromValues$4(1, 0, 0);
 const yUnitVec3 = fromValues$4(0, 1, 0);
@@ -42661,10 +42174,10 @@ const zUnitVec3 = fromValues$4(0, 0, 1);
 const xyUnitVec3 = fromValues$4(1, 1, 0);
 const xzUnitVec3 = fromValues$4(1, 0, 1);
 const yzUnitVec3 = fromValues$4(0, 1, 1);
-const tempVec3$r = create$5();
-const tempVec3_b = create$5();
-const translationManipulatorTempQuat = create$3();
-const tempQuat$a = create$3();
+const tempVec3$r = create$4();
+const tempVec3_b = create$4();
+const translationManipulatorTempQuat = create$2();
+const tempQuat$a = create$2();
 const MANIPULATOR_SHORTCUT_INCREASE = 'engine.shortcuts.manipulator.size.increase';
 const MANIPULATOR_SHORTCUT_DECREASE = 'engine.shortcuts.manipulator.size.decrease';
 const MANIPULATOR_SHORTCUT_TRANSLATION = 'engine.shortcuts.manipulator.mode.translation';
@@ -42674,54 +42187,60 @@ const MANIPULATOR_SHORTCUT_AXIS_ORIENTATION = 'engine.shortcuts.manipulator.axis
 const MANIPULATOR_SHORTCUT_TOGGLE_X = 'engine.shortcuts.manipulator.toggle.x';
 const MANIPULATOR_SHORTCUT_TOGGLE_Y = 'engine.shortcuts.manipulator.toggle.y';
 const MANIPULATOR_SHORTCUT_TOGGLE_Z = 'engine.shortcuts.manipulator.toggle.z';
+var ManipulatorMode;
+(function (ManipulatorMode) {
+    ManipulatorMode[ManipulatorMode["Translation"] = 0] = "Translation";
+    ManipulatorMode[ManipulatorMode["Rotation"] = 1] = "Rotation";
+    ManipulatorMode[ManipulatorMode["Scale"] = 2] = "Scale";
+})(ManipulatorMode || (ManipulatorMode = {}));
 class Manipulator extends Entity {
     #entityAxis = new Map();
-    #xMaterial;
-    #yMaterial;
-    #zMaterial;
-    #xyMaterial;
-    #xzMaterial;
-    #yzMaterial;
-    #xyzMaterial;
-    #xLineMaterial;
-    #yLineMaterial;
-    #zLineMaterial;
-    #xyzLineMaterial;
-    #viewLineMaterial;
-    #xyzSphere;
-    #xArrow;
-    #yArrow;
-    #zArrow;
-    #xyPlane;
-    #xzPlane;
-    #yzPlane;
-    #xCircle;
-    #yCircle;
-    #zCircle;
-    #viewCircle;
-    #circle;
-    #xScale;
-    #yScale;
-    #zScale;
-    #cursorPos = create$1();
+    #xMaterial = new MeshBasicMaterial();
+    #yMaterial = new MeshBasicMaterial();
+    #zMaterial = new MeshBasicMaterial();
+    #xyMaterial = new MeshBasicMaterial();
+    #xzMaterial = new MeshBasicMaterial();
+    #yzMaterial = new MeshBasicMaterial();
+    #xyzMaterial = new MeshBasicMaterial();
+    #xLineMaterial = new LineMaterial();
+    #yLineMaterial = new LineMaterial();
+    #zLineMaterial = new LineMaterial();
+    #xyzLineMaterial = new LineMaterial();
+    #viewLineMaterial = new LineMaterial();
+    #xyzSphere = new Sphere({ radius: ARROW_RADIUS * 6.0, material: this.#xyzMaterial, segments: 32, rings: 32, name: 'Manipulator XYZ sphere' });
+    #xArrow = new Cylinder({ radius: ARROW_RADIUS, height: ARROW_LENGTH, material: this.#xMaterial, name: 'Manipulator X arrow' });
+    #yArrow = new Cylinder({ radius: ARROW_RADIUS, height: ARROW_LENGTH, material: this.#yMaterial, name: 'Manipulator Y arrow' });
+    #zArrow = new Cylinder({ radius: ARROW_RADIUS, height: ARROW_LENGTH, material: this.#zMaterial, name: 'Manipulator Z arrow' });
+    #xyPlane = new Plane({ width: PLANE_LENGTH, height: PLANE_LENGTH, material: this.#xyMaterial, name: 'Manipulator XY' });
+    #xzPlane = new Plane({ width: PLANE_LENGTH, height: PLANE_LENGTH, material: this.#xzMaterial, name: 'Manipulator XZ' });
+    #yzPlane = new Plane({ width: PLANE_LENGTH, height: PLANE_LENGTH, material: this.#yzMaterial, name: 'Manipulator YZ' });
+    #xCircle = new Circle({ radius: RADIUS, material: this.#xLineMaterial, segments: 32, startAngle: -HALF_PI, endAngle: HALF_PI, name: 'Manipulator rotate X' });
+    #yCircle = new Circle({ radius: RADIUS, material: this.#yLineMaterial, segments: 32, startAngle: -PI, endAngle: 0, name: 'Manipulator rotate Y' });
+    #zCircle = new Circle({ radius: RADIUS, material: this.#zLineMaterial, segments: 32, startAngle: -HALF_PI, endAngle: HALF_PI, name: 'Manipulator rotate Z' });
+    #viewCircle = new Circle({ radius: RADIUS * 1.25, material: this.#xyzLineMaterial, name: 'Manipulator rotate XYZ' });
+    #circle = new Circle({ radius: RADIUS, material: this.#viewLineMaterial, name: 'Manipulator rotate view' });
+    #xScale = new Cylinder({ radius: ARROW_RADIUS, height: ARROW_LENGTH, material: this.#xMaterial });
+    #yScale = new Cylinder({ radius: ARROW_RADIUS, height: ARROW_LENGTH, material: this.#yMaterial });
+    #zScale = new Cylinder({ radius: ARROW_RADIUS, height: ARROW_LENGTH, material: this.#zMaterial });
+    #cursorPos = create();
     #axisOrientation = ORIENTATION_WORLD;
-    #near = create$5();
-    #far = create$5();
-    #startDragPosition = create$5();
-    #startScalePosition = create$5();
-    #parentStartScale = create$5();
-    #mode;
+    #near = create$4();
+    #far = create$4();
+    #startDragPosition = create$4();
+    #startScalePosition = create$4();
+    #parentStartScale = create$4();
+    #mode = ManipulatorMode.Translation;
     enumerable = false;
     camera;
     size = 1;
-    #axis;
-    #startPosition = create$5();
-    #startQuaternion = create$3();
-    #startLocalQuaternion = create$3();
-    #startDragQuaternion = create$3();
-    #translationManipulator;
-    #rotationManipulator;
-    #scaleManipulator;
+    #axis = 0;
+    #startPosition = create$4();
+    #startQuaternion = create$2();
+    #startLocalQuaternion = create$2();
+    #startDragVector = create$4();
+    #translationManipulator = new Entity({ name: 'Translation manipulator' });
+    #rotationManipulator = new Entity({ name: 'Rotation manipulator' });
+    #scaleManipulator = new Entity({ name: 'Scale manipulator' });
     #enableX = false;
     #enableY = false;
     #enableZ = false;
@@ -42735,7 +42254,7 @@ class Manipulator extends Entity {
         this.#initTranslationManipulator();
         this.#initRotationManipulator();
         this.#initScaleManipulator();
-        this.mode = 0;
+        this.setMode(0);
         this.enableX = true;
         this.enableY = true;
         this.enableZ = true;
@@ -42842,59 +42361,43 @@ class Manipulator extends Entity {
         }
     }
     #initMaterials() {
-        this.#xMaterial = new MeshBasicMaterial();
         this.#xMaterial.setMeshColor(X_COLOR);
         this.#xMaterial.setDefine('ALWAYS_ON_TOP');
-        this.#yMaterial = new MeshBasicMaterial();
         this.#yMaterial.setMeshColor(Y_COLOR);
         this.#yMaterial.setDefine('ALWAYS_ON_TOP');
-        this.#zMaterial = new MeshBasicMaterial();
         this.#zMaterial.setMeshColor(Z_COLOR);
         this.#zMaterial.setDefine('ALWAYS_ON_TOP');
-        this.#xyMaterial = new MeshBasicMaterial();
         this.#xyMaterial.setMeshColor(XY_COLOR);
         this.#xyMaterial.setDefine('ALWAYS_ON_TOP');
         this.#xyMaterial.renderFace(RenderFace.Both);
         this.#xyMaterial.setBlending(MATERIAL_BLENDING_NORMAL);
-        this.#xzMaterial = new MeshBasicMaterial();
         this.#xzMaterial.setMeshColor(XZ_COLOR);
         this.#xzMaterial.setDefine('ALWAYS_ON_TOP');
         this.#xzMaterial.renderFace(RenderFace.Both);
         this.#xzMaterial.setBlending(MATERIAL_BLENDING_NORMAL);
-        this.#yzMaterial = new MeshBasicMaterial();
         this.#yzMaterial.setMeshColor(YZ_COLOR);
         this.#yzMaterial.setDefine('ALWAYS_ON_TOP');
         this.#yzMaterial.renderFace(RenderFace.Both);
         this.#yzMaterial.setBlending(MATERIAL_BLENDING_NORMAL);
-        this.#xyzMaterial = new MeshBasicMaterial();
         this.#xyzMaterial.setDefine('ALWAYS_ON_TOP');
-        this.#xLineMaterial = new LineMaterial();
         this.#xLineMaterial.setMeshColor(X_COLOR);
         this.#xLineMaterial.setDefine('ALWAYS_ON_TOP');
-        this.#yLineMaterial = new LineMaterial();
         this.#yLineMaterial.setMeshColor(Y_COLOR);
         this.#yLineMaterial.setDefine('ALWAYS_ON_TOP');
-        this.#zLineMaterial = new LineMaterial();
         this.#zLineMaterial.setMeshColor(Z_COLOR);
         this.#zLineMaterial.setDefine('ALWAYS_ON_TOP');
-        this.#xyzLineMaterial = new LineMaterial();
         this.#xyzLineMaterial.setMeshColor(SCREEN_COLOR);
         this.#xyzLineMaterial.setDefine('ALWAYS_ON_TOP');
-        this.#viewLineMaterial = new LineMaterial();
         this.#viewLineMaterial.setMeshColor(GREY_COLOR);
         this.#viewLineMaterial.setDefine('ALWAYS_ON_TOP');
         this.#viewLineMaterial.lineWidth = 2;
     }
     #initTranslationManipulator() {
-        this.#translationManipulator = this.addChild(new Entity({ name: 'Translation manipulator' }));
-        this.#xyzSphere = new Sphere({ radius: ARROW_RADIUS * 6.0, material: this.#xyzMaterial, segments: 32, rings: 32, name: 'Manipulator XYZ sphere' });
-        this.#xArrow = new Cylinder({ radius: ARROW_RADIUS, height: ARROW_LENGTH, material: this.#xMaterial, name: 'Manipulator X arrow' });
+        this.addChild(this.#translationManipulator);
         this.#xArrow.rotateY(HALF_PI);
         this.#xArrow.translateZ(ARROW_LENGTH / 2);
-        this.#yArrow = new Cylinder({ radius: ARROW_RADIUS, height: ARROW_LENGTH, material: this.#yMaterial, name: 'Manipulator Y arrow' });
         this.#yArrow.rotateX(-HALF_PI);
         this.#yArrow.translateZ(ARROW_LENGTH / 2);
-        this.#zArrow = new Cylinder({ radius: ARROW_RADIUS, height: ARROW_LENGTH, material: this.#zMaterial, name: 'Manipulator Z arrow' });
         this.#zArrow.translateZ(ARROW_LENGTH / 2);
         let xTip = new Cone({ radius: ARROW_RADIUS * 2, height: TIP_LENGTH, material: this.#xMaterial, name: 'Manipulator X tip' });
         xTip.translateZ(ARROW_LENGTH / 2);
@@ -42902,12 +42405,9 @@ class Manipulator extends Entity {
         yTip.translateZ(ARROW_LENGTH / 2);
         let zTip = new Cone({ radius: ARROW_RADIUS * 2, height: TIP_LENGTH, material: this.#zMaterial, name: 'Manipulator Z tip' });
         zTip.translateZ(ARROW_LENGTH / 2);
-        this.#xyPlane = new Plane({ width: PLANE_LENGTH, height: PLANE_LENGTH, material: this.#xyMaterial, name: 'Manipulator XY' });
         this.#xyPlane.translateOnAxis([1, 1, 0], HALF_PLANE_LENGTH);
-        this.#xzPlane = new Plane({ width: PLANE_LENGTH, height: PLANE_LENGTH, material: this.#xzMaterial, name: 'Manipulator XZ' });
         this.#xzPlane.translateOnAxis([1, 0, 1], HALF_PLANE_LENGTH);
         this.#xzPlane.rotateX(HALF_PI);
-        this.#yzPlane = new Plane({ width: PLANE_LENGTH, height: PLANE_LENGTH, material: this.#yzMaterial, name: 'Manipulator YZ' });
         this.#yzPlane.translateOnAxis([0, 1, 1], HALF_PLANE_LENGTH);
         this.#yzPlane.rotateY(HALF_PI);
         this.#translationManipulator.addChild(this.#xyzSphere);
@@ -42932,12 +42432,7 @@ class Manipulator extends Entity {
         this.#entityAxis.set(this.#yzPlane, 6);
     }
     #initRotationManipulator() {
-        this.#rotationManipulator = this.addChild(new Entity({ name: 'Rotation manipulator' }));
-        this.#xCircle = new Circle({ radius: RADIUS, material: this.#xLineMaterial, segments: 32, startAngle: -HALF_PI, endAngle: HALF_PI, name: 'Manipulator rotate X' });
-        this.#yCircle = new Circle({ radius: RADIUS, material: this.#yLineMaterial, segments: 32, startAngle: -PI, endAngle: 0, name: 'Manipulator rotate Y' });
-        this.#zCircle = new Circle({ radius: RADIUS, material: this.#zLineMaterial, segments: 32, startAngle: -HALF_PI, endAngle: HALF_PI, name: 'Manipulator rotate Z' });
-        this.#viewCircle = new Circle({ radius: RADIUS * 1.25, material: this.#xyzLineMaterial, name: 'Manipulator rotate XYZ' });
-        this.#circle = new Circle({ radius: RADIUS, material: this.#viewLineMaterial, name: 'Manipulator rotate view' });
+        this.addChild(this.#rotationManipulator);
         this.#rotationManipulator.addChild(this.#xCircle);
         this.#rotationManipulator.addChild(this.#yCircle);
         this.#rotationManipulator.addChild(this.#zCircle);
@@ -42949,15 +42444,12 @@ class Manipulator extends Entity {
         this.#entityAxis.set(this.#viewCircle, 17);
     }
     #initScaleManipulator() {
-        this.#scaleManipulator = this.addChild(new Entity({ name: 'Scale manipulator' }));
+        this.addChild(this.#scaleManipulator);
         //let _xyzSphere = new Sphere(ARROW_RADIUS * 6.0, this.#xyzMaterial, 32, 32);
-        this.#xScale = new Cylinder({ radius: ARROW_RADIUS, height: ARROW_LENGTH, material: this.#xMaterial });
         this.#xScale.rotateY(HALF_PI);
         this.#xScale.translateZ(ARROW_LENGTH / 2);
-        this.#yScale = new Cylinder({ radius: ARROW_RADIUS, height: ARROW_LENGTH, material: this.#yMaterial });
         this.#yScale.rotateX(-HALF_PI);
         this.#yScale.translateZ(ARROW_LENGTH / 2);
-        this.#zScale = new Cylinder({ radius: ARROW_RADIUS, height: ARROW_LENGTH, material: this.#zMaterial });
         this.#zScale.translateZ(ARROW_LENGTH / 2);
         let xScaleTip = new Box({ width: TIP_LENGTH, height: TIP_LENGTH, depth: TIP_LENGTH, material: this.#xMaterial });
         xScaleTip.translateZ(ARROW_LENGTH / 2);
@@ -43009,7 +42501,7 @@ class Manipulator extends Entity {
             this.getWorldQuaternion(this.#startQuaternion);
             this.getQuaternion(this.#startLocalQuaternion);
         }
-        this.#startDragQuaternion = this.#computeQuaternion(x, y);
+        this.#startDragVector = this.#computeQuaternion(x, y);
     }
     startScale(x, y) {
         let startScalePosition = this.#startScalePosition;
@@ -43070,7 +42562,7 @@ class Manipulator extends Entity {
     }
     #rotationMoveHandler(x, y) {
         let v3 = this.#computeQuaternion(x, y);
-        rotationTo(translationManipulatorTempQuat, this.#startDragQuaternion, v3);
+        rotationTo(translationManipulatorTempQuat, this.#startDragVector, v3);
         mul$2(translationManipulatorTempQuat, this.#startLocalQuaternion, translationManipulatorTempQuat);
         if (this._parent) {
             this._parent.quaternion = translationManipulatorTempQuat;
@@ -43082,6 +42574,9 @@ class Manipulator extends Entity {
     }
     #scaleMoveHandler(x, y) {
         let v3 = this.#computeTranslationPosition(tempVec3$r, x, y);
+        if (!v3) {
+            return;
+        }
         //vec3.sub(v3, v3, this.#startScalePosition);
         div$2(v3, v3, this.scale);
         div$2(v3, v3, this.#startScalePosition);
@@ -43119,8 +42614,8 @@ class Manipulator extends Entity {
             camera.nearPlane;
             camera.farPlane;
             camera.aspectRatio;
-            let invProjectionMatrix = invert$2(create$6(), projectionMatrix);
-            let invViewMatrix = invert$2(create$6(), viewMatrix);
+            let invProjectionMatrix = invert$2(create$5(), projectionMatrix);
+            let invViewMatrix = invert$2(create$5(), viewMatrix);
             // transform the screen coordinates to normalized coordinates
             this.#cursorPos[0] = (x / new Graphics().getWidth()) * 2.0 - 1.0;
             this.#cursorPos[1] = 1.0 - (y / new Graphics().getHeight()) * 2.0;
@@ -43134,12 +42629,12 @@ class Manipulator extends Entity {
             transformMat4$2(this.#far, this.#far, invViewMatrix);
             function lineIntersection(out, planePoint, planeNormal, linePoint, lineDirection) {
                 if (dot$4(planeNormal, lineDirection) == 0) {
-                    return create$5(); //TODO: optimize
+                    return create$4(); //TODO: optimize
                 }
                 let t = (dot$4(planeNormal, planePoint) - dot$4(planeNormal, linePoint)) / dot$4(planeNormal, lineDirection);
                 return scaleAndAdd$2(out, linePoint, lineDirection, t);
             }
-            let planeNormal = create$5();
+            let planeNormal = create$4();
             switch (this.#axis % 10) {
                 case 1:
                     planeNormal = transformQuat$1(planeNormal, xUnitVec3, this.getWorldQuaternion());
@@ -43160,24 +42655,24 @@ class Manipulator extends Entity {
                     planeNormal = transformQuat$1(planeNormal, yzUnitVec3, this.getWorldQuaternion());
                     break;
                 default:
-                    planeNormal = sub$2(create$5(), this.#far, this.#near);
+                    planeNormal = sub$2(create$4(), this.#far, this.#near);
                     break;
             }
             /********************/
             let worldPos = this._parent ? this._parent.getWorldPosition() : this.getWorldPosition();
             let A = worldPos; //vec3.clone(this._parent.position) : vec3.clone(this.position);
-            let B = add$5(create$5(), A, planeNormal);
+            let B = add$5(create$4(), A, planeNormal);
             let P = camera.position;
-            let AP = sub$2(create$5(), P, A); //P-A;
-            let AB = sub$2(create$5(), B, A); //B-A;
-            let projPoint = add$5(create$5(), A, scale$5(AB, AB, dot$4(AP, AB) / dot$4(AB, AB)));
-            planeNormal = sub$2(create$5(), projPoint, camera.position);
+            let AP = sub$2(create$4(), P, A); //P-A;
+            let AB = sub$2(create$4(), B, A); //B-A;
+            let projPoint = add$5(create$4(), A, scale$5(AB, AB, dot$4(AP, AB) / dot$4(AB, AB)));
+            planeNormal = sub$2(create$4(), projPoint, camera.position);
             normalize$5(planeNormal, planeNormal);
             if (this.#axis == 0 || this.#axis == 20) {
                 transformQuat$1(planeNormal, fromValues$4(0, 0, 1), camera.quaternion);
             }
             /********************/
-            lineIntersection(out, worldPos, planeNormal, this.#near, sub$2(create$5(), this.#far, this.#near));
+            lineIntersection(out, worldPos, planeNormal, this.#near, sub$2(create$4(), this.#far, this.#near));
             invert$1(translationManipulatorTempQuat, this.getWorldQuaternion());
             transformQuat$1(out, out, translationManipulatorTempQuat);
             return out;
@@ -43191,8 +42686,8 @@ class Manipulator extends Entity {
             camera.nearPlane;
             camera.farPlane;
             camera.aspectRatio;
-            let invProjectionMatrix = invert$2(create$6(), projectionMatrix);
-            let invViewMatrix = invert$2(create$6(), viewMatrix);
+            let invProjectionMatrix = invert$2(create$5(), projectionMatrix);
+            let invViewMatrix = invert$2(create$5(), viewMatrix);
             this.#cursorPos[0] = (x / new Graphics().getWidth()) * 2.0 - 1.0;
             this.#cursorPos[1] = 1.0 - (y / new Graphics().getHeight()) * 2.0;
             this.#near[0] = this.#far[0] = this.#cursorPos[0];
@@ -43205,13 +42700,13 @@ class Manipulator extends Entity {
             transformMat4$2(this.#far, this.#far, invViewMatrix);
             function lineIntersection(planePoint, planeNormal, linePoint, lineDirection) {
                 if (dot$4(planeNormal, lineDirection) == 0) {
-                    return create$5(); //TODO: optimize
+                    return create$4(); //TODO: optimize
                 }
                 let t = (dot$4(planeNormal, planePoint) - dot$4(planeNormal, linePoint)) / dot$4(planeNormal, lineDirection);
-                return scaleAndAdd$2(create$5(), linePoint, lineDirection, t);
+                return scaleAndAdd$2(create$4(), linePoint, lineDirection, t); //TODO: optimize pass vec3 as param
             }
             let v4;
-            let planeNormal = create$5();
+            let planeNormal = create$4();
             if (this.#axisOrientation == ORIENTATION_WORLD) {
                 switch (this.#axis) {
                     case 11:
@@ -43224,7 +42719,7 @@ class Manipulator extends Entity {
                         planeNormal = copy$4(planeNormal, zUnitVec3);
                         break;
                     default:
-                        planeNormal = sub$2(create$5(), this.#far, this.#near);
+                        planeNormal = sub$2(create$4(), this.#far, this.#near);
                         break;
                 }
             }
@@ -43240,14 +42735,14 @@ class Manipulator extends Entity {
                         planeNormal = transformQuat$1(planeNormal, zUnitVec3, this.#startQuaternion);
                         break;
                     default:
-                        planeNormal = sub$2(create$5(), this.#far, this.#near);
+                        planeNormal = sub$2(create$4(), this.#far, this.#near);
                         break;
                 }
             }
             let worldPos = this._parent ? this._parent.getWorldPosition() : this.getWorldPosition();
-            v4 = lineIntersection(worldPos, planeNormal, this.#near, sub$2(create$5(), this.#far, this.#near));
+            v4 = lineIntersection(worldPos, planeNormal, this.#near, sub$2(create$4(), this.#far, this.#near));
             if (!v4) {
-                return create$5(); //TODO: optimize
+                return create$4(); //TODO: optimize
             }
             sub$2(v4, v4, worldPos);
             invert$1(translationManipulatorTempQuat, this.#startQuaternion);
@@ -43260,6 +42755,10 @@ class Manipulator extends Entity {
         this.camera = camera;
     }
     set mode(mode) {
+        console.warn('deprecated, use setMode()');
+        this.setMode(mode);
+    }
+    setMode(mode) {
         this.#translationManipulator.visible = false;
         this.#rotationManipulator.visible = false;
         this.#scaleManipulator.visible = false;
@@ -43282,7 +42781,7 @@ class Manipulator extends Entity {
     set axisOrientation(axisOrientation) {
         this.#axisOrientation = axisOrientation;
     }
-    getWorldQuaternion(q = create$3()) {
+    getWorldQuaternion(q = create$2()) {
         if (this.#mode < 2) {
             switch (this.#axisOrientation) {
                 case ORIENTATION_WORLD:
@@ -43303,7 +42802,7 @@ class Manipulator extends Entity {
         }*/
         return q;
     }
-    getWorldScale(vec = create$5()) {
+    getWorldScale(vec = create$4()) {
         return copy$4(vec, this._scale);
     }
     set enableX(enableX) {
@@ -43337,7 +42836,10 @@ class Manipulator extends Entity {
         return this.#enableZ;
     }
     #setupAxis() {
-        let camera = this.camera;
+        const camera = this.camera;
+        if (!camera) {
+            return;
+        }
         this.getWorldQuaternion(translationManipulatorTempQuat);
         invert$1(translationManipulatorTempQuat, translationManipulatorTempQuat);
         camera.getWorldPosition(tempVec3$r);
@@ -43428,9 +42930,9 @@ function QuaternionIdentityBlend(p, t, qt) {
     normalize$3(qt, qt);
 }
 
-const ROTATE_Z = create$3();
+const ROTATE_Z = create$2();
 rotateX$1(ROTATE_Z, ROTATE_Z, -HALF_PI);
-const tempMat4$3 = create$6();
+const tempMat4$3 = create$5();
 async function exportToBinaryFBX(entity) {
     const fbxManager = new FBXManager();
     let fbxFile = fbxSceneToFBXFile(await entityToFBXScene(fbxManager, entity));
@@ -43503,8 +43005,8 @@ async function createFBXMesh(fbxScene, mesh, context) {
         return;
     }
     let fbxMeshNode = fbxManager.createObject('FBXNode', mesh.name);
-    fbxMeshNode.localRotation.value = quatToEulerDeg([0, 0, 0], mul$2(create$3(), ROTATE_Z, mesh.getWorldQuaternion()));
-    fbxMeshNode.localTranslation.value = transformQuat$1(create$5(), mesh.getWorldPosition(), ROTATE_Z);
+    fbxMeshNode.localRotation.value = quatToEulerDeg([0, 0, 0], mul$2(create$2(), ROTATE_Z, mesh.getWorldQuaternion()));
+    fbxMeshNode.localTranslation.value = transformQuat$1(create$4(), mesh.getWorldPosition(), ROTATE_Z);
     fbxMeshNode.localScaling.value = mesh.getWorldScale();
     let fbxMaterial = fbxManager.createObject('FBXSurfacePhong');
     fbxMaterial.name = 'mat_' + fbxMaterial.id + '.png';
@@ -43664,9 +43166,9 @@ function exportBone(fbxScene, bone, context, exportedClusters, fbxSkin, boneData
     }
     else {
         fbxBone = fbxManager.createObject('FBXNode', bone.name); //TODO
-        let angles = create$5();
-        let transformedQuat = create$3();
-        let transformedVec = create$5();
+        let angles = create$4();
+        let transformedQuat = create$2();
+        let transformedVec = create$4();
         if (boneParentSkeletonBone) {
             if (boneParent.isSkeleton) {
                 fbxBone.localTranslation.value = transformQuat$1(transformedVec, boneParentSkeletonBone.worldPos, ROTATE_Z);
@@ -44266,12 +43768,12 @@ class Light extends Entity {
 }
 registerEntity(Light);
 
-create$6();
+create$5();
 class LightShadow {
-    #textureSize = create$1();
+    #textureSize = create();
     light;
     camera;
-    shadowMatrix = create$6();
+    shadowMatrix = create$5();
     viewPorts;
     viewPortsLength;
     renderTarget;
@@ -44282,7 +43784,7 @@ class LightShadow {
         this.light = light;
         this.camera = camera;
         this.#textureSize = set(this.#textureSize, light.shadowTextureSize, light.shadowTextureSize);
-        this.shadowMatrix = create$6();
+        this.shadowMatrix = create$5();
         this.viewPorts = [fromValues$3(0, 0, 1, 1)];
         this.viewPortsLength = 1;
         this.renderTarget = new RenderTarget({ width: this.#textureSize[0], height: this.#textureSize[0], });
@@ -44328,7 +43830,7 @@ class SpotLightShadow extends LightShadow {
 
 const DEFAULT_ANGLE = Math.PI / 4.0;
 const Z_VECTOR = fromValues$4(0, 0, 1);
-const tempQuat$9 = create$3();
+const tempQuat$9 = create$2();
 class SpotLight extends Light {
     isSpotLight = true;
     #innerAngle;
@@ -44369,7 +43871,7 @@ class SpotLight extends Light {
     get innerAngle() {
         return this.#innerAngle;
     }
-    getDirection(out = create$5()) {
+    getDirection(out = create$4()) {
         return transformQuat$1(out, Z_VECTOR, this.getWorldQuaternion(tempQuat$9));
     }
     buildContextMenu() {
@@ -44392,9 +43894,9 @@ class SpotLight extends Light {
 registerEntity(SpotLight);
 
 const DIVISIONS = 32;
-const tempVec4 = create$4();
+const tempVec4 = create$3();
 class SpotLightHelper extends Mesh {
-    #color = create$5();
+    #color = create$4();
     #angle;
     #range;
     #spotLight;
@@ -44484,7 +43986,7 @@ class AmbientLight extends Light {
 }
 registerEntity(AmbientLight);
 
-const worldPos = create$5();
+const worldPos = create$4();
 [
     fromValues$4(1, 0, 0), fromValues$4(-1, 0, 0), fromValues$4(0, 0, 1),
     fromValues$4(0, 0, -1), fromValues$4(0, 1, 0), fromValues$4(0, -1, 0)
@@ -44582,17 +44084,17 @@ class PointLight extends Light {
 }
 registerEntity(PointLight);
 
-const DEFAULT_POINT = create$5();
+const DEFAULT_POINT = create$4();
 class Curve {
     controlPoints = [];
     arcLength = 0;
-    getPosition(t, out = create$5()) {
+    getPosition(t, out = create$4()) {
         return out;
     }
     getArcLength(divisions = 100) {
-        create$5();
-        let last = create$5();
-        let current = create$5();
+        create$4();
+        let last = create$4();
+        let current = create$4();
         let temp;
         this.getPosition(0, last);
         let length = 0;
@@ -44618,10 +44120,10 @@ class Curve {
 }
 
 class CubicBezierCurve extends Curve {
-    p0 = create$5();
-    p1 = create$5();
-    p2 = create$5();
-    p3 = create$5();
+    p0 = create$4();
+    p1 = create$4();
+    p2 = create$4();
+    p3 = create$4();
     constructor(p0 = DEFAULT_POINT, p1 = DEFAULT_POINT, p2 = DEFAULT_POINT, p3 = DEFAULT_POINT) {
         super();
         copy$4(this.p0, p0);
@@ -44630,7 +44132,7 @@ class CubicBezierCurve extends Curve {
         copy$4(this.p3, p3);
         this.arcLength = this.getArcLength();
     }
-    getPosition(t, out = create$5()) {
+    getPosition(t, out = create$4()) {
         //P = (1 - t)³ * P0 + 3 * (1 - t)² * t * P1 + 3 * (1 - t) * t² * P2 + t³ * P3
         let oneMinusT = 1 - t;
         let oneMinusTSqr = oneMinusT * oneMinusT;
@@ -44644,15 +44146,15 @@ class CubicBezierCurve extends Curve {
 }
 
 class LinearBezierCurve extends Curve {
-    p0 = create$5();
-    p1 = create$5();
+    p0 = create$4();
+    p1 = create$4();
     constructor(p0 = DEFAULT_POINT, p1 = DEFAULT_POINT) {
         super();
         copy$4(this.p0, p0);
         copy$4(this.p1, p1);
         this.arcLength = this.getArcLength();
     }
-    getPosition(t, out = create$5()) {
+    getPosition(t, out = create$4()) {
         if (t === 0) {
             copy$4(out, this.p0);
         }
@@ -44674,9 +44176,9 @@ class LinearBezierCurve extends Curve {
 }
 
 class QuadraticBezierCurve extends Curve {
-    p0 = create$5();
-    p1 = create$5();
-    p2 = create$5();
+    p0 = create$4();
+    p1 = create$4();
+    p2 = create$4();
     constructor(p0 = DEFAULT_POINT, p1 = DEFAULT_POINT, p2 = DEFAULT_POINT) {
         super();
         copy$4(this.p0, p0);
@@ -44684,7 +44186,7 @@ class QuadraticBezierCurve extends Curve {
         copy$4(this.p2, p2);
         this.arcLength = this.getArcLength();
     }
-    getPosition(t, out = create$5()) {
+    getPosition(t, out = create$4()) {
         //P = (1 - t)² * P0 + 2 * (1 - t) * t * P1 + t² * P2
         let oneMinusT = 1 - t;
         scale$5(out, this.p0, oneMinusT * oneMinusT);
@@ -44694,14 +44196,14 @@ class QuadraticBezierCurve extends Curve {
     }
 }
 
-let p0 = create$5();
-let p1 = create$5();
-let p2 = create$5();
-let p3 = create$5();
+let p0 = create$4();
+let p1 = create$4();
+let p2 = create$4();
+let p3 = create$4();
 class Path extends Curve {
     looping;
     _curves = [];
-    cursor = create$5();
+    cursor = create$4();
     constructor(looping = false) {
         super();
         this.looping = looping;
@@ -44724,7 +44226,7 @@ class Path extends Curve {
         }
         return length;
     }
-    getPosition(t, out = create$5()) {
+    getPosition(t, out = create$4()) {
         let l = this.arcLength * t;
         let accumulate = 0;
         let accumulateTmp = 0;
@@ -46253,7 +45755,7 @@ class Output extends InputOutput {
 }
 
 function imageDataToImage(imagedata, image = new Image()) {
-    var canvas = createElement$1('canvas', { width: imagedata.width, height: imagedata.height });
+    var canvas = createElement('canvas', { width: imagedata.width, height: imagedata.height });
     var ctx = canvas.getContext('2d');
     canvas.width = imagedata.width;
     canvas.height = imagedata.height;
@@ -46740,7 +46242,7 @@ class Node extends EventTarget {
     async savePicture() {
         await this.redraw({ previewSize: 2048 });
         let image = this.previewPic;
-        const canvas = createElement$1('canvas', { width: image.width, height: image.height });
+        const canvas = createElement('canvas', { width: image.width, height: image.height });
         const ctx = canvas.getContext('2d');
         ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
         canvas.toBlob((blob) => SaveFile(new File([blob], 'texture.png'))); //toDataURL
@@ -46834,8 +46336,8 @@ class NodeParam {
     }
 }
 
-create$1();
-create$7();
+create();
+create$6();
 class ApplySticker extends Node {
     #renderTarget;
     #textureSize;
@@ -46855,10 +46357,11 @@ class ApplySticker extends Node {
         this.addParam(new NodeParam('adjust black', NodeParamType.Float, 0.0));
         this.addParam(new NodeParam('adjust white', NodeParamType.Float, 1.0));
         this.addParam(new NodeParam('adjust gamma', NodeParamType.Float, 1.0));
-        this.addParam(new NodeParam('bottom left', NodeParamType.Vec2, create$1()));
-        this.addParam(new NodeParam('top left', NodeParamType.Vec2, create$1()));
-        this.addParam(new NodeParam('top right', NodeParamType.Vec2, create$1()));
-        this.addParam(new NodeParam('sticker', NodeParamType.StickerAdjust, create$1()));
+        this.addParam(new NodeParam('bottom left', NodeParamType.Vec2, create()));
+        this.addParam(new NodeParam('top left', NodeParamType.Vec2, create()));
+        this.addParam(new NodeParam('top right', NodeParamType.Vec2, create()));
+        this.addParam(new NodeParam('path', NodeParamType.String, ''));
+        this.addParam(new NodeParam('sticker', NodeParamType.StickerAdjust, create()));
     }
     async operate(context = {}) {
         this.params;
@@ -46866,7 +46369,7 @@ class ApplySticker extends Node {
         this.material.setTexture('uStickerSpecular', await this.getInput('specular').value);
         this.material.setTexture('uInput', await this.getInput('input').value);
         this.material.uniforms['uAdjustLevels'] = fromValues$3(this.getValue('adjust black'), this.getValue('adjust white'), this.getValue('adjust gamma'), 0.0);
-        let texTransform = create$7();
+        let texTransform = create$6();
         ComputeTextureMatrixFromRectangle(texTransform, this.getValue('bottom left'), this.getValue('top left'), this.getValue('top right'));
         this.material.uniforms['uTransformTexCoord0'] = texTransform;
         /*texTransform = mat3.identity(texTransform);
@@ -46928,9 +46431,9 @@ class ApplySticker extends Node {
 registerOperation('apply_sticker', ApplySticker);
 //void ComputeTextureMatrixFromRectangle( VMatrix* pOutMat, const Vector2D& bl, const Vector2D& tl, const Vector2D& tr )
 function ComputeTextureMatrixFromRectangle(out, bl, tl, tr) {
-    const tempVec2 = create$1();
-    let leftEdge = sub(create$1(), bl, tl);
-    let topEdge = sub(create$1(), tr, tl);
+    const tempVec2 = create();
+    let leftEdge = sub(create(), bl, tl);
+    let topEdge = sub(create(), tr, tl);
     let topEdgePerpLeft = fromValues(-topEdge[1], topEdge[0]);
     let magLeftEdge = length$1(leftEdge);
     let magTopEdge = length$1(topEdge);
@@ -46940,14 +46443,14 @@ function ComputeTextureMatrixFromRectangle(out, bl, tl, tr) {
     // and mag( A ) * mag( L ) is just mag( L )
     let rotationD = Math.acos(leftEdge[1] / magLeftEdge)
         * (leftEdge[0] < 0 ? 1 : -1);
-    let texTransform = create$7();
+    let texTransform = create$6();
     translate$2(texTransform, texTransform, tl);
     rotate$2(texTransform, texTransform, rotationD);
     scale$7(texTransform, texTransform, set(tempVec2, xScalar * magTopEdge, magLeftEdge));
     invert$3(out, texTransform);
 }
 
-const tempVec2$2 = create$1();
+const tempVec2$2 = create();
 class TextureLookup extends Node {
     #renderTarget;
     #textureSize;
@@ -46981,7 +46484,7 @@ class TextureLookup extends Node {
     async operate(context = {}) {
         this.material.setTexture('uInput', this.inputTexture);
         this.material.uniforms['uAdjustLevels'] = fromValues$3(this.getValue('adjust black'), this.getValue('adjust white'), this.getValue('adjust gamma'), 0.0);
-        let texTransform = create$7();
+        let texTransform = create$6();
         rotate$2(texTransform, texTransform, this.getValue('rotation'));
         scale$7(texTransform, texTransform, set(tempVec2$2, this.getValue('scale u'), this.getValue('scale v')));
         translate$2(texTransform, texTransform, set(tempVec2$2, this.getValue('translate u'), this.getValue('translate v')));
@@ -47143,34 +46646,36 @@ class NodeGui {
         if (this.#node) {
             this.#node.previewSize *= 2;
             this.#node.updatePreview();
+            this.#nodeImageEditorGui.refresh();
         }
     }
     #decreasePreviewSize() {
         if (this.#node) {
             this.#node.previewSize /= 2;
             this.#node.updatePreview();
+            this.#nodeImageEditorGui.refresh();
         }
     }
     #initHtml() {
         let htmlInputs;
         let htmlOutputs;
-        this.#html = createElement$1('div', {
+        this.#html = createElement('div', {
             class: 'node-image-editor-node',
             childs: [
-                createElement$1('div', {
+                createElement('div', {
                     class: 'node-image-editor-node-header',
                     childs: [
-                        createElement$1('div', { class: 'node-image-editor-node-title', innerText: this.#node.title }),
-                        createElement$1('div', {
+                        createElement('div', { class: 'node-image-editor-node-title', innerText: this.#node.title }),
+                        createElement('div', {
                             class: 'node-image-editor-node-buttons',
                             childs: [
-                                createElement$1('div', {
+                                createElement('div', {
                                     innerHTML: zoomOutSVG,
                                     events: {
                                         click: () => this.#decreasePreviewSize(),
                                     }
                                 }),
-                                createElement$1('div', {
+                                createElement('div', {
                                     innerHTML: zoomInSVG,
                                     events: {
                                         click: () => this.#increasePreviewSize(),
@@ -47180,17 +46685,17 @@ class NodeGui {
                         }),
                     ],
                 }),
-                createElement$1('div', {
+                createElement('div', {
                     class: 'node-image-editor-node-content',
                     childs: [
-                        htmlInputs = createElement$1('div', { class: 'node-image-editor-node-ios' }),
-                        this.#htmlParams = createElement$1('div', { class: 'node-image-editor-node-params' }),
-                        htmlOutputs = createElement$1('div', { class: 'node-image-editor-node-ios' }),
+                        htmlInputs = createElement('div', { class: 'node-image-editor-node-ios' }),
+                        this.#htmlParams = createElement('div', { class: 'node-image-editor-node-params' }),
+                        htmlOutputs = createElement('div', { class: 'node-image-editor-node-ios' }),
                     ],
                 }),
             ]
         });
-        this.#htmlPreview = createElement$1('div', {
+        this.#htmlPreview = createElement('div', {
             class: 'node-image-editor-node-preview',
             child: this.#node.previewPic,
             events: {
@@ -47207,28 +46712,38 @@ class NodeGui {
             htmlOutputs.append(this._createIo(output));
         }
         if (this.#node.hasPreview) {
-            let htmlSavePicture = createElement$1('button', { i18n: '#save_picture' });
+            let htmlSavePicture = createElement('button', { i18n: '#save_picture' });
             htmlSavePicture.addEventListener('click', () => this.#node.savePicture());
             this.#html.append(htmlSavePicture);
-            let htmlSaveVTF = createElement$1('button', { i18n: '#save_vtf' });
+            let htmlSaveVTF = createElement('button', { i18n: '#save_vtf' });
             htmlSaveVTF.addEventListener('click', () => this.#node.saveVTF());
             this.#html.append(htmlSaveVTF);
         }
         if ((this.#node instanceof TextureLookup) || this.#node instanceof ApplySticker) {
-            let inputImage = createElement$1('input', { type: 'file', accept: 'image/*' });
+            let inputImage = createElement('input', { type: 'file', accept: 'image/*' });
             inputImage.addEventListener('input', (event) => dropFiles(event, this.#node));
             this.#htmlPreview.addEventListener('click', (event) => { if (event.target == this.#node.previewPic) {
                 inputImage.click();
             } });
         }
         if (this.#node instanceof ApplySticker) {
-            let htmlLoadStickerSpecular = createElement$1('button', { i18n: '#load_sticker_specular' });
+            let htmlLoadStickerSpecular = createElement('button', { i18n: '#load_sticker_specular' });
             this.#html.append(htmlLoadStickerSpecular);
-            let inputImage = createElement$1('input', { type: 'file', accept: 'image/*' });
+            let inputImage = createElement('input', { type: 'file', accept: 'image/*' });
             inputImage.addEventListener('input', (event) => dropFilesSpecular(event, this.#node));
             htmlLoadStickerSpecular.addEventListener('click', () => inputImage.click());
         }
         this.#refreshHtml();
+        this.#initResizeObserver();
+    }
+    #initResizeObserver() {
+        const callback = (entries, observer) => {
+            entries.forEach(entry => {
+                this.#updateManipulator();
+            });
+        };
+        const resizeObserver = new ResizeObserver(callback);
+        resizeObserver.observe(this.#htmlPreview);
     }
     #refreshHtml() {
         this.#htmlParams.innerHTML = '';
@@ -47244,12 +46759,25 @@ class NodeGui {
         }
     }
     #createParamHtml(param, index) {
-        let paramHtml = createElement$1('div', { class: 'node-image-editor-node-param' });
-        let nameHtml = createElement$1('div', { parent: paramHtml });
-        let valueHtml = createElement$1('input', {
+        let paramHtml = createElement('div', { class: 'node-image-editor-node-param' });
+        let nameHtml = createElement('div', { parent: paramHtml });
+        let valueHtml = createElement('input', {
             parent: paramHtml,
             events: {
                 change: (event) => this.#setParamValue(param, event.target.value, index)
+            }
+        });
+        createElement('span', {
+            class: 'copy-button',
+            parent: paramHtml,
+            innerHTML: contentCopySVG,
+            events: {
+                click: async () => {
+                    await navigator.clipboard.writeText(valueHtml.value);
+                    valueHtml.classList.add('flash');
+                    await setTimeoutPromise(1500);
+                    valueHtml.classList.remove('flash');
+                },
             }
         });
         nameHtml.innerHTML = param.name;
@@ -47273,8 +46801,8 @@ class NodeGui {
                 break;
             case NodeParamType.StickerAdjust:
                 defineHarmony2dManipulator();
-                hide$1(valueHtml);
-                this.#htmlRectSelector = this.#htmlRectSelector ?? createElement$1('harmony-2d-manipulator', {
+                hide(valueHtml);
+                this.#htmlRectSelector = this.#htmlRectSelector ?? createElement('harmony-2d-manipulator', {
                     class: 'node-image-editor-sticker-selector',
                     parent: this.#htmlPreview,
                     events: {
@@ -47286,18 +46814,47 @@ class NodeGui {
                                 if (param) {
                                     const rect = this.#htmlPreview.getBoundingClientRect();
                                     const corner = manipulator.getCorner(parameters[name]);
-                                    this.#setParamValue(param, `${corner.x / rect.width} ${corner.y / rect.width}`);
+                                    this.#setParamValue(param, `${corner.x / rect.width} ${corner.y / rect.width}`, undefined, false);
                                 }
                             }
                         },
                     }
                 });
+                this.#updateManipulator();
                 break;
         }
         valueHtml.value = value;
         return paramHtml;
     }
-    #setParamValue(param, stringValue, index) {
+    #updateManipulator() {
+        const rect = this.#htmlPreview.getBoundingClientRect();
+        const A = this.#node.getValue('top left');
+        const D = this.#node.getValue('bottom left');
+        const C = this.#node.getValue('top right');
+        if (!A || !D || !C) {
+            return;
+        }
+        const AC = sub(create(), C, A);
+        const AD = sub(create(), D, A);
+        const B = add$1(create(), AC, D);
+        const a1 = B[0] - A[0];
+        const a2 = B[1] - A[1];
+        const c1 = D[0] - C[0];
+        const c2 = D[1] - C[1];
+        const t = (a2 * C[0] - a2 * A[0] - a1 * C[1] + a1 * A[1]) / (-a2 * c1 + a1 * c2);
+        const center = fromValues((C[0] + c1 * t) * rect.width, (C[1] + c2 * t) * rect.height);
+        const width = len(AC) * rect.width;
+        const height = len(AD) * rect.height;
+        const angle = Math.atan2(AC[1], AC[0]);
+        this.#htmlRectSelector.set({
+            rotation: angle,
+            left: center[0] - width * 0.5,
+            top: center[1] - height * 0.5,
+            width: width,
+            height: height,
+        });
+    }
+    #setParamValue(param, stringValue, index, updateManipulator = true) {
         let node = this.#node;
         let value;
         switch (param.type) {
@@ -47315,18 +46872,21 @@ class NodeGui {
             default:
                 value = Number(stringValue);
         }
+        if (updateManipulator && (param.name == 'top left' || param.name == 'bottom left' || param.name == 'top right')) {
+            this.#updateManipulator();
+        }
         node.setParam(param.name, value, index);
         node.invalidate();
         node.validate();
     }
     _createIo(io) {
-        let html = createElement$1('div', { class: 'node-image-editor-node-io' });
+        let html = createElement('div', { class: 'node-image-editor-node-io' });
         this._ioGui.set(io, html);
         return html;
     }
 }
 
-var nodeImageEditorCSS = ":host {\n\tbackground-color: #000000FF;\n\twidth: 100%;\n\theight: 100%;\n\tdisplay: flex;\n\tflex-direction: column;\n}\n\n.node-image-editor-nodes {\n\toverflow: auto;\n\tposition: relative;\n\tdisplay: flex;\n\toverflow: auto;\n}\n\n.node-image-editor-nodes-column {\n\tdisplay: flex;\n\tflex-direction: column;\n\tmargin-left: 50px;\n\tmargin-right: 50px;\n}\n\n.node-image-editor-canvas {\n\tpointer-events: none;\n}\n\n.node-image-editor-node {\n\tbackground-color: var(--main-bg-color-bright);\n\tdisplay: flex;\n\tflex-direction: column;\n\tmargin-top: 50px;\n\tmargin-bottom: 50px;\n\tpadding: 5px;\n}\n\n.node-image-editor-node.collapsed {\n\twidth: auto;\n\tmargin-top: 1rem;\n\tmargin-bottom: 1rem;\n}\n\n.node-image-editor-node.collapsed .node-image-editor-node-content {\n\tdisplay: none;\n}\n\n.node-image-editor-node.collapsed .node-image-editor-node-preview {\n\tdisplay: none;\n}\n\n.node-image-editor-node.collapsed button {\n\tdisplay: none;\n}\n\n.node-image-editor-node-header {\n\tdisplay: flex;\n}\n\n.node-image-editor-node-title {\n\tflex: 1;\n}\n\n.node-image-editor-node-buttons {\n\tdisplay: flex;\n}\n\n.node-image-editor-node-buttons>div {\n\tcursor: pointer;\n}\n\n.node-image-editor-node-preview {\n\tposition: relative;\n\t/*height: 32px;\n\twidth: 32px;*/\n\tbackground-color: #000000FF;\n\tdisplay: inline-block;\n\twidth: min-content;\n}\n\n.node-image-editor-sticker-selector {\n\tposition: absolute;\n\tpointer-events: none;\n\ttop: 0;\n\twidth: 100%;\n\theight: 100%;\n\t--harmony-2d-manipulator-bg-color: rgba(0, 0, 0, 0);\n\t--harmony-2d-manipulator-border: 1px dashed white;\n}\n\n.node-image-editor-sticker-selector>div {\n\tposition: absolute;\n\twidth: 0.4rem;\n\theight: 0.4rem;\n\tbackground-color: black;\n\tpointer-events: all;\n}\n\n.node-image-editor-sticker-selector>.handle-move {\n\tcursor: move;\n\ttop: calc(50% - 0.2rem);\n\tleft: calc(50% - 0.2rem);\n}\n\n.node-image-editor-sticker-selector>.handle-resize {\n\tcursor: nesw-resize;\n\ttop: -0.2rem;\n\tright: 0.2rem;\n}\n\n.node-image-editor-sticker-selector>.handle-rotate {\n\tcursor: grab;\n\ttop: -0.2rem;\n\tleft: -0.2rem;\n}\n\n.node-image-editor-node-content {\n\tdisplay: flex;\n}\n\n.node-image-editor-node-ios {\n\theight: 100%;\n\tflex: 0;\n}\n\n.node-image-editor-node-io {\n\twidth: 10px;\n\theight: 10px;\n\tbackground-color: green;\n}\n\n.node-image-editor-node-params {\n\tflex: 1;\n\toverflow: hidden;\n\tpadding: 5px;\n}\n\n.node-image-editor-node-param {\n\tdisplay: flex;\n}\n\n.node-image-editor-node-param>div {\n\tflex: 1;\n\t/*overflow: auto;*/\n}\n\n.node-image-editor-node-param>input {\n\theight: 1.5rem;\n\tbox-sizing: border-box;\n\tvertical-align: middle;\n}\n\n.node-image-editor-node-change-image {\n\topacity: 0%;\n\tposition: absolute;\n\ttop: 0px;\n\tleft: 0px;\n\theight: 100%;\n\twidth: 100%;\n\t/*background-image: url('./img/icons/image_search.svg');*/\n\toverflow: hidden;\n\tbackground-size: 100%;\n\tbackground-repeat: no-repeat;\n\tbackground-position: center;\n\tbackground-color: white;\n\tborder-radius: 4px;\n\tcursor: pointer;\n}\n\n.node-image-editor-node input[type=\"file\"] {\n\topacity: 0;\n\twidth: 100%;\n\theight: 100%;\n}\n";
+var nodeImageEditorCSS = ":host {\n\tbackground-color: #000000FF;\n\twidth: 100%;\n\theight: 100%;\n\tdisplay: flex;\n\tflex-direction: column;\n\tuser-select: none;\n}\n\n.node-image-editor-nodes {\n\toverflow: auto;\n\tposition: relative;\n\tdisplay: flex;\n\toverflow: auto;\n\tflex: 1;\n}\n\n.node-image-editor-nodes-column {\n\tdisplay: flex;\n\tflex-direction: column;\n\tmargin-left: 50px;\n\tmargin-right: 50px;\n}\n\n.node-image-editor-canvas {\n\tpointer-events: none;\n}\n\n.node-image-editor-node {\n\tbackground-color: var(--main-bg-color-bright);\n\tdisplay: flex;\n\tflex-direction: column;\n\tmargin-top: 50px;\n\tmargin-bottom: 50px;\n\tpadding: 5px;\n}\n\n.node-image-editor-node.collapsed {\n\twidth: auto;\n\tmargin-top: 1rem;\n\tmargin-bottom: 1rem;\n}\n\n.node-image-editor-node.collapsed .node-image-editor-node-content {\n\tdisplay: none;\n}\n\n.node-image-editor-node.collapsed .node-image-editor-node-preview {\n\tdisplay: none;\n}\n\n.node-image-editor-node.collapsed button {\n\tdisplay: none;\n}\n\n.node-image-editor-node-header {\n\tdisplay: flex;\n}\n\n.node-image-editor-node-title {\n\tflex: 1;\n}\n\n.node-image-editor-node-buttons {\n\tdisplay: flex;\n}\n\n.node-image-editor-node-buttons>div {\n\tcursor: pointer;\n}\n\n.node-image-editor-node-preview {\n\tposition: relative;\n\t/*height: 32px;\n\twidth: 32px;*/\n\tbackground-color: #000000FF;\n\tdisplay: inline-block;\n\twidth: min-content;\n}\n\n.node-image-editor-sticker-selector {\n\tposition: absolute;\n\tpointer-events: none;\n\ttop: 0;\n\twidth: 100%;\n\theight: 100%;\n\t--harmony-2d-manipulator-bg-color: rgba(0, 0, 0, 0);\n\t--harmony-2d-manipulator-border: 1px dashed white;\n}\n\n.node-image-editor-sticker-selector>div {\n\tposition: absolute;\n\twidth: 0.4rem;\n\theight: 0.4rem;\n\tbackground-color: black;\n\tpointer-events: all;\n}\n\n.node-image-editor-sticker-selector>.handle-move {\n\tcursor: move;\n\ttop: calc(50% - 0.2rem);\n\tleft: calc(50% - 0.2rem);\n}\n\n.node-image-editor-sticker-selector>.handle-resize {\n\tcursor: nesw-resize;\n\ttop: -0.2rem;\n\tright: 0.2rem;\n}\n\n.node-image-editor-sticker-selector>.handle-rotate {\n\tcursor: grab;\n\ttop: -0.2rem;\n\tleft: -0.2rem;\n}\n\n.node-image-editor-node-content {\n\tdisplay: flex;\n}\n\n.node-image-editor-node-ios {\n\theight: 100%;\n\tflex: 0;\n}\n\n.node-image-editor-node-io {\n\twidth: 10px;\n\theight: 10px;\n\tbackground-color: green;\n}\n\n.node-image-editor-node-params {\n\tflex: 1;\n\toverflow: hidden;\n\tpadding: 5px;\n}\n\n.node-image-editor-node-param {\n\tdisplay: flex;\n}\n\n.node-image-editor-node-param>div {\n\tflex: 1;\n\t/*overflow: auto;*/\n}\n\n.node-image-editor-node-param>input {\n\theight: 1.5rem;\n\tbox-sizing: border-box;\n\tvertical-align: middle;\n}\n\n.node-image-editor-node-change-image {\n\topacity: 0%;\n\tposition: absolute;\n\ttop: 0px;\n\tleft: 0px;\n\theight: 100%;\n\twidth: 100%;\n\t/*background-image: url('./img/icons/image_search.svg');*/\n\toverflow: hidden;\n\tbackground-size: 100%;\n\tbackground-repeat: no-repeat;\n\tbackground-position: center;\n\tbackground-color: white;\n\tborder-radius: 4px;\n\tcursor: pointer;\n}\n\n.node-image-editor-node input[type=\"file\"] {\n\topacity: 0;\n\twidth: 100%;\n\theight: 100%;\n}\n\n.copy-button {\n\twidth: 2rem;\n\theight: 2rem;\n\tdisplay: inline-block;\n\tcursor: pointer;\n}\n\ninput {\n\t/*transition: background-color 1s;*/\n\tbackground-color: #FFF;\n\n\t/* only animation-duration here is required, rest are optional (also animation-name but it will be set on hover)*/\n\tanimation-duration: 1.5s;\n\t/* same as transition duration */\n\tanimation-timing-function: linear;\n\t/* kind of same as transition timing */\n\tanimation-delay: 0ms;\n\t/* same as transition delay */\n\tanimation-iteration-count: 1;\n\t/* set to 2 to make it run twice, or Infinite to run forever!*/\n\tanimation-direction: normal;\n\t/* can be set to \"alternate\" to run animation, then run it backwards.*/\n\tanimation-fill-mode: none;\n\t/* can be used to retain keyframe styling after animation, with \"forwards\" */\n\tanimation-play-state: running;\n\t/* can be set dynamically to pause mid animation*/\n\n}\n\n.flash {\n\tanimation-name: copyAnimation;\n}\n\n@keyframes copyAnimation {\n\t0% {\n\t\tbackground-color: #ffdf5d;\n\t}\n\t100% {\n\t\tbackground-color: #FFF;\n\t}\n}\n";
 
 class NodeImageEditorGui {
     #filter = {};
@@ -47335,6 +46895,7 @@ class NodeImageEditorGui {
     #refreshTimeout = 0;
     #nodesGui = new Map();
     #nodeImageEditor;
+    #htmlNodeFilter;
     #htmlNodes;
     #canvas;
     #context;
@@ -47344,15 +46905,15 @@ class NodeImageEditorGui {
             this.#refreshTimeout = setTimeout(() => this.#refreshHtml(), DELAY_BEFORE_REFRESH);
         };
         this.setNodeImageEditor(nodeImageEditor);
-        this.#shadowRoot = createShadowRoot$1('node-image-editor', {
+        this.#shadowRoot = createShadowRoot('node-image-editor', {
             adoptStyle: nodeImageEditorCSS,
         });
-        I18n$1.observeElement(this.#shadowRoot);
-        createElement$1('div', {
+        I18n.observeElement(this.#shadowRoot);
+        createElement('div', {
             class: 'node-image-editor-header',
             parent: this.#shadowRoot,
             childs: [
-                createElement$1('input', {
+                this.#htmlNodeFilter = createElement('input', {
                     class: 'node-image-editor-node-filter',
                     events: {
                         input: (event) => { this.#filter.node = event.target.value; this.#refreshFilter(); },
@@ -47360,11 +46921,11 @@ class NodeImageEditorGui {
                 }),
             ]
         });
-        this.#htmlNodes = createElement$1('div', {
+        this.#htmlNodes = createElement('div', {
             class: 'node-image-editor-nodes',
             parent: this.#shadowRoot,
         });
-        this.#canvas = createElement$1('canvas', {
+        this.#canvas = createElement('canvas', {
             class: 'node-image-editor-canvas',
             style: 'z-index:1000;position:absolute;',
             parent: this.#htmlNodes,
@@ -47391,6 +46952,8 @@ class NodeImageEditorGui {
         return this.#shadowRoot.host;
     }
     #setCanvasSize() {
+        this.#canvas.height = 0;
+        this.#canvas.width = 0;
         this.#canvas.height = this.#htmlNodes.scrollHeight;
         this.#canvas.width = this.#htmlNodes.scrollWidth;
         this.#drawLinks();
@@ -47445,7 +47008,7 @@ class NodeImageEditorGui {
             });
         };
         for (let [s, n] of nodes) {
-            let column = createElement$1('div', { class: 'node-image-editor-nodes-column' });
+            let column = createElement('div', { class: 'node-image-editor-nodes-column' });
             this.#htmlNodes.prepend(column);
             for (let i = 0; i < n.length; ++i) {
                 let nodeGui = n[i];
@@ -47527,6 +47090,9 @@ class NodeImageEditorGui {
                 }
             }
         }
+        this.refresh();
+    }
+    refresh() {
         this.#organizeNodes();
         this.#drawLinks();
     }
@@ -47538,6 +47104,14 @@ class NodeImageEditorGui {
             }
         }
         nodeGUI.expanded = expanded;
+    }
+    setNodeFilter(nodeName) {
+        this.#htmlNodeFilter.value = nodeName;
+        this.#filter.node = nodeName;
+        this.#refreshFilter();
+    }
+    getNodeFilter() {
+        return this.#filter.node ?? '';
     }
 }
 
@@ -47729,7 +47303,7 @@ class DrawCircle extends Node {
     constructor(editor, params) {
         super(editor, params);
         this.hasPreview = true;
-        this.addInput('center', IO_TYPE_VEC2)._value = create$1();
+        this.addInput('center', IO_TYPE_VEC2)._value = create();
         this.addInput('radius', IO_TYPE_FLOAT)._value = 10.0;
         this.addInput('border', IO_TYPE_FLOAT)._value = 1.0;
         this.addInput('bordercolor', IO_TYPE_COLOR)._value = fromValues$3(1.0, 1.0, 1.0, 1.0);
@@ -48326,7 +47900,7 @@ class NodeImageEditor extends EventTarget {
     }
 }
 
-const tempVec3$q = create$5();
+const tempVec3$q = create$4();
 class BoundingBoxHelper extends Box {
     boundingBox = new BoundingBox();
     constructor(params = {}) {
@@ -48341,10 +47915,10 @@ class BoundingBoxHelper extends Box {
             this.setSize(tempVec3$q[0], tempVec3$q[1], tempVec3$q[2]);
         }
     }
-    getWorldPosition(vec = create$5()) {
+    getWorldPosition(vec = create$4()) {
         return copy$4(vec, this._position);
     }
-    getWorldQuaternion(q = create$3()) {
+    getWorldQuaternion(q = create$2()) {
         return identity$1(q);
     }
     getBoundingBox(boundingBox = new BoundingBox()) {
@@ -48356,7 +47930,7 @@ class BoundingBoxHelper extends Box {
 const BASE_COLOR = [1, 1, 1, 1];
 const FRUSTRUM_COLOR = [1, 0, 0, 1];
 const AXIS_COLOR = [1, 1, 0, 1];
-const tempVec3$p = create$5();
+const tempVec3$p = create$4();
 const Points = [
     //Base Points
     { p: fromValues$4(0, 0, 0), c: BASE_COLOR },
@@ -48517,7 +48091,7 @@ function getHelper(type) {
     }
 }
 
-const tempVec3$o = create$5();
+const tempVec3$o = create$4();
 let boxMaterial;
 class HitboxHelper extends Entity {
     #hitboxes = [];
@@ -48562,11 +48136,11 @@ class HitboxHelper extends Entity {
 }
 registerEntity(HitboxHelper);
 
-create$5();
+create$4();
 class Line extends Mesh {
     isLine = true;
-    #start = create$5();
-    #end = create$5();
+    #start = create$4();
+    #end = create$4();
     constructor(params = {}) {
         super(new LineSegmentsGeometry(), params.material ?? new LineMaterial());
         if (params.start) {
@@ -48581,22 +48155,22 @@ class Line extends Mesh {
         copy$4(this.#start, start);
         this.#updateGeometry();
     }
-    getStart(start = create$5()) {
+    getStart(start = create$4()) {
         return copy$4(start, this.#start);
     }
     set end(end) {
         copy$4(this.#end, end);
         this.#updateGeometry();
     }
-    getEnd(end = create$5()) {
+    getEnd(end = create$4()) {
         return copy$4(end, this.#end);
     }
     #updateGeometry() {
         this.geometry.setSegments([...this.#start, ...this.#end], [], false);
     }
     raycast(raycaster, intersections) {
-        const interSegment = create$5();
-        const interRay = create$5();
+        const interSegment = create$4();
+        const interRay = create$4();
         const ray = raycaster.ray;
         const sqrDist = ray.distanceSqToSegment(this.#start, this.#end, interRay, interSegment);
         if (sqrDist < 10) { //TODO: variable
@@ -48620,9 +48194,9 @@ class Line extends Mesh {
 }
 registerEntity(Line);
 
-const a$9 = create$5();
-const b$3 = create$5();
-const c = create$5();
+const a$9 = create$4();
+const b$3 = create$4();
+const c = create$4();
 class Raycaster {
     near;
     far;
@@ -48666,7 +48240,7 @@ class Raycaster {
 
 const SceneExplorerEvents = new EventTarget();
 
-const tempVec3$n = create$5();
+const tempVec3$n = create$4();
 class SkeletonHelper extends Entity {
     #skeleton;
     #lines = new Map();
@@ -48732,10 +48306,10 @@ class SkeletonHelper extends Entity {
         get skeleton() {
             return this.#skeleton;
         }*/
-    getWorldPosition(vec = create$5()) {
+    getWorldPosition(vec = create$4()) {
         return copy$4(vec, this._position);
     }
-    getWorldQuaternion(q = create$3()) {
+    getWorldQuaternion(q = create$2()) {
         return identity$1(q);
     }
     #update() {
@@ -48850,25 +48424,25 @@ class SkeletonHelper extends Entity {
     }
 }
 
-const tempWorldMat = create$6();
-const tempWorldQuat = create$3();
-const tempWorldVec3 = create$5();
-const tempWorldScale = create$5();
-const tempPosition = create$5();
-const tempQuat1 = create$3();
-const tempVec1 = create$5();
+const tempWorldMat = create$5();
+const tempWorldQuat = create$2();
+const tempWorldVec3 = create$4();
+const tempWorldScale = create$4();
+const tempPosition = create$4();
+const tempQuat1 = create$2();
+const tempVec1 = create$4();
 class Bone extends Entity {
     isBone = true;
     #boneId;
-    #poseToBone = create$6();
-    #boneMat = create$6();
-    #worldPos = create$5();
-    #worldQuat = create$3();
+    #poseToBone = create$5();
+    #boneMat = create$5();
+    #worldPos = create$4();
+    #worldQuat = create$2();
     #worldScale = fromValues$4(1, 1, 1);
     #parentSkeletonBone;
     #skeleton;
-    #refPosition = create$5();
-    #refQuaternion = create$3();
+    #refPosition = create$4();
+    #refQuaternion = create$2();
     dirty = true;
     lastComputed = 0;
     constructor(parameters) {
@@ -48893,7 +48467,7 @@ class Bone extends Entity {
     get refPosition() {
         return clone$4(this.#refPosition);
     }
-    getTotalRefPosition(position = create$5()) {
+    getTotalRefPosition(position = create$4()) {
         let parent = this._parent;
         if (parent && parent.isBone) {
             parent.getTotalRefPosition(position);
@@ -48906,7 +48480,7 @@ class Bone extends Entity {
         }
         return position;
     }
-    getTotalRefQuaternion(quaternion = create$3()) {
+    getTotalRefQuaternion(quaternion = create$2()) {
         let parent = this._parent;
         if (parent && parent.isBone) {
             parent.getTotalRefQuaternion(tempQuat1);
@@ -49004,16 +48578,16 @@ class Bone extends Entity {
         }
         return this.#worldScale;
     }
-    getWorldPosition(vec = create$5()) {
+    getWorldPosition(vec = create$4()) {
         return copy$4(vec, this.worldPos);
     }
-    getWorldQuaternion(q = create$3()) {
+    getWorldQuaternion(q = create$2()) {
         return copy$2(q, this.worldQuat);
     }
-    getWorldScale(vec = create$5()) {
+    getWorldScale(vec = create$4()) {
         return copy$4(vec, this.worldScale);
     }
-    getWorldPosOffset(offset, out = create$5()) {
+    getWorldPosOffset(offset, out = create$4()) {
         transformQuat$1(out, offset, this.worldQuat);
         add$5(out, this.worldPos, out);
         return out;
@@ -49103,9 +48677,9 @@ class Bone extends Entity {
     }
     fromJSON(json) {
         super.fromJSON(json);
-        copy$5(this.#poseToBone, json.posetobone ?? create$6());
-        copy$4(this.#refPosition, json.refposition ?? create$5());
-        copy$2(this.#refQuaternion, json.refquaternion ?? create$3());
+        copy$5(this.#poseToBone, json.posetobone ?? create$5());
+        copy$4(this.#refPosition, json.refposition ?? create$4());
+        copy$2(this.#refQuaternion, json.refquaternion ?? create$2());
         this.boneId = json.boneid;
     }
     static getEntityName() {
@@ -49116,7 +48690,7 @@ registerEntity(Bone);
 
 const DEFAULT_SIZE$1 = fromValues$4(1, 1, 1);
 class Decal extends Mesh {
-    #size = create$5();
+    #size = create$4();
     //constructor(size = DEFAULT_SIZE, material = new MeshBasicMaterial({polygonOffset:true})) {
     constructor(params = {}) {
         super(new DecalGeometry(), params.material ?? new MeshBasicMaterial({ polygonOffset: true }));
@@ -49177,9 +48751,9 @@ class DecalGeometry extends BufferGeometry {
     }
     #generate(mesh, projectorMatrix, size, indices, vertices, normals, uvs) {
         let decalVertices = [];
-        const projectorMatrixInverse = invert$2(create$6(), projectorMatrix);
-        let vertex = create$5();
-        let normal = create$5();
+        const projectorMatrixInverse = invert$2(create$5(), projectorMatrix);
+        let vertex = create$4();
+        let normal = create$4();
         const geometry = mesh.geometry;
         if (!geometry) {
             return;
@@ -49357,20 +48931,20 @@ class Group extends Entity {
 }
 registerEntity(Group);
 
-const IDENTITY_MAT4$4 = create$6();
-let v1$1 = create$5();
-let v2 = create$5();
-let v3 = create$5();
-let n1 = create$5();
-let n2 = create$5();
-let n3 = create$5();
-let uv1 = create$1();
-let uv2 = create$1();
-let uv3 = create$1();
-let intersectionPoint = create$5();
-let intersectionNormal = create$5();
+const IDENTITY_MAT4$4 = create$5();
+let v1$1 = create$4();
+let v2 = create$4();
+let v3 = create$4();
+let n1 = create$4();
+let n2 = create$4();
+let n3 = create$4();
+let uv1 = create();
+let uv2 = create();
+let uv3 = create();
+let intersectionPoint = create$4();
+let intersectionNormal = create$4();
 let ray = new Ray();
-let uv = create$1();
+let uv = create();
 class SkeletalMesh extends Mesh {
     isSkeletalMesh = true;
     #bonesPerVertex = 3;
@@ -49403,9 +48977,9 @@ class SkeletalMesh extends Mesh {
         let vertexBoneIndice = geometry.getAttribute('aBoneIndices')._array;
         let vertexBoneWeight = geometry.getAttribute('aBoneWeight')._array;
         let boneCount = geometry.getAttribute('aBoneIndices').itemSize;
-        let tempVertex = create$5();
-        let tempVertexNormal = create$5();
-        let accumulateMat = create$6();
+        let tempVertex = create$4();
+        let tempVertexNormal = create$4();
+        let accumulateMat = create$5();
         if (vertexPosition && vertexBoneIndice && vertexBoneWeight) {
             for (let vertexIndex = 0; vertexIndex < vertexCount; ++vertexIndex) {
                 let vertexArrayIndex = vertexIndex * 3;
@@ -49493,8 +49067,8 @@ class SkeletalMesh extends Mesh {
         let vertexBoneIndice = geometry.getAttribute('aBoneIndices')._array;
         let vertexBoneWeight = geometry.getAttribute('aBoneWeight')._array;
         let boneCount = geometry.getAttribute('aBoneIndices').itemSize;
-        create$5();
-        let accumulateMat = create$6();
+        create$4();
+        let accumulateMat = create$5();
         function RandomInt(max) {
             return Math.floor(Math.random() * max);
         }
@@ -49562,8 +49136,8 @@ class SkeletalMesh extends Mesh {
         let vertexBoneIndice = geometry.getAttribute('aBoneIndices')._array;
         let vertexBoneWeight = geometry.getAttribute('aBoneWeight')._array;
         let boneCount = geometry.getAttribute('aBoneIndices').itemSize;
-        let tempVertex = create$5();
-        let accumulateMat = create$6();
+        let tempVertex = create$4();
+        let accumulateMat = create$5();
         if (vertexPosition && vertexBoneIndice && vertexBoneWeight) {
             for (let vertexIndex = 0; vertexIndex < vertexCount; ++vertexIndex) {
                 let vertexArrayIndex = vertexIndex * 3;
@@ -49626,9 +49200,9 @@ class SkeletalMesh extends Mesh {
         let vertexBoneIndice = geometry.getAttribute('aBoneIndices')._array;
         let vertexBoneWeight = geometry.getAttribute('aBoneWeight')._array;
         let boneCount = geometry.getAttribute('aBoneIndices').itemSize;
-        let tempVertex = create$5();
-        let tempVertexNormal = create$5();
-        let accumulateMat = create$6();
+        let tempVertex = create$4();
+        let tempVertexNormal = create$4();
+        let accumulateMat = create$5();
         if (vertexPosition && vertexBoneIndice && vertexBoneWeight) {
             for (let vertexIndex = 0; vertexIndex < vertexCount; ++vertexIndex) {
                 let vertexArrayIndex = vertexIndex * 3;
@@ -49703,9 +49277,9 @@ class SkeletalMesh extends Mesh {
         let vertexBoneIndice = geometry.getAttribute('aBoneIndices')._array;
         let vertexBoneWeight = geometry.getAttribute('aBoneWeight')._array;
         let boneCount = geometry.getAttribute('aBoneIndices').itemSize;
-        let tempVertex = create$5();
-        let tempVertexNormal = create$5();
-        let accumulateMat = create$6();
+        let tempVertex = create$4();
+        let tempVertexNormal = create$4();
+        let accumulateMat = create$5();
         if (vertexPosition && vertexBoneIndice && vertexBoneWeight) {
             for (let vertexIndex = 0; vertexIndex < vertexCount; ++vertexIndex) {
                 let vertexArrayIndex = vertexIndex * 3;
@@ -49797,7 +49371,7 @@ class SkeletalMesh extends Mesh {
     }
 }
 
-create$6();
+create$5();
 class Skeleton extends Entity {
     isSkeleton = true;
     #bonesByName = new Map();
@@ -50026,9 +49600,9 @@ class ExtrudeGeometry extends BufferGeometry {
                 // TODO1 - have a .isClosed in spline?
                 splineTube = extrudePath.computeFrenetFrames(steps, false);
                 // console.log(splineTube, 'splineTube', splineTube.normals.length, 'steps', steps, 'extrudePts', extrudePts.length);
-                binormal = create$5();
-                normal = create$5();
-                position2 = create$5();
+                binormal = create$4();
+                normal = create$4();
+                position2 = create$4();
             }
             // Safeguards if bevels are not enabled
             if (!bevelEnabled) {
@@ -50063,7 +49637,7 @@ class ExtrudeGeometry extends BufferGeometry {
                 if (!vec)
                     console.error('THREE.ExtrudeGeometry: vec does not exist');
                 //return vec.clone().multiplyScalar( size ).add( pt );;
-                return scaleAndAdd(create$1(), pt, vec, size);
+                return scaleAndAdd(create(), pt, vec, size);
             }
             const vlen = vertices.length, flen = faces.length;
             // Find directions for point movement
@@ -50616,15 +50190,15 @@ class World extends Entity {
 registerEntity(World);
 
 const DEFAULT_SEGMENT_COLOR = fromValues$3(1.0, 1.0, 1.0, 1.0);
-const tempVec3$m = create$5();
-const tempQuat$8 = create$3();
-const tempQuat2 = create$3();
+const tempVec3$m = create$4();
+const tempQuat$8 = create$2();
+const tempQuat2 = create$2();
 const UNIT_VEC3_X$1 = fromValues$4(1, 0, 0);
 const UNIT_VEC3_MINUS_Y = fromValues$4(0, -1, 0);
 class BeamSegment {
-    pos = create$5();
-    normal = create$5();
-    color = create$4();
+    pos = create$4();
+    normal = create$4();
+    color = create$3();
     texCoordY;
     width;
     constructor(pos, color = DEFAULT_SEGMENT_COLOR, texCoordY = 0.0, width = 1.0) {
@@ -50696,7 +50270,7 @@ class BeamBufferGeometry extends BufferGeometry {
 }
 
 class Metaball extends Entity {
-    currentWorldPosition = create$5();
+    currentWorldPosition = create$4();
     radius;
     radius2;
     constructor(radius = 1) {
@@ -50717,8 +50291,8 @@ class Metaball extends Entity {
     }
 }
 
-let a$8 = create$5();
-let b$2 = create$5();
+let a$8 = create$4();
+let b$2 = create$4();
 const THRESHOLD = 0.99;
 class MetaballsBufferGeometry extends BufferGeometry {
     constructor(balls) {
@@ -50732,7 +50306,7 @@ class MetaballsBufferGeometry extends BufferGeometry {
         var vertices = [];
         var normals = [];
         let vertexIndex;
-        let normal = create$5();
+        let normal = create$4();
         for (let triangleIndex = 0; triangleIndex < triangles.length; ++triangleIndex) {
             vertexIndex = triangleIndex * 3;
             indices.push(vertexIndex, vertexIndex + 1, vertexIndex + 2);
@@ -50882,8 +50456,8 @@ class Metaballs extends Mesh {
     }
 }
 
-let a$7 = create$5();
-let b$1 = create$5();
+let a$7 = create$4();
+let b$1 = create$4();
 class TrianglesBufferGeometry extends BufferGeometry {
     constructor(triangles) {
         super();
@@ -50894,7 +50468,7 @@ class TrianglesBufferGeometry extends BufferGeometry {
         var vertices = [];
         var normals = [];
         let vertexIndex;
-        let normal = create$5();
+        let normal = create$4();
         for (let triangleIndex = 0; triangleIndex < triangles.length; ++triangleIndex) {
             vertexIndex = triangleIndex * 3;
             indices.push(vertexIndex, vertexIndex + 1, vertexIndex + 2);
@@ -51521,19 +51095,19 @@ class SceneExplorerEntity extends HTMLElement {
     constructor() {
         super();
         this.#doOnce = true;
-        this.#htmlHeader = createElement$1('div', {
+        this.#htmlHeader = createElement('div', {
             class: 'scene-explorer-entity-header',
             childs: [
-                this.#htmlTitle = createElement$1('div', {
+                this.#htmlTitle = createElement('div', {
                     class: 'scene-explorer-entity-title',
                     events: {
                         click: () => this.#titleClick(),
                     }
                 }),
-                createElement$1('div', {
+                createElement('div', {
                     class: 'scene-explorer-entity-buttons',
                     childs: [
-                        this.#htmlVisible = createElement$1('div', {
+                        this.#htmlVisible = createElement('div', {
                             class: 'scene-explorer-entity-button-visible',
                             events: {
                                 click: () => {
@@ -51541,7 +51115,7 @@ class SceneExplorerEntity extends HTMLElement {
                                 },
                             }
                         }),
-                        this.#htmlPlaying = createElement$1('div', {
+                        this.#htmlPlaying = createElement('div', {
                             hidden: true,
                             class: 'scene-explorer-entity-button-play',
                             events: {
@@ -51550,7 +51124,7 @@ class SceneExplorerEntity extends HTMLElement {
                                 },
                             }
                         }),
-                        this.#htmlReset = createElement$1('div', {
+                        this.#htmlReset = createElement('div', {
                             hidden: true,
                             class: 'scene-explorer-entity-button-reset',
                             innerHTML: restartSVG,
@@ -51564,7 +51138,7 @@ class SceneExplorerEntity extends HTMLElement {
                 }),
             ]
         });
-        this.#htmlChilds = createElement$1('div', {
+        this.#htmlChilds = createElement('div', {
             class: 'scene-explorer-entity-childs',
             hidden: true,
         });
@@ -51608,8 +51182,8 @@ class SceneExplorerEntity extends HTMLElement {
         this.#update();
         this.#updateVisibility();
         this.#updatePlaying();
-        display$1(this.#htmlPlaying, entity?.animable);
-        display$1(this.#htmlReset, entity?.resetable);
+        display(this.#htmlPlaying, entity?.animable);
+        display(this.#htmlReset, entity?.resetable);
     }
     static set explorer(explorer) {
         _a$2.#explorer = explorer;
@@ -51635,7 +51209,7 @@ class SceneExplorerEntity extends HTMLElement {
         }
         let entityElement = _a$2.#entitiesHTML.get(entity);
         if (!entityElement) {
-            entityElement = createElement$1('scene-explorer-entity');
+            entityElement = createElement('scene-explorer-entity');
             entityElement.entity = entity;
             _a$2.#entitiesHTML.set(entity, entityElement);
         }
@@ -52065,7 +51639,7 @@ class Source2File {
         let vertexBuffer = block.vertices[bufferId];
         let normals = vertexBuffer.normals;
         var ret = [];
-        const normalVec4 = create$4();
+        const normalVec4 = create$3();
         let normalVec3;
         for (var i = 0, l = normals.length; i < l; i += 4) {
             normalVec4[0] = normals[i + 0];
@@ -52131,7 +51705,7 @@ class Source2File {
             //outputTangent.w		= ztSigns.y;
         }*/
         function DecompressNormal(inputNormal) {
-            let outputNormal = create$5();
+            let outputNormal = create$4();
             //float2 ztSigns		= (inputNormal.xy - 128.0) < 0;				// sign bits for zs and binormal (1 or 0) set-less-than (slt) asm instruction
             const ztSigns = fromValues(Number((inputNormal[0] - 128.0) < 0), Number((inputNormal[1] - 128.0) < 0)); // sign bits for zs and binormal (1 or 0) set-less-than (slt) asm instruction
             //float2 xyAbs		= abs(inputNormal.xy - 128.0) - ztSigns;		// 0..127
@@ -52161,7 +51735,7 @@ class Source2File {
         var indices = indexBuffer ? indexBuffer.indices : [];
         var ret = [];
         var indicesLength = indices.length;
-        const normalVec4 = create$4();
+        const normalVec4 = create$3();
         let normalVec3;
         for (var i = 0; i < indicesLength; i++) {
             var vertexId = indices[i] * 4;
@@ -52423,7 +51997,7 @@ class Source2File {
     }
 }
 function DecompressNormal(inputNormal) {
-    let outputNormal = create$5();
+    let outputNormal = create$4();
     //float2 ztSigns		= (inputNormal.xy - 128.0) < 0;				// sign bits for zs and binormal (1 or 0) set-less-than (slt) asm instruction
     const ztSigns = fromValues(Number((inputNormal[0] - 128.0) < 0), Number((inputNormal[1] - 128.0) < 0)); // sign bits for zs and binormal (1 or 0) set-less-than (slt) asm instruction
     //float2 xyAbs		= abs(inputNormal.xy - 128.0) - ztSigns;		// 0..127
@@ -52530,7 +52104,7 @@ class Source2FileBlock {
             // equal to tangentSign * (1.0 + abs(normal.z))
             let rcpTangentZ = 1.0 / (tangentSign + normal[2]);
             // Be careful of rearranging ops here, could lead to differences in float precision, especially when dealing with compressed data.
-            const unalignedTangent = create$5();
+            const unalignedTangent = create$4();
             // Unoptimized (but clean) form:
             // tangent.X = -(normal.x * normal.x) / (tangentSign + normal.z) + 1.0
             // tangent.Y = -(normal.x * normal.y) / (tangentSign + normal.z)
@@ -52544,8 +52118,8 @@ class Source2FileBlock {
             var nPackedFrameT = Tbits / 2047.0 * TWO_PI;
             // Rotate tangent to the correct angle that aligns with texcoords.
             //let tangent = unalignedTangent * Math.cos(nPackedFrameT) + Vector3.Cross(normal, unalignedTangent) * Math.sin(nPackedFrameT);
-            let tangent = scale$5(create$5(), unalignedTangent, Math.cos(nPackedFrameT));
-            const c = cross$2(create$5(), normal, unalignedTangent);
+            let tangent = scale$5(create$4(), unalignedTangent, Math.cos(nPackedFrameT));
+            const c = cross$2(create$4(), normal, unalignedTangent);
             scale$5(c, c, Math.sin(nPackedFrameT));
             add$5(tangent, tangent, c);
             tangents = fromValues$3(tangent[0], tangent[1], tangent[2], (SignBit == 0) ? -1.0 : 1.0); // Bitangent sign bit... inverted (0 = negative
@@ -52555,10 +52129,10 @@ class Source2FileBlock {
         let normals = new Float32Array(vertexBuffer.normals);
         var normalArray = [];
         var tangentArray = [];
-        const compressedNormal = create$1();
-        const compressedTangent = create$1();
-        let normalTemp = create$5();
-        let tangentTemp = create$5();
+        const compressedNormal = create();
+        const compressedTangent = create();
+        let normalTemp = create$4();
+        let tangentTemp = create$4();
         for (var i = 0, l = normals.length; i < l; i += 4) {
             if (!vertexBuffer.decompressTangentV2) {
                 compressedNormal[0] = normals[i + 0] * 255.0;
@@ -53343,7 +52917,7 @@ function readElement(reader, stringDictionary, occurences) {
 }
 
 class Source2SpriteSheetFrame {
-    coords = create$4();
+    coords = create$3();
     duration = 0;
 }
 class Source2SpriteSheetSequence {
@@ -53647,11 +53221,11 @@ function loadNtro(reader, block) {
         }
     }
 }
-const defaultValuesPosition = create$5();
-const defaultValuesNormal = create$5();
-const defaultValuesTangent = create$4();
-const defaultValuesCoord = create$1();
-const defaultValuesBoneIndice = create$4();
+const defaultValuesPosition = create$4();
+const defaultValuesNormal = create$4();
+const defaultValuesTangent = create$3();
+const defaultValuesCoord = create();
+const defaultValuesBoneIndice = create$3();
 const defaultValuesBoneWeight = fromValues$3(1.0, 0, 0, 0);
 const VERTEX_POSITION_LEN = 3;
 const VERTEX_NORMAL_LEN = 4;
@@ -53734,32 +53308,32 @@ function loadVbib(reader, block) {
                 vertexReader.seek(s1.dataOffset + vertexIndex * s1.bytesPerVertex + s1.headers[headerIndex].offset);
                 switch (headerType) {
                     case DXGI_FORMAT_R32G32B32A32_FLOAT:
-                        tempValue = create$4(); //TODO: optimize
+                        tempValue = create$3(); //TODO: optimize
                         tempValue[0] = vertexReader.getFloat32();
                         tempValue[1] = vertexReader.getFloat32();
                         tempValue[2] = vertexReader.getFloat32();
                         tempValue[3] = vertexReader.getFloat32();
                         break;
                     case DXGI_FORMAT_R32G32B32_FLOAT: // 3 * float32
-                        tempValue = create$5(); //TODO: optimize
+                        tempValue = create$4(); //TODO: optimize
                         tempValue[0] = vertexReader.getFloat32();
                         tempValue[1] = vertexReader.getFloat32();
                         tempValue[2] = vertexReader.getFloat32();
                         break;
                     case DXGI_FORMAT_R16G16B16A16_SINT:
-                        tempValue = create$4(); //TODO: optimize
+                        tempValue = create$3(); //TODO: optimize
                         tempValue[0] = vertexReader.getInt16();
                         tempValue[1] = vertexReader.getInt16();
                         tempValue[2] = vertexReader.getInt16();
                         tempValue[3] = vertexReader.getInt16();
                         break;
                     case DXGI_FORMAT_R32G32_FLOAT: // 2 * float32
-                        tempValue = create$1(); //TODO: optimize
+                        tempValue = create(); //TODO: optimize
                         tempValue[0] = vertexReader.getFloat32();
                         tempValue[1] = vertexReader.getFloat32();
                         break;
                     case DXGI_FORMAT_R8G8B8A8_UNORM:
-                        tempValue = create$4(); //TODO: optimize
+                        tempValue = create$3(); //TODO: optimize
                         tempValue[0] = vertexReader.getUint8() / 255;
                         tempValue[1] = vertexReader.getUint8() / 255;
                         tempValue[2] = vertexReader.getUint8() / 255;
@@ -53767,24 +53341,24 @@ function loadVbib(reader, block) {
                         //vertexReader.getUint8();
                         break;
                     case DXGI_FORMAT_R8G8B8A8_UINT: // 4 * uint8
-                        tempValue = create$4(); //TODO: optimize
+                        tempValue = create$3(); //TODO: optimize
                         tempValue[0] = vertexReader.getUint8();
                         tempValue[1] = vertexReader.getUint8();
                         tempValue[2] = vertexReader.getUint8();
                         tempValue[3] = vertexReader.getUint8();
                         break;
                     case DXGI_FORMAT_R16G16_FLOAT: // 2 * float16
-                        tempValue = create$1(); //TODO: optimize
+                        tempValue = create(); //TODO: optimize
                         tempValue[0] = vertexReader.getFloat16();
                         tempValue[1] = vertexReader.getFloat16();
                         break;
                     case DXGI_FORMAT_R16G16_SNORM: //New with battlepass 2022
-                        tempValue = create$1(); //TODO: optimize
+                        tempValue = create(); //TODO: optimize
                         tempValue[0] = sNormUint16(vertexReader.getInt16());
                         tempValue[1] = sNormUint16(vertexReader.getInt16());
                         break;
                     case DXGI_FORMAT_R16G16_SINT:
-                        tempValue = create$1(); //TODO: optimize
+                        tempValue = create(); //TODO: optimize
                         tempValue[0] = vertexReader.getInt16();
                         tempValue[1] = vertexReader.getInt16();
                         break;
@@ -53800,7 +53374,7 @@ function loadVbib(reader, block) {
                     default:
                         //TODO add types when needed. see DxgiFormat.js
                         console.error('Warning: unknown type ' + headerType + ' for value ' + headerName);
-                        tempValue = create$4(); //TODO: optimize
+                        tempValue = create$3(); //TODO: optimize
                         tempValue[0] = 0;
                         tempValue[1] = 0;
                         tempValue[2] = 0;
@@ -54523,8 +54097,8 @@ const MeshManager = new function () {
     this.removeMesh = removeMesh;
 };
 
-const tempPos = create$5();
-const tempQuat$7 = create$3();
+const tempPos = create$4();
+const tempQuat$7 = create$2();
 class Source2ModelAttachement {
     name;
     ignoreRotation = false;
@@ -54550,7 +54124,7 @@ class Source2ModelAttachementInstance extends Entity {
         }
     }
     //TODO: compute with all bones, not only the first one
-    getWorldPosition(vec = create$5()) {
+    getWorldPosition(vec = create$4()) {
         let bone = this.#getBone(this.attachement.influenceNames[0]);
         if (bone) {
             bone.getWorldPosition(vec);
@@ -54563,7 +54137,7 @@ class Source2ModelAttachementInstance extends Entity {
         }
         return vec;
     }
-    getWorldQuaternion(q = create$3()) {
+    getWorldQuaternion(q = create$2()) {
         let bone = this.#getBone(this.attachement.influenceNames[0]);
         if (bone) {
             bone.getWorldQuaternion(q);
@@ -54687,20 +54261,20 @@ const BONE_USED_BY_ANYTHING = 0x0007FF00;
 const BONE_ALWAYS_PROCEDURAL = 0x04;
 const BONE_USED_BY_BONE_MERGE = 0x00040000;
 const BONE_FIXED_ALIGNMENT = 0x00100000;
-const tempMat4$2 = create$6();
-create$5();
-create$3();
+const tempMat4$2 = create$5();
+create$4();
+create$2();
 //TODOV4: cleanup unused code
 class MdlBone {
-    _poseToBone = create$6();
-    _invPoseToBone = create$6();
-    _initPoseToBone = create$6();
-    _boneMat = create$6();
-    _position = create$5();
-    _quaternion = create$3();
-    _worldPos = create$5();
-    _worldQuat = create$3();
-    _worldMat = create$6();
+    _poseToBone = create$5();
+    _invPoseToBone = create$5();
+    _initPoseToBone = create$5();
+    _boneMat = create$5();
+    _position = create$4();
+    _quaternion = create$2();
+    _worldPos = create$4();
+    _worldQuat = create$2();
+    _worldMat = create$5();
     _parent = null;
     dirty = true;
     lastComputed = 0;
@@ -54768,7 +54342,7 @@ class MdlBone {
         fromRotationTranslation$1(tempMat4$2, this._worldQuat, this._worldPos);
         multiply$6(this._boneMat, tempMat4$2, this._poseToBone);
     }
-    getWorldPos(offset, out = create$5()) {
+    getWorldPos(offset, out = create$4()) {
         transformQuat$1(out, offset, this.worldQuat);
         add$5(out, this.worldPos, out);
         return out;
@@ -55749,8 +55323,8 @@ const STUDIO_ANIM_ANIMPOS = 0x04; // mstudioanim_valueptr_t
 const STUDIO_ANIM_ANIMROT = 0x08; // mstudioanim_valueptr_t
 const STUDIO_ANIM_DELTA = 0x10;
 const STUDIO_ANIM_RAWROT2 = 0x20; // Quaternion64
-const tempMat4$1 = create$6();
-const tempQuat$6 = create$3();
+const tempMat4$1 = create$5();
+const tempQuat$6 = create$2();
 class MdlStudioAnim {
     animValuePtrRot;
     animValuePtrPos;
@@ -56024,8 +55598,8 @@ function InitPose(dynamicProp, pStudioHdr, pos, q, boneMask) {
         for (let i = 0, boneCount = pStudioHdr.getBoneCount(); i < boneCount; ++i) {
             {
                 const pbone = pStudioHdr.getBone(i);
-                pos[i] = pos[i] || create$5(); //removeme
-                q[i] = q[i] || create$3(); //removeme
+                pos[i] = pos[i] || create$4(); //removeme
+                q[i] = q[i] || create$2(); //removeme
                 copy$4(pos[i], pbone.position);
                 copy$2(q[i], pbone.quaternion);
             }
@@ -56082,10 +55656,10 @@ const CalcPoseSingle_q2 = Array(SOURCE_MODEL_MAX_BONES);
 const CalcPoseSingle_pos3 = Array(SOURCE_MODEL_MAX_BONES);
 const CalcPoseSingle_q3 = Array(SOURCE_MODEL_MAX_BONES);
 for (let i = 0; i < SOURCE_MODEL_MAX_BONES; i++) {
-    CalcPoseSingle_pos2[i] = create$5();
-    CalcPoseSingle_q2[i] = create$3();
-    CalcPoseSingle_pos3[i] = create$5();
-    CalcPoseSingle_q3[i] = create$3();
+    CalcPoseSingle_pos2[i] = create$4();
+    CalcPoseSingle_q2[i] = create$2();
+    CalcPoseSingle_pos3[i] = create$4();
+    CalcPoseSingle_q3[i] = create$2();
 }
 function CalcPoseSingle(dynamicProp, pStudioHdr, pos, q, seqdesc, sequence, cycle, poseParameter, boneMask, flTime) {
     let bResult = true;
@@ -56256,15 +55830,15 @@ function CalcAnimation(dynamicProp, pStudioHdr, pos, q, seqdesc, sequence, anima
             const pweight = seqdesc.pBoneweight(i);
             if (pweight > 0 && (pStudioHdr.boneFlags(i) & boneMask)) {
                 if (animdesc.flags & STUDIO_DELTA) {
-                    q[i] = create$3(); //TODOV2
-                    pos[i] = create$5(); //TODOV2
+                    q[i] = create$2(); //TODOV2
+                    pos[i] = create$4(); //TODOV2
                 }
                 else {
                     //q[i] = pbone.rot;TODOv2
-                    q[i] = q[i] || create$3();
-                    pos[i] = pos[i] || create$5();
-                    q[i] = create$3();
-                    pos[i] = create$5();
+                    q[i] = q[i] || create$2();
+                    pos[i] = pos[i] || create$4();
+                    q[i] = create$2();
+                    pos[i] = create$4();
                     //quat.fromMat3(q[i], mat3.fromEuler(SourceEngineTempMat3, pbone.rot));
                     quatFromEulerRad(q[i], pbone.rot[0], pbone.rot[1], pbone.rot[2]);
                     copy$4(pos[i], pbone.position);
@@ -56281,10 +55855,10 @@ function CalcAnimation(dynamicProp, pStudioHdr, pos, q, seqdesc, sequence, anima
     for (let i = 0, boneCount = pStudioHdr.getBoneCount(), animIndex = 0; i < boneCount; ++i) {
         const pbone = pStudioHdr.getBone(i);
         const pweight = seqdesc.pBoneweight(i);
-        q[i] = q[i] || create$3(); //TODOV2
-        pos[i] = pos[i] || create$5(); //TODOV2
-        q[i] = create$3();
-        pos[i] = create$5();
+        q[i] = q[i] || create$2(); //TODOV2
+        pos[i] = pos[i] || create$4(); //TODOV2
+        q[i] = create$2();
+        pos[i] = create$4();
         if (panim && panim.bone == i) {
             //if (pweight > 0 && (pStudioHdr.boneFlags(i) & boneMask))
             if (pweight > 0) //TODOv2
@@ -56303,8 +55877,8 @@ function CalcAnimation(dynamicProp, pStudioHdr, pos, q, seqdesc, sequence, anima
         }
         else if (pweight > 0) {
             if (animdesc.flags & STUDIO_DELTA) {
-                q[i] = create$3(); //TODOV2
-                pos[i] = create$5(); //TODOV2
+                q[i] = create$2(); //TODOV2
+                pos[i] = create$4(); //TODOV2
             }
             else {
                 copy$2(q[i], pbone.quaternion);
@@ -56346,9 +55920,9 @@ function _CalcBoneQuaternion(pStudioHdr, frame, s, baseQuat, baseRot, baseRotSca
     }
     panim.animValuePtrRot;
     if (s > 0.001) {
-        const angle1 = create$5(), angle2 = create$5(); // TODO: optimize
-        const q1 = create$3();
-        const q2 = create$3();
+        const angle1 = create$4(), angle2 = create$4(); // TODO: optimize
+        const q1 = create$2();
+        const q2 = create$2();
         for (let i = 0; i < 3; ++i) {
             const offset = panim.animValuePtrRot.offset[i];
             if (offset) {
@@ -56378,7 +55952,7 @@ function _CalcBoneQuaternion(pStudioHdr, frame, s, baseQuat, baseRot, baseRotSca
         }
     }
     else {
-        const angle = create$5();
+        const angle = create$4();
         for (let i = 0; i < 3; ++i) {
             const offset = panim.animValuePtrRot.offset[i];
             if (offset) {
@@ -56464,7 +56038,7 @@ function CalcBonePosition(pStudioHdr, frame, s, pBone, pLinearBones, panim, pos)
 //void QuaternionBlend(const Quaternion &p, const Quaternion &q, float t, Quaternion &qt)
 function QuaternionBlend(p, q, t, qt) {
     // decide if one of the quaternions is backwards
-    const q2 = create$3();
+    const q2 = create$2();
     QuaternionAlign(p, q, q2);
     QuaternionBlendNoAlign(p, q2, t, qt);
 }
@@ -56755,8 +56329,8 @@ const AddSequenceLayers = function (dynamicProp, pStudioHdr, pIKContext, pos, q,
 const AccumulatePose_pos2 = Array(SOURCE_MODEL_MAX_BONES);
 const AccumulatePose_q2 = Array(SOURCE_MODEL_MAX_BONES);
 for (let i = 0; i < SOURCE_MODEL_MAX_BONES; i++) {
-    AccumulatePose_pos2[i] = create$5();
-    AccumulatePose_q2[i] = create$3();
+    AccumulatePose_pos2[i] = create$4();
+    AccumulatePose_q2[i] = create$2();
 }
 function AccumulatePose(dynamicProp, pStudioHdr, pIKContext, pos, q, sequence, cycle, poseParameter, boneMask, flWeight, flTime) {
     //const pos2 = [];
@@ -56845,10 +56419,10 @@ function SlerpBones(pStudioHdr, q1, pos1, seqdesc, sequence, q2, pos2, s, boneMa
     //const *pS2 = (float*)stackalloc(nBoneCount * sizeof(float));TODOv2
     const pS2 = [];
     for (let i = 0; i < nBoneCount; ++i) {
-        q1[i] = q1[i] || q2[i] || create$3(); //TODOV2
-        pos1[i] = pos1[i] || pos2[i] || create$5();
-        q2[i] = q2[i] || create$3(); //TODOV2
-        pos2[i] = pos2[i] || create$5();
+        q1[i] = q1[i] || q2[i] || create$2(); //TODOV2
+        pos1[i] = pos1[i] || pos2[i] || create$4();
+        q2[i] = q2[i] || create$2(); //TODOV2
+        pos2[i] = pos2[i] || create$4();
         {
             pS2[i] = s * seqdesc.pBoneweight(i); // blend in based on this bones weight
             continue;
@@ -56877,7 +56451,7 @@ function SlerpBones(pStudioHdr, q1, pos1, seqdesc, sequence, q2, pos2, s, boneMa
         }
         return;
     }
-    const q3 = create$3();
+    const q3 = create$2();
     for (let i = 0; i < nBoneCount; ++i) {
         s2 = pS2[i];
         if (s2 <= 0.0)
@@ -56903,8 +56477,8 @@ function SlerpBones(pStudioHdr, q1, pos1, seqdesc, sequence, q2, pos2, s, boneMa
 //-----------------------------------------------------------------------------
 //void QuaternionMA(const Quaternion &p, float s, const Quaternion &q, Quaternion &qt)
 function QuaternionMA(p, s, q, qt) {
-    const p1 = create$3();
-    const q1 = create$3();
+    const p1 = create$2();
+    const q1 = create$2();
     QuaternionScale(q, s, q1);
     mul$2(p1, p, q1);
     normalize$3(p1, p1);
@@ -56918,8 +56492,8 @@ function QuaternionMA(p, s, q, qt) {
 //-----------------------------------------------------------------------------
 //void QuaternionSM(float s, const Quaternion &p, const Quaternion &q, Quaternion &qt)
 function QuaternionSM(s, p, q, qt) {
-    const p1 = create$3();
-    const q1 = create$3();
+    const p1 = create$2();
+    const q1 = create$2();
     QuaternionScale(p, s, p1);
     mul$2(q1, p1, q);
     normalize$3(q1, q1); //QuaternionNormalize(q1);
@@ -56970,7 +56544,7 @@ function QuaternionScale(p, t, q) {
     float s,
     int boneMask)*/
 function BlendBones(pStudioHdr, q1, pos1, seqdesc, sequence, q2, pos2, s, boneMask) {
-    const q3 = create$3();
+    const q3 = create$2();
     /*virtualmodel_t *pVModel = pStudioHdr.GetVirtualModel();TODO
     const virtualgroup_t *pSeqGroup = NULL;
     if (pVModel)
@@ -57004,10 +56578,10 @@ function BlendBones(pStudioHdr, q1, pos1, seqdesc, sequence, q2, pos2, s, boneMa
     for (let i = 0, boneCount = pStudioHdr.getBoneCount(); i < boneCount; ++i) {
         let j;
         // skip unused bones
-        q1[i] = q1[i] || create$3();
-        pos1[i] = pos1[i] || create$5();
-        q2[i] = q2[i] || create$3();
-        pos2[i] = pos2[i] || create$5();
+        q1[i] = q1[i] || create$2();
+        pos1[i] = pos1[i] || create$4();
+        q2[i] = q2[i] || create$2();
+        pos2[i] = pos2[i] || create$4();
         if (!(pStudioHdr.boneFlags(i) & boneMask)) {
             continue;
         }
@@ -57036,7 +56610,7 @@ function BlendBones(pStudioHdr, q1, pos1, seqdesc, sequence, q2, pos2, s, boneMa
 //-----------------------------------------------------------------------------
 //void QuaternionSlerp(const Quaternion &p, const Quaternion &q, float t, Quaternion &qt)
 function QuaternionSlerp(p, q, t, qt) {
-    const q2 = create$3();
+    const q2 = create$2();
     // 0.0 returns p, 1.0 return q.
     // decide if one of the quaternions is backwards
     QuaternionAlign(p, q, q2);
@@ -57408,11 +56982,11 @@ function WorldSpaceSlerp(
 */
 
 class SourceAnimation {
-    position = create$5();
-    boneRot = create$5(); //TODO: remove me ?
-    quaternion = create$3(); //TODOv2
-    tempPos = create$5();
-    tempRot = create$5();
+    position = create$4();
+    boneRot = create$4(); //TODO: remove me ?
+    quaternion = create$2(); //TODOv2
+    tempPos = create$4();
+    tempRot = create$4();
     constructor(sourceModel) {
     }
     animate2(dynamicProp, poseParameters, position, orientation, sequences, bonesScale) {
@@ -57590,10 +57164,10 @@ class SourceAnimation {
     }
 }
 
-const identityVec3$1 = create$5();
-const identityQuat = create$3();
-const initSkeletonTempVec3 = create$5();
-const initSkeletonTempQuat = create$3();
+const identityVec3$1 = create$4();
+const identityQuat = create$2();
+const initSkeletonTempVec3 = create$4();
+const initSkeletonTempQuat = create$2();
 let animSpeed$1 = 1.0;
 const defaultMaterial$2 = new MeshBasicMaterial();
 class Source2ModelInstance extends Entity {
@@ -57859,14 +57433,14 @@ class Source2ModelInstance extends Entity {
                             parentBone.addChild(bone);
                             bone.getTotalRefQuaternion(initSkeletonTempQuat);
                             normalize$3(initSkeletonTempQuat, initSkeletonTempQuat);
-                            const poseToBone = fromRotationTranslation$1(create$6(), initSkeletonTempQuat, bone.getTotalRefPosition(initSkeletonTempVec3));
+                            const poseToBone = fromRotationTranslation$1(create$5(), initSkeletonTempQuat, bone.getTotalRefPosition(initSkeletonTempVec3));
                             invert$2(poseToBone, poseToBone);
                             bone.poseToBone = poseToBone;
                         }
                     }
                     else {
                         this.#skeleton.addChild(bone);
-                        const poseToBone = fromRotationTranslation$1(create$6(), bone.refQuaternion, bone.refPosition); //TODO: optimize
+                        const poseToBone = fromRotationTranslation$1(create$5(), bone.refQuaternion, bone.refPosition); //TODO: optimize
                         invert$2(poseToBone, poseToBone);
                         bone.poseToBone = poseToBone;
                     }
@@ -59481,7 +59055,7 @@ class Source2ParticleManagerClass {
 }
 const Source2ParticleManager = new Source2ParticleManagerClass();
 
-var sceneExplorerCSS = ":host {\n\tbackground-color: var(--theme-scene-explorer-bg-color);\n\twidth: 100%;\n\theight: 100%;\n\toverflow: auto;\n\t/*padding: 5px;*/\n\t/*box-sizing: border-box;*/\n\tdisplay: flex;\n\tflex-direction: column;\n\tfont-size: 1.5em;\n}\n\n.scene-explorer-contextmenu {\n\tposition: absolute;\n\theight: 50px;\n\twidth: 50px;\n\tbackground-color: turquoise;\n}\n\n.scene-explorer-scene {\n\tflex: 1;\n\toverflow: auto;\n}\n\n.scene-explorer-file-selector {\n\tflex: 1;\n\toverflow: auto;\n\tdisplay: flex;\n}\n\n.scene-explorer-properties {\n\tbackground-color: orange;\n\tdisplay: flex;\n\tflex-wrap: wrap;\n\n}\n\n.scene-explorer-properties>div,\n.scene-explorer-properties>label {\n\twidth: 50%;\n}\n\n.scene-explorer-properties>.scene-explorer-entity-title {\n\twidth: 100%;\n}\n\n.scene-explorer-selector {\n\tposition: absolute;\n\twidth: 100%;\n\theight: 100%;\n\tbackground-color: bisque;\n\tmargin: 10px;\n}\n\n\nscene-explorer-entity {\n\tflex-direction: column;\n}\n\n.scene-explorer-entity-header {\n\tcursor: pointer;\n\tdisplay: flex;\n}\n\nscene-explorer-entity.selected>.scene-explorer-entity-header {\n\tbackground-color: var(--theme-scene-explorer-entity-selected-bg-color);\n}\n\n.scene-explorer-entity-buttons {\n\tdisplay: flex;\n}\n\n.scene-explorer-entity-buttons>div {\n\twidth: 20px;\n\theight: 20px;\n\tcursor: pointer;\n}\n\n.scene-explorer-entity-button-properties {\n\tbackground-color: blue;\n}\n\n.scene-explorer-entity-button-childs {\n\tbackground-color: green;\n}\n\n.scene-explorer-entity-visible {\n\tcursor: pointer;\n}\n\n.scene-explorer-entity-childs {\n\tbackground-color: teal;\n\t/*padding: 5px;*/\n\tpadding-left: 20px;\n}\n\n.file-explorer-file {\n\tcursor: pointer;\n}\n\n.file-explorer-file-header:hover {\n\tfont-weight: bold;\n}\n\n.file-explorer-childs {\n\tpadding-left: 20px;\n}\n\nfile-selector {\n\tdisplay: flex;\n\tflex-direction: column;\n\toverflow: auto;\n\twidth: 100%;\n}\n\n.file-selector-header {\n\tflex: 0;\n}\n\n.file-selector-content {\n\tflex: 1;\n\toverflow: auto;\n}\n\nfile-selector-directory {\n\tdisplay: block;\n\tcursor: pointer;\n}\n\nfile-selector-file {\n\tdisplay: block;\n\tcursor: pointer;\n}\n\nfile-selector-tile {\n\tdisplay: block;\n\toverflow: hidden;\n\twidth: 100%;\n\tcursor: pointer;\n}\n\n.file-selector-directory-header:hover,\nfile-selector-file:hover,\nfile-selector-tile:hover {\n\tbackground-color: var(--theme-file-selector-item-hover-bg-color);\n}\n\n.file-selector-directory-content {\n\tpadding-left: 20px;\n}\n";
+var sceneExplorerCSS = ":host {\n\tbackground-color: var(--theme-scene-explorer-bg-color);\n\twidth: 100%;\n\theight: 100%;\n\toverflow: auto;\n\t/*padding: 5px;*/\n\t/*box-sizing: border-box;*/\n\tdisplay: flex;\n\tflex-direction: column;\n\tfont-size: 1.5em;\n\tuser-select: none;\n}\n\n.scene-explorer-contextmenu {\n\tposition: absolute;\n\theight: 50px;\n\twidth: 50px;\n\tbackground-color: turquoise;\n}\n\n.scene-explorer-scene {\n\tflex: 1;\n\toverflow: auto;\n}\n\n.scene-explorer-file-selector {\n\tflex: 1;\n\toverflow: auto;\n\tdisplay: flex;\n}\n\n.scene-explorer-properties {\n\tbackground-color: orange;\n\tdisplay: flex;\n\tflex-wrap: wrap;\n\n}\n\n.scene-explorer-properties>div,\n.scene-explorer-properties>label {\n\twidth: 50%;\n}\n\n.scene-explorer-properties>.scene-explorer-entity-title {\n\twidth: 100%;\n}\n\n.scene-explorer-selector {\n\tposition: absolute;\n\twidth: 100%;\n\theight: 100%;\n\tbackground-color: bisque;\n\tmargin: 10px;\n}\n\n\nscene-explorer-entity {\n\tflex-direction: column;\n}\n\n.scene-explorer-entity-header {\n\tcursor: pointer;\n\tdisplay: flex;\n}\n\nscene-explorer-entity.selected>.scene-explorer-entity-header {\n\tbackground-color: var(--theme-scene-explorer-entity-selected-bg-color);\n}\n\n.scene-explorer-entity-buttons {\n\tdisplay: flex;\n}\n\n.scene-explorer-entity-buttons>div {\n\twidth: 20px;\n\theight: 20px;\n\tcursor: pointer;\n}\n\n.scene-explorer-entity-button-properties {\n\tbackground-color: blue;\n}\n\n.scene-explorer-entity-button-childs {\n\tbackground-color: green;\n}\n\n.scene-explorer-entity-visible {\n\tcursor: pointer;\n}\n\n.scene-explorer-entity-childs {\n\tbackground-color: teal;\n\t/*padding: 5px;*/\n\tpadding-left: 20px;\n}\n\n.file-explorer-file {\n\tcursor: pointer;\n}\n\n.file-explorer-file-header:hover {\n\tfont-weight: bold;\n}\n\n.file-explorer-childs {\n\tpadding-left: 20px;\n}\n\nfile-selector {\n\tdisplay: flex;\n\tflex-direction: column;\n\toverflow: auto;\n\twidth: 100%;\n}\n\n.file-selector-header {\n\tflex: 0;\n}\n\n.file-selector-content {\n\tflex: 1;\n\toverflow: auto;\n}\n\nfile-selector-directory {\n\tdisplay: block;\n\tcursor: pointer;\n}\n\nfile-selector-file {\n\tdisplay: block;\n\tcursor: pointer;\n}\n\nfile-selector-tile {\n\tdisplay: block;\n\toverflow: hidden;\n\twidth: 100%;\n\tcursor: pointer;\n}\n\n.file-selector-directory-header:hover,\nfile-selector-file:hover,\nfile-selector-tile:hover {\n\tbackground-color: var(--theme-file-selector-item-hover-bg-color);\n}\n\n.file-selector-directory-content {\n\tpadding-left: 20px;\n}\n\n.manipulator{\n\tdisplay: inline-flex;\n}\n\n.manipulator-button {\n\tbackground-color: var(--theme-scene-explorer-bg-color);\n\tcursor: pointer;\n}\n";
 
 function FormatArray(array) {
     let arr = [];
@@ -59570,19 +59144,19 @@ class SceneExplorer {
         return this.#shadowRoot.host;
     }
     #initHtml() {
-        this.#shadowRoot = createShadowRoot$1('scene-explorer', {
+        this.#shadowRoot = createShadowRoot('scene-explorer', {
             attributes: { tabindex: 1, },
             adoptStyle: sceneExplorerCSS,
         });
-        I18n$1.observeElement(this.#shadowRoot);
-        this.#htmlHeader = createElement$1('div', { class: 'scene-explorer-header' });
-        this.#htmlScene = createElement$1('div', { class: 'scene-explorer-scene', attributes: { tabindex: 1, }, });
-        this.htmlFileSelector = createElement$1('div', { class: 'scene-explorer-file-selector', attributes: { tabindex: 1, }, });
-        hide$1(this.htmlFileSelector);
-        this.#htmlProperties = createElement$1('div', { class: 'scene-explorer-properties', hidden: 1, attributes: { tabindex: 1, }, });
+        I18n.observeElement(this.#shadowRoot);
+        this.#htmlHeader = createElement('div', { class: 'scene-explorer-header' });
+        this.#htmlScene = createElement('div', { class: 'scene-explorer-scene', attributes: { tabindex: 1, }, });
+        this.htmlFileSelector = createElement('div', { class: 'scene-explorer-file-selector', attributes: { tabindex: 1, }, });
+        hide(this.htmlFileSelector);
+        this.#htmlProperties = createElement('div', { class: 'scene-explorer-properties', hidden: 1, attributes: { tabindex: 1, }, });
         this.#shadowRoot.append(this.#htmlHeader, this.#htmlScene, this.htmlFileSelector, this.#htmlProperties);
         defineHarmonyContextMenu();
-        this.htmlContextMenu = createElement$1('harmony-context-menu');
+        this.htmlContextMenu = createElement('harmony-context-menu');
         this.#initHtmlHeader();
         this.#initHtmlProperties();
         this.applyFilter();
@@ -59591,51 +59165,95 @@ class SceneExplorer {
         new ShortcutHandler().addContext('scene-explorer,scene-explorer-properties', this.#htmlProperties);
     }
     #initHtmlHeader() {
-        this.#htmlNameFilter = createElement$1('input');
+        this.#htmlNameFilter = createElement('input');
         this.#htmlHeader.append(this.#htmlNameFilter);
-        this.#htmlTypeFilter = createElement$1('select');
+        this.#htmlTypeFilter = createElement('select');
         this.#htmlHeader.append(this.#htmlTypeFilter);
-        let manipulatorId = 'display_manipulator';
         const skeletonId = 'display_skeleton';
-        let htmlDisplayManipulator = createElement$1('input', { type: 'checkbox', id: manipulatorId });
-        let htmlDisplayManipulatorSpan = createElement$1('span');
-        let htmlDisplayManipulatorLabel = createElement$1('label', { i18n: '#display_manipulator', htmlFor: manipulatorId });
-        this.#htmlHeader.append(htmlDisplayManipulatorSpan);
-        htmlDisplayManipulatorSpan.append(htmlDisplayManipulator, htmlDisplayManipulatorLabel);
-        createElement$1('span', {
+        let htmlManipulator;
+        createElement('span', {
+            class: 'manipulator',
             parent: this.#htmlHeader,
             childs: [
-                createElement$1('input', {
+                createElement('label', {
+                    childs: [
+                        htmlManipulator = createElement('input', {
+                            type: 'checkbox',
+                            events: {
+                                change: (event) => this.#manipulator.visible = event.target.checked,
+                            },
+                        }),
+                        createElement('span', { i18n: '#display_manipulator', }),
+                    ],
+                }),
+                createElement('span', {
+                    class: 'manipulator-button',
+                    innerHTML: dragPanSVG,
+                    events: {
+                        click: () => {
+                            this.#manipulator.setMode(ManipulatorMode.Translation);
+                            htmlManipulator.checked = true;
+                            this.#manipulator.visible = true;
+                        },
+                    }
+                }),
+                createElement('span', {
+                    class: 'manipulator-button',
+                    innerHTML: rotateSVG,
+                    events: {
+                        click: () => {
+                            this.#manipulator.setMode(ManipulatorMode.Rotation);
+                            htmlManipulator.checked = true;
+                            this.#manipulator.visible = true;
+                        },
+                    }
+                }),
+                createElement('span', {
+                    class: 'manipulator-button',
+                    innerHTML: panZoomSVG,
+                    events: {
+                        click: () => {
+                            this.#manipulator.setMode(ManipulatorMode.Scale);
+                            htmlManipulator.checked = true;
+                            this.#manipulator.visible = true;
+                        },
+                    }
+                }),
+            ],
+        });
+        createElement('span', {
+            parent: this.#htmlHeader,
+            childs: [
+                createElement('input', {
                     type: 'checkbox',
                     id: skeletonId,
                     events: {
                         change: (event) => this.#skeletonHelper.visible = event.target.checked
                     }
                 }),
-                createElement$1('label', {
+                createElement('label', {
                     i18n: '#display_skeleton',
                     htmlFor: skeletonId,
                 }),
             ]
         });
         let propertiesId = 'display_properties';
-        let htmlDisplayProperties = createElement$1('input');
+        let htmlDisplayProperties = createElement('input');
         htmlDisplayProperties.type = 'checkbox';
         htmlDisplayProperties.id = propertiesId;
         htmlDisplayProperties.checked = false;
-        let htmlDisplayPropertiesSpan = createElement$1('span');
-        let htmlDisplayPropertiesLabel = createElement$1('label', { i18n: '#display_properties', htmlFor: propertiesId });
+        let htmlDisplayPropertiesSpan = createElement('span');
+        let htmlDisplayPropertiesLabel = createElement('label', { i18n: '#display_properties', htmlFor: propertiesId });
         this.#htmlHeader.append(htmlDisplayPropertiesSpan);
         htmlDisplayPropertiesSpan.append(htmlDisplayProperties, htmlDisplayPropertiesLabel);
         this.#htmlNameFilter.addEventListener('change', (event) => { this.#filterName = event.target.value.toLowerCase(); this.applyFilter(); });
         this.#htmlTypeFilter.addEventListener('change', (event) => { this.#filterType = event.target.value; this.applyFilter(); });
-        htmlDisplayManipulator.addEventListener('change', (event) => this.#manipulator.visible = event.target.checked);
         htmlDisplayProperties.addEventListener('change', (event) => toggle(this.#htmlProperties));
         this.#populateTypeFilter();
     }
     #populateTypeFilter() {
         for (let type of ENTITIES) {
-            let option = createElement$1('option', { innerHTML: type, value: type });
+            let option = createElement('option', { innerHTML: type, value: type });
             this.#htmlTypeFilter.append(option);
         }
     }
@@ -59661,23 +59279,23 @@ class SceneExplorer {
         return (name ? entity.name && entity.name.toLowerCase().includes(name) : true) && (type ? entity['is' + type] : true);
     }
     #initHtmlProperties() {
-        this.#htmlName = createElement$1('div', { class: 'scene-explorer-entity-title' });
-        const htmlIdLabel = createElement$1('label', { i18n: '#id' });
-        this.#htmlId = createElement$1('div', { class: 'scene-explorer-entity-id' });
-        const htmlPosLabel = createElement$1('label', { i18n: '#position' });
-        this.#htmlPos = createElement$1('div', { class: 'scene-explorer-entity-pos' });
-        const htmlQuatLabel = createElement$1('label', { i18n: '#quaternion' });
-        this.#htmlQuat = createElement$1('div', { class: 'scene-explorer-entity-quat' });
-        const htmlScaleLabel = createElement$1('label', { i18n: '#scale' });
-        this.#htmlScale = createElement$1('div', { class: 'scene-explorer-entity-scale' });
-        const htmlWorldPosLabel = createElement$1('label', { i18n: '#world_position' });
-        this.#htmlWorldPos = createElement$1('div', { class: 'scene-explorer-entity-world-pos' });
-        const htmlWorldQuatLabel = createElement$1('label', { i18n: '#world_quaternion' });
-        this.#htmlWorldQuat = createElement$1('div', { class: 'scene-explorer-entity-world-quat' });
-        const htmlWorldScaleLabel = createElement$1('label', { i18n: '#world_scale' });
-        this.#htmlWorldScale = createElement$1('div', { class: 'scene-explorer-entity-world-scale' });
-        const htmlVisibleLabel = createElement$1('label', { i18n: '#visible' });
-        this.#htmlVisible = createElement$1('input', {
+        this.#htmlName = createElement('div', { class: 'scene-explorer-entity-title' });
+        const htmlIdLabel = createElement('label', { i18n: '#id' });
+        this.#htmlId = createElement('div', { class: 'scene-explorer-entity-id' });
+        const htmlPosLabel = createElement('label', { i18n: '#position' });
+        this.#htmlPos = createElement('div', { class: 'scene-explorer-entity-pos' });
+        const htmlQuatLabel = createElement('label', { i18n: '#quaternion' });
+        this.#htmlQuat = createElement('div', { class: 'scene-explorer-entity-quat' });
+        const htmlScaleLabel = createElement('label', { i18n: '#scale' });
+        this.#htmlScale = createElement('div', { class: 'scene-explorer-entity-scale' });
+        const htmlWorldPosLabel = createElement('label', { i18n: '#world_position' });
+        this.#htmlWorldPos = createElement('div', { class: 'scene-explorer-entity-world-pos' });
+        const htmlWorldQuatLabel = createElement('label', { i18n: '#world_quaternion' });
+        this.#htmlWorldQuat = createElement('div', { class: 'scene-explorer-entity-world-quat' });
+        const htmlWorldScaleLabel = createElement('label', { i18n: '#world_scale' });
+        this.#htmlWorldScale = createElement('div', { class: 'scene-explorer-entity-world-scale' });
+        const htmlVisibleLabel = createElement('label', { i18n: '#visible' });
+        this.#htmlVisible = createElement('input', {
             class: 'scene-explorer-entity-visible',
             type: 'checkbox',
             events: {
@@ -63175,11 +62793,11 @@ class ShaderEditor extends HTMLElement {
             return;
         }
         this.#shadowRoot = this.attachShadow({ mode: "closed" });
-        I18n$1.observeElement(this.#shadowRoot);
+        I18n.observeElement(this.#shadowRoot);
         let aceScript = options.aceUrl ?? ACE_EDITOR_URI;
         this.#initialized = true;
         this.style.cssText = 'display: flex;flex-direction: column;height: 100%;width: 100%;';
-        this.#htmlShaderNameSelect = createElement$1('select');
+        this.#htmlShaderNameSelect = createElement('select');
         this.#htmlShaderNameSelect.addEventListener('input', (event) => {
             let selectedOption = event.target.selectedOptions[0];
             if (selectedOption) {
@@ -63191,7 +62809,7 @@ class ShaderEditor extends HTMLElement {
                 }
             }
         });
-        this.#htmlShaderRenderMode = createElement$1('input');
+        this.#htmlShaderRenderMode = createElement('input');
         this.#htmlShaderRenderMode.addEventListener('input', (event) => {
             let n = Number(event.target.value);
             if (Number.isNaN(n)) {
@@ -63201,20 +62819,20 @@ class ShaderEditor extends HTMLElement {
                 new Graphics().setIncludeCode('RENDER_MODE', '#define RENDER_MODE ' + n);
             }
         });
-        let htmlCustomShaderButtons = createElement$1('div');
+        let htmlCustomShaderButtons = createElement('div');
         if (options.displayCustomShaderButtons) {
-            let htmlButtonSaveCustomShader = createElement$1('button', { i18n: '#save_custom_shader' });
-            let htmlButtonLoadCustomShader = createElement$1('button', { i18n: '#load_custom_shader' });
-            let htmlButtonRemoveCustomShader = createElement$1('button', { i18n: '#remove_custom_shader' });
+            let htmlButtonSaveCustomShader = createElement('button', { i18n: '#save_custom_shader' });
+            let htmlButtonLoadCustomShader = createElement('button', { i18n: '#load_custom_shader' });
+            let htmlButtonRemoveCustomShader = createElement('button', { i18n: '#remove_custom_shader' });
             htmlCustomShaderButtons.append(htmlButtonSaveCustomShader, htmlButtonLoadCustomShader, htmlButtonRemoveCustomShader);
             this.#shadowRoot.append(htmlCustomShaderButtons);
             htmlButtonSaveCustomShader.addEventListener('click', () => this.#saveCustomShader());
             htmlButtonLoadCustomShader.addEventListener('click', () => this.#loadCustomShader());
             htmlButtonRemoveCustomShader.addEventListener('click', () => this.#removeCustomShader());
         }
-        let c = createElement$1('div', { style: 'flex:1;' });
+        let c = createElement('div', { style: 'flex:1;' });
         {
-            hide$1(this.#htmlShaderRenderMode);
+            hide(this.#htmlShaderRenderMode);
         }
         this.#shadowRoot.append(this.#htmlShaderNameSelect, this.#htmlShaderRenderMode, htmlCustomShaderButtons, c);
         if (aceScript == '') {
@@ -63250,10 +62868,10 @@ class ShaderEditor extends HTMLElement {
             return;
         }
         this.#htmlShaderNameSelect.innerHTML = '';
-        let shaderGroup = createElement$1('optgroup', { 'i18n-label': '#shader_editor_shaders', parent: this.#htmlShaderNameSelect });
+        let shaderGroup = createElement('optgroup', { 'i18n-label': '#shader_editor_shaders', parent: this.#htmlShaderNameSelect });
         const shaderList = [...ShaderManager.shaderList].sort();
         for (let shaderName of shaderList) {
-            const option = createElement$1('option', {
+            const option = createElement('option', {
                 class: 'shader-editor-shader-list-shader',
                 value: shaderName,
                 innerHTML: shaderName,
@@ -63264,10 +62882,10 @@ class ShaderEditor extends HTMLElement {
                 option.selected = true;
             }
         }
-        let includeGroup = createElement$1('optgroup', { 'i18n-label': '#shader_editor_includes', parent: this.#htmlShaderNameSelect });
+        let includeGroup = createElement('optgroup', { 'i18n-label': '#shader_editor_includes', parent: this.#htmlShaderNameSelect });
         const includeList = [...getIncludeList()].sort();
         for (let includeName of includeList) {
-            const option = createElement$1('option', {
+            const option = createElement('option', {
                 class: 'shader-editor-shader-list-include',
                 value: includeName,
                 innerHTML: includeName,
@@ -63379,7 +62997,7 @@ if (window.customElements) {
 }
 function loadScripts(array, callback) {
     const loader = function (src, handler) {
-        const script = createElement$1('script');
+        const script = createElement('script');
         script.src = src;
         script.onload = () => {
             script.onload = null;
@@ -63482,6 +63100,131 @@ var source_declare_particle = `
 
 Includes['source_declare_particle'] = source_declare_particle;
 
+const PROPERTY_ADDED = 'propertyadded';
+const PROPERTY_CHANGED = 'propertychanged';
+class TimelineObserver extends EventTarget {
+    static #instance;
+    constructor() {
+        if (TimelineObserver.#instance) {
+            return TimelineObserver.#instance;
+        }
+        super();
+        TimelineObserver.#instance = this;
+    }
+    /*
+        parentChanged(child: Entity, oldParent: Entity | null, newParent: Entity | null) {
+            this.dispatchEvent(new CustomEvent(PARENT_CHANGED, { detail: { child: child, oldParent: oldParent, newParent: newParent } }));
+        }
+
+        childAdded(parent: Entity, child: Entity) {
+            this.dispatchEvent(new CustomEvent(CHILD_ADDED, { detail: { child: child, parent: parent } }));
+        }
+
+        childRemoved(parent: Entity, child: Entity) {
+            this.dispatchEvent(new CustomEvent(CHILD_REMOVED, { detail: { child: child, parent: parent } }));
+        }
+
+        entityDeleted(entity: Entity) {
+            this.dispatchEvent(new CustomEvent(ENTITY_DELETED, { detail: { entity: entity } }));
+        }
+    */
+    propertyAdded(element, propertyName, type, value) {
+        this.dispatchEvent(new CustomEvent(PROPERTY_ADDED, { detail: { element: element, name: propertyName, type: type, value: value } }));
+    }
+    propertyChanged(element, propertyName, oldValue, newValue) {
+        this.dispatchEvent(new CustomEvent(PROPERTY_CHANGED, { detail: { element: element, name: propertyName, value: newValue, oldValue: oldValue } }));
+    }
+}
+
+var TimelinePropertyType;
+(function (TimelinePropertyType) {
+    TimelinePropertyType[TimelinePropertyType["Unknown"] = 0] = "Unknown";
+    TimelinePropertyType[TimelinePropertyType["Int"] = 1] = "Int";
+    TimelinePropertyType[TimelinePropertyType["Float"] = 2] = "Float";
+    TimelinePropertyType[TimelinePropertyType["Time"] = 3] = "Time";
+    TimelinePropertyType[TimelinePropertyType["String"] = 4] = "String";
+    TimelinePropertyType[TimelinePropertyType["Bool"] = 5] = "Bool";
+    TimelinePropertyType[TimelinePropertyType["Color"] = 6] = "Color";
+})(TimelinePropertyType || (TimelinePropertyType = {}));
+class TimelineProperty {
+    #name;
+    #type;
+    #value;
+    constructor(name, type, value) {
+        this.#name = name;
+        this.#type = type;
+        this.#value = value;
+    }
+    setValue(value) {
+        this.#value = value;
+    }
+    getValue() {
+        return this.#value;
+    }
+}
+
+/*
+export interface TimelineElement {
+    name: string;
+    setParent(element: TimelineElement): void;
+    getParent(element: TimelineElement): TimelineElement | null;
+}
+*/
+var TimelineElementType;
+(function (TimelineElementType) {
+    TimelineElementType[TimelineElementType["None"] = 0] = "None";
+    TimelineElementType[TimelineElementType["Timeline"] = 1] = "Timeline";
+    TimelineElementType[TimelineElementType["Group"] = 2] = "Group";
+    TimelineElementType[TimelineElementType["Channel"] = 3] = "Channel";
+    TimelineElementType[TimelineElementType["Clip"] = 4] = "Clip";
+    TimelineElementType[TimelineElementType["Marker"] = 5] = "Marker";
+})(TimelineElementType || (TimelineElementType = {}));
+class TimelineElement {
+    #parent;
+    #properties = new Map();
+    type = TimelineElementType.None;
+    /*#name: string;
+    startTime: number = 0;
+    endTime: number = Infinity;*/
+    constructor(name) {
+        this.addProperty('name', TimelinePropertyType.String, name);
+    }
+    setName(name) {
+        this.setPropertyValue('name', name);
+    }
+    getName() {
+        return this.getPropertyValue('name');
+    }
+    addProperty(name, type, value) {
+        const property = new TimelineProperty(name, type, value);
+        this.#properties.set(name, property);
+        return property;
+    }
+    setPropertyValue(name, value) {
+        const property = this.#properties.get(name);
+        if (property) {
+            const oldValue = property.getValue();
+            property.setValue(value);
+            new TimelineObserver().propertyChanged(this, name, oldValue, value);
+        }
+    }
+    getPropertyValue(name) {
+        return this.#properties.get(name)?.getValue();
+    }
+}
+
+class TimelineGroup extends TimelineElement {
+    type = TimelineElementType.Group;
+    #childs = [];
+    addChild(child) {
+        this.#childs.push(child);
+        return child;
+    }
+    getChilds() {
+        return [...this.#childs];
+    }
+}
+
 class Actor {
     name;
     channels = [];
@@ -63517,6 +63260,28 @@ class Actor {
         for (let i = 0; i < this.channels.length; ++i) {
             this.channels[i].step(previousTime, currentTime);
         }
+    }
+    toTimelineElement() {
+        const actor = new TimelineGroup(this.name);
+        for (const channel of this.channels) {
+            actor.addChild(channel.toTimelineElement());
+        }
+        return actor;
+    }
+}
+
+class TimelineChannel extends TimelineElement {
+    type = TimelineElementType.Channel;
+    #clips = new Set;
+    constructor(name = 'Channel') {
+        super(name);
+    }
+    addClip(clip) {
+        this.#clips.add(clip);
+        return clip;
+    }
+    getClips() {
+        return [...this.#clips];
     }
 }
 
@@ -63579,13 +63344,41 @@ class Channel {
             this.events[i].step(previousTime, currentTime);
         }
     }
+    toTimelineElement() {
+        const channel = new TimelineChannel(this.name);
+        for (const event of this.events) {
+            channel.addClip(event.toTimelineElement());
+        }
+        return channel;
+    }
+}
+
+class Timeline extends TimelineElement {
+    type = TimelineElementType.Timeline;
+    name = '';
+    #root = new TimelineGroup('');
+    constructor(name = 'Timeline') {
+        super(name);
+    }
+    setParent(element) {
+        return;
+    }
+    getRoot() {
+        return this.#root;
+    }
+    addChild(child) {
+        return this.#root.addChild(child);
+    }
+    getChilds() {
+        return this.#root.getChilds();
+    }
 }
 
 class Choreography {
     #repository;
     actors2 = [];
-    events = [];
-    actors = [];
+    #events = [];
+    #actors = [];
     previousTime = -1;
     currentTime = 0;
     animsSpeed = 1;
@@ -63603,7 +63396,7 @@ class Choreography {
      * @param {Object ChoreographyEvent} event The event to add
      */
     addEvent(event) {
-        this.events.push(event);
+        this.#events.push(event);
         event.setChoreography(this);
     }
     /**
@@ -63611,7 +63404,7 @@ class Choreography {
      * @param {Object ChoreographyActor} actor The actor to add
      */
     addActor(actor) {
-        this.actors.push(actor);
+        this.#actors.push(actor);
         actor.setChoreography(this);
     }
     /**
@@ -63619,11 +63412,11 @@ class Choreography {
      */
     toString(indent = '') {
         let arr = [];
-        for (let i = 0; i < this.events.length; ++i) {
-            arr.push(this.events[i].toString(indent));
+        for (let i = 0; i < this.#events.length; ++i) {
+            arr.push(this.#events[i].toString(indent));
         }
-        for (let i = 0; i < this.actors.length; ++i) {
-            arr.push(this.actors[i].toString(indent));
+        for (let i = 0; i < this.#actors.length; ++i) {
+            arr.push(this.#actors[i].toString(indent));
         }
         return arr.join('\n');
     }
@@ -63636,11 +63429,11 @@ class Choreography {
             if (this.previousTime != -0.5) {
                 this.currentTime = currentTime;
             }
-            for (let i = 0; i < this.events.length; ++i) {
-                this.events[i].step(this.previousTime, this.currentTime);
+            for (let i = 0; i < this.#events.length; ++i) {
+                this.#events[i].step(this.previousTime, this.currentTime);
             }
-            for (let i = 0; i < this.actors.length; ++i) {
-                this.actors[i].step(this.previousTime, this.currentTime);
+            for (let i = 0; i < this.#actors.length; ++i) {
+                this.#actors[i].step(this.previousTime, this.currentTime);
             }
             if (this.shouldLoop) {
                 this.shouldLoop = false;
@@ -63682,6 +63475,23 @@ class Choreography {
      */
     setActors(actors) {
         this.actors2 = actors;
+    }
+    toTimelineElement() {
+        const timeline = new Timeline();
+        const events = timeline.addChild(new TimelineGroup('Events'));
+        timeline.addChild(new TimelineGroup('Actors'));
+        for (const event of this.#events) {
+            events.addChild(event.toTimelineElement());
+        }
+        for (const actor of this.#actors) {
+            events.addChild(actor.toTimelineElement());
+        }
+        /*
+        for (let i = 0; i < this.#actors.length; ++i) {
+            arr.push(this.#actors[i].toString(indent));
+        }
+            */
+        return timeline;
     }
 }
 
@@ -63792,6 +63602,30 @@ class FlexAnimationTrack {
             }
         }
         return arr.join('\n');
+    }
+}
+
+class TimelineClip extends TimelineElement {
+    type = TimelineElementType.Clip;
+    constructor(name = 'Clip', startTime = 0, endTime = Infinity) {
+        super(name);
+        this.addProperty('start', TimelinePropertyType.Time, startTime);
+        this.addProperty('end', TimelinePropertyType.Time, endTime);
+    }
+    setStartTime(start) {
+        this.setPropertyValue('start', start);
+    }
+    getStartTime() {
+        return this.getPropertyValue('start');
+    }
+    setEndTime(end) {
+        this.setPropertyValue('end', end);
+    }
+    getEndTime() {
+        return this.getPropertyValue('end');
+    }
+    getLength() {
+        return this.getPropertyValue('end') - this.getPropertyValue('start');
     }
 }
 
@@ -64052,6 +63886,10 @@ class Event$1 {
                 return actor.getCharacter();
             }
         }
+    }
+    toTimelineElement() {
+        const clip = new TimelineClip(this.name, this.startTime, this.endTime);
+        return clip;
     }
 }
 var EventType;
@@ -65024,11 +64862,18 @@ const crc32 = function (str) {
 };
 
 class ChoreographiesManager {
-    static #playbackSpeed = 1.0;
-    static #playing = true;
-    static #choreographies = new Set();
-    static #sceneImage;
-    static async init(repositoryName, fileName) {
+    static #instance;
+    #playbackSpeed = 1.0;
+    #playing = true;
+    #choreographies = new Set();
+    #sceneImage;
+    constructor() {
+        if (ChoreographiesManager.#instance) {
+            return ChoreographiesManager.#instance;
+        }
+        ChoreographiesManager.#instance = this;
+    }
+    async init(repositoryName, fileName) {
         if (!this.#sceneImage) {
             this.#sceneImage = new Choreographies();
             await this.#sceneImage.loadFile(repositoryName, fileName);
@@ -65037,7 +64882,7 @@ class ChoreographiesManager {
             });
         }
     }
-    static async playChoreography(choreoName, actors, onStop) {
+    async playChoreography(choreoName, actors, onStop) {
         if (this.#sceneImage) {
             const choreography = await this.#sceneImage.getChoreography(choreoName);
             if (choreography) {
@@ -65050,7 +64895,13 @@ class ChoreographiesManager {
             }*/
         }
     }
-    static step(elapsed) {
+    async getChoreography(choreoName) {
+        if (this.#sceneImage) {
+            return await this.#sceneImage.getChoreography(choreoName);
+        }
+        return null;
+    }
+    step(elapsed) {
         if (!this.#playing) {
             return;
         }
@@ -65061,24 +64912,24 @@ class ChoreographiesManager {
             }
         }
     }
-    static reset() {
+    reset() {
         for (let choreography of this.#choreographies) {
             choreography.reset();
         }
     }
-    static stopAll() {
+    stopAll() {
         for (let choreography of this.#choreographies) {
             choreography.stop();
             this.#choreographies.delete(choreography);
         }
     }
-    static play() {
+    play() {
         this.#playing = true;
     }
-    static pause() {
+    pause() {
         this.#playing = false;
     }
-    static set playbackSpeed(playbackSpeed) {
+    set playbackSpeed(playbackSpeed) {
         this.#playbackSpeed = playbackSpeed;
     }
 }
@@ -65299,19 +65150,19 @@ class SourceMDL {
     getTextureDir() {
         return this.texturesDir;
     }
-    getDimensions(out = create$5()) {
+    getDimensions(out = create$4()) {
         if (this.header) {
             sub$2(out, this.header.hull_max, this.header.hull_min);
         }
         return out;
     }
-    getBBoxMin(out = create$5()) {
+    getBBoxMin(out = create$4()) {
         if (this.header) {
             copy$4(out, this.header.hull_min);
         }
         return out;
     }
-    getBBoxMax(out = create$5()) {
+    getBBoxMax(out = create$4()) {
         if (this.header) {
             copy$4(out, this.header.hull_max);
         }
@@ -65615,8 +65466,8 @@ class SourceMDL {
                             if (fb === undefined) {
                                 fb = Object.create(null);
                                 frame.bones[bone.name] = fb;
-                                fb.rot = create$5();
-                                fb.pos = create$5();
+                                fb.rot = create$4();
+                                fb.pos = create$4();
                                 fb.boneId = bone.boneId; //TODOv2
                             }
                             //frame.bones[bone.name] = fb;
@@ -65736,8 +65587,8 @@ class Animations {
 
 class Hitbox {
     name;
-    boundingBoxMin = create$5();
-    boundingBoxMax = create$5();
+    boundingBoxMin = create$4();
+    boundingBoxMax = create$4();
     parent;
     constructor(name, boundingBoxMin, boundingBoxMax, parent) {
         this.name = name;
@@ -65947,8 +65798,8 @@ class Source1ModelInstance extends Entity {
         //SHADER_PARAM( SHEENMAPMASKOFFSETX, SHADER_PARAM_TYPE_FLOAT, '0', 'X Offset of the mask relative to model space coords of target' )
         //SHADER_PARAM( SHEENMAPMASKOFFSETY, SHADER_PARAM_TYPE_FLOAT, '0', 'Y Offset of the mask relative to model space coords of target' )
         //SHADER_PARAM( SHEENMAPMASKDIRECTION, SHADER_PARAM_TYPE_INTEGER, '0', 'The direction the sheen should move (length direction of weapon) XYZ, 0,1,2' )
-        const dimensions = this.sourceModel.mdl.getDimensions(create$5());
-        const dimensionsMin = this.sourceModel.mdl.getBBoxMin(create$5());
+        const dimensions = this.sourceModel.mdl.getDimensions(create$4());
+        const dimensionsMin = this.sourceModel.mdl.getBBoxMin(create$4());
         const dimMax = Math.max(dimensions[0], dimensions[1], dimensions[2]);
         const direction = 0;
         let scaleX = 1;
@@ -65968,8 +65819,8 @@ class Source1ModelInstance extends Entity {
         this.materialsParams['SheenMaskOffsetX'] = offsetX;
         this.materialsParams['SheenMaskOffsetY'] = offsetX; //TODOv3: set y offset
         this.materialsParams['SheenMaskDirection'] = direction;
-        let min = create$5();
-        let max = create$5();
+        let min = create$4();
+        let max = create$4();
         this.getBoundsModelSpace(min, max);
         //console.error(min, max);
         scaleX = max[0] - min[0];
@@ -66149,8 +66000,8 @@ class Source1ModelInstance extends Entity {
         if (bones) {
             for (let bone of bones) {
                 let skeletonBone = this.#skeleton.addBone(bone.boneId, bone.name);
-                skeletonBone._initialQuaternion = copy$2(create$3(), bone.quaternion);
-                skeletonBone._initialPosition = copy$4(create$5(), bone.position);
+                skeletonBone._initialQuaternion = copy$2(create$2(), bone.quaternion);
+                skeletonBone._initialPosition = copy$4(create$4(), bone.position);
                 let parentBoneId = bone.parentBone;
                 skeletonBone.poseToBone = bone.poseToBone;
                 if (parentBoneId >= 0) {
@@ -66169,7 +66020,7 @@ class Source1ModelInstance extends Entity {
     }
     #initAttachements() {
         let attachements = this.sourceModel.getAttachments();
-        let localMat3 = create$7(); //todo: optimize
+        let localMat3 = create$6(); //todo: optimize
         if (attachements) {
             for (let attachement of attachements) {
                 let attachementBone = new Bone({ name: attachement.name });
@@ -66355,7 +66206,7 @@ class Source1ModelInstance extends Entity {
             vec3RandomBox(vec, hitbox.boundingBoxMin, hitbox.boundingBoxMax);
             //vec3.transformMat4(vec, vec, bone.boneMat);
             copy$4(initialVec, vec);
-            transformMat4$2(vec, vec, fromRotationTranslationScale(create$6(), bone.worldQuat, bone.worldPos, bone.worldScale));
+            transformMat4$2(vec, vec, fromRotationTranslationScale(create$5(), bone.worldQuat, bone.worldPos, bone.worldScale));
         }
         return vec;
     }
@@ -66912,9 +66763,9 @@ function StudioBoneWeight() {
 }
 function StudioVertex() {
     this.m_BoneWeights = new StudioBoneWeight();
-    this.m_vecPosition = create$5();
-    this.m_vecNormal = create$5();
-    this.m_vecTexCoord = create$1();
+    this.m_vecPosition = create$4();
+    this.m_vecNormal = create$4();
+    this.m_vecTexCoord = create();
 }
 class SourceEngineVVDLoader extends SourceBinaryLoader {
     parse(repository, fileName, arrayBuffer) {
@@ -68011,7 +67862,7 @@ class SourceEngineMDLLoader extends SourceBinaryLoader {
 }
 registerLoader('SourceEngineMDLLoader', SourceEngineMDLLoader);
 function readMatrix3x4(reader) {
-    let matrix = create$6();
+    let matrix = create$5();
     matrix[0] = reader.getFloat32();
     matrix[4] = reader.getFloat32();
     matrix[8] = reader.getFloat32();
@@ -68277,12 +68128,12 @@ class SourceEngineParticle {
     name;
     id;
     isAlive = false;
-    position = create$5();
-    prevPosition = create$5();
-    cpPosition = create$5();
-    cpOrientation = create$3(); //TODO: rename this var
-    cpOrientationInvert = create$3();
-    velocity = create$5();
+    position = create$4();
+    prevPosition = create$4();
+    cpPosition = create$4();
+    cpOrientation = create$2(); //TODO: rename this var
+    cpOrientationInvert = create$2();
+    velocity = create$4();
     color = new Color(255, 255, 255);
     initialColor = new Color(255, 255, 255);
     uMin = 0;
@@ -68588,7 +68439,7 @@ class SourceEngineParticle {
     * @return {vec3} The world position.
     */
     getWorldPos(worldPos) {
-        worldPos = worldPos || create$5();
+        worldPos = worldPos || create$4();
         //vec3.transformQuat(worldPos, this.position, this.cpOrientation);
         //vec3.transformQuat(worldPos, this.position, quat.create());
         //vec3.transformQuat(worldPos, this.position, this.system.currentOrientation);
@@ -68603,9 +68454,9 @@ class SourceEngineParticle {
     * @return {vec3} The world position.
     */
     getLocalPos(worldPos) {
-        worldPos = worldPos || create$5();
+        worldPos = worldPos || create$4();
         transformQuat$1(worldPos, this.position, this.cpOrientation);
-        transformQuat$1(worldPos, this.position, create$3());
+        transformQuat$1(worldPos, this.position, create$2());
         //vec3.add(worldPos, worldPos, this.cpPosition);
         return worldPos;
     }
@@ -68691,37 +68542,37 @@ const PARTICLE_ORIENTATION_ALIGN_TO_PARTICLE_NORMAL = 3;
 const PARTICLE_ORIENTATION_SCREENALIGN_TO_PARTICLE_NORMAL = 4;
 const PARTICLE_ORIENTATION_FULL_3AXIS_ROTATION = 5;
 
-create$5(); //TODO: use IDENTITY_VEC3
-create$3();
-const tempVec3$l = create$5();
-const tempQuat$5 = create$3();
-let mat$2 = create$6();
+create$4(); //TODO: use IDENTITY_VEC3
+create$2();
+const tempVec3$l = create$4();
+const tempQuat$5 = create$2();
+let mat$2 = create$5();
 class ControlPoint extends Entity {
     isControlPoint = true;
     #parentControlPoint;
-    currentWorldPosition = create$5();
-    prevWorldPosition = create$5();
-    deltaWorldPosition = create$5();
-    currentWorldQuaternion = create$3();
-    prevWorldQuaternion = create$3();
-    currentWorldTransformation = create$6();
-    prevWorldTransformation = create$6();
-    deltaWorldTransformation = create$6();
+    currentWorldPosition = create$4();
+    prevWorldPosition = create$4();
+    deltaWorldPosition = create$4();
+    currentWorldQuaternion = create$2();
+    prevWorldQuaternion = create$2();
+    currentWorldTransformation = create$5();
+    prevWorldTransformation = create$5();
+    deltaWorldTransformation = create$5();
     //TODO: keep these vectors ?
     // Forward vector
-    fVector = create$5();
+    fVector = create$4();
     // Up vector
-    uVector = create$5();
+    uVector = create$4();
     // Right vector
-    rVector = create$5();
+    rVector = create$4();
     parentModel = null;
     lastComputed = -1;
-    getWorldTransformation(mat = create$6()) {
+    getWorldTransformation(mat = create$5()) {
         this.getWorldQuaternion(tempQuat$5);
         this.getWorldPosition(tempVec3$l);
         return fromRotationTranslation$1(mat, tempQuat$5, tempVec3$l);
     }
-    getWorldQuaternion(q = create$3()) {
+    getWorldQuaternion(q = create$2()) {
         if (this.#parentControlPoint) {
             this.#parentControlPoint.getWorldQuaternion(q);
             mul$2(q, q, this._quaternion);
@@ -68769,7 +68620,7 @@ class ControlPoint extends Entity {
         invert$2(mat$2, this.prevWorldTransformation);
         mul$5(this.deltaWorldTransformation, this.currentWorldTransformation, mat$2);
     }
-    deltaPosFrom(other, out = create$5()) {
+    deltaPosFrom(other, out = create$4()) {
         return sub$2(out, other.currentWorldPosition, this.currentWorldPosition);
     }
     static async constructFromJSON(json) {
@@ -68824,8 +68675,8 @@ class SourceEngineParticleSystem extends Entity {
     livingParticles = new Array();
     // List of dead but reusable particles
     poolParticles = new Array();
-    currentOrientation = create$3();
-    prevOrientation = create$3();
+    currentOrientation = create$2();
+    prevOrientation = create$2();
     emitters = {}; //new Array();//todo transform to map
     initializers = {}; // = new Array();//todo transform to map
     operators = {}; //new Array();//todo transform to map
@@ -69168,7 +69019,7 @@ class SourceEngineParticleSystem extends Entity {
     #initControlPoint(particle) {
         this.getWorldPosition(particle.cpPosition);
     }
-    getWorldPosition(vec = create$5()) {
+    getWorldPosition(vec = create$4()) {
         return zero$4(vec);
     }
     stepControlPoint() {
@@ -69472,7 +69323,7 @@ class SourceEngineParticleSystem extends Entity {
         if (cp) {
             return cp.getWorldPosition();
         }
-        return create$5();
+        return create$4();
     }
     setControlPointPosition(cpId, position) {
         const cp = this.getOwnControlPoint(cpId);
@@ -69493,7 +69344,7 @@ class SourceEngineParticleSystem extends Entity {
             child.setControlPointParent(controlPointId, parentControlPointId);
         }*/
     }
-    getWorldQuaternion(q = create$3()) {
+    getWorldQuaternion(q = create$2()) {
         copy$2(q, this._quaternion);
         return q;
     }
@@ -69519,7 +69370,7 @@ class SourceEngineParticleSystem extends Entity {
             child.dispose();
         }
     }
-    getBounds(min = create$5(), max = create$5()) {
+    getBounds(min = create$4(), max = create$4()) {
         if (!this.livingParticles.length) {
             set$4(min, -1, -1, -1);
             set$4(max, 1, 1, 1);
@@ -70325,7 +70176,7 @@ const SourceBSPLumpPropStaticDirectory = function () {
 };
 const SourceBSPLumpPropStatic = function () {
     this.position = null;
-    this.angles = create$5();
+    this.angles = create$4();
     this.propType = null;
     this.firstLeaf = null;
     this.leafCount = null;
@@ -70593,7 +70444,7 @@ class SourceEngineBspTree {
             let index = model.headnode;
             let node = null;
             let plane = null;
-            create$5();
+            create$4();
             let dist = 0;
             while (index >= 0) {
                 node = lumpNodes[index];
@@ -70663,7 +70514,7 @@ function ParseVector2(out, str) {
     return null;
 }
 function parseLightColorIntensity(value, light, intensityMultiplier = 1) {
-    let colorValue = create$5();
+    let colorValue = create$4();
     let arrayValue = value.split(' ');
     colorValue[0] = Math.pow(arrayValue[0] / 255.0, 2.2);
     colorValue[1] = Math.pow(arrayValue[1] / 255.0, 2.2);
@@ -70720,7 +70571,7 @@ class MapEntity extends Entity {
     static incrementalId = 0;
     classname;
     outputs = [];
-    m_vecVelocity = create$5();
+    m_vecVelocity = create$4();
     m_flMoveDoneTime = -1;
     m_flLocalTime = 0;
     f = 0;
@@ -70790,7 +70641,7 @@ class MapEntity extends Entity {
         return this.m;
     }
     move(delta) {
-        this.position = add$5(create$5(), this._position, delta); //todo remove me
+        this.position = add$5(create$4(), this._position, delta); //todo remove me
     }
     /*set position(o) {
         if (o) {
@@ -70828,7 +70679,7 @@ class MapEntity extends Entity {
                 delete this.parentName;
             }
         }
-        this.position = scaleAndAdd$2(create$5(), this.getLocalOrigin(), this.getLocalVelocity(), delta); //TODO removeme : optimize
+        this.position = scaleAndAdd$2(create$4(), this.getLocalOrigin(), this.getLocalVelocity(), delta); //TODO removeme : optimize
     }
     setParent(parent) {
         //void CBaseEntity::SetParent(CBaseEntity *pParentEntity, int iAttachment)
@@ -71029,7 +70880,7 @@ class SourceBSP extends World {
             let propsStatic = lumpGameDatas.prps.lumpData;
             let propNames = propsStatic.name;
             let props = propsStatic.props;
-            const tempQuaternion = create$3();
+            const tempQuaternion = create$2();
             for (let prop of props) {
                 Source1ModelManager.createInstance(this.repository, propNames[prop.propType], true).then((model) => {
                     this.staticProps.addChild(model);
@@ -71063,7 +70914,7 @@ class SourceBSP extends World {
                 }
                 if (entity.classname == 'info_player_teamspawn') {
                     if (!this.characterSpawn) {
-                        this.characterSpawn = scale$5(create$5(), entity.origin.split(' '), 1);
+                        this.characterSpawn = scale$5(create$4(), entity.origin.split(' '), 1);
                     }
                 }
             }
@@ -71234,11 +71085,11 @@ class SourceBSP extends World {
                     const iMid = iMin + subdiv2;
                     const jMid = jMin + subdiv2;
                     if (v1 && v2 && v3 && v4) {
-                        const s1 = Vec3Middle(create$4(), v1, v2);
-                        const s2 = Vec3Middle(create$4(), v3, v4);
-                        const s3 = Vec3Middle(create$4(), v1, v3);
-                        const s4 = Vec3Middle(create$4(), v2, v4);
-                        const s5 = Vec3Middle(create$4(), s3, s4);
+                        const s1 = Vec3Middle(create$3(), v1, v2);
+                        const s2 = Vec3Middle(create$3(), v3, v4);
+                        const s3 = Vec3Middle(create$3(), v1, v3);
+                        const s4 = Vec3Middle(create$3(), v2, v4);
+                        const s5 = Vec3Middle(create$3(), s3, s4);
                         tesselateVertices[iMid][jMin] = s1;
                         tesselateVertices[iMid][jMax] = s2;
                         tesselateVertices[iMin][jMid] = s3;
@@ -71393,7 +71244,7 @@ class SourceBSP extends World {
             let model = lumpModels[modelIndex];
             if (model) {
                 if (model.numfaces == 0) {
-                    return create$5();
+                    return create$4();
                 }
                 function compare(v) {
                     for (let i = 0; i < 3; i++) {
@@ -71424,7 +71275,7 @@ class SourceBSP extends World {
                         }
                     }
                 }
-                return sub$2(create$5(), max, min);
+                return sub$2(create$4(), max, min);
             }
         }
         return null;
@@ -71955,7 +71806,7 @@ class SourceEngineBSPLoader extends SourceBinaryLoader {
             }
             staticDir.props.push(prop);
         }
-        create$3();
+        create$2();
         lump.lumpData = staticDir;
     }
     #parseLumpPakFile(reader, lump) {
@@ -72247,10 +72098,10 @@ class FuncDoor extends MapEntity {
     onFullyClosed = new OutputEvent('OnFullyClosed');
     model = null;
     speed = 0;
-    moveDir = create$5();
-    pos1 = create$5();
-    pos2 = create$5();
-    finalDest = create$5();
+    moveDir = create$4();
+    pos1 = create$4();
+    pos2 = create$4();
+    finalDest = create$4();
     setKeyValues(kvElement) {
         super.setKeyValues(kvElement);
         const result = /^\*(\d*)$/.exec(kvElement.model);
@@ -72329,7 +72180,7 @@ class FuncDoor extends MapEntity {
             this.moveDone();
             return;
         }
-        const vecDelta = sub$2(create$5(), destination, origin);
+        const vecDelta = sub$2(create$4(), destination, origin);
         const travelTime = length$5(vecDelta) / speed;
         this.setMoveDoneTime(travelTime);
         this.setLocalVelocity(scale$5(vecDelta, vecDelta, 1.0 / travelTime));
@@ -72513,8 +72364,8 @@ MapEntities.registerEntity('prop_dynamic_override', PropDynamic);
 MapEntities.registerEntity('prop_scalable', PropDynamic);
 MapEntities.registerEntity('prop_physics_override', PropDynamic);
 
-const tempQuaternion = create$3();
-const tempVec3$k = create$5();
+const tempQuaternion = create$2();
+const tempVec3$k = create$4();
 const SPOTLIGHT_DEFAULT_QUATERNION = fromValues$2(0, -1, 0, 1);
 class PropLightSpot extends MapEntity {
     spotLight = new SpotLight();
@@ -72872,12 +72723,12 @@ class TextureTransform extends Proxy {
         this.rotateVar = this.getData('rotatevar');
         this.scaleVar = this.getData('scalevar');
         this.resultVar = this.getData('resultvar');
-        variables.set(this.resultVar, create$6()); //TODO: fixme
+        variables.set(this.resultVar, create$5()); //TODO: fixme
     }
     execute(variables, proxyParams, time) {
         let center = fromValues(0.5, 0.5);
-        const mat = create$6(); //TODOv3 optimize
-        const temp = create$6(); //TODOv3 optimize
+        const mat = create$5(); //TODOv3 optimize
+        const temp = create$5(); //TODOv3 optimize
         if (this.centerVar) {
             center = variables.get(this.centerVar) || center;
         }
@@ -72965,7 +72816,7 @@ resultVar
         }
 */
 
-const TEMP_MAT4 = create$6();
+const TEMP_MAT4 = create$5();
 class BuildingRescueLevel extends Proxy {
     #datas;
     #r;
@@ -73464,7 +73315,7 @@ class TextureScroll extends Proxy {
         this.#textureScrollRate = toNumber(this.datas['texturescrollrate']) ?? 1;
         this.#textureScrollAngle = toNumber(DEG_TO_RAD * (this.datas['texturescrollangle'])) ?? 0;
         this.#textureScale = toNumber(this.datas['texturescale']) ?? 1;
-        variables.set(this.#textureScrollVar, create$6()); //TODO: fixme
+        variables.set(this.#textureScrollVar, create$5()); //TODO: fixme
     }
     execute(variables, proxyParams, time) {
         const rate = this.#textureScrollRate;
@@ -73570,7 +73421,7 @@ class WeaponLabelText extends Proxy {
     execute(variables, proxyParams, time) {
         const text = proxyParams.WeaponLabelText || '';
         const car = text.charCodeAt(this.#displayDigit);
-        const mat = create$6(); //TODOv3 optimize
+        const mat = create$5(); //TODOv3 optimize
         // 96 ASCII characters starting from 0x20 (space)
         let x, y;
         if ((car >= 32) && (car < 128)) {
@@ -73633,10 +73484,10 @@ class YellowLevel extends Proxy {
         }
         else {
             if (proxyParams.team == 0) {
-                variables.set(this.#resultVar, scale$5(create$5(), URINE_RED, proxyParams.jarate));
+                variables.set(this.#resultVar, scale$5(create$4(), URINE_RED, proxyParams.jarate));
             }
             else {
-                variables.set(this.#resultVar, scale$5(create$5(), URINE_BLU, proxyParams.jarate));
+                variables.set(this.#resultVar, scale$5(create$4(), URINE_BLU, proxyParams.jarate));
             }
         }
     }
@@ -74716,11 +74567,11 @@ function vtfToTexture(vtf, animatedTexture, srgb) {
     }
 }
 
-const IDENTITY_MAT4$3 = create$6();
-function GetTextureTransform(str, mat = create$6()) {
+const IDENTITY_MAT4$3 = create$5();
+function GetTextureTransform(str, mat = create$5()) {
     const center = fromValues(0.5, 0.5);
     //const mat = mat4.create();
-    const temp = create$6();
+    const temp = create$5();
     const centerResult = /center *(\d*(?:\.\d)?) *(\d*(?:\.\d)?)/.exec(str);
     const scaleResult = /scale *(\d*(?:\.\d)?) *(\d*(?:\.\d)?)/.exec(str);
     const rotateResult = /rotate *(\d*(?:\.\d)?)/.exec(str);
@@ -74794,7 +74645,7 @@ function getDefaultTexture() {
     return defaultTexture;
 }
 class SourceEngineMaterial extends Material {
-    #detailTextureTransform = create$6();
+    #detailTextureTransform = create$5();
     //static #defaultTexture;
     repository;
     fileName;
@@ -75245,7 +75096,7 @@ class SourceEngineMaterial extends Material {
 }
 //TODO: store regexes
 function readColor(value, color) {
-    color = color || create$5();
+    color = color || create$4();
     // With { } : color values in 0-255 range
     value = value.trim();
     let regex = /\{ *(\d*) *(\d*) *(\d*) *(\d*)* *\}/i;
@@ -75277,7 +75128,7 @@ function readColor(value, color) {
     return null;
 }
 function readVec2(value, vec) {
-    vec = vec || create$1();
+    vec = vec || create();
     let regex = /\[ *(-?\d*(\.\d*)?) *(-?\d*(\.\d*)?) *\]/i;
     let result = regex.exec(value);
     if (result) {
@@ -75410,7 +75261,7 @@ class CharacterMaterial extends SourceEngineMaterial {
         else {
             this.removeDefine('BLEND_TINT_BY_BASE_ALPHA');
         }
-        this.uniforms['g_cCloakColorTint'] = create$5();
+        this.uniforms['g_cCloakColorTint'] = create$4();
         this.variables.set('$SheenMaskScaleX', 1.0);
         this.variables.set('$SheenMaskScaleY', 1.0);
         this.variables.set('$SheenMaskOffsetX', 0.0);
@@ -75487,7 +75338,7 @@ class CustomWeaponMaterial extends SourceEngineMaterial {
         else {
             this.removeDefine('BLEND_TINT_BY_BASE_ALPHA');
         }
-        this.uniforms['g_cCloakColorTint'] = create$5();
+        this.uniforms['g_cCloakColorTint'] = create$4();
         this.variables.set('$SheenMaskScaleX', 1.0);
         this.variables.set('$SheenMaskScaleY', 1.0);
         this.variables.set('$SheenMaskOffsetX', 0.0);
@@ -75681,14 +75532,14 @@ class CustomWeaponMaterial extends SourceEngineMaterial {
 }
 SourceEngineVMTLoader.registerMaterial('customweapon', CustomWeaponMaterial);
 
-create$5();
+create$4();
 class EyeRefractMaterial extends SourceEngineMaterial {
-    #eyeOrigin = create$5();
-    #eyeForward = create$5();
-    #eyeUp = create$5();
-    #eyeRight = create$5();
-    #irisProjectionU = create$4();
-    #irisProjectionV = create$4();
+    #eyeOrigin = create$4();
+    #eyeForward = create$4();
+    #eyeUp = create$4();
+    #eyeRight = create$4();
+    #irisProjectionU = create$3();
+    #irisProjectionV = create$3();
     constructor(repository, fileName, parameters = {}) {
         parameters.useSrgb = false;
         super(repository, fileName, parameters);
@@ -75927,7 +75778,7 @@ class UnlitGenericMaterial extends SourceEngineMaterial {
 }
 SourceEngineVMTLoader.registerMaterial('unlitgeneric', UnlitGenericMaterial);
 
-const IDENTITY_MATRIX = create$6();
+const IDENTITY_MATRIX = create$5();
 class UnlitTwoTextureMaterial extends SourceEngineMaterial {
     constructor(repository, fileName, parameters = Object.create(null)) {
         super(repository, fileName, parameters);
@@ -76005,7 +75856,7 @@ class VertexLitGenericMaterial extends SourceEngineMaterial {
         else {
             this.removeDefine('BLEND_TINT_BY_BASE_ALPHA');
         }
-        this.uniforms['g_cCloakColorTint'] = create$5();
+        this.uniforms['g_cCloakColorTint'] = create$4();
         this.variables.set('$SheenMaskScaleX', 1.0);
         this.variables.set('$SheenMaskScaleY', 1.0);
         this.variables.set('$SheenMaskOffsetX', 0.0);
@@ -76078,7 +75929,7 @@ class WeaponDecalMaterial extends SourceEngineMaterial {
         this.polygonOffset = true;
         this.polygonOffsetFactor = -5;
         this.polygonOffsetUnits = -5;
-        this.setPatternTexCoordTransform(fromValues(1, 1), create$1(), 0);
+        this.setPatternTexCoordTransform(fromValues(1, 1), create(), 0);
     }
     afterProcessProxies(proxyParams) {
         let variables = this.variables;
@@ -76229,9 +76080,9 @@ class WeaponDecalMaterial extends SourceEngineMaterial {
         ]);
     }
     getTexCoordTransform(scale, translation, rotation) {
-        let transformMatrix = create$6();
-        let tempMatrix = create$6();
-        let tempVec3 = create$5();
+        let transformMatrix = create$5();
+        let tempMatrix = create$5();
+        let tempVec3 = create$4();
         tempVec3[0] = translation[0] - 0.5;
         tempVec3[1] = translation[1] - 0.5;
         tempVec3[2] = 0.0;
@@ -76244,7 +76095,7 @@ class WeaponDecalMaterial extends SourceEngineMaterial {
         fromZRotation(tempMatrix, rotation);
         multiply$6(transformMatrix, transformMatrix, tempMatrix);
         let offset = fromValues(0.5 / scale[0], 0.5 / scale[1]);
-        rotate(offset, offset, create$1(), -rotation);
+        rotate(offset, offset, create(), -rotation);
         tempVec3[0] = offset[0];
         tempVec3[1] = offset[1];
         tempVec3[2] = 0.0;
@@ -76569,8 +76420,8 @@ class SourceEngineParticleOperator {
     }
 }
 
-const tempVec3_1$2 = create$5();
-const tempVec3_2$8 = create$5();
+const tempVec3_1$2 = create$4();
+const tempVec3_2$8 = create$4();
 class CollisionViaTraces extends SourceEngineParticleOperator {
     static functionName = 'Collision via traces';
     #raycaster = new Raycaster();
@@ -76584,7 +76435,7 @@ class CollisionViaTraces extends SourceEngineParticleOperator {
         this.addParam('radius scale', PARAM_TYPE_FLOAT, 1.0);
         this.addParam('brush only', PARAM_TYPE_BOOL, 0);
         this.addParam('collision group', PARAM_TYPE_STRING, 0.0);
-        this.addParam('control point offset for fast collisions', PARAM_TYPE_VECTOR, create$5());
+        this.addParam('control point offset for fast collisions', PARAM_TYPE_VECTOR, create$4());
         this.addParam('control point movement distance tolerance', PARAM_TYPE_FLOAT, 5.0);
         this.addParam('kill particle on collision', PARAM_TYPE_BOOL, 0.0);
         this.addParam('trace accuracy tolerance', PARAM_TYPE_FLOAT, 24.0);
@@ -76651,8 +76502,8 @@ class CollisionViaTraces extends SourceEngineParticleOperator {
 }
 SourceEngineParticleOperators.registerOperator(CollisionViaTraces);
 
-let cpPosition = create$5();
-let tempVec3_2$7 = create$5();
+let cpPosition = create$4();
+let tempVec3_2$7 = create$4();
 class ConstrainDistanceToControlPoint extends SourceEngineParticleOperator {
     static functionName = 'Constrain distance to control point';
     constructor() {
@@ -76661,7 +76512,7 @@ class ConstrainDistanceToControlPoint extends SourceEngineParticleOperator {
         this.addParam('minimum distance', PARAM_TYPE_FLOAT, 0.0);
         this.addParam('maximum distance', PARAM_TYPE_FLOAT, 100.0);
         this.addParam('control point number', PARAM_TYPE_INT, 0);
-        this.addParam('offset of center', PARAM_TYPE_VECTOR, create$5());
+        this.addParam('offset of center', PARAM_TYPE_VECTOR, create$4());
         this.addParam('global center point', PARAM_TYPE_BOOL, 0);
         //	DMXELEMENT_UNPACK_FIELD('minimum distance', '0', float, m_fMinDistance)
         //	DMXELEMENT_UNPACK_FIELD('maximum distance', '100', float, m_fMaxDistance)
@@ -76697,8 +76548,8 @@ class ConstrainDistanceToControlPoint extends SourceEngineParticleOperator {
 }
 SourceEngineParticleOperators.registerOperator(ConstrainDistanceToControlPoint);
 
-const a$6 = create$5();
-const b = create$5();
+const a$6 = create$4();
+const b = create$4();
 /*
     DMXELEMENT_UNPACK_FIELD( "minimum distance", "0", float, m_fMinDistance )
     DMXELEMENT_UNPACK_FIELD( "maximum distance", "100", float, m_flMaxDistance0 )
@@ -76721,7 +76572,7 @@ class ConstrainDistanceToPathBetweenTwoControlPoints extends SourceEngineParticl
         this.addParam('travel time', PARAM_TYPE_FLOAT, 10);
         this.addParam('minimum distance', PARAM_TYPE_FLOAT, 0);
         this.addParam('maximum distance', PARAM_TYPE_FLOAT, 100);
-        this.addParam('offset of center', PARAM_TYPE_VECTOR, create$5());
+        this.addParam('offset of center', PARAM_TYPE_VECTOR, create$4());
         // TODO: add more parameters
     }
     applyConstraint(particle) {
@@ -76732,7 +76583,7 @@ class ConstrainDistanceToPathBetweenTwoControlPoints extends SourceEngineParticl
         const startCP = this.particleSystem.getControlPoint(startNumber);
         const endCP = this.particleSystem.getControlPoint(endNumber);
         if (startCP && endCP) {
-            const delta = sub$2(create$5(), endCP.getWorldPosition(b), startCP.getWorldPosition(a$6));
+            const delta = sub$2(create$4(), endCP.getWorldPosition(b), startCP.getWorldPosition(a$6));
             scaleAndAdd$2(particle.position, a$6, delta, travelTime);
         }
     }
@@ -76869,7 +76720,7 @@ class EmitNoise extends SourceEngineParticleOperator {
 }
 SourceEngineParticleOperators.registerOperator(EmitNoise);
 
-let tempVec3$j = create$5();
+let tempVec3$j = create$4();
 class PullTowardsControlPoint extends SourceEngineParticleOperator {
     static functionName = 'Pull towards control point';
     constructor() {
@@ -76910,14 +76761,14 @@ class RandomForce$1 extends SourceEngineParticleOperator {
     static functionName = 'random force';
     constructor() {
         super();
-        this.addParam('min force', PARAM_TYPE_VECTOR, create$5());
-        this.addParam('max force', PARAM_TYPE_VECTOR, create$5());
+        this.addParam('min force', PARAM_TYPE_VECTOR, create$4());
+        this.addParam('max force', PARAM_TYPE_VECTOR, create$4());
         this.addParam('amount of force', PARAM_TYPE_FLOAT, 0);
     }
     doForce(particle, elapsedTime, accumulatedForces) {
-        const minForce = this.getParameter('min force') || create$5();
-        const maxForce = this.getParameter('max force') || create$5();
-        const f = vec3RandomBox(create$5(), minForce, maxForce);
+        const minForce = this.getParameter('min force') || create$4();
+        const maxForce = this.getParameter('max force') || create$4();
+        const f = vec3RandomBox(create$4(), minForce, maxForce);
         /*if (elapsedTime) {
             vec3.scale(f, f , 1 / elapsedTime);
         }*/
@@ -76926,10 +76777,10 @@ class RandomForce$1 extends SourceEngineParticleOperator {
 }
 SourceEngineParticleOperators.registerOperator(RandomForce$1);
 
-const tempVec3$i = create$5();
-const tempVec3_2$6 = create$5();
-create$5();
-create$3();
+const tempVec3$i = create$4();
+const tempVec3_2$6 = create$4();
+create$4();
+create$2();
 class TwistAroundAxis extends SourceEngineParticleOperator {
     static functionName = 'twist around axis';
     constructor() {
@@ -77038,7 +76889,7 @@ class LifetimeRandom extends SourceEngineParticleOperator {
 }
 SourceEngineParticleOperators.registerOperator(LifetimeRandom);
 
-const a$5 = create$5();
+const a$5 = create$4();
 class PositionAlongPathRandom extends SourceEngineParticleOperator {
     static functionName = 'Position Along Path Random';
     sequence = 0;
@@ -77075,8 +76926,8 @@ class PositionAlongPathRandom extends SourceEngineParticleOperator {
 }
 SourceEngineParticleOperators.registerOperator(PositionAlongPathRandom);
 
-const tempVec3_1$1 = create$5();
-const tempVec3_2$5 = create$5();
+const tempVec3_1$1 = create$4();
+const tempVec3_2$5 = create$4();
 class PositionAlongPathSequential extends SourceEngineParticleOperator {
     static functionName = 'Position Along Path Sequential';
     sequence = 0;
@@ -77146,13 +76997,13 @@ class PositionFromParentParticles extends SourceEngineParticleOperator {
 }
 SourceEngineParticleOperators.registerOperator(PositionFromParentParticles);
 
-const tempVec3$h = create$5();
+const tempVec3$h = create$4();
 class PositionModifyOffsetRandom extends SourceEngineParticleOperator {
     static functionName = 'Position Modify Offset Random';
     constructor() {
         super();
-        this.addParam('offset min', PARAM_TYPE_VECTOR, create$5());
-        this.addParam('offset max', PARAM_TYPE_VECTOR, create$5());
+        this.addParam('offset min', PARAM_TYPE_VECTOR, create$4());
+        this.addParam('offset max', PARAM_TYPE_VECTOR, create$4());
         this.addParam('control_point_number', PARAM_TYPE_INT, 0);
         this.addParam('offset in local space 0/1', PARAM_TYPE_BOOL, 0);
         this.addParam('offset proportional to radius 0/1', PARAM_TYPE_BOOL, 0);
@@ -77166,7 +77017,7 @@ class PositionModifyOffsetRandom extends SourceEngineParticleOperator {
         const localSpace = this.getParameter('offset in local space 0/1');
         const offsetMin = this.getParameter('offset min');
         const offsetMax = this.getParameter('offset max');
-        random$2(create$1(), 1.0);
+        random$2(create(), 1.0);
         const controlPointNumber = this.getParameter('control_point_number');
         const offset = vec3RandomBox(tempVec3$h, offsetMin, offsetMax);
         if (localSpace == 1) {
@@ -77201,7 +77052,7 @@ void VectorRotate(const float *in1, const matrix3x4_t& in2, float *out)
 }
 SourceEngineParticleOperators.registerOperator(PositionModifyOffsetRandom);
 
-const a$4 = create$5();
+const a$4 = create$4();
 class PositionOnModelRandom extends SourceEngineParticleOperator {
     static functionName = 'Position on Model Random';
     constructor() {
@@ -77209,7 +77060,7 @@ class PositionOnModelRandom extends SourceEngineParticleOperator {
         this.addParam('control_point_number', PARAM_TYPE_INT, 0);
         this.addParam('force to be inside model', PARAM_TYPE_INT, 0);
         this.addParam('hitbox scale', PARAM_TYPE_INT, 1);
-        this.addParam('direction bias', PARAM_TYPE_VECTOR, create$5());
+        this.addParam('direction bias', PARAM_TYPE_VECTOR, create$4());
         //	DMXELEMENT_UNPACK_FIELD( 'control_point_number', '0', int, m_nControlPointNumber )
         //	DMXELEMENT_UNPACK_FIELD( 'force to be inside model', '0', int, m_nForceInModel )
         //	DMXELEMENT_UNPACK_FIELD( 'hitbox scale', '1.0', int, m_flHitBoxScale )
@@ -77224,8 +77075,8 @@ class PositionOnModelRandom extends SourceEngineParticleOperator {
             //TODOv3
             let bones = [];
             particle.bones = bones;
-            particle.initialVec = create$5();
-            const position = controllingModel.getRandomPointOnModel(create$5(), particle.initialVec, bones);
+            particle.initialVec = create$4();
+            const position = controllingModel.getRandomPointOnModel(create$4(), particle.initialVec, bones);
             //vec3.copy(particle.position, position);
             //vec3.copy(particle.prevPosition, position);
             if (controlPoint) {
@@ -77243,13 +77094,13 @@ class PositionOnModelRandom extends SourceEngineParticleOperator {
 }
 SourceEngineParticleOperators.registerOperator(PositionOnModelRandom);
 
-let tempVec3$g = create$5();
+let tempVec3$g = create$4();
 class PositionWithinBoxRandom extends SourceEngineParticleOperator {
     static functionName = 'Position Within Box Random';
     constructor() {
         super();
-        this.addParam('min', PARAM_TYPE_VECTOR, create$5());
-        this.addParam('max', PARAM_TYPE_VECTOR, create$5());
+        this.addParam('min', PARAM_TYPE_VECTOR, create$4());
+        this.addParam('max', PARAM_TYPE_VECTOR, create$4());
         this.addParam('control point number', PARAM_TYPE_INT, 0);
         //	DMXELEMENT_UNPACK_FIELD('min', '0 0 0', Vector, m_vecMin)
         //	DMXELEMENT_UNPACK_FIELD('max', '0 0 0', Vector, m_vecMax)
@@ -77271,7 +77122,7 @@ class PositionWithinBoxRandom extends SourceEngineParticleOperator {
 }
 SourceEngineParticleOperators.registerOperator(PositionWithinBoxRandom);
 
-let tempVec3$f = create$5();
+let tempVec3$f = create$4();
 class PositionWithinSphereRandom extends SourceEngineParticleOperator {
     static functionName = 'Position Within Sphere Random';
     constructor() {
@@ -77280,8 +77131,8 @@ class PositionWithinSphereRandom extends SourceEngineParticleOperator {
         this.addParam('distance_max', PARAM_TYPE_FLOAT, 0);
         this.addParam('distance_bias', PARAM_TYPE_VECTOR, fromValues$4(1, 1, 1));
         this.addParam('distance_bias_absolute_value', PARAM_TYPE_VECTOR, fromValues$4(0, 0, 0));
-        this.addParam('speed_in_local_coordinate_system_min', PARAM_TYPE_VECTOR, create$5());
-        this.addParam('speed_in_local_coordinate_system_max', PARAM_TYPE_VECTOR, create$5());
+        this.addParam('speed_in_local_coordinate_system_min', PARAM_TYPE_VECTOR, create$4());
+        this.addParam('speed_in_local_coordinate_system_max', PARAM_TYPE_VECTOR, create$4());
         this.addParam('speed_min', PARAM_TYPE_FLOAT, 0);
         this.addParam('speed_max', PARAM_TYPE_FLOAT, 0);
         this.addParam('control_point_number', PARAM_TYPE_INT, 0);
@@ -77317,7 +77168,7 @@ class PositionWithinSphereRandom extends SourceEngineParticleOperator {
         const speed = (speed_max - speed_min) * Math.random() + speed_min;
         //const v = vec3.random(vec3.create(), distance);
         //Lerp(flLength, m_fRadiusMin, m_fRadiusMax);
-        const randpos = create$5(); //, randDir;
+        const randpos = create$4(); //, randDir;
         let cp;
         //for(int nTryCtr = 0 ; nTryCtr < 10; nTryCtr++)
         {
@@ -77376,7 +77227,7 @@ class PositionWithinSphereRandom extends SourceEngineParticleOperator {
         }
         //vec3.transformQuat(particle.velocity, particle.velocity, particle.cpOrientation/*cp.getWorldQuaternion()*/);
         if (speed) {
-            const v = random$5(create$5(), speed);
+            const v = random$5(create$4(), speed);
             add$5(particle.velocity, particle.velocity, v);
             //vec3.add(randpos, randpos, v);
         }
@@ -77416,7 +77267,7 @@ class RadiusRandom extends SourceEngineParticleOperator {
 }
 SourceEngineParticleOperators.registerOperator(RadiusRandom);
 
-const a$3 = create$5();
+const a$3 = create$4();
 class RemapControlPointToScalar extends SourceEngineParticleOperator {
     static functionName = 'remap control point to scalar';
     constructor() {
@@ -77487,22 +77338,22 @@ class RemapControlPointToScalar extends SourceEngineParticleOperator {
 }
 SourceEngineParticleOperators.registerOperator(RemapControlPointToScalar);
 
-let tempVec3_1 = create$5();
-let tempVec3_2$4 = create$5();
-let tempVec3_3$1 = create$5();
-let tempVec3_4 = create$5();
-let tempVec3_5 = create$5();
-const a$2 = create$5();
+let tempVec3_1 = create$4();
+let tempVec3_2$4 = create$4();
+let tempVec3_3$1 = create$4();
+let tempVec3_4 = create$4();
+let tempVec3_5 = create$4();
+const a$2 = create$4();
 class RemapControlPointToVector extends SourceEngineParticleOperator {
     static functionName = 'remap control point to vector';
     constructor() {
         super();
         this.addParam('operator strength scale control point', PARAM_TYPE_INT, 1);
         this.addParam('input control point number', PARAM_TYPE_INT, 0);
-        this.addParam('input minimum', PARAM_TYPE_VECTOR, create$5());
-        this.addParam('input maximum', PARAM_TYPE_VECTOR, create$5());
-        this.addParam('output minimum', PARAM_TYPE_VECTOR, create$5());
-        this.addParam('output maximum', PARAM_TYPE_VECTOR, create$5());
+        this.addParam('input minimum', PARAM_TYPE_VECTOR, create$4());
+        this.addParam('input maximum', PARAM_TYPE_VECTOR, create$4());
+        this.addParam('output minimum', PARAM_TYPE_VECTOR, create$4());
+        this.addParam('output maximum', PARAM_TYPE_VECTOR, create$4());
         this.addParam('output field', PARAM_TYPE_INT, 1);
         this.addParam('output is scalar of initial random range', PARAM_TYPE_BOOL, 0);
         /*'operator strength scale control point' 'int' '16'
@@ -77629,9 +77480,9 @@ SourceEngineParticleOperators.registerOperator(RemapNoiseToScalar);
                     'operator start fadein' 'float' '0'
 */
 
-const tempQuat$4 = create$3();
-const tempVec3$e = create$5();
-const tempVec3_2$3 = create$5();
+const tempQuat$4 = create$2();
+const tempVec3$e = create$4();
+const tempVec3_2$3 = create$4();
 class RemapScalarToVector extends SourceEngineParticleOperator {
     static functionName = 'Remap Scalar to Vector';
     constructor() {
@@ -77642,7 +77493,7 @@ class RemapScalarToVector extends SourceEngineParticleOperator {
         this.addParam('input minimum', PARAM_TYPE_FLOAT, 0);
         this.addParam('input maximum', PARAM_TYPE_FLOAT, 1);
         this.addParam('output field', PARAM_TYPE_INT, 0);
-        this.addParam('output minimum', PARAM_TYPE_VECTOR3, create$5());
+        this.addParam('output minimum', PARAM_TYPE_VECTOR3, create$4());
         this.addParam('output maximum', PARAM_TYPE_VECTOR3, fromValues$4(1, 1, 1));
         this.addParam('output is scalar of initial random range', PARAM_TYPE_BOOL, 0);
         this.addParam('use local system', PARAM_TYPE_BOOL, 1);
@@ -78088,10 +77939,10 @@ class VelocityNoise extends SourceEngineParticleOperator {
         this.addParam('Time Noise Coordinate Scale', PARAM_TYPE_FLOAT, 1.0);
         this.addParam('Spatial Noise Coordinate Scale', PARAM_TYPE_FLOAT, 0.01);
         this.addParam('Time Coordinate Offset', PARAM_TYPE_FLOAT, 0.0);
-        this.addParam('Spatial Coordinate Offset', PARAM_TYPE_VECTOR, create$5());
-        this.addParam('Absolute Value', PARAM_TYPE_VECTOR, create$5());
-        this.addParam('Invert Abs Value', PARAM_TYPE_VECTOR, create$5());
-        this.addParam('output minimum', PARAM_TYPE_VECTOR, create$5());
+        this.addParam('Spatial Coordinate Offset', PARAM_TYPE_VECTOR, create$4());
+        this.addParam('Absolute Value', PARAM_TYPE_VECTOR, create$4());
+        this.addParam('Invert Abs Value', PARAM_TYPE_VECTOR, create$4());
+        this.addParam('output minimum', PARAM_TYPE_VECTOR, create$4());
         this.addParam('output maximum', PARAM_TYPE_VECTOR, fromValues$4(1, 1, 1));
         this.addParam('Apply Velocity in Local Space (0/1)', PARAM_TYPE_BOOL, false);
         //	DMXELEMENT_UNPACK_FIELD('Control Point Number','0',int,m_nControlPointNumber)
@@ -78213,7 +78064,7 @@ class VelocityNoise extends SourceEngineParticleOperator {
                     fl4NoiseZ = 1.0 - fl4NoiseZ; //SubSIMD(Four_Ones, fl4NoiseZ);
                 }
             }
-            const fvOffset = create$5();
+            const fvOffset = create$4();
             fvOffset[0] = fl4ValueBaseX + fl4ValueScaleX * fl4NoiseX; //AddSIMD(fl4ValueBaseX, (MulSIMD(fl4ValueScaleX , fl4NoiseX)));
             fvOffset[1] = fl4ValueBaseY + fl4ValueScaleY * fl4NoiseY; //AddSIMD(fl4ValueBaseY, (MulSIMD(fl4ValueScaleY , fl4NoiseY)));
             fvOffset[2] = fl4ValueBaseZ + fl4ValueScaleZ * fl4NoiseZ; //AddSIMD(fl4ValueBaseZ, (MulSIMD(fl4ValueScaleZ , fl4NoiseZ)));
@@ -78243,8 +78094,8 @@ class VelocityNoise extends SourceEngineParticleOperator {
 }
 SourceEngineParticleOperators.registerOperator(VelocityNoise);
 
-let identityVec3 = create$5();
-const tempVec3$d = create$5();
+let identityVec3 = create$4();
+const tempVec3$d = create$4();
 class VelocityRandom$1 extends SourceEngineParticleOperator {
     static functionName = 'Velocity Random';
     constructor() {
@@ -78252,8 +78103,8 @@ class VelocityRandom$1 extends SourceEngineParticleOperator {
         this.addParam('control_point_number', PARAM_TYPE_INT, 0);
         this.addParam('random_speed_min', PARAM_TYPE_FLOAT, 0);
         this.addParam('random_speed_max', PARAM_TYPE_FLOAT, 0);
-        this.addParam('speed_in_local_coordinate_system_min', PARAM_TYPE_VECTOR, create$5());
-        this.addParam('speed_in_local_coordinate_system_max', PARAM_TYPE_VECTOR, create$5());
+        this.addParam('speed_in_local_coordinate_system_min', PARAM_TYPE_VECTOR, create$4());
+        this.addParam('speed_in_local_coordinate_system_max', PARAM_TYPE_VECTOR, create$4());
         //	DMXELEMENT_UNPACK_FIELD('control_point_number', '0', int, m_nControlPointNumber)
         //	DMXELEMENT_UNPACK_FIELD('random_speed_min', '0', float, m_fSpeedMin)
         //	DMXELEMENT_UNPACK_FIELD('random_speed_max', '0', float, m_fSpeedMax)
@@ -78266,7 +78117,7 @@ class VelocityRandom$1 extends SourceEngineParticleOperator {
         const random_speed_min = this.getParameter('random_speed_min');
         const random_speed_max = this.getParameter('random_speed_max');
         const m_nControlPointNumber = this.getParameter('control_point_number');
-        const randomVector = create$5();
+        const randomVector = create$4();
         const randomSpeed = (random_speed_max - random_speed_min) * Math.random() + random_speed_min;
         if (exactEquals$4(speed_in_local_coordinate_system_min, identityVec3) &&
             exactEquals$4(speed_in_local_coordinate_system_max, identityVec3)) {
@@ -78491,9 +78342,9 @@ class LifespanDecay$1 extends SourceEngineParticleOperator {
 }
 SourceEngineParticleOperators.registerOperator(LifespanDecay$1);
 
-const tempVec3$c = create$5();
-const tempMat4 = create$6();
-const IDENTITY_MAT4$2 = create$6();
+const tempVec3$c = create$4();
+const tempMat4 = create$5();
+const IDENTITY_MAT4$2 = create$5();
 class LockToBone$1 extends SourceEngineParticleOperator {
     static functionName = 'Movement Lock to Bone';
     constructor() {
@@ -78525,7 +78376,7 @@ class LockToBone$1 extends SourceEngineParticleOperator {
                     for (let [bone, boneWeight] of bones) {
                         let boneMat;
                         if (bone) {
-                            boneMat = fromRotationTranslationScale(create$6(), bone.worldQuat, bone.worldPos, bone.worldScale);
+                            boneMat = fromRotationTranslationScale(create$5(), bone.worldQuat, bone.worldPos, bone.worldScale);
                         }
                         else {
                             boneMat = IDENTITY_MAT4$2;
@@ -78558,15 +78409,15 @@ class LockToBone$1 extends SourceEngineParticleOperator {
 }
 SourceEngineParticleOperators.registerOperator(LockToBone$1);
 
-const tempVec3$b = create$5();
-const tempVec3_2$2 = create$5();
-const tempVec3_3 = create$5();
+const tempVec3$b = create$4();
+const tempVec3_2$2 = create$4();
+const tempVec3_3 = create$4();
 class MovementBasic extends SourceEngineParticleOperator {
     static functionName = 'Movement Basic';
     constructor() {
         super();
         this.addParam('drag', PARAM_TYPE_FLOAT, 0);
-        this.addParam('gravity', PARAM_TYPE_VECTOR, create$5());
+        this.addParam('gravity', PARAM_TYPE_VECTOR, create$4());
         this.addParam('max constraint passes', PARAM_TYPE_INT, 3);
     }
     doOperate(particle, elapsedTime) {
@@ -78660,9 +78511,9 @@ class MovementLocktoControlPoint extends SourceEngineParticleOperator {
             }
             particle.cpPosition = cp.getWorldPosition();
             particle.cpOrientation = cp.getWorldQuaternion();
-            let invertQuat = invert$1(create$3(), particle.initialCPQuaternion); //TODO: optimize
-            const delta = subtract$3(create$5(), particle.cpPosition, particle.initialCPPosition); //TODO: optimize
-            const deltaQuaternion = mul$2(create$3(), particle.cpOrientation, invertQuat);
+            let invertQuat = invert$1(create$2(), particle.initialCPQuaternion); //TODO: optimize
+            const delta = subtract$3(create$4(), particle.cpPosition, particle.initialCPPosition); //TODO: optimize
+            const deltaQuaternion = mul$2(create$2(), particle.cpOrientation, invertQuat);
             normalize$3(deltaQuaternion, deltaQuaternion);
             const deltaL = length$5(delta);
             particle.deltaL = particle.deltaL || 0;
@@ -78672,8 +78523,8 @@ class MovementLocktoControlPoint extends SourceEngineParticleOperator {
                 particle.posLockedToCP = -1;
             }
             clone$4(particle.position);
-            let delta2 = sub$2(create$5(), particle.position, particle.cpPosition);
-            let delta3 = sub$2(create$5(), particle.prevPosition, particle.cpPosition);
+            let delta2 = sub$2(create$4(), particle.position, particle.cpPosition);
+            let delta3 = sub$2(create$4(), particle.prevPosition, particle.cpPosition);
             transformQuat$1(delta2, delta2, deltaQuaternion);
             transformQuat$1(delta3, delta3, deltaQuaternion);
             add$5(particle.position, particle.cpPosition, delta2);
@@ -78718,7 +78569,7 @@ lock rotation
 This will update a particle relative to a Control Point's rotation as well as position.
 */
 
-const tempVec3$a = create$5();
+const tempVec3$a = create$4();
 class MovementMaxVelocity extends SourceEngineParticleOperator {
     static functionName = 'Movement Max Velocity';
     constructor() {
@@ -78737,7 +78588,7 @@ class MovementMaxVelocity extends SourceEngineParticleOperator {
 }
 SourceEngineParticleOperators.registerOperator(MovementMaxVelocity);
 
-let tempVec3$9 = create$5();
+let tempVec3$9 = create$4();
 class MovementRotateParticleAroundAxis$1 extends SourceEngineParticleOperator {
     static functionName = 'Movement Rotate Particle Around Axis';
     once = true;
@@ -78758,9 +78609,9 @@ class MovementRotateParticleAroundAxis$1 extends SourceEngineParticleOperator {
         const rate = this.getParameter('Rotation Rate');
         const useLocalSpace = this.getParameter('Use Local Space');
         const controlPointNumber = this.getParameter('Control Point');
-        const modelView = create$6();
+        const modelView = create$5();
         identity$2(modelView);
-        const q = create$3(); //TODO: memory
+        const q = create$2(); //TODO: memory
         const cp = particle.system.getControlPoint(controlPointNumber);
         if (cp) {
             if (useLocalSpace == 1) {
@@ -78885,15 +78736,15 @@ SourceEngineParticleOperators.registerOperator(OscillateScalar$1);
                     'oscillation field' 'int' '3'
                     'oscillation field' 'int' '4'
                     'oscillation field' 'int' '7'*/
-const tempVec3Freq = create$5();
-const tempVec3Rate = create$5();
+const tempVec3Freq = create$4();
+const tempVec3Rate = create$4();
 class OscillateVector$1 extends SourceEngineParticleOperator {
     static functionName = 'Oscillate Vector';
     constructor() {
         super();
         this.addParam('oscillation field', PARAM_TYPE_INT, 0);
-        this.addParam('oscillation rate min', PARAM_TYPE_VECTOR3, create$5());
-        this.addParam('oscillation rate max', PARAM_TYPE_VECTOR3, create$5());
+        this.addParam('oscillation rate min', PARAM_TYPE_VECTOR3, create$4());
+        this.addParam('oscillation rate max', PARAM_TYPE_VECTOR3, create$4());
         this.addParam('oscillation frequency min', PARAM_TYPE_VECTOR3, fromValues$4(1.0, 1.0, 1.0));
         this.addParam('oscillation frequency max', PARAM_TYPE_VECTOR3, fromValues$4(1.0, 1.0, 1.0));
         this.addParam('proportional 0/1', PARAM_TYPE_BOOL, 1);
@@ -78925,7 +78776,7 @@ class OscillateVector$1 extends SourceEngineParticleOperator {
         //C4VAttributeWriteIterator pOscField (m_nField, pParticles) ;
         const fl4CurTime = particle.currentTime;
         //const nRandomOffset = particle->OperatorRandomSampleOffset();
-        const fvOscVal = create$5(); //todov3optimize
+        const fvOscVal = create$4(); //todov3optimize
         const flStrength = 1;
         const fl4ScaleFactor = flStrength * elapsedTime;
         const fl4CosFactorMultiplier = m_flOscMult;
@@ -78935,9 +78786,9 @@ class OscillateVector$1 extends SourceEngineParticleOperator {
         const fl4StartTimeWidth = m_flStartTime_max - m_flStartTime_min;
         const fl4EndTimeWidth = m_flEndTime_max - m_flEndTime_min;
         const fvFrequencyMin = m_FrequencyMin;
-        const fvFrequencyWidth = sub$2(create$5(), m_FrequencyMax, m_FrequencyMin); //todov3optimize
+        const fvFrequencyWidth = sub$2(create$4(), m_FrequencyMax, m_FrequencyMin); //todov3optimize
         const fvRateMin = m_RateMin;
-        const fvRateWidth = sub$2(create$5(), m_RateMax, m_RateMin); //todov3optimize
+        const fvRateWidth = sub$2(create$4(), m_RateMax, m_RateMin); //todov3optimize
         //int nCtr = pParticles->m_nPaddedActiveParticles;
         //do
         {
@@ -78975,7 +78826,7 @@ class OscillateVector$1 extends SourceEngineParticleOperator {
                 //fvRate = AddSIMD(fvRateMin, MulSIMD(fvRateWidth, fvRate));
                 mul$4(fvRate, fvRate, fvRateWidth);
                 add$5(fvRate, fvRate, fvRateMin);
-                const fvCos = create$5(); //todov3optimize
+                const fvCos = create$4(); //todov3optimize
                 if (m_bProportional) {
                     fl4LifeTime = particle.currentTime / particle.timeToLive;
                     fvCos[0] = fl4CosFactorProp * fvFrequency[0] * fl4LifeTime + fl4CosFactorAdd;
@@ -78985,14 +78836,14 @@ class OscillateVector$1 extends SourceEngineParticleOperator {
                 else {
                     scale$5(fvCos, fvFrequency, fl4CosFactor);
                 }
-                const fvOscMultiplier = create$5(); //todov3optimize
+                const fvOscMultiplier = create$4(); //todov3optimize
                 scale$5(fvOscMultiplier, fvRate, fl4ScaleFactor);
-                let fvOutput = create$5(); //TODO: perf//todov3optimize
+                let fvOutput = create$4(); //TODO: perf//todov3optimize
                 this.getInputValueAsVector(m_nField, particle, fvOutput); //*pOscField;
                 fvOscVal[0] = AddSIMD(fvOutput[0], MulSIMD(fvOscMultiplier[0], SinEst01SIMD(fvCos[0])));
                 fvOscVal[1] = AddSIMD(fvOutput[1], MulSIMD(fvOscMultiplier[1], SinEst01SIMD(fvCos[1])));
                 fvOscVal[2] = AddSIMD(fvOutput[2], MulSIMD(fvOscMultiplier[2], SinEst01SIMD(fvCos[2])));
-                const pOscField = create$5(); //todov3optimize
+                const pOscField = create$4(); //todov3optimize
                 if (m_nField == 6) {
                     pOscField[0] = MaskedAssign(fl4GoodMask, MaxSIMD(MinSIMD(fvOscVal[0], Four_Ones), Four_Zeros), fvOutput[0]);
                     pOscField[1] = MaskedAssign(fl4GoodMask, MaxSIMD(MinSIMD(fvOscVal[1], Four_Ones), Four_Zeros), fvOutput[1]);
@@ -79073,7 +78924,7 @@ class RadiusScale extends SourceEngineParticleOperator {
 }
 SourceEngineParticleOperators.registerOperator(RadiusScale);
 
-const a$1 = create$5();
+const a$1 = create$4();
 class RemapCPSpeedToCP extends SourceEngineParticleOperator {
     static functionName = 'remap cp speed to cp';
     constructor() {
@@ -79107,7 +78958,7 @@ class RemapCPSpeedToCP extends SourceEngineParticleOperator {
 }
 SourceEngineParticleOperators.registerOperator(RemapCPSpeedToCP);
 
-const tempVec3$8 = create$5();
+const tempVec3$8 = create$4();
 class RemapDistanceToControlPointToScalar extends SourceEngineParticleOperator {
     static functionName = 'Remap Distance to Control Point to Scalar';
     constructor() {
@@ -79174,7 +79025,7 @@ SourceEngineParticleOperators.registerOperator(RemapDistanceToControlPointToScal
                     'only active within specified distance' 'bool' '0'
                     */
 
-const tempVec3$7 = create$5();
+const tempVec3$7 = create$4();
 class RemapDistanceToControlPointToVector extends SourceEngineParticleOperator {
     static functionName = 'Remap Distance to Control Point to Vector';
     constructor() {
@@ -79380,14 +79231,14 @@ class SetChildControlPointsFromParticlePositions extends SourceEngineParticleOpe
         //v.add(particle.offsetPosition);
         //const v = vec3.add(vec3.create(), particle.position, particle.cpPosition);//v.add(particle.cpPosition);
         //TODO
-        const v = create$5();
+        const v = create$4();
         particle.getWorldPos(v);
         this.particleSystem.setChildControlPointPosition(first, first + number - 1, v);
     }
 }
 SourceEngineParticleOperators.registerOperator(SetChildControlPointsFromParticlePositions);
 
-const tempVec3$6 = create$5();
+const tempVec3$6 = create$4();
 class SetControlPointPositions$1 extends SourceEngineParticleOperator {
     static functionName = 'set control point positions';
     constructor() {
@@ -79432,7 +79283,7 @@ class SetControlPointPositions$1 extends SourceEngineParticleOperator {
             }
             let controlPoint = this.particleSystem.getControlPoint(cpNumber);
             if (controlPoint) {
-                controlPoint.setWorldQuaternion(create$3());
+                controlPoint.setWorldQuaternion(create$2());
             }
             this.particleSystem.setControlPointParent(cpNumber, cpParent);
         }
@@ -79440,8 +79291,8 @@ class SetControlPointPositions$1 extends SourceEngineParticleOperator {
 }
 SourceEngineParticleOperators.registerOperator(SetControlPointPositions$1);
 
-const tempVec3_min = create$5();
-const tempVec3_max = create$5();
+const tempVec3_min = create$4();
+const tempVec3_max = create$4();
 class SetControlPointToParticlesCenter extends SourceEngineParticleOperator {
     static functionName = 'Set Control Point to Particles\' Center';
     constructor() {
@@ -79463,9 +79314,9 @@ SourceEngineParticleOperators.registerOperator(SetControlPointToParticlesCenter)
 
 const TEXTURE_WIDTH = 8;
 
-const tempQuat$3 = create$3();
-const IDENTITY_QUAT = create$3();
-const vecDelta = create$5();
+const tempQuat$3 = create$2();
+const IDENTITY_QUAT = create$2();
+const vecDelta = create$4();
 class RenderAnimatedSprites extends SourceEngineParticleOperator {
     static functionName = 'render_animated_sprites';
     #orientationType;
@@ -79681,7 +79532,7 @@ class RenderAnimatedSprites extends SourceEngineParticleOperator {
 }
 SourceEngineParticleOperators.registerOperator(RenderAnimatedSprites);
 
-const tempVec2$1 = create$1();
+const tempVec2$1 = create();
 class RenderRope extends SourceEngineParticleOperator {
     static functionName = 'render rope';
     #maxParticles = 0;
@@ -79981,7 +79832,7 @@ class RenderSpriteTrail extends SourceEngineParticleOperator {
         for (let particle of particleList) {
             const flAge = particle.currentTime;
             const flLengthScale = (flAge >= m_flLengthFadeInTime) ? 1.0 : (flAge / m_flLengthFadeInTime);
-            const vecDelta = subtract$3(create$5(), particle.prevPosition, particle.position); //TODOv3: optimize
+            const vecDelta = subtract$3(create$4(), particle.prevPosition, particle.position); //TODOv3: optimize
             const flMag = length$5(vecDelta);
             normalize$5(vecDelta, vecDelta);
             const flOODt = (elapsedTime != 0.0) ? (1.0 / elapsedTime) : 1.0;
@@ -80032,7 +79883,7 @@ class RenderSpriteTrail extends SourceEngineParticleOperator {
         for (let particle of particleList) {
             const flAge = particle.currentTime;
             const flLengthScale = (flAge >= m_flLengthFadeInTime) ? 1.0 : (flAge / m_flLengthFadeInTime);
-            const vecDelta = subtract$3(create$5(), particle.prevPosition, particle.position); //TODOv3: optimize
+            const vecDelta = subtract$3(create$4(), particle.prevPosition, particle.position); //TODOv3: optimize
             const flMag = length$5(vecDelta);
             normalize$5(vecDelta, vecDelta);
             const flOODt = (elapsedTime != 0.0) ? (1.0 / elapsedTime) : 1.0;
@@ -83468,17 +83319,17 @@ const DEFAULT_PARTICLE_NORMAL = fromValues$4(0, 0, 1);
 class Source2Particle {
     id;
     isAlive = false;
-    position = create$5();
-    quaternion = create$3();
-    prevPosition = create$5();
-    velocity = create$5();
-    color = create$4();
-    initialColor = create$4();
-    normal = create$5();
-    scratchVec = create$5(); //?
+    position = create$4();
+    quaternion = create$2();
+    prevPosition = create$4();
+    velocity = create$4();
+    color = create$3();
+    initialColor = create$3();
+    normal = create$4();
+    scratchVec = create$4(); //?
     scratch = 0;
-    hitboxOffsetPosition = create$5(); //?
-    glowRGB = create$5();
+    hitboxOffsetPosition = create$4(); //?
+    glowRGB = create$4();
     uMin = 0;
     uMax = 1;
     vMin = 0;
@@ -83876,7 +83727,7 @@ class Source2Particle {
     * @return {vec3} The world position.
     */
     getWorldPos(worldPos) {
-        worldPos = worldPos || create$5();
+        worldPos = worldPos || create$4();
         //vec3.transformQuat(worldPos, this.position, this.cpOrientation);
         //vec3.transformQuat(worldPos, this.position, quat.create());
         //vec3.transformQuat(worldPos, this.position, this.system.currentOrientation);
@@ -83893,9 +83744,9 @@ class Source2Particle {
     * @return {vec3} The world position.
     */
     getLocalPos(worldPos) {
-        worldPos = worldPos || create$5();
+        worldPos = worldPos || create$4();
         //vec3.transformQuat(worldPos, this.position, this.cpOrientation);
-        transformQuat$1(worldPos, this.position, create$3());
+        transformQuat$1(worldPos, this.position, create$2());
         //vec3.add(worldPos, worldPos, this.cpPosition);
         return worldPos;
     }
@@ -84060,7 +83911,7 @@ const Source2SnapshotLoader = new (function () {
 }());
 
 const DEFAULT_CONTROL_POINT_SCALE = fromValues$4(1, 1, 1);
-let vec$8 = create$5();
+let vec$8 = create$4();
 class Source2ParticleSystem extends Entity {
     isParticleSystem = true;
     isSource2ParticleSystem = true;
@@ -84083,8 +83934,8 @@ class Source2ParticleSystem extends Entity {
     childSystems = [];
     livingParticles = [];
     poolParticles = [];
-    minBounds = create$5();
-    maxBounds = create$5();
+    minBounds = create$4();
+    maxBounds = create$4();
     particleCount = 0;
     // particle to emit when the system starts
     initialParticles = 0;
@@ -84343,10 +84194,10 @@ class Source2ParticleSystem extends Entity {
     #initControlPoint(particle) {
         this.getWorldPosition(particle.cpPosition);
     }
-    getWorldPosition(vec = create$5()) {
+    getWorldPosition(vec = create$4()) {
         return zero$4(vec);
     }
-    getWorldQuaternion(q = create$3()) {
+    getWorldQuaternion(q = create$2()) {
         return identity$1(q);
     }
     getControlPoint(controlPointId) {
@@ -84391,7 +84242,7 @@ class Source2ParticleSystem extends Entity {
         if (cp) {
             return cp.getWorldPosition(vec$8);
         }
-        return create$5();
+        return create$4();
     }
     setControlPointPosition(cpId, position) {
         const cp = this.getControlPoint(cpId);
@@ -85975,7 +85826,7 @@ class Source2Material extends Material {
                 }
             }
         }
-        return create$4();
+        return create$3();
     }
     getDynamicParam(dynamicName) {
         if (this.#source2File) {
@@ -86490,7 +86341,7 @@ class Operator {
         return previousKey.y;
         //export function lerp(min, max, v) {
     }
-    getParamVectorValue(paramName, particle, outVec = create$4()) {
+    getParamVectorValue(paramName, particle, outVec = create$3()) {
         let parameter = this.#parameters[paramName];
         if (parameter) {
             let type = parameter.m_nType;
@@ -86605,7 +86456,7 @@ class Operator {
                 //TODO
                 break;
             case 'm_ColorScale':
-                let colorScale = create$5();
+                let colorScale = create$4();
                 colorScale[0] = Number(value[0]) * COLOR_SCALE;
                 colorScale[1] = Number(value[1]) * COLOR_SCALE;
                 colorScale[2] = Number(value[2]) * COLOR_SCALE;
@@ -86884,12 +86735,12 @@ class Operator {
     doRender(particle, elapsedTime, material) { }
 }
 
-let vec$7 = create$5();
+let vec$7 = create$4();
 class ConstrainDistance extends Operator {
     minDistance = 0;
     maxDistance = 100;
     scaleCP = -1;
-    centerOffset = create$5();
+    centerOffset = create$4();
     globalCenter = false;
     _paramChanged(paramName, value) {
         switch (paramName) {
@@ -87078,7 +86929,7 @@ class NoiseEmitter extends Operator {
     outputMax = 100;
     noiseScale = 0.1;
     worldNoiseScale = 0.001;
-    offsetLoc = create$5();
+    offsetLoc = create$4();
     worldTimeScale = 0;
     remainder = 0;
     _paramChanged(paramName, value) {
@@ -87156,8 +87007,8 @@ class NoiseEmitter extends Operator {
 }
 RegisterSource2ParticleOperator('C_OP_NoiseEmitter', NoiseEmitter);
 
-const vecCenter = create$5();
-let vec$6 = create$5();
+const vecCenter = create$4();
+let vec$6 = create$4();
 class AttractToControlPoint extends Operator {
     componentScale = fromValues$4(1, 1, 1);
     falloffPower = 0;
@@ -87222,8 +87073,8 @@ class CPVelocityForce extends Operator {
 RegisterSource2ParticleOperator('C_OP_CPVelocityForce', CPVelocityForce);
 
 class RandomForce extends Operator {
-    minForce = create$5();
-    maxForce = create$5();
+    minForce = create$4();
+    maxForce = create$4();
     _paramChanged(paramName, value) {
         switch (paramName) {
             case 'm_MinForce':
@@ -87237,18 +87088,18 @@ class RandomForce extends Operator {
         }
     }
     doForce(particle, elapsedTime, accumulatedForces) {
-        add$5(accumulatedForces, accumulatedForces, vec3RandomBox(create$5(), this.minForce, this.maxForce));
+        add$5(accumulatedForces, accumulatedForces, vec3RandomBox(create$4(), this.minForce, this.maxForce));
     }
 }
 RegisterSource2ParticleOperator('C_OP_RandomForce', RandomForce);
 
-let va$2 = create$5();
-let vb$1 = create$5();
+let va$2 = create$4();
+let vb$1 = create$4();
 class AddVectorToVector extends Operator {
     fieldOutput = PARTICLE_FIELD_POSITION;
     fieldInput = PARTICLE_FIELD_POSITION;
     scale = fromValues$4(1, 1, 1);
-    offsetMin = create$5();
+    offsetMin = create$4();
     offsetMax = fromValues$4(1, 1, 1);
     _paramChanged(paramName, value) {
         switch (paramName) {
@@ -87327,14 +87178,14 @@ class CreateFromParentParticles extends Operator {
 }
 RegisterSource2ParticleOperator('C_INIT_CreateFromParentParticles', CreateFromParentParticles);
 
-let vec$5 = create$5();
+let vec$5 = create$4();
 class CreateOnModel extends Operator {
     forceInModel = 0;
     desiredHitbox = -1;
     hitboxValueFromControlPointIndex = -1;
     boneVelocity = 0;
     maxBoneVelocity = 0;
-    directionBias = create$5();
+    directionBias = create$4();
     hitboxSetName = 'default';
     localCoords = false;
     useBones = false;
@@ -87381,8 +87232,8 @@ class CreateOnModel extends Operator {
             if (controllingModel) {
                 let bones = [];
                 particle.bones = bones;
-                particle.initialVec = create$5();
-                const position = controllingModel.getRandomPointOnModel(create$5(), particle.initialVec, bones);
+                particle.initialVec = create$4();
+                const position = controllingModel.getRandomPointOnModel(create$4(), particle.initialVec, bones);
                 if (controlPoint) {
                     copy$4(particle.position, position);
                     copy$4(particle.prevPosition, position);
@@ -87399,7 +87250,7 @@ class CreateOnModel extends Operator {
 }
 RegisterSource2ParticleOperator('C_INIT_CreateOnModel', CreateOnModel);
 
-let vec$4 = create$5();
+let vec$4 = create$4();
 class CreateSequentialPath extends Operator {
     numToAssign = 100;
     step = 0.01;
@@ -87412,9 +87263,9 @@ class CreateSequentialPath extends Operator {
     bulgeControl = 0;
     bulge = 0;
     midPoint = 0.5;
-    startPointOffset = create$5();
-    midPointOffset = create$5();
-    endOffset = create$5();
+    startPointOffset = create$4();
+    midPointOffset = create$4();
+    endOffset = create$4();
     t = 0;
     _paramChanged(paramName, value) {
         switch (paramName) {
@@ -87491,12 +87342,12 @@ class CreateSequentialPath extends Operator {
 RegisterSource2ParticleOperator('C_INIT_CreateSequentialPath', CreateSequentialPath);
 RegisterSource2ParticleOperator('C_INIT_CreateSequentialPathV2', CreateSequentialPath);
 
-let tempQuat$2 = create$3();
-let tempVec3$5 = create$5();
-let tempVec3_2$1 = create$5();
+let tempQuat$2 = create$2();
+let tempVec3$5 = create$4();
+let tempVec3_2$1 = create$4();
 class CreateWithinBox extends Operator {
-    vecMin = create$5();
-    vecMax = create$5();
+    vecMin = create$4();
+    vecMax = create$4();
     localSpace = false;
     scaleCP = -1;
     _paramChanged(paramName, value) {
@@ -87543,12 +87394,12 @@ class CreateWithinBox extends Operator {
 }
 RegisterSource2ParticleOperator('C_INIT_CreateWithinBox', CreateWithinBox);
 
-const DEFAULT_SPEED$1 = create$5();
+const DEFAULT_SPEED$1 = create$4();
 const DEFAULT_DISTANCE_BIAS = fromValues$4(1, 1, 1);
-create$5();
+create$4();
 class CreateWithinSphere extends Operator {
     distanceBias = fromValues$4(1, 1, 1);
-    distanceBiasAbs = create$5();
+    distanceBiasAbs = create$4();
     speedRandExp = 1;
     localCoords = false;
     _paramChanged(paramName, value) {
@@ -87587,7 +87438,7 @@ class CreateWithinSphere extends Operator {
         const m_bDistanceBias = (m_vecDistanceBias[0] != 1.0) || (m_vecDistanceBias[1] != 1.0) || (m_vecDistanceBias[2] != 1.0);
         const m_bDistanceBiasAbs = (m_vecDistanceBiasAbs[0] != 0.0) || (m_vecDistanceBiasAbs[1] != 0.0) || (m_vecDistanceBiasAbs[2] != 0.0);
         const speed = RandomFloatExp(speedMin, speedMax, this.speedRandExp); //(speedMax - speedMin) * Math.random() + speedMin;
-        const randpos = create$5();
+        const randpos = create$4();
         let cp;
         //for(int nTryCtr = 0 ; nTryCtr < 10; nTryCtr++)
         {
@@ -87636,7 +87487,7 @@ class CreateWithinSphere extends Operator {
             transformQuat$1(particle.velocity, particle.velocity, cp.currentWorldQuaternion);
         }
         if (speed) {
-            const v = random$5(create$5(), speed);
+            const v = random$5(create$4(), speed);
             add$5(particle.velocity, particle.velocity, v);
             //vec3.add(randpos, randpos, v);
         }
@@ -87666,7 +87517,7 @@ class CreationNoise extends Operator {
     outputMax = 0;
     noiseScale = 0.1;
     noiseScaleLoc = 0.001;
-    offsetLoc = create$5();
+    offsetLoc = create$4();
     worldTimeScale = 0;
     _paramChanged(paramName, value) {
         switch (paramName) {
@@ -87724,11 +87575,11 @@ class CreationNoise extends Operator {
         let Offset = this.offset;
         let a = (particle.cTime + Offset) * this.noiseScale + performance.now() * this.worldTimeScale;
         CoordBase = fromValues$4(a, a, a);
-        CoordLoc = create$5();
+        CoordLoc = create$4();
         //CoordBase *= this.noiseScale;
         //CoordWorldTime = Vector( (Plat_MSTime() * m_flWorldTimeScale), (Plat_MSTime() * m_flWorldTimeScale), (Plat_MSTime() * m_flWorldTimeScale) );
         //CoordBase += CoordWorldTime;
-        let Coord = create$5();
+        let Coord = create$4();
         //for( ; nParticleCount--; start_p++ )
         {
             copy$4(Coord, CoordBase);
@@ -87871,7 +87722,7 @@ export const PARTICLE_FIELD_MANUAL_ANIMATION_FRAME = 38;
 export const PARTICLE_FIELD_SHADER_EXTRA_DATA_1 = 39;
 export const PARTICLE_FIELD_SHADER_EXTRA_DATA_2 = 40;
 */
-let v$e = create$5();
+let v$e = create$4();
 class InitFromCPSnapshot extends Operator {
     attributeToRead = -1;
     attributeToWrite = PARTICLE_FIELD_POSITION;
@@ -87944,19 +87795,19 @@ class InitFromCPSnapshot extends Operator {
 }
 RegisterSource2ParticleOperator('C_INIT_InitFromCPSnapshot', InitFromCPSnapshot);
 
-create$5();
+create$4();
 fromValues$4(1, 1, 1);
-create$5();
+create$4();
 fromValues$4(100000.5, 300000.25, 9000000.75);
 fromValues$4(110000.25, 310000.75, 9100000.5);
-create$5();
-create$5();
-create$5();
-create$5();
-create$5();
+create$4();
+create$4();
+create$4();
+create$4();
+create$4();
 class InitialVelocityNoise extends Operator {
-    absVal = create$5();
-    absValInv = create$5();
+    absVal = create$4();
+    absValInv = create$4();
     localSpace = false;
     _paramChanged(paramName, value) {
         switch (paramName) {
@@ -87990,9 +87841,9 @@ class InitialVelocityNoise extends Operator {
 }
 RegisterSource2ParticleOperator('C_INIT_InitialVelocityNoise', InitialVelocityNoise);
 
-let mat$1 = create$6();
-let nmat$2 = create$7();
-const IDENTITY_MAT4$1 = create$6();
+let mat$1 = create$5();
+let nmat$2 = create$6();
+const IDENTITY_MAT4$1 = create$5();
 class InitSkinnedPositionFromCPSnapshot extends Operator {
     #rigidOnce = false;
     snapshotControlPointNumber = 1;
@@ -88181,8 +88032,8 @@ class InitSkinnedPositionFromCPSnapshot extends Operator {
 }
 RegisterSource2ParticleOperator('C_INIT_InitSkinnedPositionFromCPSnapshot', InitSkinnedPositionFromCPSnapshot);
 
-const DEFAULT_INPUT_VALUE = create$5();
-let v$d = create$4();
+const DEFAULT_INPUT_VALUE = create$4();
+let v$d = create$3();
 class InitVec extends Operator {
     setMethod = null;
     scaleInitialRange = false;
@@ -88232,10 +88083,10 @@ class NormalAlignToCP extends Operator {
 }
 RegisterSource2ParticleOperator('C_INIT_NormalAlignToCP', NormalAlignToCP);
 
-const v$c = create$5();
+const v$c = create$4();
 class NormalOffset extends Operator {
-    offsetMin = create$5();
-    offsetMax = create$5();
+    offsetMin = create$4();
+    offsetMax = create$4();
     localCoords = false;
     normalize = false;
     _paramChanged(paramName, value) {
@@ -88273,9 +88124,9 @@ class NormalOffset extends Operator {
 }
 RegisterSource2ParticleOperator('C_INIT_NormalOffset', NormalOffset);
 
-let v$b = create$5();
+let v$b = create$4();
 class OffsetVectorToVector extends Operator {
-    outputMin = create$5();
+    outputMin = create$4();
     outputMax = fromValues$4(1, 1, 1);
     fieldOutput = PARTICLE_FIELD_POSITION;
     fieldInput = PARTICLE_FIELD_POSITION;
@@ -88304,8 +88155,8 @@ class OffsetVectorToVector extends Operator {
 }
 RegisterSource2ParticleOperator('C_INIT_OffsetVectorToVector', OffsetVectorToVector);
 
-const DEFAULT_OFFSET = create$5();
-const offset = create$5();
+const DEFAULT_OFFSET = create$4();
+const offset = create$4();
 class PositionOffset extends Operator {
     localCoords = false;
     proportional = false;
@@ -88343,7 +88194,7 @@ class PositionOffset extends Operator {
 }
 RegisterSource2ParticleOperator('C_INIT_PositionOffset', PositionOffset);
 
-let v$a = create$5();
+let v$a = create$4();
 class PositionWarp extends Operator {
     warpMin = fromValues$4(1, 1, 1);
     warpMax = fromValues$4(1, 1, 1);
@@ -88734,10 +88585,10 @@ class RandomTrailLength extends Operator {
 }
 RegisterSource2ParticleOperator('C_INIT_RandomTrailLength', RandomTrailLength);
 
-let tempVec3$4 = create$5();
+let tempVec3$4 = create$4();
 class RandomVector extends Operator {
-    vecMin = create$5();
-    vecMax = create$5();
+    vecMin = create$4();
+    vecMax = create$4();
     fieldOutput = PARTICLE_FIELD_POSITION;
     _paramChanged(paramName, value) {
         switch (paramName) {
@@ -88885,14 +88736,14 @@ class RemapCPtoScalar$1 extends Operator {
 }
 RegisterSource2ParticleOperator('C_INIT_RemapCPtoScalar', RemapCPtoScalar$1);
 
-let v$9 = create$5();
+let v$9 = create$4();
 let v1 = fromValues$4(1, 1, 1);
 class RemapCPtoVector extends Operator {
     cpInput = 0;
-    inputMin = create$5();
-    inputMax = create$5();
-    outputMin = create$5();
-    outputMax = create$5();
+    inputMin = create$4();
+    inputMax = create$4();
+    outputMin = create$4();
+    outputMax = create$4();
     startTime = -1;
     endTime = -1;
     setMethod = null;
@@ -89035,8 +88886,8 @@ class RemapParticleCountToScalar extends Operator {
 }
 RegisterSource2ParticleOperator('C_INIT_RemapParticleCountToScalar', RemapParticleCountToScalar);
 
-let va$1 = create$5();
-let o = create$5();
+let va$1 = create$4();
+let o = create$4();
 class RingWave extends Operator {
     evenDistribution = false;
     xyVelocityOnly = true;
@@ -89101,7 +88952,7 @@ class RingWave extends Operator {
 }
 RegisterSource2ParticleOperator('C_INIT_RingWave', RingWave);
 
-let v$8 = create$5();
+let v$8 = create$4();
 class SetRigidAttachment extends Operator {
     localSpace = true;
     fieldOutput = PARTICLE_FIELD_POSITION_PREVIOUS;
@@ -89126,9 +88977,9 @@ class SetRigidAttachment extends Operator {
 }
 RegisterSource2ParticleOperator('C_INIT_SetRigidAttachment', SetRigidAttachment);
 
-const DEFAULT_SPEED = create$5();
-const randomVector = create$5();
-const tempVec3$3 = create$5();
+const DEFAULT_SPEED = create$4();
+const randomVector = create$4();
+const tempVec3$3 = create$4();
 class VelocityRandom extends Operator {
     ignoreDT = false;
     _paramChanged(paramName, value) {
@@ -89178,7 +89029,7 @@ class VelocityRandom extends Operator {
 RegisterSource2ParticleOperator('C_INIT_VelocityRandom', VelocityRandom);
 
 class BasicMovement extends Operator {
-    gravity = create$5();
+    gravity = create$4();
     drag = 0;
     maxConstraintPasses = 3;
     _paramChanged(paramName, value) {
@@ -89205,8 +89056,8 @@ class BasicMovement extends Operator {
         for (let force of this.system.forces.values()) {
             force.forceParticle(particle, elapsedTime, accumulatedForces);
         }
-        const accFactor = scale$5(create$5(), accumulatedForces, elapsedTime * elapsedTime);
-        let vecTemp = sub$2(create$5(), particle.position, particle.prevPosition);
+        const accFactor = scale$5(create$4(), accumulatedForces, elapsedTime * elapsedTime);
+        let vecTemp = sub$2(create$4(), particle.position, particle.prevPosition);
         scale$5(vecTemp, vecTemp, adj_dt);
         add$5(vecTemp, vecTemp, accFactor);
         copy$4(particle.prevPosition, particle.position);
@@ -89269,7 +89120,7 @@ class ColorInterpolate extends Operator {
 }
 RegisterSource2ParticleOperator('C_OP_ColorInterpolate', ColorInterpolate);
 
-let v$7 = create$5();
+let v$7 = create$4();
 class DampenToCP extends Operator {
     range = 100;
     scale = 1;
@@ -89358,9 +89209,9 @@ class DistanceBetweenCPs extends Operator {
 }
 RegisterSource2ParticleOperator('C_OP_DistanceBetweenCPs', DistanceBetweenCPs);
 
-let vec$3 = create$5();
+let vec$3 = create$4();
 class DistanceCull extends Operator {
-    pointOffset = create$5();
+    pointOffset = create$4();
     distance = 0;
     cullInside = false;
     _paramChanged(paramName, value) {
@@ -89495,8 +89346,8 @@ class DistanceToCP extends Operator {
         //Vector vecControlPoint1 = pParticles->GetControlPointAtCurrentTime( m_nStartCP );
         const vecControlPoint1 = this.system.getControlPointPosition(this.startCP);
         //let vecPosition2 = vec3.create();
-        let vecDelta = create$5();
-        let vecEndPoint = create$5();
+        let vecDelta = create$4();
+        let vecEndPoint = create$4();
         // FIXME: SSE-ize
         //for ( int i = 0; i < pParticles->m_nActiveParticles; ++i )
         {
@@ -89912,7 +89763,7 @@ class LockToBone extends Operator {
 }
 RegisterSource2ParticleOperator('C_OP_LockToBone', LockToBone);
 
-let vec$2 = create$5();
+let vec$2 = create$4();
 class MaintainSequentialPath extends Operator {
     numToAssign = 100;
     assignedSoFar = 0;
@@ -89927,9 +89778,9 @@ class MaintainSequentialPath extends Operator {
     bulgeControl = 0;
     bulge = 0;
     midPoint = 0.5;
-    startPointOffset = create$5();
-    midPointOffset = create$5();
-    endOffset = create$5();
+    startPointOffset = create$4();
+    midPointOffset = create$4();
+    endOffset = create$4();
     operateAllParticlesRemoveme = true;
     _paramChanged(paramName, value) {
         switch (paramName) {
@@ -89983,7 +89834,7 @@ class MaintainSequentialPath extends Operator {
         }
     }
     doOperate(particles, elapsedTime) {
-        let t = create$5();
+        let t = create$4();
         //TODO: use other parameters
         let startControlPointNumber = this.startControlPointNumber;
         let endControlPointNumber = this.endControlPointNumber;
@@ -90017,9 +89868,9 @@ class MaintainSequentialPath extends Operator {
 RegisterSource2ParticleOperator('C_OP_MaintainSequentialPath', MaintainSequentialPath);
 
 //const tempMat4 = mat4.create();
-create$5();
-create$5();
-let v$6 = create$5();
+create$4();
+create$4();
+let v$6 = create$4();
 class MovementRigidAttachToCP extends Operator {
     scaleControlPoint = -1;
     scaleCPField = 0; //-1: disabled, 0: X, 1: Y, 2 :Z
@@ -90094,10 +89945,10 @@ class MovementRigidAttachToCP extends Operator {
 }
 RegisterSource2ParticleOperator('C_OP_MovementRigidAttachToCP', MovementRigidAttachToCP);
 
-let m4 = create$6();
-let q$1 = create$3();
-let v$5 = create$5();
-let a = create$5();
+let m4 = create$5();
+let q$1 = create$2();
+let v$5 = create$4();
+let a = create$4();
 const DEFAULT_AXIS = fromValues$4(0, 0, 1);
 class MovementRotateParticleAroundAxis extends Operator {
     localSpace = false;
@@ -90137,7 +89988,7 @@ class MovementRotateParticleAroundAxis extends Operator {
 }
 RegisterSource2ParticleOperator('C_OP_MovementRotateParticleAroundAxis', MovementRotateParticleAroundAxis);
 
-const Coord$1 = create$5();
+const Coord$1 = create$4();
 class Noise extends Operator {
     fieldOutput = PARTICLE_FIELD_RADIUS;
     outputMin = 0;
@@ -90201,7 +90052,7 @@ class Noise extends Operator {
 }
 RegisterSource2ParticleOperator('C_OP_Noise', Noise);
 
-let v$4 = create$5();
+let v$4 = create$4();
 class NormalizeVector extends Operator {
     fieldOutput = PARTICLE_FIELD_POSITION;
     scale = 1;
@@ -90224,7 +90075,7 @@ class NormalizeVector extends Operator {
 RegisterSource2ParticleOperator('C_OP_NormalizeVector', NormalizeVector);
 
 //const mat = mat4.create();
-const nmat$1 = create$7();
+const nmat$1 = create$6();
 class NormalLock extends Operator {
     _paramChanged(paramName, value) {
         switch (paramName) {
@@ -90392,8 +90243,8 @@ class OscillateScalarSimple extends Operator {
 RegisterSource2ParticleOperator('C_OP_OscillateScalarSimple', OscillateScalarSimple);
 
 class OscillateVector extends Operator {
-    rateMin = create$5();
-    rateMax = create$5();
+    rateMin = create$4();
+    rateMax = create$4();
     frequencyMin = fromValues$4(1, 1, 1);
     frequencyMax = fromValues$4(1, 1, 1);
     field = 0;
@@ -90462,7 +90313,7 @@ class OscillateVector extends Operator {
         //C4VAttributeWriteIterator pOscField (m_nField, pParticles) ;
         const fl4CurTime = particle.currentTime;
         //const nRandomOffset = particle->OperatorRandomSampleOffset();
-        const fvOscVal = create$5(); //todov3optimize
+        const fvOscVal = create$4(); //todov3optimize
         const flStrength = 1;
         const fl4ScaleFactor = flStrength * elapsedTime;
         const fl4CosFactorMultiplier = this.oscMult;
@@ -90472,9 +90323,9 @@ class OscillateVector extends Operator {
         const fl4StartTimeWidth = this.startTimeMax - this.startTimeMin;
         const fl4EndTimeWidth = this.endTimeMax - this.endTimeMin;
         const fvFrequencyMin = this.frequencyMin;
-        const fvFrequencyWidth = sub$2(create$5(), this.frequencyMax, fvFrequencyMin); //todov3optimize
+        const fvFrequencyWidth = sub$2(create$4(), this.frequencyMax, fvFrequencyMin); //todov3optimize
         const fvRateMin = this.rateMin;
-        const fvRateWidth = sub$2(create$5(), this.rateMax, fvRateMin); //todov3optimize
+        const fvRateWidth = sub$2(create$4(), this.rateMax, fvRateMin); //todov3optimize
         //int nCtr = pParticles->m_nPaddedActiveParticles;
         //do
         {
@@ -90508,7 +90359,7 @@ class OscillateVector extends Operator {
                 //fvRate = AddSIMD(fvRateMin, MulSIMD(fvRateWidth, fvRate));
                 mul$4(fvRate, fvRate, fvRateWidth);
                 add$5(fvRate, fvRate, fvRateMin);
-                const fvCos = create$5(); //todov3optimize
+                const fvCos = create$4(); //todov3optimize
                 if (this.proportional) {
                     fl4LifeTime = particle.currentTime / particle.timeToLive;
                     fvCos[0] = fl4CosFactorProp * fvFrequency[0] * fl4LifeTime + fl4CosFactorAdd;
@@ -90518,14 +90369,14 @@ class OscillateVector extends Operator {
                 else {
                     scale$5(fvCos, fvFrequency, fl4CosFactor);
                 }
-                const fvOscMultiplier = create$5(); //todov3optimize
+                const fvOscMultiplier = create$4(); //todov3optimize
                 scale$5(fvOscMultiplier, fvRate, fl4ScaleFactor);
-                let fvOutput = create$5(); //TODO: perf//todov3optimize
+                let fvOutput = create$4(); //TODO: perf//todov3optimize
                 this.getInputValueAsVector(m_nField, particle, fvOutput); //*pOscField;
                 fvOscVal[0] = AddSIMD(fvOutput[0], MulSIMD(fvOscMultiplier[0], SinEst01SIMD(fvCos[0])));
                 fvOscVal[1] = AddSIMD(fvOutput[1], MulSIMD(fvOscMultiplier[1], SinEst01SIMD(fvCos[1])));
                 fvOscVal[2] = AddSIMD(fvOutput[2], MulSIMD(fvOscMultiplier[2], SinEst01SIMD(fvCos[2])));
-                const pOscField = create$5(); //todov3optimize
+                const pOscField = create$4(); //todov3optimize
                 if (m_nField == 6) {
                     pOscField[0] = MaskedAssign(fl4GoodMask, MaxSIMD(MinSIMD(fvOscVal[0], Four_Ones), Four_Zeros), fvOutput[0]);
                     pOscField[1] = MaskedAssign(fl4GoodMask, MaxSIMD(MinSIMD(fvOscVal[1], Four_Ones), Four_Zeros), fvOutput[1]);
@@ -90551,8 +90402,8 @@ class OscillateVector extends Operator {
 }
 RegisterSource2ParticleOperator('C_OP_OscillateVector', OscillateVector);
 
-let va = create$5();
-let vb = create$5();
+let va = create$4();
+let vb = create$4();
 class PercentageBetweenCPs extends Operator {
     fieldOutput = PARTICLE_FIELD_RADIUS;
     inputMin = 0;
@@ -90665,13 +90516,13 @@ class PinParticleToCP extends Operator {
 }
 RegisterSource2ParticleOperator('C_OP_PinParticleToCP', PinParticleToCP);
 
-let vec$1 = create$5();
+let vec$1 = create$4();
 class PlaneCull extends Operator {
     planeControlPoint = 0;
     planeDirection = fromValues$4(0, 0, 1);
     localSpace = false;
     planeOffset = 0;
-    planeDirectionOffset = create$5();
+    planeDirectionOffset = create$4();
     constructor(system) {
         super(system);
         this._update();
@@ -90713,10 +90564,10 @@ class PlaneCull extends Operator {
 }
 RegisterSource2ParticleOperator('C_OP_PlaneCull', PlaneCull);
 
-create$5();
-create$5();
+create$4();
+create$4();
 //const tempQuat = quat.create();
-create$5();
+create$4();
 class PositionLock extends Operator {
     startTimeMin = 1;
     startTimeMax = 1;
@@ -90996,7 +90847,7 @@ class RampScalarSpline extends Operator {
 RegisterSource2ParticleOperator('C_OP_RampScalarSpline', RampScalarSpline);
 
 const DEFAULT_VECTOR = fromValues$4(1, 0, 0);
-let v$3 = create$5();
+let v$3 = create$4();
 class RemapControlPointDirectionToVector extends Operator {
     fieldOutput = PARTICLE_FIELD_POSITION;
     scale = 1;
@@ -91017,10 +90868,10 @@ class RemapControlPointDirectionToVector extends Operator {
 }
 RegisterSource2ParticleOperator('C_OP_RemapControlPointDirectionToVector', RemapControlPointDirectionToVector);
 
-const tempQuat$1 = create$3();
-create$3();
+const tempQuat$1 = create$2();
+create$2();
 class RemapCPOrientationToRotations extends Operator {
-    #vecRotation = create$5();
+    #vecRotation = create$4();
     #controlPointNumber = 0; //m_TransformInput
     _paramChanged(paramName, value) {
         switch (paramName) {
@@ -91137,15 +90988,15 @@ class SetControlPointFromObjectScale extends Operator {
 }
 RegisterSource2ParticleOperator('C_OP_SetControlPointFromObjectScale', SetControlPointFromObjectScale);
 
-create$3();
+create$2();
 class SetControlPointOrientation extends Operator {
     useWorldLocation = false;
     randomize = false;
     setOnce = false;
     cp = 1;
     headLocation = 0;
-    rotation = create$5();
-    rotationB = create$5();
+    rotation = create$4();
+    rotationB = create$4();
     _paramChanged(paramName, value) {
         switch (paramName) {
             case 'm_flInterpolation':
@@ -91184,7 +91035,7 @@ class SetControlPointOrientation extends Operator {
 }
 RegisterSource2ParticleOperator('C_OP_SetControlPointOrientation', SetControlPointOrientation);
 
-const v$2 = create$5();
+const v$2 = create$4();
 class SetControlPointPositions extends Operator {
     useWorldLocation = false;
     orient = false;
@@ -91329,10 +91180,10 @@ class SetControlPointsToModelParticles extends Operator {
 }
 RegisterSource2ParticleOperator('C_OP_SetControlPointsToModelParticles', SetControlPointsToModelParticles);
 
-const center = create$5();
+const center = create$4();
 class SetControlPointToCenter extends Operator {
     cp1 = 1;
-    cp1Pos = create$5();
+    cp1Pos = create$4();
     _paramChanged(paramName, value) {
         switch (paramName) {
             case 'm_nCP1':
@@ -91358,7 +91209,7 @@ RegisterSource2ParticleOperator('C_OP_SetControlPointToCenter', SetControlPointT
 
 const UNIT_VEC3_X = fromValues$4(1, 0, 0);
 const UNIT_VEC3_Z = fromValues$4(0, 0, 1);
-let q = create$3();
+let q = create$2();
 class SetCPOrientationToGroundNormal extends Operator {
     m_flInterpRate = 0;
     maxTraceLength = 128;
@@ -91537,14 +91388,14 @@ class SetPerChildControlPoint extends Operator {
 }
 RegisterSource2ParticleOperator('C_OP_SetPerChildControlPoint', SetPerChildControlPoint);
 
-const v$1 = create$5();
+const v$1 = create$4();
 class SetRandomControlPointPosition extends Operator {
     useWorldLocation = false;
     orient = false;
     cp1 = 1;
     headLocation = 0;
-    cpMinPos = create$5();
-    cpMaxPos = create$5();
+    cpMinPos = create$4();
+    cpMaxPos = create$4();
     lastRandomTime = -1;
     _paramChanged(paramName, value) {
         switch (paramName) {
@@ -91597,8 +91448,8 @@ class SetRandomControlPointPosition extends Operator {
 RegisterSource2ParticleOperator('C_OP_SetRandomControlPointPosition', SetRandomControlPointPosition);
 
 const DEFAULT_POSITION = fromValues$4(128, 0, 0);
-let v = create$5();
-let tempVec3$2 = create$5();
+let v = create$4();
+let tempVec3$2 = create$4();
 class SetSingleControlPointPosition extends Operator {
     useWorldLocation = false;
     setOnce = false;
@@ -91651,11 +91502,11 @@ class SetSingleControlPointPosition extends Operator {
 }
 RegisterSource2ParticleOperator('C_OP_SetSingleControlPointPosition', SetSingleControlPointPosition);
 
-let tempQuat = create$3();
-let tempVec3$1 = create$5();
-let tempVec3_2 = create$5();
+let tempQuat = create$2();
+let tempVec3$1 = create$4();
+let tempVec3_2 = create$4();
 class SetToCP extends Operator {
-    offset = create$5();
+    offset = create$4();
     offsetLocal = false;
     _paramChanged(paramName, value) {
         switch (paramName) {
@@ -91687,8 +91538,8 @@ class SetToCP extends Operator {
 }
 RegisterSource2ParticleOperator('C_OP_SetToCP', SetToCP);
 
-let DEFAULT_VECTOR_VALUE = create$4();
-let vec = create$4();
+let DEFAULT_VECTOR_VALUE = create$3();
+let vec = create$3();
 class SetVec extends Operator {
     outputField = PARTICLE_FIELD_COLOR;
     setMethod = 'PARTICLE_SET_VALUE';
@@ -91717,9 +91568,9 @@ class SetVec extends Operator {
 }
 RegisterSource2ParticleOperator('C_OP_SetVec', SetVec);
 
-let mat = create$6();
-let nmat = create$7();
-const IDENTITY_MAT4 = create$6();
+let mat = create$5();
+let nmat = create$6();
+const IDENTITY_MAT4 = create$5();
 class SnapshotRigidSkinToBones extends Operator {
     transformNormals = false;
     _paramChanged(paramName, value) {
@@ -91896,20 +91747,20 @@ class SpinUpdate extends Operator {
 }
 RegisterSource2ParticleOperator('C_OP_SpinUpdate', SpinUpdate);
 
-const Coord = create$5();
-const output = create$5();
+const Coord = create$4();
+const output = create$4();
 const ofs_y = fromValues$4(100000.5, 300000.25, 9000000.75);
 const ofs_z = fromValues$4(110000.25, 310000.75, 9100000.5);
 class VectorNoise extends Operator {
-    #outputMin = create$5();
+    #outputMin = create$4();
     #outputMax = fromValues$4(1, 1, 1);
     fieldOutput = PARTICLE_FIELD_COLOR;
     noiseScale = 0.1;
     additive = false;
     offset = false;
     noiseAnimationTimeScale = 0;
-    valueScale = create$5();
-    valueBase = create$5();
+    valueScale = create$4();
+    valueBase = create$4();
     constructor(system) {
         super(system);
         this.#update();
@@ -92042,7 +91893,7 @@ class RenderDeferredLight extends Operator {
 }
 RegisterSource2ParticleOperator('C_OP_RenderDeferredLight', RenderDeferredLight);
 
-const tempVec3 = create$5();
+const tempVec3 = create$4();
 class RenderModels extends Operator {
     #modelList = new Map();
     #models = new Map();
@@ -92579,7 +92430,7 @@ RegisterSource2ParticleOperator('C_OP_RenderSprites', RenderSprites);
 //RegisterSource2ParticleOperator('C_OP_RenderDeferredLight', RenderSprites);//TODO: set proper renderer
 //RegisterSource2ParticleOperator('C_OP_RenderProjected', RenderSprites);//TODO: set proper renderer
 
-const tempVec2 = create$1();
+const tempVec2 = create();
 class RenderTrails extends Operator {
     geometry;
     setDefaultTexture = true; //TODO: remove this property
@@ -92767,7 +92618,7 @@ class RenderTrails extends Operator {
         for (let particle of particleList) {
             const flAge = particle.currentTime;
             const flLengthScale = (flAge >= m_flLengthFadeInTime) ? 1.0 : (flAge / m_flLengthFadeInTime);
-            const vecDelta = subtract$3(create$5(), particle.prevPosition, particle.position); //TODOv3: optimize
+            const vecDelta = subtract$3(create$4(), particle.prevPosition, particle.position); //TODOv3: optimize
             const flMag = length$5(vecDelta);
             normalize$5(vecDelta, vecDelta);
             let flLength = flLengthScale * flMag * flOODt * particle.trailLength * this.lengthScale;
@@ -94852,7 +94703,7 @@ const EXTRA_LOD_SIGMA = [0.125, 0.215, 0.35, 0.446, 0.526, 0.582];
 // samples and exit early, but not recompile the shader.
 const MAX_SAMPLES = 20;
 const flatCamera = new Camera({ projection: CameraProjection.Orthographic, position: fromValues$4(0, 0, 1) });
-const clearColor = create$4();
+const clearColor = create$3();
 // Golden Ratio
 const PHI = (1 + Math.sqrt(5)) / 2;
 const INV_PHI = 1 / PHI;
@@ -95626,122 +95477,6 @@ function getCommonVertexShader() {
 	`;
 }
 
-const PROPERTY_ADDED = 'propertyadded';
-const PROPERTY_CHANGED = 'propertychanged';
-class TimelineObserver extends EventTarget {
-    static #instance;
-    constructor() {
-        if (TimelineObserver.#instance) {
-            return TimelineObserver.#instance;
-        }
-        super();
-        TimelineObserver.#instance = this;
-    }
-    /*
-        parentChanged(child: Entity, oldParent: Entity | null, newParent: Entity | null) {
-            this.dispatchEvent(new CustomEvent(PARENT_CHANGED, { detail: { child: child, oldParent: oldParent, newParent: newParent } }));
-        }
-
-        childAdded(parent: Entity, child: Entity) {
-            this.dispatchEvent(new CustomEvent(CHILD_ADDED, { detail: { child: child, parent: parent } }));
-        }
-
-        childRemoved(parent: Entity, child: Entity) {
-            this.dispatchEvent(new CustomEvent(CHILD_REMOVED, { detail: { child: child, parent: parent } }));
-        }
-
-        entityDeleted(entity: Entity) {
-            this.dispatchEvent(new CustomEvent(ENTITY_DELETED, { detail: { entity: entity } }));
-        }
-    */
-    propertyAdded(element, propertyName, type, value) {
-        this.dispatchEvent(new CustomEvent(PROPERTY_ADDED, { detail: { element: element, name: propertyName, type: type, value: value } }));
-    }
-    propertyChanged(element, propertyName, oldValue, newValue) {
-        this.dispatchEvent(new CustomEvent(PROPERTY_CHANGED, { detail: { element: element, name: propertyName, value: newValue, oldValue: oldValue } }));
-    }
-}
-
-var TimelinePropertyType;
-(function (TimelinePropertyType) {
-    TimelinePropertyType[TimelinePropertyType["Unknown"] = 0] = "Unknown";
-    TimelinePropertyType[TimelinePropertyType["Int"] = 1] = "Int";
-    TimelinePropertyType[TimelinePropertyType["Float"] = 2] = "Float";
-    TimelinePropertyType[TimelinePropertyType["String"] = 3] = "String";
-    TimelinePropertyType[TimelinePropertyType["Bool"] = 4] = "Bool";
-    TimelinePropertyType[TimelinePropertyType["Color"] = 5] = "Color";
-})(TimelinePropertyType || (TimelinePropertyType = {}));
-class TimelineProperty {
-    #name;
-    #type;
-    #value;
-    constructor(name, type, value) {
-        this.#name = name;
-        this.#type = type;
-        this.#value = value;
-    }
-    setValue(value) {
-        this.#value = value;
-    }
-    getValue() {
-        return this.#value;
-    }
-}
-
-/*
-export interface TimelineElement {
-    name: string;
-    setParent(element: TimelineElement): void;
-    getParent(element: TimelineElement): TimelineElement | null;
-}
-*/
-class TimelineElement {
-    #parent;
-    #properties = new Map();
-    /*#name: string;
-    startTime: number = 0;
-    endTime: number = Infinity;*/
-    constructor(name) {
-        this.addProperty('name', TimelinePropertyType.String, name);
-    }
-    addProperty(name, type, value) {
-        const property = new TimelineProperty(name, type, value);
-        this.#properties.set(name, property);
-        return property;
-    }
-    setPropertyValue(name, value) {
-        const property = this.#properties.get(name);
-        if (property) {
-            const oldValue = property.getValue();
-            property.setValue(value);
-            new TimelineObserver().propertyChanged(this, name, oldValue, value);
-        }
-    }
-    getPropertyValue(name) {
-        return this.#properties.get(name).getValue();
-    }
-}
-
-class TimelineChannel extends TimelineElement {
-    isChannel = true;
-}
-
-class TimelineGroup extends TimelineElement {
-    isGroup = true;
-    #childs = [];
-    addchild(child) {
-        this.#childs.push(child);
-    }
-}
-
-class Timeline extends TimelineElement {
-    name = '';
-    #root = new TimelineGroup('root');
-    setParent(element) {
-        return;
-    }
-}
-
 class ObjExporter {
     static #instance;
     #lines;
@@ -96251,7 +95986,7 @@ class RenderTargetViewer {
     #camera = new Camera({ projection: CameraProjection.Orthographic, position: [0, 0, 1] });
     #plane = new Plane();
     #renderTarget;
-    #position = create$1();
+    #position = create();
     #size = fromValues(DEFAULT_SIZE, DEFAULT_SIZE);
     isRenderTargetViewer = true;
     #material;
@@ -97047,7 +96782,9 @@ var index = /*#__PURE__*/Object.freeze({
   get TextureType () { return TextureType; },
   Timeline: Timeline,
   TimelineChannel: TimelineChannel,
+  TimelineClip: TimelineClip,
   TimelineElement: TimelineElement,
+  get TimelineElementType () { return TimelineElementType; },
   TimelineGroup: TimelineGroup,
   get ToneMapping () { return ToneMapping; },
   TrailLengthRandom: TrailLengthRandom,
@@ -97357,9 +97094,9 @@ class ApplyStickerStageParameters {
     adjustBlack = new Range();
     adjustOffset = new Range(1, 1);
     adjustGamma = new Range(1, 1);
-    bl = create$1();
-    tl = create$1();
-    tr = create$1();
+    bl = create();
+    tl = create();
+    tr = create();
 }
 class Sticker {
     fileName = '';
@@ -98034,6 +97771,9 @@ class WarpaintEditor {
         container.append(this.#nodeImageEditorGui.htmlElement);
         this.#nodeImageEditorGui.setNodeImageEditor(new TextureCombiner().nodeImageEditor);
     }
+    getGui() {
+        return this.#nodeImageEditorGui;
+    }
 }
 
 const WeaponManagerEventTarget = new EventTarget();
@@ -98332,44 +98072,252 @@ winger_pistol : 50
 }
 */
 
-var timelineCSS = "";
+var timelineCSS = ":host {\n\tdisplay: flex;\n\twidth: 100%;\n\tbackground-color: black;\n\tflex-direction: column;\n\tuser-select: none;\n\t--group-padding: var(--harmony3d-timeline-group-padding, 0.5rem);\n\t--clip-height: var(--harmony3d-timeline-clip-height, 2rem);\n\t--time-scale: var(--harmony3d-timeline-time-scale, 2rem);\n\n\t--ruler-num-c: #888;\n\t--ruler-num-fz: 10px;\n\t--ruler-num-pi: 0.75ch;\n\t--ruler-unit: 1px;\n\t--ruler-x: 1;\n\t--ruler-y: 1;\n\n\t--ruler1-bdw: 1px;\n\t--ruler1-c: #BBB;\n\t--ruler1-h: 8px;\n\t--ruler1-space: 5;\n\n\t--ruler2-bdw: 1px;\n\t--ruler2-c: #BBB;\n\t--ruler2-h: 20px;\n\t--ruler2-space: 50;\n\n\t--timeline-offset-x: 0;\n}\n\n.timeline {\n\tbackground-color: blueviolet;\n\tposition: relative;\n}\n\n.group {\n\tbackground-color: chocolate;\n}\n\n.channel {\n\tbackground-color: darkgreen;\n}\n\n.group>.content {\n\t/*padding: 1rem;*/\n\tborder: 0.05rem solid;\n}\n\n.channel>.content {\n\theight: 2rem;\n\toverflow: auto;\n}\n\n.clip {\n\tbackground-color: darkmagenta;\n\tdisplay: inline-block;\n\tposition: absolute;\n}\n\n.clip .content {\n\toverflow: hidden;\n\twhite-space: nowrap;\n\ttext-overflow: ellipsis;\n\n}\n\n\n.ruler-x {\n\tcursor: grab;\n\tposition: relative;\n\t/* Low ticks */\n\t--ruler1-bdw: 1px;\n\t--ruler1-c: #BBB;\n\t--ruler1-h: 8px;\n\t--ruler1-space: 5;\n\n\t/* Tall ticks */\n\t--ruler2-bdw: 1px;\n\t--ruler2-c: #BBB;\n\t--ruler2-h: 20px;\n\t--ruler2-space: 50;\n\n\n\tbackground-image:\n\t\tlinear-gradient(90deg, var(--ruler1-c) 0 var(--ruler1-bdw), transparent 0),\n\t\tlinear-gradient(90deg, var(--ruler2-c) 0 var(--ruler2-bdw), transparent 0);\n\tbackground-repeat: repeat-x;\n\tbackground-size:\n\t\tcalc(var(--ruler-unit) * var(--ruler1-space)) var(--ruler1-h),\n\t\tcalc(var(--ruler-unit) * var(--ruler2-space)) var(--ruler2-h);\n\tbackground-position-x: calc(var(--ruler-unit) * var(--timeline-offset-x)), calc(var(--ruler-unit) * var(--timeline-offset-x));\n\t--offset-count: round(down, var(--timeline-offset-x), var(--ruler2-space));\n\t--offset-count: round(down, var(--timeline-offset-x) / var(--ruler2-space), 1);\n\n\tpadding-left: calc(var(--ruler-unit) * (var(--timeline-offset-x) - var(--offset-count) * var(--ruler2-space)));\n\tcolor: var(--ruler-num-c);\n\tcounter-reset: d calc(-1 - var(--offset-count));\n\tdisplay: flex;\n\tfont-size: var(--ruler-num-fz);\n\theight: var(--ruler2-h);\n\tinset-block-start: 0;\n\t/*inset-inline-start: calc(var(--ruler-unit) * var(--ruler2-space));*/\n\tline-height: 1;\n\tlist-style: none;\n\tmargin: 0;\n\topacity: var(--ruler-x);\n\toverflow: hidden;\n\t/*padding: 0;*/\n\tposition: relative;\n\twidth: 100%;\n}\n\n.ruler-x.grabbing {\n\tcursor: grabbing;\n}\n\n\n\n.ruler-x li {\n\talign-self: flex-end;\n\tcounter-increment: d;\n\tflex: 0 0 calc(var(--ruler-unit) * var(--ruler2-space));\n\tpointer-events: none;\n}\n\n.ruler-x li::after {\n\tcontent: counter(d);\n\tline-height: 1;\n\tpadding-inline-start: var(--ruler-num-pi);\n}\n\n.cursor {\n\tposition: absolute;\n\theight: 100%;\n\twidth: 1rem;\n}\n";
 
 class HTMLTimelineElement extends HTMLElement {
     #shadowRoot;
-    #htmlTitle;
-    #htmlEntries;
+    #htmlContainer;
+    #htmlRuler;
+    #htmlContent;
+    #htmlCursor;
+    #childs = new Map();
     #timeline;
+    #timescale = 30;
+    #timeOffset = 0;
+    #startTimeOffset = 0;
+    #dragRuler = false;
+    #dragRulerStartOffsetX = 0;
     constructor() {
         super();
         this.#shadowRoot = this.attachShadow({ mode: 'closed' });
         shadowRootStyle(this.#shadowRoot, timelineCSS);
-        createElement$1('div', {
+        this.#htmlContainer = createElement('div', {
+            class: 'timeline',
             parent: this.#shadowRoot,
-            class: 'header',
             childs: [
-                this.#htmlTitle = createElement$1('div', { class: 'title' }),
-                createElement$1('div', {
-                    class: 'close',
-                    parent: this.#shadowRoot,
-                    child: createElement$1('span'),
+                this.#htmlRuler = createElement('ul', {
+                    class: 'ruler-x',
+                    innerHTML: '<li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>',
                     events: {
-                        click: () => {
-                            this.remove();
-                            this.dispatchEvent(new CustomEvent('close'));
-                        },
-                    },
+                        mousedown: (event) => this.#startDragRuler(event),
+                    }
                 }),
+                this.#htmlContent = createElement('div', { class: 'content' }),
+                this.#htmlCursor = createElement('div', { class: 'cursor' }),
             ]
         });
-        this.#htmlEntries = createElement$1('div', {
-            parent: this.#shadowRoot,
-        });
+        document.addEventListener('mousemove', (event) => this.#handleMouseMove(event));
+        document.addEventListener('mouseup', (event) => this.#handleMouseUp(event));
     }
     setTimeline(timeline) {
         this.#timeline = timeline;
         this.#updateHTML();
     }
-    async #updateHTML() {
+    #updateElement(element) {
+        if (element == this.#timeline) {
+            this.#updateHTML();
+        }
+        else {
+            switch (element.type) {
+                case TimelineElementType.Group:
+                    this.#updateGroup(element);
+                    break;
+                case TimelineElementType.Channel:
+                    this.#updateChannel(element);
+                    break;
+                case TimelineElementType.Clip:
+                    this.#updateClip(element);
+                    break;
+                default:
+                    //throw 'code this case ' + this.#timeline.type;
+                    console.error('code this case ' + element.type);
+            }
+        }
+    }
+    #updateHTML() {
+        //this.#htmlHeader.innerText = '';
+        this.#htmlContent.innerText = '';
+        if (!this.#timeline) {
+            return;
+        }
+        this.#updateTime();
+        //this.#htmlHeader.innerText = (this.#timeline as TimelineElement).getPropertyValue('name');
+        const root = this.#timeline?.getRoot();
+        if (!root) {
+            return;
+        }
+        const h = this.#getChild(root);
+        if (h) {
+            this.#htmlContent.replaceChildren(h.html);
+        }
+        this.#updateElement(root);
+    }
+    #updateTime() {
+        //const rect = this.#htmlTimeline.getBoundingClientRect();
+        //const width = rect.width;
+        //const ticks =
+    }
+    #updateGroup(group) {
+        const htmlGroup = this.#getChild(group);
+        if (!htmlGroup) {
+            return;
+        }
+        //this.#htmlContainer.classList.add('group');
+        const name = group.getName();
+        if (name) {
+            show(htmlGroup.htmlHeader);
+            htmlGroup.htmlHeader.innerText = name;
+        }
+        else {
+            hide(htmlGroup.htmlHeader);
+        }
+        for (const child of group.getChilds()) {
+            const h = this.#getChild(child);
+            if (h) {
+                //this.#htmlContent.replaceChildren(h.html);
+                htmlGroup.htmlContent.append(h.html);
+                this.#updateElement(child);
+            }
+        }
+    }
+    #updateChannel(channel) {
+        const htmlChannel = this.#getChild(channel);
+        if (!htmlChannel) {
+            return;
+        }
+        //this.#htmlContainer.classList.add('group');
+        const name = channel.getName();
+        if (name) {
+            show(htmlChannel.htmlHeader);
+            htmlChannel.htmlHeader.innerText = name;
+        }
+        else {
+            hide(htmlChannel.htmlHeader);
+        }
+        for (const clip of channel.getClips()) {
+            const h = this.#getChild(clip);
+            if (h) {
+                //this.#htmlContent.replaceChildren(h.html);
+                htmlChannel.htmlContent.append(h.html);
+                this.#updateElement(clip);
+            }
+        }
+        /*
+        this.#htmlContainer.classList.add('channel');
+        const name = (this.#timeline as TimelineChannel).getPropertyValue('name') as string;
+        if (name) {
+            show(this.#htmlHeader);
+            this.#htmlHeader.innerText = name;
+        } else {
+            hide(this.#htmlHeader);
+        }
+            */
+    }
+    #updateClip(clip) {
+        const htmlClip = this.#getChild(clip);
+        if (!htmlClip) {
+            return;
+        }
+        htmlClip.html.innerText = clip.getName();
+        htmlClip.html.style.left = `${clip.getStartTime()}px`;
+        htmlClip.html.style.width = `${clip.getLength()}px`;
+        /*
+        this.#htmlContainer.classList.add('clip');
+        const name = (this.#timeline as TimelineClip).getPropertyValue('name') as string;
+        if (name) {
+            show(this.#htmlHeader);
+            this.#htmlHeader.innerText = name;
+        } else {
+            hide(this.#htmlHeader);
+        }
+
+        */
+    }
+    #getChild(element) {
+        let html /*TODO: fix type*/ = this.#childs.get(element);
+        if (!html) {
+            //html = createElement('div') as HTMLTimelineElement;
+            //html.setTimelineElement(element);
+            html = this.#createChild(element);
+            this.#childs.set(element, html);
+        }
+        return html;
+    }
+    #createChild(element) {
+        let htmlHeader, htmlContent;
+        switch (element.type) {
+            case TimelineElementType.Group:
+                const htmlGroup = createElement('div', {
+                    class: 'group',
+                    childs: [
+                        htmlHeader = createElement('div', { class: 'header' }),
+                        htmlContent = createElement('div', { class: 'content' }),
+                    ]
+                });
+                return {
+                    html: htmlGroup,
+                    htmlHeader: htmlHeader,
+                    htmlContent: htmlContent,
+                };
+            case TimelineElementType.Channel:
+                const htmlChannel = createElement('div', {
+                    class: 'channel',
+                    childs: [
+                        htmlHeader = createElement('div', { class: 'header' }),
+                        htmlContent = createElement('div', { class: 'content' }),
+                    ]
+                });
+                return {
+                    html: htmlChannel,
+                    htmlHeader: htmlHeader,
+                    htmlContent: htmlContent,
+                };
+            case TimelineElementType.Clip:
+                const htmlClip = createElement('div', {
+                    class: 'clip',
+                    childs: [
+                        htmlHeader = createElement('div', { class: 'header' }),
+                        htmlContent = createElement('div', { class: 'content' }),
+                    ]
+                });
+                return {
+                    html: htmlClip,
+                    htmlHeader: htmlHeader,
+                    htmlContent: htmlContent,
+                };
+            default:
+                //throw 'code this case ' + this.#timeline.type;
+                console.error('code this case ' + element.type);
+        }
+    }
+    setTimeOffset(offset) {
+        this.#htmlContainer.style.setProperty('--timeline-offset-x', String(offset));
+        this.#timeOffset = offset;
+    }
+    #startDragRuler(event) {
+        if (this.#dragRuler) {
+            return;
+        }
+        this.#htmlRuler.classList.add('grabbing');
+        this.#dragRuler = true;
+        this.#dragRulerStartOffsetX = event.offsetX;
+        this.#startTimeOffset = this.#timeOffset;
+    }
+    #handleMouseMove(event) {
+        if (!this.#dragRuler) {
+            return;
+        }
+        this.#moveRuler(event.offsetX);
+    }
+    #handleMouseUp(event) {
+        if (!this.#dragRuler) {
+            return;
+        }
+        this.#htmlRuler.classList.remove('grabbing');
+        this.#dragRuler = false;
+    }
+    #moveRuler(offsetX) {
+        this.setTimeOffset(this.#startTimeOffset + offsetX - this.#dragRulerStartOffsetX);
     }
 }
 let definedTimelineElement = false;
@@ -98392,29 +98340,29 @@ class HTMLRepositoryEntryElement extends HTMLElement {
         super();
         this.#shadowRoot = this.attachShadow({ mode: 'closed' });
         shadowRootStyle(this.#shadowRoot, repositoryEntryCSS);
-        createElement$1('div', {
+        createElement('div', {
             class: 'header',
             parent: this.#shadowRoot,
             childs: [
-                this.#htmlSelf = createElement$1('div', {
+                this.#htmlSelf = createElement('div', {
                     class: 'self',
                     events: {
                         click: () => this.#click(),
                     },
                 }),
-                createElement$1('slot', {
+                createElement('slot', {
                     class: 'custom',
                     name: 'custom',
                     parent: this.#shadowRoot,
                 })
             ],
         });
-        this.#htmlChilds = createElement$1('div', {
+        this.#htmlChilds = createElement('div', {
             class: 'childs',
             parent: this.#shadowRoot,
             hidden: true
         });
-        I18n$1.observeElement(this.#shadowRoot);
+        I18n.observeElement(this.#shadowRoot);
     }
     setRepositoryEntry(repositoryEntry) {
         this.#repositoryEntry = repositoryEntry;
@@ -98425,7 +98373,7 @@ class HTMLRepositoryEntryElement extends HTMLElement {
         this.#htmlChilds.innerText = '';
         if (this.#repositoryEntry) {
             for (const entry of this.#repositoryEntry.getChilds()) {
-                const entryview = createElement$1('harmony3d-repository-entry', {
+                const entryview = createElement('harmony3d-repository-entry', {
                     parent: this.#htmlChilds,
                 });
                 entryview.setRepositoryEntry(entry);
@@ -98453,7 +98401,7 @@ class HTMLRepositoryEntryElement extends HTMLElement {
         }
     }
     #collapse() {
-        hide$1(this.#htmlChilds);
+        hide(this.#htmlChilds);
         this.#expanded = false;
         this.dispatchEvent(new CustomEvent('collapse', { detail: this.#repositoryEntry }));
     }
@@ -98489,15 +98437,15 @@ class HTMLRepositoryElement extends HTMLElement {
         super();
         this.#shadowRoot = this.attachShadow({ mode: 'closed' });
         shadowRootStyle(this.#shadowRoot, repositoryCSS);
-        createElement$1('div', {
+        createElement('div', {
             parent: this.#shadowRoot,
             class: 'header',
             childs: [
-                this.#htmlTitle = createElement$1('div', { class: 'title' }),
-                createElement$1('div', {
+                this.#htmlTitle = createElement('div', { class: 'title' }),
+                createElement('div', {
                     class: 'close',
                     parent: this.#shadowRoot,
-                    child: createElement$1('span', { innerHTML: closeSVG$1 }),
+                    child: createElement('span', { innerHTML: closeSVG }),
                     events: {
                         click: () => {
                             this.remove();
@@ -98507,7 +98455,7 @@ class HTMLRepositoryElement extends HTMLElement {
                 }),
             ]
         });
-        this.#htmlEntries = createElement$1('div', {
+        this.#htmlEntries = createElement('div', {
             parent: this.#shadowRoot,
         });
     }
@@ -98552,7 +98500,7 @@ class HTMLRepositoryElement extends HTMLElement {
     async #updateFlat(root) {
         defineRepositoryEntry();
         for (const entry of root.getAllChilds(this.#filter)) {
-            const entryview = createElement$1('harmony3d-repository-entry', {
+            const entryview = createElement('harmony3d-repository-entry', {
                 parent: this.#htmlEntries,
                 events: {
                     fileclick: (event) => this.dispatchEvent(cloneEvent(event)),
@@ -98565,7 +98513,7 @@ class HTMLRepositoryElement extends HTMLElement {
     }
     async #updateTree(root) {
         defineRepositoryEntry();
-        const entryview = createElement$1('harmony3d-repository-entry', {
+        const entryview = createElement('harmony3d-repository-entry', {
             parent: this.#htmlEntries,
             events: {
                 fileclick: (event) => this.dispatchEvent(cloneEvent(event)),

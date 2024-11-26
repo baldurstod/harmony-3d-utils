@@ -15,4 +15,8 @@ export class WarpaintEditor {
 		container.append(this.#nodeImageEditorGui.htmlElement);
 		this.#nodeImageEditorGui.setNodeImageEditor(new TextureCombiner().nodeImageEditor);
 	}
+
+	getGui(): NodeImageEditorGui {
+		return this.#nodeImageEditorGui;
+	}
 }
