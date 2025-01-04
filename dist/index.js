@@ -822,6 +822,9 @@ class WeaponManager {
     async initPaintKitDefinitions(url) {
         let response = await fetch(url);
         this.protoDefs = await response.json();
+        await this.refreshPaintKitDefinitions();
+    }
+    async refreshPaintKitDefinitions() {
         let definitions = await PaintKitDefinitions.getWarpaintDefinitions();
         if (definitions) {
             this._protoElements = definitions;

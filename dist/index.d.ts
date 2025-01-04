@@ -82,6 +82,7 @@ export declare class WeaponManager {
     weaponId: number;
     constructor();
     initPaintKitDefinitions(url: string): Promise<void>;
+    refreshPaintKitDefinitions(): Promise<void>;
     initView(container?: HTMLElement): void;
     getItemList(cMsgPaintKit_Definition: any): any;
     refreshPaint(item: any): void;

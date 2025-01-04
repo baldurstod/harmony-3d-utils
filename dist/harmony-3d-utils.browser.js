@@ -11302,9 +11302,13 @@ const restartSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBo
 
 const rotateSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M482-160q-134 0-228-93t-94-227v-7l-64 64-56-56 160-160 160 160-56 56-64-64v7q0 100 70.5 170T482-240q26 0 51-6t49-18l60 60q-38 22-78 33t-82 11Zm278-161L600-481l56-56 64 64v-7q0-100-70.5-170T478-720q-26 0-51 6t-49 18l-60-60q38-22 78-33t82-11q134 0 228 93t94 227v7l64-64 56 56-160 160Z"/></svg>';
 
+const runSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"  fill="currentColor"><path d="M520-40v-240l-84-80-40 176-276-56 16-80 192 40 64-324-72 28v136h-80v-188l158-68q35-15 51.5-19.5T480-720q21 0 39 11t29 29l40 64q26 42 70.5 69T760-520v80q-66 0-123.5-27.5T540-540l-24 120 84 80v300h-80Zm20-700q-33 0-56.5-23.5T460-820q0-33 23.5-56.5T540-900q33 0 56.5 23.5T620-820q0 33-23.5 56.5T540-740Z"/></svg>';
+
 const visibilityOffSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor"><path d="M0 0h24v24H0zm0 0h24v24H0zm0 0h24v24H0zm0 0h24v24H0z" fill="none"/><path d="M12 7c2.76 0 5 2.24 5 5 0 .65-.13 1.26-.36 1.83l2.92 2.92c1.51-1.26 2.7-2.89 3.43-4.75-1.73-4.39-6-7.5-11-7.5-1.4 0-2.74.25-3.98.7l2.16 2.16C10.74 7.13 11.35 7 12 7zM2 4.27l2.28 2.28.46.46C3.08 8.3 1.78 10.02 1 12c1.73 4.39 6 7.5 11 7.5 1.55 0 3.03-.3 4.38-.84l.42.42L19.73 22 21 20.73 3.27 3 2 4.27zM7.53 9.8l1.55 1.55c-.05.21-.08.43-.08.65 0 1.66 1.34 3 3 3 .22 0 .44-.03.65-.08l1.55 1.55c-.67.33-1.41.53-2.2.53-2.76 0-5-2.24-5-5 0-.79.2-1.53.53-2.2zm4.31-.78l3.15 3.15.02-.16c0-1.66-1.34-3-3-3l-.17.01z"/></svg>';
 
 const visibilityOnSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>';
+
+const walkSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="m280-40 112-564-72 28v136h-80v-188l202-86q14-6 29.5-7t29.5 4q14 5 26.5 14t20.5 23l40 64q26 42 70.5 69T760-520v80q-70 0-125-29t-94-74l-25 123 84 80v300h-80v-260l-84-64-72 324h-84Zm260-700q-33 0-56.5-23.5T460-820q0-33 23.5-56.5T540-900q33 0 56.5 23.5T620-820q0 33-23.5 56.5T540-740Z"/></svg>';
 
 const zoomInSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="currentColor"><path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Zm-40-60v-80h-80v-80h80v-80h80v80h80v80h-80v80h-80Z"/></svg>';
 
@@ -11415,55 +11419,6 @@ class ShortcutHandler extends EventTarget {
         }
     }
 }
-
-const FBX_DATA_TYPE_INT_8 = 67;
-const FBX_DATA_TYPE_DOUBLE = 68;
-const FBX_DATA_TYPE_FLOAT = 70;
-const FBX_DATA_TYPE_INT_32 = 73;
-const FBX_DATA_TYPE_INT_64 = 76;
-const FBX_DATA_TYPE_RAW = 82;
-const FBX_DATA_TYPE_STRING = 83;
-const FBX_DATA_TYPE_INT_16 = 89;
-
-const FBX_DATA_TYPE_ARRAY_INT_8 = 98;
-const FBX_DATA_TYPE_ARRAY_DOUBLE = 100;
-const FBX_DATA_TYPE_ARRAY_FLOAT = 102;
-const FBX_DATA_TYPE_ARRAY_INT_32 = 105;
-const FBX_DATA_TYPE_ARRAY_INT_64 = 108;
-
-const FBX_DATA_LEN = {};
-FBX_DATA_LEN[FBX_DATA_TYPE_INT_8] = 1;
-FBX_DATA_LEN[FBX_DATA_TYPE_DOUBLE] = 8;
-FBX_DATA_LEN[FBX_DATA_TYPE_FLOAT] = 4;
-FBX_DATA_LEN[FBX_DATA_TYPE_INT_32] = 4;
-FBX_DATA_LEN[FBX_DATA_TYPE_INT_64] = 8;
-FBX_DATA_LEN[FBX_DATA_TYPE_INT_16] = 2;
-
-FBX_DATA_LEN[FBX_DATA_TYPE_ARRAY_INT_8] = 1;
-FBX_DATA_LEN[FBX_DATA_TYPE_ARRAY_DOUBLE] = 8;
-FBX_DATA_LEN[FBX_DATA_TYPE_ARRAY_FLOAT] = 4;
-FBX_DATA_LEN[FBX_DATA_TYPE_ARRAY_INT_32] = 4;
-FBX_DATA_LEN[FBX_DATA_TYPE_ARRAY_INT_64] = 8;
-
-const FBX_BINARY_MAGIC = 'Kaydara FBX Binary  \0';
-
-const FBX_HEADER_VERSION = 1003;
-const FBX_SCENEINFO_VERSION = 100;
-const FBX_TEMPLATES_VERSION = 100;
-
-const FBX_KTIME = 46186158000n;
-
-const FBX_GEOMETRY_VERSION = 124;
-const FBX_GEOMETRY_UV_VERSION = 101;
-const FBX_GEOMETRY_MATERIAL_VERSION = 101;
-const FBX_GEOMETRY_LAYER_VERSION = 100;
-const FBX_MATERIAL_VERSION = 102;
-const FBX_TEXTURE_VERSION = 202;
-const FBX_DEFORMER_SKIN_VERSION = 101;
-const FBX_DEFORMER_CLUSTER_VERSION = 100;
-const FBX_POSE_BIND_VERSION = 100;
-
-const FBX_MODELS_VERSION = 232;
 
 var _a$4;
 const TWO_POW_10 = 1024;
@@ -11622,36 +11577,31 @@ class BinaryReader {
         this.#byteOffset = byteOffset + 8;
         return this.#dataView.getFloat64(byteOffset, littleEndian);
     }
-    getVector2(byteOffset = this.#byteOffset, littleEndian = this.#littleEndian) {
-        let vec = new Float32Array(2);
+    getVector2(byteOffset = this.#byteOffset, littleEndian = this.#littleEndian, vec = new Float32Array(2)) {
         vec[0] = this.getFloat32(byteOffset, littleEndian);
         vec[1] = this.getFloat32(undefined, littleEndian);
         return vec;
     }
-    getVector3(byteOffset = this.#byteOffset, littleEndian = this.#littleEndian) {
-        let vec = new Float32Array(3);
+    getVector3(byteOffset = this.#byteOffset, littleEndian = this.#littleEndian, vec = new Float32Array(3)) {
         vec[0] = this.getFloat32(byteOffset, littleEndian);
         vec[1] = this.getFloat32(undefined, littleEndian);
         vec[2] = this.getFloat32(undefined, littleEndian);
         return vec;
     }
-    getVector4(byteOffset = this.#byteOffset, littleEndian = this.#littleEndian) {
-        let vec = new Float32Array(4);
+    getVector4(byteOffset = this.#byteOffset, littleEndian = this.#littleEndian, vec = new Float32Array(4)) {
         vec[0] = this.getFloat32(byteOffset, littleEndian);
         vec[1] = this.getFloat32(undefined, littleEndian);
         vec[2] = this.getFloat32(undefined, littleEndian);
         vec[3] = this.getFloat32(undefined, littleEndian);
         return vec;
     }
-    getVector48(byteOffset = this.#byteOffset, littleEndian = this.#littleEndian) {
-        let vec = new Float32Array(3);
+    getVector48(byteOffset = this.#byteOffset, littleEndian = this.#littleEndian, vec = new Float32Array(3)) {
         vec[0] = this.getFloat16(byteOffset, littleEndian);
         vec[1] = this.getFloat16(undefined, littleEndian);
         vec[2] = this.getFloat16(undefined, littleEndian);
         return vec;
     }
-    getQuaternion(byteOffset = this.#byteOffset, littleEndian = this.#littleEndian) {
-        let vec = new Float32Array(4);
+    getQuaternion(byteOffset = this.#byteOffset, littleEndian = this.#littleEndian, vec = new Float32Array(4)) {
         vec[0] = this.getFloat32(byteOffset, littleEndian);
         vec[1] = this.getFloat32(undefined, littleEndian);
         vec[2] = this.getFloat32(undefined, littleEndian);
@@ -11705,478 +11655,6 @@ class BinaryReader {
     }
 }
 _a$4 = BinaryReader;
-
-if (!BigInt.prototype.toJSON) {
-	BigInt.prototype.toJSON = function() { return this.toString() };
-}
-
-class FBXRecordProperty {
-	#type;
-	#value;
-	#srcObjects = new Set();
-	#flags = 0;
-	#parent;
-	constructor(parent, type, value) {
-		if (parent) {
-			if (parent.isFBXProperty) {
-				this.#parent = parent;
-			} else if (parent.isFBXObject) {
-				this.#parent = parent.rootProperty;
-			} else {
-				throw 'Parent must be FBXRecordProperty or FBXObject';
-			}
-		}
-		this.#type = type;
-		this.#value = value;
-		//TODO: check the value type
-	}
-
-	get type() {
-		return this.#type;
-	}
-
-	set value(value) {
-		this.#value = value;
-	}
-
-	get value() {
-		return this.#value;
-	}
-
-	set(value) {
-		this.#value = value;
-	}
-
-	get() {
-		return this.#value;
-	}
-
-	set flags(flags) {
-		this.#flags = flags;
-	}
-
-	get flags() {
-		return this.#flags;
-	}
-
-	get parent() {
-		return this.#parent;
-	}
-
-	connectSrcObject(fbxObject) {
-		//TODO: add connection type ?
-		if (!fbxObject.isFBXObject) {
-			throw 'connectSrcObject: fbxObject must be a FBXObject';
-		}
-		this.#srcObjects.add(fbxObject);
-	}
-
-	get srcObjects() {
-		return this.#srcObjects;
-	}
-
-	createProperty(type, value) {
-		return new FBXRecordProperty(this, type, value);
-	}
-
-	toJSON() {
-		return {
-			type: this.#type,
-			value: this.#value,
-		}
-	}
-}
-FBXRecordProperty.prototype.isFBXProperty = true;
-
-function createInt16Property(value) {
-	return new FBXRecordProperty(null, FBX_DATA_TYPE_INT_16, value);
-}
-function createInt32Property(value) {
-	return new FBXRecordProperty(null, FBX_DATA_TYPE_INT_32, value);
-}
-function createInt64Property(value) {
-	return new FBXRecordProperty(null, FBX_DATA_TYPE_INT_64, BigInt(value));
-}
-function createDoubleProperty(value) {
-	return new FBXRecordProperty(null, FBX_DATA_TYPE_DOUBLE, value);
-}
-function createRawProperty(value) {
-	return new FBXRecordProperty(null, FBX_DATA_TYPE_RAW, value);
-}
-function createStringProperty(value) {
-	return new FBXRecordProperty(null, FBX_DATA_TYPE_STRING, value);
-}
-
-class FBXRecord {
-	#name = '';
-	#childs = new Set();
-	#properties = new Set();
-	constructor(name) {
-		this.name = name;
-	}
-
-	addChild(child) {
-		if (!child.isFBXRecord) {
-			throw 'FBXFile: trying to insert a non FBXRecord child';
-		}
-		this.#childs.add(child);
-		return child;
-	}
-
-	addChilds(childs) {
-		for (let child of childs) {
-			this.addChild(child);
-		}
-	}
-
-	addProperty(property) {
-		this.#properties.add(property);
-	}
-
-	addProperties(properties) {
-		for (let property of properties) {
-			this.addProperty(property);
-		}
-	}
-
-	set name(name) {
-		if (name.length > 255) {
-			throw `Record name above 255 characters ${name}`;
-		}
-		this.#name = name;
-	}
-
-	get name() {
-		return this.#name;
-	}
-
-	get childs() {
-		return this.#childs;
-	}
-
-	get properties() {
-		return this.#properties;
-	}
-
-	getRecordsByName(recordName) {
-		let output = [];
-
-		for (let child of this.#childs) {
-			if (child.name == recordName) {
-				output.push(child);
-			}
-		}
-
-		return output;
-	}
-
-	getRecordByName(recordName) {
-		for (let child of this.#childs) {
-			if (child.name == recordName) {
-				return child;
-			}
-		}
-	}
-
-	getProperty(type) {
-		for (let property of this.#properties) {
-			if (property.type == type) {
-				return property.value;
-			}
-		}
-	}
-
-	getPropertyInt32() {
-		return this.getProperty(FBX_DATA_TYPE_INT_32);
-	}
-
-	getPropertyString() {
-		return this.getProperty(FBX_DATA_TYPE_STRING);
-	}
-
-	toJSON() {
-		return {
-			name: this.#name,
-			childs: this.#childs.size ? [...this.#childs] : undefined,
-			properties: this.#properties.size ? [...this.#properties] : undefined,
-		}
-	}
-}
-FBXRecord.prototype.isFBXRecord = true;
-
-const _TIME_ID = '1970-01-01 10:00:00:000';
-const _FILE_ID = new Uint8Array([0x28, 0xb3, 0x2a, 0xeb, 0xb6, 0x24, 0xcc, 0xc2, 0xbf, 0xc8, 0xb0, 0x2a, 0xa9, 0x2b, 0xfc, 0xf1]);
-const _FOOT_ID = new Uint8Array([0xfa, 0xbc, 0xab, 0x09, 0xd0, 0xc8, 0xd4, 0x66, 0xb1, 0x76, 0xfb, 0x83, 0x1c, 0xf7, 0x26, 0x7e]);
-
-const FBX_FOOTER2 = '\xf8\x5a\x8c\x6a\xde\xf5\xd9\x7e\xec\xe9\x0c\xe3\x75\x8f\x29\x0b';
-
-class FBXExporter {
-	constructor() {
-	}
-
-	exportBinary(fbxFile) {
-		checkFile(fbxFile);
-		let version = fbxFile.version;
-		let size = getFileSize(fbxFile, version);
-		//console.log('File Size: ', size);
-
-		let writer = new BinaryReader(new Uint8Array(size));
-
-		return exportBinaryFile(writer, fbxFile);
-
-	}
-}
-
-function checkFile(fbxFile) {
-	for (let child of fbxFile.childs) {
-		if (child.name == 'CreationTime' || child.name == 'FileId') {
-			fbxFile.childs.delete(child);
-		}
-	}
-
-	formatCreationTimeRecord(fbxFile);
-	formatFileIdRecord(fbxFile);
-}
-
-function exportBinaryFile(writer, fbxFile) {
-	let version = fbxFile.version;
-	writer.seek(0);
-	writer.setString(FBX_BINARY_MAGIC);
-	writer.setUint8(0x1A);
-	writer.setUint8(0x00);
-	writer.setUint32(version);
-	for (let child of fbxFile.childs) {
-		exportBinaryRecord(writer, child, version);
-	}
-
-	writer.skip((version >= 7500) ? 25 : 13);//Null record
-	writer.setBytes(generateFooterCode(fbxFile.dateCreated));
-	writer.skip(align16(writer.tell()));
-	if (version != 7400) {
-		writer.skip(4);
-	}
-	writer.setUint32(version);
-	writer.skip(120);
-	writer.setString(FBX_FOOTER2);
-
-	return writer.buffer;
-}
-
-function formatFileIdRecord(fbxFile) {
-	let fbxRecord = fbxFile.addChild(new FBXRecord('FileId'));
-	fbxRecord.properties.clear();
-	let fbxProperty = createRawProperty(_FILE_ID);
-	fbxRecord.addProperty(fbxProperty);
-}
-
-function formatCreationTimeRecord(fbxFile) {
-	let fbxRecord = fbxFile.addChild(new FBXRecord('CreationTime'));
-	fbxRecord.properties.clear();
-	let dateCreated = fbxFile.dateCreated;
-	`${dateCreated.getFullYear()}-${padNumber(dateCreated.getMonth() + 1, 2)}-${padNumber(dateCreated.getDate(), 2)} ${padNumber(dateCreated.getHours(), 2)}:${padNumber(dateCreated.getMinutes(), 2)}:${padNumber(dateCreated.getSeconds(), 2)}:${padNumber(dateCreated.getMilliseconds(), 3)}`;
-
-	//console.log(creationTime);
-	//let fbxProperty = createStringProperty(creationTime);
-	let fbxProperty = createStringProperty(_TIME_ID);
-	fbxRecord.addProperty(fbxProperty);
-}
-
-function align16(offset) {
-	let pad = ((offset + 15) & ~15) - offset;
-	if (pad == 0) {
-		pad = 16;
-	}
-	return pad;
-}
-
-function exportBinaryRecord(writer, fbxRecord, version) {
-	let startOffset = writer.tell();
-	let recordLen = getRecordSize(fbxRecord, version);
-	//console.log(startOffset);
-	if (version >= 7500) {
-		writer.setBigUint64(BigInt(startOffset + recordLen));
-		writer.setBigUint64(BigInt(fbxRecord.properties.size));
-		writer.setBigUint64(BigInt(getRecordPropertiesSize(fbxRecord)));
-	} else {
-		writer.setUint32(startOffset + recordLen);
-		writer.setUint32(fbxRecord.properties.size);
-		writer.setUint32(getRecordPropertiesSize(fbxRecord));
-	}
-	writer.setUint8(fbxRecord.name.length);
-	writer.setString(fbxRecord.name);
-	exportProperties(writer, fbxRecord);
-	for (let child of fbxRecord.childs) {
-		exportBinaryRecord(writer, child, version);
-	}
-
-	writer.skip((version >= 7500) ? 25 : 13);//Null record
-}
-
-function exportProperties(writer, fbxRecord) {
-	for (let property of fbxRecord.properties) {
-		exportProperty(writer, property);
-	}
-}
-
-function exportProperty(writer, fbxProperty) {
-	//console.log(fbxProperty);
-
-	writer.setUint8(fbxProperty.type);
-	switch (fbxProperty.type) {
-		case FBX_DATA_TYPE_INT_16:
-			writer.setInt16(fbxProperty.value);
-			break;
-		case FBX_DATA_TYPE_INT_8:
-			writer.setInt8(fbxProperty.value);
-			break;
-		case FBX_DATA_TYPE_INT_32:
-			writer.setInt32(fbxProperty.value);
-			break;
-		case FBX_DATA_TYPE_FLOAT:
-			writer.setFloat32(fbxProperty.value);
-			break;
-		case FBX_DATA_TYPE_DOUBLE:
-			writer.setFloat64(fbxProperty.value);
-			break;
-		case FBX_DATA_TYPE_INT_64:
-			writer.setBigInt64(BigInt(fbxProperty.value));
-			break;
-		case FBX_DATA_TYPE_RAW:
-			writer.setUint32(fbxProperty.value.length);
-			writer.setBytes(fbxProperty.value);
-			break;
-		case FBX_DATA_TYPE_STRING:
-			writer.setUint32(fbxProperty.value.length);
-			writer.setString(fbxProperty.value);
-			break;
-		case FBX_DATA_TYPE_ARRAY_INT_8:
-		case FBX_DATA_TYPE_ARRAY_DOUBLE:
-		case FBX_DATA_TYPE_ARRAY_FLOAT:
-		case FBX_DATA_TYPE_ARRAY_INT_32:
-		case FBX_DATA_TYPE_ARRAY_INT_64:
-			exportPropertyArray(writer, fbxProperty);
-			break;
-		default:
-			throw 'Unknown property type ' + fbxProperty.type;
-	}
-}
-
-function exportPropertyArray(writer, fbxProperty) {
-	writer.setUint32(fbxProperty.value.length);
-	writer.setUint32(0);//Encoding
-	writer.setUint32(FBX_DATA_LEN[fbxProperty.type] * fbxProperty.value.length);
-
-	let functionName;
-	switch (fbxProperty.type) {
-		case FBX_DATA_TYPE_ARRAY_INT_8:
-			functionName = 'setInt8';
-			break;
-		case FBX_DATA_TYPE_ARRAY_DOUBLE:
-			functionName = 'setFloat64';
-			break;
-		case FBX_DATA_TYPE_ARRAY_FLOAT:
-			functionName = 'setFloat32';
-			break;
-		case FBX_DATA_TYPE_ARRAY_INT_32:
-			functionName = 'setInt32';
-			break;
-		case FBX_DATA_TYPE_ARRAY_INT_64:
-			functionName = 'setBigInt64';
-			for (let value of fbxProperty.value) {
-				writer[functionName](BigInt(value));
-			}
-			return;
-		default:
-			throw 'Unknown array property type ' + fbxProperty.type;
-	}
-
-	for (let value of fbxProperty.value) {
-		writer[functionName](value);
-	}
-}
-
-function getFileSize(fbxFile, version) {
-	let size = 27;//header
-	for (let child of fbxFile.childs) {
-		size += getRecordSize(child, version);
-	}
-	size += (version >= 7500) ? 25 : 13;//Null record
-
-	size += 16; // footer1
-	//size += 4 // padding
-	size += align16(size);//alignment
-	if (version != 7400) {
-		size += 4; // padding
-	}
-
-	size += 140;//version + padding + footer2
-
-	return size;
-}
-
-function getRecordSize(fbxRecord, version) {
-	let size;
-	if (version >= 7500) {
-		size = 8 + 8 + 8 + 1;
-	} else {
-		size = 4 + 4 + 4 + 1;
-	}
-
-	size += fbxRecord.name.length;
-
-	size += getRecordPropertiesSize(fbxRecord);
-
-	for (let child of fbxRecord.childs) {
-		size += getRecordSize(child, version);
-	}
-
-	size += (version >= 7500) ? 25 : 13;//Null record
-
-	return size;
-}
-
-function getRecordPropertiesSize(fbxRecord) {
-	let size = 0;
-	for (let property of fbxRecord.properties) {
-		switch (property.type) {
-			case FBX_DATA_TYPE_INT_8:
-			case FBX_DATA_TYPE_DOUBLE:
-			case FBX_DATA_TYPE_FLOAT:
-			case FBX_DATA_TYPE_INT_32:
-			case FBX_DATA_TYPE_INT_64:
-			case FBX_DATA_TYPE_INT_16:
-				++size;//Typecode
-				size += FBX_DATA_LEN[property.type];
-				break;
-			case FBX_DATA_TYPE_RAW:
-			case FBX_DATA_TYPE_STRING:
-				++size;//Typecode
-				size += 4;//string len
-				size += property.value.length;
-				break;
-			case FBX_DATA_TYPE_ARRAY_INT_8:
-			case FBX_DATA_TYPE_ARRAY_DOUBLE:
-			case FBX_DATA_TYPE_ARRAY_FLOAT:
-			case FBX_DATA_TYPE_ARRAY_INT_32:
-			case FBX_DATA_TYPE_ARRAY_INT_64:
-				size += 13;//Typecode + array header
-				size += FBX_DATA_LEN[property.type] * property.value.length;
-				break;
-			default:
-				throw 'Unknown property type ' + property.type;
-		}
-	}
-	return size;
-}
-//const extension = new Uint8Array([0xF8, 0x5A, 0x8C, 0x6A, 0xDE, 0xF5, 0xD9, 0x7E, 0xEC, 0xE9, 0x0C, 0xE3, 0x75, 0x8F, 0x29, 0x0B]);
-
-function padNumber(number, targetLength) {//TODO: move
-	return number.toString().padStart(targetLength, 0);
-}
-
-function generateFooterCode(date) {
-	return _FOOT_ID;
-}
 
 /*! pako 2.1.0 https://github.com/nodeca/pako @license (MIT AND Zlib) */
 // (C) 1995-2013 Jean-loup Gailly and Mark Adler
@@ -18845,1048 +18323,2303 @@ Inflate$1.prototype.onEnd = function (status) {
   this.msg = this.strm.msg;
 };
 
-class FBXFile {
-	#version = 7500;
-	#childs = new Set();
-	#dateCreated = new Date();
-	constructor() {
-	}
-
-	set version(version) {
-		this.#version = version;
-	}
-
-	get version() {
-		return this.#version;
-	}
-
-	addChild(child) {
-		if (!child.isFBXRecord) {
-			throw 'FBXFile: trying to insert a non FBXRecord child';
-		}
-		this.#childs.add(child);
-		return child;
-	}
-
-	get childs() {
-		return this.#childs;
-	}
-
-	getRecordsByName(recordName) {
-		let output = [];
-
-		for (let child of this.#childs) {
-			if (child.name == recordName) {
-				output.push(child);
-			}
-		}
-
-		return output;
-	}
-
-	getRecordByName(recordName) {
-		for (let child of this.#childs) {
-			if (child.name == recordName) {
-				return child;
-			}
-		}
-	}
-
-	set dateCreated(dateCreated) {
-		this.#dateCreated = dateCreated;
-	}
-
-	get dateCreated() {
-		return this.#dateCreated;
-	}
-
-	toJSON() {
-		return {
-			version: this.#version,
-			childs: this.#childs.size ? [...this.#childs] : undefined,
-		}
-	}
+// I'm not sure there is reserved ids, let's start big
+let uniqueId = 1000000n;
+function getUniqueId() {
+    return ++uniqueId;
 }
 
+var FbxPropertyType;
+(function (FbxPropertyType) {
+    FbxPropertyType[FbxPropertyType["Double"] = 50] = "Double";
+    FbxPropertyType[FbxPropertyType["Double3"] = 100] = "Double3";
+    FbxPropertyType[FbxPropertyType["String"] = 200] = "String";
+    FbxPropertyType[FbxPropertyType["Time"] = 300] = "Time";
+    FbxPropertyType[FbxPropertyType["Enum"] = 1000] = "Enum";
+    FbxPropertyType[FbxPropertyType["Compound"] = 2000] = "Compound";
+    FbxPropertyType[FbxPropertyType["Color3"] = 3000] = "Color3";
+    FbxPropertyType[FbxPropertyType["Bool"] = 5000] = "Bool";
+})(FbxPropertyType || (FbxPropertyType = {}));
 const FBX_PROPERTY_TYPE_DOUBLE = 50;
 const FBX_PROPERTY_TYPE_DOUBLE_3 = 100;
 const FBX_PROPERTY_TYPE_STRING = 200;
 const FBX_PROPERTY_TYPE_TIME = 300;
 const FBX_PROPERTY_TYPE_ENUM = 1000;
-const FBX_PROPERTY_TYPE_COMPOUND = 2000;
 const FBX_PROPERTY_TYPE_COLOR_3 = 3000;
 const FBX_PROPERTY_TYPE_BOOL = 5000;
 
 if (!BigInt.prototype.toJSON) {
-	BigInt.prototype.toJSON = function() { return this.toString() };
+    BigInt.prototype.toJSON = function () { return this.toString(); };
 }
-
 const FBX_PROPERTY_HIERARCHICAL_SEPARATOR = '|';
-
 class FBXProperty {
-	#type;
-	#name;
-	#label;
-	#value;
-	#srcObjects = new Set();
-	#flags = 0;
-	#parent;
-	constructor(parent, type = FBX_PROPERTY_TYPE_COMPOUND, name, value, flags = 0) {
-		if (type != FBX_PROPERTY_TYPE_COMPOUND && value === undefined) {
-			throw 'name is null';
-		}
-		if (parent) {
-			if (parent.isFBXProperty) {
-				if (parent.#type === FBX_PROPERTY_TYPE_COMPOUND) {
-					this.#parent = parent;
-					parent.#value.set(name, this);
-				} else {
-					throw 'Parent must be of type compound';
-				}
-			} else if (parent.isFBXObject) {
-				this.#parent = parent;
-			} else {
-				throw 'Parent must be FBXProperty or FBXObject';
-			}
-		}
-		this.#type = type;
-		this.#name = name;
-		if (type === FBX_PROPERTY_TYPE_COMPOUND) {
-			this.#value = new Map();
-		} else {
-			this.#value = value;
-		}
-		this.#flags = flags;
-		//TODO: check the value type
-	}
-
-	get type() {
-		return this.#type;
-	}
-
-	set value(value) {
-		this.#value = value;
-	}
-
-	get value() {
-		return this.#value;
-	}
-
-	set(value) {
-		this.#value = value;
-	}
-
-	get() {
-		return this.#value;
-	}
-
-	set flags(flags) {
-		this.#flags = flags;
-	}
-
-	get flags() {
-		return this.#flags;
-	}
-
-	set name(name) {
-		this.#name = name;
-	}
-
-	get name() {
-		return this.#name;
-	}
-
-	get hierarchicalName() {
-		//TODO: remove recursion
-		if (this.#parent?.isFBXProperty) {
-			const parentHierarchicalName = this.#parent.hierarchicalName;
-			if (parentHierarchicalName) {
-				return parentHierarchicalName + FBX_PROPERTY_HIERARCHICAL_SEPARATOR + this.#name;
-			} else {
-				return this.#name;
-			}
-		} else {
-			return this.#name;
-		}
-	}
-
-	set label(label) {
-		this.#label = label;
-	}
-
-	get label() {
-		return this.#label;
-	}
-
-	get parent() {
-		return this.#parent;
-	}
-
-	isCompound() {
-		return this.#type === FBX_PROPERTY_TYPE_COMPOUND;
-	}
-
-	isRootProperty() {
-		return this.#parent.isFBXObject;
-	}
-
-	connectSrcObject(fbxObject) {
-		//TODO: add connection type ?
-		if (!fbxObject.isFBXObject) {
-			throw 'connectSrcObject: fbxObject must be a FBXObject';
-		}
-		this.#srcObjects.add(fbxObject);
-	}
-
-	get srcObjects() {
-		return this.#srcObjects;
-	}
-
-	createProperty(type, name, value, flags) {
-		if (this.#type === FBX_PROPERTY_TYPE_COMPOUND) {
-			if (this.#value.has(name)) {
-				return false;
-			}
-			const newProperty = new FBXProperty(this, type, name, value, flags);
-			this.#value.set(name, newProperty);
-			return newProperty;
-		} else {
-			throw 'Trying to create a child property on a non coumpound property';
-		}
-	}
-
-	getAllProperties(includeSelf = true) {
-		return this.#getAllProperties(new Set(), includeSelf);
-	}
-
-	#getAllProperties(childs = new Set(), includeSelf = true) {
-		if (includeSelf) {
-			childs.add(this);
-		}
-		if (this.#type === FBX_PROPERTY_TYPE_COMPOUND) {
-			for (let [childName, child] of this.#value) {
-				child.#getAllProperties(childs);
-			}
-		}
-
-		return childs;
-	}
-
-	getParentObject() {
-		const parent = this.#parent;
-		if (parent.isFBXObject) {
-			return parent;
-		}
-		if (parent.isFBXProperty) {
-			// TODO: remove recursion
-			return parent.getParentObject();
-		}
-	}
-
-	findProperty(propertyName) {
-		if (this.#name === propertyName) {
-			return this;
-		}
-
-		if (this.isCompound()) {
-			for (const [key, subProperty] of this.#value) {
-				const found = subProperty.findProperty(propertyName);
-				if (found) {
-					return found;
-				}
-			}
-		}
-	}
-
-	toJSON() {
-		return {
-			type: this.#type,
-			value: this.#value,
-		}
-	}
-}
-FBXProperty.prototype.isFBXProperty = true;
-
-function createFBXRecord(name, options) {
-	let fbxRecord = new FBXRecord(name);
-	if (options) {
-		for (let optionName in options) {
-			let optionValue = options[optionName];
-			switch (optionName) {
-				case 'parent':
-					optionValue.addChild(fbxRecord);
-					break;
-				case 'child':
-					fbxRecord.addChild(optionValue);
-					break;
-				case 'childs':
-					fbxRecord.addChilds(optionValue);
-					break;
-				case 'property':
-					fbxRecord.addProperty(optionValue);
-					break;
-				case 'properties':
-					fbxRecord.addProperties(optionValue);
-					break;
-				default:
-					console.log(`Unknown property: ${optionName}`);
-			}
-		}
-	}
-	return fbxRecord;
+    #type;
+    #name;
+    #value;
+    #srcObjects = new Set();
+    #flags = 0;
+    #parent = null;
+    isFBXProperty = true;
+    constructor(parent, type = FbxPropertyType.Compound, name = '', value = undefined, flags = 0) {
+        if (type != FbxPropertyType.Compound && value === undefined) {
+            throw 'name is null';
+        }
+        if (parent) {
+            if (parent.isFBXProperty) {
+                if (parent.#type === FbxPropertyType.Compound) {
+                    this.#parent = parent;
+                    parent.#value.set(name, this);
+                }
+                else {
+                    throw 'Parent must be of type compound';
+                }
+            }
+            else if (parent.isFBXObject) {
+                this.#parent = parent;
+            }
+            else {
+                throw 'Parent must be FBXProperty or FBXObject';
+            }
+        }
+        this.#type = type;
+        this.#name = name;
+        if (type === FbxPropertyType.Compound) {
+            this.#value = new Map();
+        }
+        else {
+            this.#value = value;
+        }
+        this.#flags = flags;
+        //TODO: check the value type
+    }
+    get type() {
+        return this.#type;
+    }
+    set value(value) {
+        this.#value = value;
+    }
+    get value() {
+        return this.#value;
+    }
+    set(value) {
+        this.#value = value;
+    }
+    get() {
+        return this.#value;
+    }
+    set flags(flags) {
+        this.#flags = flags;
+    }
+    get flags() {
+        return this.#flags;
+    }
+    set name(name) {
+        this.#name = name;
+    }
+    get name() {
+        return this.#name;
+    }
+    get hierarchicalName() {
+        //TODO: remove recursion
+        if (this.#parent?.isFBXProperty) {
+            const parentHierarchicalName = this.#parent.hierarchicalName;
+            if (parentHierarchicalName) {
+                return parentHierarchicalName + FBX_PROPERTY_HIERARCHICAL_SEPARATOR + this.#name;
+            }
+            else {
+                return this.#name;
+            }
+        }
+        else {
+            return this.#name;
+        }
+    }
+    get parent() {
+        return this.#parent;
+    }
+    isCompound() {
+        return this.#type === FbxPropertyType.Compound;
+    }
+    isRootProperty() {
+        return this.#parent?.isFBXObject;
+    }
+    connectSrcObject(object) {
+        //TODO: add connection type ?
+        this.#srcObjects.add(object);
+    }
+    get srcObjects() {
+        return this.#srcObjects;
+    }
+    createProperty(type, name, value, flags) {
+        if (this.#type === FbxPropertyType.Compound) {
+            if (this.#value.has(name)) {
+                return false;
+            }
+            const newProperty = new FBXProperty(this, type, name, value, flags);
+            this.#value.set(name, newProperty);
+            return newProperty;
+        }
+        else {
+            throw 'Trying to create a child property on a non coumpound property';
+        }
+    }
+    getAllProperties(includeSelf = true) {
+        return this.#getAllProperties(new Set(), includeSelf);
+    }
+    #getAllProperties(childs = new Set(), includeSelf = true) {
+        if (includeSelf) {
+            childs.add(this);
+        }
+        if (this.#type === FbxPropertyType.Compound) {
+            for (let [childName, child] of this.#value) {
+                child.#getAllProperties(childs);
+            }
+        }
+        return childs;
+    }
+    getParentObject() {
+        const parent = this.#parent;
+        if (parent.isFBXObject) {
+            return parent;
+        }
+        if (parent.isFBXProperty) {
+            // TODO: remove recursion
+            return parent.getParentObject();
+        }
+        return null;
+    }
+    findProperty(propertyName) {
+        if (this.#name === propertyName) {
+            return this;
+        }
+        if (this.isCompound()) {
+            for (const [key, subProperty] of this.#value) {
+                const found = subProperty.findProperty(propertyName);
+                if (found) {
+                    return found;
+                }
+            }
+        }
+        return null;
+    }
+    toJSON() {
+        return {
+            type: this.#type,
+            value: this.#value,
+        };
+    }
 }
 
+class FBXObject {
+    #id = getUniqueId();
+    #name = '';
+    #srcObjects = new Set();
+    #rootProperty;
+    #manager;
+    isFBXObject = true;
+    constructor(manager, name = '', ...args) {
+        if (!manager.isFBXManager) {
+            console.trace('Missing manager in FBXObject');
+            throw 'Missing manager in FBXObject';
+        }
+        this.#manager = manager;
+        this.name = name;
+        this.#rootProperty = new FBXProperty(this);
+    }
+    set id(id) {
+        this.#id = id;
+    }
+    get id() {
+        return this.#id;
+    }
+    set name(name) {
+        this.#name = name;
+    }
+    get name() {
+        return this.#name;
+    }
+    get rootProperty() {
+        return this.#rootProperty;
+    }
+    get manager() {
+        return this.#manager;
+    }
+    connectSrcObject(object) {
+        //TODO: add connection type ?
+        this.#srcObjects.add(object);
+    }
+    get srcObjects() {
+        return this.#srcObjects;
+    }
+    createProperty(type, name, value, flags) {
+        return new FBXProperty(this.#rootProperty, type, name, value, flags);
+    }
+    getAllProperties() {
+        return this.#rootProperty.getAllProperties(false);
+    }
+    findProperty(propertyName) {
+        return this.#rootProperty.findProperty(propertyName);
+    }
+}
+
+class FBXCollection extends FBXObject {
+    #members = new Set();
+    isFBXCollection = true;
+    add(member) {
+        this.#members.add(member);
+    }
+    remove(member) {
+        this.#members.delete(member);
+    }
+    get count() {
+        return this.#members.size;
+    }
+    get members() {
+        return this.#members;
+    }
+}
+
+class FBXManager {
+    #objects = new Set();
+    #documents = new Set();
+    isFBXManager = true;
+    static #registry = new Map();
+    destroy() {
+        this.#objects.clear();
+        this.#documents.clear();
+    }
+    static registerClass(className, classConstructor) {
+        FBXManager.#registry.set(className, classConstructor);
+    }
+    createObject(className, objectName, ...args) {
+        const classConstructor = FBXManager.#registry.get(className);
+        if (!classConstructor) {
+            throw 'Unknown constructor in FBXManager.createObject(): ' + className;
+        }
+        const createdObject = new classConstructor(this, objectName, args);
+        if (createdObject) {
+            if (createdObject.isFBXDocument) {
+                this.#documents.add(createdObject);
+            }
+            else {
+                this.#objects.add(createdObject);
+            }
+        }
+        return createdObject;
+    }
+}
+
+class FBXAnimLayer extends FBXCollection {
+    //TODO: add Properties
+    /*P: "Weight", "Number", "", "A",100
+    P: "Mute", "bool", "", "",0
+    P: "Solo", "bool", "", "",0
+    P: "Lock", "bool", "", "",0
+    P: "Color", "ColorRGB", "Color", "",0.8,0.8,0.8
+    P: "BlendMode", "enum", "", "",0
+    P: "RotationAccumulationMode", "enum", "", "",0
+    P: "ScaleAccumulationMode", "enum", "", "",0
+    P: "BlendModeBypass", "ULongLong", "", "",0*/
+    isFBXAnimLayer = true;
+}
+FBXManager.registerClass('FBXAnimLayer', FBXAnimLayer);
+const FBX_PROPERTY_FLAG_STATIC = 1 << 0;
+
+class FBXAnimStack extends FBXCollection {
+    #description;
+    #localStart;
+    #localStop;
+    #referenceStart;
+    #referenceStop;
+    isFBXAnimStack = true;
+    constructor(manager, name) {
+        super(manager, name);
+        this.#description = this.createProperty(FBX_PROPERTY_TYPE_STRING, 'Description', '', FBX_PROPERTY_FLAG_STATIC);
+        this.#localStart = this.createProperty(FBX_PROPERTY_TYPE_TIME, 'LocalStart', 0, FBX_PROPERTY_FLAG_STATIC);
+        this.#localStop = this.createProperty(FBX_PROPERTY_TYPE_TIME, 'LocalStop', 0, FBX_PROPERTY_FLAG_STATIC);
+        this.#referenceStart = this.createProperty(FBX_PROPERTY_TYPE_TIME, 'ReferenceStart', 0, FBX_PROPERTY_FLAG_STATIC);
+        this.#referenceStop = this.createProperty(FBX_PROPERTY_TYPE_TIME, 'ReferenceStop', 0, FBX_PROPERTY_FLAG_STATIC);
+    }
+}
+FBXManager.registerClass('FBXAnimStack', FBXAnimStack);
+
+const FBX_NODE_ATTRIBUTE_TYPE_UNKNOWN = 0;
+const FBX_NODE_ATTRIBUTE_TYPE_SKELETON = 3;
+const FBX_NODE_ATTRIBUTE_TYPE_CAMERA = 7;
+
+class FBXNodeAttribute extends FBXObject {
+    isFBXNodeAttribute = true;
+    getAttributeType() {
+        return FBX_NODE_ATTRIBUTE_TYPE_UNKNOWN;
+    }
+}
+
+class FBXCamera extends FBXNodeAttribute {
+    #position;
+    #upVector;
+    #interestPosition;
+    #roll;
+    //#opticalCenterX;
+    //#opticalCenterY;
+    #nearPlane;
+    #farPlane;
+    #projectionType;
+    #orthoZoom;
+    isFBXCamera = true;
+    constructor(manager, name) {
+        super(manager, name);
+        this.#position = this.createProperty(FBX_PROPERTY_TYPE_DOUBLE_3, 'Position', [0, 0, 0], FBX_PROPERTY_FLAG_STATIC);
+        this.#upVector = this.createProperty(FBX_PROPERTY_TYPE_DOUBLE_3, 'UpVector', [0, 0, 0], FBX_PROPERTY_FLAG_STATIC);
+        this.#interestPosition = this.createProperty(FBX_PROPERTY_TYPE_DOUBLE_3, 'InterestPosition', [0, 0, 0], FBX_PROPERTY_FLAG_STATIC);
+        this.#roll = this.createProperty(FBX_PROPERTY_TYPE_DOUBLE, 'Roll', 0, FBX_PROPERTY_FLAG_STATIC);
+        //this.#opticalCenterX = this.createProperty(FBX_PROPERTY_TYPE_DOUBLE, 'OpticalCenterX', 0, FBX_PROPERTY_FLAG_STATIC);
+        //this.#opticalCenterY = this.createProperty(FBX_PROPERTY_TYPE_DOUBLE, 'OpticalCenterY', 0, FBX_PROPERTY_FLAG_STATIC);
+        this.#nearPlane = this.createProperty(FBX_PROPERTY_TYPE_DOUBLE, 'NearPlane', 0, FBX_PROPERTY_FLAG_STATIC);
+        this.#farPlane = this.createProperty(FBX_PROPERTY_TYPE_DOUBLE, 'FarPlane', 0, FBX_PROPERTY_FLAG_STATIC);
+        this.#projectionType = this.createProperty(FBX_PROPERTY_TYPE_ENUM, 'CameraProjectionType', 0, FBX_PROPERTY_FLAG_STATIC);
+        this.#orthoZoom = this.createProperty(FBX_PROPERTY_TYPE_DOUBLE, 'OrthoZoom', 1, FBX_PROPERTY_FLAG_STATIC);
+    }
+    set position(position) {
+        this.#position = position;
+    }
+    get position() {
+        return this.#position;
+    }
+    set upVector(upVector) {
+        this.#upVector = upVector;
+    }
+    get upVector() {
+        return this.#upVector;
+    }
+    set interestPosition(interestPosition) {
+        this.#interestPosition = interestPosition;
+    }
+    get interestPosition() {
+        return this.#interestPosition;
+    }
+    set roll(roll) {
+        this.#roll = roll;
+    }
+    get roll() {
+        return this.#roll;
+    }
+    set nearPlane(nearPlane) {
+        this.#nearPlane = nearPlane;
+    }
+    get nearPlane() {
+        return this.#nearPlane;
+    }
+    set farPlane(farPlane) {
+        this.#farPlane = farPlane;
+    }
+    get farPlane() {
+        return this.#farPlane;
+    }
+    set projectionType(projectionType) {
+        this.#projectionType = projectionType;
+    }
+    get projectionType() {
+        return this.#projectionType;
+    }
+    set orthoZoom(orthoZoom) {
+        this.#orthoZoom = orthoZoom;
+    }
+    get orthoZoom() {
+        return this.#orthoZoom;
+    }
+    getAttributeType() {
+        return FBX_NODE_ATTRIBUTE_TYPE_CAMERA;
+    }
+}
+FBXManager.registerClass('FBXCamera', FBXCamera);
+
+const FBX_SUB_DEFORMER_TYPE_UNKNOWN = 0;
+const FBX_SUB_DEFORMER_TYPE_CLUSTER = 1;
+
+class FBXSubDeformer extends FBXObject {
+    isFBXSubDeformer = true;
+    get subDeformerType() {
+        return FBX_SUB_DEFORMER_TYPE_UNKNOWN;
+    }
+}
+
+const FBX_LINK_MODE_NORMALIZE = 0;
+
+class FBXCluster extends FBXSubDeformer {
+    #linkMode = FBX_LINK_MODE_NORMALIZE;
+    #link;
+    #indexes = [];
+    #weights = [];
+    #transformMatrix = create$5();
+    #transformLinkMatrix = create$5();
+    //#transformParentMatrix;
+    isFBXCluster = true;
+    set linkMode(linkMode) {
+        this.#linkMode = linkMode;
+    }
+    get linkMode() {
+        return this.#linkMode;
+    }
+    set link(link) {
+        this.#link = link;
+    }
+    get link() {
+        return this.#link;
+    }
+    addVertexIndex(index, weight) {
+        this.#indexes.push(index);
+        this.#weights.push(weight);
+    }
+    get indexes() {
+        return this.#indexes;
+    }
+    get weights() {
+        return this.#weights;
+    }
+    get subDeformerType() {
+        return FBX_SUB_DEFORMER_TYPE_CLUSTER;
+    }
+    set transformMatrix(transformMatrix) {
+        copy$5(this.#transformMatrix, transformMatrix);
+    }
+    get transformMatrix() {
+        return clone$5(this.#transformMatrix);
+    }
+    set transformLinkMatrix(transformLinkMatrix) {
+        copy$5(this.#transformLinkMatrix, transformLinkMatrix);
+    }
+    get transformLinkMatrix() {
+        return clone$5(this.#transformLinkMatrix);
+    }
+}
+FBXManager.registerClass('FBXCluster', FBXCluster);
+
+class FBXColor {
+    #red;
+    #green;
+    #blue;
+    #alpha;
+    isFBXColor = true;
+    constructor(red = 0.0, green = 0.0, blue = 0.0, alpha = 1.0) {
+        this.#red = red;
+        this.#green = green;
+        this.#blue = blue;
+        this.#alpha = alpha;
+    }
+    set red(red) {
+        this.#red = red;
+    }
+    get red() {
+        return this.#red;
+    }
+    set green(green) {
+        this.#green = green;
+    }
+    get green() {
+        return this.#green;
+    }
+    set blue(blue) {
+        this.#blue = blue;
+    }
+    get blue() {
+        return this.#blue;
+    }
+    set alpha(alpha) {
+        this.#alpha = alpha;
+    }
+    get alpha() {
+        return this.#alpha;
+    }
+}
+
+class FBXAxisSystem {
+    isFBXAxisSystem = true;
+    #upAxis;
+    #frontAxis;
+    constructor(upAxis, frontAxis) {
+        this.#upAxis = upAxis;
+        this.#frontAxis = frontAxis;
+    }
+    set upAxis(upAxis) {
+        this.#upAxis = upAxis;
+    }
+    get upAxis() {
+        return this.#upAxis;
+    }
+    set frontAxis(frontAxis) {
+        this.#frontAxis = frontAxis;
+    }
+    get frontAxis() {
+        return this.#frontAxis;
+    }
+    get coordAxis() {
+        return this.#frontAxis;
+    }
+}
+
+class FBXGlobalSettings extends FBXObject {
+    #ambientColor = new FBXColor();
+    #defaultCamera = '';
+    #axisSystem = new FBXAxisSystem(2, 1);
+    isFBXGlobalSettings = true;
+    set ambientColor(ambientColor) {
+        this.#ambientColor = ambientColor;
+    }
+    get ambientColor() {
+        return this.#ambientColor;
+    }
+    set defaultCamera(defaultCamera) {
+        this.#defaultCamera = defaultCamera;
+    }
+    get defaultCamera() {
+        return this.#defaultCamera;
+    }
+}
+FBXManager.registerClass('FBXGlobalSettings', FBXGlobalSettings);
+
+class FBXLayerContainer extends FBXNodeAttribute {
+    isFBXLayerContainer = true;
+}
+
+class FBXGeometryBase extends FBXLayerContainer {
+    isFBXGeometryBase = true;
+}
+
+class FBXGeometry extends FBXGeometryBase {
+    #deformers = new Set();
+    isFBXGeometry = true;
+    addDeformer(deformer) {
+        this.#deformers.add(deformer);
+    }
+    removeDeformer(deformer) {
+        this.#deformers.delete(deformer);
+    }
+    get deformers() {
+        return this.#deformers;
+    }
+}
+
+class FBXMesh extends FBXGeometry {
+    #vertices = [];
+    #normals = [];
+    #polygons = [];
+    #edges = [];
+    #uv = [];
+    #uvIndex = [];
+    isFBXMesh = true;
+    set vertices(vertices) {
+        this.#vertices = vertices;
+    }
+    get vertices() {
+        return this.#vertices;
+    }
+    set normals(normals) {
+        this.#normals = normals;
+    }
+    get normals() {
+        return this.#normals;
+    }
+    set polygons(polygons) {
+        this.#polygons = polygons;
+    }
+    get polygons() {
+        return this.#polygons;
+    }
+    set edges(edges) {
+        this.#edges = edges;
+    }
+    get edges() {
+        return this.#edges;
+    }
+    set uv(uv) {
+        this.#uv = uv;
+    }
+    get uv() {
+        return this.#uv;
+    }
+    set uvIndex(uvIndex) {
+        this.#uvIndex = uvIndex;
+    }
+    get uvIndex() {
+        return this.#uvIndex;
+    }
+}
+FBXManager.registerClass('FBXMesh', FBXMesh);
+//Scaling of parent is applied before rotation of child
+const FBX_INHERIT_TYPE_PARENT_SCALING_FIRST = 1;
+
+class FBXNode extends FBXObject {
+    #parent = null;
+    #childs = new Set();
+    #materials = [];
+    #nodeAttribute;
+    #inheritType = FBX_INHERIT_TYPE_PARENT_SCALING_FIRST;
+    #show;
+    #localTranslation;
+    #localRotation;
+    #localScaling;
+    isFBXNode = true;
+    constructor(manager, name) {
+        super(manager, name);
+        this.#show = this.createProperty(FBX_PROPERTY_TYPE_BOOL, 'Show', 1.0, FBX_PROPERTY_FLAG_STATIC);
+        this.#localTranslation = this.createProperty(FBX_PROPERTY_TYPE_DOUBLE_3, 'Lcl Translation', [0, 0, 0], FBX_PROPERTY_FLAG_STATIC);
+        this.#localRotation = this.createProperty(FBX_PROPERTY_TYPE_DOUBLE_3, 'Lcl Rotation', [0, 0, 0], FBX_PROPERTY_FLAG_STATIC);
+        this.#localScaling = this.createProperty(FBX_PROPERTY_TYPE_DOUBLE_3, 'Lcl Scaling', [1, 1, 1], FBX_PROPERTY_FLAG_STATIC);
+    }
+    set parent(parent) {
+        if (this.#checkParent(parent)) {
+            if (this.#parent) {
+                this.#parent.#childs.delete(this);
+            }
+            this.#parent = parent;
+            if (parent) {
+                parent.#childs.add(this);
+            }
+        }
+        else {
+            console.log(this, parent);
+            throw 'Invalid parent';
+        }
+    }
+    addChild(child) {
+        child.parent = this;
+    }
+    removeChild(child) {
+        child.parent = null;
+    }
+    get childs() {
+        return this.#childs;
+    }
+    get parent() {
+        return this.#parent;
+    }
+    #checkParent(parent) {
+        if (parent === null) {
+            return true;
+        }
+        if (!parent.isFBXNode) {
+            console.log('Parent is not FBXNode');
+            return false;
+        }
+        let current = parent;
+        for (;;) {
+            if (current == this) {
+                console.log('Parent hierarchy contains self');
+                return false;
+            }
+            if (!(current = current.parent)) {
+                break;
+            }
+        }
+        return true;
+    }
+    set nodeAttribute(nodeAttribute) {
+        this.#nodeAttribute = nodeAttribute;
+    }
+    get nodeAttribute() {
+        return this.#nodeAttribute;
+    }
+    set inheritType(inheritType) {
+        this.#inheritType = inheritType;
+    }
+    get inheritType() {
+        return this.#inheritType;
+    }
+    set show(show) {
+        this.#show.value = show;
+    }
+    get show() {
+        return this.#show.value;
+    }
+    set localTranslation(localTranslation) {
+        this.#localTranslation = localTranslation;
+    }
+    get localTranslation() {
+        return this.#localTranslation;
+    }
+    set localRotation(localRotation) {
+        this.#localRotation = localRotation;
+    }
+    get localRotation() {
+        return this.#localRotation;
+    }
+    set localScaling(localScaling) {
+        this.#localScaling = localScaling;
+    }
+    get localScaling() {
+        return this.#localScaling;
+    }
+    addMaterial(surfaceMaterial) {
+        this.#materials.push(surfaceMaterial);
+    }
+    get materials() {
+        return this.#materials;
+    }
+    toJSON() {
+        return {};
+    }
+}
+FBXManager.registerClass('FBXNode', FBXNode);
+
+class FBXPoseInfo {
+    #matrix = create$5();
+    #matrixIsLocal = false;
+    #node;
+    constructor(node, matrix, matrixIsLocal) {
+        this.#node = node;
+        copy$5(this.#matrix, matrix);
+        this.#matrixIsLocal = matrixIsLocal;
+    }
+    set matrix(matrix) {
+        this.#matrix = matrix;
+    }
+    get matrix() {
+        return this.#matrix;
+    }
+    set matrixIsLocal(matrixIsLocal) {
+        this.#matrixIsLocal = matrixIsLocal;
+    }
+    get matrixIsLocal() {
+        return this.#matrixIsLocal;
+    }
+    set node(node) {
+        this.#node = node;
+    }
+    get node() {
+        return this.#node;
+    }
+}
+
+class FBXPose extends FBXObject {
+    #isBindPose = true;
+    #poseInfos = [];
+    isFBXPose = true;
+    set isBindPose(isBindPose) {
+        this.#isBindPose = isBindPose;
+    }
+    get isBindPose() {
+        return this.#isBindPose;
+    }
+    get isRestPose() {
+        return !this.#isBindPose;
+    }
+    add(node, matrix, matrixIsLocal) {
+        this.#poseInfos.push(new FBXPoseInfo(node, matrix, matrixIsLocal));
+    }
+    get poseInfos() {
+        return this.#poseInfos;
+    }
+}
+FBXManager.registerClass('FBXPose', FBXPose);
+
+class FBXDocument extends FBXCollection {
+    #documentInfo;
+    isFBXDocument = true;
+    constructor(manager, name) {
+        super(manager, name);
+    }
+    set documentInfo(documentInfo) {
+        this.#documentInfo = documentInfo;
+    }
+    get documentInfo() {
+        return this.#documentInfo;
+    }
+}
+
+class FBXScene extends FBXDocument {
+    #rootNode;
+    #globalSettings;
+    #sceneInfo;
+    #objects = new Set();
+    isFBXScene = true;
+    constructor(manager, name) {
+        super(manager, name);
+        this.#rootNode = manager.createObject('FBXNode', 'Root node. This node is not saved');
+        this.#globalSettings = manager.createObject('FBXGlobalSettings', 'TODO: name me FBXScene / #globalSettings');
+        this.#rootNode.id = 0n;
+    }
+    set sceneInfo(sceneInfo) {
+        this.#sceneInfo = sceneInfo;
+    }
+    get sceneInfo() {
+        return this.#sceneInfo;
+    }
+    get rootNode() {
+        return this.#rootNode;
+    }
+    get globalSettings() {
+        return this.#globalSettings;
+    }
+    addObject(object) {
+        this.#objects.add(object);
+    }
+    get objects() {
+        return this.#objects;
+    }
+}
+FBXManager.registerClass('FBXScene', FBXScene);
+
+class FBXSkeleton extends FBXNodeAttribute {
+    skeletonType;
+    isFBXSkeleton = true;
+    constructor(manager, name, skeletonType) {
+        super(manager, name);
+        this.skeletonType = skeletonType;
+    }
+    getAttributeType() {
+        return FBX_NODE_ATTRIBUTE_TYPE_SKELETON;
+    }
+}
+FBXManager.registerClass('FBXSkeleton', FBXSkeleton);
+
+const FBX_DEFORMER_TYPE_UNKNOWN = 0;
+const FBX_DEFORMER_TYPE_SKIN = 1;
+
+class FBXDeformer extends FBXObject {
+    isFBXDeformer = true;
+    get deformerType() {
+        return FBX_DEFORMER_TYPE_UNKNOWN;
+    }
+}
+const FBX_SKINNING_TYPE_LINEAR = 1;
+
+class FBXSkin extends FBXDeformer {
+    #geometry;
+    #skinningType = FBX_SKINNING_TYPE_LINEAR;
+    #clusters = new Set();
+    isFBXSkin = true;
+    set geometry(geometry) {
+        if (geometry && !geometry.isFBXGeometry) {
+            throw 'geometry must be of type FBXGeometry';
+        }
+        if (this.#geometry) {
+            this.#geometry.removeDeformer(this);
+        }
+        if (geometry) {
+            geometry.addDeformer(this);
+        }
+        this.#geometry = geometry;
+    }
+    get geometry() {
+        return this.#geometry;
+    }
+    set skinningType(skinningType) {
+        this.#skinningType = skinningType;
+    }
+    get skinningType() {
+        return this.#skinningType;
+    }
+    addCluster(fbxCluster) {
+        this.#clusters.add(fbxCluster);
+    }
+    removeCluster(fbxCluster) {
+        this.#clusters.delete(fbxCluster);
+    }
+    get clusters() {
+        return this.#clusters;
+    }
+    get deformerType() {
+        return FBX_DEFORMER_TYPE_SKIN;
+    }
+}
+FBXManager.registerClass('FBXSkin', FBXSkin);
+
+class FBXSurfaceMaterial extends FBXObject {
+    #shadingModel;
+    #multiLayer;
+    isFBXSurfaceMaterial = true;
+    constructor(manager, name) {
+        super(manager, name);
+        this.#shadingModel = this.createProperty(FBX_PROPERTY_TYPE_STRING, 'ShadingModel', 'Unknown', FBX_PROPERTY_FLAG_STATIC);
+        this.#multiLayer = this.createProperty(FBX_PROPERTY_TYPE_BOOL, 'MultiLayer', false, FBX_PROPERTY_FLAG_STATIC);
+    }
+    set shadingModel(shadingModel) {
+        this.#shadingModel.value = shadingModel;
+    }
+    get shadingModel() {
+        return this.#shadingModel.value;
+    }
+    set multiLayer(multiLayer) {
+        this.#multiLayer.value = multiLayer;
+    }
+    get multiLayer() {
+        return this.#multiLayer.value;
+    }
+}
+FBXManager.registerClass('FBXSurfaceMaterial', FBXSurfaceMaterial);
+
+class FBXSurfaceLambert extends FBXSurfaceMaterial {
+    #diffuse;
+    isFBXSurfaceLambert = true;
+    constructor(manager, name) {
+        super(manager, name);
+        this.shadingModel = 'Lambert';
+        this.#diffuse = this.createProperty(FBX_PROPERTY_TYPE_COLOR_3, 'DiffuseColor', [0.2, 0.2, 0.2], FBX_PROPERTY_FLAG_STATIC);
+    }
+    set diffuse(diffuse) {
+        console.assert(diffuse.isFBXProperty && diffuse.type == FBX_PROPERTY_TYPE_COLOR_3, "diffuse is not an FBXProperty");
+        this.#diffuse = diffuse;
+    }
+    get diffuse() {
+        return this.#diffuse;
+    }
+}
+FBXManager.registerClass('FBXSurfaceLambert', FBXSurfaceLambert);
+
+class FBXSurfacePhong extends FBXSurfaceLambert {
+    isFBXSurfacePhong = true;
+    constructor(manager, name) {
+        super(manager, name);
+        this.shadingModel = 'Phong';
+    }
+}
+FBXManager.registerClass('FBXSurfacePhong', FBXSurfacePhong);
+
+class FBXTexture extends FBXObject {
+    #media;
+    #type = 'TextureVideoClip';
+    isFBXTexture = true;
+    set type(type) {
+        throw 'We might want to check the exporter if we change the type';
+    }
+    get type() {
+        return this.#type;
+    }
+    set media(media) {
+        this.#media = media;
+    }
+    get media() {
+        return this.#media;
+    }
+}
+FBXManager.registerClass('FBXTexture', FBXTexture);
+
+class FBXVideo extends FBXObject {
+    #content;
+    #type = 'Clip';
+    isFBXVideo = true;
+    set content(content) {
+        this.#content = content;
+    }
+    get content() {
+        return this.#content;
+    }
+    set type(type) {
+        throw 'We might want to check the exporter if we change the type';
+    }
+    get type() {
+        return this.#type;
+    }
+}
+FBXManager.registerClass('FBXVideo', FBXVideo);
+
+var FbxType;
+(function (FbxType) {
+    FbxType[FbxType["Int8"] = 67] = "Int8";
+    FbxType[FbxType["Double"] = 68] = "Double";
+    FbxType[FbxType["Float"] = 70] = "Float";
+    FbxType[FbxType["Int32"] = 73] = "Int32";
+    FbxType[FbxType["Int64"] = 76] = "Int64";
+    FbxType[FbxType["Raw"] = 82] = "Raw";
+    FbxType[FbxType["String"] = 83] = "String";
+    FbxType[FbxType["Int16"] = 89] = "Int16";
+    FbxType[FbxType["Int8Array"] = 98] = "Int8Array";
+    FbxType[FbxType["DoubleArray"] = 100] = "DoubleArray";
+    FbxType[FbxType["FloatArray"] = 102] = "FloatArray";
+    FbxType[FbxType["Int32Array"] = 105] = "Int32Array";
+    FbxType[FbxType["Int64Array"] = 108] = "Int64Array";
+})(FbxType || (FbxType = {}));
+const FBX_DATA_TYPE_INT_8 = 67;
+const FBX_DATA_TYPE_DOUBLE = 68;
+const FBX_DATA_TYPE_FLOAT = 70;
+const FBX_DATA_TYPE_INT_32 = 73;
+const FBX_DATA_TYPE_INT_64 = 76;
+const FBX_DATA_TYPE_RAW = 82;
+const FBX_DATA_TYPE_STRING = 83;
+const FBX_DATA_TYPE_INT_16 = 89;
+const FBX_DATA_TYPE_ARRAY_INT_8 = 98;
+const FBX_DATA_TYPE_ARRAY_DOUBLE = 100;
+const FBX_DATA_TYPE_ARRAY_FLOAT = 102;
+const FBX_DATA_TYPE_ARRAY_INT_32 = 105;
+const FBX_DATA_TYPE_ARRAY_INT_64 = 108;
+const FBX_DATA_LEN = new Map();
+FBX_DATA_LEN.set(FBX_DATA_TYPE_INT_8, 1);
+FBX_DATA_LEN.set(FBX_DATA_TYPE_DOUBLE, 8);
+FBX_DATA_LEN.set(FBX_DATA_TYPE_FLOAT, 4);
+FBX_DATA_LEN.set(FBX_DATA_TYPE_INT_32, 4);
+FBX_DATA_LEN.set(FBX_DATA_TYPE_INT_64, 8);
+FBX_DATA_LEN.set(FBX_DATA_TYPE_INT_16, 2);
+FBX_DATA_LEN.set(FBX_DATA_TYPE_ARRAY_INT_8, 1);
+FBX_DATA_LEN.set(FBX_DATA_TYPE_ARRAY_DOUBLE, 8);
+FBX_DATA_LEN.set(FBX_DATA_TYPE_ARRAY_FLOAT, 4);
+FBX_DATA_LEN.set(FBX_DATA_TYPE_ARRAY_INT_32, 4);
+FBX_DATA_LEN.set(FBX_DATA_TYPE_ARRAY_INT_64, 8);
+const FBX_BINARY_MAGIC = 'Kaydara FBX Binary  \0';
+const FBX_HEADER_VERSION = 1003;
+const FBX_SCENEINFO_VERSION = 100;
+const FBX_TEMPLATES_VERSION = 100;
+const FBX_KTIME = 46186158000n;
+const FBX_GEOMETRY_VERSION = 124;
+const FBX_GEOMETRY_UV_VERSION = 101;
+const FBX_GEOMETRY_MATERIAL_VERSION = 101;
+const FBX_GEOMETRY_LAYER_VERSION = 100;
+const FBX_MATERIAL_VERSION = 102;
+const FBX_TEXTURE_VERSION = 202;
+const FBX_DEFORMER_SKIN_VERSION = 101;
+const FBX_DEFORMER_CLUSTER_VERSION = 100;
+const FBX_POSE_BIND_VERSION = 100;
+const FBX_MODELS_VERSION = 232;
+
+if (!BigInt.prototype.toJSON) {
+    BigInt.prototype.toJSON = function () { return this.toString(); };
+}
+class FBXRecordProperty {
+    #type;
+    #value;
+    #srcObjects = new Set();
+    #flags = 0;
+    #parent = null;
+    isFBXProperty = true;
+    constructor(parent, type, value) {
+        if (parent) {
+            if (parent.isFBXProperty) {
+                this.#parent = parent;
+            }
+            else if (parent.isFBXObject) {
+                this.#parent = parent.rootProperty;
+            }
+            else {
+                throw 'Parent must be FBXRecordProperty or FBXObject';
+            }
+        }
+        this.#type = type;
+        this.#value = value;
+        //TODO: check the value type
+    }
+    get type() {
+        return this.#type;
+    }
+    set value(value) {
+        this.#value = value;
+    }
+    get value() {
+        return this.#value;
+    }
+    set(value) {
+        this.#value = value;
+    }
+    get() {
+        return this.#value;
+    }
+    set flags(flags) {
+        this.#flags = flags;
+    }
+    get flags() {
+        return this.#flags;
+    }
+    get parent() {
+        return this.#parent;
+    }
+    connectSrcObject(fbxObject) {
+        //TODO: add connection type ?
+        this.#srcObjects.add(fbxObject);
+    }
+    get srcObjects() {
+        return this.#srcObjects;
+    }
+    createProperty(type, value) {
+        return new FBXRecordProperty(this, type, value);
+    }
+    toJSON() {
+        return {
+            type: this.#type,
+            value: this.#value,
+        };
+    }
+}
+
+function createInt16Property(value) {
+    return new FBXRecordProperty(null, FBX_DATA_TYPE_INT_16, value);
+}
+function createInt32Property(value) {
+    return new FBXRecordProperty(null, FBX_DATA_TYPE_INT_32, value);
+}
+function createInt64Property(value) {
+    return new FBXRecordProperty(null, FBX_DATA_TYPE_INT_64, value);
+}
+function createDoubleProperty(value) {
+    return new FBXRecordProperty(null, FBX_DATA_TYPE_DOUBLE, value);
+}
+function createRawProperty(value /*TODO: better type*/) {
+    return new FBXRecordProperty(null, FBX_DATA_TYPE_RAW, value);
+}
+function createStringProperty(value) {
+    return new FBXRecordProperty(null, FBX_DATA_TYPE_STRING, value);
+}
+
+class FBXRecord {
+    #name = '';
+    #childs = new Set();
+    #properties = new Set();
+    isFBXRecord = true;
+    constructor(name) {
+        this.name = name;
+    }
+    addChild(child) {
+        if (!child.isFBXRecord) {
+            throw 'FBXFile: trying to insert a non FBXRecord child';
+        }
+        this.#childs.add(child);
+        return child;
+    }
+    addChilds(childs) {
+        for (let child of childs) {
+            this.addChild(child);
+        }
+    }
+    addProperty(property) {
+        this.#properties.add(property);
+    }
+    addProperties(properties) {
+        for (let property of properties) {
+            this.addProperty(property);
+        }
+    }
+    set name(name) {
+        if (name.length > 255) {
+            throw `Record name above 255 characters ${name}`;
+        }
+        this.#name = name;
+    }
+    get name() {
+        return this.#name;
+    }
+    get childs() {
+        return this.#childs;
+    }
+    get properties() {
+        return this.#properties;
+    }
+    getRecordsByName(recordName) {
+        let output = [];
+        for (let child of this.#childs) {
+            if (child.name == recordName) {
+                output.push(child);
+            }
+        }
+        return output;
+    }
+    getRecordByName(recordName) {
+        for (let child of this.#childs) {
+            if (child.name == recordName) {
+                return child;
+            }
+        }
+    }
+    getProperty(type) {
+        for (let property of this.#properties) {
+            if (property.type == type) {
+                return property.value;
+            }
+        }
+    }
+    getPropertyInt32() {
+        return this.getProperty(FBX_DATA_TYPE_INT_32);
+    }
+    getPropertyString() {
+        return this.getProperty(FBX_DATA_TYPE_STRING);
+    }
+    toJSON() {
+        return {
+            name: this.#name,
+            childs: this.#childs.size ? [...this.#childs] : undefined,
+            properties: this.#properties.size ? [...this.#properties] : undefined,
+        };
+    }
+}
+
+const _TIME_ID = '1970-01-01 10:00:00:000';
+const _FILE_ID = new Uint8Array([0x28, 0xb3, 0x2a, 0xeb, 0xb6, 0x24, 0xcc, 0xc2, 0xbf, 0xc8, 0xb0, 0x2a, 0xa9, 0x2b, 0xfc, 0xf1]);
+const _FOOT_ID = new Uint8Array([0xfa, 0xbc, 0xab, 0x09, 0xd0, 0xc8, 0xd4, 0x66, 0xb1, 0x76, 0xfb, 0x83, 0x1c, 0xf7, 0x26, 0x7e]);
+const FBX_FOOTER2 = '\xf8\x5a\x8c\x6a\xde\xf5\xd9\x7e\xec\xe9\x0c\xe3\x75\x8f\x29\x0b';
+class FBXExporter {
+    exportBinary(fbxFile) {
+        checkFile(fbxFile);
+        let version = fbxFile.version;
+        let size = getFileSize(fbxFile, version);
+        //console.log('File Size: ', size);
+        let writer = new BinaryReader(new Uint8Array(size));
+        return exportBinaryFile(writer, fbxFile);
+    }
+}
+function checkFile(fbxFile) {
+    for (let child of fbxFile.childs) {
+        if (child.name == 'CreationTime' || child.name == 'FileId') {
+            fbxFile.childs.delete(child);
+        }
+    }
+    formatCreationTimeRecord(fbxFile);
+    formatFileIdRecord(fbxFile);
+}
+function exportBinaryFile(writer, fbxFile) {
+    let version = fbxFile.version;
+    writer.seek(0);
+    writer.setString(FBX_BINARY_MAGIC);
+    writer.setUint8(0x1A);
+    writer.setUint8(0x00);
+    writer.setUint32(version);
+    for (let child of fbxFile.childs) {
+        exportBinaryRecord(writer, child, version);
+    }
+    writer.skip((version >= 7500) ? 25 : 13); //Null record
+    writer.setBytes(generateFooterCode(fbxFile.dateCreated));
+    writer.skip(align16(writer.tell()));
+    if (version != 7400) {
+        writer.skip(4);
+    }
+    writer.setUint32(version);
+    writer.skip(120);
+    writer.setString(FBX_FOOTER2);
+    return writer.buffer;
+}
+function formatFileIdRecord(fbxFile) {
+    let fbxRecord = fbxFile.addChild(new FBXRecord('FileId'));
+    fbxRecord.properties.clear();
+    let fbxProperty = createRawProperty(_FILE_ID);
+    fbxRecord.addProperty(fbxProperty);
+}
+function formatCreationTimeRecord(fbxFile) {
+    let fbxRecord = fbxFile.addChild(new FBXRecord('CreationTime'));
+    fbxRecord.properties.clear();
+    let dateCreated = fbxFile.dateCreated;
+    `${dateCreated.getFullYear()}-${padNumber(dateCreated.getMonth() + 1, 2)}-${padNumber(dateCreated.getDate(), 2)} ${padNumber(dateCreated.getHours(), 2)}:${padNumber(dateCreated.getMinutes(), 2)}:${padNumber(dateCreated.getSeconds(), 2)}:${padNumber(dateCreated.getMilliseconds(), 3)}`;
+    //console.log(creationTime);
+    //let fbxProperty = createStringProperty(creationTime);
+    let fbxProperty = createStringProperty(_TIME_ID);
+    fbxRecord.addProperty(fbxProperty);
+}
+function align16(offset) {
+    let pad = ((offset + 15) & ~15) - offset;
+    if (pad == 0) {
+        pad = 16;
+    }
+    return pad;
+}
+function exportBinaryRecord(writer, fbxRecord, version) {
+    let startOffset = writer.tell();
+    let recordLen = getRecordSize(fbxRecord, version);
+    //console.log(startOffset);
+    if (version >= 7500) {
+        writer.setBigUint64(BigInt(startOffset + recordLen));
+        writer.setBigUint64(BigInt(fbxRecord.properties.size));
+        writer.setBigUint64(BigInt(getRecordPropertiesSize(fbxRecord)));
+    }
+    else {
+        writer.setUint32(startOffset + recordLen);
+        writer.setUint32(fbxRecord.properties.size);
+        writer.setUint32(getRecordPropertiesSize(fbxRecord));
+    }
+    writer.setUint8(fbxRecord.name.length);
+    writer.setString(fbxRecord.name);
+    exportProperties(writer, fbxRecord);
+    for (let child of fbxRecord.childs) {
+        exportBinaryRecord(writer, child, version);
+    }
+    writer.skip((version >= 7500) ? 25 : 13); //Null record
+}
+function exportProperties(writer, fbxRecord) {
+    for (let property of fbxRecord.properties) {
+        exportRecordProperty(writer, property);
+    }
+}
+function exportRecordProperty(writer, fbxProperty) {
+    //console.log(fbxProperty);
+    writer.setUint8(fbxProperty.type);
+    switch (fbxProperty.type) {
+        case FBX_DATA_TYPE_INT_16:
+            writer.setInt16(fbxProperty.value);
+            break;
+        case FBX_DATA_TYPE_INT_8:
+            writer.setInt8(fbxProperty.value);
+            break;
+        case FBX_DATA_TYPE_INT_32:
+            writer.setInt32(fbxProperty.value);
+            break;
+        case FBX_DATA_TYPE_FLOAT:
+            writer.setFloat32(fbxProperty.value);
+            break;
+        case FBX_DATA_TYPE_DOUBLE:
+            writer.setFloat64(fbxProperty.value);
+            break;
+        case FBX_DATA_TYPE_INT_64:
+            writer.setBigInt64(BigInt(fbxProperty.value));
+            break;
+        case FBX_DATA_TYPE_RAW:
+            writer.setUint32(fbxProperty.value.length);
+            writer.setBytes(fbxProperty.value);
+            break;
+        case FBX_DATA_TYPE_STRING:
+            writer.setUint32(fbxProperty.value.length);
+            writer.setString(fbxProperty.value);
+            break;
+        case FBX_DATA_TYPE_ARRAY_INT_8:
+        case FBX_DATA_TYPE_ARRAY_DOUBLE:
+        case FBX_DATA_TYPE_ARRAY_FLOAT:
+        case FBX_DATA_TYPE_ARRAY_INT_32:
+        case FBX_DATA_TYPE_ARRAY_INT_64:
+            exportRecordPropertyArray(writer, fbxProperty);
+            break;
+        default:
+            throw 'Unknown property type ' + fbxProperty.type;
+    }
+}
+function exportRecordPropertyArray(writer, fbxProperty) {
+    writer.setUint32(fbxProperty.value.length);
+    writer.setUint32(0); //Encoding
+    writer.setUint32(FBX_DATA_LEN.get(fbxProperty.type) * fbxProperty.value.length);
+    let functionName;
+    switch (fbxProperty.type) {
+        case FBX_DATA_TYPE_ARRAY_INT_8:
+            functionName = 'setInt8';
+            break;
+        case FBX_DATA_TYPE_ARRAY_DOUBLE:
+            functionName = 'setFloat64';
+            break;
+        case FBX_DATA_TYPE_ARRAY_FLOAT:
+            functionName = 'setFloat32';
+            break;
+        case FBX_DATA_TYPE_ARRAY_INT_32:
+            functionName = 'setInt32';
+            break;
+        case FBX_DATA_TYPE_ARRAY_INT_64:
+            functionName = 'setBigInt64';
+            for (let value of fbxProperty.value) {
+                writer.setBigInt64(value);
+            }
+            return;
+        default:
+            throw 'Unknown array property type ' + fbxProperty.type;
+    }
+    for (let value of fbxProperty.value) {
+        writer[functionName](value);
+    }
+}
+function getFileSize(fbxFile, version) {
+    let size = 27; //header
+    for (let child of fbxFile.childs) {
+        size += getRecordSize(child, version);
+    }
+    size += (version >= 7500) ? 25 : 13; //Null record
+    size += 16; // footer1
+    //size += 4 // padding
+    size += align16(size); //alignment
+    if (version != 7400) {
+        size += 4; // padding
+    }
+    size += 140; //version + padding + footer2
+    return size;
+}
+function getRecordSize(fbxRecord, version) {
+    let size;
+    if (version >= 7500) {
+        size = 8 + 8 + 8 + 1;
+    }
+    else {
+        size = 4 + 4 + 4 + 1;
+    }
+    size += fbxRecord.name.length;
+    size += getRecordPropertiesSize(fbxRecord);
+    for (let child of fbxRecord.childs) {
+        size += getRecordSize(child, version);
+    }
+    size += (version >= 7500) ? 25 : 13; //Null record
+    return size;
+}
+function getRecordPropertiesSize(fbxRecord) {
+    let size = 0;
+    for (let property of fbxRecord.properties) {
+        switch (property.type) {
+            case FBX_DATA_TYPE_INT_8:
+            case FBX_DATA_TYPE_DOUBLE:
+            case FBX_DATA_TYPE_FLOAT:
+            case FBX_DATA_TYPE_INT_32:
+            case FBX_DATA_TYPE_INT_64:
+            case FBX_DATA_TYPE_INT_16:
+                ++size; //Typecode
+                size += FBX_DATA_LEN.get(property.type);
+                break;
+            case FBX_DATA_TYPE_RAW:
+            case FBX_DATA_TYPE_STRING:
+                ++size; //Typecode
+                size += 4; //string len
+                size += property.value.length;
+                break;
+            case FBX_DATA_TYPE_ARRAY_INT_8:
+            case FBX_DATA_TYPE_ARRAY_DOUBLE:
+            case FBX_DATA_TYPE_ARRAY_FLOAT:
+            case FBX_DATA_TYPE_ARRAY_INT_32:
+            case FBX_DATA_TYPE_ARRAY_INT_64:
+                size += 13; //Typecode + array header
+                size += FBX_DATA_LEN.get(property.type) * property.value.length;
+                break;
+            default:
+                throw 'Unknown property type ' + property.type;
+        }
+    }
+    return size;
+}
+//const extension = new Uint8Array([0xF8, 0x5A, 0x8C, 0x6A, 0xDE, 0xF5, 0xD9, 0x7E, 0xEC, 0xE9, 0x0C, 0xE3, 0x75, 0x8F, 0x29, 0x0B]);
+function padNumber(number, targetLength) {
+    return number.toString().padStart(targetLength, '0');
+}
+function generateFooterCode(date) {
+    return _FOOT_ID;
+}
+
+class FBXFile {
+    #version = 7500;
+    #childs = new Set();
+    #dateCreated = new Date();
+    set version(version) {
+        this.#version = version;
+    }
+    get version() {
+        return this.#version;
+    }
+    addChild(child) {
+        this.#childs.add(child);
+        return child;
+    }
+    get childs() {
+        return this.#childs;
+    }
+    getRecordsByName(recordName) {
+        let output = [];
+        for (let child of this.#childs) {
+            if (child.name == recordName) {
+                output.push(child);
+            }
+        }
+        return output;
+    }
+    getRecordByName(recordName) {
+        for (let child of this.#childs) {
+            if (child.name == recordName) {
+                return child;
+            }
+        }
+    }
+    set dateCreated(dateCreated) {
+        this.#dateCreated = dateCreated;
+    }
+    get dateCreated() {
+        return this.#dateCreated;
+    }
+    toJSON() {
+        return {
+            version: this.#version,
+            childs: this.#childs.size ? [...this.#childs] : undefined,
+        };
+    }
+}
+
+function createFBXRecord(name, options /*TODO: improve type*/) {
+    let fbxRecord = new FBXRecord(name);
+    if (options) {
+        for (let optionName in options) {
+            let optionValue = options[optionName];
+            switch (optionName) {
+                case 'parent':
+                    optionValue.addChild(fbxRecord);
+                    break;
+                case 'child':
+                    fbxRecord.addChild(optionValue);
+                    break;
+                case 'childs':
+                    fbxRecord.addChilds(optionValue);
+                    break;
+                case 'property':
+                    fbxRecord.addProperty(optionValue);
+                    break;
+                case 'properties':
+                    fbxRecord.addProperties(optionValue);
+                    break;
+                default:
+                    console.log(`Unknown property: ${optionName}`);
+            }
+        }
+    }
+    return fbxRecord;
+}
 function fbxNameClass(name, className) {
-	return name + '\x00\x01' + className;
+    return name + '\x00\x01' + className;
 }
-
 function createFBXRecordSingle(name, type, value) {
-	let fbxRecord = new FBXRecord(name);
-	fbxRecord.addProperty(new FBXRecordProperty(null, type, value));
-	return fbxRecord;
+    let fbxRecord = new FBXRecord(name);
+    fbxRecord.addProperty(new FBXRecordProperty(null, type, value));
+    return fbxRecord;
 }
 function createFBXRecordMultiple(name, type, values) {
-	let fbxRecord = new FBXRecord(name);
-	for (let value of values) {
-		fbxRecord.addProperty(new FBXRecordProperty(null, type, value));
-	}
-	return fbxRecord;
+    let fbxRecord = new FBXRecord(name);
+    for (let value of values) {
+        fbxRecord.addProperty(new FBXRecordProperty(null, type, value));
+    }
+    return fbxRecord;
 }
 function createFBXRecordSingleInt8(name, value) {
-	return createFBXRecordSingle(name, FBX_DATA_TYPE_INT_8, value);
+    return createFBXRecordSingle(name, FBX_DATA_TYPE_INT_8, value);
 }
 function createFBXRecordSingleInt32(name, value) {
-	return createFBXRecordSingle(name, FBX_DATA_TYPE_INT_32, value);
+    return createFBXRecordSingle(name, FBX_DATA_TYPE_INT_32, value);
 }
 function createFBXRecordSingleInt64(name, value) {
-	return createFBXRecordSingle(name, FBX_DATA_TYPE_INT_64, value);
+    return createFBXRecordSingle(name, FBX_DATA_TYPE_INT_64, value);
 }
-
 function createFBXRecordSingleDouble(name, value) {
-	return createFBXRecordSingle(name, FBX_DATA_TYPE_DOUBLE, value);
+    return createFBXRecordSingle(name, FBX_DATA_TYPE_DOUBLE, value);
 }
-
 function createFBXRecordSingleString(name, value) {
-	return createFBXRecordSingle(name, FBX_DATA_TYPE_STRING, value);
+    return createFBXRecordSingle(name, FBX_DATA_TYPE_STRING, value);
 }
 function createFBXRecordMultipleStrings(name, values) {
-	return createFBXRecordMultiple(name, FBX_DATA_TYPE_STRING, values);
+    return createFBXRecordMultiple(name, FBX_DATA_TYPE_STRING, values);
 }
-
 function createFBXRecordSingleBytes(name, value) {
-	return createFBXRecordSingle(name, FBX_DATA_TYPE_RAW, value);
+    return createFBXRecordSingle(name, FBX_DATA_TYPE_RAW, value);
 }
-
-
-
 function createFBXRecordFloatArray(name, value) {
-	return createFBXRecordSingle(name, FBX_DATA_TYPE_ARRAY_FLOAT, value);
+    return createFBXRecordSingle(name, FBX_DATA_TYPE_ARRAY_FLOAT, value);
 }
 function createFBXRecordDoubleArray(name, value) {
-	return createFBXRecordSingle(name, FBX_DATA_TYPE_ARRAY_DOUBLE, value);
+    return createFBXRecordSingle(name, FBX_DATA_TYPE_ARRAY_DOUBLE, value);
 }
 function createFBXRecordInt32Array(name, value) {
-	return createFBXRecordSingle(name, FBX_DATA_TYPE_ARRAY_INT_32, value);
+    return createFBXRecordSingle(name, FBX_DATA_TYPE_ARRAY_INT_32, value);
 }
 function createFBXRecordInt64Array(name, value) {
-	return createFBXRecordSingle(name, FBX_DATA_TYPE_ARRAY_INT_64, value);
+    return createFBXRecordSingle(name, FBX_DATA_TYPE_ARRAY_INT_64, value);
 }
 
 function createPString(name, value) {
-	return createFBXRecordMultipleStrings('P', [name, 'KString', '', '', value]);
+    return createFBXRecordMultipleStrings('P', [name, 'KString', '', '', value]);
 }
 function createPInteger(name, value) {
-	return createFBXRecord('P', {
-		properties: [
-			createStringProperty(name),
-			createStringProperty('int'),
-			createStringProperty('Integer'),
-			createStringProperty(''),
-			createInt32Property(value),
-		],
-	});
+    return createFBXRecord('P', {
+        properties: [
+            createStringProperty(name),
+            createStringProperty('int'),
+            createStringProperty('Integer'),
+            createStringProperty(''),
+            createInt32Property(value),
+        ],
+    });
 }
 function createPDouble(name, value) {
-	return createFBXRecord('P', {
-		properties: [
-			createStringProperty(name),
-			createStringProperty('double'),
-			createStringProperty('Number'),
-			createStringProperty(''),
-			createDoubleProperty(value),
-		],
-	});
+    return createFBXRecord('P', {
+        properties: [
+            createStringProperty(name),
+            createStringProperty('double'),
+            createStringProperty('Number'),
+            createStringProperty(''),
+            createDoubleProperty(value),
+        ],
+    });
 }
 function createPColorRGB(name, value) {
-	return createFBXRecord('P', {
-		properties: [
-			createStringProperty(name),
-			createStringProperty('ColorRGB'),
-			createStringProperty('Color'),
-			createStringProperty(''),
-			createDoubleProperty(value[0]),
-			createDoubleProperty(value[1]),
-			createDoubleProperty(value[2]),
-		],
-	});
+    return createFBXRecord('P', {
+        properties: [
+            createStringProperty(name),
+            createStringProperty('ColorRGB'),
+            createStringProperty('Color'),
+            createStringProperty(''),
+            createDoubleProperty(value[0]),
+            createDoubleProperty(value[1]),
+            createDoubleProperty(value[2]),
+        ],
+    });
 }
 function createPEnum(name, value) {
-	return createFBXRecord('P', {
-		properties: [
-			createStringProperty(name),
-			createStringProperty('enum'),
-			createStringProperty(''),
-			createStringProperty(''),
-			createInt32Property(value),
-		],
-	});
+    return createFBXRecord('P', {
+        properties: [
+            createStringProperty(name),
+            createStringProperty('enum'),
+            createStringProperty(''),
+            createStringProperty(''),
+            createInt32Property(value),
+        ],
+    });
 }
 function createPTime(name, value) {
-	return createFBXRecord('P', {
-		properties: [
-			createStringProperty(name),
-			createStringProperty('KTime'),
-			createStringProperty('Time'),
-			createStringProperty(''),
-			createInt64Property(value),
-		],
-	});
+    return createFBXRecord('P', {
+        properties: [
+            createStringProperty(name),
+            createStringProperty('KTime'),
+            createStringProperty('Time'),
+            createStringProperty(''),
+            createInt64Property(value),
+        ],
+    });
 }
 function createPObject(name) {
-	return createFBXRecord('P', {
-		properties: [
-			createStringProperty(name),
-			createStringProperty('object'),
-			createStringProperty(''),
-			createStringProperty(''),
-		],
-	});
+    return createFBXRecord('P', {
+        properties: [
+            createStringProperty(name),
+            createStringProperty('object'),
+            createStringProperty(''),
+            createStringProperty(''),
+        ],
+    });
 }
 function createPBool(name, value) {
-	return createFBXRecord('P', {
-		properties: [
-			createStringProperty(name),
-			createStringProperty('bool'),
-			createStringProperty(''),
-			createStringProperty(''),
-			createInt32Property(value),
-		],
-	});
+    return createFBXRecord('P', {
+        properties: [
+            createStringProperty(name),
+            createStringProperty('bool'),
+            createStringProperty(''),
+            createStringProperty(''),
+            createInt32Property(value ? 1 : 0),
+        ],
+    });
 }
 function createPVector3D(name, value) {
-	return createFBXRecord('P', {
-		properties: [
-			createStringProperty(name),
-			createStringProperty('Vector3D'),
-			createStringProperty('Vector'),
-			createStringProperty(''),
-			createDoubleProperty(value[0]),
-			createDoubleProperty(value[1]),
-			createDoubleProperty(value[2]),
-		],
-	});
+    return createFBXRecord('P', {
+        properties: [
+            createStringProperty(name),
+            createStringProperty('Vector3D'),
+            createStringProperty('Vector'),
+            createStringProperty(''),
+            createDoubleProperty(value[0]),
+            createDoubleProperty(value[1]),
+            createDoubleProperty(value[2]),
+        ],
+    });
 }
 
 function exportFBXGlobalSettings(fbxGlobalSettings) {
-	let globalSettings = createFBXRecord('GlobalSettings', {
-		childs: [
-			createFBXRecordSingleInt32('Version', 1000),
-			createFBXRecord('Properties70', {
-				childs: [
-					createPInteger('UpAxis', 1),//TODO
-					createPInteger('UpAxisSign', 1),//TODO
-					createPInteger('FrontAxis', 2),//TODO
-					createPInteger('FrontAxisSign', 1),//TODO
-					createPInteger('CoordAxis', 0),//TODO
-					createPInteger('CoordAxisSign', 1),//TODO
-					createPInteger('OriginalUpAxis', 1),//TODO
-					createPInteger('OriginalUpAxisSign', 1),//TODO
-					createPDouble('UnitScaleFactor', 1),//TODO
-					createPDouble('OriginalUnitScaleFactor', 1),//TODO
-					createPColorRGB('AmbientColor', [0, 0, 0]),//TODO
-					createPString('DefaultCamera', 'Producer Perspective'),//TODO
-					createPEnum('TimeMode', 17),//TODO
-					createPTime('TimeSpanStart', 0n),//TODO
-					createPTime('TimeSpanStop', FBX_KTIME),//TODO
-					createPDouble('CustomFrameRate', -1),//TODO
-					createPEnum('TimeProtocol', 2),//TODO
-					createPEnum('SnapOnFrameMode', 0),//TODO
-					createFBXRecordMultipleStrings('P', ['TimeMarker', 'Compound', '', '']),
-					createPInteger('CurrentTimeMarker', -1),//TODO
-				]
-			}),
-		]
-	});
-	return globalSettings;
+    let globalSettings = createFBXRecord('GlobalSettings', {
+        childs: [
+            createFBXRecordSingleInt32('Version', 1000),
+            createFBXRecord('Properties70', {
+                childs: [
+                    createPInteger('UpAxis', 1), //TODO
+                    createPInteger('UpAxisSign', 1), //TODO
+                    createPInteger('FrontAxis', 2), //TODO
+                    createPInteger('FrontAxisSign', 1), //TODO
+                    createPInteger('CoordAxis', 0), //TODO
+                    createPInteger('CoordAxisSign', 1), //TODO
+                    createPInteger('OriginalUpAxis', 1), //TODO
+                    createPInteger('OriginalUpAxisSign', 1), //TODO
+                    createPDouble('UnitScaleFactor', 1), //TODO
+                    createPDouble('OriginalUnitScaleFactor', 1), //TODO
+                    createPColorRGB('AmbientColor', [0, 0, 0]), //TODO
+                    createPString('DefaultCamera', 'Producer Perspective'), //TODO
+                    createPEnum('TimeMode', 17), //TODO
+                    createPTime('TimeSpanStart', 0n), //TODO
+                    createPTime('TimeSpanStop', FBX_KTIME), //TODO
+                    createPDouble('CustomFrameRate', -1), //TODO
+                    createPEnum('TimeProtocol', 2), //TODO
+                    createPEnum('SnapOnFrameMode', 0), //TODO
+                    createFBXRecordMultipleStrings('P', ['TimeMarker', 'Compound', '', '']),
+                    createPInteger('CurrentTimeMarker', -1), //TODO
+                ]
+            }),
+        ]
+    });
+    return globalSettings;
+}
+/*
+export function exportFBXGlobalSettings(fbxGlobalSettings) {
+    let upVector = fbxGlobalSettings.axisSystem.upVector;
+    let frontVector = fbxGlobalSettings.axisSystem.frontVector;
+    let coordVector = fbxGlobalSettings.axisSystem.coordVector;
+
+    let globalSettings = createFBXRecord('GlobalSettings', {
+        childs: [
+            createFBXRecordSingleInt32('Version', 1000),
+            createFBXRecord('Properties70', {
+                childs: [
+                    createPInteger('UpAxis', upVector),//TODO
+                    createPInteger('UpAxisSign', Math.sign(upVector)),//TODO
+                    createPInteger('FrontAxis', frontVector),//TODO
+                    createPInteger('FrontAxisSign', Math.sign(frontVector)),//TODO
+                    createPInteger('CoordAxis', coordVector),//TODO
+                    createPInteger('CoordAxisSign', Math.sign(coordVector)),//TODO
+                    createPInteger('OriginalUpAxis', 1),//TODO
+                    createPInteger('OriginalUpAxisSign', 1),//TODO
+                    createPDouble('UnitScaleFactor', 1),//TODO
+                    createPDouble('OriginalUnitScaleFactor', 1),//TODO
+                    createPColorRGB('AmbientColor', [0, 0, 0]),//TODO
+                    createPString('DefaultCamera', 'Producer Perspective'),//TODO
+                    createPEnum('TimeMode', 17),//TODO
+                    createPTime('TimeSpanStart', 0n),//TODO
+                    createPTime('TimeSpanStop', FBX_KTIME),//TODO
+                    createPDouble('CustomFrameRate', -1),//TODO
+                    createPEnum('TimeProtocol', 2),//TODO
+                    createPEnum('SnapOnFrameMode', 0),//TODO
+                    createFBXRecordMultipleStrings('P', ['TimeMarker', 'Compound', '', '']),
+                    createPInteger('CurrentTimeMarker', -1),//TODO
+                ]
+            }),
+        ]
+    });
+    return globalSettings;
 }
 
+*/
+
 function exportFBXScene(fbxScene) {
-	let documents = createFBXRecord('Documents', {
-		childs: [
-			createFBXRecordSingleInt32('Count', 1),
-			createFBXRecord('Document', {
-				childs: [
-					createFBXRecord('Properties70', {
-						childs: [
-							createPObject('SourceObject'),
-							createPString('ActiveAnimStackName', ''),//TODO
-						]
-					}),
-					createFBXRecordSingleInt64('RootNode', 0n),
-				],
-				properties: [
-					createInt64Property(fbxScene.id),
-					createStringProperty(''),
-					createStringProperty('Scene'),
-				]
-			}),
-		],
-	});
-	return documents;
+    let documents = createFBXRecord('Documents', {
+        childs: [
+            createFBXRecordSingleInt32('Count', 1),
+            createFBXRecord('Document', {
+                childs: [
+                    createFBXRecord('Properties70', {
+                        childs: [
+                            createPObject('SourceObject'),
+                            createPString('ActiveAnimStackName', ''), //TODO
+                        ]
+                    }),
+                    createFBXRecordSingleInt64('RootNode', 0n),
+                ],
+                properties: [
+                    createInt64Property(fbxScene.id),
+                    createStringProperty(''),
+                    createStringProperty('Scene'),
+                ]
+            }),
+        ],
+    });
+    return documents;
 }
 
 function createPropertiesRecord(fbxObject) {
-	const fbxRecord = new FBXRecord('Properties70');
-	const objectProperties = fbxObject.getAllProperties();
-
-	for (let property of objectProperties) {
-		if (!property.isCompound()) {
-			const propertyRecord = createPropertyRecord(property);
-			if (propertyRecord) {
-				fbxRecord.addChild(propertyRecord);
-			}
-		}
-	}
-	return fbxRecord;
+    const fbxRecord = new FBXRecord('Properties70');
+    const objectProperties = fbxObject.getAllProperties();
+    for (let property of objectProperties) {
+        if (!property.isCompound()) {
+            const propertyRecord = createPropertyRecord(property);
+            if (propertyRecord) {
+                fbxRecord.addChild(propertyRecord);
+            }
+        }
+    }
+    return fbxRecord;
 }
-
 function createPropertyRecord(fbxProperty) {
-	let fn = TYPE_PROPERTY.get(fbxProperty.type);
-	if (!fn) {
-		throw 'Unsupported property type';
-	}
-
-	return fn(fbxProperty.hierarchicalName, fbxProperty.value);
+    let fn = TYPE_PROPERTY.get(fbxProperty.type);
+    if (!fn) {
+        throw 'Unsupported property type';
+    }
+    return fn(fbxProperty.hierarchicalName, fbxProperty.value);
 }
-
 const TYPE_PROPERTY = new Map();
 TYPE_PROPERTY.set(FBX_PROPERTY_TYPE_DOUBLE, createPDouble);
 
 function fbxAnimCurveNodeToRecord(fbxAnimCurveNode) {
-	return createFBXRecord('AnimationCurveNode', {
-		childs: [
-			createPropertiesRecord(fbxAnimCurveNode),
-		],
-		properties: [
-			createInt64Property(fbxAnimCurveNode.id),
-			createStringProperty(fbxAnimCurveNode.name + '\x00\x01AnimCurveNode'),
-			createStringProperty(''),
-		],
-	})
+    return createFBXRecord('AnimationCurveNode', {
+        childs: [
+            createPropertiesRecord(fbxAnimCurveNode),
+        ],
+        properties: [
+            createInt64Property(fbxAnimCurveNode.id),
+            createStringProperty(fbxAnimCurveNode.name + '\x00\x01AnimCurveNode'),
+            createStringProperty(''),
+        ],
+    });
 }
 
 function fbxAnimCurveToRecord(fbxAnimCurve) {
-	return createFBXRecord('AnimationCurve', {
-		childs: [
-			createFBXRecordSingleDouble('Default', 0.0),//TODO: const
-			createFBXRecordSingleInt32('KeyVer', 4008),//TODO: const
-			createFBXRecordInt64Array('KeyTime', [100000, 200000, 300000, 400000]),
-			createFBXRecordFloatArray('KeyValueFloat', [1, 2, 3, 4]),
-			createFBXRecordInt32Array('KeyAttrFlags', [8456]),
-			createFBXRecordFloatArray('KeyAttrDataFloat', [0, 0, 218434821, 0]),
-			createFBXRecordInt32Array('KeyAttrRefCount', [4]),
-		],
-		properties: [
-			createInt64Property(fbxAnimCurve.id),
-			createStringProperty(fbxAnimCurve.name + '\x00\x01AnimCurve'),
-			createStringProperty(''),
-		],
-	})
+    return createFBXRecord('AnimationCurve', {
+        childs: [
+            createFBXRecordSingleDouble('Default', 0.0), //TODO: const
+            createFBXRecordSingleInt32('KeyVer', 4008), //TODO: const
+            createFBXRecordInt64Array('KeyTime', [100000n, 200000n, 300000n, 400000n]),
+            createFBXRecordFloatArray('KeyValueFloat', [1, 2, 3, 4]),
+            createFBXRecordInt32Array('KeyAttrFlags', [8456]),
+            createFBXRecordFloatArray('KeyAttrDataFloat', [0, 0, 218434821, 0]),
+            createFBXRecordInt32Array('KeyAttrRefCount', [4]),
+        ],
+        properties: [
+            createInt64Property(fbxAnimCurve.id),
+            createStringProperty(fbxAnimCurve.name + '\x00\x01AnimCurve'),
+            createStringProperty(''),
+        ],
+    });
 }
 
 function fbxAnimLayerToRecord(fbxAnimLayer) {
-	return createFBXRecord('AnimationLayer', {
-		properties: [
-			createInt64Property(fbxAnimLayer.id),
-			createStringProperty(fbxAnimLayer.name + '\x00\x01AnimLayer'),
-			createStringProperty(''),
-		],
-	})
+    return createFBXRecord('AnimationLayer', {
+        properties: [
+            createInt64Property(fbxAnimLayer.id),
+            createStringProperty(fbxAnimLayer.name + '\x00\x01AnimLayer'),
+            createStringProperty(''),
+        ],
+    });
 }
 
 function fbxAnimStackToRecord(fbxAnimStack) {
-	return createFBXRecord('AnimationStack', {
-		childs: [
-			createFBXRecord('Properties70', {
-				childs: [
-					createPTime('LocalStart', 0n),
-					createPTime('LocalStop', 12345678900n),
-					createPTime('ReferenceStart', 0n),
-					createPTime('ReferenceStop', 12345678900n),
-				]
-			}),
-		],
-		properties: [
-			createInt64Property(fbxAnimStack.id),
-			createStringProperty(fbxAnimStack.name + '\x00\x01AnimStack'),
-			createStringProperty('AnimationStack'),
-		],
-	})
+    return createFBXRecord('AnimationStack', {
+        childs: [
+            createFBXRecord('Properties70', {
+                childs: [
+                    createPTime('LocalStart', 0n),
+                    createPTime('LocalStop', 12345678900n),
+                    createPTime('ReferenceStart', 0n),
+                    createPTime('ReferenceStop', 12345678900n),
+                ]
+            }),
+        ],
+        properties: [
+            createInt64Property(fbxAnimStack.id),
+            createStringProperty(fbxAnimStack.name + '\x00\x01AnimStack'),
+            createStringProperty('AnimationStack'),
+        ],
+    });
 }
 
 function fbxPropertyToRecord(fbxProperty, name = '') {
-	switch (fbxProperty.type) {
-		case FBX_PROPERTY_TYPE_DOUBLE_3:
-			return fbxPropertyDouble3ToRecord(fbxProperty, name);
-		default:
-			throw 'unknown property type';
-	}
+    switch (fbxProperty.type) {
+        case FBX_PROPERTY_TYPE_DOUBLE_3:
+            return fbxPropertyDouble3ToRecord(fbxProperty, name);
+        default:
+            throw 'unknown property type';
+    }
 }
-
 function fbxPropertyDouble3ToRecord(fbxProperty, name) {
-	let value = fbxProperty.value;
-	return createFBXRecord('P', {
-		properties: [
-			createStringProperty(name),
-			createStringProperty('Vector'),
-			createStringProperty(''),
-			createStringProperty('A'),//TODO: property flag
-			createDoubleProperty(value[0]),
-			createDoubleProperty(value[1]),
-			createDoubleProperty(value[2]),
-		],
-	});
+    let value = fbxProperty.value;
+    return createFBXRecord('P', {
+        properties: [
+            createStringProperty(name),
+            createStringProperty('Vector'),
+            createStringProperty(''),
+            createStringProperty('A'), //TODO: property flag
+            createDoubleProperty(value[0]),
+            createDoubleProperty(value[1]),
+            createDoubleProperty(value[2]),
+        ],
+    });
 }
 
 function fbxCameraToRecord(fbxCamera) {
-	return createFBXRecord('NodeAttribute', {
-		childs: [
-			createFBXRecordSingleString('TypeFlags', 'Camera'),
-			createFBXRecordSingleInt32('GeometryVersion', FBX_GEOMETRY_VERSION),
-			createFBXRecord('Properties70', {
-				childs: [
-					fbxPropertyToRecord(fbxCamera.position, 'Position'),
-					fbxPropertyToRecord(fbxCamera.upVector, 'UpVector'),
-				],
-			}),
-		],
-		properties: [
-			createInt64Property(fbxCamera.id),
-			createStringProperty(fbxCamera.name + '\x00\x01NodeAttribute'),
-			createStringProperty('Camera'),
-		],
-	});
+    return createFBXRecord('NodeAttribute', {
+        childs: [
+            createFBXRecordSingleString('TypeFlags', 'Camera'),
+            createFBXRecordSingleInt32('GeometryVersion', FBX_GEOMETRY_VERSION),
+            createFBXRecord('Properties70', {
+                childs: [
+                    fbxPropertyToRecord(fbxCamera.position, 'Position'),
+                    fbxPropertyToRecord(fbxCamera.upVector, 'UpVector'),
+                ],
+            }),
+        ],
+        properties: [
+            createInt64Property(fbxCamera.id),
+            createStringProperty(fbxCamera.name + '\x00\x01NodeAttribute'),
+            createStringProperty('Camera'),
+        ],
+    });
 }
 
 function fbxClusterToRecord(fbxCluster) {
-	return createFBXRecord('Deformer', {
-		childs: [
-			createFBXRecordSingleInt32('Version', FBX_DEFORMER_CLUSTER_VERSION),
-			createFBXRecordMultipleStrings('UserData', ['', '']),
-			createFBXRecordInt32Array('Indexes', fbxCluster.indexes),
-			createFBXRecordDoubleArray('Weights', fbxCluster.weights),
-			createFBXRecordDoubleArray('Transform', fbxCluster.transformMatrix),
-			createFBXRecordDoubleArray('TransformLink', fbxCluster.transformLinkMatrix),
-
-		],
-		properties: [
-			createInt64Property(fbxCluster.id),
-			createStringProperty(fbxCluster.name + '\x00\x01SubDeformer'),
-			createStringProperty('Cluster'),
-		],
-	});
+    return createFBXRecord('Deformer', {
+        childs: [
+            createFBXRecordSingleInt32('Version', FBX_DEFORMER_CLUSTER_VERSION),
+            createFBXRecordMultipleStrings('UserData', ['', '']),
+            createFBXRecordInt32Array('Indexes', fbxCluster.indexes),
+            createFBXRecordDoubleArray('Weights', fbxCluster.weights),
+            createFBXRecordDoubleArray('Transform', fbxCluster.transformMatrix),
+            createFBXRecordDoubleArray('TransformLink', fbxCluster.transformLinkMatrix),
+        ],
+        properties: [
+            createInt64Property(fbxCluster.id),
+            createStringProperty(fbxCluster.name + '\x00\x01SubDeformer'),
+            createStringProperty('Cluster'),
+        ],
+    });
 }
 
 function fbxMeshToRecord(fbxMesh) {
-	return createFBXRecord('Geometry', {
-		childs: [
-			createFBXRecord('Properties70'),
-			createFBXRecordSingleInt32('GeometryVersion', FBX_GEOMETRY_VERSION),
-			createFBXRecordDoubleArray('Vertices', fbxMesh.vertices),
-			createFBXRecordInt32Array('PolygonVertexIndex', fbxMesh.polygons),
-			createFBXRecordInt32Array('Edges', fbxMesh.edges),
-			/*createFBXRecord('LayerElementNormal', {
-				childs: [
-					createFBXRecordSingleInt32('Version', FBX_GEOMETRY_NORMAL_VERSION),
-					createFBXRecordSingleString('Name', ''),
-					createFBXRecordSingleString('MappingInformationType', 'ByPolygonVertex'),
-					createFBXRecordSingleString('ReferenceInformationType', 'Direct'),
-					createFBXRecordDoubleArray('Normals', fbxMesh.normals),//[0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0, -1, 0, -1, 0, 0, -1, 0, 0, -1, 0,  0, -1, 0, 0, 0, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0, -1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0]),//TODO
-				],
-				properties: [
-					createInt32Property(0),//What is this ?
-				],
-			}),*/
-			createFBXRecord('LayerElementUV', {
-				childs: [
-					createFBXRecordSingleInt32('Version', FBX_GEOMETRY_UV_VERSION),
-					createFBXRecordSingleString('Name', 'UVMap'),//TODO: change name
-					createFBXRecordSingleString('MappingInformationType', 'ByPolygonVertex'),
-					createFBXRecordSingleString('ReferenceInformationType', 'IndexToDirect'),
-					createFBXRecordDoubleArray('UV', fbxMesh.uv),//[0.625, 1, 0.625, 0.25, 0.375, 0.5, 0.875, 0.5, 0.625, 0.75, 0.375, 1, 0.375, 0.75, 0.625, 0, 0.375, 0, 0.375, 0.25, 0.125, 0.5, 0.875, 0.75, 0.125, 0.75, 0.625, 0.5]),//TODO
-					createFBXRecordInt32Array('UVIndex', fbxMesh.uvIndex),//[13, 3, 11, 4, 6, 4, 0, 5, 8, 7, 1, 9, 10, 2, 6, 12, 2, 13, 4, 6, 9, 1, 13, 2]),//TODO
-				],
-				properties: [
-					createInt32Property(0),//What is this ?
-				],
-			}),
-			createFBXRecord('LayerElementMaterial', {
-				childs: [
-					createFBXRecordSingleInt32('Version', FBX_GEOMETRY_MATERIAL_VERSION),
-					createFBXRecordSingleString('Name', ''),
-					createFBXRecordSingleString('MappingInformationType', 'AllSame'),
-					createFBXRecordSingleString('ReferenceInformationType', 'IndexToDirect'),
-					createFBXRecordInt32Array('Materials', [0]),//TODO
-				],
-				properties: [
-					createInt32Property(0),//What is this ?
-				],
-			}),
-			createFBXRecord('Layer', {
-				childs: [
-					createFBXRecordSingleInt32('Version', FBX_GEOMETRY_LAYER_VERSION),
-					createFBXRecord('LayerElement', {
-						childs: [
-							createFBXRecordSingleString('Type', 'LayerElementNormal'),
-							createFBXRecordSingleInt32('TypedIndex', 0),
-						],
-					}),
-					createFBXRecord('LayerElement', {
-						childs: [
-							createFBXRecordSingleString('Type', 'LayerElementUV'),
-							createFBXRecordSingleInt32('TypedIndex', 0),
-						],
-					}),
-					createFBXRecord('LayerElement', {
-						childs: [
-							createFBXRecordSingleString('Type', 'LayerElementMaterial'),
-							createFBXRecordSingleInt32('TypedIndex', 0),
-						],
-					}),
-
-
-				],
-				properties: [
-					createInt32Property(0),//What is this ?
-				],
-			}),
-		],
-		properties: [
-			createInt64Property(fbxMesh.id),
-			createStringProperty(fbxMesh.name + '\x00\x01Geometry'),
-			createStringProperty('Mesh'),
-		],
-	});
+    return createFBXRecord('Geometry', {
+        childs: [
+            createFBXRecord('Properties70'),
+            createFBXRecordSingleInt32('GeometryVersion', FBX_GEOMETRY_VERSION),
+            createFBXRecordDoubleArray('Vertices', fbxMesh.vertices),
+            createFBXRecordInt32Array('PolygonVertexIndex', fbxMesh.polygons),
+            createFBXRecordInt32Array('Edges', fbxMesh.edges),
+            /*createFBXRecord('LayerElementNormal', {
+                childs: [
+                    createFBXRecordSingleInt32('Version', FBX_GEOMETRY_NORMAL_VERSION),
+                    createFBXRecordSingleString('Name', ''),
+                    createFBXRecordSingleString('MappingInformationType', 'ByPolygonVertex'),
+                    createFBXRecordSingleString('ReferenceInformationType', 'Direct'),
+                    createFBXRecordDoubleArray('Normals', fbxMesh.normals),//[0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0, -1, 0, -1, 0, 0, -1, 0, 0, -1, 0,  0, -1, 0, 0, 0, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0, -1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0]),//TODO
+                ],
+                properties: [
+                    createInt32Property(0),//What is this ?
+                ],
+            }),*/
+            createFBXRecord('LayerElementUV', {
+                childs: [
+                    createFBXRecordSingleInt32('Version', FBX_GEOMETRY_UV_VERSION),
+                    createFBXRecordSingleString('Name', 'UVMap'), //TODO: change name
+                    createFBXRecordSingleString('MappingInformationType', 'ByPolygonVertex'),
+                    createFBXRecordSingleString('ReferenceInformationType', 'IndexToDirect'),
+                    createFBXRecordDoubleArray('UV', fbxMesh.uv), //[0.625, 1, 0.625, 0.25, 0.375, 0.5, 0.875, 0.5, 0.625, 0.75, 0.375, 1, 0.375, 0.75, 0.625, 0, 0.375, 0, 0.375, 0.25, 0.125, 0.5, 0.875, 0.75, 0.125, 0.75, 0.625, 0.5]),//TODO
+                    createFBXRecordInt32Array('UVIndex', fbxMesh.uvIndex), //[13, 3, 11, 4, 6, 4, 0, 5, 8, 7, 1, 9, 10, 2, 6, 12, 2, 13, 4, 6, 9, 1, 13, 2]),//TODO
+                ],
+                properties: [
+                    createInt32Property(0), //What is this ?
+                ],
+            }),
+            createFBXRecord('LayerElementMaterial', {
+                childs: [
+                    createFBXRecordSingleInt32('Version', FBX_GEOMETRY_MATERIAL_VERSION),
+                    createFBXRecordSingleString('Name', ''),
+                    createFBXRecordSingleString('MappingInformationType', 'AllSame'),
+                    createFBXRecordSingleString('ReferenceInformationType', 'IndexToDirect'),
+                    createFBXRecordInt32Array('Materials', [0]), //TODO
+                ],
+                properties: [
+                    createInt32Property(0), //What is this ?
+                ],
+            }),
+            createFBXRecord('Layer', {
+                childs: [
+                    createFBXRecordSingleInt32('Version', FBX_GEOMETRY_LAYER_VERSION),
+                    createFBXRecord('LayerElement', {
+                        childs: [
+                            createFBXRecordSingleString('Type', 'LayerElementNormal'),
+                            createFBXRecordSingleInt32('TypedIndex', 0),
+                        ],
+                    }),
+                    createFBXRecord('LayerElement', {
+                        childs: [
+                            createFBXRecordSingleString('Type', 'LayerElementUV'),
+                            createFBXRecordSingleInt32('TypedIndex', 0),
+                        ],
+                    }),
+                    createFBXRecord('LayerElement', {
+                        childs: [
+                            createFBXRecordSingleString('Type', 'LayerElementMaterial'),
+                            createFBXRecordSingleInt32('TypedIndex', 0),
+                        ],
+                    }),
+                ],
+                properties: [
+                    createInt32Property(0), //What is this ?
+                ],
+            }),
+        ],
+        properties: [
+            createInt64Property(fbxMesh.id),
+            createStringProperty(fbxMesh.name + '\x00\x01Geometry'),
+            createStringProperty('Mesh'),
+        ],
+    });
 }
 
 function fbxNodeToRecord(fbxNode, type = '') {
-	return createFBXRecord('Model', {
-		childs: [
-			createFBXRecordSingleInt32('Version', FBX_MODELS_VERSION),
-			createFBXRecord('Properties70', {
-				childs: [
-					fbxPropertyToRecord(fbxNode.localTranslation, 'Lcl Translation'),
-					/*createFBXRecord('P', {
-						properties: [
-							createStringProperty('Lcl Translation'),
-							createStringProperty('Lcl Translation'),
-							createStringProperty(''),
-							createStringProperty('A+'),
-							createDoubleProperty(0),
-							createDoubleProperty(0),
-							createDoubleProperty(0),
-						],
-					}),*/
-					fbxPropertyToRecord(fbxNode.localRotation, 'Lcl Rotation'),
-					/*createFBXRecord('P', {
-						properties: [
-							createStringProperty('Lcl Rotation'),
-							createStringProperty('Lcl Rotation'),
-							createStringProperty(''),
-							createStringProperty('A'),
-							createDoubleProperty(0),
-							createDoubleProperty(0),
-							createDoubleProperty(0),
-						],
-					}),*/
-					fbxPropertyToRecord(fbxNode.localScaling, 'Lcl Scaling'),
-					/*createFBXRecord('P', {
-						properties: [
-							createStringProperty('Lcl Scaling'),
-							createStringProperty('Lcl Scaling'),
-							createStringProperty(''),
-							createStringProperty('A'),
-							createDoubleProperty(1),
-							createDoubleProperty(1),
-							createDoubleProperty(1),
-						],
-					}),*/
-					createPInteger('DefaultAttributeIndex', 0),
-					createPEnum('InheritType', fbxNode.inheritType),
-
-					createPBool('RotationActive', 1),
-					createPVector3D('ScalingMax', [0, 0, 0]),
-					createPDouble('PreferedAngleX', 0),
-					createPDouble('PreferedAngleY', 0),
-					createPDouble('PreferedAngleZ', 0),
-					createPBool('lockInfluenceWeights', 0),
-					createFBXRecord('P', {
-						properties: [
-							createStringProperty('filmboxTypeID'),
-							createStringProperty('Short'),
-							createStringProperty(''),
-							createStringProperty('A+UH'),
-							createInt16Property(5),
-							createInt16Property(5),
-							createInt16Property(5),
-						],
-					}),
-				],
-
-			}),
-			createFBXRecordSingleInt32('MultiLayer', 0),//What is this ?
-			createFBXRecordSingleInt32('MultiTake', 0),//What is this ?
-			createFBXRecordSingleInt8('Shading', 89),//89 = Y
-			createFBXRecordSingleString('Culling', 'CullingOff'),
-		],
-		properties: [
-			createInt64Property(fbxNode.id),//TODO
-			createStringProperty(fbxNode.name + '\x00\x01Model'),
-			createStringProperty(type),
-		],
-	});
+    return createFBXRecord('Model', {
+        childs: [
+            createFBXRecordSingleInt32('Version', FBX_MODELS_VERSION),
+            createFBXRecord('Properties70', {
+                childs: [
+                    fbxPropertyToRecord(fbxNode.localTranslation, 'Lcl Translation'),
+                    /*createFBXRecord('P', {
+                        properties: [
+                            createStringProperty('Lcl Translation'),
+                            createStringProperty('Lcl Translation'),
+                            createStringProperty(''),
+                            createStringProperty('A+'),
+                            createDoubleProperty(0),
+                            createDoubleProperty(0),
+                            createDoubleProperty(0),
+                        ],
+                    }),*/
+                    fbxPropertyToRecord(fbxNode.localRotation, 'Lcl Rotation'),
+                    /*createFBXRecord('P', {
+                        properties: [
+                            createStringProperty('Lcl Rotation'),
+                            createStringProperty('Lcl Rotation'),
+                            createStringProperty(''),
+                            createStringProperty('A'),
+                            createDoubleProperty(0),
+                            createDoubleProperty(0),
+                            createDoubleProperty(0),
+                        ],
+                    }),*/
+                    fbxPropertyToRecord(fbxNode.localScaling, 'Lcl Scaling'),
+                    /*createFBXRecord('P', {
+                        properties: [
+                            createStringProperty('Lcl Scaling'),
+                            createStringProperty('Lcl Scaling'),
+                            createStringProperty(''),
+                            createStringProperty('A'),
+                            createDoubleProperty(1),
+                            createDoubleProperty(1),
+                            createDoubleProperty(1),
+                        ],
+                    }),*/
+                    createPInteger('DefaultAttributeIndex', 0),
+                    createPEnum('InheritType', fbxNode.inheritType),
+                    createPBool('RotationActive', true),
+                    createPVector3D('ScalingMax', [0, 0, 0]),
+                    createPDouble('PreferedAngleX', 0),
+                    createPDouble('PreferedAngleY', 0),
+                    createPDouble('PreferedAngleZ', 0),
+                    createPBool('lockInfluenceWeights', false),
+                    createFBXRecord('P', {
+                        properties: [
+                            createStringProperty('filmboxTypeID'),
+                            createStringProperty('Short'),
+                            createStringProperty(''),
+                            createStringProperty('A+UH'),
+                            createInt16Property(5),
+                            createInt16Property(5),
+                            createInt16Property(5),
+                        ],
+                    }),
+                ],
+            }),
+            createFBXRecordSingleInt32('MultiLayer', 0), //What is this ?
+            createFBXRecordSingleInt32('MultiTake', 0), //What is this ?
+            createFBXRecordSingleInt8('Shading', 89), //89 = Y
+            createFBXRecordSingleString('Culling', 'CullingOff'),
+        ],
+        properties: [
+            createInt64Property(fbxNode.id), //TODO
+            createStringProperty(fbxNode.name + '\x00\x01Model'),
+            createStringProperty(type),
+        ],
+    });
 }
 
 function fbxPoseToRecord(fbxPose) {
-	let poseType = fbxPose.isBindPose ? 'BindPose' : 'RestPose';//TODO: not sure about this
-	let poseNodes = [];
-	for (let poseInfo of fbxPose.poseInfos) {
-		poseNodes.push(
-			createFBXRecord('PoseNode', {
-				childs: [
-					createFBXRecordSingleInt64('Node', poseInfo.node.id),
-					createFBXRecordDoubleArray('Matrix', poseInfo.matrix),
-				],
-			}),
-		);
-	}
-
-	return createFBXRecord('Pose', {
-		childs: [
-			createFBXRecordSingleString('Type', poseType),
-			createFBXRecordSingleInt32('Version', FBX_POSE_BIND_VERSION),
-			createFBXRecordSingleInt32('NbPoseNodes', poseNodes.length),
-			...poseNodes,
-		],
-		properties: [
-			createInt64Property(fbxPose.id),
-			createStringProperty(fbxPose.name + '\x00\x01Pose'),
-			createStringProperty(poseType),
-		],
-	});
+    let poseType = fbxPose.isBindPose ? 'BindPose' : 'RestPose'; //TODO: not sure about this
+    let poseNodes = [];
+    for (let poseInfo of fbxPose.poseInfos) {
+        poseNodes.push(createFBXRecord('PoseNode', {
+            childs: [
+                createFBXRecordSingleInt64('Node', poseInfo.node.id),
+                createFBXRecordDoubleArray('Matrix', poseInfo.matrix),
+            ],
+        }));
+    }
+    return createFBXRecord('Pose', {
+        childs: [
+            createFBXRecordSingleString('Type', poseType),
+            createFBXRecordSingleInt32('Version', FBX_POSE_BIND_VERSION),
+            createFBXRecordSingleInt32('NbPoseNodes', poseNodes.length),
+            ...poseNodes,
+        ],
+        properties: [
+            createInt64Property(fbxPose.id),
+            createStringProperty(fbxPose.name + '\x00\x01Pose'),
+            createStringProperty(poseType),
+        ],
+    });
 }
 
 function fbxSkeletonToRecord(fbxSkeleton) {
-	return createFBXRecord('NodeAttribute', {
-		childs: [
-			createFBXRecordSingleString('TypeFlags', 'Skeleton'),
-		],
-		properties: [
-			createInt64Property(fbxSkeleton.id),
-			createStringProperty(fbxSkeleton.name + '\x00\x01NodeAttribute'),
-			createStringProperty('LimbNode'),
-		],
-	});
+    return createFBXRecord('NodeAttribute', {
+        childs: [
+            createFBXRecordSingleString('TypeFlags', 'Skeleton'),
+        ],
+        properties: [
+            createInt64Property(fbxSkeleton.id),
+            createStringProperty(fbxSkeleton.name + '\x00\x01NodeAttribute'),
+            createStringProperty('LimbNode'),
+        ],
+    });
 }
 
 function fbxSkinToRecord(fbxSkin) {
-	return createFBXRecord('Deformer', {
-		childs: [
-			createFBXRecordSingleInt32('Version', FBX_DEFORMER_SKIN_VERSION),
-			createFBXRecordSingleDouble('Link_DeformAcuracy', 50.),//TODO
-		],
-		properties: [
-			createInt64Property(fbxSkin.id),
-			createStringProperty(fbxSkin.name + '\x00\x01Deformer'),
-			createStringProperty('Skin'),
-		],
-	});
+    return createFBXRecord('Deformer', {
+        childs: [
+            createFBXRecordSingleInt32('Version', FBX_DEFORMER_SKIN_VERSION),
+            createFBXRecordSingleDouble('Link_DeformAcuracy', 50.), //TODO
+        ],
+        properties: [
+            createInt64Property(fbxSkin.id),
+            createStringProperty(fbxSkin.name + '\x00\x01Deformer'),
+            createStringProperty('Skin'),
+        ],
+    });
 }
 
 function fbxSurfaceMaterialToRecord(fbxSurfaceMaterial) {
-	return createFBXRecord('Material', {
-		childs: [
-			createFBXRecordSingleInt32('Version', FBX_MATERIAL_VERSION),
-			createFBXRecordSingleString('ShadingModel', 'Phong'),
-			createFBXRecordSingleInt32('MultiLayer', 0),//What is this ?
-			createFBXRecord('Properties70', {
-				childs: [
-					createFBXRecord('P', {
-						properties: [
-							createStringProperty('DiffuseColor'),
-							createStringProperty('Color'),
-							createStringProperty(''),
-							createStringProperty('A'),
-							createDoubleProperty(0.8),
-							createDoubleProperty(0.8),
-							createDoubleProperty(0.8),
-						],
-					}),
-					createFBXRecord('P', {
-						properties: [
-							createStringProperty('AmbientColor'),
-							createStringProperty('Color'),
-							createStringProperty(''),
-							createStringProperty('A'),
-							createDoubleProperty(0.05),
-							createDoubleProperty(0.05),
-							createDoubleProperty(0.05),
-						],
-					}),
-					createFBXRecord('P', {
-						properties: [
-							createStringProperty('AmbientFactor'),
-							createStringProperty('Number'),
-							createStringProperty(''),
-							createStringProperty('A'),
-							createDoubleProperty(0),
-						],
-					}),
-					createFBXRecord('P', {
-						properties: [
-							createStringProperty('BumpFactor'),
-							createStringProperty('double'),
-							createStringProperty('Number'),
-							createStringProperty(''),
-							createDoubleProperty(0),
-						],
-					}),
-					createFBXRecord('P', {
-						properties: [
-							createStringProperty('SpecularColor'),
-							createStringProperty('Color'),
-							createStringProperty(''),
-							createStringProperty('A'),
-							createDoubleProperty(0.8),
-							createDoubleProperty(0.8),
-							createDoubleProperty(0.8),
-						],
-					}),
-					createFBXRecord('P', {
-						properties: [
-							createStringProperty('SpecularFactor'),
-							createStringProperty('Number'),
-							createStringProperty(''),
-							createStringProperty('A'),
-							createDoubleProperty(0.25),
-						],
-					}),
-					createFBXRecord('P', {
-						properties: [
-							createStringProperty('Shininess'),
-							createStringProperty('Number'),
-							createStringProperty(''),
-							createStringProperty('A'),
-							createDoubleProperty(25),
-						],
-					}),
-					createFBXRecord('P', {
-						properties: [
-							createStringProperty('ShininessExponent'),
-							createStringProperty('Number'),
-							createStringProperty(''),
-							createStringProperty('A'),
-							createDoubleProperty(25),
-						],
-					}),
-					createFBXRecord('P', {
-						properties: [
-							createStringProperty('ReflectionColor'),
-							createStringProperty('Color'),
-							createStringProperty(''),
-							createStringProperty('A'),
-							createDoubleProperty(0.8),
-							createDoubleProperty(0.8),
-							createDoubleProperty(0.8),
-						],
-					}),
-					createFBXRecord('P', {
-						properties: [
-							createStringProperty('ReflectionFactor'),
-							createStringProperty('Number'),
-							createStringProperty(''),
-							createStringProperty('A'),
-							createDoubleProperty(0),
-						],
-					}),
-					createFBXRecord('P', {
-						properties: [
-							createStringProperty('TransparencyFactor'),
-							createStringProperty('double'),
-							createStringProperty('Number'),
-							createStringProperty(''),
-							createDoubleProperty(0.0),
-						],
-					}),
-				],
-			}),
-		],
-		properties: [
-			createInt64Property(fbxSurfaceMaterial.id),
-			createStringProperty(fbxSurfaceMaterial.name + '\x00\x01Material'),
-			createStringProperty(''),
-		],
-	});
+    return createFBXRecord('Material', {
+        childs: [
+            createFBXRecordSingleInt32('Version', FBX_MATERIAL_VERSION),
+            createFBXRecordSingleString('ShadingModel', 'Phong'),
+            createFBXRecordSingleInt32('MultiLayer', 0), //What is this ?
+            createFBXRecord('Properties70', {
+                childs: [
+                    createFBXRecord('P', {
+                        properties: [
+                            createStringProperty('DiffuseColor'),
+                            createStringProperty('Color'),
+                            createStringProperty(''),
+                            createStringProperty('A'),
+                            createDoubleProperty(0.8),
+                            createDoubleProperty(0.8),
+                            createDoubleProperty(0.8),
+                        ],
+                    }),
+                    createFBXRecord('P', {
+                        properties: [
+                            createStringProperty('AmbientColor'),
+                            createStringProperty('Color'),
+                            createStringProperty(''),
+                            createStringProperty('A'),
+                            createDoubleProperty(0.05),
+                            createDoubleProperty(0.05),
+                            createDoubleProperty(0.05),
+                        ],
+                    }),
+                    createFBXRecord('P', {
+                        properties: [
+                            createStringProperty('AmbientFactor'),
+                            createStringProperty('Number'),
+                            createStringProperty(''),
+                            createStringProperty('A'),
+                            createDoubleProperty(0),
+                        ],
+                    }),
+                    createFBXRecord('P', {
+                        properties: [
+                            createStringProperty('BumpFactor'),
+                            createStringProperty('double'),
+                            createStringProperty('Number'),
+                            createStringProperty(''),
+                            createDoubleProperty(0),
+                        ],
+                    }),
+                    createFBXRecord('P', {
+                        properties: [
+                            createStringProperty('SpecularColor'),
+                            createStringProperty('Color'),
+                            createStringProperty(''),
+                            createStringProperty('A'),
+                            createDoubleProperty(0.8),
+                            createDoubleProperty(0.8),
+                            createDoubleProperty(0.8),
+                        ],
+                    }),
+                    createFBXRecord('P', {
+                        properties: [
+                            createStringProperty('SpecularFactor'),
+                            createStringProperty('Number'),
+                            createStringProperty(''),
+                            createStringProperty('A'),
+                            createDoubleProperty(0.25),
+                        ],
+                    }),
+                    createFBXRecord('P', {
+                        properties: [
+                            createStringProperty('Shininess'),
+                            createStringProperty('Number'),
+                            createStringProperty(''),
+                            createStringProperty('A'),
+                            createDoubleProperty(25),
+                        ],
+                    }),
+                    createFBXRecord('P', {
+                        properties: [
+                            createStringProperty('ShininessExponent'),
+                            createStringProperty('Number'),
+                            createStringProperty(''),
+                            createStringProperty('A'),
+                            createDoubleProperty(25),
+                        ],
+                    }),
+                    createFBXRecord('P', {
+                        properties: [
+                            createStringProperty('ReflectionColor'),
+                            createStringProperty('Color'),
+                            createStringProperty(''),
+                            createStringProperty('A'),
+                            createDoubleProperty(0.8),
+                            createDoubleProperty(0.8),
+                            createDoubleProperty(0.8),
+                        ],
+                    }),
+                    createFBXRecord('P', {
+                        properties: [
+                            createStringProperty('ReflectionFactor'),
+                            createStringProperty('Number'),
+                            createStringProperty(''),
+                            createStringProperty('A'),
+                            createDoubleProperty(0),
+                        ],
+                    }),
+                    createFBXRecord('P', {
+                        properties: [
+                            createStringProperty('TransparencyFactor'),
+                            createStringProperty('double'),
+                            createStringProperty('Number'),
+                            createStringProperty(''),
+                            createDoubleProperty(0.0),
+                        ],
+                    }),
+                ],
+            }),
+        ],
+        properties: [
+            createInt64Property(fbxSurfaceMaterial.id),
+            createStringProperty(fbxSurfaceMaterial.name + '\x00\x01Material'),
+            createStringProperty(''),
+        ],
+    });
 }
 
 function fbxTextureToRecord(fbxTexture) {
-	let mediaRecord;
-	let filenameRecord;
-	let relativeFilenameRecord;
-	let textureMedia = fbxTexture.media;
-	if (textureMedia) {
-		mediaRecord = createFBXRecordSingleString('Media', textureMedia.name + '\x00\x01' + 'Video');
-		filenameRecord = createFBXRecordSingleString('FileName', textureMedia.name);
-		relativeFilenameRecord = createFBXRecordSingleString('RelativeFilename', textureMedia.name);
-	}
-
-	return createFBXRecord('Texture', {
-		childs: [
-			createFBXRecordSingleString('Type', fbxTexture.type),
-			createFBXRecordSingleInt32('Version', FBX_TEXTURE_VERSION),
-			createFBXRecordSingleString('TextureName', fbxTexture.name + '\x00\x01' + 'Texture'),
-			mediaRecord,
-			filenameRecord,
-			relativeFilenameRecord,
-			createFBXRecord('Properties70', {
-				childs: [
-					createFBXRecord('P', {
-						properties: [
-							createStringProperty('UseMaterial'),
-							createStringProperty('bool'),
-							createStringProperty(''),
-							createStringProperty(''),
-							createInt32Property(1),
-						],
-					}),
-					/*createFBXRecord('P', {
-						properties: [
-							createStringProperty('AlphaSource'),
-							createStringProperty('enum'),
-							createStringProperty(''),
-							createStringProperty(''),
-							createDoubleProperty(2),
-						],
-					}),*/
-				],
-			}),
-		],
-		properties: [
-			createInt64Property(fbxTexture.id),
-			createStringProperty(fbxTexture.name + '\x00\x01' + 'Texture'),
-			createStringProperty(''),
-		],
-	});
+    let mediaRecord;
+    let filenameRecord;
+    let relativeFilenameRecord;
+    let textureMedia = fbxTexture.media;
+    if (textureMedia) {
+        mediaRecord = createFBXRecordSingleString('Media', textureMedia.name + '\x00\x01' + 'Video');
+        filenameRecord = createFBXRecordSingleString('FileName', textureMedia.name);
+        relativeFilenameRecord = createFBXRecordSingleString('RelativeFilename', textureMedia.name);
+    }
+    return createFBXRecord('Texture', {
+        childs: [
+            createFBXRecordSingleString('Type', fbxTexture.type),
+            createFBXRecordSingleInt32('Version', FBX_TEXTURE_VERSION),
+            createFBXRecordSingleString('TextureName', fbxTexture.name + '\x00\x01' + 'Texture'),
+            mediaRecord,
+            filenameRecord,
+            relativeFilenameRecord,
+            createFBXRecord('Properties70', {
+                childs: [
+                    createFBXRecord('P', {
+                        properties: [
+                            createStringProperty('UseMaterial'),
+                            createStringProperty('bool'),
+                            createStringProperty(''),
+                            createStringProperty(''),
+                            createInt32Property(1),
+                        ],
+                    }),
+                    /*createFBXRecord('P', {
+                        properties: [
+                            createStringProperty('AlphaSource'),
+                            createStringProperty('enum'),
+                            createStringProperty(''),
+                            createStringProperty(''),
+                            createDoubleProperty(2),
+                        ],
+                    }),*/
+                ],
+            }),
+        ],
+        properties: [
+            createInt64Property(fbxTexture.id),
+            createStringProperty(fbxTexture.name + '\x00\x01' + 'Texture'),
+            createStringProperty(''),
+        ],
+    });
 }
 
 const FBX_RECORD_NAME_CONNECTIONS = 'Connections';
@@ -19896,1699 +20629,703 @@ const FBX_RECORD_NAME_REFERENCES = 'References';
 const FBX_RECORD_NAME_TAKES = 'Takes';
 
 function createConnectionRecord(id, parentId, target) {
-	let fbxRecord = new FBXRecord('C');
-	fbxRecord.addProperty(createStringProperty(target ? 'OP' : 'OO'));
-	fbxRecord.addProperty(createInt64Property(id));
-	fbxRecord.addProperty(createInt64Property(parentId));
-	if (target != undefined) {
-		fbxRecord.addProperty(createStringProperty(target));
-	}
-	return fbxRecord;
+    let fbxRecord = new FBXRecord('C');
+    fbxRecord.addProperty(createStringProperty(target ? 'OP' : 'OO'));
+    fbxRecord.addProperty(createInt64Property(id));
+    fbxRecord.addProperty(createInt64Property(parentId));
+    if (target != undefined) {
+        fbxRecord.addProperty(createStringProperty(target));
+    }
+    return fbxRecord;
 }
-
 function createHeaderExtensionRecord(fbxFile, creator, appVendor, appName, appVersion) {
-	let date = new Date();
-	let fbxHeaderExtension = createFBXRecord('FBXHeaderExtension', {
-		childs: [
-			createFBXRecordSingleInt32('FBXHeaderVersion', FBX_HEADER_VERSION),
-			createFBXRecordSingleInt32('FBXVersion', fbxFile.version),
-			createFBXRecordSingleInt32('EncryptionType', 0),
-			createFBXRecord('CreationTimeStamp', {
-				childs: [
-					createFBXRecordSingleInt32('Version', 1000),
-					createFBXRecordSingleInt32('Year', date.getFullYear()),
-					createFBXRecordSingleInt32('Month', date.getMonth() + 1),
-					createFBXRecordSingleInt32('Day', date.getDate()),
-					createFBXRecordSingleInt32('Hour', date.getHours()),
-					createFBXRecordSingleInt32('Minute', date.getMinutes()),
-					createFBXRecordSingleInt32('Second', date.getSeconds()),
-					createFBXRecordSingleInt32('Millisecond', date.getMilliseconds()),
-
-				]
-			}),
-			createFBXRecordSingleString('Creator', creator),
-			createFBXRecord('SceneInfo', {
-				properties: [
-					createStringProperty(fbxNameClass('GlobalInfo', 'SceneInfo')),
-					createStringProperty('UserData'),
-				],
-				childs: [
-					createFBXRecordSingleString('Type', 'UserData'),
-					createFBXRecordSingleInt32('Version', FBX_SCENEINFO_VERSION),
-					createFBXRecord('MetaData', {
-						childs: [
-							createFBXRecordSingleInt32('Version', FBX_SCENEINFO_VERSION),
-							createFBXRecordSingleString('Title', ''),//TODO
-							createFBXRecordSingleString('Subject', ''),//TODO
-							createFBXRecordSingleString('Author', ''),//TODO
-							createFBXRecordSingleString('Keywords', ''),//TODO
-							createFBXRecordSingleString('Revision', ''),//TODO
-							createFBXRecordSingleString('Comment', ''),//TODO
-						]
-					}),
-					createFBXRecord('Properties70', {
-						childs: [
-							createFBXRecordMultipleStrings('P', ['DocumentUrl', 'KString', 'Url', '', './test.fbx']),//TODO
-							createFBXRecordMultipleStrings('P', ['SrcDocumentUrl', 'KString', 'Url', '', './test.fbx']),//TODO
-							createFBXRecordMultipleStrings('P', ['Original', 'Compound', '', '']),
-							createFBXRecordMultipleStrings('P', ['Original|ApplicationVendor', 'KString', '', '', appVendor]),
-							createFBXRecordMultipleStrings('P', ['Original|ApplicationName', 'KString', '', '', appName]),
-							createFBXRecordMultipleStrings('P', ['Original|ApplicationVersion', 'KString', '', '', appVersion]),
-							createFBXRecordMultipleStrings('P', ['Original|DateTime_GMT', 'DateTime', '', '', '01/01/1970 00:00:00.000']),
-							createFBXRecordMultipleStrings('P', ['Original|FileName', 'KString', '', '', './test.fbx']),//TODO
-							createFBXRecordMultipleStrings('P', ['LastSaved', 'Compound', '', '']),
-							createFBXRecordMultipleStrings('P', ['LastSaved|ApplicationVendor', 'KString', '', '', appVersion]),
-							createFBXRecordMultipleStrings('P', ['LastSaved|ApplicationName', 'KString', '', '', appName]),
-							createFBXRecordMultipleStrings('P', ['LastSaved|ApplicationVersion', 'KString', '', '', appVersion]),
-							createFBXRecordMultipleStrings('P', ['LastSaved|DateTime_GMT', 'DateTime', '', '', '01/01/1970 00:00:00.000']),
-							createFBXRecordMultipleStrings('P', ['LastSaved|ApplicationActiveProject', 'KString', '', '', './test.fbx']),//TODO
-						]
-					}),
-
-				]
-			}),
-		]
-	});
-
-	return fbxHeaderExtension;
+    let date = new Date();
+    let fbxHeaderExtension = createFBXRecord('FBXHeaderExtension', {
+        childs: [
+            createFBXRecordSingleInt32('FBXHeaderVersion', FBX_HEADER_VERSION),
+            createFBXRecordSingleInt32('FBXVersion', fbxFile.version),
+            createFBXRecordSingleInt32('EncryptionType', 0),
+            createFBXRecord('CreationTimeStamp', {
+                childs: [
+                    createFBXRecordSingleInt32('Version', 1000),
+                    createFBXRecordSingleInt32('Year', date.getFullYear()),
+                    createFBXRecordSingleInt32('Month', date.getMonth() + 1),
+                    createFBXRecordSingleInt32('Day', date.getDate()),
+                    createFBXRecordSingleInt32('Hour', date.getHours()),
+                    createFBXRecordSingleInt32('Minute', date.getMinutes()),
+                    createFBXRecordSingleInt32('Second', date.getSeconds()),
+                    createFBXRecordSingleInt32('Millisecond', date.getMilliseconds()),
+                ]
+            }),
+            createFBXRecordSingleString('Creator', creator),
+            createFBXRecord('SceneInfo', {
+                properties: [
+                    createStringProperty(fbxNameClass('GlobalInfo', 'SceneInfo')),
+                    createStringProperty('UserData'),
+                ],
+                childs: [
+                    createFBXRecordSingleString('Type', 'UserData'),
+                    createFBXRecordSingleInt32('Version', FBX_SCENEINFO_VERSION),
+                    createFBXRecord('MetaData', {
+                        childs: [
+                            createFBXRecordSingleInt32('Version', FBX_SCENEINFO_VERSION),
+                            createFBXRecordSingleString('Title', ''), //TODO
+                            createFBXRecordSingleString('Subject', ''), //TODO
+                            createFBXRecordSingleString('Author', ''), //TODO
+                            createFBXRecordSingleString('Keywords', ''), //TODO
+                            createFBXRecordSingleString('Revision', ''), //TODO
+                            createFBXRecordSingleString('Comment', ''), //TODO
+                        ]
+                    }),
+                    createFBXRecord('Properties70', {
+                        childs: [
+                            createFBXRecordMultipleStrings('P', ['DocumentUrl', 'KString', 'Url', '', './test.fbx']), //TODO
+                            createFBXRecordMultipleStrings('P', ['SrcDocumentUrl', 'KString', 'Url', '', './test.fbx']), //TODO
+                            createFBXRecordMultipleStrings('P', ['Original', 'Compound', '', '']),
+                            createFBXRecordMultipleStrings('P', ['Original|ApplicationVendor', 'KString', '', '', appVendor]),
+                            createFBXRecordMultipleStrings('P', ['Original|ApplicationName', 'KString', '', '', appName]),
+                            createFBXRecordMultipleStrings('P', ['Original|ApplicationVersion', 'KString', '', '', appVersion]),
+                            createFBXRecordMultipleStrings('P', ['Original|DateTime_GMT', 'DateTime', '', '', '01/01/1970 00:00:00.000']),
+                            createFBXRecordMultipleStrings('P', ['Original|FileName', 'KString', '', '', './test.fbx']), //TODO
+                            createFBXRecordMultipleStrings('P', ['LastSaved', 'Compound', '', '']),
+                            createFBXRecordMultipleStrings('P', ['LastSaved|ApplicationVendor', 'KString', '', '', appVersion]),
+                            createFBXRecordMultipleStrings('P', ['LastSaved|ApplicationName', 'KString', '', '', appName]),
+                            createFBXRecordMultipleStrings('P', ['LastSaved|ApplicationVersion', 'KString', '', '', appVersion]),
+                            createFBXRecordMultipleStrings('P', ['LastSaved|DateTime_GMT', 'DateTime', '', '', '01/01/1970 00:00:00.000']),
+                            createFBXRecordMultipleStrings('P', ['LastSaved|ApplicationActiveProject', 'KString', '', '', './test.fbx']), //TODO
+                        ]
+                    }),
+                ]
+            }),
+        ]
+    });
+    return fbxHeaderExtension;
 }
-
 function createDefinitionsRecord() {
-	let definitions = createFBXRecord('Definitions', {
-		childs: [
-			createFBXRecordSingleInt32('Version', FBX_TEMPLATES_VERSION),
-			createFBXRecordSingleInt32('Count', 4),//TODO: Sum of every template below
-			createFBXRecord('ObjectType', {
-				childs: [
-					createFBXRecordSingleInt32('Count', 1),
-				],
-				properties: [
-					createStringProperty('GlobalSettings'),
-				],
-			}),
-			createFBXRecord('ObjectType', {
-				childs: [
-					createFBXRecordSingleInt32('Count', 1),
-					createFBXRecord('PropertyTemplate', {
-						properties: [
-							createStringProperty('FbxMesh'),
-						],
-					}),
-				],
-				properties: [
-					createStringProperty('Geometry'),
-				],
-			}),
-			createFBXRecord('ObjectType', {
-				childs: [
-					createFBXRecordSingleInt32('Count', 1),
-					createFBXRecord('PropertyTemplate', {
-						childs: [
-
-						],
-						properties: [
-							createStringProperty('FbxNode'),
-						],
-					}),
-				],
-				properties: [
-					createStringProperty('Model'),
-				],
-			}),
-			createFBXRecord('ObjectType', {
-				childs: [
-					createFBXRecordSingleInt32('Count', 1),
-					createFBXRecord('PropertyTemplate', {
-						childs: [
-
-						],
-						properties: [
-							createStringProperty('FbxSurfacePhong'),
-						],
-					}),
-				],
-				properties: [
-					createStringProperty('Material'),
-				],
-			}),
-			createFBXRecord('ObjectType', {
-				childs: [
-					createFBXRecordSingleInt32('Count', 1),
-					createFBXRecord('PropertyTemplate', {
-						childs: [
-						],
-						properties: [
-							createStringProperty('FbxFileTexture'),
-						],
-					}),
-				],
-				properties: [
-					createStringProperty('Texture'),
-				],
-			}),
-			createFBXRecord('ObjectType', {
-				childs: [
-					createFBXRecordSingleInt32('Count', 1),
-					createFBXRecord('PropertyTemplate', {
-						childs: [
-						],
-						properties: [
-							createStringProperty('FbxVideo'),
-						],
-					}),
-				],
-				properties: [
-					createStringProperty('Video'),
-				],
-			}),
-			createFBXRecord('ObjectType', {
-				childs: [
-					createFBXRecordSingleInt32('Count', 1),
-				],
-				properties: [
-					createStringProperty('Deformer'),
-				],
-			}),
-			createFBXRecord('ObjectType', {
-				childs: [
-					createFBXRecordSingleInt32('Count', 1),
-					createFBXRecord('PropertyTemplate', {
-						childs: [
-							createFBXRecord('Properties70', {
-								childs: [
-									createPColorRGB('Color', [0.8, 0.8, 0.8]),
-									createPDouble('Size', 100),
-									createPDouble('LimbLength', 1),//TODO: P: "LimbLength", "double", "Number", "H",1
-								]
-							}),
-						],
-						properties: [
-							createStringProperty('FbxSkeleton'),
-						]
-					}),
-				],
-				properties: [
-					createStringProperty('NodeAttribute'),
-				],
-			}),
-			createFBXRecord('ObjectType', {
-				childs: [
-					createFBXRecordSingleInt32('Count', 1),
-				],
-				properties: [
-					createStringProperty('Pose'),
-				],
-			}),
-			createFBXRecord('ObjectType', {
-				childs: [
-					createFBXRecordSingleInt32('Count', 1),
-				],
-				properties: [
-					createStringProperty('AnimationStack'),
-				],
-			}),
-			createFBXRecord('ObjectType', {
-				childs: [
-					createFBXRecordSingleInt32('Count', 1),
-				],
-				properties: [
-					createStringProperty('AnimationLayer'),
-				],
-			}),
-			createFBXRecord('ObjectType', {
-				childs: [
-					createFBXRecordSingleInt32('Count', 1),
-				],
-				properties: [
-					createStringProperty('AnimationCurveNode'),
-				],
-			}),
-			createFBXRecord('ObjectType', {
-				childs: [
-					createFBXRecordSingleInt32('Count', 1),
-				],
-				properties: [
-					createStringProperty('AnimationCurve'),
-				],
-			}),
-		],
-	});
-	return definitions;
+    let definitions = createFBXRecord('Definitions', {
+        childs: [
+            createFBXRecordSingleInt32('Version', FBX_TEMPLATES_VERSION),
+            createFBXRecordSingleInt32('Count', 4), //TODO: Sum of every template below
+            createFBXRecord('ObjectType', {
+                childs: [
+                    createFBXRecordSingleInt32('Count', 1),
+                ],
+                properties: [
+                    createStringProperty('GlobalSettings'),
+                ],
+            }),
+            createFBXRecord('ObjectType', {
+                childs: [
+                    createFBXRecordSingleInt32('Count', 1),
+                    createFBXRecord('PropertyTemplate', {
+                        properties: [
+                            createStringProperty('FbxMesh'),
+                        ],
+                    }),
+                ],
+                properties: [
+                    createStringProperty('Geometry'),
+                ],
+            }),
+            createFBXRecord('ObjectType', {
+                childs: [
+                    createFBXRecordSingleInt32('Count', 1),
+                    createFBXRecord('PropertyTemplate', {
+                        childs: [],
+                        properties: [
+                            createStringProperty('FbxNode'),
+                        ],
+                    }),
+                ],
+                properties: [
+                    createStringProperty('Model'),
+                ],
+            }),
+            createFBXRecord('ObjectType', {
+                childs: [
+                    createFBXRecordSingleInt32('Count', 1),
+                    createFBXRecord('PropertyTemplate', {
+                        childs: [],
+                        properties: [
+                            createStringProperty('FbxSurfacePhong'),
+                        ],
+                    }),
+                ],
+                properties: [
+                    createStringProperty('Material'),
+                ],
+            }),
+            createFBXRecord('ObjectType', {
+                childs: [
+                    createFBXRecordSingleInt32('Count', 1),
+                    createFBXRecord('PropertyTemplate', {
+                        childs: [],
+                        properties: [
+                            createStringProperty('FbxFileTexture'),
+                        ],
+                    }),
+                ],
+                properties: [
+                    createStringProperty('Texture'),
+                ],
+            }),
+            createFBXRecord('ObjectType', {
+                childs: [
+                    createFBXRecordSingleInt32('Count', 1),
+                    createFBXRecord('PropertyTemplate', {
+                        childs: [],
+                        properties: [
+                            createStringProperty('FbxVideo'),
+                        ],
+                    }),
+                ],
+                properties: [
+                    createStringProperty('Video'),
+                ],
+            }),
+            createFBXRecord('ObjectType', {
+                childs: [
+                    createFBXRecordSingleInt32('Count', 1),
+                ],
+                properties: [
+                    createStringProperty('Deformer'),
+                ],
+            }),
+            createFBXRecord('ObjectType', {
+                childs: [
+                    createFBXRecordSingleInt32('Count', 1),
+                    createFBXRecord('PropertyTemplate', {
+                        childs: [
+                            createFBXRecord('Properties70', {
+                                childs: [
+                                    createPColorRGB('Color', [0.8, 0.8, 0.8]),
+                                    createPDouble('Size', 100),
+                                    createPDouble('LimbLength', 1), //TODO: P: "LimbLength", "double", "Number", "H",1
+                                ]
+                            }),
+                        ],
+                        properties: [
+                            createStringProperty('FbxSkeleton'),
+                        ]
+                    }),
+                ],
+                properties: [
+                    createStringProperty('NodeAttribute'),
+                ],
+            }),
+            createFBXRecord('ObjectType', {
+                childs: [
+                    createFBXRecordSingleInt32('Count', 1),
+                ],
+                properties: [
+                    createStringProperty('Pose'),
+                ],
+            }),
+            createFBXRecord('ObjectType', {
+                childs: [
+                    createFBXRecordSingleInt32('Count', 1),
+                ],
+                properties: [
+                    createStringProperty('AnimationStack'),
+                ],
+            }),
+            createFBXRecord('ObjectType', {
+                childs: [
+                    createFBXRecordSingleInt32('Count', 1),
+                ],
+                properties: [
+                    createStringProperty('AnimationLayer'),
+                ],
+            }),
+            createFBXRecord('ObjectType', {
+                childs: [
+                    createFBXRecordSingleInt32('Count', 1),
+                ],
+                properties: [
+                    createStringProperty('AnimationCurveNode'),
+                ],
+            }),
+            createFBXRecord('ObjectType', {
+                childs: [
+                    createFBXRecordSingleInt32('Count', 1),
+                ],
+                properties: [
+                    createStringProperty('AnimationCurve'),
+                ],
+            }),
+        ],
+    });
+    return definitions;
 }
-
 function createTakesRecord() {
-	let takes = createFBXRecord(FBX_RECORD_NAME_TAKES, {
-		childs: [
-			createFBXRecordSingleString('Current', ''),
-		],
-	});
-	return takes;
+    let takes = createFBXRecord(FBX_RECORD_NAME_TAKES, {
+        childs: [
+            createFBXRecordSingleString('Current', ''),
+        ],
+    });
+    return takes;
 }
 
 function createVideoRecord(fbxVideo) {
-	return createFBXRecord('Video', {
-		childs: [
-			createFBXRecordSingleString('Type', fbxVideo.type),
-			createFBXRecordSingleString('RelativeFilename', `mat_${fbxVideo.id}.png`),
-			/*createFBXRecordSingleString('Filename', `C:\\Users\\Guillaume\\Desktop\\fbx\\untitled.fbm\\mat_${fbxVideo.id}.png`),*/
-			createFBXRecordSingleBytes('Content', fbxVideo.content),
-			createFBXRecord('Properties70', {
-				childs: [
-					createFBXRecordMultipleStrings('P', ['Path', 'KString', 'XRefUrl', '', `C:\\fbx\\untitled.fbm\\mat_${fbxVideo.id}.png`]),
-				],
-			}),
-		],
-		properties: [
-			createInt64Property(fbxVideo.id),
-			createStringProperty(fbxVideo.name + '\x00\x01' + 'Video'),
-			createStringProperty('Clip'),
-		],
-	});
+    return createFBXRecord('Video', {
+        childs: [
+            createFBXRecordSingleString('Type', fbxVideo.type),
+            createFBXRecordSingleString('RelativeFilename', `mat_${fbxVideo.id}.png`),
+            /*createFBXRecordSingleString('Filename', `C:\\Users\\Guillaume\\Desktop\\fbx\\untitled.fbm\\mat_${fbxVideo.id}.png`),*/
+            createFBXRecordSingleBytes('Content', fbxVideo.content),
+            createFBXRecord('Properties70', {
+                childs: [
+                    createFBXRecordMultipleStrings('P', ['Path', 'KString', 'XRefUrl', '', `C:\\fbx\\untitled.fbm\\mat_${fbxVideo.id}.png`]),
+                ],
+            }),
+        ],
+        properties: [
+            createInt64Property(fbxVideo.id),
+            createStringProperty(fbxVideo.name + '\x00\x01' + 'Video'),
+            createStringProperty('Clip'),
+        ],
+    });
 }
 
 const FBX_RECORD_TYPE_MESH = 'Mesh';
 const FBX_RECORD_TYPE_LIMB_NODE = 'LimbNode';
 const FBX_RECORD_TYPE_CAMERA = 'Camera';
-
 function fbxSceneToFBXFile(scene, creator = 'harmony-fbx', appVendor = 'harmony-fbx', appName = 'harmony-fbx', appVersion = '1') {
-	let fbxFile = new FBXFile();
-	fbxFile.version = 7400;
-
-	fbxFile.addChild(createHeaderExtensionRecord(fbxFile, creator, appVendor, appName, appVersion));
-	fbxFile.addChild(createFBXRecordSingleString(FBX_RECORD_NAME_CREATOR, creator));
-	fbxFile.addChild(exportFBXGlobalSettings(scene.globalSettings));
-	fbxFile.addChild(exportFBXScene(scene));
-	fbxFile.addChild(createFBXRecord(FBX_RECORD_NAME_REFERENCES));//TODO ?
-	fbxFile.addChild(createDefinitionsRecord());
-	fbxFile.addChild(createFBXRecord(FBX_RECORD_NAME_OBJECTS));
-	fbxFile.addChild(createFBXRecord(FBX_RECORD_NAME_CONNECTIONS));
-	fbxFile.addChild(createTakesRecord());
-
-	exportObjects(fbxFile, scene);
-	exportTakes(fbxFile, scene);
-
-	return fbxFile;
+    let fbxFile = new FBXFile();
+    fbxFile.version = 7400;
+    fbxFile.addChild(createHeaderExtensionRecord(fbxFile, creator, appVendor, appName, appVersion));
+    fbxFile.addChild(createFBXRecordSingleString(FBX_RECORD_NAME_CREATOR, creator));
+    fbxFile.addChild(exportFBXGlobalSettings(scene.globalSettings));
+    fbxFile.addChild(exportFBXScene(scene));
+    fbxFile.addChild(createFBXRecord(FBX_RECORD_NAME_REFERENCES)); //TODO ?
+    fbxFile.addChild(createDefinitionsRecord());
+    fbxFile.addChild(createFBXRecord(FBX_RECORD_NAME_OBJECTS));
+    fbxFile.addChild(createFBXRecord(FBX_RECORD_NAME_CONNECTIONS));
+    fbxFile.addChild(createTakesRecord());
+    exportObjects(fbxFile, scene);
+    exportTakes(fbxFile, scene);
+    return fbxFile;
 }
-
 function exportObjects(fbxFile, scene) {
-	let nodesReferences = new Set();
-	let nodesConnections = new Set();
-	let alreadyExported = new Set();
-	for (let child of scene.rootNode.childs) {
-		exportObject(fbxFile, child, nodesReferences, nodesConnections, alreadyExported);
-	}
-	for (let object of scene.objects) {
-		exportObject(fbxFile, object, nodesReferences, nodesConnections, alreadyExported);
-	}
-	for (;;) {
-		let nodesReferences2 = new Set();
-		for (let child of nodesReferences) {
-			exportObject(fbxFile, child, nodesReferences2, nodesConnections, alreadyExported);
-		}
-		if (nodesReferences2.size == 0) {
-			break;
-		}
-		nodesReferences = nodesReferences2;
-	}
-
-	createConnections(fbxFile, nodesConnections);
+    /*
+    let nodesReferences = new Set();
+    let nodesConnections = new Set();
+    let alreadyExported = new Set<FBXObject>();
+    */
+    const context = {
+        nodesReferences: new Set(),
+        nodesConnections: new Set(),
+        alreadyExported: new Set(),
+    };
+    for (let child of scene.rootNode.childs) {
+        exportObject(fbxFile, child, context /*nodesReferences, nodesConnections, alreadyExported*/);
+    }
+    for (let object of scene.objects) {
+        exportObject(fbxFile, object, context /*nodesReferences, nodesConnections, alreadyExported*/);
+    }
+    for (;;) {
+        //let nodesReferences2 = new Set();
+        const context2 = {
+            nodesReferences: new Set(),
+            nodesConnections: context.nodesConnections,
+            alreadyExported: context.alreadyExported,
+        };
+        for (let child of context.nodesReferences) {
+            exportObject(fbxFile, child, context2 /*nodesReferences2, nodesConnections, alreadyExported*/);
+        }
+        if (context2.nodesReferences.size == 0) {
+            break;
+        }
+        context.nodesReferences = context2.nodesReferences;
+    }
+    createConnections(fbxFile, context.nodesConnections);
 }
-
-function exportObject(fbxFile, object, nodesReferences, nodesConnections, alreadyExported) {
-	if (alreadyExported.has(object)) {
-		return;
-	}
-	switch (true) {
-		case object.isFBXNode:
-			exportNode(fbxFile, object, nodesReferences, nodesConnections, alreadyExported);
-			break;
-		case object.isFBXObject:
-			exportObject2(fbxFile, object, nodesReferences, nodesConnections);
-			break;
-		default:
-			console.log(object);
-			throw 'Trying to export an unknown object';
-	}
-	alreadyExported.add(object);
+function exportObject(fbxFile, object, context /*nodesReferences, nodesConnections, alreadyExported*/) {
+    if (context.alreadyExported.has(object)) {
+        return;
+    }
+    switch (true) {
+        case object.isFBXNode:
+            exportNode(fbxFile, object, context /*nodesReferences, nodesConnections, alreadyExported*/);
+            break;
+        case object.isFBXObject:
+            exportObject2(fbxFile, object, context /*nodesReferences, nodesConnections*/);
+            break;
+        default:
+            console.log(object);
+            throw 'Trying to export an unknown object';
+    }
+    context.alreadyExported.add(object);
 }
-
-function exportObject2(fbxFile, object, nodesReferences, nodesConnections) {
-	exportObjectPropertiesConnections(fbxFile, object, nodesReferences, nodesConnections);
-
-
-	switch (true) {
-		case object.isFBXSurfacePhong:
-			exportSurfacePhongObject(fbxFile, object, nodesReferences, nodesConnections);
-			break;
-		case object.isFBXTexture:
-			exportFBXTexture(fbxFile, object, nodesReferences, nodesConnections);
-			break;
-		case object.isFBXVideo:
-			exportFBXVideo(fbxFile, object);
-			break;
-		case object.isFBXSkin:
-			exportFBXSkin(fbxFile, object, nodesReferences, nodesConnections);
-			break;
-		case object.isFBXCluster:
-			exportFBXCluster(fbxFile, object, nodesReferences, nodesConnections);
-			break;
-		case object.isFBXPose:
-			exportFBXPose(fbxFile, object);
-			break;
-		case object.isFBXAnimStack:
-			exportFBXAnimStack(fbxFile, object, nodesReferences, nodesConnections);
-			break;
-		case object.isFBXAnimLayer:
-			exportFBXAnimLayer(fbxFile, object, nodesReferences, nodesConnections);
-			break;
-		case object.isFBXAnimCurveNode:
-			exportFBXAnimCurveNode(fbxFile, object);
-			break;
-		case object.isFBXAnimCurve:
-			exportFBXAnimCurve(fbxFile, object);
-			break;
-		default:
-			console.log(object);
-			throw 'Export of this object is missing';
-	}
+function exportObject2(fbxFile, object, context) {
+    exportObjectPropertiesConnections(fbxFile, object, context);
+    switch (true) {
+        case object.isFBXSurfacePhong:
+            exportSurfacePhongObject(fbxFile, object, context);
+            break;
+        case object.isFBXTexture:
+            exportFBXTexture(fbxFile, object, context);
+            break;
+        case object.isFBXVideo:
+            exportFBXVideo(fbxFile, object);
+            break;
+        case object.isFBXSkin:
+            exportFBXSkin(fbxFile, object, context);
+            break;
+        case object.isFBXCluster:
+            exportFBXCluster(fbxFile, object, context);
+            break;
+        case object.isFBXPose:
+            exportFBXPose(fbxFile, object);
+            break;
+        case object.isFBXAnimStack:
+            exportFBXAnimStack(fbxFile, object, context);
+            break;
+        case object.isFBXAnimLayer:
+            exportFBXAnimLayer(fbxFile, object, context);
+            break;
+        case object.isFBXAnimCurveNode:
+            exportFBXAnimCurveNode(fbxFile, object);
+            break;
+        case object.isFBXAnimCurve:
+            exportFBXAnimCurve(fbxFile, object);
+            break;
+        default:
+            console.log(object);
+            throw 'Export of this object is missing';
+    }
 }
-
-function exportObjectPropertiesConnections(fbxFile, fbxObject, nodesReferences, nodesConnections) {
-	exportPropertiesConnections(fbxFile, fbxObject.rootProperty, nodesReferences, nodesConnections);
+function exportObjectPropertiesConnections(fbxFile, fbxObject, context) {
+    exportPropertiesConnections(fbxFile, fbxObject.rootProperty, context);
 }
-
-function exportPropertiesConnections(fbxFile, fbxProperty, nodesReferences, nodesConnections) {
-	fbxProperty.srcObjects.forEach(object => {
-		const parentObject = fbxProperty.getParentObject();
-		// Ensure the parent object is exported
-		nodesReferences.add(parentObject);
-		nodesReferences.add(object);
-		nodesConnections.add(createConnection(object, parentObject, fbxProperty.hierarchicalName));
-		console.log(fbxProperty);
-	});
-
-
-	if (fbxProperty.isCompound()) {
-		for (const [key, value] of fbxProperty.value) {
-			//console.log(key, value);
-			exportPropertiesConnections(fbxFile, value, nodesReferences, nodesConnections);
-		}
-	}
+function exportPropertiesConnections(fbxFile, fbxProperty, context /*nodesReferences, nodesConnections*/) {
+    fbxProperty.srcObjects.forEach(object => {
+        const parentObject = fbxProperty.getParentObject();
+        if (!parentObject) {
+            return;
+        }
+        // Ensure the parent object is exported
+        context.nodesReferences.add(parentObject);
+        context.nodesReferences.add(object);
+        context.nodesConnections.add(createConnection(object, parentObject, fbxProperty.hierarchicalName));
+        console.log(fbxProperty);
+    });
+    if (fbxProperty.isCompound()) {
+        for (const [key, value] of fbxProperty.value) {
+            //console.log(key, value);
+            exportPropertiesConnections(fbxFile, value, context /*nodesReferences, nodesConnections*/);
+        }
+    }
 }
-
-function exportNode(fbxFile, node, nodesReferences, nodesConnections, alreadyExported) {
-	if (alreadyExported.has(node)) {
-		return;
-	}
-
-	exportObjectPropertiesConnections(fbxFile, node, nodesReferences, nodesConnections);
-
-	if (node.nodeAttribute) {
-		let nodeAttribute = node.nodeAttribute;
-		switch (true) {
-			case nodeAttribute.isFBXMesh:
-				exportMeshNode(fbxFile, node, nodesReferences, nodesConnections);
-				break;
-			case nodeAttribute.isFBXSkeleton:
-				exportSkeletonNode(fbxFile, node, nodesReferences, nodesConnections);
-				break;
-			case nodeAttribute.isFBXCamera:
-				exportCameraNode(fbxFile, node, nodesReferences, nodesConnections);
-				break;
-			default:
-				console.log(nodeAttribute);
-				throw 'Error in exportNode: export of this nodeAttribute is missing';
-		}
-	} else {
-		throw 'nodeAttribute is null ' + node.id;
-	}
-
-	for (let child of node.childs) {
-		exportNode(fbxFile, child, nodesReferences, nodesConnections, alreadyExported);
-	}
+function exportNode(fbxFile, node, context /*nodesReferences, nodesConnections, alreadyExported*/) {
+    if (context.alreadyExported.has(node)) {
+        return;
+    }
+    exportObjectPropertiesConnections(fbxFile, node, context /*nodesReferences, nodesConnections*/);
+    if (node.nodeAttribute) {
+        let nodeAttribute = node.nodeAttribute;
+        switch (true) {
+            case nodeAttribute.isFBXMesh:
+                exportMeshNode(fbxFile, node, context);
+                break;
+            case nodeAttribute.isFBXSkeleton:
+                exportSkeletonNode(fbxFile, node, context);
+                break;
+            case nodeAttribute.isFBXCamera:
+                exportCameraNode(fbxFile, node, context);
+                break;
+            default:
+                console.log(nodeAttribute);
+                throw 'Error in exportNode: export of this nodeAttribute is missing';
+        }
+    }
+    else {
+        throw 'nodeAttribute is null ' + node.id;
+    }
+    for (let child of node.childs) {
+        exportNode(fbxFile, child, context /*nodesReferences, nodesConnections, alreadyExported*/);
+    }
 }
-
-function exportMeshNode(fbxFile, node, nodesReferences, nodesConnections) {
-	// Add the materials for writing
-	let objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
-
-	node.materials.forEach(material => {
-		nodesReferences.add(material);
-		nodesConnections.add(createConnection(material, node));
-	});
-	node.nodeAttribute.deformers.forEach(deformer => {
-		nodesReferences.add(deformer);
-		nodesConnections.add(createConnection(deformer, node.nodeAttribute));
-	});
-
-	objectsRecord.addChild(fbxNodeToRecord(node, FBX_RECORD_TYPE_MESH));
-	objectsRecord.addChild(fbxMeshToRecord(node.nodeAttribute));
-
-	nodesConnections.add(createConnection(node, node.parent));
-	nodesConnections.add(createConnection(node.nodeAttribute, node));
+function exportMeshNode(fbxFile, node, context) {
+    // Add the materials for writing
+    let objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
+    node.materials.forEach(material => {
+        context.nodesReferences.add(material);
+        context.nodesConnections.add(createConnection(material, node));
+    });
+    node.nodeAttribute.deformers.forEach(deformer => {
+        context.nodesReferences.add(deformer);
+        context.nodesConnections.add(createConnection(deformer, node.nodeAttribute));
+    });
+    objectsRecord.addChild(fbxNodeToRecord(node, FBX_RECORD_TYPE_MESH));
+    objectsRecord.addChild(fbxMeshToRecord(node.nodeAttribute));
+    context.nodesConnections.add(createConnection(node, node.parent));
+    context.nodesConnections.add(createConnection(node.nodeAttribute, node));
 }
-
-function exportSkeletonNode(fbxFile, node, nodesReferences, nodesConnections) {
-	let objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
-
-
-	objectsRecord.addChild(fbxNodeToRecord(node, FBX_RECORD_TYPE_LIMB_NODE));
-	objectsRecord.addChild(fbxSkeletonToRecord(node.nodeAttribute));
-
-	nodesConnections.add(createConnection(node, node.parent));
-	nodesConnections.add(createConnection(node.nodeAttribute, node));
+function exportSkeletonNode(fbxFile, node, context) {
+    const objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
+    objectsRecord.addChild(fbxNodeToRecord(node, FBX_RECORD_TYPE_LIMB_NODE));
+    objectsRecord.addChild(fbxSkeletonToRecord(node.nodeAttribute));
+    context.nodesConnections.add(createConnection(node, node.parent));
+    context.nodesConnections.add(createConnection(node.nodeAttribute, node));
 }
-
-function exportCameraNode(fbxFile, node, nodesReferences, nodesConnections) {
-	let objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
-
-	objectsRecord.addChild(fbxNodeToRecord(node, FBX_RECORD_TYPE_CAMERA));
-	objectsRecord.addChild(fbxCameraToRecord(node.nodeAttribute));
-
-	nodesConnections.add(createConnection(node, node.parent));
-	nodesConnections.add(createConnection(node.nodeAttribute, node));
+function exportCameraNode(fbxFile, node, context) {
+    let objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
+    objectsRecord.addChild(fbxNodeToRecord(node, FBX_RECORD_TYPE_CAMERA));
+    objectsRecord.addChild(fbxCameraToRecord(node.nodeAttribute));
+    context.nodesConnections.add(createConnection(node, node.parent));
+    context.nodesConnections.add(createConnection(node.nodeAttribute, node));
 }
-
 function createConnection(src, dst, target) {
-	return {s: src.id, d: dst.id, t: target};
+    return { source: src.id, destination: dst.id, target: target };
 }
-
-function exportSurfacePhongObject(fbxFile, fbxSurfacePhong, nodesReferences, nodesConnections) {
-	let objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
-
-	let propertyNames = ['diffuse'];
-	for (let propertyName of propertyNames) {
-		let fbxProperty = fbxSurfacePhong[propertyName];
-		fbxProperty.srcObjects.forEach(object => {
-			nodesReferences.add(object);
-			nodesConnections.add(createConnection(object, fbxSurfacePhong, 'DiffuseColor'));
-		});
-	}
-	objectsRecord.addChild(fbxSurfaceMaterialToRecord(fbxSurfacePhong));
+function exportSurfacePhongObject(fbxFile, fbxSurfacePhong, context /*, nodesReferences, nodesConnections*/) {
+    let objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
+    let propertyNames = ['diffuse'];
+    for (let propertyName of propertyNames) {
+        const fbxProperty = fbxSurfacePhong.findProperty(propertyName);
+        if (!fbxProperty) {
+            continue;
+        }
+        fbxProperty.srcObjects.forEach(object => {
+            context.nodesReferences.add(object);
+            context.nodesConnections.add(createConnection(object, fbxSurfacePhong, 'DiffuseColor'));
+        });
+    }
+    objectsRecord.addChild(fbxSurfaceMaterialToRecord(fbxSurfacePhong));
 }
-
-function exportFBXTexture(fbxFile, fbxTexture, nodesReferences, nodesConnections) {
-	let objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
-
-	let textureMedia = fbxTexture.media;
-	if (textureMedia) {
-		nodesReferences.add(textureMedia);
-		nodesConnections.add(createConnection(textureMedia, fbxTexture));
-	}
-
-	objectsRecord.addChild(fbxTextureToRecord(fbxTexture));
+function exportFBXTexture(fbxFile, fbxTexture, context /*, nodesReferences, nodesConnections*/) {
+    let objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
+    let textureMedia = fbxTexture.media;
+    if (textureMedia) {
+        context.nodesReferences.add(textureMedia);
+        context.nodesConnections.add(createConnection(textureMedia, fbxTexture));
+    }
+    objectsRecord.addChild(fbxTextureToRecord(fbxTexture));
 }
-
-function exportFBXVideo(fbxFile, fbxVideo, nodesReferences, nodesConnections) {
-	let objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
-	objectsRecord.addChild(createVideoRecord(fbxVideo));
+function exportFBXVideo(fbxFile, fbxVideo) {
+    let objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
+    objectsRecord.addChild(createVideoRecord(fbxVideo));
 }
-
-function exportFBXSkin(fbxFile, fbxSkin, nodesReferences, nodesConnections) {
-	let objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
-
-	fbxSkin.clusters.forEach(cluster => {
-		nodesReferences.add(cluster);
-		nodesConnections.add(createConnection(cluster, fbxSkin));
-	});
-
-	objectsRecord.addChild(fbxSkinToRecord(fbxSkin));
+function exportFBXSkin(fbxFile, fbxSkin, context /*, nodesReferences, nodesConnections*/) {
+    let objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
+    fbxSkin.clusters.forEach(cluster => {
+        context.nodesReferences.add(cluster);
+        context.nodesConnections.add(createConnection(cluster, fbxSkin));
+    });
+    objectsRecord.addChild(fbxSkinToRecord(fbxSkin));
 }
-
-function exportFBXCluster(fbxFile, fbxCluster, nodesReferences, nodesConnections) {
-	if (fbxCluster.indexes.length == 0) {
-		return;
-	}
-	let objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
-	if (fbxCluster.link) {
-		nodesReferences.add(fbxCluster.link);
-		nodesConnections.add(createConnection(fbxCluster.link, fbxCluster));
-	}
-	objectsRecord.addChild(fbxClusterToRecord(fbxCluster));
+function exportFBXCluster(fbxFile, fbxCluster, context /*, nodesReferences, nodesConnections*/) {
+    if (fbxCluster.indexes.length == 0) {
+        return;
+    }
+    let objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
+    if (fbxCluster.link) {
+        context.nodesReferences.add(fbxCluster.link);
+        context.nodesConnections.add(createConnection(fbxCluster.link, fbxCluster));
+    }
+    objectsRecord.addChild(fbxClusterToRecord(fbxCluster));
 }
-
-function exportFBXAnimStack(fbxFile, fbxAnimStack, nodesReferences, nodesConnections) {
-	let objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
-	/*if (fbxAnimStack.link) {
-		nodesReferences.add(fbxAnimStack.link);
-		nodesConnections.add(createConnection(fbxAnimStack.link, fbxAnimStack));
-	}*/
-
-	fbxAnimStack.members.forEach(member => {
-		nodesReferences.add(member);
-		nodesConnections.add(createConnection(member, fbxAnimStack));
-	});
-
-	objectsRecord.addChild(fbxAnimStackToRecord(fbxAnimStack));
+function exportFBXAnimStack(fbxFile, fbxAnimStack, context) {
+    let objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
+    /*if (fbxAnimStack.link) {
+        nodesReferences.add(fbxAnimStack.link);
+        nodesConnections.add(createConnection(fbxAnimStack.link, fbxAnimStack));
+    }*/
+    fbxAnimStack.members.forEach(member => {
+        context.nodesReferences.add(member);
+        context.nodesConnections.add(createConnection(member, fbxAnimStack));
+    });
+    objectsRecord.addChild(fbxAnimStackToRecord(fbxAnimStack));
 }
-
-function exportFBXAnimLayer(fbxFile, fbxAnimLayer, nodesReferences, nodesConnections) {
-	let objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
-
-	fbxAnimLayer.members.forEach(member => {
-		nodesReferences.add(member);
-		nodesConnections.add(createConnection(member, fbxAnimLayer));
-	});
-
-	objectsRecord.addChild(fbxAnimLayerToRecord(fbxAnimLayer));
+function exportFBXAnimLayer(fbxFile, fbxAnimLayer, context) {
+    let objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
+    fbxAnimLayer.members.forEach(member => {
+        context.nodesReferences.add(member);
+        context.nodesConnections.add(createConnection(member, fbxAnimLayer));
+    });
+    objectsRecord.addChild(fbxAnimLayerToRecord(fbxAnimLayer));
 }
-
-function exportFBXAnimCurveNode(fbxFile, fbxAnimCurveNode, nodesReferences, nodesConnections) {
-	const objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
-	objectsRecord.addChild(fbxAnimCurveNodeToRecord(fbxAnimCurveNode));
+function exportFBXAnimCurveNode(fbxFile, fbxAnimCurveNode) {
+    const objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
+    objectsRecord.addChild(fbxAnimCurveNodeToRecord(fbxAnimCurveNode));
 }
-
-function exportFBXAnimCurve(fbxFile, fbxAnimCurveNode, nodesReferences, nodesConnections) {
-	const objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
-	objectsRecord.addChild(fbxAnimCurveToRecord(fbxAnimCurveNode));
+function exportFBXAnimCurve(fbxFile, fbxAnimCurve) {
+    const objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
+    objectsRecord.addChild(fbxAnimCurveToRecord(fbxAnimCurve));
 }
-
 function createConnections(fbxFile, connections) {
-	let connectionsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_CONNECTIONS);
-	for (let connection of connections) {
-		connectionsRecord.addChild(createConnectionRecord(connection.s, connection.d, connection.t));
-	}
+    let connectionsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_CONNECTIONS);
+    for (let connection of connections) {
+        connectionsRecord.addChild(createConnectionRecord(connection.source, connection.destination, connection.target));
+    }
 }
-
 function exportTakes(fbxFile, fbxScene) {
-	fbxFile.getRecordByName(FBX_RECORD_NAME_TAKES);
-	let srcObjects = fbxScene.srcObjects;
-	for (let srcObject of srcObjects) {
-		if (srcObject.isFBXAnimStack) ;
-	}
+    fbxFile.getRecordByName(FBX_RECORD_NAME_TAKES);
+    let srcObjects = fbxScene.srcObjects;
+    for (let srcObject of srcObjects) {
+        if (srcObject.isFBXAnimStack) ;
+    }
 }
-
-function exportFBXPose(fbxFile, fbxPose, nodesReferences, nodesConnections) {
-	let objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
-	objectsRecord.addChild(fbxPoseToRecord(fbxPose));
+function exportFBXPose(fbxFile, fbxPose) {
+    let objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
+    objectsRecord.addChild(fbxPoseToRecord(fbxPose));
 }
+const FBX_TC_MILLISECOND = 141120n;
+const FBX_TC_SECOND = FBX_TC_MILLISECOND * 1000n;
+const FBX_TC_MINUTE = FBX_TC_SECOND * 60n;
+const FBX_TC_HOUR = FBX_TC_MINUTE * 60n;
 
-//Rotation of child is applied before parent's scaling
-//Scaling of parent is applied before rotation of child
-const FBX_INHERIT_TYPE_PARENT_SCALING_FIRST = 1;
+var MappingMode;
+(function (MappingMode) {
+    MappingMode[MappingMode["None"] = 0] = "None";
+    MappingMode[MappingMode["ControlPoint"] = 1] = "ControlPoint";
+    MappingMode[MappingMode["PolygonVertex"] = 2] = "PolygonVertex";
+    MappingMode[MappingMode["Polygon"] = 3] = "Polygon";
+    MappingMode[MappingMode["Edge"] = 4] = "Edge";
+    MappingMode[MappingMode["AllSame"] = 5] = "AllSame";
+})(MappingMode || (MappingMode = {}));
 
-const FBX_NODE_ATTRIBUTE_TYPE_UNKNOWN = 0;
-const FBX_NODE_ATTRIBUTE_TYPE_SKELETON = 3;
-const FBX_NODE_ATTRIBUTE_TYPE_CAMERA = 7;
+var ReferenceMode;
+(function (ReferenceMode) {
+    ReferenceMode[ReferenceMode["Direct"] = 0] = "Direct";
+    ReferenceMode[ReferenceMode["Index"] = 1] = "Index";
+    ReferenceMode[ReferenceMode["IndexToDirect"] = 2] = "IndexToDirect";
+})(ReferenceMode || (ReferenceMode = {}));
 
-const FBX_PROPERTY_FLAG_STATIC = 1 << 0;
-
+var SkeletonType;
+(function (SkeletonType) {
+    SkeletonType[SkeletonType["Root"] = 0] = "Root";
+    SkeletonType[SkeletonType["Limb"] = 1] = "Limb";
+    SkeletonType[SkeletonType["LimbNode"] = 2] = "LimbNode";
+    SkeletonType[SkeletonType["Effector"] = 3] = "Effector";
+})(SkeletonType || (SkeletonType = {}));
 const FBX_SKELETON_TYPE_LIMB = 1;
 
-const FBX_SKINNING_TYPE_LINEAR = 1;
+var TimeMode;
+(function (TimeMode) {
+    TimeMode[TimeMode["Default"] = 0] = "Default";
+    TimeMode[TimeMode["Frames120"] = 1] = "Frames120";
+    TimeMode[TimeMode["Frames100"] = 2] = "Frames100";
+    TimeMode[TimeMode["Frames60"] = 3] = "Frames60";
+    TimeMode[TimeMode["Frames50"] = 4] = "Frames50";
+    TimeMode[TimeMode["Frames48"] = 5] = "Frames48";
+    TimeMode[TimeMode["Frames30"] = 6] = "Frames30";
+    TimeMode[TimeMode["Frames30Drop"] = 7] = "Frames30Drop";
+    TimeMode[TimeMode["NtscDropFrame"] = 8] = "NtscDropFrame";
+    TimeMode[TimeMode["NtscFullFrame"] = 9] = "NtscFullFrame";
+    TimeMode[TimeMode["Pal"] = 10] = "Pal";
+    TimeMode[TimeMode["Frames24"] = 11] = "Frames24";
+    TimeMode[TimeMode["Frames1000"] = 12] = "Frames1000";
+    TimeMode[TimeMode["FilmFullFrame"] = 13] = "FilmFullFrame";
+    TimeMode[TimeMode["Custom"] = 14] = "Custom";
+    TimeMode[TimeMode["Frames96"] = 15] = "Frames96";
+    TimeMode[TimeMode["Frames72"] = 16] = "Frames72";
+    TimeMode[TimeMode["Frames59_94"] = 17] = "Frames59_94";
+    TimeMode[TimeMode["Frames119_88"] = 18] = "Frames119_88";
+})(TimeMode || (TimeMode = {}));
+// TODO: remove those
+const FBX_TIME_MODE_DEFAULT = 0;
+const FBX_TIME_MODE_FRAMES = [
+    30,
+    120,
+    100,
+    60,
+    50,
+    48,
+    30,
+    30,
+    29.97,
+    29.97,
+    25,
+    24,
+    1000,
+    23.976,
+    -1,
+    96,
+    72,
+    59.94,
+    119.88,
+];
 
-class FBXManager {
-	#objects = new Set();
-	#documents = new Set();
-	static #registry = new Map();
+var TimeProtocol;
+(function (TimeProtocol) {
+    TimeProtocol[TimeProtocol["Smpte"] = 0] = "Smpte";
+    TimeProtocol[TimeProtocol["FrameCount"] = 1] = "FrameCount";
+    TimeProtocol[TimeProtocol["Default"] = 2] = "Default";
+})(TimeProtocol || (TimeProtocol = {}));
 
-	constructor() {
-		this.isFBXManager = true;
-	}
-
-	destroy() {
-		this.#objects.clear();
-		this.#documents.clear();
-	}
-
-	static registerClass(className, classConstructor) {
-		FBXManager.#registry.set(className, classConstructor);
-	}
-
-	createObject(className, objectName, ...args) {
-		const classConstructor = FBXManager.#registry.get(className);
-		if (!classConstructor) {
-			throw 'Unknown constructor in FBXManager.createObject(): ' + className;
-		}
-
-		const createdObject = new classConstructor(this, objectName, ...args);
-		if (createdObject) {
-			if (createdObject.isFBXDocument) {
-				this.#documents.add(createdObject);
-			} else {
-				this.#objects.add(createdObject);
-			}
-		}
-		return createdObject;
-	}
-
+class FBXTime {
+    static #globalTimeMode = TimeMode.Frames30;
+    static #globalTimeProtocol = TimeProtocol.FrameCount;
+    #time = 0n;
+    constructor(time = 0n) {
+        this.time = time;
+    }
+    set time(time) {
+        this.#time = time;
+    }
+    get time() {
+        return this.#time;
+    }
+    copy(other) {
+        this.#time = other.#time;
+    }
+    static setGlobalTimeMode(timeMode, frameRate = 0) {
+        FBXTime.#globalTimeMode = timeMode;
+    }
+    static getGlobalTimeMode() {
+        return FBXTime.#globalTimeMode;
+    }
+    static setGlobalTimeProtocol(timeProtocol) {
+        FBXTime.#globalTimeProtocol = timeProtocol;
+    }
+    static getGlobalTimeProtocol() {
+        return FBXTime.#globalTimeProtocol;
+    }
+    static getFrameRate(timeMode) {
+        const frameRate = FBX_TIME_MODE_FRAMES[timeMode];
+        if (frameRate === -1) {
+            throw 'return global frame rate';
+        }
+        else {
+            return frameRate;
+        }
+    }
+    static convertFrameRateToTimeMode(frameRate, precision = 1e-8) {
+        const lowRate = frameRate - precision;
+        const highRate = frameRate + precision;
+        for (let i = 1, l = FBX_TIME_MODE_FRAMES.length; i < l; ++i) {
+            const targetFrameRate = FBX_TIME_MODE_FRAMES[i];
+            if ((targetFrameRate >= lowRate) && (targetFrameRate <= highRate)) {
+                return i;
+            }
+        }
+        return FBX_TIME_MODE_DEFAULT;
+    }
+    static getOneFrameValue(timeMode) {
+        const frameRate = FBXTime.getFrameRate(timeMode);
+        return BigInt(Math.round(Number(FBX_TC_SECOND) / frameRate));
+    }
+    setMilliSeconds(milliSeconds) {
+        this.#time = BigInt(milliSeconds) * FBX_TC_MILLISECOND;
+    }
+    getMilliSeconds() {
+        return this.#time / FBX_TC_MILLISECOND;
+    }
+    setSecondDouble(seconds) {
+        this.#time = BigInt(Math.round(Number(FBX_TC_SECOND) * seconds));
+    }
+    getSecondDouble() {
+        return Number(this.#time) / Number(FBX_TC_SECOND);
+    }
+    setTime(hour, minute, second, frame = 0, field = 0, timeMode = FBX_TIME_MODE_DEFAULT) {
+        this.#time = BigInt(hour) * FBX_TC_HOUR +
+            BigInt(minute) * FBX_TC_MINUTE +
+            BigInt(second) * FBX_TC_SECOND +
+            BigInt(frame) * FBXTime.getOneFrameValue(timeMode);
+    }
 }
-
-// I'm not sure there is reserved ids, let's start big
-let uniqueId = 1000000n;
-
-function getUniqueId() {
-	return ++uniqueId;
-}
-
-class FBXObject {
-	#id = getUniqueId();
-	#name = '';
-	#srcObjects = new Set();
-	#rootProperty;
-	#manager;
-	constructor(manager, name = '') {
-		if (!manager.isFBXManager) {
-			console.trace('Missing manager in FBXObject');
-			throw 'Missing manager in FBXObject';
-		}
-		this.#manager = manager;
-		this.name = name;
-		this.#rootProperty = new FBXProperty(this);
-	}
-
-	set id(id) {
-		this.#id = id;
-	}
-
-	get id() {
-		return this.#id;
-	}
-
-	set name(name) {
-		this.#name = name;
-	}
-
-	get name() {
-		return this.#name;
-	}
-
-	get rootProperty() {
-		return this.#rootProperty;
-	}
-
-	get manager() {
-		return this.#manager;
-	}
-
-	connectSrcObject(fbxObject) {
-		//TODO: add connection type ?
-		if (!fbxObject.isFBXObject) {
-			throw 'connectSrcObject: fbxObject must be a FBXObject';
-		}
-		this.#srcObjects.add(fbxObject);
-	}
-
-	get srcObjects() {
-		return this.#srcObjects;
-	}
-
-	createProperty(type, name, value, flags) {
-		return new FBXProperty(this.#rootProperty, type, name, value, flags);
-	}
-
-	getAllProperties() {
-		return this.#rootProperty.getAllProperties(false);
-	}
-
-	findProperty(propertyName) {
-		return this.#rootProperty.findProperty(propertyName);
-	}
-}
-FBXObject.prototype.isFBXObject = true;
-
-class FBXAnimCurve extends FBXObject {
-	#keys = new Map();
-	constructor(manager, name) {
-		super(manager, name);
-		this.isFBXAnimCurve = true;
-	}
-
-	addKey(animCurveKey) {
-		this.#keys.set(animCurveKey.time.time, animCurveKey);
-	}
-}
-FBXManager.registerClass('FBXAnimCurve', FBXAnimCurve);
-
-class FBXAnimCurveNode extends FBXObject {
-	#channels;
-	constructor(manager, name) {
-		super(manager, name);
-		this.isFBXAnimCurveNode = true;
-		this.#channels = this.createProperty(FBX_PROPERTY_TYPE_COMPOUND, 'd', null, FBX_PROPERTY_FLAG_STATIC);
-	}
-
-	isAnimated(recurse = false) {
-		throw 'Code me';
-	}
-
-	createTypedCurveNode(property, scene) {
-		throw 'Code me';
-	}
-
-	addChannel(type, name, value, flags) {
-		return this.#channels.createProperty(type, name, value, flags);
-	}
-}
-FBXManager.registerClass('FBXAnimCurveNode', FBXAnimCurveNode);
-
-class FBXCollection extends FBXObject {
-	#members = new Set();
-	constructor(manager, name) {
-		super(manager, name);
-		this.isFBXCollection = true;
-	}
-
-	add(member) {
-		if (!member.isFBXObject) {
-			throw 'member must be an FBXObject';
-		}
-		this.#members.add(member);
-	}
-
-	remove(member) {
-		this.#members.delete(member);
-	}
-
-	get count() {
-		return this.#members.size;
-	}
-
-	get members() {
-		return this.#members;
-	}
-}
-
-class FBXAnimLayer extends FBXCollection {
-	//TODO: add Properties
-
-				/*P: "Weight", "Number", "", "A",100
-				P: "Mute", "bool", "", "",0
-				P: "Solo", "bool", "", "",0
-				P: "Lock", "bool", "", "",0
-				P: "Color", "ColorRGB", "Color", "",0.8,0.8,0.8
-				P: "BlendMode", "enum", "", "",0
-				P: "RotationAccumulationMode", "enum", "", "",0
-				P: "ScaleAccumulationMode", "enum", "", "",0
-				P: "BlendModeBypass", "ULongLong", "", "",0*/
-	constructor(manager, name) {
-		super(manager, name);
-		this.isFBXAnimLayer = true;
-	}
-}
-FBXManager.registerClass('FBXAnimLayer', FBXAnimLayer);
-
-class FBXAnimStack extends FBXCollection {
-	#description;
-	#localStart;
-	#localStop;
-	#referenceStart;
-	#referenceStop;
-
-	constructor(manager, name) {
-		super(manager, name);
-		this.isFBXAnimStack = true;
-		this.#description = this.createProperty(FBX_PROPERTY_TYPE_STRING, 'Description', '', FBX_PROPERTY_FLAG_STATIC);
-		this.#localStart = this.createProperty(FBX_PROPERTY_TYPE_TIME, 'LocalStart', 0, FBX_PROPERTY_FLAG_STATIC);
-		this.#localStop = this.createProperty(FBX_PROPERTY_TYPE_TIME, 'LocalStop', 0, FBX_PROPERTY_FLAG_STATIC);
-		this.#referenceStart = this.createProperty(FBX_PROPERTY_TYPE_TIME, 'ReferenceStart', 0, FBX_PROPERTY_FLAG_STATIC);
-		this.#referenceStop = this.createProperty(FBX_PROPERTY_TYPE_TIME, 'ReferenceStop', 0, FBX_PROPERTY_FLAG_STATIC);
-	}
-}
-FBXManager.registerClass('FBXAnimStack', FBXAnimStack);
-
-class FBXAxisSystem {
-	#upAxis;
-	#frontAxis;
-	constructor(upAxis, frontAxis) {
-		this.#upAxis = upAxis;
-		this.#frontAxis = frontAxis;
-	}
-
-	set upAxis(upAxis) {
-		this.#upAxis = upAxis;
-	}
-
-	get upAxis() {
-		return this.#upAxis;
-	}
-
-	set frontAxis(frontAxis) {
-		this.#frontAxis = frontAxis;
-	}
-
-	get frontAxis() {
-		return this.#frontAxis;
-	}
-
-	get coordAxis() {
-		return this.#frontAxis;
-	}
-}
-FBXAxisSystem.prototype.isFBXAxisSystem = true;
-
-class FBXNodeAttribute extends FBXObject {
-	constructor(manager, name) {
-		super(manager, name);
-		this.isFBXNodeAttribute = true;
-	}
-
-	getAttributeType() {
-		return FBX_NODE_ATTRIBUTE_TYPE_UNKNOWN;
-	}
-}
-
-class FBXCamera extends FBXNodeAttribute {
-	#position;
-	#upVector;
-	#interestPosition;
-	#roll;
-	//#opticalCenterX;
-	//#opticalCenterY;
-	#nearPlane;
-	#farPlane;
-	#projectionType;
-	#orthoZoom;
-	constructor(manager, name) {
-		super(manager, name);
-		this.isFBXCamera = true;
-
-		this.#position = this.createProperty(FBX_PROPERTY_TYPE_DOUBLE_3, 'Position', [0, 0, 0], FBX_PROPERTY_FLAG_STATIC);
-		this.#upVector = this.createProperty(FBX_PROPERTY_TYPE_DOUBLE_3, 'UpVector', [0, 0, 0], FBX_PROPERTY_FLAG_STATIC);
-		this.#interestPosition = this.createProperty(FBX_PROPERTY_TYPE_DOUBLE_3, 'InterestPosition', [0, 0, 0], FBX_PROPERTY_FLAG_STATIC);
-		this.#roll = this.createProperty(FBX_PROPERTY_TYPE_DOUBLE, 'Roll', 0, FBX_PROPERTY_FLAG_STATIC);
-		//this.#opticalCenterX = this.createProperty(FBX_PROPERTY_TYPE_DOUBLE, 'OpticalCenterX', 0, FBX_PROPERTY_FLAG_STATIC);
-		//this.#opticalCenterY = this.createProperty(FBX_PROPERTY_TYPE_DOUBLE, 'OpticalCenterY', 0, FBX_PROPERTY_FLAG_STATIC);
-		this.#nearPlane = this.createProperty(FBX_PROPERTY_TYPE_DOUBLE, 'NearPlane', 0, FBX_PROPERTY_FLAG_STATIC);
-		this.#farPlane = this.createProperty(FBX_PROPERTY_TYPE_DOUBLE, 'FarPlane', 0, FBX_PROPERTY_FLAG_STATIC);
-		this.#projectionType = this.createProperty(FBX_PROPERTY_TYPE_ENUM, 'CameraProjectionType', 0, FBX_PROPERTY_FLAG_STATIC);
-		this.#orthoZoom = this.createProperty(FBX_PROPERTY_TYPE_DOUBLE, 'OrthoZoom', 1, FBX_PROPERTY_FLAG_STATIC);
-	}
-
-	set position(position) {
-		this.#position = position;
-	}
-
-	get position() {
-		return this.#position;
-	}
-
-	set upVector(upVector) {
-		this.#upVector = upVector;
-	}
-
-	get upVector() {
-		return this.#upVector;
-	}
-
-	set interestPosition(interestPosition) {
-		this.#interestPosition = interestPosition;
-	}
-
-	get interestPosition() {
-		return this.#interestPosition;
-	}
-
-	set roll(roll) {
-		this.#roll = roll;
-	}
-
-	get roll() {
-		return this.#roll;
-	}
-
-	set nearPlane(nearPlane) {
-		this.#nearPlane = nearPlane;
-	}
-
-	get nearPlane() {
-		return this.#nearPlane;
-	}
-
-	set farPlane(farPlane) {
-		this.#farPlane = farPlane;
-	}
-
-	get farPlane() {
-		return this.#farPlane;
-	}
-
-	set projectionType(projectionType) {
-		this.#projectionType = projectionType;
-	}
-
-	get projectionType() {
-		return this.#projectionType;
-	}
-
-	set orthoZoom(orthoZoom) {
-		this.#orthoZoom = orthoZoom;
-	}
-
-	get orthoZoom() {
-		return this.#orthoZoom;
-	}
-
-	getAttributeType() {
-		return FBX_NODE_ATTRIBUTE_TYPE_CAMERA;
-	}
-}
-FBXManager.registerClass('FBXCamera', FBXCamera);
-
-const FBX_SUB_DEFORMER_TYPE_UNKNOWN = 0;
-const FBX_SUB_DEFORMER_TYPE_CLUSTER = 1;
-
-class FBXSubDeformer extends FBXObject {
-	constructor(manager, name) {
-		super(manager, name);
-		this.isFBXSubDeformer = true;
-	}
-
-	get subDeformerType() {
-		return FBX_SUB_DEFORMER_TYPE_UNKNOWN;
-	}
-}
-
-const FBX_LINK_MODE_NORMALIZE = 0;
-
-class FBXCluster extends FBXSubDeformer {
-	#linkMode = FBX_LINK_MODE_NORMALIZE;
-	#link;
-	#indexes = [];
-	#weights = [];
-	#transformMatrix = create$5();
-	#transformLinkMatrix = create$5();
-	#transformParentMatrix;
-	constructor(manager, name) {
-		super(manager, name);
-		this.isFBXCluster = true;
-	}
-
-	set linkMode(linkMode) {
-		this.#linkMode = linkMode;
-	}
-
-	get linkMode() {
-		return this.#linkMode;
-	}
-
-	set link(link) {
-		this.#link = link;
-	}
-
-	get link() {
-		return this.#link;
-	}
-
-	addVertexIndex(index, weight) {
-		this.#indexes.push(index);
-		this.#weights.push(weight);
-	}
-
-	get indexes() {
-		return this.#indexes;
-	}
-
-	get weights() {
-		return this.#weights;
-	}
-
-	get subDeformerType() {
-		return FBX_SUB_DEFORMER_TYPE_CLUSTER;
-	}
-
-	set transformMatrix(transformMatrix) {
-		copy$5(this.#transformMatrix, transformMatrix);
-	}
-
-	get transformMatrix() {
-		return clone$5(this.#transformMatrix);
-	}
-
-	set transformLinkMatrix(transformLinkMatrix) {
-		copy$5(this.#transformLinkMatrix, transformLinkMatrix);
-	}
-
-	get transformLinkMatrix() {
-		return clone$5(this.#transformLinkMatrix);
-	}
-
-	set transformParentMatrix(transformParentMatrix) {
-		this.#transformParentMatrix = transformParentMatrix;
-	}
-
-	get transformParentMatrix() {
-		return this.#transformParentMatrix;
-	}
-}
-FBXManager.registerClass('FBXCluster', FBXCluster);
-
-class FBXColor {
-	#red;
-	#green;
-	#blue;
-	#alpha;
-	constructor(red = 0.0, green = 0.0, blue = 0.0, alpha = 1.0) {
-		this.#red = red;
-		this.#green = green;
-		this.#blue = blue;
-		this.#alpha = alpha;
-	}
-
-	set red(red) {
-		this.#red = red;
-	}
-
-	get red() {
-		return this.#red;
-	}
-
-	set green(green) {
-		this.#green = green;
-	}
-
-	get green() {
-		return this.#green;
-	}
-
-	set blue(blue) {
-		this.#blue = blue;
-	}
-
-	get blue() {
-		return this.#blue;
-	}
-
-	set alpha(alpha) {
-		this.#alpha = alpha;
-	}
-
-	get alpha() {
-		return this.#alpha;
-	}
-}
-FBXColor.prototype.isFBXColor = true;
-
-class FBXGlobalSettings extends FBXObject {
-	#ambientColor = new FBXColor();
-	#defaultCamera = '';
-	#axisSystem = new FBXAxisSystem(2, 1);
-	constructor(manager, name) {
-		super(manager, name);
-		this.isFBXGlobalSettings = true;
-	}
-
-	set ambientColor(ambientColor) {
-		if (!ambientColor.isFBXColor) {
-			throw 'ambientColor must be a FBXColor';
-		}
-		this.#ambientColor = ambientColor;
-	}
-
-	get ambientColor() {
-		return this.#ambientColor;
-	}
-
-	set defaultCamera(defaultCamera) {
-		this.#defaultCamera = defaultCamera;
-	}
-
-	get defaultCamera() {
-		return this.#defaultCamera;
-	}
-}
-FBXManager.registerClass('FBXGlobalSettings', FBXGlobalSettings);
-
-class FBXLayerContainer extends FBXNodeAttribute {
-	constructor(manager, name) {
-		super(manager, name);
-		this.isFBXLayerContainer = true;
-	}
-}
-
-class FBXGeometryBase extends FBXLayerContainer {
-	constructor(manager, name) {
-		super(manager, name);
-		this.isFBXGeometryBase = true;
-	}
-}
-
-class FBXGeometry extends FBXGeometryBase {
-	#deformers = new Set();
-	constructor(manager, name) {
-		super(manager, name);
-		this.isFBXGeometry = true;
-	}
-
-	addDeformer(deformer) {
-		if (!deformer.isFBXDeformer) {
-			throw 'deformer must be of type FBXDeformer';
-		}
-
-		this.#deformers.add(deformer);
-	}
-
-	removeDeformer(deformer) {
-		if (!deformer.isFBXDeformer) {
-			throw 'deformer must be of type FBXDeformer';
-		}
-
-		this.#deformers.delete(deformer);
-	}
-
-	get deformers() {
-		return this.#deformers;
-	}
-}
-
-class FBXMesh extends FBXGeometry {
-	#vertices = [];
-	#normals = [];
-	#polygons = [];
-	#edges = [];
-	#uv = [];
-	#uvIndex = [];
-	constructor(manager, name) {
-		super(manager, name);
-		this.isFBXMesh = true;
-	}
-
-	set vertices(vertices) {
-		this.#vertices = vertices;
-	}
-
-	get vertices() {
-		return this.#vertices;
-	}
-
-	set normals(normals) {
-		this.#normals = normals;
-	}
-
-	get normals() {
-		return this.#normals;
-	}
-
-	set polygons(polygons) {
-		this.#polygons = polygons;
-	}
-
-	get polygons() {
-		return this.#polygons;
-	}
-
-	set edges(edges) {
-		this.#edges = edges;
-	}
-
-	get edges() {
-		return this.#edges;
-	}
-
-	set uv(uv) {
-		this.#uv = uv;
-	}
-
-	get uv() {
-		return this.#uv;
-	}
-
-	set uvIndex(uvIndex) {
-		this.#uvIndex = uvIndex;
-	}
-
-	get uvIndex() {
-		return this.#uvIndex;
-	}
-}
-FBXManager.registerClass('FBXMesh', FBXMesh);
-
-class FBXNode extends FBXObject {
-	#parent;
-	#childs = new Set();
-	#materials = [];
-	#nodeAttribute;
-	#inheritType = FBX_INHERIT_TYPE_PARENT_SCALING_FIRST;
-
-	#show;
-	#localTranslation;
-	#localRotation;
-	#localScaling;
-
-	constructor(manager, name) {
-		super(manager, name);
-		this.isFBXNode = true;
-		this.#show = this.createProperty(FBX_PROPERTY_TYPE_BOOL, 'Show', 1.0, FBX_PROPERTY_FLAG_STATIC);
-		this.#localTranslation = this.createProperty(FBX_PROPERTY_TYPE_DOUBLE_3, 'Lcl Translation', [0, 0, 0], FBX_PROPERTY_FLAG_STATIC);
-		this.#localRotation = this.createProperty(FBX_PROPERTY_TYPE_DOUBLE_3, 'Lcl Rotation', [0, 0, 0], FBX_PROPERTY_FLAG_STATIC);
-		this.#localScaling = this.createProperty(FBX_PROPERTY_TYPE_DOUBLE_3, 'Lcl Scaling', [1, 1, 1], FBX_PROPERTY_FLAG_STATIC);
-	}
-
-	set parent(parent) {
-		if (this.#checkParent(parent)) {
-			if (this.#parent) {
-				this.#parent.#childs.delete(this);
-			}
-			this.#parent = parent;
-			if (parent) {
-				parent.#childs.add(this);
-			}
-		} else {
-			console.log(this, parent);
-			throw 'Invalid parent';
-		}
-	}
-
-	addChild(child) {
-		if (!child.isFBXNode) {
-			throw 'Child is not FBXNode';
-		}
-		child.parent = this;
-	}
-
-	removeChild(child) {
-		if (!child.isFBXNode) {
-			throw 'Child is not FBXNode';
-		}
-		child.parent = null;
-	}
-
-	get childs() {
-		return this.#childs;
-	}
-
-	get parent() {
-		return this.#parent;
-	}
-
-	#checkParent(parent) {
-		if (parent === null) {
-			return true;
-		}
-		if (!parent.isFBXNode) {
-			console.log('Parent is not FBXNode');
-			return false;
-		}
-
-		let current = parent;
-		for (;;) {
-			if (current == this) {
-				console.log('Parent hierarchy contains self');
-				return false;
-			}
-			if (!(current = current.parent)) {
-				break;
-			}
-		}
-		return true;
-	}
-
-	set nodeAttribute(nodeAttribute) {
-		if (!nodeAttribute.isFBXNodeAttribute) {
-			throw 'nodeAttribute must be of type FBXNodeAttribute';
-		}
-		this.#nodeAttribute = nodeAttribute;
-	}
-
-	get nodeAttribute() {
-		return this.#nodeAttribute;
-	}
-
-	set inheritType(inheritType) {
-		this.#inheritType = inheritType;
-	}
-
-	get inheritType() {
-		return this.#inheritType;
-	}
-
-	set show(show) {
-		this.#show.value = show;
-	}
-
-	get show() {
-		return this.#show.value;
-	}
-
-	set localTranslation(localTranslation) {
-		this.#localTranslation = localTranslation;
-	}
-
-	get localTranslation() {
-		return this.#localTranslation;
-	}
-
-	set localRotation(localRotation) {
-		this.#localRotation = localRotation;
-	}
-
-	get localRotation() {
-		return this.#localRotation;
-	}
-
-	set localScaling(localScaling) {
-		this.#localScaling = localScaling;
-	}
-
-	get localScaling() {
-		return this.#localScaling;
-	}
-
-	addMaterial(surfaceMaterial) {
-		if (!surfaceMaterial.isFBXSurfaceMaterial ) {
-			throw 'surfaceMaterial must be of type FBXSurfaceMaterial';
-		}
-		this.#materials.push(surfaceMaterial);
-	}
-
-	get materials() {
-		return this.#materials;
-	}
-
-	toJSON() {
-		return {
-		}
-	}
-}
-FBXManager.registerClass('FBXNode', FBXNode);
-
-class FBXPoseInfo {
-	#matrix;
-	#matrixIsLocal = false;
-	#node;
-	constructor(node, matrix, matrixIsLocal) {
-		this.node = node;
-		this.matrix = matrix;
-		this.matrixIsLocal = matrixIsLocal;
-	}
-
-	set matrix(matrix) {
-		this.#matrix = matrix;
-	}
-
-	get matrix() {
-		return this.#matrix;
-	}
-
-	set matrixIsLocal(matrixIsLocal) {
-		this.#matrixIsLocal = matrixIsLocal;
-	}
-
-	get matrixIsLocal() {
-		return this.#matrixIsLocal;
-	}
-
-	set node(node) {
-		this.#node = node;
-	}
-
-	get node() {
-		return this.#node;
-	}
-}
-
-class FBXPose extends FBXObject {
-	#isBindPose = true;
-	#poseInfos = [];
-	constructor(manager, name) {
-		super(manager, name);
-		this.isFBXPose = true;
-	}
-
-	set isBindPose(isBindPose) {
-		this.#isBindPose = isBindPose;
-	}
-
-	get isBindPose() {
-		return this.#isBindPose;
-	}
-
-	get isRestPose() {
-		return !this.#isBindPose;
-	}
-
-	add(node, matrix, matrixIsLocal) {
-		this.#poseInfos.push(new FBXPoseInfo(node, matrix, matrixIsLocal));
-	}
-
-	get poseInfos() {
-		return this.#poseInfos;
-	}
-}
-FBXManager.registerClass('FBXPose', FBXPose);
-
-class FBXDocument extends FBXCollection {
-	#documentInfo;
-	constructor(manager, name) {
-		super(manager, name);
-		this.isFBXDocument = true;
-	}
-
-	set documentInfo(documentInfo) {
-		if (!documentInfo.isFBXDocumentInfo) {
-			throw 'documentInfo must be of type FBXDocumentInfo';
-		}
-		this.#documentInfo = documentInfo;
-	}
-
-	get documentInfo() {
-		return this.#documentInfo;
-	}
-}
-
-class FBXScene extends FBXDocument {
-	#rootNode;
-	#globalSettings;
-	#sceneInfo;
-	#objects = new Set();
-	constructor(manager, name) {
-		super(manager, name);
-		this.isFBXScene = true;
-		this.#rootNode = manager.createObject('FBXNode', 'Root node. This node is not saved');
-		this.#globalSettings = manager.createObject('FBXGlobalSettings', 'TODO: name me FBXScene / #globalSettings');
-		this.#rootNode.id = 0;
-	}
-
-	set sceneInfo(sceneInfo) {
-		if (!sceneInfo.isFBXDocumentInfo) {
-			throw 'sceneInfo must be of type FBXDocumentInfo';
-		}
-		this.#sceneInfo = sceneInfo;
-	}
-
-	get sceneInfo() {
-		return this.#sceneInfo;
-	}
-
-	get rootNode() {
-		return this.#rootNode;
-	}
-
-	get globalSettings() {
-		return this.#globalSettings;
-	}
-
-	addObject(object) {
-		if (!object.isFBXObject) {
-			throw 'object must be of type FBXObject';
-		}
-		this.#objects.add(object);
-	}
-
-	get objects() {
-		return this.#objects;
-	}
-}
-FBXManager.registerClass('FBXScene', FBXScene);
-
-class FBXSkeleton extends FBXNodeAttribute {
-	#skeletonType;
-	constructor(manager, name, skeletonType) {
-		super(manager, name);
-		this.isFBXSkeleton = true;
-		this.skeletonType = skeletonType;
-	}
-
-	set skeletonType(skeletonType) {
-		this.#skeletonType = skeletonType;
-	}
-
-	get skeletonType() {
-		return this.#skeletonType;
-	}
-
-	getAttributeType() {
-		return FBX_NODE_ATTRIBUTE_TYPE_SKELETON;
-	}
-}
-FBXManager.registerClass('FBXSkeleton', FBXSkeleton);
-
-const FBX_DEFORMER_TYPE_UNKNOWN = 0;
-const FBX_DEFORMER_TYPE_SKIN = 1;
-
-class FBXDeformer extends FBXObject {
-	constructor(manager, name) {
-		super(manager, name);
-		this.isFBXDeformer = true;
-	}
-
-	get deformerType() {
-		return FBX_DEFORMER_TYPE_UNKNOWN;
-	}
-}
-
-class FBXSkin extends FBXDeformer {
-	#geometry;
-	#skinningType = FBX_SKINNING_TYPE_LINEAR;
-	#clusters = new Set();
-	constructor(manager, name) {
-		super(manager, name);
-		this.isFBXSkin = true;
-	}
-
-	set geometry(geometry) {
-		if (geometry && !geometry.isFBXGeometry) {
-			throw 'geometry must be of type FBXGeometry';
-		}
-		if (this.#geometry) {
-			this.#geometry.removeDeformer(this);
-		}
-		if (geometry) {
-			geometry.addDeformer(this);
-		}
-		this.#geometry = geometry;
-	}
-
-	get geometry() {
-		return this.#geometry;
-	}
-
-	set skinningType(skinningType) {
-		this.#skinningType = skinningType;
-	}
-
-	get skinningType() {
-		return this.#skinningType;
-	}
-
-	addCluster(fbxCluster) {
-		this.#clusters.add(fbxCluster);
-	}
-
-	removeCluster(fbxCluster) {
-		this.#clusters.delete(fbxCluster);
-	}
-
-	get clusters() {
-		return this.#clusters;
-	}
-
-	get deformerType() {
-		return FBX_DEFORMER_TYPE_SKIN;
-	}
-}
-FBXManager.registerClass('FBXSkin', FBXSkin);
-
-class FBXSurfaceMaterial extends FBXObject {
-	#shadingModel;
-	#multiLayer;
-	constructor(manager, name) {
-		super(manager, name);
-		this.isFBXSurfaceMaterial = true;
-
-		this.#shadingModel = this.createProperty(FBX_PROPERTY_TYPE_STRING, 'ShadingModel', 'Unknown', FBX_PROPERTY_FLAG_STATIC);
-		this.#multiLayer = this.createProperty(FBX_PROPERTY_TYPE_BOOL, 'MultiLayer', false, FBX_PROPERTY_FLAG_STATIC);
-	}
-
-	set shadingModel(shadingModel) {
-		this.#shadingModel.value = shadingModel;
-	}
-
-	get shadingModel() {
-		return this.#shadingModel.value;
-	}
-
-	set multiLayer(multiLayer) {
-		this.#multiLayer.value = multiLayer;
-	}
-
-	get multiLayer() {
-		return this.#multiLayer.value;
-	}
-}
-FBXManager.registerClass('FBXSurfaceMaterial', FBXSurfaceMaterial);
-
-class FBXSurfaceLambert extends FBXSurfaceMaterial {
-	#diffuse;
-	constructor(manager, name) {
-		super(manager, name);
-		this.isFBXSurfaceLambert = true;
-		this.shadingModel = 'Lambert';
-		this.#diffuse = this.createProperty(FBX_PROPERTY_TYPE_COLOR_3, 'DiffuseColor', [0.2, 0.2, 0.2], FBX_PROPERTY_FLAG_STATIC);
-	}
-
-	set diffuse(diffuse) {
-		console.assert(diffuse.isFBXProperty && diffuse.type == FBX_PROPERTY_TYPE_COLOR_3, "diffuse is not an FBXProperty");
-		this.#diffuse = diffuse;
-	}
-
-	get diffuse() {
-		return this.#diffuse;
-	}
-}
-FBXManager.registerClass('FBXSurfaceLambert', FBXSurfaceLambert);
-
-class FBXSurfacePhong extends FBXSurfaceLambert {
-	constructor(manager, name) {
-		super(manager, name);
-		this.isFBXSurfacePhong = true;
-		this.shadingModel = 'Phong';
-	}
-}
-FBXManager.registerClass('FBXSurfacePhong', FBXSurfacePhong);
-
-class FBXTexture extends FBXObject {
-	#media;
-	#type = 'TextureVideoClip';
-	constructor(manager, name) {
-		super(manager, name);
-		this.isFBXTexture = true;
-	}
-
-	set type(type) {
-		throw 'We might want to check the exporter if we change the type';
-	}
-
-	get type() {
-		return this.#type;
-	}
-
-	set media(media) {
-		this.#media = media;
-	}
-
-	get media() {
-		return this.#media;
-	}
-
-}
-FBXManager.registerClass('FBXTexture', FBXTexture);
-
-class FBXVideo extends FBXObject {
-	#content;
-	#type = 'Clip';
-	constructor(manager, name) {
-		super(manager, name);
-		this.isFBXVideo = true;
-	}
-
-	set content(content) {
-		this.#content = content;
-	}
-
-	get content() {
-		return this.#content;
-	}
-
-	set type(type) {
-		throw 'We might want to check the exporter if we change the type';
-	}
-
-	get type() {
-		return this.#type;
-	}
-}
-FBXManager.registerClass('FBXVideo', FBXVideo);
 
 /**
  * HDRImageData contains all decompressed image data.
@@ -28180,6 +27917,7 @@ class Crc32 {
 class Crc32Stream extends TransformStream {
 
 	constructor() {
+		// deno-lint-ignore prefer-const
 		let stream;
 		const crc32 = new Crc32();
 		super({
@@ -28227,6 +27965,7 @@ class Crc32Stream extends TransformStream {
  */
 
 function encodeText(value) {
+	// deno-lint-ignore valid-typeof
 	if (typeof TextEncoder == UNDEFINED_TYPE) {
 		value = unescape(encodeURIComponent(value));
 		const result = new Uint8Array(value.length);
@@ -29673,11 +29412,11 @@ function pipeThroughCommpressionStream(readable, useCompressionStream, options, 
 	try {
 		const CompressionStream = useCompressionStream && CodecStreamNative ? CodecStreamNative : CodecStream;
 		readable = pipeThrough(readable, new CompressionStream(COMPRESSION_FORMAT, options));
-	} catch (error) {
+	} catch (_error) {
 		if (useCompressionStream) {
 			try {
 				readable = pipeThrough(readable, new CodecStream(COMPRESSION_FORMAT, options));
-			} catch (error) {
+			} catch (_error) {
 				return readable;
 			}
 		} else {
@@ -29935,7 +29674,7 @@ function createWebWorkerInterface(workerData, config) {
 		let worker;
 		try {
 			worker = getWebWorker(workerData.scripts[0], baseURL, workerData);
-		} catch (error) {
+		} catch (_error) {
 			WEB_WORKERS_SUPPORTED = false;
 			return createWorkerInterface(workerData, config);
 		}
@@ -30057,7 +29796,7 @@ function getWebWorker(url, baseURL, workerData) {
 
 function sendMessage(message, { worker, writer, onTaskFinished, transferStreams }) {
 	try {
-		let { value, readable, writable } = message;
+		const { value, readable, writable } = message;
 		const transferables = [];
 		if (value) {
 			if (value.byteLength < value.buffer.byteLength) {
@@ -30184,6 +29923,7 @@ async function runWorker(stream, workerOptions) {
 	options.useCompressionStream = useCompressionStream || (useCompressionStream === UNDEFINED_VALUE && config.useCompressionStream);
 	return (await getWorker()).run();
 
+	// deno-lint-ignore require-await
 	async function getWorker() {
 		const workerData = pool.find(workerData => !workerData.busy);
 		if (workerData) {
@@ -30896,7 +30636,7 @@ class ZipReader {
 				directory: directory || filename.endsWith(DIRECTORY_SIGNATURE)
 			});
 			startOffset = Math.max(offsetFileEntry, startOffset);
-			await readCommonFooter(fileEntry, fileEntry, directoryView, offset + 6);
+			readCommonFooter(fileEntry, fileEntry, directoryView, offset + 6);
 			fileEntry.zipCrypto = fileEntry.encrypted && !fileEntry.extraFieldAES;
 			const entry = new Entry(fileEntry);
 			entry.getData = (writer, options) => fileEntry.getData(writer, entry, options);
@@ -30983,7 +30723,7 @@ class ZipEntry {
 		localDirectory.rawExtraField = localDirectory.extraFieldLength ?
 			await readUint8Array(reader, offset + 30 + localDirectory.filenameLength, localDirectory.extraFieldLength, diskNumberStart) :
 			new Uint8Array();
-		await readCommonFooter(zipEntry, localDirectory, dataView, 4, true);
+		readCommonFooter(zipEntry, localDirectory, dataView, 4, true);
 		Object.assign(fileEntry, {
 			lastAccessDate: localDirectory.lastAccessDate,
 			creationDate: localDirectory.creationDate
@@ -31074,7 +30814,7 @@ function readCommonHeader(directory, dataView, offset) {
 	});
 }
 
-async function readCommonFooter(fileEntry, directory, dataView, offset, localDirectory) {
+function readCommonFooter(fileEntry, directory, dataView, offset, localDirectory) {
 	const { rawExtraField } = directory;
 	const extraField = directory.extraField = new Map();
 	const rawExtraFieldView = getDataView(new Uint8Array(rawExtraField));
@@ -31105,12 +30845,12 @@ async function readCommonFooter(fileEntry, directory, dataView, offset, localDir
 	}
 	const extraFieldUnicodePath = extraField.get(EXTRAFIELD_TYPE_UNICODE_PATH);
 	if (extraFieldUnicodePath) {
-		await readExtraFieldUnicode(extraFieldUnicodePath, PROPERTY_NAME_FILENAME, PROPERTY_NAME_RAW_FILENAME, directory, fileEntry);
+		readExtraFieldUnicode(extraFieldUnicodePath, PROPERTY_NAME_FILENAME, PROPERTY_NAME_RAW_FILENAME, directory, fileEntry);
 		directory.extraFieldUnicodePath = extraFieldUnicodePath;
 	}
 	const extraFieldUnicodeComment = extraField.get(EXTRAFIELD_TYPE_UNICODE_COMMENT);
 	if (extraFieldUnicodeComment) {
-		await readExtraFieldUnicode(extraFieldUnicodeComment, PROPERTY_NAME_COMMENT, PROPERTY_NAME_RAW_COMMENT, directory, fileEntry);
+		readExtraFieldUnicode(extraFieldUnicodeComment, PROPERTY_NAME_COMMENT, PROPERTY_NAME_RAW_COMMENT, directory, fileEntry);
 		directory.extraFieldUnicodeComment = extraFieldUnicodeComment;
 	}
 	const extraFieldAES = extraField.get(EXTRAFIELD_TYPE_AES);
@@ -31152,7 +30892,7 @@ function readExtraFieldZip64(extraFieldZip64, directory) {
 	}
 }
 
-async function readExtraFieldUnicode(extraFieldUnicode, propertyName, rawPropertyName, directory, fileEntry) {
+function readExtraFieldUnicode(extraFieldUnicode, propertyName, rawPropertyName, directory, fileEntry) {
 	const extraFieldView = getDataView(extraFieldUnicode.data);
 	const crc32 = new Crc32();
 	crc32.append(fileEntry[rawPropertyName]);
@@ -31348,11 +31088,6 @@ function getDataView(array) {
  */
 
 let baseURL;
-try {
-	baseURL = import.meta.url;
-} catch (_error) {
-	// ignored
-}
 configure({ baseURL });
 e(configure);
 
@@ -32501,7 +32236,10 @@ class AudioGroup {
     playAudio(audio) {
         audio.muted = this.muted;
         audio.currentTime = 0;
-        audio.play();
+        try {
+            audio.play();
+        }
+        catch (e) { }
         this.audioList.add(audio);
     }
 }
@@ -32894,10 +32632,10 @@ class BufferAttribute {
     itemSize;
     dirty;
     _array;
-    count;
+    count = 0;
     _buffer;
     #source;
-    divisor;
+    divisor = 0;
     constructor(array, itemSize) {
         this.itemSize = itemSize;
         if (isNaN(this.itemSize)) {
@@ -33025,21 +32763,21 @@ class Uint16BufferAttribute extends BufferAttribute {
     constructor(array, itemSize, offset, length) {
         super(null, itemSize);
         this.setSource(array);
-        this.array = new Uint16Array(array);
+        this.array = new Uint16Array(array, offset, length);
     }
 }
 class Uint32BufferAttribute extends BufferAttribute {
     constructor(array, itemSize, offset, length) {
         super(null, itemSize);
         this.setSource(array);
-        this.array = new Uint32Array(array);
+        this.array = new Uint32Array(array, offset, length);
     }
 }
 class Float32BufferAttribute extends BufferAttribute {
     constructor(array, itemSize, offset, length) {
         super(null, itemSize);
         this.setSource(array);
-        this.array = new Float32Array(array);
+        this.array = new Float32Array(array, offset, length);
     }
 }
 
@@ -33533,8 +33271,8 @@ class Material {
         this.depthMask = false;
         this.srcRGB = srcRGB;
         this.dstRGB = dstRGB;
-        this.srcAlpha = srcAlpha || srcRGB;
-        this.dstAlpha = dstAlpha || dstRGB;
+        this.srcAlpha = srcAlpha ?? srcRGB;
+        this.dstAlpha = dstAlpha ?? dstRGB;
     }
     setBlending(mode, premultipliedAlpha = false) {
         if (premultipliedAlpha) {
@@ -33859,6 +33597,7 @@ const CHILD_ADDED = 'childadded';
 const CHILD_REMOVED = 'childremoved';
 const ENTITY_DELETED = 'entitydeleted';
 const PROPERTY_CHANGED$1 = 'propertychanged';
+const ATTRIBUTE_CHANGED = 'attributechanged';
 class EntityObserverClass extends EventTarget {
     parentChanged(child, oldParent, newParent) {
         this.dispatchEvent(new CustomEvent(PARENT_CHANGED, { detail: { child: child, oldParent: oldParent, newParent: newParent } }));
@@ -33874,6 +33613,9 @@ class EntityObserverClass extends EventTarget {
     }
     propertyChanged(entity, propertyName, oldValue, newValue) {
         this.dispatchEvent(new CustomEvent(PROPERTY_CHANGED$1, { detail: { entity: entity, name: propertyName, value: newValue, oldValue: oldValue } }));
+    }
+    attributeChanged(entity, attributeName, oldValue, newValue) {
+        this.dispatchEvent(new CustomEvent(ATTRIBUTE_CHANGED, { detail: { entity: entity, name: attributeName, value: newValue, oldValue: oldValue } }));
     }
 }
 const EntityObserver = new EntityObserverClass();
@@ -33964,7 +33706,7 @@ function clamp(val, min, max) {
     return Math.min(Math.max(min, val), max);
 }
 function pow2(n) {
-    return (n >= 0 && n < 31) ? (1 << n) : Math.pow(n, 2);
+    return (n >= 0 && n < 31) ? (1 << n) : Math.pow(2, n);
 }
 function RemapValClamped(val, A, B, C, D) {
     if (A == B) {
@@ -34163,7 +33905,7 @@ const UNITY_VEC3 = fromValues$4(1, 1, 1);
 class Entity {
     static addSubMenu;
     id = generateRandomUUID();
-    #wireframe;
+    #wireframe = 0;
     #hideInExplorer = false;
     #serializable = true;
     #castShadow;
@@ -34171,7 +33913,7 @@ class Entity {
     #visible;
     #playing = true;
     #worldMatrix = create$5();
-    #name;
+    #name = '';
     #children = new Set();
     #attributes = new Map();
     #pickingColor;
@@ -34269,6 +34011,11 @@ class Entity {
             copy$4(vec, this._position);
         }
         return vec;
+    }
+    getPositionFrom(other, vec = create$4()) {
+        this.getWorldPosition(tempVec3_1$3);
+        other.getWorldPosition(tempVec3_2$a);
+        return sub$2(vec, tempVec3_2$a, tempVec3_1$3);
     }
     setWorldPosition(position) {
         if (this._parent) {
@@ -34937,19 +34684,17 @@ class Entity {
             },
             reset_scale: { i18n: '#reset_scale', f: () => this.scale = UNITY_VEC3 },
             entitynull_4: null,
-            wireframe: { i18n: '#wireframe', selected: this.wireframe, f: () => this.toggleWireframe() },
+            wireframe: { i18n: '#wireframe', selected: this.wireframe > 0, f: () => this.toggleWireframe() },
             cast_shadows: { i18n: '#cast_shadows', selected: this.castShadow, f: () => this.toggleCastShadow() },
             receive_shadows: { i18n: '#receive_shadows', selected: this.receiveShadow, f: () => this.toggleReceiveShadow() },
             material: { i18n: '#material', submenu: {} },
         };
-        /*
         if (this.material) {
             Object.assign(menu.material.submenu, {
                 entitynull_5: null,
                 edit_material: { i18n: '#edit_material', f: () => Entity.editMaterial(this) }
-            })
+            });
         }
-            */
         return menu;
     }
     raycast(raycaster, intersections) {
@@ -35026,7 +34771,9 @@ class Entity {
         }
     }
     setAttribute(attributeName, attributeValue) {
+        const oldValue = this.#attributes.get(attributeName);
         this.#attributes.set(attributeName, attributeValue);
+        EntityObserver.attributeChanged(this, attributeName, oldValue, attributeValue);
         this.propagate();
     }
     getAttribute(attributeName, inherited = true) {
@@ -35137,7 +34884,7 @@ registerEntity(Entity);
 
 class MaterialManager {
     static #materials = new Map();
-    static registerMaterial(materialName, materialClass, manager) {
+    static registerMaterial(materialName, materialClass, manager /*TODO: better type*/) {
         this.#materials.set(materialName, { materialClass: materialClass, manager: manager });
     }
     static getMaterial(materialName, callback) {
@@ -35411,6 +35158,105 @@ class Ray {
     }
 }
 
+class HTMLFileSelectorTileElement extends HTMLElement {
+    #visible = true;
+    #selector;
+    #file;
+    constructor() {
+        super();
+        this.addEventListener('click', (event) => {
+            if (this.#selector && this.#file) {
+                this.#selector.fileSelected(this.#file);
+            }
+        });
+    }
+    get file() {
+        return this.#file;
+    }
+    setFile(file) {
+        this.#file = file;
+        this.#updateHtml();
+    }
+    set selector(selector) {
+        this.#selector = selector;
+    }
+    connectedCallback() {
+        this.#updateHtml();
+    }
+    set visible(visible) {
+        this.#visible = visible;
+        display(this, visible);
+        if (visible) {
+            this.#updateHtml();
+        }
+    }
+    #updateHtml() {
+        if (this.#visible && this.#file) {
+            this.innerHTML = this.#file.name;
+        }
+    }
+}
+let definedTile = false;
+function defineFileSelectorTile() {
+    if (window.customElements && !definedTile) {
+        customElements.define('file-selector-tile', HTMLFileSelectorTileElement);
+        definedTile = true;
+    }
+}
+
+class HTMLFileSelectorFileElement extends HTMLElement {
+    #selector;
+    #file;
+    constructor() {
+        super();
+        this.addEventListener('click', (event) => {
+            if (this.#selector && this.#file) {
+                this.#selector.fileSelected(this.#file);
+            }
+        });
+    }
+    setFile(file) {
+        this.#file = file;
+        this.#updateHtml();
+    }
+    set selector(selector) {
+        this.#selector = selector;
+    }
+    connectedCallback() {
+        this.#updateHtml();
+    }
+    set visible(visible) {
+        display(this, visible);
+        if (visible) {
+            this.#updateHtml();
+        }
+    }
+    #updateHtml() {
+        if (this.#file) {
+            this.innerHTML = this.#file.name;
+        }
+    }
+    refreshFilter() {
+        if (!this.#selector || !this.#file) {
+            return false;
+        }
+        let filterName = this.#selector.filter.name;
+        let visible = this.#file.name.toLowerCase().includes(filterName) || this.#file.path.toLowerCase().includes(filterName);
+        this.visible = visible;
+        return visible;
+    }
+    get file() {
+        return this.#file;
+    }
+}
+let definedFile = false;
+function defineFileSelectorFile() {
+    if (window.customElements && !definedFile) {
+        customElements.define('file-selector-file', HTMLFileSelectorFileElement);
+        definedFile = true;
+    }
+}
+
 class FileSelectorDirectory extends HTMLElement {
     #initialized = false;
     #expanded = false;
@@ -35428,18 +35274,18 @@ class FileSelectorDirectory extends HTMLElement {
         this.#header = createElement('div', {
             class: 'file-selector-directory-header',
             events: {
-                click: (event) => {
+                click: () => {
                     this.#expanded = !this.#expanded;
                     this.#updateHtml();
                     if (this.#expanded && this.#parentDirectory) {
-                        this.#parentDirectory.childExpanded(this);
+                        this.#parentDirectory.#childExpanded(this);
                     }
                 }
             },
         });
         this.#content = createElement('div', { class: 'file-selector-directory-content' });
     }
-    childExpanded(child) {
+    #childExpanded(child) {
         for (let enumeratedChild of this.#content.children) {
             if (enumeratedChild.tagName == 'FILE-SELECTOR-DIRECTORY' && enumeratedChild != child) {
                 enumeratedChild.collapse();
@@ -35482,9 +35328,11 @@ class FileSelectorDirectory extends HTMLElement {
             let bIsDir = b.tagName == 'FILE-SELECTOR-DIRECTORY';
             if (aIsDir) {
                 if (bIsDir) {
-                    let aname = a.file.name;
-                    let bname = b.file.name;
-                    return aname < bname ? -this.#sortingDirection : this.#sortingDirection;
+                    let aname = a.file?.name;
+                    let bname = b.file?.name;
+                    if (aname && bname) {
+                        return aname < bname ? -this.#sortingDirection : this.#sortingDirection;
+                    }
                 }
                 else {
                     return -this.#sortingDirection;
@@ -35495,11 +35343,14 @@ class FileSelectorDirectory extends HTMLElement {
                     return this.#sortingDirection;
                 }
                 else {
-                    let aname = a.file.name;
-                    let bname = b.file.name;
-                    return aname < bname ? -this.#sortingDirection : this.#sortingDirection;
+                    let aname = a.file?.name;
+                    let bname = b.file?.name;
+                    if (aname && bname) {
+                        return aname < bname ? -this.#sortingDirection : this.#sortingDirection;
+                    }
                 }
             }
+            return 0;
         });
         for (let child of this.#childs) {
             this.#content.append(child);
@@ -35513,7 +35364,9 @@ class FileSelectorDirectory extends HTMLElement {
             }
         }
         else {
-            visible = this.#matchFilter(this.#file);
+            if (this.#file) {
+                visible = this.#matchFilter(this.#file);
+            }
         }
         this.#visible = visible;
         display(this, visible);
@@ -35528,12 +35381,13 @@ class FileSelectorDirectory extends HTMLElement {
             }
         }
         else {
-            let filterName = this.#selector.filter.name;
+            let filterName = this.#selector?.filter.name ?? '';
             return file.name.toLowerCase().includes(filterName) || file.path.toLowerCase().includes(filterName);
         }
         return false;
     }
     #updateHtml() {
+        defineFileSelectorFile();
         if (this.#file && !this.#initialized) {
             this.#name = this.#file.name.replace(/\/$/g, ''); //remove trailing /
             if (this.#expanded) {
@@ -35553,7 +35407,9 @@ class FileSelectorDirectory extends HTMLElement {
                             child = document.createElement('file-selector-file');
                             //child.file = file;
                         }
-                        child.selector = this.#selector;
+                        if (this.#selector) {
+                            child.selector = this.#selector;
+                        }
                         child.setFile(file);
                         this.#content.append(child);
                         this.#childs.push(child);
@@ -35582,97 +35438,6 @@ if (customElements) {
     customElements.define('file-selector-directory', FileSelectorDirectory);
 }
 
-class FileSelectorFile extends HTMLElement {
-    #selector;
-    #file;
-    #visible;
-    constructor() {
-        super();
-        this.addEventListener('click', (event) => {
-            if (this.#selector) {
-                this.#selector.fileSelected(this.#file);
-            }
-        });
-    }
-    setFile(file) {
-        this.#file = file;
-        this.#updateHtml();
-    }
-    set selector(selector) {
-        this.#selector = selector;
-    }
-    connectedCallback() {
-        this.#updateHtml();
-    }
-    set visible(visible) {
-        this.#visible = visible;
-        display(this, visible);
-        if (visible) {
-            this.#updateHtml();
-        }
-    }
-    #updateHtml() {
-        if (this.#file) {
-            this.innerHTML = this.#file.name;
-        }
-    }
-    refreshFilter() {
-        let filterName = this.#selector.filter.name;
-        let visible = this.#file.name.toLowerCase().includes(filterName) || this.#file.path.toLowerCase().includes(filterName);
-        this.visible = visible;
-        return visible;
-    }
-    get file() {
-        return this.#file;
-    }
-}
-if (customElements) {
-    customElements.define('file-selector-file', FileSelectorFile);
-}
-
-class FileSelectorTile extends HTMLElement {
-    #visible;
-    #file;
-    #selector;
-    constructor() {
-        super();
-        this.#visible = true;
-        this.addEventListener('click', (event) => {
-            if (this.#selector) {
-                this.#selector.fileSelected(this.#file);
-            }
-        });
-    }
-    get file() {
-        return this.#file;
-    }
-    setFile(file) {
-        this.#file = file;
-        this.#updateHtml();
-    }
-    set selector(selector) {
-        this.#selector = selector;
-    }
-    connectedCallback() {
-        this.#updateHtml();
-    }
-    set visible(visible) {
-        this.#visible = visible;
-        display(this, visible);
-        if (visible) {
-            this.#updateHtml();
-        }
-    }
-    #updateHtml() {
-        if (this.#visible && this.#file) {
-            this.innerHTML = this.#file.name;
-        }
-    }
-}
-if (customElements) {
-    customElements.define('file-selector-tile', FileSelectorTile);
-}
-
 const FILTER_NAME_DELAY = 200;
 class FileSelector extends HTMLElement {
     #fileList;
@@ -35687,9 +35452,6 @@ class FileSelector extends HTMLElement {
     #initialized = false;
     constructor() {
         super();
-        this.#initHtml();
-    }
-    #initHtml() {
         this.#header = createElement('div', { class: 'file-selector-header' });
         this.#content = createElement('div', { class: 'file-selector-content' });
         let htmlDisplayPropertiesSpan = createElement('span', { parent: this.#header });
@@ -35744,8 +35506,8 @@ class FileSelector extends HTMLElement {
             if (current) {
                 if (current.files) {
                     for (let file of current.files) {
-                        let path2 = current.path.replace(/\/$/g, ''); //remove trailing /
-                        let name2 = current.name.replace(/\/$/g, ''); //remove trailing /
+                        let path2 = current.path?.replace(/\/$/g, ''); //remove trailing /
+                        let name2 = current.name?.replace(/\/$/g, ''); //remove trailing /
                         if (current == root) {
                             file.path = '/';
                         }
@@ -35780,9 +35542,12 @@ class FileSelector extends HTMLElement {
     #sortItems() {
         if (this.#tileView) {
             this.#htmlTiles.sort((a, b) => {
-                let aname = a.file.name;
-                let bname = b.file.name;
-                return aname < bname ? -this.#sortingDirection : this.#sortingDirection;
+                let aname = a.file?.name;
+                let bname = b.file?.name;
+                if (aname && bname) {
+                    return aname < bname ? -this.#sortingDirection : this.#sortingDirection;
+                }
+                return 0;
             });
             for (let tile of this.#htmlTiles) {
                 this.#content.append(tile);
@@ -35790,8 +35555,11 @@ class FileSelector extends HTMLElement {
         }
     }
     #matchFilter(file) {
+        if (!file) {
+            return false;
+        }
         let ret = false;
-        if (file.name.toLowerCase().includes(this.#filter.name)) {
+        if (file.name?.toLowerCase().includes(this.#filter.name)) {
             ret = true;
         }
         return ret;
@@ -35800,6 +35568,7 @@ class FileSelector extends HTMLElement {
         if (this.#initialized) {
             return;
         }
+        defineFileSelectorTile();
         this.#content.replaceChildren();
         this.#htmlTiles = [];
         this.#htmlDirectories = [];
@@ -35843,32 +35612,40 @@ if (customElements) {
     customElements.define('file-selector', FileSelector);
 }
 
+var interactionCSS = ":host {\n\tposition: absolute;\n\twidth: 100%;\n\theight: 100%;\n\tz-index: 10000;\n\ttop: 0px;\n\tleft: 0px;\n\tpointer-events: none;\n}\n\nharmony-color-picker{\n\tpointer-events: all;\n}\n\ninput{\n\tpointer-events: all;\n}\n";
+
 const DATALIST_ID = 'interaction-datalist';
 class Interaction {
-    static #htmlColorPicker;
-    static #htmlElement;
-    static #htmlInput;
-    static #htmlInputDataList;
-    static #htmlFileSelector;
-    static #htmlColorPickeronDone;
-    static #htmlColorPickeronChange;
-    static #htmlColorPickerCancel;
-    static {
-        this.#htmlElement = document.createElement('div');
-        this.#htmlElement.style.cssText = 'position:absolute;width: 400px;z-index: 10000;top: 0px;left:0px;';
-        /*this.#htmlColorPicker = new Picker(
-            {
-                parent: this.#htmlElement,
-                popup:false
-            });
-
-        this.#htmlColorPicker.hide();*/
+    static #instance;
+    #htmlColorPicker;
+    #shadowRoot;
+    #htmlInput;
+    #htmlInputDataList;
+    #htmlFileSelector;
+    //#htmlColorPickeronDone?: (color: any) => void;
+    #htmlColorPickeronChange;
+    #htmlColorPickerCancel;
+    constructor() {
+        if (Interaction.#instance) {
+            return Interaction.#instance;
+        }
+        Interaction.#instance = this;
+    }
+    #initHtml() {
+        if (this.#shadowRoot) {
+            return;
+        }
+        this.#shadowRoot = createShadowRoot('div', {
+            parent: document.body,
+            hidden: true,
+            adoptStyle: interactionCSS
+        });
         defineHarmonyColorPicker();
         this.#htmlColorPicker = createElement('harmony-color-picker', {
-            parent: this.#htmlElement,
+            parent: this.#shadowRoot,
             hidden: true,
             events: {
-                change: event => {
+                change: (event) => {
                     if (this.#htmlColorPickeronChange) {
                         this.#htmlColorPickeronChange(event.detail);
                     }
@@ -35882,46 +35659,47 @@ class Interaction {
                 },
             },
         });
-        document.body.append(this.#htmlElement);
-        this.#htmlInput = document.createElement('input');
-        this.#htmlInput.style.cssText = 'pointer-events: all;';
-        this.#htmlInput.setAttribute('list', DATALIST_ID);
-        this.#htmlInputDataList = document.createElement('datalist');
-        this.#htmlInputDataList.id = DATALIST_ID;
-        this.#htmlElement.append(this.#htmlInput, this.#htmlInputDataList, this.#htmlColorPicker);
-        this.#htmlInput.style.display = 'none';
-        this.#htmlFileSelector = document.createElement('div');
-        this.#htmlFileSelector.style.cssText = 'pointer-events: all;width: 100%;overflow: auto;height: 100%;';
-        //this.#htmlElement.append(this.#htmlFileSelector);
-        //this.#htmlFileSelector.style.display = 'none';
-        this.hide();
+        this.#htmlInput = createElement('input', {
+            style: 'pointer-events: all;',
+            list: DATALIST_ID,
+            parent: this.#shadowRoot,
+            hidden: true,
+        });
+        this.#htmlInputDataList = createElement('datalist', {
+            id: DATALIST_ID,
+            parent: this.#shadowRoot,
+        });
+        this.#htmlFileSelector = createElement('div', {
+            style: 'pointer-events: all;width: 100%;overflow: auto;height: 100%;',
+        });
     }
-    static show() {
-        this.#htmlElement.style.display = '';
-        this.#htmlInput.style.display = 'none';
+    show() {
+        this.#initHtml();
+        show(this.#shadowRoot?.host);
+        hide(this.#htmlInput);
         hide(this.#htmlColorPicker);
     }
-    static hide() {
-        this.#htmlElement.style.display = 'none';
+    hide() {
+        hide(this.#shadowRoot?.host);
     }
-    static async getRGB(x, y, defaultValue, onChange, onCancel) {
+    async getColor(x, y, defaultValue, onChange, onCancel) {
         this.show();
         //this.#htmlColorPicker.setOptions({alpha:false});
         show(this.#htmlColorPicker);
-        let promiseResolve;
         let promise = new Promise((resolve, reject) => {
-            promiseResolve = resolve;
         });
+        /*
         this.#htmlColorPickeronDone = (color) => {
             let rgba = color.rgba;
-            let c = fromValues$4(rgba[0] / 255, rgba[1] / 255, rgba[2] / 255);
+            let c = vec4.fromValues(rgba[0] / 255, rgba[1] / 255, rgba[2] / 255, 1.0);
             //console.error(color, color.rgba);
             promiseResolve(c);
             this.hide();
         };
+        */
         this.#htmlColorPickeronChange = (color) => {
             let rgba = color.rgba;
-            let c = fromValues$4(rgba[0], rgba[1], rgba[2]);
+            let c = fromValues$3(rgba[0], rgba[1], rgba[2], rgba[3]);
             if (onChange) {
                 onChange(c);
             }
@@ -35933,13 +35711,13 @@ class Interaction {
         };
         return promise;
     }
-    static async getString(list, defaultValue) {
+    getString(x, y, list, defaultValue) {
         this.show();
-        this.#htmlInput.style.display = '';
+        show(this.#htmlInput);
         this.#htmlInput.value = defaultValue ? defaultValue : '';
         if (list) {
             let isMap = list.constructor.name == 'Map';
-            this.#htmlInputDataList.innerHTML = '';
+            this.#htmlInputDataList.innerText = '';
             for (let value of list) {
                 let animOption = document.createElement('option');
                 this.#htmlInputDataList.append(animOption);
@@ -35952,35 +35730,39 @@ class Interaction {
                 }
             }
         }
+        let promiseResolve;
         this.#htmlInput.onchange = (event) => {
             for (let option of this.#htmlInputDataList.options) {
                 if (option.value == event.target.value) {
                     promiseResolve(option.value);
                 }
             }
-            this.#htmlInput.style.display = 'none';
+            hide(this.#htmlInput);
         };
-        let promiseResolve;
-        let promise = new Promise((resolve, reject) => {
+        let promise = new Promise(resolve => {
             promiseResolve = resolve;
         });
         return promise;
     }
-    static async _expandFile(parent, files, callback, repository = '', path = '') {
+    /*
+    async #expandFile(parent, files, callback, repository = '', path = '') {
         parent.replaceChildren();
-        files.sort((a, b) => {
-            if (a.files) {
-                if (!b.files) {
-                    return -1;
+
+        files.sort(
+            (a, b) => {
+                if (a.files) {
+                    if (!b.files) {
+                        return -1;
+                    }
+                } else {
+                    if (b.files) {
+                        return 1;
+                    }
                 }
+                return a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1;
             }
-            else {
-                if (b.files) {
-                    return 1;
-                }
-            }
-            return a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1;
-        });
+        );
+
         for (let file of files) {
             let f = document.createElement('div');
             f.className = 'file-explorer-file';
@@ -35990,6 +35772,7 @@ class Interaction {
                 fheader.className = 'file-explorer-file-header';
                 fheader.append(file.name);
                 f.append(fheader);
+
                 fheader.addEventListener('click', (event) => {
                     if (event.target == fheader) {
                         if (file.files) {
@@ -35998,10 +35781,9 @@ class Interaction {
                                 let f1 = document.createElement('div');
                                 f1.className = 'file-explorer-childs';
                                 if (repository == '') {
-                                    this._expandFile(f1, file.files, callback, file.name);
-                                }
-                                else {
-                                    this._expandFile(f1, file.files, callback, repository, path + file.name + '/');
+                                    this.#expandFile(f1, file.files, callback, file.name);
+                                } else {
+                                    this.#expandFile(f1, file.files, callback, repository, path + file.name + '/');
                                 }
                                 //f1.style.display = 'none';
                                 f.addEventListener('click', (event) => {
@@ -36019,12 +35801,14 @@ class Interaction {
             }
         }
     }
-    static async selectFile(htmlContainer, fileList, callback) {
+        */
+    async selectFile(htmlContainer, fileList, callback) {
+        this.#initHtml();
         //htmlContainer.append(this.#htmlFileSelector);
         //this.show();
         //this.#htmlFileSelector.style.display = '';
-        this.#htmlFileSelector.innerHTML = '';
-        htmlContainer.innerHTML = '';
+        this.#htmlFileSelector.innerText = '';
+        htmlContainer.innerText = '';
         //let value = await
         //this._expandFile(this.#htmlFileSelector, fileList.files, callback);
         //this.#htmlFileSelector.style.display = 'none';
@@ -36038,8 +35822,8 @@ class Interaction {
             callback(file.root, file.path + file.name);
         });
     }
-    static get htmlElement() {
-        return this.#htmlElement;
+    get htmlElement() {
+        return this.#shadowRoot?.host;
     }
 }
 
@@ -36121,7 +35905,7 @@ class Mesh extends Entity {
         delete this.defines[define];
     }
     exportObj() {
-        let ret = { f: [], v: [] };
+        let ret = {};
         let attributes = { f: 'index', v: 'aVertexPosition', vn: 'aVertexNormal', vt: 'aTextureCoord' };
         let geometry = this.geometry;
         for (let objAttribute in attributes) {
@@ -36186,7 +35970,7 @@ class Mesh extends Entity {
             Mesh_1: null,
             set_material: {
                 i18n: '#set_material', f: async (entity) => {
-                    let materialName = await Interaction.getString(MaterialManager.getMaterialList());
+                    let materialName = await new Interaction().getString(0, 0, MaterialManager.getMaterialList());
                     if (materialName) {
                         await MaterialManager.getMaterial(materialName, (material) => { if (material) {
                             this.setMaterial(material);
@@ -36791,13 +36575,13 @@ class ShaderManager {
     }
 }
 
-let id = 0;
+let id$1 = 0;
 class ShaderMaterial extends Material {
     #shaderSource;
     constructor(params = {}) {
         super(params);
         this.shaderSource = params.shaderSource;
-        const name = `shadermaterial_${++id}`;
+        const name = `shadermaterial_${++id$1}`;
         if (params.vertex) {
             ShaderManager.addSource(GL_VERTEX_SHADER, name + '.vs', params.vertex);
             this.shaderSource = name;
@@ -37613,15 +37397,17 @@ function setTextureFactoryContext(c) {
     context = c;
 }
 function createTexture() {
-    let texture = context.createTexture();
+    const texture = context.createTexture();
     textures.add(texture);
     TextureFactoryEventTarget.dispatchEvent(new CustomEvent('textureCreated', { detail: { texture: texture, count: textures.size } }));
     return texture;
 }
 function deleteTexture(texture) {
-    context.deleteTexture(texture);
-    textures.delete(texture);
-    TextureFactoryEventTarget.dispatchEvent(new CustomEvent('textureDeleted', { detail: { texture: texture, count: textures.size } }));
+    if (texture) {
+        context.deleteTexture(texture);
+        textures.delete(texture);
+        TextureFactoryEventTarget.dispatchEvent(new CustomEvent('textureDeleted', { detail: { texture: texture, count: textures.size } }));
+    }
 }
 function fillFlatTexture(texture, color = [255, 255, 255], needCubeMap) {
     let width = 64;
@@ -37768,9 +37554,9 @@ class Texture {
     flipY = false;
     premultiplyAlpha = false;
     dirty = true;
-    texture;
-    width;
-    height;
+    texture = null;
+    width = 0;
+    height = 0;
     isTexture = true;
     name = '';
     #colorSpace;
@@ -37921,9 +37707,14 @@ var GraphicsEvent;
     GraphicsEvent["MouseMove"] = "mousemove";
     GraphicsEvent["MouseDown"] = "mousedown";
     GraphicsEvent["MouseUp"] = "mouseup";
-    GraphicsEvent["Pick"] = "pick";
+    GraphicsEvent["Wheel"] = "wheel";
     GraphicsEvent["Resize"] = "resize";
     GraphicsEvent["Tick"] = "tick";
+    GraphicsEvent["KeyDown"] = "keydown";
+    GraphicsEvent["KeyUp"] = "keyup";
+    GraphicsEvent["TouchStart"] = "touchstart";
+    GraphicsEvent["TouchMove"] = "touchmove";
+    GraphicsEvent["TouchCancel"] = "touchcancel";
 })(GraphicsEvent || (GraphicsEvent = {}));
 const GraphicsEvents = new (function () {
     class GraphicsEvents extends EventTarget {
@@ -37938,9 +37729,6 @@ const GraphicsEvents = new (function () {
         tick(delta, time) {
             this.dispatchEvent(new CustomEvent(GraphicsEvent.Tick, { detail: { delta: delta, time: time } }));
         }
-        pick(x, y, pickedEntity) {
-            this.dispatchEvent(new CustomEvent(GraphicsEvent.Pick, { detail: { x: x, y: y, entity: pickedEntity } }));
-        }
         resize(width, height) {
             this.dispatchEvent(new CustomEvent(GraphicsEvent.Resize, { detail: { width: width, height: height } }));
         }
@@ -37952,6 +37740,24 @@ const GraphicsEvents = new (function () {
         }
         mouseUp(x, y, pickedEntity, mouseEvent) {
             this.dispatchEvent(new CustomEvent(GraphicsEvent.MouseUp, { detail: { x: x, y: y, entity: pickedEntity, mouseEvent: mouseEvent } }));
+        }
+        wheel(x, y, pickedEntity, wheelEvent) {
+            this.dispatchEvent(new CustomEvent(GraphicsEvent.Wheel, { detail: { x: x, y: y, entity: pickedEntity, wheelEvent: wheelEvent } }));
+        }
+        keyDown(keyboardEvent) {
+            this.dispatchEvent(new CustomEvent(GraphicsEvent.KeyDown, { detail: { keyboardEvent: keyboardEvent } }));
+        }
+        keyUp(keyboardEvent) {
+            this.dispatchEvent(new CustomEvent(GraphicsEvent.KeyUp, { detail: { keyboardEvent: keyboardEvent } }));
+        }
+        touchStart(pickedEntity, touchEvent) {
+            this.dispatchEvent(new CustomEvent(GraphicsEvent.TouchStart, { detail: { entity: pickedEntity, touchEvent: touchEvent } }));
+        }
+        touchMove(pickedEntity, touchEvent) {
+            this.dispatchEvent(new CustomEvent(GraphicsEvent.TouchMove, { detail: { entity: pickedEntity, touchEvent: touchEvent } }));
+        }
+        touchCancel(pickedEntity, touchEvent) {
+            this.dispatchEvent(new CustomEvent(GraphicsEvent.TouchCancel, { detail: { entity: pickedEntity, touchEvent: touchEvent } }));
         }
     }
     return GraphicsEvents;
@@ -38235,7 +38041,7 @@ class WebGLStats {
         this.#reset();
     }
     static drawElements(mode, count) {
-        this.#primitivePerMode.set(mode, count + this.#primitivePerMode.get(mode));
+        this.#primitivePerMode.set(mode, count + (this.#primitivePerMode.get(mode) ?? 0));
         ++this.#drawElements;
     }
     static #initHtml() {
@@ -38550,7 +38356,9 @@ class Program {
     }
     #setProgramUniform(uniformInfo) {
         const uniformLocation = this.#glContext.getUniformLocation(this.#program, uniformInfo.name);
-        this.uniforms.set(uniformInfo.name, new Uniform(uniformInfo, uniformLocation));
+        if (uniformLocation) {
+            this.uniforms.set(uniformInfo.name, new Uniform(uniformInfo, uniformLocation));
+        }
     }
     #compileShader(shader, shaderName, shaderSource, includeCode) {
         if (!shaderSource || !shaderSource.isValid()) {
@@ -38781,23 +38589,23 @@ class Renderer {
         else {
             this.unsetLights();
         }
+        if (camera.projection == CameraProjection.Perspective) {
+            this.#graphics.setIncludeCode('CAMERA_PROJECTION_TYPE', '#define IS_PERSPECTIVE_CAMERA');
+        }
+        else {
+            this.#graphics.setIncludeCode('CAMERA_PROJECTION_TYPE', '#define IS_ORTHOGRAPHIC_CAMERA');
+        }
         let program = this.getProgram(object, material);
         if (program.isValid()) {
             WebGLRenderingState.useProgram(program.getProgram());
-            this.applyMaterial(program, material);
             if (renderLights) {
                 material.beforeRender(camera);
             }
+            this.applyMaterial(program, material);
             program.setUniformValue('uModelMatrix', object.worldMatrix);
             program.setUniformValue('uModelViewMatrix', object._mvMatrix);
             program.setUniformValue('uViewMatrix', cameraMatrix);
             program.setUniformValue('uProjectionMatrix', projectionMatrix);
-            if (camera.projection == CameraProjection.Perspective) {
-                this.#graphics.setIncludeCode('CAMERA_PROJECTION_TYPE', '#define IS_PERSPECTIVE_CAMERA');
-            }
-            else {
-                this.#graphics.setIncludeCode('CAMERA_PROJECTION_TYPE', '#define IS_ORTHOGRAPHIC_CAMERA');
-            }
             program.setUniformValue('uProjectionLogDepth', 2.0 / (Math.log(camera.farPlane + 1.0) / Math.LN2)); //TODO: perf: compute that once we set camera farplane
             program.setUniformValue('uViewProjectionMatrix', tempViewProjectionMatrix);
             program.setUniformValue('uNormalMatrix', object._normalMatrix);
@@ -39199,9 +39007,15 @@ class Graphics {
         if (autoResize !== undefined) {
             this.autoResize = autoResize;
         }
-        this.#canvas.addEventListener('mousedown', (event) => this.mouseDown(event));
-        this.#canvas.addEventListener('mousemove', (event) => this.mouseMove(event));
-        this.#canvas.addEventListener('mouseup', (event) => this.mouseUp(event));
+        this.#canvas.addEventListener('mousedown', (event) => this.#mouseDown(event));
+        this.#canvas.addEventListener('mousemove', (event) => this.#mouseMove(event));
+        this.#canvas.addEventListener('mouseup', (event) => this.#mouseUp(event));
+        this.#canvas.addEventListener('keydown', (event) => GraphicsEvents.keyDown(event));
+        this.#canvas.addEventListener('keyup', (event) => GraphicsEvents.keyUp(event));
+        this.#canvas.addEventListener('wheel', (event) => this.#wheel(event));
+        this.#canvas.addEventListener('touchstart', (event) => GraphicsEvents.touchStart(this.#pickedEntity, event));
+        this.#canvas.addEventListener('touchmove', (event) => GraphicsEvents.touchMove(this.#pickedEntity, event));
+        this.#canvas.addEventListener('touchcancel', (event) => GraphicsEvents.touchCancel(this.#pickedEntity, event));
         this.#readyPromiseResolve(true);
         return this;
     }
@@ -39215,26 +39029,28 @@ class Graphics {
         let pickedEntityIndex = (pixels[0] << 16) + (pixels[1] << 8) + (pixels[2]);
         return pickList.get(pickedEntityIndex) ?? null;
     }
-    mouseDown(event) {
+    #mouseDown(event) {
         this.#canvas.focus();
         let x = event.offsetX;
         let y = event.offsetY;
         this.#pickedEntity = this.pickEntity(x, y);
-        if (this.#pickedEntity) {
-            GraphicsEvents.pick(x, y, this.#pickedEntity);
-            event.stopPropagation();
-        }
         GraphicsEvents.mouseDown(x, y, this.#pickedEntity, event);
     }
-    mouseMove(event) {
+    #mouseMove(event) {
         let x = event.offsetX;
         let y = event.offsetY;
         GraphicsEvents.mouseMove(x, y, this.#pickedEntity, event);
     }
-    mouseUp(event) {
+    #mouseUp(event) {
         let x = event.offsetX;
         let y = event.offsetY;
         GraphicsEvents.mouseUp(x, y, this.#pickedEntity, event);
+        this.#pickedEntity = null;
+    }
+    #wheel(event) {
+        let x = event.offsetX;
+        let y = event.offsetY;
+        GraphicsEvents.wheel(x, y, this.#pickedEntity, event);
         this.#pickedEntity = null;
     }
     getDefinesAsString(material) {
@@ -39657,24 +39473,24 @@ class Framebuffer {
         this.#frameBuffer = new Graphics().createFramebuffer();
     }
     /*
-        createRenderTarget(colorFormat, colorType, depth, stencil) {
-            this.#frameBuffer.addTexture2D(GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, this._createTexture());
-            this.frameBufferTexture = TextureManager.createTexture();
-    
-            this.bind();
-        }
-    
-        _createTexture(internalFormat, width, height, format, type) {
-            let texture = TextureManager.createTexture();
-    
-            new Graphics().glContext.bindTexture(GL_TEXTURE_2D, texture);
-            new Graphics().glContext.texImage2D(GL_TEXTURE_2D, 0, internalFormat, width, height, 0, format, type, null);
-            new Graphics().glContext.texParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-            new Graphics().glContext.texParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-            new Graphics().glContext.texParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-            return texture;
-        }
-    */
+    createRenderTarget(colorFormat, colorType, depth, stencil) {
+        this.#frameBuffer.addTexture2D(GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, this._createTexture());
+        this.frameBufferTexture = TextureManager.createTexture();
+
+        this.bind();
+    }
+
+    _createTexture(internalFormat, width, height, format, type) {
+        let texture = TextureManager.createTexture();
+
+        new Graphics().glContext.bindTexture(GL_TEXTURE_2D, texture);
+        new Graphics().glContext.texImage2D(GL_TEXTURE_2D, 0, internalFormat, width, height, 0, format, type, null);
+        new Graphics().glContext.texParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        new Graphics().glContext.texParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+        new Graphics().glContext.texParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+        return texture;
+    }
+*/
     addRenderbuffer(attachmentPoint, renderbuffer) {
         this.#attachments.set(attachmentPoint, { renderbuffer: renderbuffer, type: ATTACHMENT_TYPE_RENDER_BUFFER });
         this.#dirty = true;
@@ -40154,13 +39970,8 @@ class Composer {
 class CameraControl {
     #camera;
     #enabled = true;
-    #htmlElement;
-    constructor(camera, htmlElement) {
+    constructor(camera) {
         this.#camera = camera;
-        this.#htmlElement = htmlElement;
-    }
-    get htmlElement() {
-        return this.#htmlElement;
     }
     set enabled(enabled) {
         this.#enabled = enabled;
@@ -40275,8 +40086,8 @@ class FirstPersonControl extends CameraControl {
     #quatInverse = create$2();
     #clickOffsetX;
     #clickOffsetY;
-    constructor(camera, htmlElement) {
-        super(camera, htmlElement);
+    constructor(camera) {
+        super(camera);
         //private
         //var target = vec3.create();
         //todo: set in webglcanvas
@@ -40302,9 +40113,6 @@ class FirstPersonControl extends CameraControl {
             */
     }
     #onMouseDown(event) {
-        if (this.htmlElement !== event.target) {
-            return;
-        }
         if (!this.enabled) {
             return;
         }
@@ -40313,12 +40121,13 @@ class FirstPersonControl extends CameraControl {
         //}
         //event.preventDefault();
         //event.stopPropagation();
+        const mouseEvent = event.detail.mouseEvent;
         if (this.activeLook) {
-            switch (event.button) {
+            switch (mouseEvent.button) {
                 case 0:
                     this.#click = true;
-                    this.#clickOffsetX = event.offsetX;
-                    this.#clickOffsetY = event.offsetY;
+                    this.#clickOffsetX = mouseEvent.offsetX;
+                    this.#clickOffsetY = mouseEvent.offsetY;
                     this.#startLat = this.#lat;
                     this.#startLon = this.#lon;
                     this.#mouseX = 0;
@@ -40333,10 +40142,11 @@ class FirstPersonControl extends CameraControl {
     }
     #onMouseUp(event) {
         document.exitPointerLock();
-        event.preventDefault();
+        const mouseEvent = event.detail.mouseEvent;
+        mouseEvent.preventDefault();
         //event.stopPropagation();
         if (this.activeLook) {
-            switch (event.button) {
+            switch (mouseEvent.button) {
                 case 0:
                     this.#click = false;
                     this.#startLat = this.#lat;
@@ -40353,32 +40163,29 @@ class FirstPersonControl extends CameraControl {
         this.#mouseDragOn = false;
     }
     #onMouseMove(event) {
+        const mouseEvent = event.detail.mouseEvent;
         if (this.#mouseDragOn) {
             {
                 /*this.#mouseX = (event.offsetX - this.viewHalfX - this.#clickOffsetX);
                 this.#mouseY = (event.offsetY - this.viewHalfY - this.#clickOffsetY);
                 this.#mouseX = (event.offsetX - this.#clickOffsetX);
                 this.#mouseY = (event.offsetY - this.#clickOffsetY);*/
-                this.#mouseX += event.movementX;
-                this.#mouseY += event.movementY;
+                this.#mouseX += mouseEvent.movementX;
+                this.#mouseY += mouseEvent.movementY;
                 //console.error(event, this.#clickOffsetX, this.#clickOffsetY);
             }
             //console.error(this.#mouseX, this.#mouseY);
-            this.#rotateDelta[0] = event.movementX * this.#rotateSpeed;
-            this.#rotateDelta[1] = event.movementY * this.#rotateSpeed;
+            this.#rotateDelta[0] = mouseEvent.movementX * this.#rotateSpeed;
+            this.#rotateDelta[1] = mouseEvent.movementY * this.#rotateSpeed;
             //console.error(event.movementX, event.movementY, ...this.#rotateDelta);
-            var element = this.htmlElement;
+            const element = mouseEvent.target;
             this.#rotateLeft(2 * Math.PI * this.#rotateDelta[0] / element.clientHeight); // yes, height
             this.#rotateUp(-2 * Math.PI * this.#rotateDelta[1] / element.clientHeight);
         }
     }
     #onKeyDown(event) {
-        if (event.target instanceof HTMLInputElement ||
-            event.target instanceof HTMLTextAreaElement) {
-            return;
-        }
         //event.preventDefault();
-        switch (event.code) {
+        switch (event.detail.keyboardEvent.code) {
             case 'ArrowUp':
             case 'KeyW':
                 this.#moveForward = true;
@@ -40405,11 +40212,7 @@ class FirstPersonControl extends CameraControl {
         //console.error(event.code);//removeme
     }
     #onKeyUp(event) {
-        if (event.target instanceof HTMLInputElement ||
-            event.target instanceof HTMLTextAreaElement) {
-            return;
-        }
-        switch (event.code) {
+        switch (event.detail.keyboardEvent.code) {
             case 'ArrowUp':
             case 'KeyW':
                 this.#moveForward = false;
@@ -40610,12 +40413,17 @@ class FirstPersonControl extends CameraControl {
         event.preventDefault();
     }
     #setupEventsListeners() {
-        this.htmlElement.addEventListener('contextmenu', event => this.#onContextMenu(event));
-        this.htmlElement.addEventListener('mousemove', event => this.#onMouseMove(event));
-        this.htmlElement.addEventListener('mousedown', event => this.#onMouseDown(event));
-        this.htmlElement.addEventListener('mouseup', event => this.#onMouseUp(event));
-        this.htmlElement.addEventListener('keydown', event => this.#onKeyDown(event), false);
-        this.htmlElement.addEventListener('keyup', event => this.#onKeyUp(event), false);
+        //this.htmlElement.addEventListener('contextmenu', event => this.#onContextMenu(event));
+        //this.htmlElement.addEventListener('mousemove', event => this.#onMouseMove(event));
+        GraphicsEvents.addEventListener(GraphicsEvent.MouseMove, (event) => this.#onMouseMove(event));
+        //this.htmlElement.addEventListener('mousedown', event => this.#onMouseDown(event));
+        GraphicsEvents.addEventListener(GraphicsEvent.MouseDown, (event) => this.#onMouseDown(event));
+        //this.htmlElement.addEventListener('mouseup', event => this.#onMouseUp(event));
+        GraphicsEvents.addEventListener(GraphicsEvent.MouseUp, (event) => this.#onMouseUp(event));
+        //this.htmlElement.addEventListener('keydown', event => this.#onKeyDown(event), false);
+        GraphicsEvents.addEventListener(GraphicsEvent.KeyDown, (event) => this.#onKeyDown(event));
+        //this.htmlElement.addEventListener('keyup', event => this.#onKeyUp(event), false);
+        GraphicsEvents.addEventListener(GraphicsEvent.KeyUp, (event) => this.#onKeyUp(event));
     }
     setupCamera() {
         if (this.camera) {
@@ -40721,8 +40529,8 @@ class OrbitControl extends CameraControl {
     #dollyStart = create();
     #dollyEnd = create();
     #dollyDelta = create();
-    constructor(camera, htmlElement) {
-        super(camera, htmlElement);
+    constructor(camera) {
+        super(camera);
         //TODO end
         if (camera) {
             copy$4(this.#position0, camera.position);
@@ -40875,8 +40683,7 @@ class OrbitControl extends CameraControl {
         scale$5(tempVec3$t, tempVec3$t, distance);
         add$5(this.#panOffset, this.#panOffset, tempVec3$t);
     }
-    #pan(deltaX, deltaY) {
-        var element = this.htmlElement;
+    #pan(deltaX, deltaY, element) {
         if (this.camera.isPerspective) {
             // perspective
             var position = this.camera.position;
@@ -40932,11 +40739,12 @@ class OrbitControl extends CameraControl {
         set(this.#panStart, event.clientX, event.clientY);
     }
     #handleMouseMoveRotate(event) {
-        set(this.#rotateEnd, event.clientX, event.clientY);
-        this.#rotateDelta[0] = event.movementX * this.#rotateSpeed;
-        this.#rotateDelta[1] = event.movementY * this.#rotateSpeed;
+        const mouseEvent = event.detail.mouseEvent;
+        set(this.#rotateEnd, mouseEvent.clientX, mouseEvent.clientY);
+        this.#rotateDelta[0] = mouseEvent.movementX * this.#rotateSpeed;
+        this.#rotateDelta[1] = mouseEvent.movementY * this.#rotateSpeed;
         //console.error(event.movementX, event.movementY, ...this.#rotateDelta);
-        var element = this.htmlElement;
+        const element = mouseEvent.target;
         this.#rotateLeft(2 * Math.PI * this.#rotateDelta[0] / element.clientHeight); // yes, height
         this.#rotateUp(2 * Math.PI * this.#rotateDelta[1] / element.clientHeight);
         copy(this.#rotateStart, this.#rotateEnd);
@@ -40959,30 +40767,35 @@ class OrbitControl extends CameraControl {
         //vec2.copy(this.#dollyStart, this.#dollyEnd);
         this.update();
     }
-    handleMouseMovePan(event) {
+    #handleMouseMovePan(event) {
         this.#panSpeed = 1.0;
-        this.#panDelta[0] = event.movementX * this.#panSpeed;
-        this.#panDelta[1] = event.movementY * this.#panSpeed;
-        this.#pan(this.#panDelta[0], this.#panDelta[1]);
+        this.#panDelta[0] = event.detail.mouseEvent.movementX * this.#panSpeed;
+        this.#panDelta[1] = event.detail.mouseEvent.movementY * this.#panSpeed;
+        this.#pan(this.#panDelta[0], this.#panDelta[1], event.detail.mouseEvent.target);
         this.update();
     }
-    handleMouseWheel(event) {
+    #handleMouseWheel(event) {
         //console.error(event.deltaY, this.zoomScale);
-        if (event.deltaY < 0) {
+        const wheelEvent = event.detail.wheelEvent;
+        if (wheelEvent.deltaY < 0) {
             this.#dollyOut(this.zoomScale);
         }
-        else if (event.deltaY > 0) {
+        else if (wheelEvent.deltaY > 0) {
             this.#dollyIn(this.zoomScale);
         }
         this.update();
     }
     #handleKeyDown(event) {
-        var needsUpdate = false;
-        if (event.ctrlKey || event.metaKey || event.altKey) {
+        if (this.enabled === false || this.#enableKeys === false || this.#enablePan === false) {
             return;
         }
-        if (event.shiftKey) {
-            switch (event.code) {
+        const keyboardEvent = event.detail.keyboardEvent;
+        var needsUpdate = false;
+        if (keyboardEvent.ctrlKey || keyboardEvent.metaKey || keyboardEvent.altKey) {
+            return;
+        }
+        if (keyboardEvent.shiftKey) {
+            switch (keyboardEvent.code) {
                 case 'ArrowUp':
                 case 'KeyW':
                     this.#keyRotateVertical = 1;
@@ -41002,25 +40815,25 @@ class OrbitControl extends CameraControl {
             }
             return;
         }
-        switch (event.code) {
+        switch (keyboardEvent.code) {
             case 'ArrowUp':
             case 'KeyW':
-                this.#pan(0, this.#keyPanSpeed);
+                this.#pan(0, this.#keyPanSpeed, keyboardEvent.target);
                 needsUpdate = true;
                 break;
             case 'ArrowDown':
             case 'KeyS':
-                this.#pan(0, -this.#keyPanSpeed);
+                this.#pan(0, -this.#keyPanSpeed, keyboardEvent.target);
                 needsUpdate = true;
                 break;
             case 'ArrowLeft':
             case 'KeyA':
-                this.#pan(this.#keyPanSpeed, 0);
+                this.#pan(this.#keyPanSpeed, 0, keyboardEvent.target);
                 needsUpdate = true;
                 break;
             case 'ArrowRight':
             case 'KeyD':
-                this.#pan(-this.#keyPanSpeed, 0);
+                this.#pan(-this.#keyPanSpeed, 0, keyboardEvent.target);
                 needsUpdate = true;
                 break;
             /*
@@ -41044,12 +40857,15 @@ class OrbitControl extends CameraControl {
         }
         if (needsUpdate) {
             // prevent the browser from scrolling on cursor keys
-            event.preventDefault();
+            keyboardEvent.preventDefault();
             this.update();
         }
     }
     #handleKeyUp(event) {
-        switch (event.code) {
+        if (this.enabled === false || this.#enableKeys === false || this.#enablePan === false) {
+            return;
+        }
+        switch (event.detail.keyboardEvent.code) {
             case 'ArrowUp':
             case 'KeyW':
             case 'ArrowDown':
@@ -41113,7 +40929,7 @@ class OrbitControl extends CameraControl {
         }
         sub(this.#rotateDelta, this.#rotateEnd, this.#rotateStart);
         scale$1(this.#rotateDelta, this.#rotateDelta, this.#rotateSpeed);
-        var element = this.htmlElement;
+        const element = event.target;
         this.#rotateLeft(2 * Math.PI * this.#rotateDelta[0] / element.clientHeight); // yes, height
         this.#rotateUp(2 * Math.PI * this.#rotateDelta[1] / element.clientHeight);
         copy(this.#rotateStart, this.#rotateEnd);
@@ -41131,7 +40947,7 @@ class OrbitControl extends CameraControl {
         }
         //panDelta.subVectors(panEnd, panStart).multiplyScalar(this.#panSpeed);
         scale$1(this.#panDelta, sub(this.#panDelta, this.#panEnd, this.#panStart), this.#panSpeed);
-        this.#pan(this.#panDelta[0], this.#panDelta[1]);
+        this.#pan(this.#panDelta[0], this.#panDelta[1], event.target);
         copy(this.#panStart, this.#panEnd);
     }
     #handleTouchMoveDolly(event) {
@@ -41163,31 +40979,32 @@ class OrbitControl extends CameraControl {
         }
         // Prevent the browser from scrolling.
         event.preventDefault();
+        const mouseEvent = event.detail.mouseEvent;
         // Manually set the focus since calling preventDefault above
         // prevents the browser from setting it automatically.
         //this.htmlElement.focus ? this.htmlElement.focus(): window.focus();
-        let action = this.#mouseButtons[event.button];
+        let action = this.#mouseButtons[mouseEvent.button];
         const MOUSE = { LEFT: 0, MIDDLE: 1, RIGHT: 2, ROTATE: 0, DOLLY: 1, PAN: 2, NONE: -1 };
         switch (action) {
             case MOUSE.ROTATE:
                 if (this.#enableRotate) {
                     this.#handleMouseDownRotate(event);
                     this.#state = STATE.ROTATE;
-                    event.target.requestPointerLock();
+                    mouseEvent.target.requestPointerLock();
                 }
                 break;
             case MOUSE.DOLLY:
                 if (this.#enableDolly) {
                     this.#handleMouseDownDolly(event);
                     this.#state = STATE.DOLLY;
-                    event.target.requestPointerLock();
+                    mouseEvent.target.requestPointerLock();
                 }
                 break;
             case MOUSE.PAN:
                 if (this.#enablePan) {
                     this.#handleMouseDownPan(event);
                     this.#state = STATE.PAN;
-                    event.target.requestPointerLock();
+                    mouseEvent.target.requestPointerLock();
                 }
                 break;
         }
@@ -41211,7 +41028,7 @@ class OrbitControl extends CameraControl {
             case STATE.PAN:
                 if (this.#enablePan === false)
                     return;
-                this.handleMouseMovePan(event);
+                this.#handleMouseMovePan(event);
                 break;
         }
     }
@@ -41227,43 +41044,27 @@ class OrbitControl extends CameraControl {
             return;
         event.preventDefault();
         event.stopPropagation();
-        this.handleMouseWheel(event);
-    }
-    #onKeyDown(event) {
-        if (event.target instanceof HTMLInputElement ||
-            event.target instanceof HTMLTextAreaElement) {
-            return;
-        }
-        if (this.enabled === false || this.#enableKeys === false || this.#enablePan === false)
-            return;
-        this.#handleKeyDown(event);
-    }
-    #onKeyUp(event) {
-        if (event.target instanceof HTMLInputElement ||
-            event.target instanceof HTMLTextAreaElement) {
-            return;
-        }
-        if (this.enabled === false || this.#enableKeys === false || this.#enablePan === false)
-            return;
-        this.#handleKeyUp(event);
+        this.#handleMouseWheel(event);
     }
     #onTouchStart(event) {
-        if (this.enabled === false)
+        if (this.enabled === false) {
             return;
-        event.preventDefault();
-        switch (event.touches.length) {
+        }
+        const touchEvent = event.detail.touchEvent;
+        touchEvent.preventDefault();
+        switch (touchEvent.touches.length) {
             case 1:
                 switch (touches.ONE) {
                     case TOUCH.ROTATE:
                         if (this.#enableRotate === false)
                             return;
-                        this.#handleTouchStartRotate(event);
+                        this.#handleTouchStartRotate(touchEvent);
                         this.#state = STATE.TOUCH_ROTATE;
                         break;
                     case TOUCH.PAN:
                         if (this.#enablePan === false)
                             return;
-                        this.#handleTouchStartPan(event);
+                        this.#handleTouchStartPan(touchEvent);
                         this.#state = STATE.TOUCH_PAN;
                         break;
                     default:
@@ -41275,13 +41076,13 @@ class OrbitControl extends CameraControl {
                     case TOUCH.DOLLY_PAN:
                         if (this.#enableDolly === false && this.#enablePan === false)
                             return;
-                        this.#handleTouchStartDollyPan(event);
+                        this.#handleTouchStartDollyPan(touchEvent);
                         this.#state = STATE.TOUCH_DOLLY_PAN;
                         break;
                     case TOUCH.DOLLY_ROTATE:
                         if (this.#enableDolly === false && this.#enableRotate === false)
                             return;
-                        this.#handleTouchStartDollyRotate(event);
+                        this.#handleTouchStartDollyRotate(touchEvent);
                         this.#state = STATE.TOUCH_DOLLY_ROTATE;
                         break;
                     default:
@@ -41296,31 +41097,32 @@ class OrbitControl extends CameraControl {
     #onTouchMove(event) {
         if (this.enabled === false)
             return;
-        event.preventDefault();
-        event.stopPropagation();
+        const touchEvent = event.detail.touchEvent;
+        touchEvent.preventDefault();
+        touchEvent.stopPropagation();
         switch (this.#state) {
             case STATE.TOUCH_ROTATE:
                 if (this.#enableRotate === false)
                     return;
-                this.#handleTouchMoveRotate(event);
+                this.#handleTouchMoveRotate(touchEvent);
                 this.update();
                 break;
             case STATE.TOUCH_PAN:
                 if (this.#enablePan === false)
                     return;
-                this.#handleTouchMovePan(event);
+                this.#handleTouchMovePan(touchEvent);
                 this.update();
                 break;
             case STATE.TOUCH_DOLLY_PAN:
                 if (this.#enableDolly === false && this.#enablePan === false)
                     return;
-                this.#handleTouchMoveDollyPan(event);
+                this.#handleTouchMoveDollyPan(touchEvent);
                 this.update();
                 break;
             case STATE.TOUCH_DOLLY_ROTATE:
                 if (this.#enableDolly === false && this.#enableRotate === false)
                     return;
-                this.#handleTouchMoveDollyRotate(event);
+                this.#handleTouchMoveDollyRotate(touchEvent);
                 this.update();
                 break;
             default:
@@ -41339,16 +41141,15 @@ class OrbitControl extends CameraControl {
         event.preventDefault();
     }
     #setupEventsListeners() {
-        this.htmlElement.addEventListener('contextmenu', event => this.#onContextMenu(event), false);
-        this.htmlElement.addEventListener('mousedown', event => this.#onMouseDown(event), false);
-        this.htmlElement.addEventListener('mousemove', event => this.#onMouseMove(event), false);
-        this.htmlElement.addEventListener('mouseup', event => this.#onMouseUp(event), false);
-        this.htmlElement.addEventListener('wheel', event => this.#onMouseWheel(event), false);
-        this.htmlElement.addEventListener('touchstart', event => this.#onTouchStart(event), false);
-        this.htmlElement.addEventListener('touchmove', event => this.#onTouchMove(event), false);
-        this.htmlElement.addEventListener('touchcancel', event => this.#onTouchCancel(event));
-        this.htmlElement.addEventListener('keydown', event => this.#onKeyDown(event), false);
-        this.htmlElement.addEventListener('keyup', event => this.#onKeyUp(event), false);
+        GraphicsEvents.addEventListener(GraphicsEvent.MouseDown, (event) => this.#onMouseDown(event));
+        GraphicsEvents.addEventListener(GraphicsEvent.MouseMove, (event) => this.#onMouseMove(event));
+        GraphicsEvents.addEventListener(GraphicsEvent.MouseUp, (event) => this.#onMouseUp(event));
+        GraphicsEvents.addEventListener(GraphicsEvent.Wheel, (event) => this.#onMouseWheel(event));
+        GraphicsEvents.addEventListener(GraphicsEvent.TouchStart, (event) => this.#onTouchStart(event));
+        GraphicsEvents.addEventListener(GraphicsEvent.TouchMove, (event) => this.#onTouchMove(event));
+        GraphicsEvents.addEventListener(GraphicsEvent.TouchCancel, (event) => this.#onTouchCancel(event));
+        GraphicsEvents.addEventListener(GraphicsEvent.KeyDown, (event) => this.#handleKeyDown(event));
+        GraphicsEvents.addEventListener(GraphicsEvent.KeyUp, (event) => this.#handleKeyUp(event));
         GraphicsEvents.addEventListener(GraphicsEvent.Tick, (event) => this.update(event.detail.delta));
         // make sure element can receive keys.
         /*if(this.htmlElement.tabIndex === - 1) {
@@ -42246,7 +42047,7 @@ class Manipulator extends Entity {
     #enableZ = false;
     constructor(params) {
         super(params);
-        this.wireframe = false;
+        this.wireframe = 0;
         this.hideInExplorer = true;
         this.castShadow = false;
         this.serializable = false;
@@ -42260,8 +42061,8 @@ class Manipulator extends Entity {
         this.enableZ = true;
         this.forEach((entity) => entity.setupPickingId());
         GraphicsEvents.addEventListener(GraphicsEvent.Tick, () => this.resize(this.root?.activeCamera));
-        GraphicsEvents.addEventListener(GraphicsEvent.Pick, (pickEvent) => {
-            let detail = pickEvent.detail;
+        GraphicsEvents.addEventListener(GraphicsEvent.MouseDown, (event) => {
+            let detail = event.detail;
             if (this.#entityAxis.has(detail.entity)) {
                 this.#axis = this.#entityAxis.get(detail.entity);
                 if (this.#axis < 10) {
@@ -42277,8 +42078,8 @@ class Manipulator extends Entity {
                 this.#setAxisSelected(true);
             }
         });
-        GraphicsEvents.addEventListener(GraphicsEvent.MouseMove, (pickEvent) => {
-            let detail = pickEvent.detail;
+        GraphicsEvents.addEventListener(GraphicsEvent.MouseMove, (event) => {
+            let detail = event.detail;
             if (!detail.entity?.visible) {
                 return;
             }
@@ -42294,8 +42095,8 @@ class Manipulator extends Entity {
                 }
             }
         });
-        GraphicsEvents.addEventListener(GraphicsEvent.MouseUp, (pickEvent) => {
-            if (this.#entityAxis.has(pickEvent.detail.entity)) {
+        GraphicsEvents.addEventListener(GraphicsEvent.MouseUp, (event) => {
+            if (this.#entityAxis.has(event.detail.entity)) {
                 new Graphics().dragging = false;
                 this.#setAxisSelected(false);
             }
@@ -42719,7 +42520,8 @@ class Manipulator extends Entity {
                         planeNormal = copy$4(planeNormal, zUnitVec3);
                         break;
                     default:
-                        planeNormal = sub$2(create$4(), this.#far, this.#near);
+                        this.getPositionFrom(camera, planeNormal);
+                        planeNormal = normalize$5(planeNormal, planeNormal);
                         break;
                 }
             }
@@ -42735,7 +42537,7 @@ class Manipulator extends Entity {
                         planeNormal = transformQuat$1(planeNormal, zUnitVec3, this.#startQuaternion);
                         break;
                     default:
-                        planeNormal = sub$2(create$4(), this.#far, this.#near);
+                        planeNormal = sub$2(create$4() /*TODO: optimize*/, this.#far, this.#near);
                         break;
                 }
             }
@@ -42842,7 +42644,7 @@ class Manipulator extends Entity {
         }
         this.getWorldQuaternion(translationManipulatorTempQuat);
         invert$1(translationManipulatorTempQuat, translationManipulatorTempQuat);
-        camera.getWorldPosition(tempVec3$r);
+        this.getPositionFrom(camera, tempVec3$r);
         normalize$5(tempVec3$r, tempVec3$r);
         transformQuat$1(tempVec3$r, tempVec3$r, translationManipulatorTempQuat);
         this.#circle.quaternion = rotationTo(tempQuat$a, zUnitVec3, tempVec3$r);
@@ -42879,6 +42681,33 @@ class KeepOnlyLastChild extends Entity {
     }
 }
 registerEntity(KeepOnlyLastChild);
+
+var BlendingFactors;
+(function (BlendingFactors) {
+    BlendingFactors[BlendingFactors["Zero"] = 0] = "Zero";
+    BlendingFactors[BlendingFactors["One"] = 1] = "One";
+    BlendingFactors[BlendingFactors["SrcColor"] = 768] = "SrcColor";
+    BlendingFactors[BlendingFactors["OneMinusSrcColor"] = 769] = "OneMinusSrcColor";
+    BlendingFactors[BlendingFactors["DstColor"] = 774] = "DstColor";
+    BlendingFactors[BlendingFactors["OneMinusDstColor"] = 775] = "OneMinusDstColor";
+    BlendingFactors[BlendingFactors["SrcAlpha"] = 770] = "SrcAlpha";
+    BlendingFactors[BlendingFactors["OneMinusSrcAlpha"] = 771] = "OneMinusSrcAlpha";
+    BlendingFactors[BlendingFactors["DstAlpha"] = 772] = "DstAlpha";
+    BlendingFactors[BlendingFactors["OneMinusDstAlpha"] = 773] = "OneMinusDstAlpha";
+    BlendingFactors[BlendingFactors["ConstantColor"] = 32769] = "ConstantColor";
+    BlendingFactors[BlendingFactors["OneMinusConstantColor"] = 32770] = "OneMinusConstantColor";
+    BlendingFactors[BlendingFactors["ConstantAlpha"] = 32771] = "ConstantAlpha";
+    BlendingFactors[BlendingFactors["OneMinusConstantAlpha"] = 32772] = "OneMinusConstantAlpha";
+    BlendingFactors[BlendingFactors["SrcAlphaSaturate"] = 776] = "SrcAlphaSaturate";
+})(BlendingFactors || (BlendingFactors = {}));
+var BlendingEquation;
+(function (BlendingEquation) {
+    BlendingEquation[BlendingEquation["Add"] = 32774] = "Add";
+    BlendingEquation[BlendingEquation["Subtract"] = 32778] = "Subtract";
+    BlendingEquation[BlendingEquation["ReverseSubtract"] = 32779] = "ReverseSubtract";
+    BlendingEquation[BlendingEquation["Min"] = 32775] = "Min";
+    BlendingEquation[BlendingEquation["Max"] = 32776] = "Max";
+})(BlendingEquation || (BlendingEquation = {}));
 
 function quatToEuler(out, q) {
     const test = q[0] * q[3] - q[1] * q[2];
@@ -46114,43 +45943,6 @@ class Node extends EventTarget {
     getInputCount() {
         return this.inputs.size;
     }
-    activate() {
-        throw 'fix me';
-        /*
-        NodeImageEditor.setFinalNode(this);
-        if (this.#operation && this.#operation.neededPoints) {
-            NodeImageEditor.setNeededPoints(this.#operation.neededPoints, this.#operation.proportional);
-            if (!this.params.points) {
-                this.params.points = [];
-                for (var i = 0; i < this.#operation.neededPoints; i++) {
-                    this.params.points.push(vec2.create());
-                }
-            }
-            NodeImageEditor.setPoints(this.params.points);
-        } else {
-            NodeImageEditor.setNeededPoints(0);
-        }
-            */
-    }
-    remove(simpleWebGl) {
-        throw 'fix me';
-        /*
-        var inputList = this.inputs;
-        for (var inputIndex = 0; inputIndex < inputList.length; inputIndex++) {
-            delete inputList[inputIndex]
-        }
-        if (this.output.outputTexture) {
-            if (!NodeImageEditor.deleteTextureOnce) {
-                simpleWebGl.deleteTexture(this.output.outputTexture);
-                NodeImageEditor.deleteTextureOnce = true;
-            }
-        }
-
-        if (this.#operation && this.#operation.cleanup) {
-            this.#operation.cleanup(simpleWebGl);
-        }
-            */
-    }
     getType() {
         throw 'This function must be overriden';
     }
@@ -46746,7 +46538,7 @@ class NodeGui {
         resizeObserver.observe(this.#htmlPreview);
     }
     #refreshHtml() {
-        this.#htmlParams.innerHTML = '';
+        this.#htmlParams.innerText = '';
         for (let [_, param] of this.#node.params) {
             if (param.length && param.length > 1) {
                 for (let i = 0; i < param.length; ++i) {
@@ -46886,7 +46678,7 @@ class NodeGui {
     }
 }
 
-var nodeImageEditorCSS = ":host {\n\tbackground-color: #000000FF;\n\twidth: 100%;\n\theight: 100%;\n\tdisplay: flex;\n\tflex-direction: column;\n\tuser-select: none;\n}\n\n.node-image-editor-nodes {\n\toverflow: auto;\n\tposition: relative;\n\tdisplay: flex;\n\toverflow: auto;\n\tflex: 1;\n}\n\n.node-image-editor-nodes-column {\n\tdisplay: flex;\n\tflex-direction: column;\n\tmargin-left: 50px;\n\tmargin-right: 50px;\n}\n\n.node-image-editor-canvas {\n\tpointer-events: none;\n}\n\n.node-image-editor-node {\n\tbackground-color: var(--main-bg-color-bright);\n\tdisplay: flex;\n\tflex-direction: column;\n\tmargin-top: 50px;\n\tmargin-bottom: 50px;\n\tpadding: 5px;\n}\n\n.node-image-editor-node.collapsed {\n\twidth: auto;\n\tmargin-top: 1rem;\n\tmargin-bottom: 1rem;\n}\n\n.node-image-editor-node.collapsed .node-image-editor-node-content {\n\tdisplay: none;\n}\n\n.node-image-editor-node.collapsed .node-image-editor-node-preview {\n\tdisplay: none;\n}\n\n.node-image-editor-node.collapsed button {\n\tdisplay: none;\n}\n\n.node-image-editor-node-header {\n\tdisplay: flex;\n}\n\n.node-image-editor-node-title {\n\tflex: 1;\n}\n\n.node-image-editor-node-buttons {\n\tdisplay: flex;\n}\n\n.node-image-editor-node-buttons>div {\n\tcursor: pointer;\n}\n\n.node-image-editor-node-preview {\n\tposition: relative;\n\t/*height: 32px;\n\twidth: 32px;*/\n\tbackground-color: #000000FF;\n\tdisplay: inline-block;\n\twidth: min-content;\n}\n\n.node-image-editor-sticker-selector {\n\tposition: absolute;\n\tpointer-events: none;\n\ttop: 0;\n\twidth: 100%;\n\theight: 100%;\n\t--harmony-2d-manipulator-bg-color: rgba(0, 0, 0, 0);\n\t--harmony-2d-manipulator-border: 1px dashed white;\n}\n\n.node-image-editor-sticker-selector>div {\n\tposition: absolute;\n\twidth: 0.4rem;\n\theight: 0.4rem;\n\tbackground-color: black;\n\tpointer-events: all;\n}\n\n.node-image-editor-sticker-selector>.handle-move {\n\tcursor: move;\n\ttop: calc(50% - 0.2rem);\n\tleft: calc(50% - 0.2rem);\n}\n\n.node-image-editor-sticker-selector>.handle-resize {\n\tcursor: nesw-resize;\n\ttop: -0.2rem;\n\tright: 0.2rem;\n}\n\n.node-image-editor-sticker-selector>.handle-rotate {\n\tcursor: grab;\n\ttop: -0.2rem;\n\tleft: -0.2rem;\n}\n\n.node-image-editor-node-content {\n\tdisplay: flex;\n}\n\n.node-image-editor-node-ios {\n\theight: 100%;\n\tflex: 0;\n}\n\n.node-image-editor-node-io {\n\twidth: 10px;\n\theight: 10px;\n\tbackground-color: green;\n}\n\n.node-image-editor-node-params {\n\tflex: 1;\n\toverflow: hidden;\n\tpadding: 5px;\n}\n\n.node-image-editor-node-param {\n\tdisplay: flex;\n}\n\n.node-image-editor-node-param>div {\n\tflex: 1;\n\t/*overflow: auto;*/\n}\n\n.node-image-editor-node-param>input {\n\theight: 1.5rem;\n\tbox-sizing: border-box;\n\tvertical-align: middle;\n}\n\n.node-image-editor-node-change-image {\n\topacity: 0%;\n\tposition: absolute;\n\ttop: 0px;\n\tleft: 0px;\n\theight: 100%;\n\twidth: 100%;\n\t/*background-image: url('./img/icons/image_search.svg');*/\n\toverflow: hidden;\n\tbackground-size: 100%;\n\tbackground-repeat: no-repeat;\n\tbackground-position: center;\n\tbackground-color: white;\n\tborder-radius: 4px;\n\tcursor: pointer;\n}\n\n.node-image-editor-node input[type=\"file\"] {\n\topacity: 0;\n\twidth: 100%;\n\theight: 100%;\n}\n\n.copy-button {\n\twidth: 2rem;\n\theight: 2rem;\n\tdisplay: inline-block;\n\tcursor: pointer;\n}\n\ninput {\n\t/*transition: background-color 1s;*/\n\tbackground-color: #FFF;\n\n\t/* only animation-duration here is required, rest are optional (also animation-name but it will be set on hover)*/\n\tanimation-duration: 1.5s;\n\t/* same as transition duration */\n\tanimation-timing-function: linear;\n\t/* kind of same as transition timing */\n\tanimation-delay: 0ms;\n\t/* same as transition delay */\n\tanimation-iteration-count: 1;\n\t/* set to 2 to make it run twice, or Infinite to run forever!*/\n\tanimation-direction: normal;\n\t/* can be set to \"alternate\" to run animation, then run it backwards.*/\n\tanimation-fill-mode: none;\n\t/* can be used to retain keyframe styling after animation, with \"forwards\" */\n\tanimation-play-state: running;\n\t/* can be set dynamically to pause mid animation*/\n\n}\n\n.flash {\n\tanimation-name: copyAnimation;\n}\n\n@keyframes copyAnimation {\n\t0% {\n\t\tbackground-color: #ffdf5d;\n\t}\n\t100% {\n\t\tbackground-color: #FFF;\n\t}\n}\n";
+var nodeImageEditorCSS = ":host {\n\tbackground-color: #000000FF;\n\twidth: 100%;\n\theight: 100%;\n\tdisplay: flex;\n\tflex-direction: column;\n\tuser-select: none;\n}\n\n.node-image-editor-nodes {\n\toverflow: auto;\n\tposition: relative;\n\tdisplay: flex;\n\toverflow: auto;\n\tflex: 1;\n}\n\n.node-image-editor-nodes-column {\n\tdisplay: flex;\n\tflex-direction: column;\n\tmargin-left: 50px;\n\tmargin-right: 50px;\n}\n\n.node-image-editor-canvas {\n\tpointer-events: none;\n}\n\n.node-image-editor-node {\n\tbackground-color: var(--main-bg-color-bright);\n\tdisplay: flex;\n\tflex-direction: column;\n\tmargin-top: 50px;\n\tmargin-bottom: 50px;\n\tpadding: 5px;\n}\n\n.node-image-editor-node.collapsed {\n\twidth: auto;\n\tmargin-top: 1rem;\n\tmargin-bottom: 1rem;\n}\n\n.node-image-editor-node.collapsed .node-image-editor-node-content {\n\tdisplay: none;\n}\n\n.node-image-editor-node.collapsed .node-image-editor-node-preview {\n\tdisplay: none;\n}\n\n.node-image-editor-node.collapsed button {\n\tdisplay: none;\n}\n\n.node-image-editor-node-header {\n\tdisplay: flex;\n}\n\n.node-image-editor-node-title {\n\tflex: 1;\n}\n\n.node-image-editor-node-buttons {\n\tdisplay: flex;\n}\n\n.node-image-editor-node-buttons>div {\n\tcursor: pointer;\n}\n\n.node-image-editor-node-preview {\n\tposition: relative;\n\t/*height: 32px;\n\twidth: 32px;*/\n\tbackground-color: #000000FF;\n\tdisplay: inline-block;\n\twidth: min-content;\n\tdisplay: flex;\n}\n\n.node-image-editor-sticker-selector {\n\tposition: absolute;\n\tpointer-events: none;\n\ttop: 0;\n\twidth: 100%;\n\theight: 100%;\n\t--harmony-2d-manipulator-bg-color: rgba(0, 0, 0, 0);\n\t--harmony-2d-manipulator-border: 1px dashed white;\n}\n\n.node-image-editor-sticker-selector>div {\n\tposition: absolute;\n\twidth: 0.4rem;\n\theight: 0.4rem;\n\tbackground-color: black;\n\tpointer-events: all;\n}\n\n.node-image-editor-sticker-selector>.handle-move {\n\tcursor: move;\n\ttop: calc(50% - 0.2rem);\n\tleft: calc(50% - 0.2rem);\n}\n\n.node-image-editor-sticker-selector>.handle-resize {\n\tcursor: nesw-resize;\n\ttop: -0.2rem;\n\tright: 0.2rem;\n}\n\n.node-image-editor-sticker-selector>.handle-rotate {\n\tcursor: grab;\n\ttop: -0.2rem;\n\tleft: -0.2rem;\n}\n\n.node-image-editor-node-content {\n\tdisplay: flex;\n}\n\n.node-image-editor-node-ios {\n\theight: 100%;\n\tflex: 0;\n}\n\n.node-image-editor-node-io {\n\twidth: 10px;\n\theight: 10px;\n\tbackground-color: green;\n}\n\n.node-image-editor-node-params {\n\tflex: 1;\n\toverflow: hidden;\n\tpadding: 5px;\n}\n\n.node-image-editor-node-param {\n\tdisplay: flex;\n}\n\n.node-image-editor-node-param>div {\n\tflex: 1;\n\t/*overflow: auto;*/\n}\n\n.node-image-editor-node-param>input {\n\theight: 1.5rem;\n\tbox-sizing: border-box;\n\tvertical-align: middle;\n}\n\n.node-image-editor-node-change-image {\n\topacity: 0%;\n\tposition: absolute;\n\ttop: 0px;\n\tleft: 0px;\n\theight: 100%;\n\twidth: 100%;\n\t/*background-image: url('./img/icons/image_search.svg');*/\n\toverflow: hidden;\n\tbackground-size: 100%;\n\tbackground-repeat: no-repeat;\n\tbackground-position: center;\n\tbackground-color: white;\n\tborder-radius: 4px;\n\tcursor: pointer;\n}\n\n.node-image-editor-node input[type=\"file\"] {\n\topacity: 0;\n\twidth: 100%;\n\theight: 100%;\n}\n\n.copy-button {\n\twidth: 2rem;\n\theight: 2rem;\n\tdisplay: inline-block;\n\tcursor: pointer;\n}\n\ninput {\n\t/*transition: background-color 1s;*/\n\tbackground-color: #FFF;\n\n\t/* only animation-duration here is required, rest are optional (also animation-name but it will be set on hover)*/\n\tanimation-duration: 1.5s;\n\t/* same as transition duration */\n\tanimation-timing-function: linear;\n\t/* kind of same as transition timing */\n\tanimation-delay: 0ms;\n\t/* same as transition delay */\n\tanimation-iteration-count: 1;\n\t/* set to 2 to make it run twice, or Infinite to run forever!*/\n\tanimation-direction: normal;\n\t/* can be set to \"alternate\" to run animation, then run it backwards.*/\n\tanimation-fill-mode: none;\n\t/* can be used to retain keyframe styling after animation, with \"forwards\" */\n\tanimation-play-state: running;\n\t/* can be set dynamically to pause mid animation*/\n\n}\n\n.flash {\n\tanimation-name: copyAnimation;\n}\n\n@keyframes copyAnimation {\n\t0% {\n\t\tbackground-color: #ffdf5d;\n\t}\n\t100% {\n\t\tbackground-color: #FFF;\n\t}\n}\n";
 
 class NodeImageEditorGui {
     #filter = {};
@@ -46984,7 +46776,7 @@ class NodeImageEditorGui {
         this.#refreshFilter();
     }
     #organizeNodes() {
-        this.#htmlNodes.innerHTML = '';
+        this.#htmlNodes.innerText = '';
         this.#htmlNodes.append(this.#canvas);
         let nodes = new Map();
         if (this.#nodeImageEditor) {
@@ -47905,7 +47697,7 @@ class BoundingBoxHelper extends Box {
     boundingBox = new BoundingBox();
     constructor(params = {}) {
         super(params);
-        this.wireframe = true;
+        this.wireframe = 0;
     }
     update() {
         if (this._parent) {
@@ -48335,7 +48127,7 @@ class SkeletonHelper extends Entity {
         }
     }
     get wireframe() {
-        return false;
+        return 0;
     }
     #initListeners() {
         GraphicsEvents.addEventListener(GraphicsEvent.Tick, () => {
@@ -48445,10 +48237,12 @@ class Bone extends Entity {
     #refQuaternion = create$2();
     dirty = true;
     lastComputed = 0;
-    constructor(parameters) {
-        super(parameters);
-        this.#boneId = parameters.boneId ?? -1;
-        this.#skeleton = parameters.skeleton;
+    tempPosition = create$4();
+    tempQuaternion = create$2();
+    constructor(params /*TODO: improve type*/) {
+        super(params);
+        this.#boneId = params.boneId ?? -1;
+        this.#skeleton = params.skeleton;
     }
     set position(position) {
         super.position = position;
@@ -48658,10 +48452,14 @@ class Bone extends Entity {
         return false;
         //return (this.flags & BONE_ALWAYS_PROCEDURAL) == BONE_ALWAYS_PROCEDURAL;
     }
+    reset() {
+        zero$4(this._position);
+        identity$1(this._quaternion);
+    }
     buildContextMenu() {
         return Object.assign(super.buildContextMenu(), this.locked ? {
             Bone_1: null,
-            unlock: { i18n: '#unlock', f: (entity) => entity.locked = undefined },
+            unlock: { i18n: '#unlock', f: (entity) => entity.locked = false },
         } : null);
     }
     toJSON() {
@@ -48965,7 +48763,7 @@ class SkeletalMesh extends Mesh {
         return this.#bonesPerVertex;
     }
     exportObj() {
-        let ret = { f: [], v: [] };
+        let ret = {};
         let skeletonBones = this.skeleton._bones;
         let attributes = { f: 'index', v: 'aVertexPosition', vn: 'aVertexNormal', vt: 'aTextureCoord' };
         let geometry = this.geometry;
@@ -49376,15 +49174,16 @@ class Skeleton extends Entity {
     isSkeleton = true;
     #bonesByName = new Map();
     #rootBone = new Bone({ name: 'root', boneId: 0, skeleton: this });
-    _bones = []; //TODOv3: rename
+    _bones = []; //TODOv3: rename set private
     _dirty = true;
     #imgData;
     #texture;
-    constructor(parameters) {
-        super(parameters);
+    lastComputed = 0;
+    constructor(params /*TODO: improve type*/) {
+        super(params);
         //this.bones = Object.create(null);//TODOv3: rename
-        this.createBoneMatrixArray();
-        this.createBoneMatrixTexture();
+        this.#createBoneMatrixArray();
+        this.#createBoneMatrixTexture();
         this.dirty();
     }
     dirty() {
@@ -49399,14 +49198,14 @@ class Skeleton extends Entity {
     getTexture() {
         return this.#texture;
     }
-    createBoneMatrixArray() {
+    #createBoneMatrixArray() {
         this.#imgData = new Float32Array(MAX_HARDWARE_BONES * 4 * 4);
         identity$2(this.#imgData);
         for (let i = 1; i < MAX_HARDWARE_BONES; ++i) {
             this.#imgData.copyWithin(i * 16, 0, 16);
         }
     }
-    createBoneMatrixTexture() {
+    #createBoneMatrixTexture() {
         this.#texture = TextureManager.createTexture();
         const gl = new Graphics().glContext; //TODO
         gl.bindTexture(GL_TEXTURE_2D, this.#texture.texture); //TODOv3: pass param to texture and remove this
@@ -49414,7 +49213,7 @@ class Skeleton extends Entity {
         gl.texParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
         gl.bindTexture(GL_TEXTURE_2D, null);
     }
-    updateBoneMatrixTexture() {
+    #updateBoneMatrixTexture() {
         const gl = new Graphics().glContext; //TODO
         gl.bindTexture(GL_TEXTURE_2D, this.#texture.texture);
         if (new Graphics().isWebGL2) {
@@ -49442,7 +49241,7 @@ class Skeleton extends Entity {
                 imgData[index++] = pose[k];
             }
         }
-        this.updateBoneMatrixTexture();
+        this.#updateBoneMatrixTexture();
     }
     set position(position) {
         super.position = position;
@@ -49507,6 +49306,11 @@ class Skeleton extends Entity {
     }
     get bones() {
         return this._bones;
+    }
+    reset() {
+        for (const bone of this._bones) {
+            bone.reset();
+        }
     }
     toJSON() {
         let json = super.toJSON();
@@ -50075,7 +49879,7 @@ class Text3D extends Mesh {
                             fontList2.set(font.join(' '), font);
                         }
                     }
-                    let font = await Interaction.getString(fontList2);
+                    let font = await new Interaction().getString(0, 0, fontList2);
                     if (font) {
                         this.#font = font[0];
                         this.#style = font[1];
@@ -50707,7 +50511,7 @@ class RepositoryEntry {
         }
         for (const [name, entry] of other.#childs) {
             if (this.#childs.has(name)) {
-                this.#childs.get(name).merge(entry);
+                this.#childs.get(name)?.merge(entry);
             }
             else {
                 this.#childs.set(name, entry);
@@ -51073,14 +50877,23 @@ class CubeEnvironment extends Environment {
 }
 
 var _a$2;
+const MAX_ANIMATIONS = 2;
+let id = 0;
+function getDataListId() {
+    return `animations-datalist${++id}`;
+}
 class SceneExplorerEntity extends HTMLElement {
     #doOnce;
     #entity;
     #htmlHeader;
+    #htmlContent;
+    #htmlAnimations;
+    #htmlInputDataList;
     #htmlChilds;
     #htmlTitle;
     #htmlVisible;
     #htmlPlaying;
+    #htmlAnimationsButton;
     #htmlReset;
     static #entitiesHTML = new Map();
     static #selectedEntity;
@@ -51095,6 +50908,7 @@ class SceneExplorerEntity extends HTMLElement {
     constructor() {
         super();
         this.#doOnce = true;
+        defineHarmonyToggleButton();
         this.#htmlHeader = createElement('div', {
             class: 'scene-explorer-entity-header',
             childs: [
@@ -51124,6 +50938,21 @@ class SceneExplorerEntity extends HTMLElement {
                                 },
                             }
                         }),
+                        this.#htmlAnimationsButton = createElement('harmony-toggle-button', {
+                            hidden: true,
+                            class: 'scene-explorer-entity-button-animations',
+                            childs: [
+                                createElement('off', {
+                                    innerHTML: runSVG,
+                                }),
+                                createElement('on', {
+                                    innerHTML: walkSVG,
+                                }),
+                            ],
+                            events: {
+                                change: (event) => this.#displayAnimations(event.target.state),
+                            }
+                        }),
                         this.#htmlReset = createElement('div', {
                             hidden: true,
                             class: 'scene-explorer-entity-button-reset',
@@ -51138,6 +50967,10 @@ class SceneExplorerEntity extends HTMLElement {
                 }),
             ]
         });
+        this.#htmlContent = createElement('div', {
+            class: 'scene-explorer-entity-content',
+            hidden: true,
+        });
         this.#htmlChilds = createElement('div', {
             class: 'scene-explorer-entity-childs',
             hidden: true,
@@ -51146,11 +50979,13 @@ class SceneExplorerEntity extends HTMLElement {
     connectedCallback() {
         if (this.#doOnce) {
             this.#doOnce = false;
-            this.draggable = true;
-            this.append(this.#htmlHeader, this.#htmlChilds);
+            this.#htmlHeader.draggable = true;
+            this.append(this.#htmlHeader, this.#htmlContent, this.#htmlChilds);
             this.addEventListener('contextmenu', event => this.#contextMenuHandler(event));
             this.addEventListener('dragstart', event => {
-                event.dataTransfer.effectAllowed = 'link';
+                if (event.dataTransfer) {
+                    event.dataTransfer.effectAllowed = 'link';
+                }
                 _a$2.#draggedEntity = this.#entity;
                 event.stopPropagation();
             });
@@ -51168,35 +51003,43 @@ class SceneExplorerEntity extends HTMLElement {
                 const draggedEntity = _a$2.#draggedEntity;
                 if (draggedEntity) {
                     this.classList.remove('dragged-over');
-                    this.#entity.addChild(draggedEntity);
+                    this.#entity?.addChild(draggedEntity);
                     event.stopPropagation();
                 }
             });
-            this.addEventListener('dragend', event => {
-                _a$2.#draggedEntity = null;
+            this.addEventListener('dragend', () => {
+                _a$2.#draggedEntity = undefined;
             });
         }
     }
     set entity(entity) {
+        //TODO: deprecate
+        console.warn('deprecated, use setEntity instaed');
+        this.setEntity(entity);
+    }
+    setEntity(entity) {
         this.#entity = entity;
         this.#update();
         this.#updateVisibility();
         this.#updatePlaying();
         display(this.#htmlPlaying, entity?.animable);
+        display(this.#htmlAnimationsButton, entity?.hasAnimations);
         display(this.#htmlReset, entity?.resetable);
     }
-    static set explorer(explorer) {
+    static setExplorer(explorer) {
         _a$2.#explorer = explorer;
     }
+    /*
     static get selectedEntity() {
-        return _a$2.#selectedEntity.#entity;
+        return SceneExplorerEntity.#selectedEntity.#entity;
     }
+    */
     select() {
         this.classList.add('selected');
         const selectedEntity = _a$2.#selectedEntity;
         if (selectedEntity != this) {
             selectedEntity?.unselect();
-            _a$2.#explorer.selectEntity(this.#entity);
+            _a$2.#explorer?.selectEntity(this.#entity);
         }
         _a$2.#selectedEntity = this;
     }
@@ -51210,7 +51053,7 @@ class SceneExplorerEntity extends HTMLElement {
         let entityElement = _a$2.#entitiesHTML.get(entity);
         if (!entityElement) {
             entityElement = createElement('scene-explorer-entity');
-            entityElement.entity = entity;
+            entityElement.setEntity(entity);
             _a$2.#entitiesHTML.set(entity, entityElement);
         }
         return entityElement;
@@ -51284,7 +51127,7 @@ class SceneExplorerEntity extends HTMLElement {
     expand() {
         show(this.#htmlChilds);
         this.#expandChilds();
-        this.select();
+        //this.select();
     }
     #expandChilds() {
         this.#htmlChilds.innerText = '';
@@ -51300,16 +51143,80 @@ class SceneExplorerEntity extends HTMLElement {
         }
     }
     #titleClick() {
-        toggle(this.#htmlChilds);
+        if (this == _a$2.#selectedEntity) {
+            toggle(this.#htmlChilds);
+        }
+        else {
+            show(this.#htmlChilds);
+        }
         this.#expandChilds();
         this.select();
     }
-    #contextMenuHandler(event, entity, htmlEntityElement) {
-        if (!event.shiftKey) {
-            _a$2.#explorer.htmlContextMenu.show(this.#entity.buildContextMenu(), event.clientX, event.clientY, this.#entity);
+    #contextMenuHandler(event) {
+        if (!event.shiftKey && this.#entity) {
+            _a$2.#explorer?.showContextMenu(this.#entity.buildContextMenu(), event.clientX, event.clientY, this.#entity);
             event.preventDefault();
             event.stopPropagation();
         }
+    }
+    async #displayAnimations(display) {
+        if (!this.#entity) {
+            return;
+        }
+        if (this.#htmlAnimations && !display) {
+            hide(this.#htmlAnimations);
+            return;
+        }
+        this.#initAnimations();
+        //SceneExplorerEntity.#explorer?.showAnimations(this.#entity);
+        const animList = await this.#entity.getAnimations?.();
+        if (!animList) {
+            return;
+        }
+        this.#htmlInputDataList.innerText = '';
+        for (let value of animList) {
+            createElement('option', {
+                innerText: value,
+                parent: this.#htmlInputDataList,
+            });
+        }
+        show(this.#htmlAnimations);
+        show(this.#htmlContent);
+    }
+    #initAnimations() {
+        if (this.#htmlAnimations) {
+            return;
+        }
+        this.#htmlAnimations = createElement('div', {
+            class: 'animations',
+            parent: this.#htmlContent,
+        });
+        const dataListId = getDataListId();
+        for (let i = 0; i < MAX_ANIMATIONS; i++) {
+            createElement('div', {
+                class: 'animation',
+                parent: this.#htmlAnimations,
+                childs: [
+                    createElement('input', {
+                        list: dataListId,
+                        events: {
+                            change: (event) => this.#setAnimName(i, event.target.value)
+                        }
+                    }),
+                ],
+            });
+        }
+        this.#htmlInputDataList = createElement('datalist', {
+            id: dataListId,
+            parent: this.#htmlAnimations,
+        });
+    }
+    #setAnimName(id, name) {
+        if (!this.#entity) {
+            return;
+        }
+        this.#entity.playAnimation(name);
+        this.#entity.setAnimation(id, name, 1); //TODO: weight
     }
 }
 _a$2 = SceneExplorerEntity;
@@ -51317,8 +51224,8 @@ if (window.customElements) {
     customElements.define('scene-explorer-entity', SceneExplorerEntity);
 }
 
-function getUniformsHtml(uniforms) {
-    let htmlUniforms = document.createElement('div');
+function getUniformsHtml(uniforms /*TODO: create a proper type for uniforms*/) {
+    let htmlUniforms = createElement('div');
     for (let uniformName in uniforms) {
         let uniform = uniforms[uniformName];
         htmlUniforms.append(addHtmlParameter(uniformName, uniform));
@@ -51326,52 +51233,184 @@ function getUniformsHtml(uniforms) {
     return htmlUniforms;
 }
 function addHtmlParameter(name, value) {
-    let htmlParameter = document.createElement('div');
-    let htmlParameterName = document.createElement('span');
+    let htmlParameter = createElement('div');
+    let htmlParameterName = createElement('span');
     htmlParameterName.innerHTML = name;
-    let htmlParameterValue = document.createElement('span');
+    let htmlParameterValue = createElement('span');
     htmlParameterValue.innerHTML = value;
     htmlParameter.append(htmlParameterName, htmlParameterValue);
     return htmlParameter;
 }
+let materialEditor = null;
+function getMaterialEditor() {
+    if (!materialEditor) {
+        materialEditor = new MaterialEditor();
+    }
+    return materialEditor;
+}
 class MaterialEditor {
-    static #htmlElement;
-    static #entity;
-    static #material;
-    static initHtml() {
-        this.#htmlElement = document.createElement('div');
-        this.#htmlElement.className = 'engine-material-editor';
-        this.refreshHtml();
-    }
-    static editEntity(entity) {
-        this.#entity = entity;
-        this.#material = entity?.material;
-        this.refreshHtml();
-    }
-    static editMaterial(material) {
-        this.#entity = null;
-        this.#material = material;
-        this.refreshHtml();
-    }
-    static refreshHtml() {
-        if (this.#htmlElement) {
-            this.#htmlElement.innerHTML = '';
-            let material = this.#material;
-            if (material) {
-                let fileName = material.name;
-                if (fileName) {
-                    this.#htmlElement.append(addHtmlParameter('filename', fileName));
+    static #instance;
+    #shadowRoot;
+    #htmlHeader;
+    #htmlShader;
+    #htmlBlending;
+    #htmlHasBlending;
+    #htmlBlendFactors = new Array(4);
+    #htmlBlendSelects = new Array(6);
+    #htmlParams;
+    #material;
+    constructor() {
+        if (MaterialEditor.#instance) {
+            return MaterialEditor.#instance;
+        }
+        MaterialEditor.#instance = this;
+        this.#shadowRoot = createShadowRoot('div', {
+            childs: [
+                this.#htmlHeader = createElement('div', {
+                    childs: [
+                        this.#htmlShader = createElement('div', {}),
+                        this.#htmlBlending = createElement('div', {
+                            childs: [
+                                createElement('label', {
+                                    childs: [
+                                        createElement('span', {
+                                            i18n: '#enable_blending',
+                                        }),
+                                        this.#htmlHasBlending = createElement('input', {
+                                            type: 'checkbox',
+                                            events: {
+                                                change: (event) => this.#setBlending(event.target.checked),
+                                            }
+                                        }),
+                                    ]
+                                }),
+                            ]
+                        }),
+                        this.#htmlParams = createElement('div', {}),
+                    ]
+                }),
+            ],
+        });
+        const i18n = ['#source_color', '#source_alpha', '#destination_color', '#destination_alpha', '#mode_color', '#mode_alpha'];
+        for (let i = 0; i < 6; i++) {
+            this.#htmlBlendFactors[i] = createElement('div', {
+                hidden: 1,
+                parent: this.#htmlBlending,
+                childs: [
+                    createElement('span', {
+                        i18n: i18n[i],
+                    }),
+                    this.#htmlBlendSelects[i] = createElement('select', {
+                        list: 'factors',
+                        events: {
+                            change: (event) => this.#changeBlendingFactor(i, event.target.value),
+                        },
+                    }),
+                ],
+            });
+            if (i < 4) {
+                for (let suite in BlendingFactors) {
+                    const value = BlendingFactors[suite];
+                    if (typeof value === 'string') {
+                        createElement('option', {
+                            parent: this.#htmlBlendSelects[i],
+                            innerText: value,
+                            value: value,
+                        });
+                    }
                 }
-                //this.#htmlElement.innerHTML += this.material.name;
-                this.#htmlElement.append(getUniformsHtml(material.uniforms));
+            }
+            else {
+                for (let suite in BlendingEquation) {
+                    const value = BlendingEquation[suite];
+                    if (typeof value === 'string') {
+                        createElement('option', {
+                            parent: this.#htmlBlendSelects[i],
+                            innerText: value,
+                            value: value,
+                        });
+                    }
+                }
             }
         }
     }
-    static get html() {
-        if (!this.#htmlElement) {
-            this.initHtml();
+    editEntity(entity) {
+        //this.#entity = entity;
+        this.#material = entity.material;
+        this.#refreshHtml();
+    }
+    editMaterial(material) {
+        //this.#entity = null;
+        this.#material = material;
+        this.#refreshHtml();
+    }
+    #refreshHtml() {
+        this.#htmlParams.innerText = '';
+        this.#htmlShader.innerText = '';
+        let material = this.#material;
+        if (!material) {
+            return;
         }
-        return this.#htmlElement;
+        let fileName = material.name;
+        if (fileName) {
+            this.#htmlParams.append(addHtmlParameter('filename', fileName));
+        }
+        this.#htmlShader.append(addHtmlParameter('shader', material.getShaderSource()));
+        this.#htmlBlendSelects[0].value = BlendingFactors[this.#material.srcRGB];
+        this.#htmlBlendSelects[1].value = BlendingFactors[this.#material.srcAlpha];
+        this.#htmlBlendSelects[2].value = BlendingFactors[this.#material.dstRGB];
+        this.#htmlBlendSelects[3].value = BlendingFactors[this.#material.dstAlpha];
+        this.#htmlHasBlending.checked = this.#material.blend;
+        if (material.blend) {
+            show(this.#htmlBlendFactors);
+        }
+        else {
+            hide(this.#htmlBlendFactors);
+        }
+        //this.#htmlElement.innerHTML += this.material.name;
+        this.#htmlParams.append(getUniformsHtml(material.uniforms));
+    }
+    getHTML() {
+        return this.#shadowRoot.host;
+    }
+    #setBlending(blending) {
+        if (!this.#material) {
+            return;
+        }
+        this.#material.blend = blending;
+        this.#refreshHtml();
+    }
+    #changeBlendingFactor(i, blending) {
+        if (!this.#material) {
+            return;
+        }
+        let value;
+        if (i < 4) {
+            value = BlendingFactors[blending];
+        }
+        else {
+            value = BlendingEquation[blending];
+        }
+        switch (i) {
+            case 0: // src color
+                this.#material.srcRGB = value;
+                break;
+            case 1: // src alpha
+                this.#material.srcAlpha = value;
+                break;
+            case 2: // dst color
+                this.#material.dstRGB = value;
+                break;
+            case 3: // dst alpha
+                this.#material.dstAlpha = value;
+                break;
+            case 4: // color mode
+                this.#material.modeRGB = value;
+                break;
+            case 5: // alpha mode
+                this.#material.modeAlpha = value;
+                break;
+        }
     }
 }
 
@@ -51499,7 +51538,7 @@ class Source1ModelManager {
                 repoList.push({ name: repositoryName, files: [repo] });
             }
         }
-        return { files: repoList };
+        return { name: '', path: '', files: repoList };
     }
 }
 
@@ -52392,6 +52431,7 @@ const DATA_TYPE_DOUBLE_ONE = 0x12;
 const DATA_TYPE_FLOAT$1 = 0x13;
 const DATA_TYPE_BYTE$1 = 0x17;
 const DATA_TYPE_TYPED_ARRAY2 = 0x18;
+const DATA_TYPE_TYPED_ARRAY3 = 0x19;
 const DATA_TYPE_RESOURCE = 0x86;
 const BinaryKv3Loader = new (function () {
     class BinaryKv3Loader {
@@ -52403,14 +52443,29 @@ const BinaryKv3Loader = new (function () {
             binaryKv3.setRoot(readElement(reader, stringDictionary));
             return binaryKv3;
         }
-        getBinaryKv3(version, binaryString, singleByteCount, quadByteCount, eightByteCount, dictionaryTypeLength, blobCount, totalUncompressedBlobSize, compressedBlobReader, uncompressedBlobReader, compressionFrameSize) {
+        getBinaryKv3(version, binaryString, singleByteCount, doubleByteCount, quadByteCount, eightByteCount, dictionaryTypeLength, blobCount, totalUncompressedBlobSize, compressedBlobReader, uncompressedBlobReader, compressionFrameSize, bufferId, stringDictionary, objectCount, arrayCount, buffer0) {
             let reader = new BinaryReader(binaryString);
-            let stringDictionary = [];
+            if (!stringDictionary) {
+                stringDictionary = [];
+            }
             //let offset = reader.byteLength - 4;//TODO: check last 4 bytes (0x00 0xDD 0xEE 0xFF)
             let offset;
-            let quadCursor = Math.ceil(singleByteCount / 4) * 4;
-            let eightCursor = Math.ceil((quadCursor + quadByteCount * 4) / 8) * 8;
-            let dictionaryOffset = eightCursor + eightByteCount * 8;
+            let byteCursor = 0;
+            if (version >= 5 && bufferId == 1) {
+                byteCursor = objectCount * 4;
+            }
+            let doubleCursor = Math.ceil((byteCursor + singleByteCount[bufferId]) / 2) * 2; //Math.ceil(byteCursor + singleByteCount[bufferId] / 2) * 2;
+            let quadCursor = Math.ceil((doubleCursor + doubleByteCount[bufferId] * 2) / 4) * 4; //Math.ceil(singleByteCount / 4) * 4;
+            let eightCursor = Math.ceil((quadCursor + quadByteCount[bufferId] * 4) / 8) * 8;
+            if (version >= 5 && eightByteCount[bufferId] == 0) {
+                // In this case, don't align cursor
+                eightCursor = quadCursor + quadByteCount[bufferId] * 4;
+            }
+            //console.info(byteCursor, doubleCursor, quadCursor, eightCursor);
+            let dictionaryOffset = eightCursor + eightByteCount[bufferId] * 8;
+            if (version >= 5 && bufferId == 0) {
+                dictionaryOffset = 0;
+            }
             let uncompressedBlobSizeReader, compressedBlobSizeReader;
             const blobOffset = dictionaryOffset + dictionaryTypeLength;
             if (version >= 2 && blobCount != 0) {
@@ -52425,34 +52480,83 @@ const BinaryKv3Loader = new (function () {
                     }
                 }
             }
-            if (version == 1) {
+            if (version == 1) { //v1
                 offset = reader.byteLength - 4;
             }
-            else if (version >= 2) {
+            else if (version < 5) { //v2-v4
                 offset = blobOffset;
             }
             let typeArray = [];
             let valueArray = [];
-            do {
-                --offset;
-                let type = reader.getUint8(offset);
-                //typeArray.unshift(type);
-                if (type) {
-                    typeArray.unshift(type);
+            if (version < 5) {
+                do {
+                    --offset;
+                    let type = reader.getUint8(offset);
+                    //typeArray.unshift(type);
+                    if (type) {
+                        typeArray.unshift(type);
+                    }
+                    else {
+                        break;
+                    }
+                } while (offset >= 0);
+            }
+            else {
+                if (bufferId == 1) {
+                    reader.seek(dictionaryOffset);
+                    for (let i = 0; i < dictionaryTypeLength; i++) {
+                        let type = reader.getUint8();
+                        if (type) {
+                            typeArray.push(type);
+                        }
+                    }
                 }
-                else {
-                    break;
-                }
-            } while (offset >= 0);
+            }
             let byteReader = new BinaryReader(reader);
+            let doubleReader = new BinaryReader(reader);
             let quadReader = new BinaryReader(reader);
             let eightReader = new BinaryReader(reader);
+            let byteReaderBuf0;
+            let doubleReaderBuf0;
+            let quadReaderBuf0;
+            let eightReaderBuf0;
+            byteReader.seek(byteCursor);
+            doubleReader.seek(doubleCursor);
             quadReader.seek(quadCursor);
             eightReader.seek(eightCursor);
             reader.seek(); // skip blob data
-            let stringCount = quadReader.getUint32();
-            reader.seek(dictionaryOffset);
-            readStringDictionary(reader, stringDictionary, stringCount);
+            const readers = {};
+            let objectsSizeReader = quadReader;
+            if (bufferId == 0) {
+                // In v5, strings are in buffer 0
+                let stringCount = quadReader.getUint32();
+                reader.seek(dictionaryOffset);
+                readStringDictionary(reader, stringDictionary, stringCount);
+                if (version >= 5) {
+                    return stringDictionary;
+                }
+            }
+            else {
+                objectsSizeReader = new BinaryReader(reader);
+                let reader0 = new BinaryReader(buffer0);
+                let byteCursorBuf0 = 0;
+                let doubleCursorBuf0 = Math.ceil(singleByteCount[0] / 2) * 2;
+                let quadCursorBuf0 = Math.ceil((doubleCursorBuf0 + doubleByteCount[0] * 2) / 4) * 4;
+                let eightCursorBuf0 = Math.ceil((quadCursorBuf0 + quadByteCount[0] * 4) / 8) * 8;
+                //console.info('cursor buff 0', byteCursorBuf0, doubleCursorBuf0, quadCursorBuf0, eightCursorBuf0)
+                byteReaderBuf0 = new BinaryReader(reader0);
+                doubleReaderBuf0 = new BinaryReader(reader0);
+                quadReaderBuf0 = new BinaryReader(reader0);
+                eightReaderBuf0 = new BinaryReader(reader0);
+                byteReaderBuf0.seek(byteCursorBuf0);
+                doubleReaderBuf0.seek(doubleCursorBuf0);
+                quadReaderBuf0.seek(quadCursorBuf0 + 4); // Eat a quad (string dictionnary length)
+                eightReaderBuf0.seek(eightCursorBuf0);
+                readers.reader1 = byteReaderBuf0;
+                readers.reader2 = doubleReaderBuf0;
+                readers.reader4 = quadReaderBuf0;
+                readers.reader8 = eightReaderBuf0;
+            }
             let decompressBlobBuffer;
             let decompressBlobArray;
             if (compressedBlobReader) { //if a compressed reader is provided, we have to uncompress the blobs
@@ -52460,7 +52564,7 @@ const BinaryKv3Loader = new (function () {
                 decompressBlobArray = new Uint8Array(decompressBlobBuffer);
                 decompressBlobArray.decompressOffset = 0;
             }
-            let rootElement = readBinaryKv3Element(byteReader, quadReader, eightReader, uncompressedBlobSizeReader, compressedBlobSizeReader, blobCount, decompressBlobBuffer, decompressBlobArray, compressedBlobReader, uncompressedBlobReader, typeArray, valueArray, undefined, false, compressionFrameSize);
+            let rootElement = readBinaryKv3Element(version, byteReader, doubleReader, quadReader, eightReader, objectsSizeReader, uncompressedBlobSizeReader, compressedBlobSizeReader, blobCount, decompressBlobBuffer, decompressBlobArray, compressedBlobReader, uncompressedBlobReader, typeArray, valueArray, undefined, false, compressionFrameSize, readers);
             // return it in a suitable format
             let binaryKv3 = new Kv3File();
             binaryKv3.setRoot(binaryKv32KV3(rootElement, stringDictionary));
@@ -52475,7 +52579,7 @@ function readStringDictionary(reader, stringDictionary, stringCount) {
         stringDictionary.push(reader.getNullString());
     }
 }
-function readBinaryKv3Element(byteReader, quadReader, eightReader, uncompressedBlobSizeReader, compressedBlobSizeReader, blobCount, decompressBlobBuffer, decompressBlobArray, compressedBlobReader, uncompressedBlobReader, typeArray, valueArray, elementType, isArray, compressionFrameSize) {
+function readBinaryKv3Element(version, byteReader, doubleReader, quadReader, eightReader, objectsSizeReader, uncompressedBlobSizeReader, compressedBlobSizeReader, blobCount, decompressBlobBuffer, decompressBlobArray, compressedBlobReader, uncompressedBlobReader, typeArray, valueArray, elementType, isArray, compressionFrameSize, readers0) {
     function shiftArray() {
         let elementType = typeArray.shift();
         if (elementType == DATA_TYPE_RESOURCE) {
@@ -52558,6 +52662,14 @@ function readBinaryKv3Element(byteReader, quadReader, eightReader, uncompressedB
                     let uncompressedBlobSize = uncompressedBlobSizeReader.getUint32();
                     //let decompressBuffer = new ArrayBuffer(uncompressedBlobSize);
                     var decompressArray = new Uint8Array(decompressBlobBuffer, decompressBlobArray.decompressOffset, uncompressedBlobSize);
+                    /*
+                    TODO: test blobs version 5 compression method 1 (lz4)
+                    let compressedBlobSize: number;
+                    if (version < 5) {
+                        compressedBlobSize = compressedBlobSizeReader.getUint16();
+                    } else {
+                        compressedBlobSize = quadReader.getUint32();
+                    }*/
                     while (true) {
                         let compressedBlobSize = compressedBlobSizeReader.getUint16();
                         if (uncompressedBlobSize > compressionFrameSize) {
@@ -52589,22 +52701,26 @@ function readBinaryKv3Element(byteReader, quadReader, eightReader, uncompressedB
                         let uncompressedBlobSize = uncompressedBlobSizeReader.getUint32();
                         return uncompressedBlobReader.getBytes(uncompressedBlobSize);
                     }
+                    else {
+                        //should not happend
+                        throw 'Missing reader';
+                    }
                 }
             }
         case DATA_TYPE_ARRAY:
             count = quadReader.getUint32();
             elements = [];
             for (let i = 0; i < count; i++) {
-                elements.push(readBinaryKv3Element(byteReader, quadReader, eightReader, uncompressedBlobSizeReader, compressedBlobSizeReader, blobCount, decompressBlobBuffer, decompressBlobArray, compressedBlobReader, uncompressedBlobReader, typeArray, valueArray, undefined, true, compressionFrameSize));
+                elements.push(readBinaryKv3Element(version, byteReader, doubleReader, quadReader, eightReader, objectsSizeReader, uncompressedBlobSizeReader, compressedBlobSizeReader, blobCount, decompressBlobBuffer, decompressBlobArray, compressedBlobReader, uncompressedBlobReader, typeArray, valueArray, undefined, true, compressionFrameSize, readers0));
             }
             return elements;
         case DATA_TYPE_OBJECT:
-            count = quadReader.getUint32();
+            count = objectsSizeReader.getUint32();
             //elements = new Kv3Element();
             elements = new Map();
             for (let i = 0; i < count; i++) {
                 let nameId = quadReader.getUint32();
-                let element = readBinaryKv3Element(byteReader, quadReader, eightReader, uncompressedBlobSizeReader, compressedBlobSizeReader, blobCount, decompressBlobBuffer, decompressBlobArray, compressedBlobReader, uncompressedBlobReader, typeArray, valueArray, undefined, false, compressionFrameSize);
+                let element = readBinaryKv3Element(version, byteReader, doubleReader, quadReader, eightReader, objectsSizeReader, uncompressedBlobSizeReader, compressedBlobSizeReader, blobCount, decompressBlobBuffer, decompressBlobArray, compressedBlobReader, uncompressedBlobReader, typeArray, valueArray, undefined, false, compressionFrameSize, readers0);
                 elements.set(nameId, element);
                 //elements.setProperty(nameId, element);
             }
@@ -52614,7 +52730,7 @@ function readBinaryKv3Element(byteReader, quadReader, eightReader, uncompressedB
             let subType = shiftArray() /*typeArray.shift()*/;
             elements = [];
             for (let i = 0; i < count; i++) {
-                elements.push(readBinaryKv3Element(byteReader, quadReader, eightReader, uncompressedBlobSizeReader, compressedBlobSizeReader, blobCount, decompressBlobBuffer, decompressBlobArray, compressedBlobReader, uncompressedBlobReader, typeArray, valueArray, subType, true, compressionFrameSize));
+                elements.push(readBinaryKv3Element(version, byteReader, doubleReader, quadReader, eightReader, objectsSizeReader, uncompressedBlobSizeReader, compressedBlobSizeReader, blobCount, decompressBlobBuffer, decompressBlobArray, compressedBlobReader, uncompressedBlobReader, typeArray, valueArray, subType, true, compressionFrameSize, readers0));
             }
             return elements;
         case DATA_TYPE_INT32:
@@ -52648,7 +52764,15 @@ function readBinaryKv3Element(byteReader, quadReader, eightReader, uncompressedB
             const subType2 = shiftArray() /*typeArray.shift()*/;
             elements = [];
             for (let i = 0; i < count; i++) {
-                elements.push(readBinaryKv3Element(byteReader, quadReader, eightReader, uncompressedBlobSizeReader, compressedBlobSizeReader, blobCount, decompressBlobBuffer, decompressBlobArray, compressedBlobReader, uncompressedBlobReader, typeArray, valueArray, subType2, true, compressionFrameSize));
+                elements.push(readBinaryKv3Element(version, byteReader, doubleReader, quadReader, eightReader, objectsSizeReader, uncompressedBlobSizeReader, compressedBlobSizeReader, blobCount, decompressBlobBuffer, decompressBlobArray, compressedBlobReader, uncompressedBlobReader, typeArray, valueArray, subType2, true, compressionFrameSize, readers0));
+            }
+            return elements;
+        case DATA_TYPE_TYPED_ARRAY3:
+            count = byteReader.getUint8();
+            const subType3 = shiftArray() /*typeArray.shift()*/;
+            elements = [];
+            for (let i = 0; i < count; i++) {
+                elements.push(readBinaryKv3Element(version, readers0.reader1, readers0.reader2, readers0.reader4, readers0.reader8, objectsSizeReader, uncompressedBlobSizeReader, compressedBlobSizeReader, blobCount, decompressBlobBuffer, decompressBlobArray, compressedBlobReader, uncompressedBlobReader, typeArray, valueArray, subType3, true, compressionFrameSize, readers0));
             }
             return elements;
         case DATA_TYPE_RESOURCE:
@@ -52710,8 +52834,8 @@ function readElement(reader, stringDictionary, occurences) {
         propertie index uint32
         property type uint8
         property value (len depends on type)
-        
-        
+
+
         86: resource(len 1 + 4, index to string dict)*/
         case 0:
             break;
@@ -52950,10 +53074,16 @@ function zstd(imports){return _loadWasmModule(0, null, 'AGFzbQEAAAABvAEYYAF/AX9g
 
 const Zstd = new (function () {
     class Zstd {
-        #webAssembly = null;
+        #webAssembly;
         #HEAPU8;
         async decompress(compressedDatas) {
             const wa = await this.getWebAssembly();
+            if (!wa) {
+                return null;
+            }
+            if (!this.#HEAPU8) {
+                return null;
+            }
             const api = wa.instance.exports;
             let srcSize = compressedDatas.length;
             const src = api.create_buffer(srcSize);
@@ -52969,6 +53099,9 @@ const Zstd = new (function () {
             return null;
         }
         async decompress_ZSTD(compressedDatas, uncompressedDatas) {
+            if (!this.#HEAPU8) {
+                return null;
+            }
             const wa = await this.getWebAssembly();
             const api = wa.instance.exports;
             let srcSize = compressedDatas.length;
@@ -52989,8 +53122,8 @@ const Zstd = new (function () {
                 return this.#webAssembly;
             }
             const env = {
-                'abortStackOverflow': _ => { throw new Error('overflow'); },
-                'emscripten_notify_memory_growth': _ => { this.#initHeap(); },
+                'abortStackOverflow': (_) => { throw new Error('overflow'); },
+                'emscripten_notify_memory_growth': (_) => { this.#initHeap(); },
                 'table': new WebAssembly.Table({ initial: 0, maximum: 0, element: 'anyfunc' }),
                 'tableBase': 0,
                 'memoryBase': 1024,
@@ -53102,6 +53235,10 @@ const Source2BlockLoader = new (function () {
                     return await loadDataKv3(reader, block, 3);
                 case 0x4B563304: // KV3 v4 new since dota 7.33
                     return await loadDataKv3(reader, block, 4);
+                case 0x4B563305: // KV3 v5 new since frostivus 2024
+                    return await loadDataKv3(reader, block, 5);
+                default:
+                    console.warn('Unknown block data type:', bytes);
             }
             if (!introspection || !introspection.structsArray) {
                 if (parseVtex) { //TODO
@@ -53867,6 +54004,15 @@ Follows the compressed blobs
 */
 async function loadDataKv3(reader, block, version) {
     reader.seek(block.offset);
+    let bufferCount = 1;
+    const uncompressedBufferSize = [];
+    const compressedBufferSize = [];
+    const bytesBufferSize1 = [];
+    const bytesBufferSize2 = [];
+    const bytesBufferSize4 = [];
+    const bytesBufferSize8 = [];
+    const objectCount = [];
+    const arrayCount = [];
     reader.skip(4);
     reader.getString(16);
     let compressionMethod = reader.getUint32();
@@ -53877,14 +54023,15 @@ async function loadDataKv3(reader, block, version) {
         compressionFrameSize = reader.getUint16();
         //unknown1 = reader.getUint32();//0 or 0x40000000 depending on compression method
     }
-    let singleByteCount = reader.getUint32(); //skip this many bytes ?????
-    let quadByteCount = reader.getUint32();
-    let eightByteCount = reader.getUint32();
+    bytesBufferSize1.push(reader.getUint32());
+    bytesBufferSize2.push(0);
+    bytesBufferSize4.push(reader.getUint32());
+    bytesBufferSize8.push(reader.getUint32());
     let compressedLength = block.length;
     if (version >= 2) {
         dictionaryTypeLength = reader.getUint32();
-        reader.getUint16();
-        reader.getUint16();
+        objectCount.push(reader.getUint16());
+        arrayCount.push(reader.getUint16());
     }
     var decodeLength = reader.getUint32();
     if (version >= 2) {
@@ -53896,37 +54043,84 @@ async function loadDataKv3(reader, block, version) {
         reader.getUint32();
         reader.getUint32();
     }
+    if (version >= 5) {
+        bufferCount = 2;
+        uncompressedBufferSize.push(reader.getUint32());
+        compressedBufferSize.push(reader.getUint32());
+        uncompressedBufferSize.push(reader.getUint32());
+        compressedBufferSize.push(reader.getUint32());
+        bytesBufferSize1.push(reader.getUint32());
+        bytesBufferSize2.push(reader.getUint32());
+        bytesBufferSize4.push(reader.getUint32());
+        bytesBufferSize8.push(reader.getUint32());
+        // TODO: use those values
+        reader.getUint32();
+        objectCount.push(reader.getUint32());
+        arrayCount.push(reader.getUint32());
+        reader.getUint32();
+        //console.info(block.type, block, uncompressedBufferSize, compressedBufferSize, bytesBufferSize1, bytesBufferSize2, bytesBufferSize4, bytesBufferSize8)
+    }
+    else {
+        uncompressedBufferSize.push(decodeLength);
+        compressedBufferSize.push(compressedLength);
+    }
     let sa;
     let compressedBlobReader;
     let uncompressedBlobReader;
-    switch (compressionMethod) {
-        case 0:
-            sa = reader.getBytes(decodeLength);
-            break;
-        case 1:
-            let buf = new ArrayBuffer(decodeLength);
-            sa = new Uint8Array(buf);
-            if (blobCount > 0) {
-                compressedBlobReader = new BinaryReader(reader, reader.tell() + compressedLength);
-            }
-            decodeLz4(reader, sa, compressedLength, decodeLength);
-            break;
-        case 2: //new since spectre arcana
-            //SaveFile(new File([new Blob([reader.getBytes(block.length, block.offset)])], 'block_' + block.offset + '_' + block.length));
-            let compressedBytes = reader.getBytes(compressedLength);
-            //SaveFile(new File([new Blob([compressedBytes])], 'block_' + block.offset + '_' + block.length));
-            let decompressedBytes = await Zstd.decompress(compressedBytes);
-            sa = new Uint8Array(new Uint8Array(decompressedBytes.buffer, 0, decodeLength));
-            if (blobCount > 0) {
-                uncompressedBlobReader = new BinaryReader(decompressedBytes, decodeLength);
-            }
-            //console.error(sa);
-            //SaveFile(new File([new Blob([sa])], 'zstd'));
-            break;
-        default:
-            throw 'Unknow kv3 compressionMethod ' + compressionMethod;
+    let stringDictionary;
+    let buffer0;
+    for (let i = 0; i < bufferCount; i++) {
+        switch (compressionMethod) {
+            case 0:
+                sa = reader.getBytes(uncompressedBufferSize[i]);
+                break;
+            case 1:
+                let buf = new ArrayBuffer(uncompressedBufferSize[i]);
+                sa = new Uint8Array(buf);
+                if (blobCount > 0) {
+                    compressedBlobReader = new BinaryReader(reader, reader.tell() + compressedBufferSize[i]);
+                }
+                decodeLz4(reader, sa, compressedBufferSize[i], uncompressedBufferSize[i]);
+                break;
+            case 2: //new since spectre arcana
+                //SaveFile(new File([new Blob([reader.getBytes(block.length, block.offset)])], 'block_' + block.offset + '_' + block.length));
+                let compressedBytes = reader.getBytes(compressedBufferSize[i]);
+                //SaveFile(new File([new Blob([compressedBytes])], 'block_' + block.offset + '_' + block.length));
+                let decompressedBytes = await Zstd.decompress(compressedBytes);
+                sa = new Uint8Array(new Uint8Array(decompressedBytes.buffer, 0, uncompressedBufferSize[i]));
+                if (blobCount > 0) {
+                    if (version < 5) {
+                        uncompressedBlobReader = new BinaryReader(decompressedBytes, uncompressedBufferSize[i]);
+                    }
+                    else {
+                        if (i == 1) {
+                            const compressedBlobSize = compressedLength - (compressedBufferSize[0] + compressedBufferSize[1]);
+                            let compressedBlobBytes = reader.getBytes(compressedBlobSize);
+                            //SaveFile(new File([new Blob([compressedBlobBytes])], 'compressed_zstd' + block.type + '_' + i + '_' + block.length + '_' + block.offset));
+                            let decompressedBlobBytes = await Zstd.decompress(compressedBlobBytes);
+                            //console.info(decompressedBlobBytes);
+                            uncompressedBlobReader = new BinaryReader(decompressedBlobBytes);
+                            //SaveFile(new File([new Blob([decompressedBlobBytes])], 'decompressed_zstd' + block.type + '_' + i + '_' + block.length + '_' + block.offset));
+                        }
+                        //compressedBlobReader = new BinaryReader(reader, reader.tell());
+                    }
+                }
+                //console.error(sa);
+                //SaveFile(new File([new Blob([sa])], 'zstd'));
+                break;
+            default:
+                throw 'Unknow kv3 compressionMethod ' + compressionMethod;
+        }
+        const result = BinaryKv3Loader.getBinaryKv3(version, sa, bytesBufferSize1, bytesBufferSize2, bytesBufferSize4, bytesBufferSize8, dictionaryTypeLength, blobCount, totalUncompressedBlobSize, compressedBlobReader, uncompressedBlobReader, compressionFrameSize, i, stringDictionary, objectCount[i], arrayCount[i], buffer0);
+        if (version >= 5 && i == 0) {
+            stringDictionary = result;
+            buffer0 = sa;
+        }
+        else {
+            //console.log(block.type, result);
+            block.keyValue = result;
+        }
     }
-    block.keyValue = BinaryKv3Loader.getBinaryKv3(version, sa, singleByteCount, quadByteCount, eightByteCount, dictionaryTypeLength, blobCount, totalUncompressedBlobSize, compressedBlobReader, uncompressedBlobReader, compressionFrameSize);
 }
 function decodeMethod1(reader, sa, decodeLength) {
     let mask = null;
@@ -54257,2913 +54451,6 @@ class Source2MaterialManager {
     }
 }
 
-const BONE_USED_BY_ANYTHING = 0x0007FF00;
-const BONE_ALWAYS_PROCEDURAL = 0x04;
-const BONE_USED_BY_BONE_MERGE = 0x00040000;
-const BONE_FIXED_ALIGNMENT = 0x00100000;
-const tempMat4$2 = create$5();
-create$4();
-create$2();
-//TODOV4: cleanup unused code
-class MdlBone {
-    _poseToBone = create$5();
-    _invPoseToBone = create$5();
-    _initPoseToBone = create$5();
-    _boneMat = create$5();
-    _position = create$4();
-    _quaternion = create$2();
-    _worldPos = create$4();
-    _worldQuat = create$2();
-    _worldMat = create$5();
-    _parent = null;
-    dirty = true;
-    lastComputed = 0;
-    #skeleton;
-    _parentMergedBone; //todo: remove
-    parentBone;
-    boneId;
-    name;
-    lowcasename;
-    bonecontroller;
-    rot;
-    posscale;
-    rotscale;
-    qAlignment;
-    flags;
-    proctype;
-    procindex;
-    physicsbone;
-    surfacepropidx;
-    contents;
-    constructor(skeleton) {
-        this.#skeleton = skeleton;
-    }
-    get skeleton() {
-        return this.#skeleton;
-    }
-    set quaternion(quaternion) {
-        copy$2(this._quaternion, quaternion);
-        this.dirty = true;
-    }
-    get quaternion() {
-        return this._quaternion;
-    }
-    set position(position) {
-        copy$4(this._position, position);
-        this.dirty = true;
-    }
-    get position() {
-        return this._position;
-    }
-    set parent(parent) {
-        this._parent = parent;
-        this.dirty = true;
-    }
-    get parent() {
-        return this._parent;
-    }
-    set parentMergedBone(parentMergedBone) {
-        if (this._parentMergedBone != parentMergedBone) {
-            this._parentMergedBone = parentMergedBone;
-            this.dirty = true;
-        }
-    }
-    get parentMergedBone() {
-        //console.error('optimize me');
-        return this._parentMergedBone;
-    }
-    set worldPos(worldPos) {
-        copy$4(this._worldPos, worldPos);
-        fromRotationTranslation$1(tempMat4$2, this._worldQuat, this._worldPos);
-        multiply$6(this._boneMat, tempMat4$2, this._poseToBone);
-    }
-    set worldQuat(worldQuat) {
-        copy$2(this._worldQuat, worldQuat);
-        fromRotationTranslation$1(tempMat4$2, this._worldQuat, this._worldPos);
-        multiply$6(this._boneMat, tempMat4$2, this._poseToBone);
-    }
-    getWorldPos(offset, out = create$4()) {
-        transformQuat$1(out, offset, this.worldQuat);
-        add$5(out, this.worldPos, out);
-        return out;
-    }
-    getRelativePos() {
-        return clone$4(this.position);
-    }
-    set poseToBone(poseToBone) {
-        copy$5(this._poseToBone, poseToBone);
-        invert$2(this._invPoseToBone, poseToBone);
-        this.dirty = true;
-    }
-    get poseToBone() {
-        return this._poseToBone;
-    }
-    set initPoseToBone(initPoseToBone) {
-        copy$5(this._initPoseToBone, initPoseToBone);
-        this.dirty = true;
-    }
-    get initPoseToBone() {
-        return this._initPoseToBone;
-    }
-    getWorldQuat() {
-        return this.worldQuat;
-    }
-    getDepth() {
-        if (this.parent) {
-            return this.parent.getDepth() + 1;
-        }
-        else {
-            return 0;
-        }
-    }
-    /**
-     * Is a procedural bone ?
-     * @returns {bool} yes is procedural bone
-     */
-    isProcedural() {
-        return (this.flags & BONE_ALWAYS_PROCEDURAL) == BONE_ALWAYS_PROCEDURAL;
-    }
-    /**
-     * Use bone merge
-     * @returns {bool} yes bone is available for bone merge to occur against it
-     */
-    useBoneMerge() {
-        return (this.flags & BONE_USED_BY_BONE_MERGE) == BONE_USED_BY_BONE_MERGE; //TODO: test engine verion; TF2 seems not use this flag
-    }
-}
-
-class Source1ParticleControler {
-    static #loadManifestPromises = {};
-    static speed = 1.0;
-    static visible = true;
-    static #systemList = {}; //TODOv3: make map
-    static #activeSystemList = new Map();
-    static #pcfList = {};
-    static #systemNameToPcf = {};
-    static #sourceEngineParticleSystem;
-    static fixedTime;
-    static {
-        GraphicsEvents.addEventListener(GraphicsEvent.Tick, (event) => {
-            this.stepSystems(this.fixedTime ?? event.detail.delta); //TODOv3: imporve this
-        });
-    }
-    static setParticleConstructor(ps) {
-        this.#sourceEngineParticleSystem = ps;
-    }
-    /**
-     * Reset all active systems
-     */
-    static resetAll() {
-        for (let system of this.#activeSystemList.values()) {
-            system.reset();
-        }
-    }
-    /**
-     * Step systems
-     * @param {Number} elapsedTime Step time
-     */
-    static stepSystems(elapsedTime) {
-        if (elapsedTime) {
-            elapsedTime *= this.speed;
-            elapsedTime = Math.min(elapsedTime, 0.1);
-            for (let system of this.#activeSystemList.values()) {
-                if (system.parentSystem === undefined) {
-                    system.step(elapsedTime);
-                }
-            }
-        }
-    }
-    /**
-     * Add system TODO
-     * @param {Number} elapsedTime Step time
-     */
-    static addSystem2(system) {
-        this.#systemList[system.id] = system;
-    }
-    /**
-     * Create system
-     * @param {Number} elapsedTime Step time
-     */
-    static async createSystem(repository, systemName) {
-        if (!repository) {
-            //try to get repository from filename
-            for (let repo in this.#systemNameToPcf) {
-                if (systemName.startsWith(repo)) {
-                    repository = repo;
-                    systemName = systemName.replace(repo, '');
-                    break;
-                }
-            }
-            let index = systemName.lastIndexOf('.pcf/');
-            if (index != -1) {
-                systemName = systemName.substring(index + 5);
-            }
-        }
-        let ps = new this.#sourceEngineParticleSystem({ repository: repository, name: systemName }); //TODOV2
-        this.#systemList[ps.id] = ps;
-        await this.#createSystem(repository, ps);
-        return ps;
-    }
-    /**
-     * Create system
-     * @param {Number} elapsedTime Step time
-     */
-    static async #createSystem(repositoryName, system) {
-        let pcfName = await this.#getPcfBySystemName(repositoryName, system.name);
-        if (pcfName) {
-            let pcf = await this.#getPcf(repositoryName, 'particles/' + pcfName);
-            if (pcf) {
-                pcf.initSystem(system);
-            }
-        }
-    }
-    static async #getPcfBySystemName(repository, systemName) {
-        await this.#loadManifest(repository);
-        let systemNameToPcfRepo = this.#systemNameToPcf[repository];
-        if (systemNameToPcfRepo) {
-            return systemNameToPcfRepo[systemName];
-        }
-        return null;
-        /*
-
-                    let promise = new Promise((resolve, reject) => {
-                        let systemNameToPcfRepo = systemNameToPcf[repository];
-                        if (systemNameToPcfRepo) {
-                            resolve(systemNameToPcfRepo[systemName]);
-                        } else {
-                            let kallback = () => {
-                                resolve(systemNameToPcf[repository][systemName]);
-                            }
-                            this.#loadManifest(repository).then(kallback, reject);//TODOv2: root
-                        }
-                    });
-                    return promise;*/
-    }
-    static async loadManifest(repository) {
-        if (this.#systemNameToPcf[repository] === undefined) {
-            this.#systemNameToPcf[repository] = null;
-        }
-    }
-    /**
-     * TODO
-     */
-    static async #loadManifest(repositoryName) {
-        this.#loadManifestPromises[repositoryName] = this.#loadManifestPromises[repositoryName] ?? new Promise(async (resolve, reject) => {
-            let systemNameToPcfRepo = {};
-            this.#systemNameToPcf[repositoryName] = systemNameToPcfRepo;
-            const response = await new Repositories().getFileAsJson(repositoryName, 'particles/manifest.json'); //TODO const
-            if (response.error) {
-                reject(false);
-            }
-            const json /*TODO: change type*/ = response.json;
-            if (json && json.files) {
-                for (let file of json.files) {
-                    let pcfName = file.name;
-                    for (let definition of file.particlesystemdefinitions) {
-                        systemNameToPcfRepo[definition] = pcfName;
-                    }
-                }
-                resolve(true);
-            }
-            else {
-                reject(false);
-            }
-        });
-        return this.#loadManifestPromises[repositoryName];
-    }
-    /**
-     * Start all systems
-     */
-    static startAll() {
-        for (let system of this.#activeSystemList.values()) {
-            system.start();
-        }
-    }
-    /**
-     * Stop all systems
-     */
-    static stopAll() {
-        for (let system of this.#activeSystemList.values()) {
-            system.stop();
-        }
-    }
-    /**
-     * Set a system active
-     */
-    static setActive(system) {
-        if (!system) {
-            return;
-        }
-        this.#activeSystemList.set(system.id, system);
-    }
-    /**
-     * Set a system inactive
-     */
-    static setInactive(system) {
-        if (!system) {
-            return;
-        }
-        this.#activeSystemList.delete(system.id);
-    }
-    /**
-     * Get a pcf from cache or load it
-     * @param {String} name Name of the pcf
-     * @return {Object SourcePCF} Pcf
-     */
-    static async #getPcf(repositoryName, pcfName) {
-        let promise = new Promise((resolve, reject) => {
-            let pcf = this.#pcfList[pcfName];
-            if (!pcf) {
-                let callback1 = (pcf) => {
-                    if (pcf) {
-                        this.#pcfList[pcfName] = pcf;
-                        pcf.repositoryName = repositoryName;
-                    }
-                    resolve(pcf);
-                };
-                this.#loadPcf(repositoryName, pcfName).then(callback1);
-            }
-            else {
-                resolve(pcf);
-            }
-        });
-        return promise;
-    }
-    /**
-     * Load a pcf
-     * @param {String} name Name of the pcf
-     * @return {Object SourcePCF} Pcf or null
-     */
-    static async #loadPcf(repositoryName, pcfName) {
-        //TODO: return an empty system if not found?
-        let promise = new Promise((resolve, reject) => {
-            let pcfLoader = getLoader('SourceEnginePCFLoader');
-            new pcfLoader().load(repositoryName, pcfName).then((pcf) => resolve(pcf)); //TODOv3: handle reject
-        });
-        return promise;
-    }
-    static setSpeed(s) {
-        this.speed = s;
-    }
-    static async getSystemList() {
-        let repoList = [];
-        let pcfs = {};
-        for (let repoName in this.#systemNameToPcf) {
-            await this.#loadManifest(repoName);
-            let repo = this.#systemNameToPcf[repoName];
-            for (let systemName in repo) {
-                let pcfName = repo[systemName];
-                if (!pcfs[pcfName]) {
-                    pcfs[pcfName] = [];
-                }
-                pcfs[pcfName].push({ name: systemName });
-            }
-            let pcfList = [];
-            for (let pcfName in pcfs) {
-                pcfList.push({ name: pcfName, files: pcfs[pcfName] });
-            }
-            repoList.push({ name: repoName, files: pcfList });
-        }
-        return { files: repoList };
-    }
-    static set renderSystems(renderSystems) {
-        this.visible = renderSystems ? undefined : false;
-    }
-}
-
-class Sound {
-    #repository;
-    #wave;
-    constructor(repository, wave) {
-        this.#repository = repository;
-        this.#wave = wave;
-    }
-    getRepository() {
-        return this.#repository;
-    }
-    getWave() {
-        const wave = this.#wave;
-        if (wave instanceof Array) {
-            const index = Math.floor(Math.random() * wave.length);
-            return wave[index];
-        }
-        else {
-            return wave;
-        }
-    }
-}
-
-class KvAttribute {
-    name;
-    value;
-    constructor(name, value) {
-        if (!name) {
-            return;
-        }
-        this.name = name.toLowerCase();
-        this.value = value;
-    }
-}
-class KvElement {
-    addElement(name, value) {
-        if (!name) {
-            return;
-        }
-        name = name.toLowerCase();
-        let newName = name;
-        let count = 1;
-        while (this[newName]) {
-            newName = name + '#' + (++count);
-        }
-        this[newName] = value;
-    }
-    toString(linePrefix) {
-        linePrefix = linePrefix || '';
-        let s = [linePrefix, '"' /*, this.type, '"\n'*/, linePrefix, '{\n'];
-        for (let i in this) {
-            s.push(this.toString(linePrefix + '\t'));
-        }
-        s.push(linePrefix);
-        s.push('}\n');
-        return s.join('');
-    }
-}
-class KvReader {
-    root = undefined;
-    rootElements = {};
-    rootId = 0;
-    carSize;
-    src;
-    offset;
-    inQuote = false;
-    inComment = false;
-    currentAttribute;
-    currentElement;
-    currentArray;
-    name;
-    currentValue;
-    elementStack;
-    attributeStack;
-    valuesStack;
-    keyStack;
-    arrayStack;
-    rootElement;
-    rootName;
-    currentKey;
-    constructor(carSize = 1) {
-        this.carSize = carSize;
-    }
-    readText(src) {
-        if (!src) {
-            return;
-        }
-        this.src = src;
-        let start = src.indexOf('-->');
-        if (start > 0) {
-            start += 5; //-->/nx
-        }
-        else {
-            start = 0;
-        }
-        this.offset = start;
-        this.inQuote = false;
-        this.inComment = false;
-        this.currentAttribute = undefined;
-        this.currentElement = undefined;
-        this.currentArray = undefined;
-        this.name = undefined;
-        this.currentValue = '';
-        this.elementStack = [];
-        this.attributeStack = [];
-        this.valuesStack = [];
-        this.keyStack = [];
-        this.arrayStack = [];
-        let end = false;
-        do {
-            end = this.parse();
-        } while (!end);
-        this.endElement();
-    }
-    getRootElement() {
-        return this.rootElement;
-    }
-    getRootName() {
-        return this.rootName;
-    }
-    readChar() {
-        if (this.offset > this.src.length) {
-            return -1;
-        }
-        const offset = this.offset;
-        this.offset += this.carSize;
-        return this.src.charAt(offset);
-    }
-    pickChar() {
-        if (this.offset > this.src.length) {
-            return -1;
-        }
-        return this.src.charAt(this.offset);
-    }
-    pushElement() {
-        if (this.currentElement) {
-            this.elementStack.push(this.currentElement);
-        }
-        if (!this.rootElement) ;
-        this.currentElement = new KvElement( /*this.popValue()*/);
-        this.currentKey = this.popValue();
-        this.pushKey();
-    }
-    popElement() {
-        let a = this.currentElement;
-        this.currentElement = this.elementStack.pop();
-        if (!this.currentElement) {
-            //this.rootElements.push(a);
-            let rootName = this.popKey();
-            if (rootName == undefined) {
-                rootName = 'undefined' + (this.rootId++);
-            }
-            this.rootElements[rootName] = a;
-            if (!this.rootElement) {
-                this.rootName = rootName;
-                this.rootElement = a;
-            }
-        }
-    }
-    pushAttribute() {
-        if (this.currentAttribute) {
-            this.attributeStack.push(this.currentAttribute);
-        }
-        //this.currentAttribute = new KvElement();
-    }
-    popAttribute() {
-        this.currentAttribute = this.attributeStack.pop();
-    }
-    pushValue() {
-        this.valuesStack.push(this.currentValue);
-        this.currentValue = '';
-    }
-    popValue() {
-        if (this.valuesStack.length == 0) ;
-        return this.valuesStack.pop();
-    }
-    pushKey() {
-        this.keyStack.push(this.currentKey);
-        this.currentKey = '';
-    }
-    popKey() {
-        if (this.keyStack.length == 0) ;
-        return this.keyStack.pop();
-    }
-    pushArray() {
-        this.arrayStack.push(this.currentArray);
-        this.currentArray = undefined;
-    }
-    popArray() {
-        this.currentArray = this.arrayStack.pop();
-    }
-    parse() {
-        const car = this.readChar();
-        if (car == -1)
-            return true;
-        if (this.inComment && (car != '\r' && car != '\n')) {
-            return false;
-        }
-        this.inComment = false;
-        if (this.inQuote && car != '"' && car != '\r' && car != '\n') {
-            this.currentValue += car;
-        }
-        else {
-            switch (car) {
-                case '\\':
-                    if (this.inQuote) {
-                        const car2 = this.pickChar();
-                        if (car2 == '\"') {
-                            this.currentValue += car2;
-                        }
-                        else {
-                            this.currentValue += car;
-                        }
-                    }
-                    else {
-                        this.currentValue += car;
-                    }
-                    break;
-                case '/':
-                    const car2 = this.pickChar();
-                    if (car2 == '/') {
-                        this.inComment = true;
-                    }
-                    else {
-                        this.currentValue += car;
-                    }
-                    break;
-                case ' ':
-                case '\t':
-                    if (this.currentValue != '') {
-                        this.setValue();
-                    }
-                    if (this.valuesStack.length >= 2) {
-                        this.newLine();
-                        //if (!this.multipleValuesOnSameLine) {//TODOV2
-                        this.inComment = true;
-                        //}
-                    }
-                    break;
-                case '\r':
-                case '\n':
-                    if (!this.inQuote && this.currentValue != '')
-                        this.setValue();
-                    this.newLine();
-                    break;
-                case '"':
-                    if (this.inQuote)
-                        this.setValue();
-                    this.inQuote = !this.inQuote;
-                    break;
-                case '{':
-                    if (this.currentValue != '') {
-                        this.setValue();
-                    }
-                    this.startElement();
-                    break;
-                case '}':
-                    this.endElement();
-                    break;
-                case '[':
-                    this.startArray();
-                    break;
-                case ']':
-                    this.endArray();
-                    break;
-                case ',':
-                    this.comma();
-                    //this.nextArrayValue()
-                    break;
-                default:
-                    this.currentValue += car;
-                    break;
-            }
-        }
-        return false;
-    }
-    startElement() {
-        this.pushElement();
-        this.newLine();
-        this.pushAttribute();
-    }
-    endElement() {
-        if (this.currentElement) {
-            const e = this.currentElement;
-            this.popElement();
-            if (this.currentElement) {
-                this.currentElement.addElement(this.popKey(), e);
-            }
-        }
-    }
-    startArray() {
-        this.pushArray();
-        this.currentValue = [];
-        this.currentArray = this.currentValue;
-        this.pushValue();
-        this.newLine();
-        this.pushAttribute();
-    }
-    endArray() {
-        this.popAttribute();
-        //this.currentAttribute.value.push(this.currentElement);
-        this.popArray();
-    }
-    nextArrayValue() {
-        //TODO
-    }
-    setValue() {
-        this.pushValue();
-    }
-    newLine() {
-        if (this.valuesStack.length >= 2) {
-            // order matters
-            const value = this.popValue();
-            const name = this.popValue();
-            const newAttribute = new KvAttribute(name, value);
-            if (this.currentElement) {
-                this.currentElement.addElement(name, value);
-            }
-            else if (this.currentArray) {
-                this.currentArray.push(newAttribute);
-            }
-            this.currentAttribute = newAttribute;
-        }
-    }
-    comma() {
-        if (this.valuesStack.length >= 1) {
-            // order matters
-            const value = this.popValue();
-            const name = this.popValue();
-            const newAttribute = new KvAttribute(name, value);
-            if (this.currentArray) {
-                this.currentArray.push(newAttribute);
-            }
-            else if (this.currentElement) {
-                this.currentElement.addAttribute(newAttribute);
-            }
-            this.currentAttribute = newAttribute;
-        }
-    }
-}
-
-class Source1SoundManager {
-    static #mute = false;
-    static #audioList = {};
-    static #soundList = {};
-    static #soundsPerRepository = {};
-    static #soundListPerRepository = {};
-    static #manifestsPerRepository = {};
-    static #promisePerRepository = {};
-    /**
-     * Play a sound
-     * @param {String} soundName soundName
-     */
-    static async playSound(repositoryName, soundName) {
-        if (this.#mute) {
-            return;
-        }
-        const sound = await this.#getSound(repositoryName, soundName);
-        //const sound = this.#soundList[soundName];
-        if (sound) {
-            let wave = sound.getWave();
-            // Remove #, *, ( and ) from paths
-            wave = wave.replace(/[\(\)\#\*]/g, '').toLowerCase();
-            let audio = this.#audioList[wave];
-            //audio = null;//removeme
-            if (!audio) {
-                const response = await new Repositories().getFileAsBlob(sound.getRepository(), '/sound/' + wave);
-                if (!response.error) {
-                    audio = new Audio(URL.createObjectURL(response.blob) /*new URL('/sound/' + wave, repository.base).toString()*/);
-                    this.#audioList[wave] = audio;
-                    audio.volume = 0.1;
-                    //audio.play();
-                    AudioMixer.playAudio('master', audio); //TODO: change master per actual channel
-                }
-            }
-            else {
-                AudioMixer.playAudio('master', audio);
-            }
-            return audio;
-        }
-    }
-    static async #getSound(repositoryName, soundName) {
-        await this.#fetchManifests(repositoryName);
-        /*const repo = this.#soundsPerRepository[repositoryName];
-        if (repo) {
-            return repo[soundName];
-        }*/
-        return this.#soundsPerRepository[repositoryName]?.[soundName];
-    }
-    static async #fetchManifests(repositoryName) {
-        if (this.#promisePerRepository[repositoryName]) {
-            await this.#promisePerRepository[repositoryName];
-        }
-        this.#soundsPerRepository[repositoryName] = this.#soundsPerRepository[repositoryName] ?? {};
-        let promiseResolve;
-        this.#promisePerRepository[repositoryName] = new Promise(resolve => promiseResolve = resolve);
-        let manifests = this.#manifestsPerRepository[repositoryName];
-        if (manifests) {
-            delete this.#manifestsPerRepository[repositoryName];
-            for (const manifest of manifests) {
-                await this.#fetchManifest(repositoryName, manifest);
-            }
-        }
-        promiseResolve(true);
-    }
-    static async #fetchManifest(repositoryName, manifestPath) {
-        const response = await new Repositories().getFileAsText(repositoryName, manifestPath);
-        if (!response.error) {
-            this.#loadManifest(repositoryName, response.text);
-        }
-    }
-    static #loadManifest(repositoryName, manifestTxt) {
-        const sounds = this.#soundsPerRepository[repositoryName];
-        const kv = new KvReader();
-        kv.readText(manifestTxt);
-        const list = kv.rootElements;
-        const keyArray = Object.keys(list);
-        for (let i = 0; i < keyArray.length; ++i) {
-            const soundKey = keyArray[i];
-            const sound = list[soundKey];
-            let wave;
-            if (sound.rndwave) {
-                wave = [];
-                Object.keys(sound.rndwave).forEach(function (element) {
-                    wave.push(sound.rndwave[element]);
-                });
-            }
-            else {
-                wave = sound.wave;
-            }
-            //const wave = sound.rndwave ? sound.rndwave : sound.wave;
-            sounds[soundKey] = new Sound(repositoryName, wave);
-            sounds[soundKey].channel = sound.channel;
-        }
-    }
-    /**
-     * Load soundManifest
-     */
-    /*
-
-        static loadManifest(repositoryName, fileName) {
-            const callback =
-                async (response) => {
-                    if (!response.ok) {
-                        return;
-                    }
-                    let arg1 = await response.text();
-                    if (arg1) {
-                        const kv = new KvReader();
-                        kv.readText(arg1);
-                        const list = kv.rootElements//['Demoman.Death'];
-                        const keyArray = Object.keys(list);
-                        for (let i = 0; i < keyArray.length; ++i) {
-                            const soundKey = keyArray[i];
-                            const sound = list[soundKey];
-                            let wave;
-                            if (sound.rndwave) {
-                                wave = [];
-                                Object.keys(sound.rndwave).forEach(function(element) {
-                                    wave.push(sound.rndwave[element]);
-                                });
-                            } else {
-                                wave = sound.wave;
-                            }
-                            //const wave = sound.rndwave ? sound.rndwave : sound.wave;
-                            this.#soundList[soundKey] = new Sound(wave);
-                            this.#soundList[soundKey].repositoryName = repositoryName;
-                            this.#soundList[soundKey].channel = sound.channel;
-                        }
-                    }
-                    this.#initialisationPhase = 2;//TODO: per file
-                }
-            const ajaxReject =
-                function(value) {
-                    //TODO: ????
-                };
-
-
-            const repository = new Repositories().getRepository(repositoryName);
-            if (!repository) {
-                console.error(`Unknown repository ${repositoryName} in Source1SoundManager.loadManifest`);
-                return null;
-            }
-
-            customFetch(new URL(fileName, repository.base)).then(callback, ajaxReject);
-        }
-        */
-    static loadManifest(repositoryName, fileName) {
-        let manifests = this.#manifestsPerRepository[repositoryName];
-        if (!manifests) {
-            manifests = [];
-            this.#manifestsPerRepository[repositoryName] = manifests;
-        }
-        manifests.push(fileName);
-    }
-    static mute() {
-        this.#mute = true;
-    }
-    static unmute() {
-        this.#mute = false;
-    }
-}
-
-const STUDIO_AL_SPLINE = 0x0040;
-const STUDIO_AL_XFADE = 0x0080;
-const STUDIO_AL_NOBLEND = 0x0200;
-const STUDIO_AL_LOCAL = 0x1000;
-const STUDIO_AL_POSE = 0x4000;
-class MdlStudioSeqDesc {
-    paramindex = [];
-    paramstart = [];
-    paramend = [];
-    blend = [];
-    weightlist = [];
-    groupsize = [];
-    mdl;
-    previousTime;
-    currentTime;
-    posekeyindex;
-    autolayer = [];
-    events = [];
-    name;
-    flags;
-    activity;
-    id;
-    startOffset;
-    actweight;
-    numevents;
-    eventindex;
-    bbmin;
-    bbmax;
-    numblends;
-    animindexindex;
-    movementindex;
-    paramparent;
-    fadeintime;
-    fadeouttime;
-    localentrynode;
-    localexitnode;
-    nodeflags;
-    entryphase;
-    exitphase;
-    lastframe;
-    nextseq;
-    pose;
-    numikrules;
-    numautolayers;
-    autolayerindex;
-    weightlistindex;
-    numiklocks;
-    iklockindex;
-    keyvalueindex;
-    keyvaluesize;
-    cycleposeindex;
-    activityName;
-    keyvalueText;
-    pBoneweight(boneIndex) {
-        return this.weightlist[boneIndex];
-    }
-    //MdlStudioSeqDesc.prototype.weight = MdlStudioSeqDesc.prototype.pBoneweight;//TODOV2
-    getBlend(x, y) {
-        x = clamp(x, 0, this.groupsize[0] - 1);
-        y = clamp(y, 0, this.groupsize[1] - 1);
-        return this.blend[y][x];
-    }
-    poseKey(iParam, iAnim) {
-        if (this.mdl && this.posekeyindex) {
-            const mdl = this.mdl;
-            const offset = this.posekeyindex + (iParam * this.groupsize[0] + iAnim) * 4;
-            return mdl.reader.getFloat32(offset); //TODOv3
-        }
-        //float				*pPoseKey(int iParam, int iAnim) const { return (float *)(((byte *)this) + posekeyindex) + iParam * groupsize[0] + iAnim; }
-        return 0;
-    }
-    getAutoLayer(autoLayerIndex) {
-        return this.autolayer[autoLayerIndex];
-    }
-    get length() {
-        const anim = this.mdl.getAnimDescription(this.blend[0][0]);
-        if (!anim) {
-            return 0;
-        }
-        return (anim.numframes - 1) / anim.fps;
-    }
-    play(dynamicProp) {
-        const anim = this.mdl.getAnimDescription(this.blend[0][0]);
-        if (!anim) {
-            return null;
-        }
-        this.currentTime = (this.currentTime !== undefined) ? dynamicProp.frame * anim.fps / (anim.numframes - 1) : 0;
-        this.currentTime = this.currentTime % 1;
-        this.previousTime = (this.previousTime !== undefined) ? this.previousTime : -1;
-        if (this.previousTime > this.currentTime) {
-            this.previousTime = this.currentTime;
-        }
-        const previousTime = this.previousTime;
-        const currentTime = this.currentTime;
-        const seqEvents = this.events;
-        for (let eventIndex = 0; eventIndex < seqEvents.length; ++eventIndex) {
-            const event = seqEvents[eventIndex];
-            if (event.cycle > previousTime && event.cycle <= currentTime) {
-                this.processEvent(event, dynamicProp); //TODOv3
-            }
-        }
-        this.previousTime = this.currentTime;
-    }
-    processEvent(event, dynamicProp) {
-        let options;
-        switch (true) {
-            case event.event == 5004 || (event.event === 0 && event.name == 'AE_CL_PLAYSOUND'):
-                Source1SoundManager.playSound(this.mdl?.repository, event.options);
-                break;
-            case (event.event === 0 && event.name == 'AE_CL_BODYGROUP_SET_VALUE'):
-                options = event.options.split(' ');
-                //dynamicProp.bodyGroups[options[0]] = options[1];
-                dynamicProp.setBodyPartModel(options[0], options[1]);
-                break;
-            case (event.event === 0 && event.name == 'AE_WPN_HIDE'):
-                //TODOV2
-                //dynamicProp.setVisibility(false);
-                //console.error('AE_WPN_HIDE' + dynamicProp.name);
-                break;
-            case (event.event === 0 && event.name == 'AE_WPN_UNHIDE'):
-                //TODOV2
-                //dynamicProp.setVisibility(true);
-                //console.error('AE_WPN_UNHIDE' + dynamicProp.name);
-                break;
-            case (event.event === 0 && event.name == 'AE_CL_CREATE_PARTICLE_EFFECT'):
-                options = event.options.split(' ');
-                //TODOV2
-                let f = async () => {
-                    let sys = await Source1ParticleControler.createSystem(dynamicProp.sourceModel.repository, options[0]);
-                    sys.autoKill = true;
-                    sys.start();
-                    //console.log(options[0], options[1], options[2]);
-                    switch (options[1]) {
-                        case 'follow_attachment':
-                            dynamicProp.attachSystem(sys, options[2]);
-                            break;
-                        case 'start_at_attachment':
-                            dynamicProp.attachSystem(sys, options[2]);
-                            break;
-                        case 'start_at_origin':
-                            dynamicProp.attachSystem(sys, options[2]);
-                            break;
-                    }
-                };
-                f();
-                /*TODOv2
-                        'start_at_origin',		// PATTACH_ABSORIGIN = 0,
-                        'follow_origin',		// PATTACH_ABSORIGIN_FOLLOW,
-                        'start_at_customorigin',// PATTACH_CUSTOMORIGIN,
-                        'start_at_attachment',	// PATTACH_POINT,
-                        'follow_attachment',	// PATTACH_POINT_FOLLOW,
-                */
-                break;
-            case (event.event === 0 && event.name == 'AE_TAUNT_ADD_ATTRIBUTE'):
-                //{ event AE_TAUNT_ADD_ATTRIBUTE 1 'taunt_attr_player_invis_percent 1 5.215' }
-                options = event.options.split(' ');
-                switch (options[0]) {
-                    case 'taunt_attr_player_invis_percent':
-                        dynamicProp.visible = false;
-                        setTimeout(function () { dynamicProp.visible = true; }, options[2] * 1000);
-                        break;
-                }
-                break;
-        }
-        //'AE_CL_BODYGROUP_SET_VALUE'
-    }
-}
-class MdlStudioAutoLayer {
-    iSequence;
-    iPose;
-    flags;
-    start;
-    peak;
-    tail;
-    end;
-}
-class MdlStudioEvent {
-    cycle;
-    event;
-    type;
-    options;
-    name;
-}
-
-const STUDIO_ANIM_RAWPOS = 0x01; // Vector48
-const STUDIO_ANIM_RAWROT = 0x02; // Quaternion48
-const STUDIO_ANIM_ANIMPOS = 0x04; // mstudioanim_valueptr_t
-const STUDIO_ANIM_ANIMROT = 0x08; // mstudioanim_valueptr_t
-const STUDIO_ANIM_DELTA = 0x10;
-const STUDIO_ANIM_RAWROT2 = 0x20; // Quaternion64
-const tempMat4$1 = create$5();
-const tempQuat$6 = create$2();
-class MdlStudioAnim {
-    animValuePtrRot;
-    animValuePtrPos;
-    rawpos;
-    rawrot;
-    rawrot2;
-    flags;
-    bone;
-    nextOffset;
-    getRotValue() {
-        return this.animValuePtrRot;
-    }
-    getPosValue() {
-        return this.animValuePtrPos;
-    }
-    getQuaternion48() {
-        return this.rawrot;
-    }
-    getQuaternion64() {
-        return this.rawrot2;
-    }
-    /**
-     * TODO
-     */
-    getRot(rot, mdl, bone, frame) {
-        let fromEuler5 = function (out, q, i, j, k, h, parity, repeat, frame) {
-            var M = tempMat4$1; //Dim M(,) As Double = {{0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}}
-            var Nq;
-            var s;
-            var xs;
-            var ys;
-            var zs;
-            var wx;
-            var wy;
-            var wz;
-            var xx;
-            var xy;
-            var xz;
-            var yy;
-            var yz;
-            var zz;
-            Nq = q[0] * q[0] + q[1] * q[1] + q[2] * q[2] + q[3] * q[3];
-            if (Nq > 0) {
-                s = 2.0 / Nq;
-            }
-            else {
-                s = 0;
-            }
-            xs = q[0] * s;
-            ys = q[1] * s;
-            zs = q[2] * s;
-            wx = q[3] * xs;
-            wy = q[3] * ys;
-            wz = q[3] * zs;
-            xx = q[0] * xs;
-            xy = q[0] * ys;
-            xz = q[0] * zs;
-            yy = q[1] * ys;
-            yz = q[1] * zs;
-            zz = q[2] * zs;
-            M[0] = 1.0 - (yy + zz);
-            M[1] = xy - wz;
-            M[2] = xz + wy;
-            M[4] = xy + wz;
-            M[5] = 1.0 - (xx + zz);
-            M[6] = yz - wx;
-            M[8] = xz - wy;
-            M[9] = yz + wx;
-            M[10] = 1.0 - (xx + yy);
-            M[14] = 1.0;
-            return Eul_FromHMatrix(out, M, i, j, k, h, parity, repeat, frame);
-        };
-        let fromEuler4 = function (out, a) {
-            fromEuler5(out, a, 0, 1, 2, 0, 'even', 'no', 'S');
-            var a = out[0];
-            var b = out[1];
-            var c = out[2];
-            out[0] = c;
-            out[1] = b;
-            out[2] = a;
-            return out;
-        };
-        var Eul_FromHMatrix = function (out, M, i, j, k, h, parity, repeat, frame) {
-            var ea = tempQuat$6;
-            if (repeat == 'yes') {
-                var sy = Math.sqrt(M[i * 4 + j] * M[i * 4 + j] + M[i * 4 + k] * M[i * 4 + k]);
-                if (sy > 16 * FLT_EPSILON) {
-                    ea[0] = Math.atan2(M[i * 4 + j], M[i * 4 + k]);
-                    ea[1] = Math.atan2(sy, M[i * 4 + i]);
-                    ea[2] = Math.atan2(M[j * 4 + i], -M[k * 4 + i]);
-                }
-                else {
-                    ea[0] = Math.atan2(-M[j * 4 + k], M[j * 4 + j]);
-                    ea[1] = Math.atan2(sy, M[i * 4 + i]);
-                    ea[2] = 0;
-                }
-            }
-            else {
-                var cy = Math.sqrt(M[i * 4 + i] * M[i * 4 + i] + M[j * 4 + i] * M[j * 4 + i]);
-                if (cy > 16 * FLT_EPSILON) {
-                    ea[0] = Math.atan2(M[k * 4 + j], M[k * 4 + k]);
-                    ea[1] = Math.atan2(-M[k * 4 + i], cy);
-                    ea[2] = Math.atan2(M[j * 4 + i], M[i * 4 + i]);
-                }
-                else {
-                    ea[0] = Math.atan2(-M[j * 4 + k], M[j * 4 + j]);
-                    ea[1] = Math.atan2(-M[k * 4 + i], cy);
-                    ea[2] = 0;
-                }
-            }
-            if (parity == 'odd') {
-                ea[0] = -ea[0];
-                ea[1] = -ea[1];
-                ea[2] = -ea[2];
-            }
-            if (frame == 'R') {
-                var t = ea[0];
-                ea[0] = ea[2];
-                ea[2] = t;
-            }
-            copy$2(out, ea);
-            return out;
-        };
-        const flag = this.flags;
-        let offset;
-        if ((flag & STUDIO_ANIM_RAWROT) == STUDIO_ANIM_RAWROT) {
-            rot = add$5(rot, rot, this.rawrot);
-        }
-        if ((flag & STUDIO_ANIM_RAWROT2) == STUDIO_ANIM_RAWROT2) {
-            rot = fromEuler4(rot, this.rawrot2); //TODO: fix the from euler function
-            return rot;
-        }
-        if ((flag & STUDIO_ANIM_ANIMROT) == STUDIO_ANIM_ANIMROT) {
-            for (let i = 0; i < 3; ++i) {
-                offset = this.animValuePtrRot.offset[i];
-                if (offset) {
-                    rot[i] = this.readValue(mdl, frame, this.animValuePtrRot.base + offset, bone.boneId, i) * bone.rotscale[i];
-                }
-            }
-        }
-        if ((flag & STUDIO_ANIM_DELTA) != STUDIO_ANIM_DELTA) {
-            add$5(rot, rot, bone.rot);
-        }
-        return rot;
-    }
-    getPos(pos, mdl, bone, frame) {
-        const flag = this.flags;
-        let offset;
-        pos[0] = 0;
-        pos[1] = 0;
-        pos[2] = 0;
-        if ((flag & STUDIO_ANIM_RAWPOS) == STUDIO_ANIM_RAWPOS) {
-            pos = add$5(pos, pos, this.rawpos);
-            return pos;
-        }
-        else if ((flag & STUDIO_ANIM_ANIMPOS) != STUDIO_ANIM_ANIMPOS) {
-            if ((flag & STUDIO_ANIM_DELTA) == STUDIO_ANIM_DELTA) {
-                //vec3.add(pos, pos, bone.position);
-                pos[0] = 0;
-                pos[1] = 0;
-                pos[2] = 0;
-            }
-            else {
-                add$5(pos, pos, bone.position);
-            }
-            return pos;
-        }
-        if ((flag & STUDIO_ANIM_ANIMPOS) == STUDIO_ANIM_ANIMPOS) {
-            for (let i = 0; i < 3; ++i) {
-                offset = this.animValuePtrPos.offset[i];
-                if (offset) {
-                    pos[i] = this.readValue(mdl, frame, this.animValuePtrPos.base + offset, bone.boneId, i) * bone.posscale[i];
-                }
-            }
-        }
-        if ((flag & STUDIO_ANIM_DELTA) != STUDIO_ANIM_DELTA) {
-            add$5(pos, pos, bone.position);
-        }
-        return pos;
-    }
-    readValue(mdl, frame, offset, boneid, memberid) {
-        const reader = mdl.reader;
-        reader.seek(offset);
-        let valid = 0;
-        let total = 0;
-        let k = frame;
-        let count = 0;
-        do {
-            count++;
-            if (count > 1) {
-                const nextOffset = reader.tell() + valid * 2;
-                /*if (!mdl.hasChunk(nextOffset, 2)) {//TODOv3
-                    return 0;
-                }*/
-                reader.seek(nextOffset);
-            }
-            k -= total;
-            valid = reader.getInt8();
-            total = reader.getInt8();
-        } while ((total <= k) && count < 30); //TODO: change 30
-        if (k >= valid) {
-            k = valid - 1;
-        }
-        const nextOffset = reader.tell() + k * 2;
-        reader.seek(nextOffset);
-        return reader.getInt16();
-    }
-}
-
-//-----------------------------------------------------------------------------
-// Purpose: returns array of animations and weightings for a sequence based on current pose parameters
-//-----------------------------------------------------------------------------
-//void Studio_SeqAnims(const CStudioHdr *pStudioHdr, mstudioseqdesc_t &seqdesc, int iSequence, const float poseParameter[], mstudioanimdesc_t *panim[4], float *weight)
-function Studio_SeqAnims(pStudioHdr, seqdesc, iSequence, poseParameter, panim, weight) {
-    /*if (!pStudioHdr || iSequence >= pStudioHdr.GetNumSeq())
-    {
-        weight[0] = weight[1] = weight[2] = weight[3] = 0.0;
-        return;
-    }*/
-    const i0 = 0, i1 = 0;
-    const s0 = 0, s1 = 0;
-    //Studio_LocalPoseParameter(pStudioHdr, poseParameter, seqdesc, iSequence, 0, s0, i0);TODOV2
-    //	Studio_LocalPoseParameter(pStudioHdr, poseParameter, seqdesc, iSequence, 1, s1, i1);
-    //panim[0] = pStudioHdr.pAnimdesc(pStudioHdr.iRelativeAnim(iSequence, seqdesc.anim(i0	, i1)));
-    panim[0] = pStudioHdr.getAnimDescription(seqdesc.getBlend(i0, i1));
-    weight[0] = (1 - s0) * (1 - s1);
-    //panim[1] = pStudioHdr.pAnimdesc(pStudioHdr.iRelativeAnim(iSequence, seqdesc.anim(i0+1, i1)));
-    panim[1] = pStudioHdr.getAnimDescription(seqdesc.getBlend(i0 + 1, i1));
-    weight[1] = (s0) * (1 - s1);
-    //panim[2] = pStudioHdr.pAnimdesc(pStudioHdr.iRelativeAnim(iSequence, seqdesc.anim(i0	, i1+1)));
-    panim[2] = pStudioHdr.getAnimDescription(seqdesc.getBlend(i0, i1 + 1));
-    weight[2] = (1 - s0) * (s1);
-    //panim[3] = pStudioHdr.pAnimdesc(pStudioHdr.iRelativeAnim(iSequence, seqdesc.anim(i0+1, i1+1)));
-    panim[3] = pStudioHdr.getAnimDescription(seqdesc.getBlend(i0 + 1, i1 + 1));
-    weight[3] = (s0) * (s1);
-}
-//-----------------------------------------------------------------------------
-// Purpose: returns cycles per second of a sequence (cycles/second)
-//-----------------------------------------------------------------------------
-//float Studio_CPS(const CStudioHdr *pStudioHdr, mstudioseqdesc_t &seqdesc, int iSequence, const float poseParameter[])
-function Studio_CPS(pStudioHdr, seqdesc, iSequence, poseParameter) {
-    const panim = [];
-    const weight = [];
-    Studio_SeqAnims(pStudioHdr, seqdesc, iSequence, poseParameter, panim, weight);
-    let t = 0;
-    for (let i = 0; i < 4; ++i) {
-        if (panim[i] && weight[i] > 0 && panim[i].numframes > 1) {
-            t += (panim[i].fps / (panim[i].numframes - 1)) * weight[i];
-            //setAnimLength(panim[i].numframes);//TODOv3
-        }
-    }
-    return t;
-}
-//-----------------------------------------------------------------------------
-// Purpose: returns length (in seconds) of a sequence (seconds/cycle)
-//-----------------------------------------------------------------------------
-//float Studio_Duration(const CStudioHdr *pStudioHdr, int iSequence, const float poseParameter[])
-function Studio_Duration(pStudioHdr, iSequence, poseParameter) {
-    const seqdesc = pStudioHdr.getSequenceById(iSequence); //pStudioHdr.pSeqdesc(iSequence);
-    const cps = Studio_CPS(pStudioHdr, seqdesc, iSequence, poseParameter);
-    if (cps == 0)
-        return 0.0;
-    return 1.0 / cps;
-}
-const SOURCE_MODEL_MAX_BONES = 256;
-//-----------------------------------------------------------------------------
-// Purpose: calculate a pose for a single sequence
-//-----------------------------------------------------------------------------
-function InitPose(dynamicProp, pStudioHdr, pos, q, boneMask) {
-    if (pStudioHdr.pLinearBones === undefined) {
-        for (let i = 0, boneCount = pStudioHdr.getBoneCount(); i < boneCount; ++i) {
-            {
-                const pbone = pStudioHdr.getBone(i);
-                pos[i] = pos[i] || create$4(); //removeme
-                q[i] = q[i] || create$2(); //removeme
-                copy$4(pos[i], pbone.position);
-                copy$2(q[i], pbone.quaternion);
-            }
-        }
-    }
-}
-//-----------------------------------------------------------------------------
-// Purpose: calculate a pose for a single sequence
-//			adds autolayers, runs local ik rukes
-//-----------------------------------------------------------------------------
-//function CalcPose(pStudioHdr, pIKContext, pos, q, sequence, cycle, poseParameter, boneMask, flWeight = 1.0, flTime = 0.0) {
-function CalcPose(dynamicProp, pStudioHdr, pIKContext, pos, q, sequence, cycle, poseParameter, boneMask, flWeight, flTime) {
-    cycle = cycle % 1; //TODOv2
-    const seqdesc = pStudioHdr.getSequenceById(sequence);
-    if (seqdesc) {
-        //Assert(flWeight >= 0.0f && flWeight <= 1.0f);
-        // This shouldn't be necessary, but the Assert should help us catch whoever is screwing this up
-        flWeight = clamp(flWeight, 0.0, 1.0);
-        // add any IK locks to prevent numautolayers from moving extremities
-        //CIKContext seq_ik;TODOv2
-        /*
-        if (false && seqdesc.numiklocks) {//TODOV2
-            seq_ik.Init(pStudioHdr, vec3_angle, vec3_origin, 0.0, 0, boneMask); // local space relative so absolute position doesn't mater
-            seq_ik.AddSequenceLocks(seqdesc, pos, q);
-        }
-            */
-        CalcPoseSingle(dynamicProp, pStudioHdr, pos, q, seqdesc, sequence, cycle, poseParameter, boneMask, flTime);
-        if (pIKContext) {
-            pIKContext.AddDependencies(seqdesc, sequence, cycle, poseParameter, flWeight);
-        }
-        AddSequenceLayers(dynamicProp, pStudioHdr, pIKContext, pos, q, seqdesc, sequence, cycle, poseParameter, boneMask, flWeight, flTime);
-        /*
-                if (false && seqdesc.numiklocks) {//TODOV2
-                    seq_ik.SolveSequenceLocks(seqdesc, pos, q);
-                }
-                    */
-    }
-}
-//-----------------------------------------------------------------------------
-// Purpose: calculate a pose for a single sequence
-//-----------------------------------------------------------------------------
-//TODOv2: put somewhere else
-const STUDIO_LOOPING = 0x0001; // ending frame should be the same as the starting frame
-const STUDIO_DELTA = 0x0004; // this sequence 'adds' to the base sequences, not slerp blends
-const STUDIO_POST = 0x0010; //
-const STUDIO_ALLZEROS = 0x0020; // this animation/sequence has no real animation data
-//						0x0040
-const STUDIO_CYCLEPOSE = 0x0080; // cycle index is taken from a pose parameter index
-const STUDIO_REALTIME = 0x0100; // cycle index is taken from a real-time clock, not the animations cycle index
-const STUDIO_LOCAL = 0x0200; // sequence has a local context sequence
-const STUDIO_WORLD = 0x4000; // sequence blends in worldspace
-const CalcPoseSingle_pos2 = Array(SOURCE_MODEL_MAX_BONES);
-const CalcPoseSingle_q2 = Array(SOURCE_MODEL_MAX_BONES);
-const CalcPoseSingle_pos3 = Array(SOURCE_MODEL_MAX_BONES);
-const CalcPoseSingle_q3 = Array(SOURCE_MODEL_MAX_BONES);
-for (let i = 0; i < SOURCE_MODEL_MAX_BONES; i++) {
-    CalcPoseSingle_pos2[i] = create$4();
-    CalcPoseSingle_q2[i] = create$2();
-    CalcPoseSingle_pos3[i] = create$4();
-    CalcPoseSingle_q3[i] = create$2();
-}
-function CalcPoseSingle(dynamicProp, pStudioHdr, pos, q, seqdesc, sequence, cycle, poseParameter, boneMask, flTime) {
-    let bResult = true;
-    const pos2 = CalcPoseSingle_pos2; //[];//vec3.create();//TODOv2: optimize (see source)
-    const q2 = CalcPoseSingle_q2; //[];//quat.create();//TODOv2: optimize (see source)
-    const pos3 = CalcPoseSingle_pos3; //[];//vec3.create();//TODOv2: optimize (see source)
-    const q3 = CalcPoseSingle_q3;
-    for (let i = 0; i < SOURCE_MODEL_MAX_BONES; ++i) {
-        zero$4(pos2[i]);
-        identity$1(q2[i]);
-        zero$4(pos3[i]);
-        identity$1(q3[i]);
-    }
-    /*	if (sequence >= pStudioHdr->GetNumSeq())TODOv2
-        {
-            sequence = 0;
-            seqdesc = pStudioHdr->pSeqdesc(sequence);
-        }*/
-    let i0 = 0, i1 = 0;
-    let s0 = 0, s1 = 0;
-    const r0 = Studio_LocalPoseParameter(pStudioHdr, poseParameter, seqdesc, sequence, 0 /*, s0, i0 */); //TODOv2
-    const r1 = Studio_LocalPoseParameter(pStudioHdr, poseParameter, seqdesc, sequence, 1 /*, s1, i1 */);
-    s0 = r0.s;
-    i0 = r0.i;
-    s1 = r1.s;
-    i1 = r1.i;
-    if (seqdesc.flags & STUDIO_REALTIME) {
-        const cps = Studio_CPS(pStudioHdr, seqdesc, sequence, poseParameter);
-        cycle = flTime * cps;
-        cycle = cycle - Math.floor(cycle); //TODOv2: rounding issues
-    }
-    else if (seqdesc.flags & STUDIO_CYCLEPOSE) {
-        const iPose = pStudioHdr.GetSharedPoseParameter(sequence, seqdesc.cycleposeindex);
-        if (iPose != -1) {
-            cycle = poseParameter[iPose];
-        }
-        else {
-            cycle = 0.0;
-        }
-    }
-    else if (cycle < 0 || cycle >= 1) {
-        if (seqdesc.flags & STUDIO_LOOPING) {
-            cycle = cycle - Math.floor(cycle); //TODOv2: rounding issues
-            if (cycle < 0) {
-                cycle += 1;
-            }
-        }
-        else {
-            cycle = clamp(cycle, 0.0, 1.0);
-        }
-    }
-    if (s0 < 0.001) {
-        if (s1 < 0.001) {
-            if (PoseIsAllZeros(pStudioHdr, sequence, seqdesc, i0, i1)) {
-                bResult = false;
-            }
-            else {
-                CalcAnimation(dynamicProp, pStudioHdr, pos, q, seqdesc, sequence, seqdesc.getBlend(i0, i1), cycle, boneMask);
-            }
-        }
-        else if (s1 > 0.999) {
-            CalcAnimation(dynamicProp, pStudioHdr, pos, q, seqdesc, sequence, seqdesc.getBlend(i0, i1 + 1), cycle, boneMask);
-        }
-        else {
-            CalcAnimation(dynamicProp, pStudioHdr, pos, q, seqdesc, sequence, seqdesc.getBlend(i0, i1), cycle, boneMask);
-            CalcAnimation(dynamicProp, pStudioHdr, pos2, q2, seqdesc, sequence, seqdesc.getBlend(i0, i1 + 1), cycle, boneMask);
-            BlendBones(pStudioHdr, q, pos, seqdesc, sequence, q2, pos2, s1, boneMask);
-        }
-    }
-    else if (s0 > 0.999) {
-        if (s1 < 0.001) {
-            if (PoseIsAllZeros(pStudioHdr, sequence, seqdesc, i0 + 1, i1)) {
-                bResult = false;
-            }
-            else {
-                CalcAnimation(dynamicProp, pStudioHdr, pos, q, seqdesc, sequence, seqdesc.getBlend(i0 + 1, i1), cycle, boneMask);
-            }
-        }
-        else if (s1 > 0.999) {
-            CalcAnimation(dynamicProp, pStudioHdr, pos, q, seqdesc, sequence, seqdesc.getBlend(i0 + 1, i1 + 1), cycle, boneMask);
-        }
-        else {
-            CalcAnimation(dynamicProp, pStudioHdr, pos, q, seqdesc, sequence, seqdesc.getBlend(i0 + 1, i1), cycle, boneMask);
-            CalcAnimation(dynamicProp, pStudioHdr, pos2, q2, seqdesc, sequence, seqdesc.getBlend(i0 + 1, i1 + 1), cycle, boneMask);
-            BlendBones(pStudioHdr, q, pos, seqdesc, sequence, q2, pos2, s1, boneMask);
-        }
-    }
-    else {
-        if (s1 < 0.001) {
-            if (PoseIsAllZeros(pStudioHdr, sequence, seqdesc, i0 + 1, i1)) {
-                CalcAnimation(dynamicProp, pStudioHdr, pos, q, seqdesc, sequence, seqdesc.getBlend(i0, i1), cycle, boneMask);
-                ScaleBones(pStudioHdr, q, pos, sequence, 1.0 - s0, boneMask);
-            }
-            else if (PoseIsAllZeros(pStudioHdr, sequence, seqdesc, i0, i1)) {
-                CalcAnimation(dynamicProp, pStudioHdr, pos, q, seqdesc, sequence, seqdesc.getBlend(i0 + 1, i1), cycle, boneMask);
-                ScaleBones(pStudioHdr, q, pos, sequence, s0, boneMask);
-            }
-            else {
-                CalcAnimation(dynamicProp, pStudioHdr, pos, q, seqdesc, sequence, seqdesc.getBlend(i0, i1), cycle, boneMask);
-                CalcAnimation(dynamicProp, pStudioHdr, pos2, q2, seqdesc, sequence, seqdesc.getBlend(i0 + 1, i1), cycle, boneMask);
-                BlendBones(pStudioHdr, q, pos, seqdesc, sequence, q2, pos2, s0, boneMask);
-            }
-        }
-        else if (s1 > 0.999) {
-            CalcAnimation(dynamicProp, pStudioHdr, pos, q, seqdesc, sequence, seqdesc.getBlend(i0, i1 + 1), cycle, boneMask);
-            CalcAnimation(dynamicProp, pStudioHdr, pos2, q2, seqdesc, sequence, seqdesc.getBlend(i0 + 1, i1 + 1), cycle, boneMask);
-            BlendBones(pStudioHdr, q, pos, seqdesc, sequence, q2, pos2, s0, boneMask);
-        }
-        //else if (!anim_3wayblend.GetBool())
-        else {
-            const iAnimIndices = [];
-            const weight = [];
-            Calc3WayBlendIndices(i0, i1, s0, s1, seqdesc, iAnimIndices, weight);
-            if (weight[1] < 0.001) {
-                // on diagonal
-                CalcAnimation(dynamicProp, pStudioHdr, pos, q, seqdesc, sequence, iAnimIndices[0], cycle, boneMask);
-                CalcAnimation(dynamicProp, pStudioHdr, pos2, q2, seqdesc, sequence, iAnimIndices[2], cycle, boneMask);
-                BlendBones(pStudioHdr, q, pos, seqdesc, sequence, q2, pos2, weight[2] / (weight[0] + weight[2]), boneMask);
-            }
-            else {
-                CalcAnimation(dynamicProp, pStudioHdr, pos, q, seqdesc, sequence, iAnimIndices[0], cycle, boneMask);
-                CalcAnimation(dynamicProp, pStudioHdr, pos2, q2, seqdesc, sequence, iAnimIndices[1], cycle, boneMask);
-                BlendBones(pStudioHdr, q, pos, seqdesc, sequence, q2, pos2, weight[1] / (weight[0] + weight[1]), boneMask);
-                CalcAnimation(dynamicProp, pStudioHdr, pos3, q3, seqdesc, sequence, iAnimIndices[2], cycle, boneMask);
-                BlendBones(pStudioHdr, q, pos, seqdesc, sequence, q3, pos3, weight[2], boneMask);
-            }
-        }
-    }
-    //g_VectorPool.Free(pos2);
-    //g_QaternionPool.Free(q2);
-    //g_VectorPool.Free(pos3);
-    //g_QaternionPool.Free(q3);
-    return bResult;
-}
-//-----------------------------------------------------------------------------
-// Purpose: Find and decode a sub-frame of animation
-//-----------------------------------------------------------------------------
-function CalcAnimation(dynamicProp, pStudioHdr, pos, q, seqdesc, sequence, animation, cycle, boneMask) {
-    /*virtualmodel_t *pVModel = pStudioHdr->GetVirtualModel();TODOV2
-    if (pVModel)
-    {
-        CalcVirtualAnimation(pVModel, pStudioHdr, pos, q, seqdesc, sequence, animation, cycle, boneMask);
-        return;
-    }*/
-    const animdesc = pStudioHdr.getAnimDescription(animation);
-    if (!animdesc) {
-        return;
-    }
-    pStudioHdr.getBone(0);
-    //const mstudiolinearbone_t *pLinearBones = pStudioHdr->pLinearBones();TODOV2
-    let pLinearBones;
-    const fFrame = cycle * (animdesc.numframes - 1);
-    const iFrame = Math.floor(fFrame);
-    const s = (fFrame - iFrame);
-    //iFrame = 0;
-    //console.log(pStudioHdr.getAnimFrame(animdesc, iFrame));
-    pStudioHdr.getAnimFrame(dynamicProp, animdesc, iFrame);
-    //console.log(iFrame);
-    let iLocalFrame = iFrame;
-    let flStall;
-    const panims = animdesc.pAnim(iLocalFrame, flStall);
-    //animdesc.mdl.getAnimFrame(animdesc, 31);
-    //const pweight = seqdesc.pBoneweight(0);
-    // if the animation isn't available, look for the zero frame cache
-    if (!panims) {
-        for (let i = 0, boneCount = pStudioHdr.getBoneCount(); i < boneCount; ++i) {
-            const pbone = pStudioHdr.getBone(i);
-            const pweight = seqdesc.pBoneweight(i);
-            if (pweight > 0 && (pStudioHdr.boneFlags(i) & boneMask)) {
-                if (animdesc.flags & STUDIO_DELTA) {
-                    q[i] = create$2(); //TODOV2
-                    pos[i] = create$4(); //TODOV2
-                }
-                else {
-                    //q[i] = pbone.rot;TODOv2
-                    q[i] = q[i] || create$2();
-                    pos[i] = pos[i] || create$4();
-                    q[i] = create$2();
-                    pos[i] = create$4();
-                    //quat.fromMat3(q[i], mat3.fromEuler(SourceEngineTempMat3, pbone.rot));
-                    quatFromEulerRad(q[i], pbone.rot[0], pbone.rot[1], pbone.rot[2]);
-                    copy$4(pos[i], pbone.position);
-                }
-            }
-        }
-        //CalcZeroframeData(pStudioHdr, pStudioHdr->GetRenderHdr(), NULL, pStudioHdr->pBone(0), animdesc, fFrame, pos, q, boneMask, 1.0);
-        CalcZeroframeData(pStudioHdr, pStudioHdr, null, pStudioHdr.getBone(0));
-        return;
-    }
-    // BUGBUG: the sequence, the anim, and the model can have all different bone mappings.
-    //for (i = 0; i < pStudioHdr->numbones(); i++, pbone++, pweight++)
-    let panim = panims[0];
-    for (let i = 0, boneCount = pStudioHdr.getBoneCount(), animIndex = 0; i < boneCount; ++i) {
-        const pbone = pStudioHdr.getBone(i);
-        const pweight = seqdesc.pBoneweight(i);
-        q[i] = q[i] || create$2(); //TODOV2
-        pos[i] = pos[i] || create$4(); //TODOV2
-        q[i] = create$2();
-        pos[i] = create$4();
-        if (panim && panim.bone == i) {
-            //if (pweight > 0 && (pStudioHdr.boneFlags(i) & boneMask))
-            if (pweight > 0) //TODOv2
-             {
-                if (animdesc.sectionframes != 0) {
-                    iLocalFrame = iLocalFrame % animdesc.sectionframes;
-                }
-                CalcBoneQuaternion(pStudioHdr, iLocalFrame, s, pbone, pLinearBones, panim, q[i]);
-                CalcBonePosition(pStudioHdr, iLocalFrame, s, pbone, pLinearBones, panim, pos[i]); //TODOV2
-                //quat.copy(q[i], pbone.quaternion);
-                //vec3.copy(pos[i], pbone.position);
-            }
-            //panim = panim->pNext();//TODOv2
-            panim = panims[++animIndex];
-            //} else if (pweight > 0 && (pStudioHdr.boneFlags(i) & boneMask)) {
-        }
-        else if (pweight > 0) {
-            if (animdesc.flags & STUDIO_DELTA) {
-                q[i] = create$2(); //TODOV2
-                pos[i] = create$4(); //TODOV2
-            }
-            else {
-                copy$2(q[i], pbone.quaternion);
-                copy$4(pos[i], pbone.position);
-            }
-        }
-    }
-}
-//-----------------------------------------------------------------------------
-// Purpose: return a sub frame rotation for a single bone
-//-----------------------------------------------------------------------------
-/*void CalcBoneQuaternion(int frame, float s,
-                        const Quaternion &baseQuat, const RadianEuler &baseRot, const Vector &baseRotScale,
-                        int iBaseFlags, const Quaternion &baseAlignment,
-                        const mstudioanim_t *panim, Quaternion &q)*/
-function _CalcBoneQuaternion(pStudioHdr, frame, s, baseQuat, baseRot, baseRotScale, iBaseFlags, baseAlignment, panim, q) {
-    if (panim.flags & STUDIO_ANIM_RAWROT) {
-        //q = panim.pQuat48();
-        copy$2(q, panim.rawrot); //TODOv2
-        return;
-    }
-    if (panim.flags & STUDIO_ANIM_RAWROT2) {
-        //q = panim.pQuat64();
-        copy$2(q, panim.rawrot2); //TODOv2
-        q[0] = panim.rawrot2[2];
-        q[1] = panim.rawrot2[1];
-        q[2] = panim.rawrot2[0];
-        q[3] = panim.rawrot2[3];
-        return;
-    }
-    if (!(panim.flags & STUDIO_ANIM_ANIMROT)) {
-        if (panim.flags & STUDIO_ANIM_DELTA) {
-            identity$1(q);
-        }
-        else {
-            copy$2(q, baseQuat); //TODOv2
-        }
-        return;
-    }
-    panim.animValuePtrRot;
-    if (s > 0.001) {
-        const angle1 = create$4(), angle2 = create$4(); // TODO: optimize
-        const q1 = create$2();
-        const q2 = create$2();
-        for (let i = 0; i < 3; ++i) {
-            const offset = panim.animValuePtrRot.offset[i];
-            if (offset) {
-                angle1[i] = panim.readValue(pStudioHdr, frame, panim.animValuePtrRot.base + offset, panim.bone, i) * baseRotScale[i];
-                angle2[i] = angle1[i];
-            }
-        }
-        if (!(panim.flags & STUDIO_ANIM_DELTA)) {
-            angle1[0] = angle1[0] + baseRot[0];
-            angle1[1] = angle1[1] + baseRot[1];
-            angle1[2] = angle1[2] + baseRot[2];
-            angle2[0] = angle2[0] + baseRot[0];
-            angle2[1] = angle2[1] + baseRot[1];
-            angle2[2] = angle2[2] + baseRot[2];
-        }
-        if (angle1[0] !== angle2[0] || angle1[1] !== angle2[1] || angle1[2] !== angle2[2]) {
-            //_AngleQuaternion(angle1, q1);//TODOv2
-            //_AngleQuaternion(angle2, q2);//TODOv2
-            quatFromEulerRad(q1, angle1[0], angle1[1], angle1[2]);
-            quatFromEulerRad(q2, angle2[0], angle2[1], angle2[2]);
-            QuaternionBlend(q1, q2, s, q);
-        }
-        else {
-            //_AngleQuaternion(angle1, q);//TODOv2
-            //quat.fromMat3(q, mat3.fromEuler(SourceEngineTempMat3, angle1));
-            quatFromEulerRad(q, angle1[0], angle1[1], angle1[2]);
-        }
-    }
-    else {
-        const angle = create$4();
-        for (let i = 0; i < 3; ++i) {
-            const offset = panim.animValuePtrRot.offset[i];
-            if (offset) {
-                angle[i] = panim.readValue(pStudioHdr, frame, panim.animValuePtrRot.base + offset, panim.bone, i) * baseRotScale[i];
-            }
-        }
-        if (!(panim.flags & STUDIO_ANIM_DELTA)) {
-            angle[0] = angle[0] + baseRot[0];
-            angle[1] = angle[1] + baseRot[1];
-            angle[2] = angle[2] + baseRot[2];
-        }
-        //_AngleQuaternion(angle, q);//TODOv2
-        //quat.fromMat3(q, mat3.fromEuler(SourceEngineTempMat3, angle));
-        quatFromEulerRad(q, angle[0], angle[1], angle[2]);
-    }
-    // align to unified bone
-    if (!(panim.flags & STUDIO_ANIM_DELTA) && (iBaseFlags & BONE_FIXED_ALIGNMENT)) {
-        QuaternionAlign(baseAlignment, q, q);
-    }
-}
-function CalcBoneQuaternion(pStudioHdr, frame, s, pBone, pLinearBones, panim, q) {
-    {
-        _CalcBoneQuaternion(pStudioHdr, frame, s, pBone.quaternion, pBone.rot, pBone.rotscale, pBone.flags, pBone.qAlignment, panim, q);
-        //_CalcBoneQuaternion(pStudioHdr, frame, s, pBone.quat, [0, 0, 0]/*pBone.rot*//*TODOV2*/, pBone.rotscale, pBone.flags, pBone.qAlignment, panim, q);
-    }
-}
-function _CalcBonePosition(pStudioHdr, frame, s, basePos, baseBoneScale, panim, pos) {
-    if (panim.flags & STUDIO_ANIM_RAWPOS) {
-        copy$4(pos, panim.rawpos);
-        return;
-    }
-    else if (!(panim.flags & STUDIO_ANIM_ANIMPOS)) {
-        if (panim.flags & STUDIO_ANIM_DELTA) {
-            zero$4(pos);
-        }
-        else {
-            copy$4(pos, basePos);
-        }
-        return;
-    }
-    panim.animValuePtrPos;
-    /*
-        mstudioanim_valueptr_t *pPosV = panim.pPosV();
-        int					j;
-    */
-    if (s > 0.001) {
-        let v1, v2; // TODO: optimize
-        for (let i = 0; i < 3; i++) {
-            const offset = panim.animValuePtrPos.offset[i];
-            if (offset) {
-                //ExtractAnimValue(frame, pPosV->pAnimvalue(i), baseBoneScale[i], v1, v2);
-                v1 = panim.readValue(pStudioHdr, frame, panim.animValuePtrPos.base + offset, panim.bone, i) * baseBoneScale[i];
-                v2 = v1;
-                pos[i] = v1 * (1.0 - s) + v2 * s;
-            }
-        }
-    }
-    else {
-        for (let i = 0; i < 3; i++) {
-            //ExtractAnimValue(frame, pPosV->pAnimvalue(i), baseBoneScale[i], pos[i]);
-            const offset = panim.animValuePtrPos.offset[i];
-            if (offset) {
-                //ExtractAnimValue(frame, pPosV->pAnimvalue(i), baseBoneScale[i], v1, v2);
-                pos[i] = panim.readValue(pStudioHdr, frame, panim.animValuePtrPos.base + offset, panim.bone, i) * baseBoneScale[i];
-            }
-        }
-    }
-    if (!(panim.flags & STUDIO_ANIM_DELTA)) {
-        pos[0] = pos[0] + basePos[0];
-        pos[1] = pos[1] + basePos[1];
-        pos[2] = pos[2] + basePos[2];
-    }
-}
-function CalcBonePosition(pStudioHdr, frame, s, pBone, pLinearBones, panim, pos) {
-    {
-        _CalcBonePosition(pStudioHdr, frame, s, pBone.position, pBone.posscale, panim, pos);
-    }
-}
-//-----------------------------------------------------------------------------
-// Do a piecewise addition of the quaternion elements. This actually makes little
-// mathematical sense, but it's a cheap way to simulate a slerp.
-//-----------------------------------------------------------------------------
-//void QuaternionBlend(const Quaternion &p, const Quaternion &q, float t, Quaternion &qt)
-function QuaternionBlend(p, q, t, qt) {
-    // decide if one of the quaternions is backwards
-    const q2 = create$2();
-    QuaternionAlign(p, q, q2);
-    QuaternionBlendNoAlign(p, q2, t, qt);
-}
-//void QuaternionBlendNoAlign(const Quaternion &p, const Quaternion &q, float t, Quaternion &qt)
-function QuaternionBlendNoAlign(p, q, t, qt) {
-    // 0.0 returns p, 1.0 return q.
-    const sclp = 1.0 - t;
-    const sclq = t;
-    for (let i = 0; i < 4; ++i) {
-        qt[i] = sclp * p[i] + sclq * q[i];
-    }
-    normalize$3(qt, qt);
-}
-//-----------------------------------------------------------------------------
-// make sure quaternions are within 180 degrees of one another, if not, reverse q
-//-----------------------------------------------------------------------------
-//void QuaternionAlign(const Quaternion &p, const Quaternion &q, Quaternion &qt)
-function QuaternionAlign(p, q, qt) {
-    // FIXME: can this be done with a quat dot product?
-    // decide if one of the quaternions is backwards
-    let a = 0;
-    let b = 0;
-    for (let i = 0; i < 4; ++i) {
-        a += (p[i] - q[i]) * (p[i] - q[i]);
-        b += (p[i] + q[i]) * (p[i] + q[i]);
-    }
-    if (a > b) {
-        for (let i = 0; i < 4; ++i) {
-            qt[i] = -q[i];
-        }
-    }
-    else if (qt != q) {
-        for (let i = 0; i < 4; ++i) {
-            qt[i] = q[i];
-        }
-    }
-}
-//-----------------------------------------------------------------------------
-// Purpose: Calc Zeroframe Data
-//-----------------------------------------------------------------------------
-function CalcZeroframeData(pStudioHdr, pAnimStudioHdr, pAnimGroup, pAnimbone, animdesc, fFrame, pos, q, boneMask, flWeight) {
-    /* TODO
-        let pData = animdesc.pZeroFrameData();
-
-        if (!pData) {
-            return;
-        }
-
-        // Msg('zeroframe %s\n', animdesc.pszName());
-        let i;
-        if (animdesc.zeroframecount == 1) {
-            for (let j = 0, boneCount = pStudioHdr.getBoneCount(); j < boneCount; ++j) {
-                if (pAnimGroup)
-                    i = pAnimGroup.masterBone[j];
-                else
-                    i = j;
-
-                if (pAnimbone[j].flags & BONE_HAS_SAVEFRAME_POS) {
-                    if ((i >= 0) && (pStudioHdr.boneFlags(i) & boneMask)) {
-                        const p = vec3.create();//TODOv2
-                        console.error('const p = *(Vector48 *)pData;//TODOv2');
-                        pos[i] = pos[i] * (1.0 - flWeight) + p * flWeight;
-                    }
-                    pData += 6;//sizeof(Vector48);//TODOv2
-                }
-                if (pAnimbone[j].flags & BONE_HAS_SAVEFRAME_ROT) {
-                    if ((i >= 0) && (pStudioHdr.boneFlags(i) & boneMask)) {
-                        const q0 = quat.create();//*(Quaternion64 *)pData;
-                        console.error('const q0 = quat.create();//*(Quaternion64 *)pData;');
-                        QuaternionBlend(q[i], q0, flWeight, q[i]);
-                        //Assert(q[i].IsValid());
-                    }
-                    pData += 8;//sizeof(Quaternion64);
-                }
-            }
-        }
-        else {
-            let s1;
-            let index = fFrame / animdesc.zeroframespan;
-            if (index >= animdesc.zeroframecount - 1) {
-                index = animdesc.zeroframecount - 2;
-                s1 = 1.0;
-            } else {
-                s1 = clamp((fFrame - index * animdesc.zeroframespan) / animdesc.zeroframespan, 0.0, 1.0);
-            }
-            let i0 = Math.max(index - 1, 0);
-            let i1 = index;
-            let i2 = Math.min(index + 1, animdesc.zeroframecount - 1);
-            for (let j = 0, boneCount = pStudioHdr.getBoneCount(); j < boneCount; ++j) {
-                if (pAnimGroup)
-                    i = pAnimGroup.masterBone[j];
-                else
-                    i = j;
-
-                if (pAnimbone[j].flags & BONE_HAS_SAVEFRAME_POS) {
-                    if ((i >= 0) && (pStudioHdr.boneFlags(i) & boneMask)) {
-                        const p0 = vec3.create();//*(((Vector48 *)pData) + i0);//optimize
-                        const p1 = vec3.create();//*(((Vector48 *)pData) + i1);
-                        const p2 = vec3.create();//*(((Vector48 *)pData) + i2);
-                        console.error('Vector p2 = *(((Vector48 *)pData) + i2);');
-                        let p3;
-                        Hermite_Spline(p0, p1, p2, s1, p3);
-                        pos[i] = pos[i] * (1.0 - flWeight) + p3 * flWeight;
-                    }
-                    pData += sizeof(Vector48) * animdesc.zeroframecount;
-                }
-                if (pAnimbone[j].flags & BONE_HAS_SAVEFRAME_ROT) {
-                    if ((i >= 0) && (pStudioHdr.boneFlags(i) & boneMask)) {
-                        const q0 = quat.create();//*(((Quaternion64 *)pData) + i0);
-                        const q1 = quat.create();//*(((Quaternion64 *)pData) + i1);
-                        const q2 = quat.create();//*(((Quaternion64 *)pData) + i2);
-                        console.error('Quaternion q0 = *(((Quaternion64 *)pData) + i0);');
-                        if (flWeight == 1.0) {
-                            Hermite_Spline(q0, q1, q2, s1, q[i]);
-                        }
-                        else {
-                            let q3;
-                            Hermite_Spline(q0, q1, q2, s1, q3);
-                            QuaternionBlend(q[i], q3, flWeight, q[i]);
-                        }
-                    }
-                    pData += sizeof(Quaternion64) * animdesc.zeroframecount;
-                }
-            }
-        }
-    */
-}
-function PoseIsAllZeros(pStudioHdr, sequence, seqdesc, i0, i1) {
-    // remove 'zero' positional blends
-    //const baseanim = pStudioHdr.iRelativeAnim(sequence, seqdesc.getBlend(i0 , i1));//TODOv2
-    const baseanim = seqdesc.getBlend(i0, i1);
-    const anim = pStudioHdr.getAnimDescription(baseanim);
-    if (!anim) {
-        return false;
-    }
-    return (anim.flags & STUDIO_ALLZEROS) != 0;
-}
-//-----------------------------------------------------------------------------
-// Purpose: turn a 2x2 blend into a 3 way triangle blend
-// Returns: returns the animination indices and barycentric coordinates of a triangle
-//			the triangle is a right triangle, and the diagonal is between elements [0] and [2]
-//-----------------------------------------------------------------------------
-//void Calc3WayBlendIndices(int i0, int i1, float s0, float s1, const mstudioseqdesc_t &seqdesc, int *pAnimIndices, float *pWeight)
-function Calc3WayBlendIndices(i0, i1, s0, s1, seqdesc, pAnimIndices, pWeight) {
-    // Figure out which bi-section direction we are using to make triangles.
-    const bEven = (((i0 + i1) & 0x1) == 0);
-    let x1, y1;
-    let x2, y2;
-    let x3, y3;
-    // diagonal is between elements 1 & 3
-    // TL to BR
-    if (bEven) {
-        if (s0 > s1) {
-            // B
-            x1 = 0;
-            y1 = 0;
-            x2 = 1;
-            y2 = 0;
-            x3 = 1;
-            y3 = 1;
-            pWeight[0] = (1.0 - s0);
-            pWeight[1] = s0 - s1;
-        }
-        else {
-            // C
-            x1 = 1;
-            y1 = 1;
-            x2 = 0;
-            y2 = 1;
-            x3 = 0;
-            y3 = 0;
-            pWeight[0] = s0;
-            pWeight[1] = s1 - s0;
-        }
-    }
-    // BL to TR
-    else {
-        const flTotal = s0 + s1;
-        if (flTotal > 1.0) {
-            // D
-            x1 = 1;
-            y1 = 0;
-            x2 = 1;
-            y2 = 1;
-            x3 = 0;
-            y3 = 1;
-            pWeight[0] = (1.0 - s1);
-            pWeight[1] = s0 - 1.0 + s1;
-        }
-        else {
-            // A
-            x1 = 0;
-            y1 = 1;
-            x2 = 0;
-            y2 = 0;
-            x3 = 1;
-            y3 = 0;
-            pWeight[0] = s1;
-            pWeight[1] = 1.0 - s0 - s1;
-        }
-    }
-    pAnimIndices[0] = seqdesc.getBlend(i0 + x1, i1 + y1);
-    pAnimIndices[1] = seqdesc.getBlend(i0 + x2, i1 + y2);
-    pAnimIndices[2] = seqdesc.getBlend(i0 + x3, i1 + y3);
-    // clamp the diagonal
-    if (pWeight[1] < 0.001)
-        pWeight[1] = 0.0;
-    pWeight[2] = 1.0 - pWeight[0] - pWeight[1];
-    //Assert(pWeight[0] >= 0.0 && pWeight[0] <= 1.0);
-    //Assert(pWeight[1] >= 0.0 && pWeight[1] <= 1.0);
-    //Assert(pWeight[2] >= 0.0 && pWeight[2] <= 1.0);
-}
-//-----------------------------------------------------------------------------
-// Purpose: calculate a pose for a single sequence //TODOv2
-//			adds autolayers, runs local ik rukes
-//-----------------------------------------------------------------------------
-const AddSequenceLayers = function (dynamicProp, pStudioHdr, pIKContext, pos, q, seqdesc, sequence, cycle, poseParameter, boneMask, flWeight, flTime) {
-    //return;
-    for (let i = 0; i < seqdesc.numautolayers; ++i) {
-        const pLayer = seqdesc.getAutoLayer(i);
-        if (pLayer.flags & STUDIO_AL_LOCAL) {
-            continue;
-        }
-        let layerCycle = cycle;
-        let layerWeight = flWeight;
-        if (pLayer.start != pLayer.end) {
-            let s = 1.0;
-            let index;
-            if (!(pLayer.flags & STUDIO_AL_POSE)) {
-                index = cycle;
-            }
-            else {
-                //TODOv2
-                pLayer.iSequence; //int iSequence = pStudioHdr.iRelativeSeq(sequence, pLayer.iSequence);
-                //const iPose = pStudioHdr.GetSharedPoseParameter(iSequence, pLayer.iPose);
-                const iPose = pLayer.iPose;
-                if (iPose != -1) {
-                    //const Pose = pStudioHdr.pPoseParameter(iPose);
-                    const Pose = pStudioHdr.getLocalPoseParameter(iPose);
-                    if (Pose) {
-                        index = poseParameter[iPose] * (Pose.end - Pose.start) + Pose.start;
-                    }
-                    else {
-                        index = 0;
-                    }
-                }
-                else {
-                    index = 0;
-                }
-            }
-            if (index < pLayer.start) {
-                continue;
-            }
-            if (index >= pLayer.end) {
-                continue;
-            }
-            if (index < pLayer.peak && pLayer.start != pLayer.peak) {
-                s = (index - pLayer.start) / (pLayer.peak - pLayer.start);
-            }
-            else if (index > pLayer.tail && pLayer.end != pLayer.tail) {
-                s = (pLayer.end - index) / (pLayer.end - pLayer.tail);
-            }
-            if (pLayer.flags & STUDIO_AL_SPLINE) {
-                s = SimpleSpline(s);
-            }
-            if ((pLayer.flags & STUDIO_AL_XFADE) && (index > pLayer.tail)) {
-                layerWeight = (s * flWeight) / (1 - flWeight + s * flWeight);
-            }
-            else if (pLayer.flags & STUDIO_AL_NOBLEND) {
-                layerWeight = s;
-            }
-            else {
-                layerWeight = flWeight * s;
-            }
-            if (!(pLayer.flags & STUDIO_AL_POSE)) {
-                layerCycle = (cycle - pLayer.start) / (pLayer.end - pLayer.start);
-            }
-        }
-        //const iSequence = pStudioHdr.iRelativeSeq(sequence, pLayer.iSequence);//TODOV2
-        const iSequence = pLayer.iSequence; //pStudioHdr.getSequenceById(pLayer.iSequence);
-        AccumulatePose(dynamicProp, pStudioHdr, pIKContext, pos, q, iSequence, layerCycle, poseParameter, boneMask, layerWeight, flTime);
-    }
-};
-//-----------------------------------------------------------------------------
-// Purpose: accumulate a pose for a single sequence on top of existing animation
-//			adds autolayers, runs local ik rukes
-//-----------------------------------------------------------------------------
-const AccumulatePose_pos2 = Array(SOURCE_MODEL_MAX_BONES);
-const AccumulatePose_q2 = Array(SOURCE_MODEL_MAX_BONES);
-for (let i = 0; i < SOURCE_MODEL_MAX_BONES; i++) {
-    AccumulatePose_pos2[i] = create$4();
-    AccumulatePose_q2[i] = create$2();
-}
-function AccumulatePose(dynamicProp, pStudioHdr, pIKContext, pos, q, sequence, cycle, poseParameter, boneMask, flWeight, flTime) {
-    //const pos2 = [];
-    //const q2 = [];
-    const pos2 = AccumulatePose_pos2;
-    const q2 = AccumulatePose_q2;
-    // This shouldn't be necessary, but the Assert should help us catch whoever is screwing this up
-    flWeight = clamp(flWeight, 0.0, 1.0);
-    if (sequence < 0) {
-        return;
-    }
-    const seqdesc = pStudioHdr.getSequenceById(sequence);
-    if (seqdesc.flags & STUDIO_LOCAL) {
-        InitPose(dynamicProp, pStudioHdr, pos2, q2);
-    }
-    if (CalcPoseSingle(dynamicProp, pStudioHdr, pos2, q2, seqdesc, sequence, cycle, poseParameter, boneMask, flTime)) {
-        // this weight is wrong, the IK rules won't composite at the correct intensity
-        AddLocalLayers(dynamicProp, pStudioHdr, pIKContext, pos2, q2, seqdesc, sequence, cycle, poseParameter, boneMask, 1.0, flTime);
-        SlerpBones(pStudioHdr, q, pos, seqdesc, sequence, q2, pos2, flWeight);
-    }
-    if (pIKContext) {
-        pIKContext.AddDependencies(seqdesc, sequence, cycle, poseParameter, flWeight);
-    }
-    AddSequenceLayers(dynamicProp, pStudioHdr, pIKContext, pos, q, seqdesc, sequence, cycle, poseParameter, boneMask, flWeight, flTime);
-}
-//-----------------------------------------------------------------------------
-// Purpose: calculate a pose for a single sequence
-//			adds autolayers, runs local ik rukes
-//-----------------------------------------------------------------------------
-function AddLocalLayers(dynamicProp, pStudioHdr, pIKContext, pos, q, seqdesc, sequence, cycle, poseParameter, boneMask, flWeight, flTime) {
-    if (!(seqdesc.flags & STUDIO_LOCAL)) {
-        return;
-    }
-    for (let i = 0; i < seqdesc.numautolayers; ++i) {
-        const pLayer = seqdesc.pAutolayer(i);
-        if (!(pLayer.flags & STUDIO_AL_LOCAL))
-            continue;
-        let layerCycle = cycle;
-        let layerWeight = flWeight;
-        if (pLayer.start != pLayer.end) {
-            let s = 1.0;
-            if (cycle < pLayer.start)
-                continue;
-            if (cycle >= pLayer.end)
-                continue;
-            if (cycle < pLayer.peak && pLayer.start != pLayer.peak) {
-                s = (cycle - pLayer.start) / (pLayer.peak - pLayer.start);
-            }
-            else if (cycle > pLayer.tail && pLayer.end != pLayer.tail) {
-                s = (pLayer.end - cycle) / (pLayer.end - pLayer.tail);
-            }
-            if (pLayer.flags & STUDIO_AL_SPLINE) {
-                s = SimpleSpline(s);
-            }
-            if ((pLayer.flags & STUDIO_AL_XFADE) && (cycle > pLayer.tail)) {
-                layerWeight = (s * flWeight) / (1 - flWeight + s * flWeight);
-            }
-            else if (pLayer.flags & STUDIO_AL_NOBLEND) {
-                layerWeight = s;
-            }
-            else {
-                layerWeight = flWeight * s;
-            }
-            layerCycle = (cycle - pLayer.start) / (pLayer.end - pLayer.start);
-        }
-        const iSequence = pLayer.iSequence; //pStudioHdr.iRelativeSeq(sequence, pLayer.iSequence);
-        AccumulatePose(dynamicProp, pStudioHdr, pIKContext, pos, q, iSequence, layerCycle, poseParameter, boneMask, layerWeight, flTime);
-    }
-}
-//-----------------------------------------------------------------------------
-// Purpose: blend together q1,pos1 with q2,pos2.	Return result in q1,pos1.
-//			0 returns q1, pos1.	1 returns q2, pos2
-//-----------------------------------------------------------------------------
-function SlerpBones(pStudioHdr, q1, pos1, seqdesc, sequence, q2, pos2, s, boneMask) {
-    if (s <= 0.0)
-        return;
-    if (s > 1.0) {
-        s = 1.0;
-    }
-    if (seqdesc.flags & STUDIO_WORLD) {
-        //WorldSpaceSlerp(pStudioHdr, q1, pos1, seqdesc, sequence, q2, pos2, s, boneMask);
-        return;
-    }
-    // Build weightlist for all bones
-    const nBoneCount = pStudioHdr.getBoneCount();
-    //const *pS2 = (float*)stackalloc(nBoneCount * sizeof(float));TODOv2
-    const pS2 = [];
-    for (let i = 0; i < nBoneCount; ++i) {
-        q1[i] = q1[i] || q2[i] || create$2(); //TODOV2
-        pos1[i] = pos1[i] || pos2[i] || create$4();
-        q2[i] = q2[i] || create$2(); //TODOV2
-        pos2[i] = pos2[i] || create$4();
-        {
-            pS2[i] = s * seqdesc.pBoneweight(i); // blend in based on this bones weight
-            continue;
-        }
-    }
-    let s1, s2;
-    if (seqdesc.flags & STUDIO_DELTA) {
-        for (let i = 0; i < nBoneCount; ++i) {
-            s2 = pS2[i];
-            if (s2 <= 0.0)
-                continue;
-            if (seqdesc.flags & STUDIO_POST) {
-                QuaternionMA(q1[i], s2, q2[i], q1[i]);
-                // FIXME: are these correct?
-                pos1[i][0] = pos1[i][0] + pos2[i][0] * s2;
-                pos1[i][1] = pos1[i][1] + pos2[i][1] * s2;
-                pos1[i][2] = pos1[i][2] + pos2[i][2] * s2;
-            }
-            else {
-                QuaternionSM(s2, q2[i], q1[i], q1[i]);
-                // FIXME: are these correct?
-                pos1[i][0] = pos1[i][0] + pos2[i][0] * s2;
-                pos1[i][1] = pos1[i][1] + pos2[i][1] * s2;
-                pos1[i][2] = pos1[i][2] + pos2[i][2] * s2;
-            }
-        }
-        return;
-    }
-    const q3 = create$2();
-    for (let i = 0; i < nBoneCount; ++i) {
-        s2 = pS2[i];
-        if (s2 <= 0.0)
-            continue;
-        s1 = 1.0 - s2;
-        if (pStudioHdr.boneFlags(i) & BONE_FIXED_ALIGNMENT) {
-            QuaternionSlerpNoAlign(q2[i], q1[i], s1, q3);
-        }
-        else {
-            QuaternionSlerp(q2[i], q1[i], s1, q3);
-        }
-        q1[i][0] = q3[0];
-        q1[i][1] = q3[1];
-        q1[i][2] = q3[2];
-        q1[i][3] = q3[3];
-        pos1[i][0] = pos1[i][0] * s1 + pos2[i][0] * s2;
-        pos1[i][1] = pos1[i][1] * s1 + pos2[i][1] * s2;
-        pos1[i][2] = pos1[i][2] * s1 + pos2[i][2] * s2;
-    }
-}
-//-----------------------------------------------------------------------------
-// Purpose: qt = p * (s * q)
-//-----------------------------------------------------------------------------
-//void QuaternionMA(const Quaternion &p, float s, const Quaternion &q, Quaternion &qt)
-function QuaternionMA(p, s, q, qt) {
-    const p1 = create$2();
-    const q1 = create$2();
-    QuaternionScale(q, s, q1);
-    mul$2(p1, p, q1);
-    normalize$3(p1, p1);
-    qt[0] = p1[0];
-    qt[1] = p1[1];
-    qt[2] = p1[2];
-    qt[3] = p1[3];
-}
-//-----------------------------------------------------------------------------
-// Purpose: qt = (s * p) * q
-//-----------------------------------------------------------------------------
-//void QuaternionSM(float s, const Quaternion &p, const Quaternion &q, Quaternion &qt)
-function QuaternionSM(s, p, q, qt) {
-    const p1 = create$2();
-    const q1 = create$2();
-    QuaternionScale(p, s, p1);
-    mul$2(q1, p1, q);
-    normalize$3(q1, q1); //QuaternionNormalize(q1);
-    qt[0] = q1[0];
-    qt[1] = q1[1];
-    qt[2] = q1[2];
-    qt[3] = q1[3];
-}
-//void QuaternionScale(const Quaternion &p, float t, Quaternion &q);
-function QuaternionScale(p, t, q) {
-    let r;
-    // FIXME: nick, this isn't overly sensitive to accuracy, and it may be faster to
-    // use the cos part (w) of the quaternion (sin(omega)*N,cos(omega)) to figure the new scale.
-    let sinom = Math.sqrt(dot$4(p, p));
-    sinom = Math.min(sinom, 1.0);
-    const sinsom = Math.sin(Math.asin(sinom) * t);
-    t = sinsom / (sinom + FLT_EPSILON);
-    scale$5(q, p, t);
-    // rescale rotation
-    r = 1.0 - sinsom * sinsom;
-    // Assert(r >= 0);
-    if (r < 0.0) {
-        r = 0.0;
-    }
-    r = Math.sqrt(r);
-    // keep sign of rotation
-    if (p.w < 0) {
-        q.w = -r;
-    }
-    else {
-        q.w = r;
-    }
-    return;
-}
-//-----------------------------------------------------------------------------
-// Purpose: Inter-animation blend.	Assumes both types are identical.
-//			blend together q1,pos1 with q2,pos2.	Return result in q1,pos1.
-//			0 returns q1, pos1.	1 returns q2, pos2
-//-----------------------------------------------------------------------------
-/*void BlendBones(
-    const CStudioHdr *pStudioHdr,
-    Quaternion q1[MAXSTUDIOBONES],
-    Vector pos1[MAXSTUDIOBONES],
-    mstudioseqdesc_t &seqdesc,
-    int sequence,
-    const Quaternion q2[MAXSTUDIOBONES],
-    const Vector pos2[MAXSTUDIOBONES],
-    float s,
-    int boneMask)*/
-function BlendBones(pStudioHdr, q1, pos1, seqdesc, sequence, q2, pos2, s, boneMask) {
-    const q3 = create$2();
-    /*virtualmodel_t *pVModel = pStudioHdr.GetVirtualModel();TODO
-    const virtualgroup_t *pSeqGroup = NULL;
-    if (pVModel)
-    {
-        pSeqGroup = pVModel.pSeqGroup(sequence);
-    }*/
-    if (s <= 0) {
-        //Assert(0); // shouldn't have been called
-        return;
-    }
-    else if (s >= 1.0) {
-        //Assert(0); // shouldn't have been called
-        for (let i = 0, boneCount = pStudioHdr.getBoneCount(); i < boneCount; ++i) {
-            let j;
-            // skip unused bones
-            if (!(pStudioHdr.boneFlags(i) & boneMask)) {
-                continue;
-            }
-            {
-                j = i;
-            }
-            if (j >= 0 && seqdesc.pBoneweight(j) > 0.0) {
-                q1[i] = q2[i];
-                pos1[i] = pos2[i];
-            }
-        }
-        return;
-    }
-    const s2 = s;
-    const s1 = 1.0 - s2;
-    for (let i = 0, boneCount = pStudioHdr.getBoneCount(); i < boneCount; ++i) {
-        let j;
-        // skip unused bones
-        q1[i] = q1[i] || create$2();
-        pos1[i] = pos1[i] || create$4();
-        q2[i] = q2[i] || create$2();
-        pos2[i] = pos2[i] || create$4();
-        if (!(pStudioHdr.boneFlags(i) & boneMask)) {
-            continue;
-        }
-        {
-            j = i;
-        }
-        if (j >= 0 && seqdesc.pBoneweight(j) > 0.0) {
-            if (pStudioHdr.boneFlags(i) & BONE_FIXED_ALIGNMENT) {
-                QuaternionBlendNoAlign(q2[i], q1[i], s1, q3);
-            }
-            else {
-                QuaternionBlend(q2[i], q1[i], s1, q3);
-            }
-            q1[i][0] = q3[0];
-            q1[i][1] = q3[1];
-            q1[i][2] = q3[2];
-            q1[i][3] = q3[3];
-            pos1[i][0] = pos1[i][0] * s1 + pos2[i][0] * s2;
-            pos1[i][1] = pos1[i][1] * s1 + pos2[i][1] * s2;
-            pos1[i][2] = pos1[i][2] * s1 + pos2[i][2] * s2;
-        }
-    }
-}
-//-----------------------------------------------------------------------------
-// Quaternion sphereical linear interpolation
-//-----------------------------------------------------------------------------
-//void QuaternionSlerp(const Quaternion &p, const Quaternion &q, float t, Quaternion &qt)
-function QuaternionSlerp(p, q, t, qt) {
-    const q2 = create$2();
-    // 0.0 returns p, 1.0 return q.
-    // decide if one of the quaternions is backwards
-    QuaternionAlign(p, q, q2);
-    QuaternionSlerpNoAlign(p, q2, t, qt);
-}
-//void QuaternionSlerpNoAlign(const Quaternion &p, const Quaternion &q, float t, Quaternion &qt)
-function QuaternionSlerpNoAlign(p, q, t, qt) {
-    //Assert(s_bMathlibInitialized);
-    let omega, cosom, sinom, sclp, sclq;
-    // 0.0 returns p, 1.0 return q.
-    cosom = p[0] * q[0] + p[1] * q[1] + p[2] * q[2] + p[3] * q[3];
-    if ((1.0 + cosom) > 0.000001) {
-        if ((1.0 - cosom) > 0.000001) {
-            omega = Math.acos(cosom);
-            sinom = Math.sin(omega);
-            sclp = Math.sin((1.0 - t) * omega) / sinom;
-            sclq = Math.sin(t * omega) / sinom;
-        }
-        else {
-            // TODO: add short circuit for cosom == 1.0?
-            sclp = 1.0 - t;
-            sclq = t;
-        }
-        for (let i = 0; i < 4; ++i) {
-            qt[i] = sclp * p[i] + sclq * q[i];
-        }
-    }
-    else {
-        //Assert(&qt != &q);
-        qt[0] = -q[1];
-        qt[1] = q[0];
-        qt[2] = -q[3];
-        qt[3] = q[2];
-        sclp = Math.sin((1.0 - t) * (0.5 * Math.PI));
-        sclq = Math.sin(t * (0.5 * Math.PI));
-        for (let i = 0; i < 3; i++) {
-            qt[i] = sclp * p[i] + sclq * qt[i];
-        }
-    }
-    //Assert(qt.IsValid());
-}
-//-----------------------------------------------------------------------------
-// Purpose: resolve a global pose parameter to the specific setting for this sequence
-//-----------------------------------------------------------------------------
-//void Studio_LocalPoseParameter(const CStudioHdr *pStudioHdr, const float poseParameter[], mstudioseqdesc_t &seqdesc, int iSequence, int iLocalIndex, float &flSetting, int &index)
-function Studio_LocalPoseParameter(pStudioHdr, poseParameter, seqdesc, iSequence, iLocalIndex /*, flSetting, index*/) {
-    let flSetting = 0;
-    let index = 0;
-    //const iPose = pStudioHdr.GetSharedPoseParameter(iSequence, seqdesc.paramindex[iLocalIndex]);
-    const iPose = seqdesc.paramindex[iLocalIndex]; //TODOV2
-    if (iPose == -1) {
-        flSetting = 0;
-        index = 0;
-        return { s: flSetting, i: index };
-    }
-    const Pose = pStudioHdr.getLocalPoseParameter(iPose);
-    if (!Pose) {
-        flSetting = 0;
-        index = 0;
-        return { s: flSetting, i: index };
-    }
-    //const flValue = poseParameter[iPose];
-    let flValue = Pose.midpoint;
-    if (poseParameter[Pose.name] !== undefined) {
-        flValue = poseParameter[Pose.name];
-    }
-    if (Pose.loop) {
-        const wrap = (Pose.start + Pose.end) / 2.0 + Pose.loop / 2.0;
-        const shift = Pose.loop - wrap;
-        flValue = flValue - Pose.loop * Math.floor((flValue + shift) / Pose.loop);
-    }
-    if (seqdesc.posekeyindex == 0) {
-        const flLocalStart = (seqdesc.paramstart[iLocalIndex] - Pose.start) / (Pose.end - Pose.start);
-        const flLocalEnd = (seqdesc.paramend[iLocalIndex] - Pose.start) / (Pose.end - Pose.start);
-        // convert into local range
-        flSetting = (flValue - flLocalStart) / (flLocalEnd - flLocalStart);
-        // clamp.	This shouldn't ever need to happen if it's looping.
-        if (flSetting < 0)
-            flSetting = 0;
-        if (flSetting > 1)
-            flSetting = 1;
-        index = 0;
-        if (seqdesc.groupsize[iLocalIndex] > 2) {
-            // estimate index
-            index = Math.round(flSetting * (seqdesc.groupsize[iLocalIndex] - 1));
-            if (index == seqdesc.groupsize[iLocalIndex] - 1)
-                index = seqdesc.groupsize[iLocalIndex] - 2;
-            flSetting = flSetting * (seqdesc.groupsize[iLocalIndex] - 1) - index;
-        }
-    }
-    else {
-        flValue = flValue * (Pose.end - Pose.start) + Pose.start;
-        index = 0;
-        // FIXME: this needs to be 2D
-        // FIXME: this shouldn't be a linear search
-        while (1) {
-            flSetting = (flValue - seqdesc.poseKey(iLocalIndex, index)) / (seqdesc.poseKey(iLocalIndex, index + 1) - seqdesc.poseKey(iLocalIndex, index));
-            //flSetting = 0;//TODOV2
-            /*
-            if (index > 0 && flSetting < 0.0)
-            {
-                index--;
-                continue;
-            }
-            else
-            */
-            if (index < seqdesc.groupsize[iLocalIndex] - 2 && flSetting > 1.0) {
-                index++;
-                continue;
-            }
-            break;
-        }
-        // clamp.
-        if (flSetting < 0.0)
-            flSetting = 0.0;
-        if (flSetting > 1.0)
-            flSetting = 1.0;
-    }
-    return { s: flSetting, i: index };
-}
-function ScaleBones(pStudioHdr, //const CStudioHdr *pStudioHdr,
-q1, //Quaternion q1[MAXSTUDIOBONES],
-pos1, //Vector pos1[MAXSTUDIOBONES],
-sequence, //int sequence,
-s, //float s,
-boneMask //int boneMask
-) {
-    let i, j; //int			i, j;
-    let seqdesc = pStudioHdr.getSequenceById(sequence); //mstudioseqdesc_t & seqdesc = ((CStudioHdr *)pStudioHdr) -> pSeqdesc(sequence);
-    /*
-    virtualmodel_t * pVModel = pStudioHdr -> GetVirtualModel();
-    const virtualgroup_t * pSeqGroup = NULL;
-    if (pVModel) {
-        pSeqGroup = pVModel -> pSeqGroup(sequence);
-    }
-        */
-    let s2 = s;
-    let s1 = 1.0 - s2;
-    for (i = 0; i < pStudioHdr.getBoneCount(); i++) {
-        // skip unused bones
-        if (!(pStudioHdr.boneFlags(i) & boneMask)) {
-            continue;
-        }
-        {
-            j = i;
-        }
-        if (j >= 0 && seqdesc.pBoneweight(j) > 0.0) {
-            QuaternionIdentityBlend(q1[i], s1, q1[i]);
-            //VectorScale(pos1[i], s2, pos1[i]);
-            scale$5(pos1[i], pos1[i], s2);
-        }
-    }
-}
-//-----------------------------------------------------------------------------
-// Purpose: translate animations done in a non-standard parent space
-//-----------------------------------------------------------------------------
-/*
-function CalcLocalHierarchyAnimation(
-    pStudioHdr,//const CStudioHdr * pStudioHdr,
-    boneToWorld: mat4,//matrix3x4_t * boneToWorld,
-    boneComputed,//CBoneBitList & boneComputed,
-    pos,//Vector * pos,
-    q,//Quaternion * q,
-    //const mstudioanimdesc_t &animdesc,
-    pbone,//const mstudiobone_t * pbone,
-    pHierarchy,//mstudiolocalhierarchy_t * pHierarchy,
-    iBone: number,//int iBone,
-    iNewParent: number,//int iNewParent,
-    cycle: number,//float cycle,
-    iFrame: number,//int iFrame,
-    flFraq: number,//float flFraq,
-    boneMask: number,//int boneMask
-): void {
-
-    let localPos = vec3.create();//Vector localPos;
-    let localQ = quat.create();//Quaternion localQ;
-
-    // make fake root transform
-    //static ALIGN16 matrix3x4_t rootXform ALIGN16_POST(1.0f, 0, 0, 0, 0, 1.0f, 0, 0, 0, 0, 1.0f, 0);
-    let rootXform = mat4.create();
-
-    // FIXME: missing check to see if seq has a weight for this bone
-    //float weight = 1.0f;
-    let weight = 1;
-
-    // check to see if there's a ramp on the influence
-    if (pHierarchy -> tail - pHierarchy -> peak < 1.0f  )
-    {
-        float index = cycle;
-
-        if (pHierarchy -> end > 1.0f && index < pHierarchy -> start)
-        index += 1.0f;
-
-        if (index < pHierarchy -> start)
-            return;
-        if (index >= pHierarchy -> end)
-            return;
-
-        if (index < pHierarchy -> peak && pHierarchy -> start != pHierarchy -> peak) {
-            weight = (index - pHierarchy -> start) / (pHierarchy -> peak - pHierarchy -> start);
-        }
-        else if (index > pHierarchy -> tail && pHierarchy -> end != pHierarchy -> tail) {
-            weight = (pHierarchy -> end - index) / (pHierarchy -> end - pHierarchy -> tail);
-        }
-
-        weight = SimpleSpline(weight);
-    }
-
-    CalcDecompressedAnimation(pHierarchy -> pLocalAnim(), iFrame - pHierarchy -> iStart, flFraq, localPos, localQ);
-
-    BuildBoneChain(pStudioHdr, rootXform, pos, q, iBone, boneToWorld, boneComputed);
-
-    matrix3x4_t localXform;
-    AngleMatrix(localQ, localPos, localXform);
-
-    if (iNewParent != -1) {
-        BuildBoneChain(pStudioHdr, rootXform, pos, q, iNewParent, boneToWorld, boneComputed);
-        ConcatTransforms(boneToWorld[iNewParent], localXform, boneToWorld[iBone]);
-    }
-    else {
-        boneToWorld[iBone] = localXform;
-    }
-
-    // back solve
-    Vector p1;
-    Quaternion q1;
-    int n = pbone[iBone].parent;
-    if (n == -1) {
-        if (weight == 1.0f)
-        {
-            MatrixAngles(boneToWorld[iBone], q[iBone], pos[iBone]);
-        }
-        else
-        {
-            MatrixAngles(boneToWorld[iBone], q1, p1);
-            QuaternionSlerp(q[iBone], q1, weight, q[iBone]);
-            pos[iBone] = Lerp(weight, p1, pos[iBone]);
-        }
-    }
-    else {
-        matrix3x4_t worldToBone;
-        MatrixInvert(boneToWorld[n], worldToBone);
-
-        matrix3x4_t local;
-        ConcatTransforms(worldToBone, boneToWorld[iBone], local);
-        if (weight == 1.0f)
-        {
-            MatrixAngles(local, q[iBone], pos[iBone]);
-        }
-        else
-        {
-            MatrixAngles(local, q1, p1);
-            QuaternionSlerp(q[iBone], q1, weight, q[iBone]);
-            pos[iBone] = Lerp(weight, p1, pos[iBone]);
-        }
-    }
-}
-    */
-//-----------------------------------------------------------------------------
-// Purpose: blend together in world space q1,pos1 with q2,pos2.  Return result in q1,pos1.
-//			0 returns q1, pos1.  1 returns q2, pos2
-//-----------------------------------------------------------------------------
-/*
-function WorldSpaceSlerp(
-    pStudioHdr,//const CStudioHdr *pStudioHdr,
-    q1: Array<quat>,//Quaternion q1[MAXSTUDIOBONES],
-    pos1: Array<vec3>,//Vector pos1[MAXSTUDIOBONES],
-    seqdesc,//mstudioseqdesc_t &seqdesc,
-    sequence: number,//int sequence,
-    q2: Array<quat>,//const Quaternion q2[MAXSTUDIOBONES],
-    pos2: Array<vec3>,//const Vector pos2[MAXSTUDIOBONES],
-    s: number,//float s,
-    boneMask: number//int boneMask
-): void {
-    int			i, j;
-    float		s1; // weight of parent for q2, pos2
-    float		s2; // weight for q2, pos2
-
-    // make fake root transform
-    matrix3x4_t rootXform;
-    SetIdentityMatrix(rootXform);
-
-    // matrices for q2, pos2
-    matrix3x4_t * srcBoneToWorld = g_MatrixPool.Alloc();
-    CBoneBitList srcBoneComputed;
-
-    matrix3x4_t * destBoneToWorld = g_MatrixPool.Alloc();
-    CBoneBitList destBoneComputed;
-
-    matrix3x4_t * targetBoneToWorld = g_MatrixPool.Alloc();
-    CBoneBitList targetBoneComputed;
-
-    virtualmodel_t * pVModel = pStudioHdr -> GetVirtualModel();
-    const virtualgroup_t * pSeqGroup = NULL;
-    if (pVModel) {
-        pSeqGroup = pVModel -> pSeqGroup(sequence);
-    }
-
-    mstudiobone_t * pbone = pStudioHdr -> pBone(0);
-
-    for (i = 0; i < pStudioHdr -> numbones(); i++) {
-        // skip unused bones
-        if (!(pStudioHdr -> boneFlags(i) & boneMask)) {
-            continue;
-        }
-
-        int n = pbone[i].parent;
-        s1 = 0.0;
-        if (pSeqGroup) {
-            j = pSeqGroup -> boneMap[i];
-            if (j >= 0) {
-                s2 = s * seqdesc.weight(j);	// blend in based on this bones weight
-                if (n != -1) {
-                    s1 = s * seqdesc.weight(pSeqGroup -> boneMap[n]);
-                }
-            }
-            else {
-                s2 = 0.0;
-            }
-        }
-        else {
-            s2 = s * seqdesc.weight(i);	// blend in based on this bones weight
-            if (n != -1) {
-                s1 = s * seqdesc.weight(n);
-            }
-        }
-
-        if (s1 == 1.0 && s2 == 1.0) {
-            pos1[i] = pos2[i];
-            q1[i] = q2[i];
-        }
-        else if (s2 > 0.0) {
-            Quaternion srcQ, destQ;
-            Vector srcPos, destPos;
-            Quaternion targetQ;
-            Vector targetPos;
-            Vector tmp;
-
-            BuildBoneChain(pStudioHdr, rootXform, pos1, q1, i, destBoneToWorld, destBoneComputed);
-            BuildBoneChain(pStudioHdr, rootXform, pos2, q2, i, srcBoneToWorld, srcBoneComputed);
-
-            MatrixAngles(destBoneToWorld[i], destQ, destPos);
-            MatrixAngles(srcBoneToWorld[i], srcQ, srcPos);
-
-            QuaternionSlerp(destQ, srcQ, s2, targetQ);
-            AngleMatrix(targetQ, destPos, targetBoneToWorld[i]);
-
-            // back solve
-            if (n == -1) {
-                MatrixAngles(targetBoneToWorld[i], q1[i], tmp);
-            }
-            else {
-                matrix3x4_t worldToBone;
-                MatrixInvert(targetBoneToWorld[n], worldToBone);
-
-                matrix3x4_t local;
-                ConcatTransforms(worldToBone, targetBoneToWorld[i], local);
-                MatrixAngles(local, q1[i], tmp);
-
-                // blend bone lengths (local space)
-                pos1[i] = Lerp(s2, pos1[i], pos2[i]);
-            }
-        }
-    }
-    g_MatrixPool.Free(srcBoneToWorld);
-    g_MatrixPool.Free(destBoneToWorld);
-    g_MatrixPool.Free(targetBoneToWorld);
-}
-*/
-
-class SourceAnimation {
-    position = create$4();
-    boneRot = create$4(); //TODO: remove me ?
-    quaternion = create$2(); //TODOv2
-    tempPos = create$4();
-    tempRot = create$4();
-    constructor(sourceModel) {
-    }
-    animate2(dynamicProp, poseParameters, position, orientation, sequences, bonesScale) {
-        const model = dynamicProp.sourceModel;
-        if (!model) {
-            return;
-        }
-        const modelBones = model.getBones();
-        if (!modelBones) {
-            return;
-        }
-        dynamicProp.parent;
-        const posRemoveMeTemp = [];
-        const quatRemoveMeTemp = [];
-        const modelBonesLength = modelBones.length;
-        const seqlist = Object.keys(sequences);
-        let posRemoveMe; // = [];//optimize
-        let quatRemoveMe; // = [];//optimize
-        if (seqlist.length) {
-            let s;
-            while (s = seqlist.shift()) {
-                if (sequences[s].s) {
-                    const sequenceMdl = sequences[s].s.mdl;
-                    const t = Studio_Duration(sequenceMdl, sequences[s].s.id, poseParameters);
-                    //InitPose(dynamicProp, sequenceMdl, posRemoveMeTemp, quatRemoveMeTemp, BONE_USED_BY_ANYTHING);
-                    CalcPose(dynamicProp, sequenceMdl, undefined, posRemoveMeTemp, quatRemoveMeTemp, sequences[s].s.id, dynamicProp.frame / t, poseParameters, BONE_USED_BY_ANYTHING, 1.0, dynamicProp.frame / t);
-                    if (sequenceMdl != model.mdl && sequenceMdl.boneNames) {
-                        posRemoveMe = [];
-                        quatRemoveMe = [];
-                        const modelBoneArray = model.mdl.getBones();
-                        for (let boneIndex = 0, l = modelBoneArray.length; boneIndex < l; ++boneIndex) {
-                            const boneName = modelBoneArray[boneIndex].lowcasename;
-                            const seqBoneId = sequenceMdl.boneNames[boneName];
-                            posRemoveMe[boneIndex] = posRemoveMeTemp[seqBoneId];
-                            quatRemoveMe[boneIndex] = quatRemoveMeTemp[seqBoneId];
-                        }
-                    }
-                    else {
-                        posRemoveMe = posRemoveMeTemp;
-                        quatRemoveMe = quatRemoveMeTemp;
-                    }
-                }
-            }
-        }
-        posRemoveMe = posRemoveMe || [];
-        quatRemoveMe = quatRemoveMe || [];
-        //const currentFrame = mainAnimFrame%model.maxAnimLength;//TODOV2
-        const blendLayers = [];
-        //const currentFrame = null;
-        const seqList = Object.keys(sequences);
-        const bonesRemoveMe = Object.create(null);
-        for (let i = 0; i < seqList.length * 0; ++i) {
-            const sequenceName = seqList[i];
-            const seqContext = sequences[sequenceName];
-            if (seqContext) {
-                const sequence = seqContext.s;
-                if (sequence) {
-                    const sequenceBones = sequence.mdl.getBones();
-                    if (sequenceBones) {
-                        const g1 = Math.floor(sequence.groupsize1 / 2);
-                        const g2 = Math.floor(sequence.groupsize2 / 2);
-                        //g1 = g1RemoveMe;
-                        //g2 = g2RemoveMe;
-                        //g1 = 2;
-                        const animIndex = sequence.getBlend(g1, g2); //TODOV2
-                        const anim = sequence.mdl.getAnimDescription(animIndex);
-                        if (anim) {
-                            blendLayers.push(anim); //TODOv2: remove me
-                            /*
-                            if (frameTODOV2 && frameTODOV2.bones) {
-                                const boneList = Object.keys(frameTODOV2.bones);
-
-                                while (boneName = boneList.shift()) {
-                                    const bone = frameTODOV2.bones[boneName];
-                                    if (bone) {
-                                        boneId = bone.boneId;
-                                        weight = sequence.weightlist[boneId] > 0 ? 1 : 0;
-
-                                        bonesRemoveMe[boneName] = bonesRemoveMe[boneName] || Object.create(null);
-                                        bonesRemoveMe[boneName].count = (bonesRemoveMe[boneName].count + weight) || weight;
-                                        bonesRemoveMe[boneName].pos = bonesRemoveMe[boneName].pos || vec3.create();
-                                        bonesRemoveMe[boneName].rot = bonesRemoveMe[boneName].rot || vec3.create();
-                                        bonesRemoveMe[boneName].quat = bonesRemoveMe[boneName].quat || quat.create();//TODOv2
-
-                                        //tempQuatRemoveMe = quat.fromMat3(quat.create(), mat3.fromEuler(SourceEngineTempMat3, bone.rot));
-                                        quatFromEulerRad(tempQuatRemoveMe, bone.rot[0], bone.rot[1], bone.rot[2]);
-
-                                        vec3.scaleAndAdd(bonesRemoveMe[boneName].pos, bonesRemoveMe[boneName].pos, bone.pos, weight);
-                                        vec3.scaleAndAdd(bonesRemoveMe[boneName].rot, bonesRemoveMe[boneName].rot, bone.rot, weight);
-                                        //vec4.scaleAndAdd(bonesRemoveMe[boneName].quat, bonesRemoveMe[boneName].quat, tempQuatRemoveMe, weight);
-                                        if (weight > 0) {
-                                            quat.mul(bonesRemoveMe[boneName].quat, bonesRemoveMe[boneName].quat, tempQuatRemoveMe);
-                                        }
-                                    }
-                                }
-                            }
-                            */
-                        }
-                    }
-                }
-            }
-        }
-        Object.keys(bonesRemoveMe).forEach(function (boneName) {
-            scale$5(bonesRemoveMe[boneName].pos, bonesRemoveMe[boneName].pos, 1 / bonesRemoveMe[boneName].count);
-            scale$5(bonesRemoveMe[boneName].rot, bonesRemoveMe[boneName].rot, 1 / bonesRemoveMe[boneName].count);
-            //vec3.scale(bonesRemoveMe[boneName].quat, bonesRemoveMe[boneName].quat, 1 / bonesRemoveMe[boneName].count);
-            normalize$3(bonesRemoveMe[boneName].quat, bonesRemoveMe[boneName].quat);
-        });
-        for (let i = 0; i < modelBonesLength; ++i) {
-            //let pbone = modelBones[i];
-            //quatRemoveMeTemp[i] = quat.copy(quat.create(), pbone.quaternion);//removeme
-            //posRemoveMeTemp[i] = vec3.copy(vec3.create(), pbone.position);
-            let boneIndex = i;
-            const bone = modelBones[i];
-            zero$4(this.boneRot);
-            zero$4(this.position);
-            identity$1(this.quaternion);
-            for (let addIndex = 0; addIndex < blendLayers.length * 0; addIndex++) {
-                const layer = blendLayers[addIndex];
-                (layer.frame === undefined ? /*frame*/ model.currentFrame : layer.frame);
-            }
-            const bonesRemoveMeMe = bonesRemoveMe[bone.name];
-            if (bonesRemoveMeMe !== undefined) ;
-            else {
-                copy$4(this.position, bone.position);
-                //vec3.copy(this.boneRot, bone.rot);
-                //quat.fromMat3(this.quaternion, mat3.fromEuler(SourceEngineTempMat3, bone.rot));
-                quatFromEulerRad(this.quaternion, bone.rot[0], bone.rot[1], bone.rot[2]);
-            }
-            //const q = quat.fromMat3(quat.create(), mat3.fromEuler(SourceEngineTempMat3, this.boneRot));
-            const posRemoveMeMe = posRemoveMe[bone.boneId];
-            const quatRemoveMeMe = quatRemoveMe[bone.boneId];
-            //bone.boneQuat = this.boneQuat;
-            //bone.position = this.position;
-            bone.parent;
-            bone.parentMergedBone = null; //TODO: wtf ?
-            bone.lowcasename;
-            const dynamicPropBones = dynamicProp.skeleton._bones; //dynamicProp.bones;
-            let dynamicPropBone = dynamicPropBones[boneIndex];
-            if (dynamicPropBone === undefined) {
-                //dynamicPropBone = {worldPos:vec3.create(), worldQuat:quat.create()};//TODO: optimize
-                //dynamicPropBones[boneNameLowerCase] = dynamicPropBone;
-                return;
-            }
-            //vec3.copy(dynamicPropBone.worldPos, bone.worldPos);
-            //quat.copy(dynamicPropBone.worldQuat, bone.worldQuat);
-            //dynamicProp.bones[boneNameLowerCase] = dynamicPropBones;
-            if (bonesScale !== undefined) {
-                const boneScale = bonesScale[bone.name];
-                if (boneScale) {
-                    scale$6(bone.boneMat, bone.boneMat, [boneScale, boneScale, boneScale]);
-                }
-            }
-            let b = dynamicPropBones[boneIndex];
-            if (b) {
-                if (!b.locked) {
-                    b.quaternion = quatRemoveMeMe ?? b._initialQuaternion;
-                    b.position = posRemoveMeMe ?? b._initialPosition;
-                }
-            }
-            else {
-                b = new MdlBone(dynamicProp.skeleton);
-                dynamicProp.skeleton._bones[boneIndex] = b;
-                b.boneId = bone.boneId;
-                b.name = bone.name;
-                b.quaternion = bone.quaternion;
-                b.position = bone.position;
-                b.parentBone = bone.parentBone;
-                b.parent = dynamicProp.skeleton._bones[b.parentBone];
-                b.poseToBone = bone.poseToBone;
-                b.initPoseToBone = bone.initPoseToBone;
-            }
-        }
-        return;
-    }
-}
-
 const identityVec3$1 = create$4();
 const identityQuat = create$2();
 const initSkeletonTempVec3 = create$4();
@@ -57177,22 +54464,21 @@ class Source2ModelInstance extends Entity {
     #materialsUsed = new Set();
     #animName;
     animable = true;
-    lod = 1;
+    #lod = 1n;
     bodyParts = {};
     poseParameters = {};
     meshes = new Set();
     attachements = new Map();
-    anim = new SourceAnimation(); //TODO: removeme
     activity = '';
     activityModifiers = new Set();
     sequences = {};
     mainAnimFrame = 0;
     animationSpeed = 1.0;
     sourceModel;
-    static {
-        defaultMaterial$2.addUser(Source2ModelInstance);
-    }
+    hasAnimations = true;
+    #bodyGroups = new Map();
     constructor(sourceModel, isDynamic) {
+        defaultMaterial$2.addUser(Source2ModelInstance);
         super();
         this.sourceModel = sourceModel;
         this.name = sourceModel?.vmdl?.displayName;
@@ -57206,6 +54492,43 @@ class Source2ModelInstance extends Entity {
         }
         this.#init();
         this.#updateMaterials();
+    }
+    #initDefaultBodyGroups() {
+        this.#bodyGroups.set('autodefault', undefined);
+        for (const bodyGroup of this.sourceModel.bodyGroups) {
+            this.#bodyGroups.set(bodyGroup, undefined);
+        }
+        this.#refreshMeshesVisibility();
+    }
+    setBodyGroup(name, choice) {
+        if (this.sourceModel.bodyGroups.has(name)) {
+            this.#bodyGroups.set(name, choice);
+        }
+        this.#refreshMeshesVisibility();
+    }
+    #refreshMeshesVisibility() {
+        let mask = 0n;
+        for (const bodyGroupsChoice of this.sourceModel.bodyGroupsChoices) {
+            const choice = this.#bodyGroups.get(bodyGroupsChoice.bodyGroup);
+            if ((choice === undefined) || (bodyGroupsChoice.choice == `${bodyGroupsChoice.bodyGroup}_@${choice}`)) {
+                mask += BigInt(Math.pow(2, bodyGroupsChoice.bodyGroupId));
+            }
+        }
+        if (mask == 0n) {
+            mask = 0xffffffffffffffffn;
+        }
+        for (const mesh of this.meshes) {
+            const geometry = mesh.geometry;
+            mesh.visible = undefined;
+            if (geometry) {
+                const meshGroupMask = BigInt(geometry.properties.get('mesh_group_mask'));
+                const lodGroupMask = BigInt(geometry.properties.get('lodGroupMask'));
+                mesh.visible = (meshGroupMask & mask) > 0 ? undefined : false;
+                if (lodGroupMask && ((lodGroupMask & this.#lod) == 0n)) {
+                    mesh.visible = false;
+                }
+            }
+        }
     }
     get skeleton() {
         return this.#skeleton;
@@ -57253,26 +54576,13 @@ class Source2ModelInstance extends Entity {
         return this.#skin;
     }
     setLOD(lod) {
-        this.lod = lod;
-        this.setMeshesLOD(lod);
+        this.#lod = BigInt(lod);
+        this.#refreshMeshesVisibility();
         this.forEach((child) => {
             if (child != this && child.setLOD) {
                 child.setLOD(lod);
             }
         });
-    }
-    setMeshesLOD(lod) {
-        for (let mesh of this.meshes) {
-            let geometry = mesh.geometry;
-            if (geometry && geometry.properties.get('lodGroupMask') !== undefined) {
-                if (geometry.properties.get('lodGroupMask') & lod) {
-                    mesh.visible = undefined;
-                }
-                else {
-                    mesh.visible = false;
-                }
-            }
-        }
     }
     setPoseParameter(paramName, paramValue) {
         this.poseParameters[paramName] = paramValue;
@@ -57286,6 +54596,9 @@ class Source2ModelInstance extends Entity {
     }
     playAnimation(name) {
         this.#animName = name;
+    }
+    async setAnimation(id, name, weight) {
+        throw 'code me';
     }
     setActivityModifiers(activityModifiers = []) {
         this.activityModifiers.clear();
@@ -57405,7 +54718,8 @@ class Source2ModelInstance extends Entity {
             }
             this.bodyParts[bodyPartName] = newBodyPart;
         }
-        this.setMeshesLOD(this.lod);
+        this.#refreshMeshesVisibility();
+        this.#initDefaultBodyGroups();
     }
     #initSkeleton() {
         let bones = this.sourceModel.getBones();
@@ -57457,20 +54771,8 @@ class Source2ModelInstance extends Entity {
             attachements.addChild(attachementInstance);
         }
     }
-    setBodyGroup(bodyPartName, bodyPartModelId) {
-        let bodyPart = this.bodyParts[bodyPartName];
-        if (bodyPart) {
-            for (let index = 0, l = bodyPart.length; index < l; index++) {
-                let meshes = bodyPart[index];
-                let visible = false;
-                if (index === bodyPartModelId) {
-                    visible = true;
-                }
-                for (let mesh of meshes) {
-                    mesh.visible = visible;
-                }
-            }
-        }
+    getAnimations() {
+        return this.sourceModel.getAnimations();
     }
     buildContextMenu() {
         let skins = this.sourceModel.getSkinList();
@@ -57484,7 +54786,7 @@ class Source2ModelInstance extends Entity {
         return Object.assign(super.buildContextMenu(), {
             Source2ModelInstance_1: null,
             skin: { i18n: '#skin', submenu: skinMenu },
-            animation: { i18n: '#animation', f: async (entity) => { let animation = await Interaction.getString(await entity.sourceModel.getAnimations()); if (animation) {
+            animation: { i18n: '#animation', f: async (entity) => { let animation = await new Interaction().getString(0, 0, await entity.sourceModel.getAnimations()); if (animation) {
                     entity.playAnimation(animation);
                 } } },
             Source2ModelInstance_2: null,
@@ -58426,17 +55728,41 @@ class Source2Model {
     bodyParts = new Map();
     attachements = new Map();
     seqGroup;
+    bodyGroups = new Set();
+    bodyGroupsChoices = new Set();
     constructor(repository, vmdl) {
         this.repository = repository;
         this.vmdl = vmdl;
         this.#loadInternalAnimGroup();
         this.#createAnimGroup();
+        this.#createBodyGroups();
     }
     #createAnimGroup() {
         let aseq = this.vmdl.getBlockByType('ASEQ');
         if (aseq) {
             this.seqGroup = new Source2SeqGroup(this.#internalAnimGroup);
             this.seqGroup.setFile(this.vmdl);
+        }
+    }
+    #createBodyGroups() {
+        let meshGroups = this.vmdl.getPermModelData('m_meshGroups');
+        if (meshGroups) {
+            let bodyGroupId = 0;
+            let bodyGroup;
+            for (const choice of meshGroups) {
+                if (choice == 'autodefault') {
+                    bodyGroup = choice;
+                }
+                else {
+                    const result = /(.*)_@\d$/.exec(choice);
+                    bodyGroup = result?.[1];
+                }
+                if (bodyGroup) {
+                    this.bodyGroups.add(bodyGroup);
+                    this.bodyGroupsChoices.add({ choice: choice, bodyGroup: bodyGroup, bodyGroupId: bodyGroupId });
+                }
+                bodyGroupId++;
+            }
         }
     }
     matchActivity(activity, modifiers) {
@@ -58488,55 +55814,55 @@ class Source2Model {
         return null;
     }
     /*
-        getAttachments() {
-            if (this.mdl) {
-                return this.mdl.getAttachments();
-            }
-            return null;
+    getAttachments() {
+        if (this.mdl) {
+            return this.mdl.getAttachments();
         }
-    
-        getBone(boneIndex) {
-            if (this.mdl) {
-                return this.mdl.getBone(boneIndex);
-            }
-            return null;
+        return null;
+    }
+
+    getBone(boneIndex) {
+        if (this.mdl) {
+            return this.mdl.getBone(boneIndex);
         }
-    
-        getAttachementById(attachementIndex) {
-            if (this.mdl) {
-                return this.mdl.getAttachementById(attachementIndex);
-            }
-            return null;
+        return null;
+    }
+
+    getAttachementById(attachementIndex) {
+        if (this.mdl) {
+            return this.mdl.getAttachementById(attachementIndex);
         }
-    
-        getBoneByName(boneName) {
-            if (this.mdl) {
-                return this.mdl.getBoneByName(boneName);
-            }
-            return null;
+        return null;
+    }
+
+    getBoneByName(boneName) {
+        if (this.mdl) {
+            return this.mdl.getBoneByName(boneName);
         }
-    
-        getAttachement(attachementName) {
-            if (this.mdl) {
-                return this.mdl.getAttachement(attachementName);
-            }
-            return null;
+        return null;
+    }
+
+    getAttachement(attachementName) {
+        if (this.mdl) {
+            return this.mdl.getAttachement(attachementName);
         }
-    
-        getBodyPart(bodyPartId) {
-            if (this.mdl) {
-                return this.mdl.getBodyPart(bodyPartId);
-            }
-            return null;
+        return null;
+    }
+
+    getBodyPart(bodyPartId) {
+        if (this.mdl) {
+            return this.mdl.getBodyPart(bodyPartId);
         }
-    
-        getBodyParts() {
-            if (this.mdl) {
-                return this.mdl.getBodyParts();
-            }
-            return null;
+        return null;
+    }
+
+    getBodyParts() {
+        if (this.mdl) {
+            return this.mdl.getBodyParts();
         }
-    */
+        return null;
+    }
+*/
     getSkinMaterials(skin) {
         let materialGroups = this.vmdl.getPermModelData('m_materialGroups');
         if (materialGroups) {
@@ -58725,56 +56051,18 @@ class Source2ModelLoader {
         repoPromises[fileName] = promise;
         return promise;
     }
-    async testProcess_removeme(vmdl, model, repository) {
-        let group = new Entity();
-        let drawCalls = vmdl.getBlockStruct('MDAT.keyValue.root.m_sceneObjects.0.m_drawCalls') || vmdl.getBlockStruct('MDAT.keyValue.root.m_drawCalls'); //TODOv3 process multiple objects
-        if (drawCalls) {
-            for (let drawCallIndex = 0, l = drawCalls.length; drawCallIndex < l; ++drawCallIndex) { //TODOv3: mutualize buffer if used by multiple drawcalls
-                let drawCall = drawCalls[drawCallIndex];
-                let vertexBuffers = drawCall.m_vertexBuffers[0]; //TODOv3 why 0 ?
-                if (!vertexBuffers) {
-                    continue;
-                }
-                let bufferIndex = vertexBuffers.m_hBuffer;
-                //			for(let meshIndex = 0; meshIndex < 12/*TODOv3*/; ++meshIndex) {
-                let indices = new Uint32BufferAttribute(vmdl.getIndices(bufferIndex), 1, drawCall.m_nStartIndex * 4, drawCall.m_nIndexCount);
-                let vertexPosition = new Float32BufferAttribute(vmdl.getVertices(bufferIndex), 3);
-                let vertexNormal = new Float32BufferAttribute(vmdl.getNormals(bufferIndex), 3);
-                let textureCoord = new Float32BufferAttribute(vmdl.getCoords(bufferIndex), 2);
-                let vertexWeights = new Float32BufferAttribute(vmdl.getBoneWeight(bufferIndex), 4);
-                let vertexBones = new Float32BufferAttribute(vmdl.getBoneIndices(bufferIndex), 4);
-                let geometry = new BufferGeometry();
-                geometry.setIndex(indices); //, drawCall.m_nStartIndex, drawCall.m_nIndexCount);
-                geometry.setAttribute('aVertexPosition', vertexPosition);
-                geometry.setAttribute('aVertexNormal', vertexNormal);
-                geometry.setAttribute('aTextureCoord', textureCoord);
-                geometry.setAttribute('aBoneWeight', vertexWeights);
-                geometry.setAttribute('aBoneIndices', vertexBones);
-                geometry.count = drawCall.m_nIndexCount;
-                geometry.properties.set('materialPath', drawCall.m_material); //"models/characters/alyx/materials/alyx_body.vmat"
-                geometry.properties.set('bones', vmdl.getBlockStruct('MDAT.keyValue.root.m_skeleton.m_bones')); //mesh.getKeyValue('m_skeleton.m_bones');
-                let material = new MeshBasicMaterial(); //removemeTODOv3
-                let staticMesh = new Mesh(geometry, material);
-                group.addChild(staticMesh);
-                const materialPath = geometry.properties.get('materialPath');
-                Source2MaterialManager.getMaterial(repository, materialPath).then((material) => staticMesh.setMaterial(material)).catch((error) => console.error('unable to find material ' + materialPath, error));
-                model.addGeometry(geometry, FileNameFromPath(drawCall.m_material), 0 /*TODOv3*/);
-            }
-        }
-        await this._loadExternalMeshes(group, vmdl, model, repository);
-        //vmdl.loadAnimGroups();//TODOv3
-        return group;
-    }
     async testProcess2(vmdl, model, repository) {
         let group = new Entity();
         let ctrlRoot = vmdl.getBlockStruct('CTRL.keyValue.root');
         let m_refLODGroupMasks = vmdl.getBlockStruct('DATA.structs.PermModelData_t.m_refLODGroupMasks') || vmdl.getBlockStruct('DATA.keyValue.root.m_refLODGroupMasks');
+        let m_refMeshGroupMasks = vmdl.getBlockStruct('DATA.structs.PermModelData_t.m_refMeshGroupMasks') || vmdl.getBlockStruct('DATA.keyValue.root.m_refMeshGroupMasks');
         if (ctrlRoot && m_refLODGroupMasks) {
             let embeddedMeshes = ctrlRoot.embedded_meshes;
             for (let meshIndex = 0; meshIndex < embeddedMeshes.length; ++meshIndex) {
                 let lodGroupMask = Number(m_refLODGroupMasks[meshIndex]);
+                let meshGroupMask = m_refMeshGroupMasks?.[meshIndex];
                 let embeddedMesh = embeddedMeshes[meshIndex];
-                this.#loadMesh(repository, model, group, vmdl.getBlockById(embeddedMesh.data_block), vmdl.getBlockById(embeddedMesh.vbib_block), lodGroupMask, vmdl, meshIndex);
+                this.#loadMesh(repository, model, group, vmdl.getBlockById(embeddedMesh.data_block), vmdl.getBlockById(embeddedMesh.vbib_block), lodGroupMask, vmdl, meshIndex, meshGroupMask);
                 /*data_block: 1
                 mesh_index: 0
                 morph_block: 0
@@ -58786,7 +56074,7 @@ class Source2ModelLoader {
         await this._loadExternalMeshes(group, vmdl, model, repository);
         return group;
     }
-    #loadMesh(repository, model, group, dataBlock, vbibBlock, lodGroupMask, vmdl, meshIndex) {
+    #loadMesh(repository, model, group, dataBlock, vbibBlock, lodGroupMask, vmdl, meshIndex, meshGroupMask) {
         const remappingTable = vmdl.getRemappingTable(meshIndex);
         model._addAttachements(dataBlock.getKeyValue('m_attachments'));
         let drawCalls = dataBlock.getKeyValue('m_sceneObjects.0.m_drawCalls') || dataBlock.getKeyValue('root.m_drawCalls');
@@ -58816,6 +56104,7 @@ class Source2ModelLoader {
                 let vertexBones = new Float32BufferAttribute(vmdl.remapBuffer(vbibBlock.getBoneIndices(bufferIndex), remappingTable), 4);
                 let geometry = new BufferGeometry();
                 geometry.properties.set('lodGroupMask', lodGroupMask);
+                geometry.properties.set('mesh_group_mask', meshGroupMask ?? 0xffffffffffffffffn);
                 geometry.setIndex(indices);
                 geometry.setAttribute('aVertexPosition', vertexPosition);
                 geometry.setAttribute('aVertexNormal', vertexNormal);
@@ -58836,9 +56125,9 @@ class Source2ModelLoader {
         }
     }
     async _loadExternalMeshes(group, vmdl, model, repository) {
-        let callback = (mesh, lodGroupMask, meshIndex) => {
+        let callback = (mesh, lodGroupMask, meshIndex, meshGroupMask) => {
             //TODO: only load highest LOD
-            this.#loadMesh(repository, model, group, mesh.getBlockByType('DATA'), mesh.getBlockByType('VBIB'), lodGroupMask, vmdl, meshIndex);
+            this.#loadMesh(repository, model, group, mesh.getBlockByType('DATA'), mesh.getBlockByType('VBIB'), lodGroupMask, vmdl, meshIndex, meshGroupMask);
         };
         await this.loadMeshes(vmdl, callback);
     }
@@ -58846,15 +56135,17 @@ class Source2ModelLoader {
         let promises = new Set();
         let m_refMeshes = vmdl.getBlockStruct('DATA.structs.PermModelData_t.m_refMeshes') || vmdl.getBlockStruct('DATA.keyValue.root.m_refMeshes');
         let m_refLODGroupMasks = vmdl.getBlockStruct('DATA.structs.PermModelData_t.m_refLODGroupMasks') || vmdl.getBlockStruct('DATA.keyValue.root.m_refLODGroupMasks');
+        let m_refMeshGroupMasks = vmdl.getBlockStruct('DATA.structs.PermModelData_t.m_refMeshGroupMasks') || vmdl.getBlockStruct('DATA.keyValue.root.m_refMeshGroupMasks');
         if (m_refMeshes && m_refLODGroupMasks) {
             for (let meshIndex = 0; meshIndex < m_refMeshes.length; meshIndex++) { //TODOv3
                 let meshName = m_refMeshes[meshIndex];
                 let lodGroupMask = Number(m_refLODGroupMasks[meshIndex]);
+                let meshGroupMask = m_refMeshGroupMasks?.[meshIndex];
                 if (meshName) {
                     let promise = MeshManager.getMesh(vmdl.repository, meshName);
                     promises.add(promise);
                     promise.then((mesh) => {
-                        callback(mesh, lodGroupMask, meshIndex);
+                        callback(mesh, lodGroupMask, meshIndex, meshGroupMask);
                     });
                 }
             }
@@ -58963,7 +56254,246 @@ class Source2ModelManager {
                 repoList.push({ name: repositoryName, files: [repo] });
             }
         }
-        return { files: repoList };
+        return { name: '', path: '', files: repoList };
+    }
+}
+
+class Source1ParticleControler {
+    static #loadManifestPromises = {};
+    static speed = 1.0;
+    static visible = true;
+    static #systemList = {}; //TODOv3: make map
+    static #activeSystemList = new Map();
+    static #pcfList = {};
+    static #systemNameToPcf = {};
+    static #sourceEngineParticleSystem;
+    static fixedTime;
+    static {
+        GraphicsEvents.addEventListener(GraphicsEvent.Tick, (event) => {
+            this.stepSystems(this.fixedTime ?? event.detail.delta); //TODOv3: imporve this
+        });
+    }
+    static setParticleConstructor(ps) {
+        this.#sourceEngineParticleSystem = ps;
+    }
+    /**
+     * Reset all active systems
+     */
+    static resetAll() {
+        for (let system of this.#activeSystemList.values()) {
+            system.reset();
+        }
+    }
+    /**
+     * Step systems
+     * @param {Number} elapsedTime Step time
+     */
+    static stepSystems(elapsedTime) {
+        if (elapsedTime) {
+            elapsedTime *= this.speed;
+            elapsedTime = Math.min(elapsedTime, 0.1);
+            for (let system of this.#activeSystemList.values()) {
+                if (system.parentSystem === undefined) {
+                    system.step(elapsedTime);
+                }
+            }
+        }
+    }
+    /**
+     * Add system TODO
+     * @param {Number} elapsedTime Step time
+     */
+    static addSystem2(system) {
+        this.#systemList[system.id] = system;
+    }
+    /**
+     * Create system
+     * @param {Number} elapsedTime Step time
+     */
+    static async createSystem(repository, systemName) {
+        if (!repository) {
+            //try to get repository from filename
+            for (let repo in this.#systemNameToPcf) {
+                if (systemName.startsWith(repo)) {
+                    repository = repo;
+                    systemName = systemName.replace(repo, '');
+                    break;
+                }
+            }
+            let index = systemName.lastIndexOf('.pcf/');
+            if (index != -1) {
+                systemName = systemName.substring(index + 5);
+            }
+        }
+        let ps = new this.#sourceEngineParticleSystem({ repository: repository, name: systemName }); //TODOV2
+        this.#systemList[ps.id] = ps;
+        await this.#createSystem(repository, ps);
+        return ps;
+    }
+    /**
+     * Create system
+     * @param {Number} elapsedTime Step time
+     */
+    static async #createSystem(repositoryName, system) {
+        let pcfName = await this.#getPcfBySystemName(repositoryName, system.name);
+        if (pcfName) {
+            let pcf = await this.#getPcf(repositoryName, 'particles/' + pcfName);
+            if (pcf) {
+                pcf.initSystem(system);
+            }
+        }
+    }
+    static async #getPcfBySystemName(repository, systemName) {
+        await this.#loadManifest(repository);
+        let systemNameToPcfRepo = this.#systemNameToPcf[repository];
+        if (systemNameToPcfRepo) {
+            return systemNameToPcfRepo[systemName];
+        }
+        return null;
+        /*
+
+                    let promise = new Promise((resolve, reject) => {
+                        let systemNameToPcfRepo = systemNameToPcf[repository];
+                        if (systemNameToPcfRepo) {
+                            resolve(systemNameToPcfRepo[systemName]);
+                        } else {
+                            let kallback = () => {
+                                resolve(systemNameToPcf[repository][systemName]);
+                            }
+                            this.#loadManifest(repository).then(kallback, reject);//TODOv2: root
+                        }
+                    });
+                    return promise;*/
+    }
+    static async loadManifest(repository) {
+        if (this.#systemNameToPcf[repository] === undefined) {
+            this.#systemNameToPcf[repository] = null;
+        }
+    }
+    /**
+     * TODO
+     */
+    static async #loadManifest(repositoryName) {
+        this.#loadManifestPromises[repositoryName] = this.#loadManifestPromises[repositoryName] ?? new Promise(async (resolve, reject) => {
+            let systemNameToPcfRepo = {};
+            this.#systemNameToPcf[repositoryName] = systemNameToPcfRepo;
+            const response = await new Repositories().getFileAsJson(repositoryName, 'particles/manifest.json'); //TODO const
+            if (response.error) {
+                reject(false);
+            }
+            const json /*TODO: change type*/ = response.json;
+            if (json && json.files) {
+                for (let file of json.files) {
+                    let pcfName = file.name;
+                    for (let definition of file.particlesystemdefinitions) {
+                        systemNameToPcfRepo[definition] = pcfName;
+                    }
+                }
+                resolve(true);
+            }
+            else {
+                reject(false);
+            }
+        });
+        return this.#loadManifestPromises[repositoryName];
+    }
+    /**
+     * Start all systems
+     */
+    static startAll() {
+        for (let system of this.#activeSystemList.values()) {
+            system.start();
+        }
+    }
+    /**
+     * Stop all systems
+     */
+    static stopAll() {
+        for (let system of this.#activeSystemList.values()) {
+            system.stop();
+        }
+    }
+    /**
+     * Set a system active
+     */
+    static setActive(system) {
+        if (!system) {
+            return;
+        }
+        this.#activeSystemList.set(system.id, system);
+    }
+    /**
+     * Set a system inactive
+     */
+    static setInactive(system) {
+        if (!system) {
+            return;
+        }
+        this.#activeSystemList.delete(system.id);
+    }
+    /**
+     * Get a pcf from cache or load it
+     * @param {String} name Name of the pcf
+     * @return {Object SourcePCF} Pcf
+     */
+    static async #getPcf(repositoryName, pcfName) {
+        let promise = new Promise((resolve, reject) => {
+            let pcf = this.#pcfList[pcfName];
+            if (!pcf) {
+                let callback1 = (pcf) => {
+                    if (pcf) {
+                        this.#pcfList[pcfName] = pcf;
+                        pcf.repositoryName = repositoryName;
+                    }
+                    resolve(pcf);
+                };
+                this.#loadPcf(repositoryName, pcfName).then(callback1);
+            }
+            else {
+                resolve(pcf);
+            }
+        });
+        return promise;
+    }
+    /**
+     * Load a pcf
+     * @param {String} name Name of the pcf
+     * @return {Object SourcePCF} Pcf or null
+     */
+    static async #loadPcf(repositoryName, pcfName) {
+        //TODO: return an empty system if not found?
+        let promise = new Promise((resolve, reject) => {
+            let pcfLoader = getLoader('SourceEnginePCFLoader');
+            new pcfLoader().load(repositoryName, pcfName).then((pcf) => resolve(pcf)); //TODOv3: handle reject
+        });
+        return promise;
+    }
+    static setSpeed(s) {
+        this.speed = s;
+    }
+    static async getSystemList() {
+        let repoList = [];
+        let pcfs = {};
+        for (let repoName in this.#systemNameToPcf) {
+            await this.#loadManifest(repoName);
+            let repo = this.#systemNameToPcf[repoName];
+            for (let systemName in repo) {
+                let pcfName = repo[systemName];
+                if (!pcfs[pcfName]) {
+                    pcfs[pcfName] = [];
+                }
+                pcfs[pcfName].push({ name: systemName });
+            }
+            let pcfList = [];
+            for (let pcfName in pcfs) {
+                pcfList.push({ name: pcfName, files: pcfs[pcfName] });
+            }
+            repoList.push({ name: repoName, files: pcfList });
+        }
+        return { name: '', path: '', files: repoList };
+    }
+    static set renderSystems(renderSystems) {
+        this.visible = renderSystems ? undefined : false;
     }
 }
 
@@ -59026,7 +56556,7 @@ class Source2ParticleManagerClass {
             const repo = this.#fileList[repoName];
             repoList.push({ name: repoName, files: repo });
         }
-        return { files: repoList };
+        return { name: '', path: '', files: repoList };
     }
     async loadManifests(...repositories) {
         for (const repository of repositories) {
@@ -59055,7 +56585,7 @@ class Source2ParticleManagerClass {
 }
 const Source2ParticleManager = new Source2ParticleManagerClass();
 
-var sceneExplorerCSS = ":host {\n\tbackground-color: var(--theme-scene-explorer-bg-color);\n\twidth: 100%;\n\theight: 100%;\n\toverflow: auto;\n\t/*padding: 5px;*/\n\t/*box-sizing: border-box;*/\n\tdisplay: flex;\n\tflex-direction: column;\n\tfont-size: 1.5em;\n\tuser-select: none;\n}\n\n.scene-explorer-contextmenu {\n\tposition: absolute;\n\theight: 50px;\n\twidth: 50px;\n\tbackground-color: turquoise;\n}\n\n.scene-explorer-scene {\n\tflex: 1;\n\toverflow: auto;\n}\n\n.scene-explorer-file-selector {\n\tflex: 1;\n\toverflow: auto;\n\tdisplay: flex;\n}\n\n.scene-explorer-properties {\n\tbackground-color: orange;\n\tdisplay: flex;\n\tflex-wrap: wrap;\n\n}\n\n.scene-explorer-properties>div,\n.scene-explorer-properties>label {\n\twidth: 50%;\n}\n\n.scene-explorer-properties>.scene-explorer-entity-title {\n\twidth: 100%;\n}\n\n.scene-explorer-selector {\n\tposition: absolute;\n\twidth: 100%;\n\theight: 100%;\n\tbackground-color: bisque;\n\tmargin: 10px;\n}\n\n\nscene-explorer-entity {\n\tflex-direction: column;\n}\n\n.scene-explorer-entity-header {\n\tcursor: pointer;\n\tdisplay: flex;\n}\n\nscene-explorer-entity.selected>.scene-explorer-entity-header {\n\tbackground-color: var(--theme-scene-explorer-entity-selected-bg-color);\n}\n\n.scene-explorer-entity-buttons {\n\tdisplay: flex;\n}\n\n.scene-explorer-entity-buttons>div {\n\twidth: 20px;\n\theight: 20px;\n\tcursor: pointer;\n}\n\n.scene-explorer-entity-button-properties {\n\tbackground-color: blue;\n}\n\n.scene-explorer-entity-button-childs {\n\tbackground-color: green;\n}\n\n.scene-explorer-entity-visible {\n\tcursor: pointer;\n}\n\n.scene-explorer-entity-childs {\n\tbackground-color: teal;\n\t/*padding: 5px;*/\n\tpadding-left: 20px;\n}\n\n.file-explorer-file {\n\tcursor: pointer;\n}\n\n.file-explorer-file-header:hover {\n\tfont-weight: bold;\n}\n\n.file-explorer-childs {\n\tpadding-left: 20px;\n}\n\nfile-selector {\n\tdisplay: flex;\n\tflex-direction: column;\n\toverflow: auto;\n\twidth: 100%;\n}\n\n.file-selector-header {\n\tflex: 0;\n}\n\n.file-selector-content {\n\tflex: 1;\n\toverflow: auto;\n}\n\nfile-selector-directory {\n\tdisplay: block;\n\tcursor: pointer;\n}\n\nfile-selector-file {\n\tdisplay: block;\n\tcursor: pointer;\n}\n\nfile-selector-tile {\n\tdisplay: block;\n\toverflow: hidden;\n\twidth: 100%;\n\tcursor: pointer;\n}\n\n.file-selector-directory-header:hover,\nfile-selector-file:hover,\nfile-selector-tile:hover {\n\tbackground-color: var(--theme-file-selector-item-hover-bg-color);\n}\n\n.file-selector-directory-content {\n\tpadding-left: 20px;\n}\n\n.manipulator{\n\tdisplay: inline-flex;\n}\n\n.manipulator-button {\n\tbackground-color: var(--theme-scene-explorer-bg-color);\n\tcursor: pointer;\n}\n";
+var sceneExplorerCSS = ":host {\n\tbackground-color: var(--theme-scene-explorer-bg-color);\n\twidth: 100%;\n\theight: 100%;\n\toverflow: auto;\n\t/*padding: 5px;*/\n\t/*box-sizing: border-box;*/\n\tdisplay: flex;\n\tflex-direction: column;\n\tfont-size: 1.5em;\n\tuser-select: none;\n}\n\n.scene-explorer-contextmenu {\n\tposition: absolute;\n\theight: 50px;\n\twidth: 50px;\n\tbackground-color: turquoise;\n}\n\n.scene-explorer-scene {\n\tflex: 1;\n\toverflow: auto;\n}\n\n.scene-explorer-file-selector {\n\tflex: 1;\n\toverflow: auto;\n\tdisplay: flex;\n}\n\n.scene-explorer-properties {\n\tbackground-color: orange;\n\tdisplay: flex;\n\tflex-wrap: wrap;\n\n}\n\n.scene-explorer-properties>div,\n.scene-explorer-properties>label {\n\twidth: 50%;\n}\n\n.scene-explorer-properties>.scene-explorer-entity-title {\n\twidth: 100%;\n}\n\n.scene-explorer-selector {\n\tposition: absolute;\n\twidth: 100%;\n\theight: 100%;\n\tbackground-color: bisque;\n\tmargin: 10px;\n}\n\n\nscene-explorer-entity {\n\tflex-direction: column;\n}\n\n.scene-explorer-entity-header {\n\tcursor: pointer;\n\tdisplay: flex;\n}\n\nscene-explorer-entity>.scene-explorer-entity-header {\n\tbackground-color: teal;\n}\n\nscene-explorer-entity.selected>.scene-explorer-entity-header {\n\tbackground-color: var(--theme-scene-explorer-entity-selected-bg-color);\n}\n\n.scene-explorer-entity-buttons {\n\tdisplay: flex;\n}\n\n.scene-explorer-entity-buttons>div {\n\twidth: 20px;\n\theight: 20px;\n\tcursor: pointer;\n}\n\n.scene-explorer-entity-button-properties {\n\tbackground-color: blue;\n}\n\n.scene-explorer-entity-button-childs {\n\tbackground-color: green;\n}\n\n.scene-explorer-entity-visible {\n\tcursor: pointer;\n}\n\n.scene-explorer-entity-childs {\n\tbackground-color: teal;\n\t/*padding: 5px;*/\n\tpadding-left: 20px;\n}\n\n.file-explorer-file {\n\tcursor: pointer;\n}\n\n.file-explorer-file-header:hover {\n\tfont-weight: bold;\n}\n\n.file-explorer-childs {\n\tpadding-left: 20px;\n}\n\nfile-selector {\n\tdisplay: flex;\n\tflex-direction: column;\n\toverflow: auto;\n\twidth: 100%;\n}\n\n.file-selector-header {\n\tflex: 0;\n}\n\n.file-selector-content {\n\tflex: 1;\n\toverflow: auto;\n}\n\nfile-selector-directory {\n\tdisplay: block;\n\tcursor: pointer;\n}\n\nfile-selector-file {\n\tdisplay: block;\n\tcursor: pointer;\n}\n\nfile-selector-tile {\n\tdisplay: block;\n\toverflow: hidden;\n\twidth: 100%;\n\tcursor: pointer;\n}\n\n.file-selector-directory-header:hover,\nfile-selector-file:hover,\nfile-selector-tile:hover {\n\tbackground-color: var(--theme-file-selector-item-hover-bg-color);\n}\n\n.file-selector-directory-content {\n\tpadding-left: 20px;\n}\n\n.manipulator {\n\tdisplay: inline-flex;\n}\n\n.manipulator-button {\n\tbackground-color: var(--theme-scene-explorer-bg-color);\n\tcursor: pointer;\n}\n";
 
 function FormatArray(array) {
     let arr = [];
@@ -59073,6 +56603,13 @@ const ENTITIES = [
     'Source1ModelInstance',
     'Source2ModelInstance',
 ];
+let sceneExplorer = null;
+function getSceneExplorer() {
+    if (!sceneExplorer) {
+        sceneExplorer = new SceneExplorer();
+    }
+    return sceneExplorer;
+}
 class SceneExplorer {
     static #instance;
     #scene;
@@ -59080,10 +56617,13 @@ class SceneExplorer {
     #manipulator;
     #skeletonHelper;
     #htmlProperties;
+    #htmlFileExplorer;
+    #htmlMaterialEditor;
+    #htmlExtra;
     #htmlHeader;
     htmlFileSelector;
     #htmlNameFilter;
-    htmlContextMenu;
+    #htmlContextMenu;
     #htmlTypeFilter;
     #shadowRoot;
     #htmlName;
@@ -59094,21 +56634,20 @@ class SceneExplorer {
     #htmlWorldPos;
     #htmlWorldQuat;
     #htmlWorldScale;
-    #htmlVisible;
+    //#htmlVisible!: HTMLInputElement;
     #htmlScene;
     #filterName = '';
     #filterType = '';
     #isVisible = false;
-    #selectedHtml;
-    selectedEntity;
+    //selectedEntity?: Entity;
     constructor() {
         if (SceneExplorer.#instance) {
             return SceneExplorer.#instance;
         }
+        this.#initHtml();
         SceneExplorer.#instance = this;
         initEntitySubmenu();
-        SceneExplorerEntity.explorer = this;
-        this.#initHtml();
+        SceneExplorerEntity.setExplorer(this);
         this.#manipulator = new Manipulator({ visible: false });
         this.#skeletonHelper = new SkeletonHelper({ visible: false });
         new IntersectionObserver((entries, observer) => {
@@ -59118,17 +56657,21 @@ class SceneExplorer {
             }
             if (this.#isVisible && (this.#isVisible != isVisible)) {
                 this.applyFilter();
+                if (this.#selectedEntity) {
+                    SceneExplorerEntity.getEntityElement(this.#selectedEntity)?.select();
+                }
             }
         }).observe(this.#shadowRoot.host);
         EntityObserver.addEventListener(PROPERTY_CHANGED$1, (event) => this.#handlePropertyChanged(event.detail));
         SceneExplorerEvents.addEventListener('bonepicked', (event) => this.selectEntity(event.detail.bone));
     }
     set scene(scene) {
+        console.warn('deprecated, use setScene instead');
         this.setScene(scene);
     }
     setScene(scene) {
         this.#scene = scene;
-        this.#selectedEntity = scene;
+        this.selectEntity(scene);
         this.applyFilter();
     }
     get scene() {
@@ -59136,7 +56679,7 @@ class SceneExplorer {
     }
     #refreshScene() {
         if (this.#scene) {
-            this.#htmlScene.innerHTML = '';
+            this.#htmlScene.innerText = '';
             this.#htmlScene.append(this.#createEntityElement(this.#scene, true));
         }
     }
@@ -59144,19 +56687,78 @@ class SceneExplorer {
         return this.#shadowRoot.host;
     }
     #initHtml() {
+        defineHarmonyAccordion();
         this.#shadowRoot = createShadowRoot('scene-explorer', {
             attributes: { tabindex: 1, },
             adoptStyle: sceneExplorerCSS,
+            childs: [
+                this.#htmlHeader = createElement('div', { class: 'scene-explorer-header' }),
+                this.#htmlScene = createElement('div', { class: 'scene-explorer-scene', attributes: { tabindex: 1, }, }),
+                this.htmlFileSelector = createElement('div', {
+                    class: 'scene-explorer-file-selector',
+                    hidden: true,
+                    attributes: { tabindex: 1, },
+                }),
+                this.#htmlExtra = createElement('harmony-accordion', {
+                    multiple: 1,
+                    childs: [
+                        createElement('harmony-item', {
+                            id: 'properties',
+                            childs: [
+                                createElement('div', {
+                                    slot: 'header',
+                                    i18n: '#properties',
+                                }),
+                                this.#htmlProperties = createElement('div', {
+                                    class: 'scene-explorer-properties',
+                                    slot: 'content',
+                                    attributes: {
+                                        tabindex: 1,
+                                    },
+                                }),
+                            ],
+                        }),
+                        createElement('harmony-item', {
+                            id: 'files',
+                            hidden: 1,
+                            childs: [
+                                createElement('div', {
+                                    slot: 'header',
+                                    i18n: '#files',
+                                }),
+                                this.#htmlFileExplorer = createElement('div', {
+                                    class: 'file-explorer',
+                                    slot: 'content',
+                                    attributes: {
+                                        tabindex: 1,
+                                    },
+                                }),
+                            ],
+                        }),
+                        createElement('harmony-item', {
+                            id: 'material',
+                            hidden: 1,
+                            childs: [
+                                createElement('div', {
+                                    slot: 'header',
+                                    i18n: '#material_editor',
+                                }),
+                                this.#htmlMaterialEditor = createElement('div', {
+                                    class: 'material-editor',
+                                    slot: 'content',
+                                    attributes: {
+                                        tabindex: 1,
+                                    },
+                                }),
+                            ],
+                        }),
+                    ],
+                }),
+            ],
         });
         I18n.observeElement(this.#shadowRoot);
-        this.#htmlHeader = createElement('div', { class: 'scene-explorer-header' });
-        this.#htmlScene = createElement('div', { class: 'scene-explorer-scene', attributes: { tabindex: 1, }, });
-        this.htmlFileSelector = createElement('div', { class: 'scene-explorer-file-selector', attributes: { tabindex: 1, }, });
-        hide(this.htmlFileSelector);
-        this.#htmlProperties = createElement('div', { class: 'scene-explorer-properties', hidden: 1, attributes: { tabindex: 1, }, });
-        this.#shadowRoot.append(this.#htmlHeader, this.#htmlScene, this.htmlFileSelector, this.#htmlProperties);
         defineHarmonyContextMenu();
-        this.htmlContextMenu = createElement('harmony-context-menu');
+        this.#htmlContextMenu = createElement('harmony-context-menu');
         this.#initHtmlHeader();
         this.#initHtmlProperties();
         this.applyFilter();
@@ -59165,10 +56767,12 @@ class SceneExplorer {
         new ShortcutHandler().addContext('scene-explorer,scene-explorer-properties', this.#htmlProperties);
     }
     #initHtmlHeader() {
-        this.#htmlNameFilter = createElement('input');
-        this.#htmlHeader.append(this.#htmlNameFilter);
-        this.#htmlTypeFilter = createElement('select');
-        this.#htmlHeader.append(this.#htmlTypeFilter);
+        this.#htmlNameFilter = createElement('input', {
+            parent: this.#htmlHeader,
+        });
+        this.#htmlTypeFilter = createElement('select', {
+            parent: this.#htmlHeader,
+        });
         const skeletonId = 'display_skeleton';
         let htmlManipulator;
         createElement('span', {
@@ -59237,18 +56841,23 @@ class SceneExplorer {
                 }),
             ]
         });
+        /*
         let propertiesId = 'display_properties';
-        let htmlDisplayProperties = createElement('input');
+        let htmlDisplayProperties = createElement('input') as HTMLInputElement;
         htmlDisplayProperties.type = 'checkbox';
         htmlDisplayProperties.id = propertiesId;
         htmlDisplayProperties.checked = false;
+
+        /*
         let htmlDisplayPropertiesSpan = createElement('span');
         let htmlDisplayPropertiesLabel = createElement('label', { i18n: '#display_properties', htmlFor: propertiesId });
+
         this.#htmlHeader.append(htmlDisplayPropertiesSpan);
         htmlDisplayPropertiesSpan.append(htmlDisplayProperties, htmlDisplayPropertiesLabel);
+        */
         this.#htmlNameFilter.addEventListener('change', (event) => { this.#filterName = event.target.value.toLowerCase(); this.applyFilter(); });
         this.#htmlTypeFilter.addEventListener('change', (event) => { this.#filterType = event.target.value; this.applyFilter(); });
-        htmlDisplayProperties.addEventListener('change', (event) => toggle(this.#htmlProperties));
+        //htmlDisplayProperties.addEventListener('change', (event) => toggle(this.#htmlProperties));
         this.#populateTypeFilter();
     }
     #populateTypeFilter() {
@@ -59265,10 +56874,13 @@ class SceneExplorer {
             else {
                 if (this.#scene) {
                     let allEntities = this.#scene.getChildList();
-                    this.#htmlScene.innerHTML = '';
+                    this.#htmlScene.innerText = '';
                     for (let entity of allEntities) {
                         if (this.#matchFilter(entity, this.#filterName, this.#filterType)) {
-                            this.#htmlScene.append(this.#createEntityElement(entity));
+                            const htmlEntityElement = this.#createEntityElement(entity);
+                            if (htmlEntityElement) {
+                                this.#htmlScene.append();
+                            }
                         }
                     }
                 }
@@ -59276,7 +56888,7 @@ class SceneExplorer {
         }
     }
     #matchFilter(entity, name, type) {
-        return (name ? entity.name && entity.name.toLowerCase().includes(name) : true) && (type ? entity['is' + type] : true);
+        return (name ? entity.name && entity.name.toLowerCase().includes(name) : true) && (type ? entity.is(type) : true);
     }
     #initHtmlProperties() {
         this.#htmlName = createElement('div', { class: 'scene-explorer-entity-title' });
@@ -59294,6 +56906,7 @@ class SceneExplorer {
         this.#htmlWorldQuat = createElement('div', { class: 'scene-explorer-entity-world-quat' });
         const htmlWorldScaleLabel = createElement('label', { i18n: '#world_scale' });
         this.#htmlWorldScale = createElement('div', { class: 'scene-explorer-entity-world-scale' });
+        /*
         const htmlVisibleLabel = createElement('label', { i18n: '#visible' });
         this.#htmlVisible = createElement('input', {
             class: 'scene-explorer-entity-visible',
@@ -59301,49 +56914,32 @@ class SceneExplorer {
             events: {
                 input: () => this.#selectedEntity?.toggleVisibility?.()
             }
-        });
+        }) as HTMLInputElement;
+        */
         //this.htmlVisible.addEventListener('input', () => {if (this._currentEntity) this._currentEntity.toggleVisibility()});
-        this.#htmlProperties.append(this.#htmlName, htmlIdLabel, this.#htmlId, htmlPosLabel, this.#htmlPos, htmlQuatLabel, this.#htmlQuat, htmlScaleLabel, this.#htmlScale, htmlWorldPosLabel, this.#htmlWorldPos, htmlWorldQuatLabel, this.#htmlWorldQuat, htmlWorldScaleLabel, this.#htmlWorldScale, htmlVisibleLabel, this.#htmlVisible);
-    }
-    #updateHtml() {
-        if (this.#isVisible) {
-            this.#updateEntityElement(this.#selectedEntity);
-            /*for (let [element, entity] of this._activeEntities) {
-                if (element.getRootNode() != document) {
-                    this._activeEntities.delete(element);
-                } else {
-                    this.#updateEntityElement(element, entity);
-                }
-            }*/
-            const scene = this.#scene;
-            if (scene) {
-                this.#manipulator.setCamera(scene.activeCamera);
-            }
-        }
+        this.#htmlProperties.append(this.#htmlName, htmlIdLabel, this.#htmlId, htmlPosLabel, this.#htmlPos, htmlQuatLabel, this.#htmlQuat, htmlScaleLabel, this.#htmlScale, htmlWorldPosLabel, this.#htmlWorldPos, htmlWorldQuatLabel, this.#htmlWorldQuat, htmlWorldScaleLabel, this.#htmlWorldScale /*, htmlVisibleLabel, this.#htmlVisible*/);
     }
     #createEntityElement(entity, createExpanded = false) {
         let htmlEntityElement = SceneExplorerEntity.getEntityElement(entity);
         if (createExpanded) {
-            htmlEntityElement.expand();
+            htmlEntityElement?.expand();
         }
         return htmlEntityElement;
     }
-    #selectEntity(entity, htmlEntityElement) {
-        this.#selectedEntity = entity;
-        entity.addChild(this.#manipulator);
-        if (this.#selectedHtml) {
-            this.#selectedHtml.classList.remove('selected');
-        }
-        htmlEntityElement.classList.add('selected');
-        this.#selectedHtml = htmlEntityElement;
-    }
     selectEntity(entity) {
+        if (this.#selectedEntity == entity) {
+            return;
+        }
         this.#selectedEntity = entity;
         entity.addChild(this.#manipulator);
         entity.addChild(this.#skeletonHelper);
         if (this.#isVisible) {
             this.#updateEntityElement(entity);
+            SceneExplorerEntity.getEntityElement(entity)?.select();
         }
+    }
+    getSelectedEntity() {
+        return this.#selectedEntity;
     }
     #updateEntityElement(entity) {
         if (entity) {
@@ -59356,20 +56952,21 @@ class SceneExplorer {
             this.#htmlWorldPos.innerText = FormatArray(entity.getWorldPosition());
             this.#htmlWorldQuat.innerText = FormatArray(entity.getWorldQuaternion());
             this.#htmlWorldScale.innerText = FormatArray(entity.getWorldScale());
-            this.#htmlVisible.checked = entity.visible;
+            //this.#htmlVisible.checked = entity.visible;
+            /*
             if (entity.visibleSelf === undefined) {
                 this.#htmlVisible.indeterminate = true;
-            }
-            else {
+            } else {
                 this.#htmlVisible.indeterminate = false;
             }
+            */
         }
     }
     getEntityHtml(entity) {
         throw 'remove me';
         //return this._entitiesHtml.get(entity);
     }
-    #handlePropertyChanged(detail) {
+    #handlePropertyChanged(detail /*TODO: create a proper type*/) {
         if (this.#isVisible && detail.entity == this.#selectedEntity) {
             this.#updateEntityElement(this.#selectedEntity);
         }
@@ -59380,6 +56977,15 @@ class SceneExplorer {
                 SceneExplorerEntity.#updateEntity(child);
             }
         }*/
+    }
+    showContextMenu(contextMenu, x, y, entity) {
+        this.#htmlContextMenu.show(contextMenu, x, y, entity);
+    }
+    editMaterial(material) {
+        const materialEditor = getMaterialEditor();
+        materialEditor.editMaterial(material);
+        this.#htmlMaterialEditor.append(materialEditor.getHTML());
+        this.#htmlExtra.expand('material');
     }
 }
 function initEntitySubmenu() {
@@ -59447,11 +57053,14 @@ function initEntitySubmenu() {
                 {
                     i18n: '#model', f: async (entity) => {
                         show(new SceneExplorer().htmlFileSelector);
-                        Interaction.selectFile(new SceneExplorer().htmlFileSelector, await Source1ModelManager.getModelList(), async (repository, modelName) => {
+                        new Interaction().selectFile(new SceneExplorer().htmlFileSelector, await Source1ModelManager.getModelList(), async (repository, modelName) => {
                             console.error(modelName);
                             //let instance = await Source1ModelManager.createInstance(modelName.repository, modelName.path + modelName.name, true);
                             let instance = await Source1ModelManager.createInstance(repository, modelName, true);
-                            (new SceneExplorer().selectedEntity ?? entity).addChild(instance);
+                            if (!instance) {
+                                return;
+                            }
+                            (new SceneExplorer().getSelectedEntity() ?? entity).addChild(instance);
                             let seq = instance.sourceModel.mdl.getSequenceById(0);
                             if (seq) {
                                 instance.playSequence(seq.name);
@@ -59462,11 +57071,11 @@ function initEntitySubmenu() {
                 {
                     i18n: '#particle_system', f: async (entity) => {
                         show(new SceneExplorer().htmlFileSelector);
-                        Interaction.selectFile(new SceneExplorer().htmlFileSelector, await Source1ParticleControler.getSystemList(), async (repository, systemPath) => {
+                        new Interaction().selectFile(new SceneExplorer().htmlFileSelector, await Source1ParticleControler.getSystemList(), async (repository, systemPath) => {
                             let systemName = systemPath.split('/');
                             let sys = await Source1ParticleControler.createSystem(repository, systemName[systemName.length - 1]);
                             sys.start();
-                            (new SceneExplorer().selectedEntity ?? entity).addChild(sys);
+                            (new SceneExplorer().getSelectedEntity() ?? entity).addChild(sys);
                         });
                     }
                 },
@@ -59477,10 +57086,10 @@ function initEntitySubmenu() {
                 {
                     i18n: '#model', f: async (entity) => {
                         show(new SceneExplorer().htmlFileSelector);
-                        Interaction.selectFile(new SceneExplorer().htmlFileSelector, await Source2ModelManager.getModelList(), async (repository, modelName) => {
+                        new Interaction().selectFile(new SceneExplorer().htmlFileSelector, await Source2ModelManager.getModelList(), async (repository, modelName) => {
                             console.error(modelName);
                             let instance = await Source2ModelManager.createInstance(repository, modelName, true);
-                            (new SceneExplorer().selectedEntity ?? entity).addChild(instance);
+                            (new SceneExplorer().getSelectedEntity() ?? entity).addChild(instance);
                             /*let seq = instance.sourceModel.mdl.getSequenceById(0);
                             if (seq) {
                                 instance.playSequence(seq.name);
@@ -59491,12 +57100,12 @@ function initEntitySubmenu() {
                 {
                     i18n: '#particle_system', f: async (entity) => {
                         show(new SceneExplorer().htmlFileSelector);
-                        Interaction.selectFile(new SceneExplorer().htmlFileSelector, await Source2ParticleManager.getSystemList(), async (repository, systemPath) => {
+                        new Interaction().selectFile(new SceneExplorer().htmlFileSelector, await Source2ParticleManager.getSystemList(), async (repository, systemPath) => {
                             let systemName = systemPath.split('/');
                             let sys = await Source2ParticleManager.getSystem(repository, systemPath);
                             sys.name = systemName[systemName.length - 1];
                             sys.start();
-                            (new SceneExplorer().selectedEntity ?? entity).addChild(sys);
+                            (new SceneExplorer().getSelectedEntity() ?? entity).addChild(sys);
                         });
                     }
                 },
@@ -59505,7 +57114,14 @@ function initEntitySubmenu() {
     ];
 }
 Entity.editMaterial = function (entity) {
-    MaterialEditor.editEntity(entity);
+    const material = entity.material;
+    if (!material) {
+        return;
+    }
+    const sceneExplorer = getSceneExplorer();
+    sceneExplorer.editMaterial(material);
+    //materialEditor.editEntity(entity);
+    //this.#htmlMaterialEditor.append(materialEditor.getHTML());
     /*
     let entityHtml = SceneExplorer.getEntityHtml(entity);
     if (entityHtml) {
@@ -62867,7 +60483,7 @@ class ShaderEditor extends HTMLElement {
         if (!this.#shaderEditor) {
             return;
         }
-        this.#htmlShaderNameSelect.innerHTML = '';
+        this.#htmlShaderNameSelect.innerText = '';
         let shaderGroup = createElement('optgroup', { 'i18n-label': '#shader_editor_shaders', parent: this.#htmlShaderNameSelect });
         const shaderList = [...ShaderManager.shaderList].sort();
         for (let shaderName of shaderList) {
@@ -63602,6 +61218,508 @@ class FlexAnimationTrack {
             }
         }
         return arr.join('\n');
+    }
+}
+
+class Sound {
+    #repository;
+    #wave;
+    constructor(repository, wave) {
+        this.#repository = repository;
+        this.#wave = wave;
+    }
+    getRepository() {
+        return this.#repository;
+    }
+    getWave() {
+        const wave = this.#wave;
+        if (wave instanceof Array) {
+            const index = Math.floor(Math.random() * wave.length);
+            return wave[index];
+        }
+        else {
+            return wave;
+        }
+    }
+}
+
+class KvAttribute {
+    name;
+    value;
+    constructor(name, value) {
+        if (!name) {
+            return;
+        }
+        this.name = name.toLowerCase();
+        this.value = value;
+    }
+}
+class KvElement {
+    addElement(name, value) {
+        if (!name) {
+            return;
+        }
+        name = name.toLowerCase();
+        let newName = name;
+        let count = 1;
+        while (this[newName]) {
+            newName = name + '#' + (++count);
+        }
+        this[newName] = value;
+    }
+    toString(linePrefix) {
+        linePrefix = linePrefix || '';
+        let s = [linePrefix, '"' /*, this.type, '"\n'*/, linePrefix, '{\n'];
+        for (let i in this) {
+            s.push(this.toString(linePrefix + '\t'));
+        }
+        s.push(linePrefix);
+        s.push('}\n');
+        return s.join('');
+    }
+}
+class KvReader {
+    root = undefined;
+    rootElements = {};
+    rootId = 0;
+    carSize;
+    src;
+    offset;
+    inQuote = false;
+    inComment = false;
+    currentAttribute;
+    currentElement;
+    currentArray;
+    name;
+    currentValue;
+    elementStack;
+    attributeStack;
+    valuesStack;
+    keyStack;
+    arrayStack;
+    rootElement;
+    rootName;
+    currentKey;
+    constructor(carSize = 1) {
+        this.carSize = carSize;
+    }
+    readText(src) {
+        if (!src) {
+            return;
+        }
+        this.src = src;
+        let start = src.indexOf('-->');
+        if (start > 0) {
+            start += 5; //-->/nx
+        }
+        else {
+            start = 0;
+        }
+        this.offset = start;
+        this.inQuote = false;
+        this.inComment = false;
+        this.currentAttribute = undefined;
+        this.currentElement = undefined;
+        this.currentArray = undefined;
+        this.name = undefined;
+        this.currentValue = '';
+        this.elementStack = [];
+        this.attributeStack = [];
+        this.valuesStack = [];
+        this.keyStack = [];
+        this.arrayStack = [];
+        let end = false;
+        do {
+            end = this.parse();
+        } while (!end);
+        this.endElement();
+    }
+    getRootElement() {
+        return this.rootElement;
+    }
+    getRootName() {
+        return this.rootName;
+    }
+    readChar() {
+        if (this.offset > this.src.length) {
+            return -1;
+        }
+        const offset = this.offset;
+        this.offset += this.carSize;
+        return this.src.charAt(offset);
+    }
+    pickChar() {
+        if (this.offset > this.src.length) {
+            return -1;
+        }
+        return this.src.charAt(this.offset);
+    }
+    pushElement() {
+        if (this.currentElement) {
+            this.elementStack.push(this.currentElement);
+        }
+        if (!this.rootElement) ;
+        this.currentElement = new KvElement( /*this.popValue()*/);
+        this.currentKey = this.popValue();
+        this.pushKey();
+    }
+    popElement() {
+        let a = this.currentElement;
+        this.currentElement = this.elementStack.pop();
+        if (!this.currentElement) {
+            //this.rootElements.push(a);
+            let rootName = this.popKey();
+            if (rootName == undefined) {
+                rootName = 'undefined' + (this.rootId++);
+            }
+            this.rootElements[rootName] = a;
+            if (!this.rootElement) {
+                this.rootName = rootName;
+                this.rootElement = a;
+            }
+        }
+    }
+    pushAttribute() {
+        if (this.currentAttribute) {
+            this.attributeStack.push(this.currentAttribute);
+        }
+        //this.currentAttribute = new KvElement();
+    }
+    popAttribute() {
+        this.currentAttribute = this.attributeStack.pop();
+    }
+    pushValue() {
+        this.valuesStack.push(this.currentValue);
+        this.currentValue = '';
+    }
+    popValue() {
+        if (this.valuesStack.length == 0) ;
+        return this.valuesStack.pop();
+    }
+    pushKey() {
+        this.keyStack.push(this.currentKey);
+        this.currentKey = '';
+    }
+    popKey() {
+        if (this.keyStack.length == 0) ;
+        return this.keyStack.pop();
+    }
+    pushArray() {
+        this.arrayStack.push(this.currentArray);
+        this.currentArray = undefined;
+    }
+    popArray() {
+        this.currentArray = this.arrayStack.pop();
+    }
+    parse() {
+        const car = this.readChar();
+        if (car == -1)
+            return true;
+        if (this.inComment && (car != '\r' && car != '\n')) {
+            return false;
+        }
+        this.inComment = false;
+        if (this.inQuote && car != '"' && car != '\r' && car != '\n') {
+            this.currentValue += car;
+        }
+        else {
+            switch (car) {
+                case '\\':
+                    if (this.inQuote) {
+                        const car2 = this.pickChar();
+                        if (car2 == '\"') {
+                            this.currentValue += car2;
+                        }
+                        else {
+                            this.currentValue += car;
+                        }
+                    }
+                    else {
+                        this.currentValue += car;
+                    }
+                    break;
+                case '/':
+                    const car2 = this.pickChar();
+                    if (car2 == '/') {
+                        this.inComment = true;
+                    }
+                    else {
+                        this.currentValue += car;
+                    }
+                    break;
+                case ' ':
+                case '\t':
+                    if (this.currentValue != '') {
+                        this.setValue();
+                    }
+                    if (this.valuesStack.length >= 2) {
+                        this.newLine();
+                        //if (!this.multipleValuesOnSameLine) {//TODOV2
+                        this.inComment = true;
+                        //}
+                    }
+                    break;
+                case '\r':
+                case '\n':
+                    if (!this.inQuote && this.currentValue != '')
+                        this.setValue();
+                    this.newLine();
+                    break;
+                case '"':
+                    if (this.inQuote)
+                        this.setValue();
+                    this.inQuote = !this.inQuote;
+                    break;
+                case '{':
+                    if (this.currentValue != '') {
+                        this.setValue();
+                    }
+                    this.startElement();
+                    break;
+                case '}':
+                    this.endElement();
+                    break;
+                case '[':
+                    this.startArray();
+                    break;
+                case ']':
+                    this.endArray();
+                    break;
+                case ',':
+                    this.comma();
+                    //this.nextArrayValue()
+                    break;
+                default:
+                    this.currentValue += car;
+                    break;
+            }
+        }
+        return false;
+    }
+    startElement() {
+        this.pushElement();
+        this.newLine();
+        this.pushAttribute();
+    }
+    endElement() {
+        if (this.currentElement) {
+            const e = this.currentElement;
+            this.popElement();
+            if (this.currentElement) {
+                this.currentElement.addElement(this.popKey(), e);
+            }
+        }
+    }
+    startArray() {
+        this.pushArray();
+        this.currentValue = [];
+        this.currentArray = this.currentValue;
+        this.pushValue();
+        this.newLine();
+        this.pushAttribute();
+    }
+    endArray() {
+        this.popAttribute();
+        //this.currentAttribute.value.push(this.currentElement);
+        this.popArray();
+    }
+    nextArrayValue() {
+        //TODO
+    }
+    setValue() {
+        this.pushValue();
+    }
+    newLine() {
+        if (this.valuesStack.length >= 2) {
+            // order matters
+            const value = this.popValue();
+            const name = this.popValue();
+            const newAttribute = new KvAttribute(name, value);
+            if (this.currentElement) {
+                this.currentElement.addElement(name, value);
+            }
+            else if (this.currentArray) {
+                this.currentArray.push(newAttribute);
+            }
+            this.currentAttribute = newAttribute;
+        }
+    }
+    comma() {
+        if (this.valuesStack.length >= 1) {
+            // order matters
+            const value = this.popValue();
+            const name = this.popValue();
+            const newAttribute = new KvAttribute(name, value);
+            if (this.currentArray) {
+                this.currentArray.push(newAttribute);
+            }
+            else if (this.currentElement) {
+                this.currentElement.addAttribute(newAttribute);
+            }
+            this.currentAttribute = newAttribute;
+        }
+    }
+}
+
+class Source1SoundManager {
+    static #mute = false;
+    static #audioList = {};
+    static #soundList = {};
+    static #soundsPerRepository = {};
+    static #soundListPerRepository = {};
+    static #manifestsPerRepository = {};
+    static #promisePerRepository = {};
+    /**
+     * Play a sound
+     * @param {String} soundName soundName
+     */
+    static async playSound(repositoryName, soundName) {
+        if (this.#mute) {
+            return;
+        }
+        const sound = await this.#getSound(repositoryName, soundName);
+        //const sound = this.#soundList[soundName];
+        if (sound) {
+            let wave = sound.getWave();
+            // Remove #, *, ( and ) from paths
+            wave = wave.replace(/[\(\)\#\*]/g, '').toLowerCase();
+            let audio = this.#audioList[wave];
+            //audio = null;//removeme
+            if (!audio) {
+                const response = await new Repositories().getFileAsBlob(sound.getRepository(), '/sound/' + wave);
+                if (!response.error) {
+                    audio = new Audio(URL.createObjectURL(response.blob) /*new URL('/sound/' + wave, repository.base).toString()*/);
+                    this.#audioList[wave] = audio;
+                    audio.volume = 0.1;
+                    //audio.play();
+                    AudioMixer.playAudio('master', audio); //TODO: change master per actual channel
+                }
+            }
+            else {
+                AudioMixer.playAudio('master', audio);
+            }
+            return audio;
+        }
+    }
+    static async #getSound(repositoryName, soundName) {
+        await this.#fetchManifests(repositoryName);
+        /*const repo = this.#soundsPerRepository[repositoryName];
+        if (repo) {
+            return repo[soundName];
+        }*/
+        return this.#soundsPerRepository[repositoryName]?.[soundName];
+    }
+    static async #fetchManifests(repositoryName) {
+        if (this.#promisePerRepository[repositoryName]) {
+            await this.#promisePerRepository[repositoryName];
+        }
+        this.#soundsPerRepository[repositoryName] = this.#soundsPerRepository[repositoryName] ?? {};
+        let promiseResolve;
+        this.#promisePerRepository[repositoryName] = new Promise(resolve => promiseResolve = resolve);
+        let manifests = this.#manifestsPerRepository[repositoryName];
+        if (manifests) {
+            delete this.#manifestsPerRepository[repositoryName];
+            for (const manifest of manifests) {
+                await this.#fetchManifest(repositoryName, manifest);
+            }
+        }
+        promiseResolve(true);
+    }
+    static async #fetchManifest(repositoryName, manifestPath) {
+        const response = await new Repositories().getFileAsText(repositoryName, manifestPath);
+        if (!response.error) {
+            this.#loadManifest(repositoryName, response.text);
+        }
+    }
+    static #loadManifest(repositoryName, manifestTxt) {
+        const sounds = this.#soundsPerRepository[repositoryName];
+        const kv = new KvReader();
+        kv.readText(manifestTxt);
+        const list = kv.rootElements;
+        const keyArray = Object.keys(list);
+        for (let i = 0; i < keyArray.length; ++i) {
+            const soundKey = keyArray[i];
+            const sound = list[soundKey];
+            let wave;
+            if (sound.rndwave) {
+                wave = [];
+                Object.keys(sound.rndwave).forEach(function (element) {
+                    wave.push(sound.rndwave[element]);
+                });
+            }
+            else {
+                wave = sound.wave;
+            }
+            //const wave = sound.rndwave ? sound.rndwave : sound.wave;
+            sounds[soundKey] = new Sound(repositoryName, wave);
+            sounds[soundKey].channel = sound.channel;
+        }
+    }
+    /**
+     * Load soundManifest
+     */
+    /*
+
+        static loadManifest(repositoryName, fileName) {
+            const callback =
+                async (response) => {
+                    if (!response.ok) {
+                        return;
+                    }
+                    let arg1 = await response.text();
+                    if (arg1) {
+                        const kv = new KvReader();
+                        kv.readText(arg1);
+                        const list = kv.rootElements//['Demoman.Death'];
+                        const keyArray = Object.keys(list);
+                        for (let i = 0; i < keyArray.length; ++i) {
+                            const soundKey = keyArray[i];
+                            const sound = list[soundKey];
+                            let wave;
+                            if (sound.rndwave) {
+                                wave = [];
+                                Object.keys(sound.rndwave).forEach(function(element) {
+                                    wave.push(sound.rndwave[element]);
+                                });
+                            } else {
+                                wave = sound.wave;
+                            }
+                            //const wave = sound.rndwave ? sound.rndwave : sound.wave;
+                            this.#soundList[soundKey] = new Sound(wave);
+                            this.#soundList[soundKey].repositoryName = repositoryName;
+                            this.#soundList[soundKey].channel = sound.channel;
+                        }
+                    }
+                    this.#initialisationPhase = 2;//TODO: per file
+                }
+            const ajaxReject =
+                function(value) {
+                    //TODO: ????
+                };
+
+
+            const repository = new Repositories().getRepository(repositoryName);
+            if (!repository) {
+                console.error(`Unknown repository ${repositoryName} in Source1SoundManager.loadManifest`);
+                return null;
+            }
+
+            customFetch(new URL(fileName, repository.base)).then(callback, ajaxReject);
+        }
+        */
+    static loadManifest(repositoryName, fileName) {
+        let manifests = this.#manifestsPerRepository[repositoryName];
+        if (!manifests) {
+            manifests = [];
+            this.#manifestsPerRepository[repositoryName] = manifests;
+        }
+        manifests.push(fileName);
+    }
+    static mute() {
+        this.#mute = true;
+    }
+    static unmute() {
+        this.#mute = false;
     }
 }
 
@@ -65061,6 +63179,7 @@ class SourceMDL {
     loader;
     reader;
     poseParameters = [];
+    hitboxSets = [];
     constructor(repository) {
         this.repository = repository;
     }
@@ -65169,13 +63288,18 @@ class SourceMDL {
         return out;
     }
     async getAnimList() {
-        let animList = [];
-        animList = animList.concat(this.getSequences());
+        const animList = new Set;
+        //animList = animList.concat(this.getSequences());
+        for (const seq of this.getSequences()) {
+            animList.add(seq);
+        }
         const extCount = this.getExternalMdlCount();
         for (let extIndex = 0; extIndex < extCount; ++extIndex) {
             const mdl = await this.getExternalMdl(extIndex);
             if (mdl) {
-                animList = animList.concat(mdl.getSequences());
+                for (const seq of mdl.getSequences()) {
+                    animList.add(seq);
+                }
             }
         }
         return animList;
@@ -65550,28 +63674,35 @@ class AnimationDescription {
     get name() {
         return this.#animation.name;
     }
+    get animation() {
+        return this.#animation;
+    }
 }
 
 class Animations {
-    #animations = new Map();
-    constructor() {
+    #animations = [];
+    [Symbol.iterator] = () => {
+        return this.#animations.entries();
+    };
+    clear() {
+        this.#animations.length = 0;
     }
-    add(animation) {
-        this.#animations.set(animation.name, animation);
+    set(id, animation) {
+        this.#animations[id] = animation;
         this.#computeWeights();
     }
-    delete(animation) {
-        this.#animations.delete(animation.name);
+    remove(id) {
+        this.#animations[id] = undefined;
         this.#computeWeights();
     }
     get animations() {
         return this.#animations;
     }
-    get(animationName) {
-        return this.#animations.get(animationName);
+    get(id) {
+        return this.#animations[id];
     }
-    setWeight(animationName, weight) {
-        let animation = this.#animations.get(animationName);
+    setWeight(id, weight) {
+        let animation = this.#animations[id];
         if (!animation) {
             return false;
         }
@@ -65580,8 +63711,6 @@ class Animations {
         return true;
     }
     #computeWeights() {
-    }
-    play(delta) {
     }
 }
 
@@ -65673,19 +63802,6 @@ class SourceEngineMaterialManager {
     static addRepository(repositoryPath) {
         this.#fileListPerRepository.set(repositoryPath, null);
     }
-    /*async pickMaterial(materialName, materialClass, callback) {
-        //Note: if loaded from a vmt, you are not guaranted to have this exact materialClass
-        console.log(await this.getMaterialList());
-        show(SceneExplorer.htmlFileSelector);
-
-
-        Interaction.selectFile(SceneExplorer.htmlFileSelector, await this.getMaterialList(), async (repository, materialName) => {
-            console.error(materialName);
-            let material = await this.getMaterial(repository, materialName.replace(/^materials\//g, ''));
-            console.error(material);
-            callback(material);
-        });
-    }*/
     static async getMaterialList() {
         let repoList = [];
         for (let [repositoryName, repository] of this.#fileListPerRepository) {
@@ -65709,6 +63825,2123 @@ class SourceEngineMaterialManager {
     }
 }
 
+const BONE_USED_BY_ANYTHING = 0x0007FF00;
+const BONE_ALWAYS_PROCEDURAL = 0x04;
+const BONE_USED_BY_BONE_MERGE = 0x00040000;
+const BONE_FIXED_ALIGNMENT = 0x00100000;
+const tempMat4$2 = create$5();
+create$4();
+create$2();
+//TODOV4: cleanup unused code
+class MdlBone {
+    _poseToBone = create$5();
+    _invPoseToBone = create$5();
+    _initPoseToBone = create$5();
+    _boneMat = create$5();
+    _position = create$4();
+    _quaternion = create$2();
+    _worldPos = create$4();
+    _worldQuat = create$2();
+    _worldMat = create$5();
+    _parent = null; /*TODO:remove ?*/
+    dirty = true;
+    lastComputed = 0;
+    #skeleton; /*TODO:remove*/
+    parentBone = -1;
+    boneId = -1;
+    name = '';
+    lowcasename = '';
+    bonecontroller = [];
+    rot = create$4();
+    posscale = create$4();
+    rotscale = create$4();
+    qAlignment = create$3();
+    flags = 0;
+    proctype = 0;
+    procindex = 0;
+    physicsbone = 0;
+    surfacepropidx = 0;
+    contents = 0;
+    constructor(skeleton /*TODO:remove*/) {
+        this.#skeleton = skeleton; /*TODO:remove*/
+    }
+    get skeleton() {
+        return this.#skeleton;
+    }
+    set quaternion(quaternion) {
+        copy$2(this._quaternion, quaternion);
+        this.dirty = true;
+    }
+    get quaternion() {
+        return this._quaternion;
+    }
+    set position(position) {
+        copy$4(this._position, position);
+        this.dirty = true;
+    }
+    get position() {
+        return this._position;
+    }
+    set parent(parent) {
+        this._parent = parent;
+        this.dirty = true;
+    }
+    get parent() {
+        return this._parent;
+    }
+    set worldPos(worldPos) {
+        copy$4(this._worldPos, worldPos);
+        fromRotationTranslation$1(tempMat4$2, this._worldQuat, this._worldPos);
+        multiply$6(this._boneMat, tempMat4$2, this._poseToBone);
+    }
+    set worldQuat(worldQuat) {
+        copy$2(this._worldQuat, worldQuat);
+        fromRotationTranslation$1(tempMat4$2, this._worldQuat, this._worldPos);
+        multiply$6(this._boneMat, tempMat4$2, this._poseToBone);
+    }
+    getWorldPos(offset, out = create$4()) {
+        transformQuat$1(out, offset, this.worldQuat);
+        add$5(out, this.worldPos, out);
+        return out;
+    }
+    getRelativePos() {
+        return clone$4(this.position);
+    }
+    set poseToBone(poseToBone) {
+        copy$5(this._poseToBone, poseToBone);
+        invert$2(this._invPoseToBone, poseToBone);
+        this.dirty = true;
+    }
+    get poseToBone() {
+        return this._poseToBone;
+    }
+    set initPoseToBone(initPoseToBone) {
+        copy$5(this._initPoseToBone, initPoseToBone);
+        this.dirty = true;
+    }
+    get initPoseToBone() {
+        return this._initPoseToBone;
+    }
+    getWorldQuat() {
+        return this.worldQuat;
+    }
+    /**
+     * Is a procedural bone ?
+     * @returns {bool} yes is procedural bone
+     */
+    isProcedural() {
+        return (this.flags & BONE_ALWAYS_PROCEDURAL) == BONE_ALWAYS_PROCEDURAL;
+    }
+    /**
+     * Use bone merge
+     * @returns {bool} yes bone is available for bone merge to occur against it
+     */
+    useBoneMerge() {
+        return (this.flags & BONE_USED_BY_BONE_MERGE) == BONE_USED_BY_BONE_MERGE; //TODO: test engine verion; TF2 seems not use this flag
+    }
+}
+
+const STUDIO_AL_SPLINE = 0x0040;
+const STUDIO_AL_XFADE = 0x0080;
+const STUDIO_AL_NOBLEND = 0x0200;
+const STUDIO_AL_LOCAL = 0x1000;
+const STUDIO_AL_POSE = 0x4000;
+class MdlStudioSeqDesc {
+    paramindex = [];
+    paramstart = [];
+    paramend = [];
+    blend = [];
+    weightlist = [];
+    groupsize = [];
+    mdl;
+    previousTime;
+    currentTime;
+    posekeyindex;
+    autolayer = [];
+    events = [];
+    name;
+    flags;
+    activity;
+    id;
+    startOffset;
+    actweight;
+    numevents;
+    eventindex;
+    bbmin;
+    bbmax;
+    numblends;
+    animindexindex;
+    movementindex;
+    paramparent;
+    fadeintime;
+    fadeouttime;
+    localentrynode;
+    localexitnode;
+    nodeflags;
+    entryphase;
+    exitphase;
+    lastframe;
+    nextseq;
+    pose;
+    numikrules;
+    numautolayers;
+    autolayerindex;
+    weightlistindex;
+    numiklocks;
+    iklockindex;
+    keyvalueindex;
+    keyvaluesize;
+    cycleposeindex;
+    activityName;
+    keyvalueText;
+    pBoneweight(boneIndex) {
+        return this.weightlist[boneIndex];
+    }
+    //MdlStudioSeqDesc.prototype.weight = MdlStudioSeqDesc.prototype.pBoneweight;//TODOV2
+    getBlend(x, y) {
+        x = clamp(x, 0, this.groupsize[0] - 1);
+        y = clamp(y, 0, this.groupsize[1] - 1);
+        return this.blend[y][x];
+    }
+    poseKey(iParam, iAnim) {
+        if (this.mdl && this.posekeyindex) {
+            const mdl = this.mdl;
+            const offset = this.posekeyindex + (iParam * this.groupsize[0] + iAnim) * 4;
+            return mdl.reader.getFloat32(offset); //TODOv3
+        }
+        //float				*pPoseKey(int iParam, int iAnim) const { return (float *)(((byte *)this) + posekeyindex) + iParam * groupsize[0] + iAnim; }
+        return 0;
+    }
+    getAutoLayer(autoLayerIndex) {
+        return this.autolayer[autoLayerIndex];
+    }
+    get length() {
+        const anim = this.mdl.getAnimDescription(this.blend[0][0]);
+        if (!anim) {
+            return 0;
+        }
+        return (anim.numframes - 1) / anim.fps;
+    }
+    play(dynamicProp) {
+        const anim = this.mdl.getAnimDescription(this.blend[0][0]);
+        if (!anim) {
+            return null;
+        }
+        this.currentTime = (this.currentTime !== undefined) ? dynamicProp.frame * anim.fps / (anim.numframes - 1) : 0;
+        this.currentTime = this.currentTime % 1;
+        this.previousTime = (this.previousTime !== undefined) ? this.previousTime : -1;
+        if (this.previousTime > this.currentTime) {
+            this.previousTime = this.currentTime;
+        }
+        const previousTime = this.previousTime;
+        const currentTime = this.currentTime;
+        const seqEvents = this.events;
+        for (let eventIndex = 0; eventIndex < seqEvents.length; ++eventIndex) {
+            const event = seqEvents[eventIndex];
+            if (event.cycle > previousTime && event.cycle <= currentTime) {
+                this.processEvent(event, dynamicProp); //TODOv3
+            }
+        }
+        this.previousTime = this.currentTime;
+    }
+    processEvent(event, dynamicProp) {
+        let options;
+        switch (true) {
+            case event.event == 5004 || (event.event === 0 && event.name == 'AE_CL_PLAYSOUND'):
+                Source1SoundManager.playSound(this.mdl?.repository, event.options);
+                break;
+            case (event.event === 0 && event.name == 'AE_CL_BODYGROUP_SET_VALUE'):
+                options = event.options.split(' ');
+                //dynamicProp.bodyGroups[options[0]] = options[1];
+                dynamicProp.setBodyPartModel(options[0], options[1]);
+                break;
+            case (event.event === 0 && event.name == 'AE_WPN_HIDE'):
+                //TODOV2
+                //dynamicProp.setVisibility(false);
+                //console.error('AE_WPN_HIDE' + dynamicProp.name);
+                break;
+            case (event.event === 0 && event.name == 'AE_WPN_UNHIDE'):
+                //TODOV2
+                //dynamicProp.setVisibility(true);
+                //console.error('AE_WPN_UNHIDE' + dynamicProp.name);
+                break;
+            case (event.event === 0 && event.name == 'AE_CL_CREATE_PARTICLE_EFFECT'):
+                options = event.options.split(' ');
+                //TODOV2
+                let f = async () => {
+                    let sys = await Source1ParticleControler.createSystem(dynamicProp.sourceModel.repository, options[0]);
+                    sys.autoKill = true;
+                    sys.start();
+                    //console.log(options[0], options[1], options[2]);
+                    switch (options[1]) {
+                        case 'follow_attachment':
+                            dynamicProp.attachSystem(sys, options[2]);
+                            break;
+                        case 'start_at_attachment':
+                            dynamicProp.attachSystem(sys, options[2]);
+                            break;
+                        case 'start_at_origin':
+                            dynamicProp.attachSystem(sys, options[2]);
+                            break;
+                    }
+                };
+                f();
+                /*TODOv2
+                        'start_at_origin',		// PATTACH_ABSORIGIN = 0,
+                        'follow_origin',		// PATTACH_ABSORIGIN_FOLLOW,
+                        'start_at_customorigin',// PATTACH_CUSTOMORIGIN,
+                        'start_at_attachment',	// PATTACH_POINT,
+                        'follow_attachment',	// PATTACH_POINT_FOLLOW,
+                */
+                break;
+            case (event.event === 0 && event.name == 'AE_TAUNT_ADD_ATTRIBUTE'):
+                //{ event AE_TAUNT_ADD_ATTRIBUTE 1 'taunt_attr_player_invis_percent 1 5.215' }
+                options = event.options.split(' ');
+                switch (options[0]) {
+                    case 'taunt_attr_player_invis_percent':
+                        dynamicProp.visible = false;
+                        setTimeout(function () { dynamicProp.visible = true; }, options[2] * 1000);
+                        break;
+                }
+                break;
+        }
+        //'AE_CL_BODYGROUP_SET_VALUE'
+    }
+}
+class MdlStudioAutoLayer {
+    iSequence;
+    iPose;
+    flags;
+    start;
+    peak;
+    tail;
+    end;
+}
+class MdlStudioEvent {
+    cycle;
+    event;
+    type;
+    options;
+    name;
+}
+
+const STUDIO_ANIM_RAWPOS = 0x01; // Vector48
+const STUDIO_ANIM_RAWROT = 0x02; // Quaternion48
+const STUDIO_ANIM_ANIMPOS = 0x04; // mstudioanim_valueptr_t
+const STUDIO_ANIM_ANIMROT = 0x08; // mstudioanim_valueptr_t
+const STUDIO_ANIM_DELTA = 0x10;
+const STUDIO_ANIM_RAWROT2 = 0x20; // Quaternion64
+const tempMat4$1 = create$5();
+const tempQuat$6 = create$2();
+class MdlStudioAnim {
+    animValuePtrRot;
+    animValuePtrPos;
+    rawpos;
+    rawrot;
+    rawrot2;
+    flags;
+    bone;
+    nextOffset;
+    getRotValue() {
+        return this.animValuePtrRot;
+    }
+    getPosValue() {
+        return this.animValuePtrPos;
+    }
+    getQuaternion48() {
+        return this.rawrot;
+    }
+    getQuaternion64() {
+        return this.rawrot2;
+    }
+    /**
+     * TODO
+     */
+    getRot(rot, mdl, bone, frame) {
+        let fromEuler5 = function (out, q, i, j, k, h, parity, repeat, frame) {
+            var M = tempMat4$1; //Dim M(,) As Double = {{0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}}
+            var Nq;
+            var s;
+            var xs;
+            var ys;
+            var zs;
+            var wx;
+            var wy;
+            var wz;
+            var xx;
+            var xy;
+            var xz;
+            var yy;
+            var yz;
+            var zz;
+            Nq = q[0] * q[0] + q[1] * q[1] + q[2] * q[2] + q[3] * q[3];
+            if (Nq > 0) {
+                s = 2.0 / Nq;
+            }
+            else {
+                s = 0;
+            }
+            xs = q[0] * s;
+            ys = q[1] * s;
+            zs = q[2] * s;
+            wx = q[3] * xs;
+            wy = q[3] * ys;
+            wz = q[3] * zs;
+            xx = q[0] * xs;
+            xy = q[0] * ys;
+            xz = q[0] * zs;
+            yy = q[1] * ys;
+            yz = q[1] * zs;
+            zz = q[2] * zs;
+            M[0] = 1.0 - (yy + zz);
+            M[1] = xy - wz;
+            M[2] = xz + wy;
+            M[4] = xy + wz;
+            M[5] = 1.0 - (xx + zz);
+            M[6] = yz - wx;
+            M[8] = xz - wy;
+            M[9] = yz + wx;
+            M[10] = 1.0 - (xx + yy);
+            M[14] = 1.0;
+            return Eul_FromHMatrix(out, M, i, j, k, h, parity, repeat, frame);
+        };
+        let fromEuler4 = function (out, a) {
+            fromEuler5(out, a, 0, 1, 2, 0, 'even', 'no', 'S');
+            var a = out[0];
+            var b = out[1];
+            var c = out[2];
+            out[0] = c;
+            out[1] = b;
+            out[2] = a;
+            return out;
+        };
+        var Eul_FromHMatrix = function (out, M, i, j, k, h, parity, repeat, frame) {
+            var ea = tempQuat$6;
+            if (repeat == 'yes') {
+                var sy = Math.sqrt(M[i * 4 + j] * M[i * 4 + j] + M[i * 4 + k] * M[i * 4 + k]);
+                if (sy > 16 * FLT_EPSILON) {
+                    ea[0] = Math.atan2(M[i * 4 + j], M[i * 4 + k]);
+                    ea[1] = Math.atan2(sy, M[i * 4 + i]);
+                    ea[2] = Math.atan2(M[j * 4 + i], -M[k * 4 + i]);
+                }
+                else {
+                    ea[0] = Math.atan2(-M[j * 4 + k], M[j * 4 + j]);
+                    ea[1] = Math.atan2(sy, M[i * 4 + i]);
+                    ea[2] = 0;
+                }
+            }
+            else {
+                var cy = Math.sqrt(M[i * 4 + i] * M[i * 4 + i] + M[j * 4 + i] * M[j * 4 + i]);
+                if (cy > 16 * FLT_EPSILON) {
+                    ea[0] = Math.atan2(M[k * 4 + j], M[k * 4 + k]);
+                    ea[1] = Math.atan2(-M[k * 4 + i], cy);
+                    ea[2] = Math.atan2(M[j * 4 + i], M[i * 4 + i]);
+                }
+                else {
+                    ea[0] = Math.atan2(-M[j * 4 + k], M[j * 4 + j]);
+                    ea[1] = Math.atan2(-M[k * 4 + i], cy);
+                    ea[2] = 0;
+                }
+            }
+            if (parity == 'odd') {
+                ea[0] = -ea[0];
+                ea[1] = -ea[1];
+                ea[2] = -ea[2];
+            }
+            if (frame == 'R') {
+                var t = ea[0];
+                ea[0] = ea[2];
+                ea[2] = t;
+            }
+            copy$2(out, ea);
+            return out;
+        };
+        const flag = this.flags;
+        let offset;
+        if ((flag & STUDIO_ANIM_RAWROT) == STUDIO_ANIM_RAWROT) {
+            rot = add$5(rot, rot, this.rawrot);
+        }
+        if ((flag & STUDIO_ANIM_RAWROT2) == STUDIO_ANIM_RAWROT2) {
+            rot = fromEuler4(rot, this.rawrot2); //TODO: fix the from euler function
+            return rot;
+        }
+        if ((flag & STUDIO_ANIM_ANIMROT) == STUDIO_ANIM_ANIMROT) {
+            for (let i = 0; i < 3; ++i) {
+                offset = this.animValuePtrRot.offset[i];
+                if (offset) {
+                    rot[i] = this.readValue(mdl, frame, this.animValuePtrRot.base + offset, bone.boneId, i) * bone.rotscale[i];
+                }
+            }
+        }
+        if ((flag & STUDIO_ANIM_DELTA) != STUDIO_ANIM_DELTA) {
+            add$5(rot, rot, bone.rot);
+        }
+        return rot;
+    }
+    getPos(pos, mdl, bone, frame) {
+        const flag = this.flags;
+        let offset;
+        pos[0] = 0;
+        pos[1] = 0;
+        pos[2] = 0;
+        if ((flag & STUDIO_ANIM_RAWPOS) == STUDIO_ANIM_RAWPOS) {
+            pos = add$5(pos, pos, this.rawpos);
+            return pos;
+        }
+        else if ((flag & STUDIO_ANIM_ANIMPOS) != STUDIO_ANIM_ANIMPOS) {
+            if ((flag & STUDIO_ANIM_DELTA) == STUDIO_ANIM_DELTA) {
+                //vec3.add(pos, pos, bone.position);
+                pos[0] = 0;
+                pos[1] = 0;
+                pos[2] = 0;
+            }
+            else {
+                add$5(pos, pos, bone.position);
+            }
+            return pos;
+        }
+        if ((flag & STUDIO_ANIM_ANIMPOS) == STUDIO_ANIM_ANIMPOS) {
+            for (let i = 0; i < 3; ++i) {
+                offset = this.animValuePtrPos.offset[i];
+                if (offset) {
+                    pos[i] = this.readValue(mdl, frame, this.animValuePtrPos.base + offset, bone.boneId, i) * bone.posscale[i];
+                }
+            }
+        }
+        if ((flag & STUDIO_ANIM_DELTA) != STUDIO_ANIM_DELTA) {
+            add$5(pos, pos, bone.position);
+        }
+        return pos;
+    }
+    readValue(mdl, frame, offset, boneid, memberid) {
+        const reader = mdl.reader;
+        reader.seek(offset);
+        let valid = 0;
+        let total = 0;
+        let k = frame;
+        let count = 0;
+        do {
+            count++;
+            if (count > 1) {
+                const nextOffset = reader.tell() + valid * 2;
+                /*if (!mdl.hasChunk(nextOffset, 2)) {//TODOv3
+                    return 0;
+                }*/
+                reader.seek(nextOffset);
+            }
+            k -= total;
+            valid = reader.getInt8();
+            total = reader.getInt8();
+        } while ((total <= k) && count < 30); //TODO: change 30
+        if (k >= valid) {
+            k = valid - 1;
+        }
+        const nextOffset = reader.tell() + k * 2;
+        reader.seek(nextOffset);
+        return reader.getInt16();
+    }
+}
+
+//-----------------------------------------------------------------------------
+// Purpose: returns array of animations and weightings for a sequence based on current pose parameters
+//-----------------------------------------------------------------------------
+//void Studio_SeqAnims(const CStudioHdr *pStudioHdr, mstudioseqdesc_t &seqdesc, int iSequence, const float poseParameter[], mstudioanimdesc_t *panim[4], float *weight)
+function Studio_SeqAnims(pStudioHdr, seqdesc, iSequence, poseParameter, panim, weight) {
+    /*if (!pStudioHdr || iSequence >= pStudioHdr.GetNumSeq())
+    {
+        weight[0] = weight[1] = weight[2] = weight[3] = 0.0;
+        return;
+    }*/
+    const i0 = 0, i1 = 0;
+    const s0 = 0, s1 = 0;
+    //Studio_LocalPoseParameter(pStudioHdr, poseParameter, seqdesc, iSequence, 0, s0, i0);TODOV2
+    //	Studio_LocalPoseParameter(pStudioHdr, poseParameter, seqdesc, iSequence, 1, s1, i1);
+    //panim[0] = pStudioHdr.pAnimdesc(pStudioHdr.iRelativeAnim(iSequence, seqdesc.anim(i0	, i1)));
+    panim[0] = pStudioHdr.getAnimDescription(seqdesc.getBlend(i0, i1));
+    weight[0] = (1 - s0) * (1 - s1);
+    //panim[1] = pStudioHdr.pAnimdesc(pStudioHdr.iRelativeAnim(iSequence, seqdesc.anim(i0+1, i1)));
+    panim[1] = pStudioHdr.getAnimDescription(seqdesc.getBlend(i0 + 1, i1));
+    weight[1] = (s0) * (1 - s1);
+    //panim[2] = pStudioHdr.pAnimdesc(pStudioHdr.iRelativeAnim(iSequence, seqdesc.anim(i0	, i1+1)));
+    panim[2] = pStudioHdr.getAnimDescription(seqdesc.getBlend(i0, i1 + 1));
+    weight[2] = (1 - s0) * (s1);
+    //panim[3] = pStudioHdr.pAnimdesc(pStudioHdr.iRelativeAnim(iSequence, seqdesc.anim(i0+1, i1+1)));
+    panim[3] = pStudioHdr.getAnimDescription(seqdesc.getBlend(i0 + 1, i1 + 1));
+    weight[3] = (s0) * (s1);
+}
+//-----------------------------------------------------------------------------
+// Purpose: returns cycles per second of a sequence (cycles/second)
+//-----------------------------------------------------------------------------
+//float Studio_CPS(const CStudioHdr *pStudioHdr, mstudioseqdesc_t &seqdesc, int iSequence, const float poseParameter[])
+function Studio_CPS(pStudioHdr, seqdesc, iSequence, poseParameter) {
+    const panim = [];
+    const weight = [];
+    Studio_SeqAnims(pStudioHdr, seqdesc, iSequence, poseParameter, panim, weight);
+    let t = 0;
+    for (let i = 0; i < 4; ++i) {
+        if (panim[i] && weight[i] > 0 && panim[i].numframes > 1) {
+            t += (panim[i].fps / (panim[i].numframes - 1)) * weight[i];
+            //setAnimLength(panim[i].numframes);//TODOv3
+        }
+    }
+    return t;
+}
+//-----------------------------------------------------------------------------
+// Purpose: returns length (in seconds) of a sequence (seconds/cycle)
+//-----------------------------------------------------------------------------
+//float Studio_Duration(const CStudioHdr *pStudioHdr, int iSequence, const float poseParameter[])
+function Studio_Duration(pStudioHdr, iSequence, poseParameter) {
+    const seqdesc = pStudioHdr.getSequenceById(iSequence); //pStudioHdr.pSeqdesc(iSequence);
+    const cps = Studio_CPS(pStudioHdr, seqdesc, iSequence, poseParameter);
+    if (cps == 0)
+        return 0.0;
+    return 1.0 / cps;
+}
+const SOURCE_MODEL_MAX_BONES$1 = 256;
+//-----------------------------------------------------------------------------
+// Purpose: calculate a pose for a single sequence
+//-----------------------------------------------------------------------------
+function InitPose(dynamicProp, pStudioHdr, pos, q, boneMask) {
+    if (pStudioHdr.pLinearBones === undefined) {
+        for (let i = 0, boneCount = pStudioHdr.getBoneCount(); i < boneCount; ++i) {
+            {
+                const pbone = pStudioHdr.getBone(i);
+                pos[i] = pos[i] || create$4(); //removeme
+                q[i] = q[i] || create$2(); //removeme
+                copy$4(pos[i], pbone.position);
+                copy$2(q[i], pbone.quaternion);
+            }
+        }
+    }
+}
+//-----------------------------------------------------------------------------
+// Purpose: calculate a pose for a single sequence
+//			adds autolayers, runs local ik rukes
+//-----------------------------------------------------------------------------
+//function CalcPose(pStudioHdr, pIKContext, pos, q, sequence, cycle, poseParameter, boneMask, flWeight = 1.0, flTime = 0.0) {
+function CalcPose(dynamicProp, pStudioHdr, pIKContext, pos, q, boneFlags, sequence, cycle, poseParameter, boneMask, flWeight, flTime) {
+    cycle = cycle % 1; //TODOv2
+    const seqdesc = pStudioHdr.getSequenceById(sequence);
+    if (seqdesc) {
+        //Assert(flWeight >= 0.0f && flWeight <= 1.0f);
+        // This shouldn't be necessary, but the Assert should help us catch whoever is screwing this up
+        flWeight = clamp(flWeight, 0.0, 1.0);
+        // add any IK locks to prevent numautolayers from moving extremities
+        //CIKContext seq_ik;TODOv2
+        /*
+        if (false && seqdesc.numiklocks) {//TODOV2
+            seq_ik.Init(pStudioHdr, vec3_angle, vec3_origin, 0.0, 0, boneMask); // local space relative so absolute position doesn't mater
+            seq_ik.AddSequenceLocks(seqdesc, pos, q);
+        }
+            */
+        CalcPoseSingle(dynamicProp, pStudioHdr, pos, q, boneFlags, seqdesc, sequence, cycle, poseParameter, boneMask, flTime);
+        if (pIKContext) {
+            pIKContext.AddDependencies(seqdesc, sequence, cycle, poseParameter, flWeight);
+        }
+        AddSequenceLayers(dynamicProp, pStudioHdr, pIKContext, pos, q, boneFlags, seqdesc, sequence, cycle, poseParameter, boneMask, flWeight, flTime);
+        /*
+                if (false && seqdesc.numiklocks) {//TODOV2
+                    seq_ik.SolveSequenceLocks(seqdesc, pos, q);
+                }
+                    */
+    }
+}
+//-----------------------------------------------------------------------------
+// Purpose: calculate a pose for a single sequence
+//-----------------------------------------------------------------------------
+//TODOv2: put somewhere else
+const STUDIO_LOOPING$1 = 0x0001; // ending frame should be the same as the starting frame
+const STUDIO_DELTA$1 = 0x0004; // this sequence 'adds' to the base sequences, not slerp blends
+const STUDIO_POST = 0x0010; //
+const STUDIO_ALLZEROS$1 = 0x0020; // this animation/sequence has no real animation data
+//						0x0040
+const STUDIO_CYCLEPOSE$1 = 0x0080; // cycle index is taken from a pose parameter index
+const STUDIO_REALTIME$1 = 0x0100; // cycle index is taken from a real-time clock, not the animations cycle index
+const STUDIO_LOCAL$1 = 0x0200; // sequence has a local context sequence
+const STUDIO_WORLD = 0x4000; // sequence blends in worldspace
+const CalcPoseSingle_pos2$1 = Array(SOURCE_MODEL_MAX_BONES$1);
+const CalcPoseSingle_q2$1 = Array(SOURCE_MODEL_MAX_BONES$1);
+const CalcPoseSingle_pos3$1 = Array(SOURCE_MODEL_MAX_BONES$1);
+const CalcPoseSingle_q3$1 = Array(SOURCE_MODEL_MAX_BONES$1);
+for (let i = 0; i < SOURCE_MODEL_MAX_BONES$1; i++) {
+    CalcPoseSingle_pos2$1[i] = create$4();
+    CalcPoseSingle_q2$1[i] = create$2();
+    CalcPoseSingle_pos3$1[i] = create$4();
+    CalcPoseSingle_q3$1[i] = create$2();
+}
+function CalcPoseSingle(dynamicProp, pStudioHdr, pos, q, boneFlags, seqdesc, sequence, cycle, poseParameter, boneMask, flTime) {
+    let bResult = true;
+    const pos2 = CalcPoseSingle_pos2$1; //[];//vec3.create();//TODOv2: optimize (see source)
+    const q2 = CalcPoseSingle_q2$1; //[];//quat.create();//TODOv2: optimize (see source)
+    const pos3 = CalcPoseSingle_pos3$1; //[];//vec3.create();//TODOv2: optimize (see source)
+    const q3 = CalcPoseSingle_q3$1;
+    for (let i = 0; i < SOURCE_MODEL_MAX_BONES$1; ++i) {
+        zero$4(pos2[i]);
+        identity$1(q2[i]);
+        zero$4(pos3[i]);
+        identity$1(q3[i]);
+    }
+    /*	if (sequence >= pStudioHdr->GetNumSeq())TODOv2
+        {
+            sequence = 0;
+            seqdesc = pStudioHdr->pSeqdesc(sequence);
+        }*/
+    let i0 = 0, i1 = 0;
+    let s0 = 0, s1 = 0;
+    const r0 = Studio_LocalPoseParameter(pStudioHdr, poseParameter, seqdesc, sequence, 0 /*, s0, i0 */); //TODOv2
+    const r1 = Studio_LocalPoseParameter(pStudioHdr, poseParameter, seqdesc, sequence, 1 /*, s1, i1 */);
+    s0 = r0.s;
+    i0 = r0.i;
+    s1 = r1.s;
+    i1 = r1.i;
+    if (seqdesc.flags & STUDIO_REALTIME$1) {
+        const cps = Studio_CPS(pStudioHdr, seqdesc, sequence, poseParameter);
+        cycle = flTime * cps;
+        cycle = cycle - Math.floor(cycle); //TODOv2: rounding issues
+    }
+    else if (seqdesc.flags & STUDIO_CYCLEPOSE$1) {
+        const iPose = pStudioHdr.GetSharedPoseParameter(sequence, seqdesc.cycleposeindex);
+        if (iPose != -1) {
+            cycle = poseParameter[iPose];
+        }
+        else {
+            cycle = 0.0;
+        }
+    }
+    else if (cycle < 0 || cycle >= 1) {
+        if (seqdesc.flags & STUDIO_LOOPING$1) {
+            cycle = cycle - Math.floor(cycle); //TODOv2: rounding issues
+            if (cycle < 0) {
+                cycle += 1;
+            }
+        }
+        else {
+            cycle = clamp(cycle, 0.0, 1.0);
+        }
+    }
+    if (s0 < 0.001) {
+        if (s1 < 0.001) {
+            if (PoseIsAllZeros(pStudioHdr, sequence, seqdesc, i0, i1)) {
+                bResult = false;
+            }
+            else {
+                CalcAnimation(dynamicProp, pStudioHdr, pos, q, boneFlags, seqdesc, sequence, seqdesc.getBlend(i0, i1), cycle, boneMask);
+            }
+        }
+        else if (s1 > 0.999) {
+            CalcAnimation(dynamicProp, pStudioHdr, pos, q, boneFlags, seqdesc, sequence, seqdesc.getBlend(i0, i1 + 1), cycle, boneMask);
+        }
+        else {
+            CalcAnimation(dynamicProp, pStudioHdr, pos, q, boneFlags, seqdesc, sequence, seqdesc.getBlend(i0, i1), cycle, boneMask);
+            CalcAnimation(dynamicProp, pStudioHdr, pos2, q2, boneFlags, seqdesc, sequence, seqdesc.getBlend(i0, i1 + 1), cycle, boneMask);
+            BlendBones(pStudioHdr, q, pos, seqdesc, sequence, q2, pos2, s1, boneMask);
+        }
+    }
+    else if (s0 > 0.999) {
+        if (s1 < 0.001) {
+            if (PoseIsAllZeros(pStudioHdr, sequence, seqdesc, i0 + 1, i1)) {
+                bResult = false;
+            }
+            else {
+                CalcAnimation(dynamicProp, pStudioHdr, pos, q, boneFlags, seqdesc, sequence, seqdesc.getBlend(i0 + 1, i1), cycle, boneMask);
+            }
+        }
+        else if (s1 > 0.999) {
+            CalcAnimation(dynamicProp, pStudioHdr, pos, q, boneFlags, seqdesc, sequence, seqdesc.getBlend(i0 + 1, i1 + 1), cycle, boneMask);
+        }
+        else {
+            CalcAnimation(dynamicProp, pStudioHdr, pos, q, boneFlags, seqdesc, sequence, seqdesc.getBlend(i0 + 1, i1), cycle, boneMask);
+            CalcAnimation(dynamicProp, pStudioHdr, pos2, q2, boneFlags, seqdesc, sequence, seqdesc.getBlend(i0 + 1, i1 + 1), cycle, boneMask);
+            BlendBones(pStudioHdr, q, pos, seqdesc, sequence, q2, pos2, s1, boneMask);
+        }
+    }
+    else {
+        if (s1 < 0.001) {
+            if (PoseIsAllZeros(pStudioHdr, sequence, seqdesc, i0 + 1, i1)) {
+                CalcAnimation(dynamicProp, pStudioHdr, pos, q, boneFlags, seqdesc, sequence, seqdesc.getBlend(i0, i1), cycle, boneMask);
+                ScaleBones(pStudioHdr, q, pos, sequence, 1.0 - s0, boneMask);
+            }
+            else if (PoseIsAllZeros(pStudioHdr, sequence, seqdesc, i0, i1)) {
+                CalcAnimation(dynamicProp, pStudioHdr, pos, q, boneFlags, seqdesc, sequence, seqdesc.getBlend(i0 + 1, i1), cycle, boneMask);
+                ScaleBones(pStudioHdr, q, pos, sequence, s0, boneMask);
+            }
+            else {
+                CalcAnimation(dynamicProp, pStudioHdr, pos, q, boneFlags, seqdesc, sequence, seqdesc.getBlend(i0, i1), cycle, boneMask);
+                CalcAnimation(dynamicProp, pStudioHdr, pos2, q2, boneFlags, seqdesc, sequence, seqdesc.getBlend(i0 + 1, i1), cycle, boneMask);
+                BlendBones(pStudioHdr, q, pos, seqdesc, sequence, q2, pos2, s0, boneMask);
+            }
+        }
+        else if (s1 > 0.999) {
+            CalcAnimation(dynamicProp, pStudioHdr, pos, q, boneFlags, seqdesc, sequence, seqdesc.getBlend(i0, i1 + 1), cycle, boneMask);
+            CalcAnimation(dynamicProp, pStudioHdr, pos2, q2, boneFlags, seqdesc, sequence, seqdesc.getBlend(i0 + 1, i1 + 1), cycle, boneMask);
+            BlendBones(pStudioHdr, q, pos, seqdesc, sequence, q2, pos2, s0, boneMask);
+        }
+        //else if (!anim_3wayblend.GetBool())
+        else {
+            const iAnimIndices = [];
+            const weight = [];
+            Calc3WayBlendIndices(i0, i1, s0, s1, seqdesc, iAnimIndices, weight);
+            if (weight[1] < 0.001) {
+                // on diagonal
+                CalcAnimation(dynamicProp, pStudioHdr, pos, q, boneFlags, seqdesc, sequence, iAnimIndices[0], cycle, boneMask);
+                CalcAnimation(dynamicProp, pStudioHdr, pos2, q2, boneFlags, seqdesc, sequence, iAnimIndices[2], cycle, boneMask);
+                BlendBones(pStudioHdr, q, pos, seqdesc, sequence, q2, pos2, weight[2] / (weight[0] + weight[2]), boneMask);
+            }
+            else {
+                CalcAnimation(dynamicProp, pStudioHdr, pos, q, boneFlags, seqdesc, sequence, iAnimIndices[0], cycle, boneMask);
+                CalcAnimation(dynamicProp, pStudioHdr, pos2, q2, boneFlags, seqdesc, sequence, iAnimIndices[1], cycle, boneMask);
+                BlendBones(pStudioHdr, q, pos, seqdesc, sequence, q2, pos2, weight[1] / (weight[0] + weight[1]), boneMask);
+                CalcAnimation(dynamicProp, pStudioHdr, pos3, q3, boneFlags, seqdesc, sequence, iAnimIndices[2], cycle, boneMask);
+                BlendBones(pStudioHdr, q, pos, seqdesc, sequence, q3, pos3, weight[2], boneMask);
+            }
+        }
+    }
+    //g_VectorPool.Free(pos2);
+    //g_QaternionPool.Free(q2);
+    //g_VectorPool.Free(pos3);
+    //g_QaternionPool.Free(q3);
+    return bResult;
+}
+//-----------------------------------------------------------------------------
+// Purpose: Find and decode a sub-frame of animation
+//-----------------------------------------------------------------------------
+function CalcAnimation(dynamicProp, pStudioHdr, pos, q, boneFlags, seqdesc, sequence, animation, cycle, boneMask) {
+    /*virtualmodel_t *pVModel = pStudioHdr->GetVirtualModel();TODOV2
+    if (pVModel)
+    {
+        CalcVirtualAnimation(pVModel, pStudioHdr, pos, q, seqdesc, sequence, animation, cycle, boneMask);
+        return;
+    }*/
+    const animdesc = pStudioHdr.getAnimDescription(animation);
+    if (!animdesc) {
+        return;
+    }
+    pStudioHdr.getBone(0);
+    //const mstudiolinearbone_t *pLinearBones = pStudioHdr->pLinearBones();TODOV2
+    let pLinearBones;
+    const fFrame = cycle * (animdesc.numframes - 1);
+    const iFrame = Math.floor(fFrame);
+    const s = (fFrame - iFrame);
+    //iFrame = 0;
+    //console.log(pStudioHdr.getAnimFrame(animdesc, iFrame));
+    pStudioHdr.getAnimFrame(dynamicProp, animdesc, iFrame);
+    //console.log(iFrame);
+    let iLocalFrame = iFrame;
+    let flStall;
+    const panims = animdesc.pAnim(iLocalFrame, flStall);
+    //animdesc.mdl.getAnimFrame(animdesc, 31);
+    //const pweight = seqdesc.pBoneweight(0);
+    // if the animation isn't available, look for the zero frame cache
+    if (!panims) {
+        for (let i = 0, boneCount = pStudioHdr.getBoneCount(); i < boneCount; ++i) {
+            const pbone = pStudioHdr.getBone(i);
+            const pweight = seqdesc.pBoneweight(i);
+            if (pweight > 0 && (pStudioHdr.boneFlags(i) & boneMask)) {
+                if (animdesc.flags & STUDIO_DELTA$1) {
+                    q[i] = create$2(); //TODOV2
+                    pos[i] = create$4(); //TODOV2
+                }
+                else {
+                    //q[i] = pbone.rot;TODOv2
+                    q[i] = q[i] || create$2();
+                    pos[i] = pos[i] || create$4();
+                    q[i] = create$2();
+                    pos[i] = create$4();
+                    //quat.fromMat3(q[i], mat3.fromEuler(SourceEngineTempMat3, pbone.rot));
+                    quatFromEulerRad(q[i], pbone.rot[0], pbone.rot[1], pbone.rot[2]);
+                    copy$4(pos[i], pbone.position);
+                }
+            }
+        }
+        //CalcZeroframeData(pStudioHdr, pStudioHdr->GetRenderHdr(), NULL, pStudioHdr->pBone(0), animdesc, fFrame, pos, q, boneMask, 1.0);
+        CalcZeroframeData(pStudioHdr, pStudioHdr, null, pStudioHdr.getBone(0));
+        return;
+    }
+    // BUGBUG: the sequence, the anim, and the model can have all different bone mappings.
+    //for (i = 0; i < pStudioHdr->numbones(); i++, pbone++, pweight++)
+    let panim = panims[0];
+    for (let i = 0, boneCount = pStudioHdr.getBoneCount(), animIndex = 0; i < boneCount; ++i) {
+        const pbone = pStudioHdr.getBone(i);
+        const pweight = seqdesc.pBoneweight(i);
+        q[i] = q[i] || create$2(); //TODOV2
+        pos[i] = pos[i] || create$4(); //TODOV2
+        q[i] = create$2();
+        pos[i] = create$4();
+        if (panim && panim.bone == i) {
+            boneFlags[i] = panim.flags;
+            //if (pweight > 0 && (pStudioHdr.boneFlags(i) & boneMask))
+            if (pweight > 0) //TODOv2
+             {
+                if (animdesc.sectionframes != 0) {
+                    iLocalFrame = iLocalFrame % animdesc.sectionframes;
+                }
+                CalcBoneQuaternion(pStudioHdr, iLocalFrame, s, pbone, pLinearBones, panim, q[i]);
+                CalcBonePosition(pStudioHdr, iLocalFrame, s, pbone, pLinearBones, panim, pos[i]); //TODOV2
+                //quat.copy(q[i], pbone.quaternion);
+                //vec3.copy(pos[i], pbone.position);
+            }
+            //panim = panim->pNext();//TODOv2
+            panim = panims[++animIndex];
+            //} else if (pweight > 0 && (pStudioHdr.boneFlags(i) & boneMask)) {
+        }
+        else if (pweight > 0) {
+            if (animdesc.flags & STUDIO_DELTA$1) {
+                boneFlags[i] = STUDIO_ANIM_DELTA;
+                q[i] = create$2(); //TODOV2
+                pos[i] = create$4(); //TODOV2
+            }
+            else {
+                boneFlags[i] = 0;
+                copy$2(q[i], pbone.quaternion);
+                copy$4(pos[i], pbone.position);
+            }
+        }
+        else {
+            boneFlags[i] = STUDIO_ANIM_DELTA;
+        }
+    }
+}
+//-----------------------------------------------------------------------------
+// Purpose: return a sub frame rotation for a single bone
+//-----------------------------------------------------------------------------
+/*void CalcBoneQuaternion(int frame, float s,
+                        const Quaternion &baseQuat, const RadianEuler &baseRot, const Vector &baseRotScale,
+                        int iBaseFlags, const Quaternion &baseAlignment,
+                        const mstudioanim_t *panim, Quaternion &q)*/
+function _CalcBoneQuaternion(pStudioHdr, frame, s, baseQuat, baseRot, baseRotScale, iBaseFlags, baseAlignment, panim, q) {
+    if (panim.flags & STUDIO_ANIM_RAWROT) {
+        //q = panim.pQuat48();
+        copy$2(q, panim.rawrot); //TODOv2
+        return;
+    }
+    if (panim.flags & STUDIO_ANIM_RAWROT2) {
+        //q = panim.pQuat64();
+        copy$2(q, panim.rawrot2); //TODOv2
+        q[0] = panim.rawrot2[2];
+        q[1] = panim.rawrot2[1];
+        q[2] = panim.rawrot2[0];
+        q[3] = panim.rawrot2[3];
+        return;
+    }
+    if (!(panim.flags & STUDIO_ANIM_ANIMROT)) {
+        if (panim.flags & STUDIO_ANIM_DELTA) {
+            identity$1(q);
+        }
+        else {
+            copy$2(q, baseQuat); //TODOv2
+        }
+        return;
+    }
+    panim.animValuePtrRot;
+    if (s > 0.001) {
+        const angle1 = create$4(), angle2 = create$4(); // TODO: optimize
+        const q1 = create$2();
+        const q2 = create$2();
+        for (let i = 0; i < 3; ++i) {
+            const offset = panim.animValuePtrRot.offset[i];
+            if (offset) {
+                angle1[i] = panim.readValue(pStudioHdr, frame, panim.animValuePtrRot.base + offset, panim.bone, i) * baseRotScale[i];
+                angle2[i] = angle1[i];
+            }
+        }
+        if (!(panim.flags & STUDIO_ANIM_DELTA)) {
+            angle1[0] = angle1[0] + baseRot[0];
+            angle1[1] = angle1[1] + baseRot[1];
+            angle1[2] = angle1[2] + baseRot[2];
+            angle2[0] = angle2[0] + baseRot[0];
+            angle2[1] = angle2[1] + baseRot[1];
+            angle2[2] = angle2[2] + baseRot[2];
+        }
+        if (angle1[0] !== angle2[0] || angle1[1] !== angle2[1] || angle1[2] !== angle2[2]) {
+            //_AngleQuaternion(angle1, q1);//TODOv2
+            //_AngleQuaternion(angle2, q2);//TODOv2
+            quatFromEulerRad(q1, angle1[0], angle1[1], angle1[2]);
+            quatFromEulerRad(q2, angle2[0], angle2[1], angle2[2]);
+            QuaternionBlend(q1, q2, s, q);
+        }
+        else {
+            //_AngleQuaternion(angle1, q);//TODOv2
+            //quat.fromMat3(q, mat3.fromEuler(SourceEngineTempMat3, angle1));
+            quatFromEulerRad(q, angle1[0], angle1[1], angle1[2]);
+        }
+    }
+    else {
+        const angle = create$4();
+        for (let i = 0; i < 3; ++i) {
+            const offset = panim.animValuePtrRot.offset[i];
+            if (offset) {
+                angle[i] = panim.readValue(pStudioHdr, frame, panim.animValuePtrRot.base + offset, panim.bone, i) * baseRotScale[i];
+            }
+        }
+        if (!(panim.flags & STUDIO_ANIM_DELTA)) {
+            angle[0] = angle[0] + baseRot[0];
+            angle[1] = angle[1] + baseRot[1];
+            angle[2] = angle[2] + baseRot[2];
+        }
+        //_AngleQuaternion(angle, q);//TODOv2
+        //quat.fromMat3(q, mat3.fromEuler(SourceEngineTempMat3, angle));
+        quatFromEulerRad(q, angle[0], angle[1], angle[2]);
+    }
+    // align to unified bone
+    if (!(panim.flags & STUDIO_ANIM_DELTA) && (iBaseFlags & BONE_FIXED_ALIGNMENT)) {
+        QuaternionAlign(baseAlignment, q, q);
+    }
+}
+function CalcBoneQuaternion(pStudioHdr, frame, s, pBone, pLinearBones, panim, q) {
+    {
+        _CalcBoneQuaternion(pStudioHdr, frame, s, pBone.quaternion, pBone.rot, pBone.rotscale, pBone.flags, pBone.qAlignment, panim, q);
+        //_CalcBoneQuaternion(pStudioHdr, frame, s, pBone.quat, [0, 0, 0]/*pBone.rot*//*TODOV2*/, pBone.rotscale, pBone.flags, pBone.qAlignment, panim, q);
+    }
+}
+function _CalcBonePosition(pStudioHdr, frame, s, basePos, baseBoneScale, panim, pos) {
+    if (panim.flags & STUDIO_ANIM_RAWPOS) {
+        copy$4(pos, panim.rawpos);
+        return;
+    }
+    else if (!(panim.flags & STUDIO_ANIM_ANIMPOS)) {
+        if (panim.flags & STUDIO_ANIM_DELTA) {
+            zero$4(pos);
+        }
+        else {
+            copy$4(pos, basePos);
+        }
+        return;
+    }
+    panim.animValuePtrPos;
+    /*
+        mstudioanim_valueptr_t *pPosV = panim.pPosV();
+        int					j;
+    */
+    if (s > 0.001) {
+        let v1, v2; // TODO: optimize
+        for (let i = 0; i < 3; i++) {
+            const offset = panim.animValuePtrPos.offset[i];
+            if (offset) {
+                //ExtractAnimValue(frame, pPosV->pAnimvalue(i), baseBoneScale[i], v1, v2);
+                v1 = panim.readValue(pStudioHdr, frame, panim.animValuePtrPos.base + offset, panim.bone, i) * baseBoneScale[i];
+                v2 = v1;
+                pos[i] = v1 * (1.0 - s) + v2 * s;
+            }
+        }
+    }
+    else {
+        for (let i = 0; i < 3; i++) {
+            //ExtractAnimValue(frame, pPosV->pAnimvalue(i), baseBoneScale[i], pos[i]);
+            const offset = panim.animValuePtrPos.offset[i];
+            if (offset) {
+                //ExtractAnimValue(frame, pPosV->pAnimvalue(i), baseBoneScale[i], v1, v2);
+                pos[i] = panim.readValue(pStudioHdr, frame, panim.animValuePtrPos.base + offset, panim.bone, i) * baseBoneScale[i];
+            }
+        }
+    }
+    if (!(panim.flags & STUDIO_ANIM_DELTA)) {
+        pos[0] = pos[0] + basePos[0];
+        pos[1] = pos[1] + basePos[1];
+        pos[2] = pos[2] + basePos[2];
+    }
+}
+function CalcBonePosition(pStudioHdr, frame, s, pBone, pLinearBones, panim, pos) {
+    {
+        _CalcBonePosition(pStudioHdr, frame, s, pBone.position, pBone.posscale, panim, pos);
+    }
+}
+//-----------------------------------------------------------------------------
+// Do a piecewise addition of the quaternion elements. This actually makes little
+// mathematical sense, but it's a cheap way to simulate a slerp.
+//-----------------------------------------------------------------------------
+//void QuaternionBlend(const Quaternion &p, const Quaternion &q, float t, Quaternion &qt)
+function QuaternionBlend(p, q, t, qt) {
+    // decide if one of the quaternions is backwards
+    const q2 = create$2();
+    QuaternionAlign(p, q, q2);
+    QuaternionBlendNoAlign(p, q2, t, qt);
+}
+//void QuaternionBlendNoAlign(const Quaternion &p, const Quaternion &q, float t, Quaternion &qt)
+function QuaternionBlendNoAlign(p, q, t, qt) {
+    // 0.0 returns p, 1.0 return q.
+    const sclp = 1.0 - t;
+    const sclq = t;
+    for (let i = 0; i < 4; ++i) {
+        qt[i] = sclp * p[i] + sclq * q[i];
+    }
+    normalize$3(qt, qt);
+}
+//-----------------------------------------------------------------------------
+// make sure quaternions are within 180 degrees of one another, if not, reverse q
+//-----------------------------------------------------------------------------
+//void QuaternionAlign(const Quaternion &p, const Quaternion &q, Quaternion &qt)
+function QuaternionAlign(p, q, qt) {
+    // FIXME: can this be done with a quat dot product?
+    // decide if one of the quaternions is backwards
+    let a = 0;
+    let b = 0;
+    for (let i = 0; i < 4; ++i) {
+        a += (p[i] - q[i]) * (p[i] - q[i]);
+        b += (p[i] + q[i]) * (p[i] + q[i]);
+    }
+    if (a > b) {
+        for (let i = 0; i < 4; ++i) {
+            qt[i] = -q[i];
+        }
+    }
+    else if (qt != q) {
+        for (let i = 0; i < 4; ++i) {
+            qt[i] = q[i];
+        }
+    }
+}
+//-----------------------------------------------------------------------------
+// Purpose: Calc Zeroframe Data
+//-----------------------------------------------------------------------------
+function CalcZeroframeData(pStudioHdr, pAnimStudioHdr, pAnimGroup, pAnimbone, animdesc, fFrame, pos, q, boneMask, flWeight) {
+    /* TODO
+        let pData = animdesc.pZeroFrameData();
+
+        if (!pData) {
+            return;
+        }
+
+        // Msg('zeroframe %s\n', animdesc.pszName());
+        let i;
+        if (animdesc.zeroframecount == 1) {
+            for (let j = 0, boneCount = pStudioHdr.getBoneCount(); j < boneCount; ++j) {
+                if (pAnimGroup)
+                    i = pAnimGroup.masterBone[j];
+                else
+                    i = j;
+
+                if (pAnimbone[j].flags & BONE_HAS_SAVEFRAME_POS) {
+                    if ((i >= 0) && (pStudioHdr.boneFlags(i) & boneMask)) {
+                        const p = vec3.create();//TODOv2
+                        console.error('const p = *(Vector48 *)pData;//TODOv2');
+                        pos[i] = pos[i] * (1.0 - flWeight) + p * flWeight;
+                    }
+                    pData += 6;//sizeof(Vector48);//TODOv2
+                }
+                if (pAnimbone[j].flags & BONE_HAS_SAVEFRAME_ROT) {
+                    if ((i >= 0) && (pStudioHdr.boneFlags(i) & boneMask)) {
+                        const q0 = quat.create();//*(Quaternion64 *)pData;
+                        console.error('const q0 = quat.create();//*(Quaternion64 *)pData;');
+                        QuaternionBlend(q[i], q0, flWeight, q[i]);
+                        //Assert(q[i].IsValid());
+                    }
+                    pData += 8;//sizeof(Quaternion64);
+                }
+            }
+        }
+        else {
+            let s1;
+            let index = fFrame / animdesc.zeroframespan;
+            if (index >= animdesc.zeroframecount - 1) {
+                index = animdesc.zeroframecount - 2;
+                s1 = 1.0;
+            } else {
+                s1 = clamp((fFrame - index * animdesc.zeroframespan) / animdesc.zeroframespan, 0.0, 1.0);
+            }
+            let i0 = Math.max(index - 1, 0);
+            let i1 = index;
+            let i2 = Math.min(index + 1, animdesc.zeroframecount - 1);
+            for (let j = 0, boneCount = pStudioHdr.getBoneCount(); j < boneCount; ++j) {
+                if (pAnimGroup)
+                    i = pAnimGroup.masterBone[j];
+                else
+                    i = j;
+
+                if (pAnimbone[j].flags & BONE_HAS_SAVEFRAME_POS) {
+                    if ((i >= 0) && (pStudioHdr.boneFlags(i) & boneMask)) {
+                        const p0 = vec3.create();//*(((Vector48 *)pData) + i0);//optimize
+                        const p1 = vec3.create();//*(((Vector48 *)pData) + i1);
+                        const p2 = vec3.create();//*(((Vector48 *)pData) + i2);
+                        console.error('Vector p2 = *(((Vector48 *)pData) + i2);');
+                        let p3;
+                        Hermite_Spline(p0, p1, p2, s1, p3);
+                        pos[i] = pos[i] * (1.0 - flWeight) + p3 * flWeight;
+                    }
+                    pData += sizeof(Vector48) * animdesc.zeroframecount;
+                }
+                if (pAnimbone[j].flags & BONE_HAS_SAVEFRAME_ROT) {
+                    if ((i >= 0) && (pStudioHdr.boneFlags(i) & boneMask)) {
+                        const q0 = quat.create();//*(((Quaternion64 *)pData) + i0);
+                        const q1 = quat.create();//*(((Quaternion64 *)pData) + i1);
+                        const q2 = quat.create();//*(((Quaternion64 *)pData) + i2);
+                        console.error('Quaternion q0 = *(((Quaternion64 *)pData) + i0);');
+                        if (flWeight == 1.0) {
+                            Hermite_Spline(q0, q1, q2, s1, q[i]);
+                        }
+                        else {
+                            let q3;
+                            Hermite_Spline(q0, q1, q2, s1, q3);
+                            QuaternionBlend(q[i], q3, flWeight, q[i]);
+                        }
+                    }
+                    pData += sizeof(Quaternion64) * animdesc.zeroframecount;
+                }
+            }
+        }
+    */
+}
+function PoseIsAllZeros(pStudioHdr, sequence, seqdesc, i0, i1) {
+    // remove 'zero' positional blends
+    //const baseanim = pStudioHdr.iRelativeAnim(sequence, seqdesc.getBlend(i0 , i1));//TODOv2
+    const baseanim = seqdesc.getBlend(i0, i1);
+    const anim = pStudioHdr.getAnimDescription(baseanim);
+    if (!anim) {
+        return false;
+    }
+    return (anim.flags & STUDIO_ALLZEROS$1) != 0;
+}
+//-----------------------------------------------------------------------------
+// Purpose: turn a 2x2 blend into a 3 way triangle blend
+// Returns: returns the animination indices and barycentric coordinates of a triangle
+//			the triangle is a right triangle, and the diagonal is between elements [0] and [2]
+//-----------------------------------------------------------------------------
+//void Calc3WayBlendIndices(int i0, int i1, float s0, float s1, const mstudioseqdesc_t &seqdesc, int *pAnimIndices, float *pWeight)
+function Calc3WayBlendIndices(i0, i1, s0, s1, seqdesc, pAnimIndices, pWeight) {
+    // Figure out which bi-section direction we are using to make triangles.
+    const bEven = (((i0 + i1) & 0x1) == 0);
+    let x1, y1;
+    let x2, y2;
+    let x3, y3;
+    // diagonal is between elements 1 & 3
+    // TL to BR
+    if (bEven) {
+        if (s0 > s1) {
+            // B
+            x1 = 0;
+            y1 = 0;
+            x2 = 1;
+            y2 = 0;
+            x3 = 1;
+            y3 = 1;
+            pWeight[0] = (1.0 - s0);
+            pWeight[1] = s0 - s1;
+        }
+        else {
+            // C
+            x1 = 1;
+            y1 = 1;
+            x2 = 0;
+            y2 = 1;
+            x3 = 0;
+            y3 = 0;
+            pWeight[0] = s0;
+            pWeight[1] = s1 - s0;
+        }
+    }
+    // BL to TR
+    else {
+        const flTotal = s0 + s1;
+        if (flTotal > 1.0) {
+            // D
+            x1 = 1;
+            y1 = 0;
+            x2 = 1;
+            y2 = 1;
+            x3 = 0;
+            y3 = 1;
+            pWeight[0] = (1.0 - s1);
+            pWeight[1] = s0 - 1.0 + s1;
+        }
+        else {
+            // A
+            x1 = 0;
+            y1 = 1;
+            x2 = 0;
+            y2 = 0;
+            x3 = 1;
+            y3 = 0;
+            pWeight[0] = s1;
+            pWeight[1] = 1.0 - s0 - s1;
+        }
+    }
+    pAnimIndices[0] = seqdesc.getBlend(i0 + x1, i1 + y1);
+    pAnimIndices[1] = seqdesc.getBlend(i0 + x2, i1 + y2);
+    pAnimIndices[2] = seqdesc.getBlend(i0 + x3, i1 + y3);
+    // clamp the diagonal
+    if (pWeight[1] < 0.001)
+        pWeight[1] = 0.0;
+    pWeight[2] = 1.0 - pWeight[0] - pWeight[1];
+    //Assert(pWeight[0] >= 0.0 && pWeight[0] <= 1.0);
+    //Assert(pWeight[1] >= 0.0 && pWeight[1] <= 1.0);
+    //Assert(pWeight[2] >= 0.0 && pWeight[2] <= 1.0);
+}
+//-----------------------------------------------------------------------------
+// Purpose: calculate a pose for a single sequence //TODOv2
+//			adds autolayers, runs local ik rukes
+//-----------------------------------------------------------------------------
+const AddSequenceLayers = function (dynamicProp, pStudioHdr, pIKContext, pos, q, boneFlags, seqdesc, sequence, cycle, poseParameter, boneMask, flWeight, flTime) {
+    //return;
+    for (let i = 0; i < seqdesc.numautolayers; ++i) {
+        const pLayer = seqdesc.getAutoLayer(i);
+        if (pLayer.flags & STUDIO_AL_LOCAL) {
+            continue;
+        }
+        let layerCycle = cycle;
+        let layerWeight = flWeight;
+        if (pLayer.start != pLayer.end) {
+            let s = 1.0;
+            let index;
+            if (!(pLayer.flags & STUDIO_AL_POSE)) {
+                index = cycle;
+            }
+            else {
+                //TODOv2
+                pLayer.iSequence; //int iSequence = pStudioHdr.iRelativeSeq(sequence, pLayer.iSequence);
+                //const iPose = pStudioHdr.GetSharedPoseParameter(iSequence, pLayer.iPose);
+                const iPose = pLayer.iPose;
+                if (iPose != -1) {
+                    //const Pose = pStudioHdr.pPoseParameter(iPose);
+                    const Pose = pStudioHdr.getLocalPoseParameter(iPose);
+                    if (Pose) {
+                        index = poseParameter[iPose] * (Pose.end - Pose.start) + Pose.start;
+                    }
+                    else {
+                        index = 0;
+                    }
+                }
+                else {
+                    index = 0;
+                }
+            }
+            if (index < pLayer.start) {
+                continue;
+            }
+            if (index >= pLayer.end) {
+                continue;
+            }
+            if (index < pLayer.peak && pLayer.start != pLayer.peak) {
+                s = (index - pLayer.start) / (pLayer.peak - pLayer.start);
+            }
+            else if (index > pLayer.tail && pLayer.end != pLayer.tail) {
+                s = (pLayer.end - index) / (pLayer.end - pLayer.tail);
+            }
+            if (pLayer.flags & STUDIO_AL_SPLINE) {
+                s = SimpleSpline(s);
+            }
+            if ((pLayer.flags & STUDIO_AL_XFADE) && (index > pLayer.tail)) {
+                layerWeight = (s * flWeight) / (1 - flWeight + s * flWeight);
+            }
+            else if (pLayer.flags & STUDIO_AL_NOBLEND) {
+                layerWeight = s;
+            }
+            else {
+                layerWeight = flWeight * s;
+            }
+            if (!(pLayer.flags & STUDIO_AL_POSE)) {
+                layerCycle = (cycle - pLayer.start) / (pLayer.end - pLayer.start);
+            }
+        }
+        //const iSequence = pStudioHdr.iRelativeSeq(sequence, pLayer.iSequence);//TODOV2
+        const iSequence = pLayer.iSequence; //pStudioHdr.getSequenceById(pLayer.iSequence);
+        AccumulatePose(dynamicProp, pStudioHdr, pIKContext, pos, q, boneFlags, iSequence, layerCycle, poseParameter, boneMask, layerWeight, flTime);
+    }
+};
+//-----------------------------------------------------------------------------
+// Purpose: accumulate a pose for a single sequence on top of existing animation
+//			adds autolayers, runs local ik rukes
+//-----------------------------------------------------------------------------
+const AccumulatePose_pos2$1 = Array(SOURCE_MODEL_MAX_BONES$1);
+const AccumulatePose_q2$1 = Array(SOURCE_MODEL_MAX_BONES$1);
+for (let i = 0; i < SOURCE_MODEL_MAX_BONES$1; i++) {
+    AccumulatePose_pos2$1[i] = create$4();
+    AccumulatePose_q2$1[i] = create$2();
+}
+function AccumulatePose(dynamicProp, pStudioHdr, pIKContext, pos, q, boneFlags, sequence, cycle, poseParameter, boneMask, flWeight, flTime) {
+    //const pos2 = [];
+    //const q2 = [];
+    const pos2 = AccumulatePose_pos2$1;
+    const q2 = AccumulatePose_q2$1;
+    // This shouldn't be necessary, but the Assert should help us catch whoever is screwing this up
+    flWeight = clamp(flWeight, 0.0, 1.0);
+    if (sequence < 0) {
+        return;
+    }
+    const seqdesc = pStudioHdr.getSequenceById(sequence);
+    if (seqdesc.flags & STUDIO_LOCAL$1) {
+        InitPose(dynamicProp, pStudioHdr, pos2, q2);
+    }
+    if (CalcPoseSingle(dynamicProp, pStudioHdr, pos2, q2, boneFlags, seqdesc, sequence, cycle, poseParameter, boneMask, flTime)) {
+        // this weight is wrong, the IK rules won't composite at the correct intensity
+        AddLocalLayers(dynamicProp, pStudioHdr, pIKContext, pos2, q2, boneFlags, seqdesc, sequence, cycle, poseParameter, boneMask, 1.0, flTime);
+        SlerpBones(pStudioHdr, q, pos, seqdesc, sequence, q2, pos2, flWeight);
+    }
+    if (pIKContext) {
+        pIKContext.AddDependencies(seqdesc, sequence, cycle, poseParameter, flWeight);
+    }
+    AddSequenceLayers(dynamicProp, pStudioHdr, pIKContext, pos, q, boneFlags, seqdesc, sequence, cycle, poseParameter, boneMask, flWeight, flTime);
+}
+//-----------------------------------------------------------------------------
+// Purpose: calculate a pose for a single sequence
+//			adds autolayers, runs local ik rukes
+//-----------------------------------------------------------------------------
+function AddLocalLayers(dynamicProp, pStudioHdr, pIKContext, pos, q, boneFlags, seqdesc, sequence, cycle, poseParameter, boneMask, flWeight, flTime) {
+    if (!(seqdesc.flags & STUDIO_LOCAL$1)) {
+        return;
+    }
+    for (let i = 0; i < seqdesc.numautolayers; ++i) {
+        const pLayer = seqdesc.pAutolayer(i);
+        if (!(pLayer.flags & STUDIO_AL_LOCAL))
+            continue;
+        let layerCycle = cycle;
+        let layerWeight = flWeight;
+        if (pLayer.start != pLayer.end) {
+            let s = 1.0;
+            if (cycle < pLayer.start)
+                continue;
+            if (cycle >= pLayer.end)
+                continue;
+            if (cycle < pLayer.peak && pLayer.start != pLayer.peak) {
+                s = (cycle - pLayer.start) / (pLayer.peak - pLayer.start);
+            }
+            else if (cycle > pLayer.tail && pLayer.end != pLayer.tail) {
+                s = (pLayer.end - cycle) / (pLayer.end - pLayer.tail);
+            }
+            if (pLayer.flags & STUDIO_AL_SPLINE) {
+                s = SimpleSpline(s);
+            }
+            if ((pLayer.flags & STUDIO_AL_XFADE) && (cycle > pLayer.tail)) {
+                layerWeight = (s * flWeight) / (1 - flWeight + s * flWeight);
+            }
+            else if (pLayer.flags & STUDIO_AL_NOBLEND) {
+                layerWeight = s;
+            }
+            else {
+                layerWeight = flWeight * s;
+            }
+            layerCycle = (cycle - pLayer.start) / (pLayer.end - pLayer.start);
+        }
+        const iSequence = pLayer.iSequence; //pStudioHdr.iRelativeSeq(sequence, pLayer.iSequence);
+        AccumulatePose(dynamicProp, pStudioHdr, pIKContext, pos, q, boneFlags, iSequence, layerCycle, poseParameter, boneMask, layerWeight, flTime);
+    }
+}
+//-----------------------------------------------------------------------------
+// Purpose: blend together q1,pos1 with q2,pos2.	Return result in q1,pos1.
+//			0 returns q1, pos1.	1 returns q2, pos2
+//-----------------------------------------------------------------------------
+function SlerpBones(pStudioHdr, q1, pos1, seqdesc, sequence, q2, pos2, s, boneMask) {
+    if (s <= 0.0)
+        return;
+    if (s > 1.0) {
+        s = 1.0;
+    }
+    if (seqdesc.flags & STUDIO_WORLD) {
+        //WorldSpaceSlerp(pStudioHdr, q1, pos1, seqdesc, sequence, q2, pos2, s, boneMask);
+        return;
+    }
+    // Build weightlist for all bones
+    const nBoneCount = pStudioHdr.getBoneCount();
+    //const *pS2 = (float*)stackalloc(nBoneCount * sizeof(float));TODOv2
+    const pS2 = [];
+    for (let i = 0; i < nBoneCount; ++i) {
+        q1[i] = q1[i] || q2[i] || create$2(); //TODOV2
+        pos1[i] = pos1[i] || pos2[i] || create$4();
+        q2[i] = q2[i] || create$2(); //TODOV2
+        pos2[i] = pos2[i] || create$4();
+        {
+            pS2[i] = s * seqdesc.pBoneweight(i); // blend in based on this bones weight
+            continue;
+        }
+    }
+    let s1, s2;
+    if (seqdesc.flags & STUDIO_DELTA$1) {
+        for (let i = 0; i < nBoneCount; ++i) {
+            s2 = pS2[i];
+            if (s2 <= 0.0)
+                continue;
+            if (seqdesc.flags & STUDIO_POST) {
+                QuaternionMA(q1[i], s2, q2[i], q1[i]);
+                // FIXME: are these correct?
+                pos1[i][0] = pos1[i][0] + pos2[i][0] * s2;
+                pos1[i][1] = pos1[i][1] + pos2[i][1] * s2;
+                pos1[i][2] = pos1[i][2] + pos2[i][2] * s2;
+            }
+            else {
+                QuaternionSM(s2, q2[i], q1[i], q1[i]);
+                // FIXME: are these correct?
+                pos1[i][0] = pos1[i][0] + pos2[i][0] * s2;
+                pos1[i][1] = pos1[i][1] + pos2[i][1] * s2;
+                pos1[i][2] = pos1[i][2] + pos2[i][2] * s2;
+            }
+        }
+        return;
+    }
+    const q3 = create$2();
+    for (let i = 0; i < nBoneCount; ++i) {
+        s2 = pS2[i];
+        if (s2 <= 0.0)
+            continue;
+        s1 = 1.0 - s2;
+        if (pStudioHdr.boneFlags(i) & BONE_FIXED_ALIGNMENT) {
+            QuaternionSlerpNoAlign(q2[i], q1[i], s1, q3);
+        }
+        else {
+            QuaternionSlerp(q2[i], q1[i], s1, q3);
+        }
+        q1[i][0] = q3[0];
+        q1[i][1] = q3[1];
+        q1[i][2] = q3[2];
+        q1[i][3] = q3[3];
+        pos1[i][0] = pos1[i][0] * s1 + pos2[i][0] * s2;
+        pos1[i][1] = pos1[i][1] * s1 + pos2[i][1] * s2;
+        pos1[i][2] = pos1[i][2] * s1 + pos2[i][2] * s2;
+    }
+}
+//-----------------------------------------------------------------------------
+// Purpose: qt = p * (s * q)
+//-----------------------------------------------------------------------------
+//void QuaternionMA(const Quaternion &p, float s, const Quaternion &q, Quaternion &qt)
+function QuaternionMA(p, s, q, qt) {
+    const p1 = create$2();
+    const q1 = create$2();
+    QuaternionScale(q, s, q1);
+    mul$2(p1, p, q1);
+    normalize$3(p1, p1);
+    qt[0] = p1[0];
+    qt[1] = p1[1];
+    qt[2] = p1[2];
+    qt[3] = p1[3];
+}
+//-----------------------------------------------------------------------------
+// Purpose: qt = (s * p) * q
+//-----------------------------------------------------------------------------
+//void QuaternionSM(float s, const Quaternion &p, const Quaternion &q, Quaternion &qt)
+function QuaternionSM(s, p, q, qt) {
+    const p1 = create$2();
+    const q1 = create$2();
+    QuaternionScale(p, s, p1);
+    mul$2(q1, p1, q);
+    normalize$3(q1, q1); //QuaternionNormalize(q1);
+    qt[0] = q1[0];
+    qt[1] = q1[1];
+    qt[2] = q1[2];
+    qt[3] = q1[3];
+}
+//void QuaternionScale(const Quaternion &p, float t, Quaternion &q);
+function QuaternionScale(p, t, q) {
+    let r;
+    // FIXME: nick, this isn't overly sensitive to accuracy, and it may be faster to
+    // use the cos part (w) of the quaternion (sin(omega)*N,cos(omega)) to figure the new scale.
+    let sinom = Math.sqrt(dot$4(p, p));
+    sinom = Math.min(sinom, 1.0);
+    const sinsom = Math.sin(Math.asin(sinom) * t);
+    t = sinsom / (sinom + FLT_EPSILON);
+    scale$5(q, p, t);
+    // rescale rotation
+    r = 1.0 - sinsom * sinsom;
+    // Assert(r >= 0);
+    if (r < 0.0) {
+        r = 0.0;
+    }
+    r = Math.sqrt(r);
+    // keep sign of rotation
+    if (p.w < 0) {
+        q.w = -r;
+    }
+    else {
+        q.w = r;
+    }
+    return;
+}
+//-----------------------------------------------------------------------------
+// Purpose: Inter-animation blend.	Assumes both types are identical.
+//			blend together q1,pos1 with q2,pos2.	Return result in q1,pos1.
+//			0 returns q1, pos1.	1 returns q2, pos2
+//-----------------------------------------------------------------------------
+/*void BlendBones(
+    const CStudioHdr *pStudioHdr,
+    Quaternion q1[MAXSTUDIOBONES],
+    Vector pos1[MAXSTUDIOBONES],
+    mstudioseqdesc_t &seqdesc,
+    int sequence,
+    const Quaternion q2[MAXSTUDIOBONES],
+    const Vector pos2[MAXSTUDIOBONES],
+    float s,
+    int boneMask)*/
+function BlendBones(pStudioHdr, q1, pos1, seqdesc, sequence, q2, pos2, s, boneMask) {
+    const q3 = create$2();
+    /*virtualmodel_t *pVModel = pStudioHdr.GetVirtualModel();TODO
+    const virtualgroup_t *pSeqGroup = NULL;
+    if (pVModel)
+    {
+        pSeqGroup = pVModel.pSeqGroup(sequence);
+    }*/
+    if (s <= 0) {
+        //Assert(0); // shouldn't have been called
+        return;
+    }
+    else if (s >= 1.0) {
+        //Assert(0); // shouldn't have been called
+        for (let i = 0, boneCount = pStudioHdr.getBoneCount(); i < boneCount; ++i) {
+            let j;
+            // skip unused bones
+            if (!(pStudioHdr.boneFlags(i) & boneMask)) {
+                continue;
+            }
+            {
+                j = i;
+            }
+            if (j >= 0 && seqdesc.pBoneweight(j) > 0.0) {
+                q1[i] = q2[i];
+                pos1[i] = pos2[i];
+            }
+        }
+        return;
+    }
+    const s2 = s;
+    const s1 = 1.0 - s2;
+    for (let i = 0, boneCount = pStudioHdr.getBoneCount(); i < boneCount; ++i) {
+        let j;
+        // skip unused bones
+        q1[i] = q1[i] || create$2();
+        pos1[i] = pos1[i] || create$4();
+        q2[i] = q2[i] || create$2();
+        pos2[i] = pos2[i] || create$4();
+        if (!(pStudioHdr.boneFlags(i) & boneMask)) {
+            continue;
+        }
+        {
+            j = i;
+        }
+        if (j >= 0 && seqdesc.pBoneweight(j) > 0.0) {
+            if (pStudioHdr.boneFlags(i) & BONE_FIXED_ALIGNMENT) {
+                QuaternionBlendNoAlign(q2[i], q1[i], s1, q3);
+            }
+            else {
+                QuaternionBlend(q2[i], q1[i], s1, q3);
+            }
+            q1[i][0] = q3[0];
+            q1[i][1] = q3[1];
+            q1[i][2] = q3[2];
+            q1[i][3] = q3[3];
+            pos1[i][0] = pos1[i][0] * s1 + pos2[i][0] * s2;
+            pos1[i][1] = pos1[i][1] * s1 + pos2[i][1] * s2;
+            pos1[i][2] = pos1[i][2] * s1 + pos2[i][2] * s2;
+        }
+    }
+}
+//-----------------------------------------------------------------------------
+// Quaternion sphereical linear interpolation
+//-----------------------------------------------------------------------------
+//void QuaternionSlerp(const Quaternion &p, const Quaternion &q, float t, Quaternion &qt)
+function QuaternionSlerp(p, q, t, qt) {
+    const q2 = create$2();
+    // 0.0 returns p, 1.0 return q.
+    // decide if one of the quaternions is backwards
+    QuaternionAlign(p, q, q2);
+    QuaternionSlerpNoAlign(p, q2, t, qt);
+}
+//void QuaternionSlerpNoAlign(const Quaternion &p, const Quaternion &q, float t, Quaternion &qt)
+function QuaternionSlerpNoAlign(p, q, t, qt) {
+    //Assert(s_bMathlibInitialized);
+    let omega, cosom, sinom, sclp, sclq;
+    // 0.0 returns p, 1.0 return q.
+    cosom = p[0] * q[0] + p[1] * q[1] + p[2] * q[2] + p[3] * q[3];
+    if ((1.0 + cosom) > 0.000001) {
+        if ((1.0 - cosom) > 0.000001) {
+            omega = Math.acos(cosom);
+            sinom = Math.sin(omega);
+            sclp = Math.sin((1.0 - t) * omega) / sinom;
+            sclq = Math.sin(t * omega) / sinom;
+        }
+        else {
+            // TODO: add short circuit for cosom == 1.0?
+            sclp = 1.0 - t;
+            sclq = t;
+        }
+        for (let i = 0; i < 4; ++i) {
+            qt[i] = sclp * p[i] + sclq * q[i];
+        }
+    }
+    else {
+        //Assert(&qt != &q);
+        qt[0] = -q[1];
+        qt[1] = q[0];
+        qt[2] = -q[3];
+        qt[3] = q[2];
+        sclp = Math.sin((1.0 - t) * (0.5 * Math.PI));
+        sclq = Math.sin(t * (0.5 * Math.PI));
+        for (let i = 0; i < 3; i++) {
+            qt[i] = sclp * p[i] + sclq * qt[i];
+        }
+    }
+    //Assert(qt.IsValid());
+}
+//-----------------------------------------------------------------------------
+// Purpose: resolve a global pose parameter to the specific setting for this sequence
+//-----------------------------------------------------------------------------
+//void Studio_LocalPoseParameter(const CStudioHdr *pStudioHdr, const float poseParameter[], mstudioseqdesc_t &seqdesc, int iSequence, int iLocalIndex, float &flSetting, int &index)
+function Studio_LocalPoseParameter(pStudioHdr, poseParameter, seqdesc, iSequence, iLocalIndex /*, flSetting, index*/) {
+    let flSetting = 0;
+    let index = 0;
+    //const iPose = pStudioHdr.GetSharedPoseParameter(iSequence, seqdesc.paramindex[iLocalIndex]);
+    const iPose = seqdesc.paramindex[iLocalIndex]; //TODOV2
+    if (iPose == -1) {
+        flSetting = 0;
+        index = 0;
+        return { s: flSetting, i: index };
+    }
+    const Pose = pStudioHdr.getLocalPoseParameter(iPose);
+    if (!Pose) {
+        flSetting = 0;
+        index = 0;
+        return { s: flSetting, i: index };
+    }
+    //const flValue = poseParameter[iPose];
+    let flValue = Pose.midpoint;
+    if (poseParameter[Pose.name] !== undefined) {
+        flValue = poseParameter[Pose.name];
+    }
+    if (Pose.loop) {
+        const wrap = (Pose.start + Pose.end) / 2.0 + Pose.loop / 2.0;
+        const shift = Pose.loop - wrap;
+        flValue = flValue - Pose.loop * Math.floor((flValue + shift) / Pose.loop);
+    }
+    if (seqdesc.posekeyindex == 0) {
+        const flLocalStart = (seqdesc.paramstart[iLocalIndex] - Pose.start) / (Pose.end - Pose.start);
+        const flLocalEnd = (seqdesc.paramend[iLocalIndex] - Pose.start) / (Pose.end - Pose.start);
+        // convert into local range
+        flSetting = (flValue - flLocalStart) / (flLocalEnd - flLocalStart);
+        // clamp.	This shouldn't ever need to happen if it's looping.
+        if (flSetting < 0)
+            flSetting = 0;
+        if (flSetting > 1)
+            flSetting = 1;
+        index = 0;
+        if (seqdesc.groupsize[iLocalIndex] > 2) {
+            // estimate index
+            index = Math.round(flSetting * (seqdesc.groupsize[iLocalIndex] - 1));
+            if (index == seqdesc.groupsize[iLocalIndex] - 1)
+                index = seqdesc.groupsize[iLocalIndex] - 2;
+            flSetting = flSetting * (seqdesc.groupsize[iLocalIndex] - 1) - index;
+        }
+    }
+    else {
+        flValue = flValue * (Pose.end - Pose.start) + Pose.start;
+        index = 0;
+        // FIXME: this needs to be 2D
+        // FIXME: this shouldn't be a linear search
+        while (1) {
+            flSetting = (flValue - seqdesc.poseKey(iLocalIndex, index)) / (seqdesc.poseKey(iLocalIndex, index + 1) - seqdesc.poseKey(iLocalIndex, index));
+            //flSetting = 0;//TODOV2
+            /*
+            if (index > 0 && flSetting < 0.0)
+            {
+                index--;
+                continue;
+            }
+            else
+            */
+            if (index < seqdesc.groupsize[iLocalIndex] - 2 && flSetting > 1.0) {
+                index++;
+                continue;
+            }
+            break;
+        }
+        // clamp.
+        if (flSetting < 0.0)
+            flSetting = 0.0;
+        if (flSetting > 1.0)
+            flSetting = 1.0;
+    }
+    return { s: flSetting, i: index };
+}
+function ScaleBones(pStudioHdr, //const CStudioHdr *pStudioHdr,
+q1, //Quaternion q1[MAXSTUDIOBONES],
+pos1, //Vector pos1[MAXSTUDIOBONES],
+sequence, //int sequence,
+s, //float s,
+boneMask //int boneMask
+) {
+    let i, j; //int			i, j;
+    let seqdesc = pStudioHdr.getSequenceById(sequence); //mstudioseqdesc_t & seqdesc = ((CStudioHdr *)pStudioHdr) -> pSeqdesc(sequence);
+    /*
+    virtualmodel_t * pVModel = pStudioHdr -> GetVirtualModel();
+    const virtualgroup_t * pSeqGroup = NULL;
+    if (pVModel) {
+        pSeqGroup = pVModel -> pSeqGroup(sequence);
+    }
+        */
+    let s2 = s;
+    let s1 = 1.0 - s2;
+    for (i = 0; i < pStudioHdr.getBoneCount(); i++) {
+        // skip unused bones
+        if (!(pStudioHdr.boneFlags(i) & boneMask)) {
+            continue;
+        }
+        {
+            j = i;
+        }
+        if (j >= 0 && seqdesc.pBoneweight(j) > 0.0) {
+            QuaternionIdentityBlend(q1[i], s1, q1[i]);
+            //VectorScale(pos1[i], s2, pos1[i]);
+            scale$5(pos1[i], pos1[i], s2);
+        }
+    }
+}
+//-----------------------------------------------------------------------------
+// Purpose: translate animations done in a non-standard parent space
+//-----------------------------------------------------------------------------
+/*
+function CalcLocalHierarchyAnimation(
+    pStudioHdr,//const CStudioHdr * pStudioHdr,
+    boneToWorld: mat4,//matrix3x4_t * boneToWorld,
+    boneComputed,//CBoneBitList & boneComputed,
+    pos,//Vector * pos,
+    q,//Quaternion * q,
+    //const mstudioanimdesc_t &animdesc,
+    pbone,//const mstudiobone_t * pbone,
+    pHierarchy,//mstudiolocalhierarchy_t * pHierarchy,
+    iBone: number,//int iBone,
+    iNewParent: number,//int iNewParent,
+    cycle: number,//float cycle,
+    iFrame: number,//int iFrame,
+    flFraq: number,//float flFraq,
+    boneMask: number,//int boneMask
+): void {
+
+    let localPos = vec3.create();//Vector localPos;
+    let localQ = quat.create();//Quaternion localQ;
+
+    // make fake root transform
+    //static ALIGN16 matrix3x4_t rootXform ALIGN16_POST(1.0f, 0, 0, 0, 0, 1.0f, 0, 0, 0, 0, 1.0f, 0);
+    let rootXform = mat4.create();
+
+    // FIXME: missing check to see if seq has a weight for this bone
+    //float weight = 1.0f;
+    let weight = 1;
+
+    // check to see if there's a ramp on the influence
+    if (pHierarchy -> tail - pHierarchy -> peak < 1.0f  )
+    {
+        float index = cycle;
+
+        if (pHierarchy -> end > 1.0f && index < pHierarchy -> start)
+        index += 1.0f;
+
+        if (index < pHierarchy -> start)
+            return;
+        if (index >= pHierarchy -> end)
+            return;
+
+        if (index < pHierarchy -> peak && pHierarchy -> start != pHierarchy -> peak) {
+            weight = (index - pHierarchy -> start) / (pHierarchy -> peak - pHierarchy -> start);
+        }
+        else if (index > pHierarchy -> tail && pHierarchy -> end != pHierarchy -> tail) {
+            weight = (pHierarchy -> end - index) / (pHierarchy -> end - pHierarchy -> tail);
+        }
+
+        weight = SimpleSpline(weight);
+    }
+
+    CalcDecompressedAnimation(pHierarchy -> pLocalAnim(), iFrame - pHierarchy -> iStart, flFraq, localPos, localQ);
+
+    BuildBoneChain(pStudioHdr, rootXform, pos, q, iBone, boneToWorld, boneComputed);
+
+    matrix3x4_t localXform;
+    AngleMatrix(localQ, localPos, localXform);
+
+    if (iNewParent != -1) {
+        BuildBoneChain(pStudioHdr, rootXform, pos, q, iNewParent, boneToWorld, boneComputed);
+        ConcatTransforms(boneToWorld[iNewParent], localXform, boneToWorld[iBone]);
+    }
+    else {
+        boneToWorld[iBone] = localXform;
+    }
+
+    // back solve
+    Vector p1;
+    Quaternion q1;
+    int n = pbone[iBone].parent;
+    if (n == -1) {
+        if (weight == 1.0f)
+        {
+            MatrixAngles(boneToWorld[iBone], q[iBone], pos[iBone]);
+        }
+        else
+        {
+            MatrixAngles(boneToWorld[iBone], q1, p1);
+            QuaternionSlerp(q[iBone], q1, weight, q[iBone]);
+            pos[iBone] = Lerp(weight, p1, pos[iBone]);
+        }
+    }
+    else {
+        matrix3x4_t worldToBone;
+        MatrixInvert(boneToWorld[n], worldToBone);
+
+        matrix3x4_t local;
+        ConcatTransforms(worldToBone, boneToWorld[iBone], local);
+        if (weight == 1.0f)
+        {
+            MatrixAngles(local, q[iBone], pos[iBone]);
+        }
+        else
+        {
+            MatrixAngles(local, q1, p1);
+            QuaternionSlerp(q[iBone], q1, weight, q[iBone]);
+            pos[iBone] = Lerp(weight, p1, pos[iBone]);
+        }
+    }
+}
+    */
+//-----------------------------------------------------------------------------
+// Purpose: blend together in world space q1,pos1 with q2,pos2.  Return result in q1,pos1.
+//			0 returns q1, pos1.  1 returns q2, pos2
+//-----------------------------------------------------------------------------
+/*
+function WorldSpaceSlerp(
+    pStudioHdr,//const CStudioHdr *pStudioHdr,
+    q1: Array<quat>,//Quaternion q1[MAXSTUDIOBONES],
+    pos1: Array<vec3>,//Vector pos1[MAXSTUDIOBONES],
+    seqdesc,//mstudioseqdesc_t &seqdesc,
+    sequence: number,//int sequence,
+    q2: Array<quat>,//const Quaternion q2[MAXSTUDIOBONES],
+    pos2: Array<vec3>,//const Vector pos2[MAXSTUDIOBONES],
+    s: number,//float s,
+    boneMask: number//int boneMask
+): void {
+    int			i, j;
+    float		s1; // weight of parent for q2, pos2
+    float		s2; // weight for q2, pos2
+
+    // make fake root transform
+    matrix3x4_t rootXform;
+    SetIdentityMatrix(rootXform);
+
+    // matrices for q2, pos2
+    matrix3x4_t * srcBoneToWorld = g_MatrixPool.Alloc();
+    CBoneBitList srcBoneComputed;
+
+    matrix3x4_t * destBoneToWorld = g_MatrixPool.Alloc();
+    CBoneBitList destBoneComputed;
+
+    matrix3x4_t * targetBoneToWorld = g_MatrixPool.Alloc();
+    CBoneBitList targetBoneComputed;
+
+    virtualmodel_t * pVModel = pStudioHdr -> GetVirtualModel();
+    const virtualgroup_t * pSeqGroup = NULL;
+    if (pVModel) {
+        pSeqGroup = pVModel -> pSeqGroup(sequence);
+    }
+
+    mstudiobone_t * pbone = pStudioHdr -> pBone(0);
+
+    for (i = 0; i < pStudioHdr -> numbones(); i++) {
+        // skip unused bones
+        if (!(pStudioHdr -> boneFlags(i) & boneMask)) {
+            continue;
+        }
+
+        int n = pbone[i].parent;
+        s1 = 0.0;
+        if (pSeqGroup) {
+            j = pSeqGroup -> boneMap[i];
+            if (j >= 0) {
+                s2 = s * seqdesc.weight(j);	// blend in based on this bones weight
+                if (n != -1) {
+                    s1 = s * seqdesc.weight(pSeqGroup -> boneMap[n]);
+                }
+            }
+            else {
+                s2 = 0.0;
+            }
+        }
+        else {
+            s2 = s * seqdesc.weight(i);	// blend in based on this bones weight
+            if (n != -1) {
+                s1 = s * seqdesc.weight(n);
+            }
+        }
+
+        if (s1 == 1.0 && s2 == 1.0) {
+            pos1[i] = pos2[i];
+            q1[i] = q2[i];
+        }
+        else if (s2 > 0.0) {
+            Quaternion srcQ, destQ;
+            Vector srcPos, destPos;
+            Quaternion targetQ;
+            Vector targetPos;
+            Vector tmp;
+
+            BuildBoneChain(pStudioHdr, rootXform, pos1, q1, i, destBoneToWorld, destBoneComputed);
+            BuildBoneChain(pStudioHdr, rootXform, pos2, q2, i, srcBoneToWorld, srcBoneComputed);
+
+            MatrixAngles(destBoneToWorld[i], destQ, destPos);
+            MatrixAngles(srcBoneToWorld[i], srcQ, srcPos);
+
+            QuaternionSlerp(destQ, srcQ, s2, targetQ);
+            AngleMatrix(targetQ, destPos, targetBoneToWorld[i]);
+
+            // back solve
+            if (n == -1) {
+                MatrixAngles(targetBoneToWorld[i], q1[i], tmp);
+            }
+            else {
+                matrix3x4_t worldToBone;
+                MatrixInvert(targetBoneToWorld[n], worldToBone);
+
+                matrix3x4_t local;
+                ConcatTransforms(worldToBone, targetBoneToWorld[i], local);
+                MatrixAngles(local, q1[i], tmp);
+
+                // blend bone lengths (local space)
+                pos1[i] = Lerp(s2, pos1[i], pos2[i]);
+            }
+        }
+    }
+    g_MatrixPool.Free(srcBoneToWorld);
+    g_MatrixPool.Free(destBoneToWorld);
+    g_MatrixPool.Free(targetBoneToWorld);
+}
+*/
+
+class SourceAnimation {
+    position = create$4();
+    boneRot = create$4(); //TODO: remove me ?
+    quaternion = create$2(); //TODOv2
+    tempPos = create$4();
+    tempRot = create$4();
+    constructor(sourceModel) {
+    }
+    animate2(dynamicProp, poseParameters, position, orientation, sequences /*, bonesScale*/) {
+        const model = dynamicProp.sourceModel;
+        if (!model) {
+            return;
+        }
+        const modelBones = model.getBones();
+        if (!modelBones) {
+            return;
+        }
+        dynamicProp.parent;
+        const posRemoveMeTemp = [];
+        const quatRemoveMeTemp = [];
+        const modelBonesLength = modelBones.length;
+        const seqlist = Object.keys(sequences);
+        let posRemoveMe; // = [];//optimize
+        let quatRemoveMe; // = [];//optimize
+        if (seqlist.length) {
+            let s;
+            while (s = seqlist.shift()) {
+                if (sequences[s].s) {
+                    const sequenceMdl = sequences[s].s.mdl;
+                    const t = Studio_Duration(sequenceMdl, sequences[s].s.id, poseParameters);
+                    //InitPose(dynamicProp, sequenceMdl, posRemoveMeTemp, quatRemoveMeTemp, BONE_USED_BY_ANYTHING);
+                    CalcPose(dynamicProp, sequenceMdl, undefined, posRemoveMeTemp, quatRemoveMeTemp, [], sequences[s].s.id, dynamicProp.frame / t, poseParameters, BONE_USED_BY_ANYTHING, 1.0, dynamicProp.frame / t);
+                    if (sequenceMdl != model.mdl && sequenceMdl.boneNames) {
+                        posRemoveMe = [];
+                        quatRemoveMe = [];
+                        const modelBoneArray = model.mdl.getBones();
+                        for (let boneIndex = 0, l = modelBoneArray.length; boneIndex < l; ++boneIndex) {
+                            const boneName = modelBoneArray[boneIndex].lowcasename;
+                            const seqBoneId = sequenceMdl.boneNames[boneName];
+                            posRemoveMe[boneIndex] = posRemoveMeTemp[seqBoneId];
+                            quatRemoveMe[boneIndex] = quatRemoveMeTemp[seqBoneId];
+                        }
+                    }
+                    else {
+                        posRemoveMe = posRemoveMeTemp;
+                        quatRemoveMe = quatRemoveMeTemp;
+                    }
+                }
+            }
+        }
+        posRemoveMe = posRemoveMe || [];
+        quatRemoveMe = quatRemoveMe || [];
+        //const currentFrame = null;
+        const seqList = Object.keys(sequences);
+        const bonesRemoveMe = Object.create(null);
+        for (let i = 0; i < seqList.length * 0; ++i) {
+            const sequenceName = seqList[i];
+            const seqContext = sequences[sequenceName];
+            if (seqContext) {
+                const sequence = seqContext.s;
+                if (sequence) {
+                    const sequenceBones = sequence.mdl.getBones();
+                    if (sequenceBones) {
+                        const g1 = Math.floor(sequence.groupsize1 / 2);
+                        const g2 = Math.floor(sequence.groupsize2 / 2);
+                        //g1 = g1RemoveMe;
+                        //g2 = g2RemoveMe;
+                        //g1 = 2;
+                        const animIndex = sequence.getBlend(g1, g2); //TODOV2
+                        sequence.mdl.getAnimDescription(animIndex);
+                    }
+                }
+            }
+        }
+        Object.keys(bonesRemoveMe).forEach(function (boneName) {
+            scale$5(bonesRemoveMe[boneName].pos, bonesRemoveMe[boneName].pos, 1 / bonesRemoveMe[boneName].count);
+            scale$5(bonesRemoveMe[boneName].rot, bonesRemoveMe[boneName].rot, 1 / bonesRemoveMe[boneName].count);
+            //vec3.scale(bonesRemoveMe[boneName].quat, bonesRemoveMe[boneName].quat, 1 / bonesRemoveMe[boneName].count);
+            normalize$3(bonesRemoveMe[boneName].quat, bonesRemoveMe[boneName].quat);
+        });
+        for (let i = 0; i < modelBonesLength; ++i) {
+            //let pbone = modelBones[i];
+            //quatRemoveMeTemp[i] = quat.copy(quat.create(), pbone.quaternion);//removeme
+            //posRemoveMeTemp[i] = vec3.copy(vec3.create(), pbone.position);
+            let boneIndex = i;
+            const bone = modelBones[i];
+            zero$4(this.boneRot);
+            zero$4(this.position);
+            identity$1(this.quaternion);
+            const bonesRemoveMeMe = bonesRemoveMe[bone.name];
+            if (bonesRemoveMeMe !== undefined) ;
+            else {
+                copy$4(this.position, bone.position);
+                //vec3.copy(this.boneRot, bone.rot);
+                //quat.fromMat3(this.quaternion, mat3.fromEuler(SourceEngineTempMat3, bone.rot));
+                quatFromEulerRad(this.quaternion, bone.rot[0], bone.rot[1], bone.rot[2]);
+            }
+            //const q = quat.fromMat3(quat.create(), mat3.fromEuler(SourceEngineTempMat3, this.boneRot));
+            const posRemoveMeMe = posRemoveMe[bone.boneId];
+            const quatRemoveMeMe = quatRemoveMe[bone.boneId];
+            //bone.boneQuat = this.boneQuat;
+            //bone.position = this.position;
+            bone.parent;
+            bone.lowcasename;
+            //const parentMergedBone = bone.parentMergedBone;
+            const dynamicPropBones = dynamicProp.skeleton._bones; //dynamicProp.bones;
+            let dynamicPropBone = dynamicPropBones[boneIndex];
+            if (dynamicPropBone === undefined) {
+                //dynamicPropBone = {worldPos:vec3.create(), worldQuat:quat.create()};//TODO: optimize
+                //dynamicPropBones[boneNameLowerCase] = dynamicPropBone;
+                return;
+            }
+            //vec3.copy(dynamicPropBone.worldPos, bone.worldPos);
+            //quat.copy(dynamicPropBone.worldQuat, bone.worldQuat);
+            //dynamicProp.bones[boneNameLowerCase] = dynamicPropBones;
+            /*
+            if (bonesScale !== undefined) {
+                const boneScale = bonesScale[bone.name];
+                if (boneScale) {
+                    mat4.scale(bone.boneMat, bone.boneMat, [boneScale, boneScale, boneScale]);
+                }
+            }
+            */
+            let b = dynamicPropBones[boneIndex];
+            if (b) {
+                if (!b.locked) {
+                    b.quaternion = quatRemoveMeMe ?? b._initialQuaternion;
+                    b.position = posRemoveMeMe ?? b._initialPosition;
+                }
+            }
+            else {
+                b = new MdlBone(dynamicProp.skeleton);
+                dynamicProp.skeleton._bones[boneIndex] = b;
+                b.boneId = bone.boneId;
+                b.name = bone.name;
+                b.quaternion = bone.quaternion;
+                b.position = bone.position;
+                b.parentBone = bone.parentBone;
+                b.parent = dynamicProp.skeleton._bones[b.parentBone];
+                b.poseToBone = bone.poseToBone;
+                b.initPoseToBone = bone.initPoseToBone;
+            }
+        }
+        return;
+    }
+}
+
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
@@ -65727,6 +65960,7 @@ class Source1ModelInstance extends Entity {
     #attachements = {};
     #materialsUsed = new Set();
     animable = true;
+    hasAnimations = true;
     sourceModel;
     bodyParts = {};
     sequences = {};
@@ -65737,7 +65971,10 @@ class Source1ModelInstance extends Entity {
     isDynamic;
     #sheen;
     #tint;
-    bonesScale;
+    static useNewAnimSystem = false;
+    useNewAnimSystem = false;
+    #animationList = [];
+    #bodyGroups = new Map();
     static {
         defaultMaterial.addUser(Source1ModelInstance);
     }
@@ -65852,8 +66089,27 @@ class Source1ModelInstance extends Entity {
         this.#tint = tint;
         this.materialsParams['ItemTintColor'] = tint;
     }
+    getTint(out) {
+        if (this.#tint) {
+            out = copy$3(out ?? create$3(), this.#tint);
+            return out;
+        }
+    }
     setPoseParameter(paramName, paramValue) {
         this.#poseParameters[paramName] = paramValue;
+    }
+    playAnimation(name) {
+        this.playSequence(name);
+    }
+    async setAnimation(id, name, weight) {
+        //TODO: merge with addAnimation
+        this.#animationList[id] = { name: name, weight: weight };
+        this.#animations.clear();
+        for (const [index, anim] of this.#animationList.entries()) {
+            if (anim) {
+                await this.addAnimation(index, anim.name, anim.weight);
+            }
+        }
     }
     playSequence(sequenceName) {
         sequenceName = sequenceName.toLowerCase();
@@ -65865,12 +66121,13 @@ class Source1ModelInstance extends Entity {
         }*/
         this.frame = 0;
     }
-    async addAnimation(animationName, weight = 1) {
+    async addAnimation(id, animationName, weight = 1) {
+        //TODO: merge with setAnimation
         animationName = animationName.toLowerCase();
-        if (!this.#animations.setWeight(animationName, weight)) {
+        if (!this.#animations.setWeight(id, weight)) {
             //let animation = new Animation(animationName);
             //this.#fillAnimation(animation);
-            this.#animations.add(new AnimationDescription(await this.sourceModel.getAnimation(animationName), weight));
+            this.#animations.set(id, new AnimationDescription(await this.sourceModel.getAnimation(animationName, this), weight));
         }
     }
     update(scene, camera, delta) {
@@ -65885,6 +66142,11 @@ class Source1ModelInstance extends Entity {
         }
     }
     _playSequences(delta) {
+        if (Source1ModelInstance.useNewAnimSystem || this.useNewAnimSystem) {
+            this.frame += delta;
+            this.#animate();
+            return;
+        }
         this.frame += delta;
         const now = new Date().getTime();
         const seqList = Object.keys(this.sequences);
@@ -65916,7 +66178,110 @@ class Source1ModelInstance extends Entity {
                 sequence.play(this); //TODOv2: play autolayer ?
             }
         }
-        this.anim.animate2(this, this.#poseParameters, this.position, this.quaternion, this.sequences, this.bonesScale);
+        this.anim.animate2(this, this.#poseParameters, this.position, this.quaternion, this.sequences);
+    }
+    #animate() {
+        const skeleton = this.#skeleton;
+        if (!skeleton) {
+            return;
+        }
+        for (const bone of skeleton._bones) {
+            zero$4(bone.tempPosition);
+            identity$1(bone.tempQuaternion);
+        }
+        create$4(); //TODO:optimize
+        create$2();
+        for (const [_, animationDescription] of this.#animations) {
+            if (!animationDescription) {
+                continue;
+            }
+            //console.info(animation);
+            const animation = animationDescription.animation;
+            if (!animation) {
+                continue;
+            }
+            /*
+            if (!animation.once) {
+                animation.once = true;
+                const frame = animation.getFrame(10);
+                const rotationData = frame.getData('rotation');
+
+                var arr = []
+                for (const data of rotationData.datas as Array<quat>) {
+                    let s = '';
+                    for (let i = 0; i < 4; i++) {
+                        s += data[i].toFixed(2) + ' ';
+                    }
+                    arr.push(s);
+                }
+                console.info(arr);
+
+            }
+*/
+            for (const bone of animation.bones) {
+                const skeletonBone = skeleton.getBoneById(bone.id);
+                if (!skeletonBone) {
+                    continue;
+                }
+                //skeletonBone.poseToBone = bone.refPos;
+                const frame = animation.getFrame(this.frame * 30);
+                if (frame) {
+                    const flagData = frame.getData('flags');
+                    if (!flagData) {
+                        continue;
+                    }
+                    const flag = flagData.datas[bone.id];
+                    if (flag === undefined) {
+                        copy$4(skeletonBone.tempPosition, bone.refPosition);
+                        copy$2(skeletonBone.tempQuaternion, bone.refQuaternion);
+                        continue;
+                    }
+                    const positionData = frame.getData('position');
+                    if (positionData && positionData.datas[bone.id]) {
+                        if (flag & STUDIO_ANIM_DELTA) {
+                            add$5(skeletonBone.tempPosition, skeletonBone.tempPosition, positionData.datas[bone.id]);
+                        }
+                        else {
+                            copy$4(skeletonBone.tempPosition, positionData.datas[bone.id]);
+                        }
+                    }
+                    const rotationData = frame.getData('rotation');
+                    if (rotationData && rotationData.datas[bone.id]) {
+                        if (flag & STUDIO_ANIM_DELTA) {
+                            mul$2(skeletonBone.tempQuaternion, skeletonBone.tempQuaternion, rotationData.datas[bone.id]);
+                        }
+                        else {
+                            copy$2(skeletonBone.tempQuaternion, rotationData.datas[bone.id]);
+                        }
+                    }
+                }
+            }
+            /*
+            let b = dynamicPropBones[boneIndex];
+            if (b) {
+                if (!b.locked) {
+                    b.quaternion = quatRemoveMeMe ?? b._initialQuaternion;
+                    b.position = posRemoveMeMe ?? b._initialPosition;
+                }
+            } else {
+                b = new MdlBone(dynamicProp.skeleton);
+                dynamicProp.skeleton._bones[boneIndex] = b;
+                b.boneId = bone.boneId;
+                b.name = bone.name;
+                b.quaternion = bone.quaternion;
+                b.position = bone.position;
+                b.parentBone = bone.parentBone;
+                b.parent = dynamicProp.skeleton._bones[b.parentBone];
+                b.poseToBone = bone.poseToBone;
+                b.initPoseToBone = bone.initPoseToBone;
+            }*/
+        }
+        for (const bone of skeleton._bones) {
+            if (!bone.locked) {
+                bone.position = bone.tempPosition;
+                bone.quaternion = bone.tempQuaternion;
+            }
+        }
     }
     async setMaterialOverride(materialOverride) {
         this.#materialOverride = materialOverride;
@@ -66107,6 +66472,10 @@ class Source1ModelInstance extends Entity {
         //this.sourceModel.setBodyPartModel(bodyPartName, modelId);
         //this.bodyGroups[bodyPartName] = this.bodyGroups[bodyPartName] || {render : true, modelId : 0};
         //this.bodyGroups[bodyPartName].modelId = modelId;
+        this.#bodyGroups.set(bodyPartName, Number(modelId));
+    }
+    getBodyGroups() {
+        return new Map(this.#bodyGroups);
     }
     toString() {
         return 'Source1ModelInstance ' + super.toString();
@@ -66176,12 +66545,12 @@ class Source1ModelInstance extends Entity {
         return Object.assign(super.buildContextMenu(), {
             Source1ModelInstance_1: null,
             skin: { i18n: '#skin', submenu: skinMenu },
-            tint: { i18n: '#tint', f: async (entity) => Interaction.getRGB(0, 0, undefined, (tint) => { entity.tint = tint; }, (tint = entity.tint) => { entity.tint = tint; }) },
+            tint: { i18n: '#tint', f: async (entity) => new Interaction().getColor(0, 0, undefined, (tint) => { entity.tint = tint; }, (tint = entity.tint) => { entity.tint = tint; }) },
             reset_tint: { i18n: '#reset_tint', f: (entity) => entity.tint = undefined, disabled: this.#tint === undefined },
-            animation: { i18n: '#animation', f: async (entity) => { let animation = await Interaction.getString(await entity.sourceModel.mdl.getAnimList()); if (animation) {
+            animation: { i18n: '#animation', f: async (entity) => { let animation = await new Interaction().getString(0, 0, await entity.sourceModel.mdl.getAnimList()); if (animation) {
                     entity.playSequence(animation);
                 } } },
-            overrideallmaterials: { i18n: '#overrideallmaterials', f: async (entity) => { let material = await Interaction.getString(Object.keys(Material.materialList)); if (material) {
+            overrideallmaterials: { i18n: '#overrideallmaterials', f: async (entity) => { let material = await new Interaction().getString(0, 0, Object.keys(Material.materialList)); if (material) {
                     entity.material = new Material.materialList[material];
                 } } },
             Source1ModelInstance_2: null,
@@ -66306,8 +66675,8 @@ class Source1ModelInstance extends Entity {
     }
     async playDefaultAnim() {
         let animList = await this.sourceModel.mdl.getAnimList();
-        if (animList && animList.length > 0) {
-            this.playSequence(animList[0]);
+        if (animList && animList.size > 0) {
+            this.playSequence(animList.keys().next().value);
         }
     }
     getHitboxes() {
@@ -66332,6 +66701,9 @@ class Source1ModelInstance extends Entity {
     resetMaterial(recursive = true) {
         super.resetMaterial(recursive);
         this.#updateMaterials();
+    }
+    getAnimations() {
+        return this.sourceModel.mdl.getAnimList();
     }
     toJSON() {
         let json = super.toJSON();
@@ -66395,11 +66767,1366 @@ class Source1ModelInstance extends Entity {
 }
 registerEntity(Source1ModelInstance);
 
+//-----------------------------------------------------------------------------
+// Purpose: returns array of animations and weightings for a sequence based on current pose parameters
+//-----------------------------------------------------------------------------
+//void Studio_SeqAnims(const CStudioHdr *pStudioHdr, mstudioseqdesc_t &seqdesc, int iSequence, const float poseParameter[], mstudioanimdesc_t *panim[4], float *weight)
+function Studio_SeqAnims2(pStudioHdr, seqdesc, iSequence, poseParameter, panim, weight) {
+    /*if (!pStudioHdr || iSequence >= pStudioHdr.GetNumSeq())
+    {
+        weight[0] = weight[1] = weight[2] = weight[3] = 0.0;
+        return;
+    }*/
+    const i0 = 0, i1 = 0;
+    const s0 = 0, s1 = 0;
+    //Studio_LocalPoseParameter(pStudioHdr, poseParameter, seqdesc, iSequence, 0, s0, i0);TODOV2
+    //	Studio_LocalPoseParameter(pStudioHdr, poseParameter, seqdesc, iSequence, 1, s1, i1);
+    //panim[0] = pStudioHdr.pAnimdesc(pStudioHdr.iRelativeAnim(iSequence, seqdesc.anim(i0	, i1)));
+    panim[0] = pStudioHdr.getAnimDescription(seqdesc.getBlend(i0, i1));
+    weight[0] = (1 - s0) * (1 - s1);
+    //panim[1] = pStudioHdr.pAnimdesc(pStudioHdr.iRelativeAnim(iSequence, seqdesc.anim(i0+1, i1)));
+    panim[1] = pStudioHdr.getAnimDescription(seqdesc.getBlend(i0 + 1, i1));
+    weight[1] = (s0) * (1 - s1);
+    //panim[2] = pStudioHdr.pAnimdesc(pStudioHdr.iRelativeAnim(iSequence, seqdesc.anim(i0	, i1+1)));
+    panim[2] = pStudioHdr.getAnimDescription(seqdesc.getBlend(i0, i1 + 1));
+    weight[2] = (1 - s0) * (s1);
+    //panim[3] = pStudioHdr.pAnimdesc(pStudioHdr.iRelativeAnim(iSequence, seqdesc.anim(i0+1, i1+1)));
+    panim[3] = pStudioHdr.getAnimDescription(seqdesc.getBlend(i0 + 1, i1 + 1));
+    weight[3] = (s0) * (s1);
+}
+//-----------------------------------------------------------------------------
+// Purpose: returns cycles per second of a sequence (cycles/second)
+//-----------------------------------------------------------------------------
+//float Studio_CPS(const CStudioHdr *pStudioHdr, mstudioseqdesc_t &seqdesc, int iSequence, const float poseParameter[])
+function Studio_CPS2(pStudioHdr, seqdesc, iSequence, poseParameter) {
+    const panim = [];
+    const weight = [];
+    Studio_SeqAnims2(pStudioHdr, seqdesc, iSequence, poseParameter, panim, weight);
+    let t = 0;
+    for (let i = 0; i < 4; ++i) {
+        if (panim[i] && weight[i] > 0 && panim[i].numframes > 1) {
+            t += (panim[i].fps / (panim[i].numframes - 1)) * weight[i];
+            //setAnimLength(panim[i].numframes);//TODOv3
+        }
+    }
+    return t;
+}
+function Studio_Frames2(pStudioHdr, seqdesc, iSequence, poseParameter) {
+    const panim = [];
+    const weight = [];
+    Studio_SeqAnims2(pStudioHdr, seqdesc, iSequence, poseParameter, panim, weight);
+    let t = 0;
+    for (let i = 0; i < 4; ++i) {
+        if (panim[i] && weight[i] > 0) {
+            t = Math.max(t, panim[i].numframes);
+        }
+    }
+    return t;
+}
+function StudioFrames2(pStudioHdr, iSequence, poseParameter) {
+    const seqdesc = pStudioHdr.getSequenceById(iSequence); //pStudioHdr.pSeqdesc(iSequence);
+    return Studio_Frames2(pStudioHdr, seqdesc, iSequence, poseParameter);
+}
+const SOURCE_MODEL_MAX_BONES = 256;
+//-----------------------------------------------------------------------------
+// Purpose: calculate a pose for a single sequence
+//-----------------------------------------------------------------------------
+function InitPose2(dynamicProp, pStudioHdr, pos, q, boneMask) {
+    if (pStudioHdr.pLinearBones === undefined) {
+        for (let i = 0, boneCount = pStudioHdr.getBoneCount(); i < boneCount; ++i) {
+            {
+                const pbone = pStudioHdr.getBone(i);
+                pos[i] = pos[i] || create$4(); //removeme
+                q[i] = q[i] || create$2(); //removeme
+                copy$4(pos[i], pbone.position);
+                copy$2(q[i], pbone.quaternion);
+            }
+        }
+    }
+}
+//-----------------------------------------------------------------------------
+// Purpose: calculate a pose for a single sequence
+//			adds autolayers, runs local ik rukes
+//-----------------------------------------------------------------------------
+//function CalcPose(pStudioHdr, pIKContext, pos, q, sequence, cycle, poseParameter, boneMask, flWeight = 1.0, flTime = 0.0) {
+function CalcPose2(dynamicProp, pStudioHdr, pIKContext, pos, q, boneFlags, sequence, cycle, poseParameter, boneMask, flWeight, flTime) {
+    cycle = cycle % 1; //TODOv2
+    const seqdesc = pStudioHdr.getSequenceById(sequence);
+    if (seqdesc) {
+        //Assert(flWeight >= 0.0f && flWeight <= 1.0f);
+        // This shouldn't be necessary, but the Assert should help us catch whoever is screwing this up
+        flWeight = clamp(flWeight, 0.0, 1.0);
+        // add any IK locks to prevent numautolayers from moving extremities
+        //CIKContext seq_ik;TODOv2
+        /*
+        if (false && seqdesc.numiklocks) {//TODOV2
+            seq_ik.Init(pStudioHdr, vec3_angle, vec3_origin, 0.0, 0, boneMask); // local space relative so absolute position doesn't mater
+            seq_ik.AddSequenceLocks(seqdesc, pos, q);
+        }
+            */
+        CalcPoseSingle2(dynamicProp, pStudioHdr, pos, q, boneFlags, seqdesc, sequence, cycle, poseParameter, boneMask, flTime);
+        if (pIKContext) {
+            pIKContext.AddDependencies(seqdesc, sequence, cycle, poseParameter, flWeight);
+        }
+        AddSequenceLayers2(dynamicProp, pStudioHdr, pIKContext, pos, q, boneFlags, seqdesc, sequence, cycle, poseParameter, boneMask, flWeight);
+        /*
+                if (false && seqdesc.numiklocks) {//TODOV2
+                    seq_ik.SolveSequenceLocks(seqdesc, pos, q);
+                }
+                    */
+    }
+}
+//-----------------------------------------------------------------------------
+// Purpose: calculate a pose for a single sequence
+//-----------------------------------------------------------------------------
+//TODOv2: put somewhere else
+const STUDIO_LOOPING = 0x0001; // ending frame should be the same as the starting frame
+const STUDIO_DELTA = 0x0004; // this sequence 'adds' to the base sequences, not slerp blends
+const STUDIO_ALLZEROS = 0x0020; // this animation/sequence has no real animation data
+//						0x0040
+const STUDIO_CYCLEPOSE = 0x0080; // cycle index is taken from a pose parameter index
+const STUDIO_REALTIME = 0x0100; // cycle index is taken from a real-time clock, not the animations cycle index
+const STUDIO_LOCAL = 0x0200; // sequence has a local context sequence
+const CalcPoseSingle_pos2 = Array(SOURCE_MODEL_MAX_BONES);
+const CalcPoseSingle_q2 = Array(SOURCE_MODEL_MAX_BONES);
+const CalcPoseSingle_pos3 = Array(SOURCE_MODEL_MAX_BONES);
+const CalcPoseSingle_q3 = Array(SOURCE_MODEL_MAX_BONES);
+for (let i = 0; i < SOURCE_MODEL_MAX_BONES; i++) {
+    CalcPoseSingle_pos2[i] = create$4();
+    CalcPoseSingle_q2[i] = create$2();
+    CalcPoseSingle_pos3[i] = create$4();
+    CalcPoseSingle_q3[i] = create$2();
+}
+function CalcPoseSingle2(dynamicProp, pStudioHdr, pos, q, boneFlags, seqdesc, sequence, cycle, poseParameter, boneMask, flTime) {
+    let bResult = true;
+    const pos2 = CalcPoseSingle_pos2; //[];//vec3.create();//TODOv2: optimize (see source)
+    const q2 = CalcPoseSingle_q2; //[];//quat.create();//TODOv2: optimize (see source)
+    const pos3 = CalcPoseSingle_pos3; //[];//vec3.create();//TODOv2: optimize (see source)
+    const q3 = CalcPoseSingle_q3;
+    for (let i = 0; i < SOURCE_MODEL_MAX_BONES; ++i) {
+        zero$4(pos2[i]);
+        identity$1(q2[i]);
+        zero$4(pos3[i]);
+        identity$1(q3[i]);
+    }
+    /*	if (sequence >= pStudioHdr->GetNumSeq())TODOv2
+        {
+            sequence = 0;
+            seqdesc = pStudioHdr->pSeqdesc(sequence);
+        }*/
+    let i0 = 0, i1 = 0;
+    let s0 = 0, s1 = 0;
+    const r0 = Studio_LocalPoseParameter2(pStudioHdr, poseParameter, seqdesc, sequence, 0 /*, s0, i0 */); //TODOv2
+    const r1 = Studio_LocalPoseParameter2(pStudioHdr, poseParameter, seqdesc, sequence, 1 /*, s1, i1 */);
+    s0 = r0.s;
+    i0 = r0.i;
+    s1 = r1.s;
+    i1 = r1.i;
+    if (seqdesc.flags & STUDIO_REALTIME) {
+        const cps = Studio_CPS2(pStudioHdr, seqdesc, sequence, poseParameter);
+        cycle = flTime * cps;
+        cycle = cycle - Math.floor(cycle); //TODOv2: rounding issues
+    }
+    else if (seqdesc.flags & STUDIO_CYCLEPOSE) {
+        const iPose = pStudioHdr.GetSharedPoseParameter(sequence, seqdesc.cycleposeindex);
+        if (iPose != -1) {
+            cycle = poseParameter[iPose];
+        }
+        else {
+            cycle = 0.0;
+        }
+    }
+    else if (cycle < 0 || cycle >= 1) {
+        if (seqdesc.flags & STUDIO_LOOPING) {
+            cycle = cycle - Math.floor(cycle); //TODOv2: rounding issues
+            if (cycle < 0) {
+                cycle += 1;
+            }
+        }
+        else {
+            cycle = clamp(cycle, 0.0, 1.0);
+        }
+    }
+    if (s0 < 0.001) {
+        if (s1 < 0.001) {
+            if (PoseIsAllZeros2(pStudioHdr, sequence, seqdesc, i0, i1)) {
+                bResult = false;
+            }
+            else {
+                CalcAnimation2(dynamicProp, pStudioHdr, pos, q, boneFlags, seqdesc, sequence, seqdesc.getBlend(i0, i1), cycle, boneMask);
+            }
+        }
+        else if (s1 > 0.999) {
+            CalcAnimation2(dynamicProp, pStudioHdr, pos, q, boneFlags, seqdesc, sequence, seqdesc.getBlend(i0, i1 + 1), cycle, boneMask);
+        }
+        else {
+            CalcAnimation2(dynamicProp, pStudioHdr, pos, q, boneFlags, seqdesc, sequence, seqdesc.getBlend(i0, i1), cycle, boneMask);
+            CalcAnimation2(dynamicProp, pStudioHdr, pos2, q2, boneFlags, seqdesc, sequence, seqdesc.getBlend(i0, i1 + 1), cycle, boneMask);
+            BlendBones2(pStudioHdr, q, pos, seqdesc, sequence, q2, pos2, s1, boneMask);
+        }
+    }
+    else if (s0 > 0.999) {
+        if (s1 < 0.001) {
+            if (PoseIsAllZeros2(pStudioHdr, sequence, seqdesc, i0 + 1, i1)) {
+                bResult = false;
+            }
+            else {
+                CalcAnimation2(dynamicProp, pStudioHdr, pos, q, boneFlags, seqdesc, sequence, seqdesc.getBlend(i0 + 1, i1), cycle, boneMask);
+            }
+        }
+        else if (s1 > 0.999) {
+            CalcAnimation2(dynamicProp, pStudioHdr, pos, q, boneFlags, seqdesc, sequence, seqdesc.getBlend(i0 + 1, i1 + 1), cycle, boneMask);
+        }
+        else {
+            CalcAnimation2(dynamicProp, pStudioHdr, pos, q, boneFlags, seqdesc, sequence, seqdesc.getBlend(i0 + 1, i1), cycle, boneMask);
+            CalcAnimation2(dynamicProp, pStudioHdr, pos2, q2, boneFlags, seqdesc, sequence, seqdesc.getBlend(i0 + 1, i1 + 1), cycle, boneMask);
+            BlendBones2(pStudioHdr, q, pos, seqdesc, sequence, q2, pos2, s1, boneMask);
+        }
+    }
+    else {
+        if (s1 < 0.001) {
+            if (PoseIsAllZeros2(pStudioHdr, sequence, seqdesc, i0 + 1, i1)) {
+                CalcAnimation2(dynamicProp, pStudioHdr, pos, q, boneFlags, seqdesc, sequence, seqdesc.getBlend(i0, i1), cycle, boneMask);
+                ScaleBones2(pStudioHdr, q, pos, sequence, 1.0 - s0, boneMask);
+            }
+            else if (PoseIsAllZeros2(pStudioHdr, sequence, seqdesc, i0, i1)) {
+                CalcAnimation2(dynamicProp, pStudioHdr, pos, q, boneFlags, seqdesc, sequence, seqdesc.getBlend(i0 + 1, i1), cycle, boneMask);
+                ScaleBones2(pStudioHdr, q, pos, sequence, s0, boneMask);
+            }
+            else {
+                CalcAnimation2(dynamicProp, pStudioHdr, pos, q, boneFlags, seqdesc, sequence, seqdesc.getBlend(i0, i1), cycle, boneMask);
+                CalcAnimation2(dynamicProp, pStudioHdr, pos2, q2, boneFlags, seqdesc, sequence, seqdesc.getBlend(i0 + 1, i1), cycle, boneMask);
+                BlendBones2(pStudioHdr, q, pos, seqdesc, sequence, q2, pos2, s0, boneMask);
+            }
+        }
+        else if (s1 > 0.999) {
+            CalcAnimation2(dynamicProp, pStudioHdr, pos, q, boneFlags, seqdesc, sequence, seqdesc.getBlend(i0, i1 + 1), cycle, boneMask);
+            CalcAnimation2(dynamicProp, pStudioHdr, pos2, q2, boneFlags, seqdesc, sequence, seqdesc.getBlend(i0 + 1, i1 + 1), cycle, boneMask);
+            BlendBones2(pStudioHdr, q, pos, seqdesc, sequence, q2, pos2, s0, boneMask);
+        }
+        //else if (!anim_3wayblend.GetBool())
+        else {
+            const iAnimIndices = [];
+            const weight = [];
+            Calc3WayBlendIndices2(i0, i1, s0, s1, seqdesc, iAnimIndices, weight);
+            if (weight[1] < 0.001) {
+                // on diagonal
+                CalcAnimation2(dynamicProp, pStudioHdr, pos, q, boneFlags, seqdesc, sequence, iAnimIndices[0], cycle, boneMask);
+                CalcAnimation2(dynamicProp, pStudioHdr, pos2, q2, boneFlags, seqdesc, sequence, iAnimIndices[2], cycle, boneMask);
+                BlendBones2(pStudioHdr, q, pos, seqdesc, sequence, q2, pos2, weight[2] / (weight[0] + weight[2]), boneMask);
+            }
+            else {
+                CalcAnimation2(dynamicProp, pStudioHdr, pos, q, boneFlags, seqdesc, sequence, iAnimIndices[0], cycle, boneMask);
+                CalcAnimation2(dynamicProp, pStudioHdr, pos2, q2, boneFlags, seqdesc, sequence, iAnimIndices[1], cycle, boneMask);
+                BlendBones2(pStudioHdr, q, pos, seqdesc, sequence, q2, pos2, weight[1] / (weight[0] + weight[1]), boneMask);
+                CalcAnimation2(dynamicProp, pStudioHdr, pos3, q3, boneFlags, seqdesc, sequence, iAnimIndices[2], cycle, boneMask);
+                BlendBones2(pStudioHdr, q, pos, seqdesc, sequence, q3, pos3, weight[2], boneMask);
+            }
+        }
+    }
+    //g_VectorPool.Free(pos2);
+    //g_QaternionPool.Free(q2);
+    //g_VectorPool.Free(pos3);
+    //g_QaternionPool.Free(q3);
+    return bResult;
+}
+//-----------------------------------------------------------------------------
+// Purpose: Find and decode a sub-frame of animation
+//-----------------------------------------------------------------------------
+function CalcAnimation2(dynamicProp, pStudioHdr, pos, q, boneFlags, seqdesc, sequence, animation, cycle, boneMask) {
+    /*virtualmodel_t *pVModel = pStudioHdr->GetVirtualModel();TODOV2
+    if (pVModel)
+    {
+        CalcVirtualAnimation(pVModel, pStudioHdr, pos, q, seqdesc, sequence, animation, cycle, boneMask);
+        return;
+    }*/
+    const animdesc = pStudioHdr.getAnimDescription(animation);
+    if (!animdesc) {
+        return;
+    }
+    pStudioHdr.getBone(0);
+    //const mstudiolinearbone_t *pLinearBones = pStudioHdr->pLinearBones();TODOV2
+    let pLinearBones;
+    const fFrame = cycle * (animdesc.numframes - 1);
+    const iFrame = Math.floor(fFrame);
+    const s = (fFrame - iFrame);
+    //iFrame = 0;
+    //console.log(pStudioHdr.getAnimFrame(animdesc, iFrame));
+    pStudioHdr.getAnimFrame(dynamicProp, animdesc, iFrame);
+    //console.log(iFrame);
+    let iLocalFrame = iFrame;
+    let flStall;
+    const panims = animdesc.pAnim(iLocalFrame, flStall);
+    //animdesc.mdl.getAnimFrame(animdesc, 31);
+    //const pweight = seqdesc.pBoneweight(0);
+    // if the animation isn't available, look for the zero frame cache
+    if (!panims) {
+        for (let i = 0, boneCount = pStudioHdr.getBoneCount(); i < boneCount; ++i) {
+            const pbone = pStudioHdr.getBone(i);
+            const pweight = seqdesc.pBoneweight(i);
+            if (pweight > 0 && (pStudioHdr.boneFlags(i) & boneMask)) {
+                if (animdesc.flags & STUDIO_DELTA) {
+                    q[i] = create$2(); //TODOV2
+                    pos[i] = create$4(); //TODOV2
+                }
+                else {
+                    //q[i] = pbone.rot;TODOv2
+                    q[i] = q[i] || create$2();
+                    pos[i] = pos[i] || create$4();
+                    q[i] = create$2();
+                    pos[i] = create$4();
+                    //quat.fromMat3(q[i], mat3.fromEuler(SourceEngineTempMat3, pbone.rot));
+                    quatFromEulerRad(q[i], pbone.rot[0], pbone.rot[1], pbone.rot[2]);
+                    copy$4(pos[i], pbone.position);
+                }
+            }
+        }
+        //CalcZeroframeData(pStudioHdr, pStudioHdr->GetRenderHdr(), NULL, pStudioHdr->pBone(0), animdesc, fFrame, pos, q, boneMask, 1.0);
+        CalcZeroframeData2(pStudioHdr, pStudioHdr, null, pStudioHdr.getBone(0));
+        return;
+    }
+    // BUGBUG: the sequence, the anim, and the model can have all different bone mappings.
+    //for (i = 0; i < pStudioHdr->numbones(); i++, pbone++, pweight++)
+    let panim = panims[0];
+    for (let i = 0, boneCount = pStudioHdr.getBoneCount(), animIndex = 0; i < boneCount; ++i) {
+        const pbone = pStudioHdr.getBone(i);
+        const pweight = seqdesc.pBoneweight(i);
+        q[i] = q[i] || create$2(); //TODOV2
+        pos[i] = pos[i] || create$4(); //TODOV2
+        q[i] = create$2();
+        pos[i] = create$4();
+        if (panim && panim.bone == i) {
+            boneFlags[i] = panim.flags;
+            //if (pweight > 0 && (pStudioHdr.boneFlags(i) & boneMask))
+            if (pweight > 0) //TODOv2
+             {
+                if (animdesc.sectionframes != 0) {
+                    iLocalFrame = iLocalFrame % animdesc.sectionframes;
+                }
+                CalcBoneQuaternion2(pStudioHdr, iLocalFrame, s, pbone, pLinearBones, panim, q[i]);
+                CalcBonePosition2(pStudioHdr, iLocalFrame, s, pbone, pLinearBones, panim, pos[i]); //TODOV2
+                //quat.copy(q[i], pbone.quaternion);
+                //vec3.copy(pos[i], pbone.position);
+            }
+            //panim = panim->pNext();//TODOv2
+            panim = panims[++animIndex];
+            //} else if (pweight > 0 && (pStudioHdr.boneFlags(i) & boneMask)) {
+        }
+        else if (pweight > 0) {
+            if (animdesc.flags & STUDIO_DELTA) {
+                boneFlags[i] = STUDIO_ANIM_DELTA;
+                q[i] = create$2(); //TODOV2
+                pos[i] = create$4(); //TODOV2
+            }
+            else {
+                boneFlags[i] = 0;
+                copy$2(q[i], pbone.quaternion);
+                copy$4(pos[i], pbone.position);
+            }
+        }
+        else {
+            boneFlags[i] = STUDIO_ANIM_DELTA;
+        }
+    }
+}
+//-----------------------------------------------------------------------------
+// Purpose: return a sub frame rotation for a single bone
+//-----------------------------------------------------------------------------
+/*void CalcBoneQuaternion(int frame, float s,
+                        const Quaternion &baseQuat, const RadianEuler &baseRot, const Vector &baseRotScale,
+                        int iBaseFlags, const Quaternion &baseAlignment,
+                        const mstudioanim_t *panim, Quaternion &q)*/
+function _CalcBoneQuaternion2(pStudioHdr, frame, s, baseQuat, baseRot, baseRotScale, iBaseFlags, baseAlignment, panim, q) {
+    if (panim.flags & STUDIO_ANIM_RAWROT) {
+        //q = panim.pQuat48();
+        copy$2(q, panim.rawrot); //TODOv2
+        return;
+    }
+    if (panim.flags & STUDIO_ANIM_RAWROT2) {
+        //q = panim.pQuat64();
+        copy$2(q, panim.rawrot2); //TODOv2
+        q[0] = panim.rawrot2[2];
+        q[1] = panim.rawrot2[1];
+        q[2] = panim.rawrot2[0];
+        q[3] = panim.rawrot2[3];
+        return;
+    }
+    if (!(panim.flags & STUDIO_ANIM_ANIMROT)) {
+        if (panim.flags & STUDIO_ANIM_DELTA) {
+            identity$1(q);
+        }
+        else {
+            copy$2(q, baseQuat); //TODOv2
+        }
+        return;
+    }
+    panim.animValuePtrRot;
+    if (s > 0.001) {
+        const angle1 = create$4(), angle2 = create$4(); // TODO: optimize
+        const q1 = create$2();
+        const q2 = create$2();
+        for (let i = 0; i < 3; ++i) {
+            const offset = panim.animValuePtrRot.offset[i];
+            if (offset) {
+                angle1[i] = panim.readValue(pStudioHdr, frame, panim.animValuePtrRot.base + offset, panim.bone, i) * baseRotScale[i];
+                angle2[i] = angle1[i];
+            }
+        }
+        if (!(panim.flags & STUDIO_ANIM_DELTA)) {
+            angle1[0] = angle1[0] + baseRot[0];
+            angle1[1] = angle1[1] + baseRot[1];
+            angle1[2] = angle1[2] + baseRot[2];
+            angle2[0] = angle2[0] + baseRot[0];
+            angle2[1] = angle2[1] + baseRot[1];
+            angle2[2] = angle2[2] + baseRot[2];
+        }
+        if (angle1[0] !== angle2[0] || angle1[1] !== angle2[1] || angle1[2] !== angle2[2]) {
+            //_AngleQuaternion(angle1, q1);//TODOv2
+            //_AngleQuaternion(angle2, q2);//TODOv2
+            quatFromEulerRad(q1, angle1[0], angle1[1], angle1[2]);
+            quatFromEulerRad(q2, angle2[0], angle2[1], angle2[2]);
+            QuaternionBlend2(q1, q2, s, q);
+        }
+        else {
+            //_AngleQuaternion(angle1, q);//TODOv2
+            //quat.fromMat3(q, mat3.fromEuler(SourceEngineTempMat3, angle1));
+            quatFromEulerRad(q, angle1[0], angle1[1], angle1[2]);
+        }
+    }
+    else {
+        const angle = create$4();
+        for (let i = 0; i < 3; ++i) {
+            const offset = panim.animValuePtrRot.offset[i];
+            if (offset) {
+                angle[i] = panim.readValue(pStudioHdr, frame, panim.animValuePtrRot.base + offset, panim.bone, i) * baseRotScale[i];
+            }
+        }
+        if (!(panim.flags & STUDIO_ANIM_DELTA)) {
+            angle[0] = angle[0] + baseRot[0];
+            angle[1] = angle[1] + baseRot[1];
+            angle[2] = angle[2] + baseRot[2];
+        }
+        //_AngleQuaternion(angle, q);//TODOv2
+        //quat.fromMat3(q, mat3.fromEuler(SourceEngineTempMat3, angle));
+        quatFromEulerRad(q, angle[0], angle[1], angle[2]);
+    }
+    // align to unified bone
+    if (!(panim.flags & STUDIO_ANIM_DELTA) && (iBaseFlags & BONE_FIXED_ALIGNMENT)) {
+        QuaternionAlign2(baseAlignment, q, q);
+    }
+}
+function CalcBoneQuaternion2(pStudioHdr, frame, s, pBone, pLinearBones, panim, q) {
+    {
+        _CalcBoneQuaternion2(pStudioHdr, frame, s, pBone.quaternion, pBone.rot, pBone.rotscale, pBone.flags, pBone.qAlignment, panim, q);
+        //_CalcBoneQuaternion(pStudioHdr, frame, s, pBone.quat, [0, 0, 0]/*pBone.rot*//*TODOV2*/, pBone.rotscale, pBone.flags, pBone.qAlignment, panim, q);
+    }
+}
+function _CalcBonePosition2(pStudioHdr, frame, s, basePos, baseBoneScale, panim, pos) {
+    if (panim.flags & STUDIO_ANIM_RAWPOS) {
+        copy$4(pos, panim.rawpos);
+        return;
+    }
+    else if (!(panim.flags & STUDIO_ANIM_ANIMPOS)) {
+        if (panim.flags & STUDIO_ANIM_DELTA) {
+            zero$4(pos);
+        }
+        else {
+            copy$4(pos, basePos);
+        }
+        return;
+    }
+    panim.animValuePtrPos;
+    /*
+        mstudioanim_valueptr_t *pPosV = panim.pPosV();
+        int					j;
+    */
+    if (s > 0.001) {
+        let v1, v2; // TODO: optimize
+        for (let i = 0; i < 3; i++) {
+            const offset = panim.animValuePtrPos.offset[i];
+            if (offset) {
+                //ExtractAnimValue(frame, pPosV->pAnimvalue(i), baseBoneScale[i], v1, v2);
+                v1 = panim.readValue(pStudioHdr, frame, panim.animValuePtrPos.base + offset, panim.bone, i) * baseBoneScale[i];
+                v2 = v1;
+                pos[i] = v1 * (1.0 - s) + v2 * s;
+            }
+        }
+    }
+    else {
+        for (let i = 0; i < 3; i++) {
+            //ExtractAnimValue(frame, pPosV->pAnimvalue(i), baseBoneScale[i], pos[i]);
+            const offset = panim.animValuePtrPos.offset[i];
+            if (offset) {
+                //ExtractAnimValue(frame, pPosV->pAnimvalue(i), baseBoneScale[i], v1, v2);
+                pos[i] = panim.readValue(pStudioHdr, frame, panim.animValuePtrPos.base + offset, panim.bone, i) * baseBoneScale[i];
+            }
+        }
+    }
+    if (!(panim.flags & STUDIO_ANIM_DELTA)) {
+        pos[0] = pos[0] + basePos[0];
+        pos[1] = pos[1] + basePos[1];
+        pos[2] = pos[2] + basePos[2];
+    }
+}
+function CalcBonePosition2(pStudioHdr, frame, s, pBone, pLinearBones, panim, pos) {
+    {
+        _CalcBonePosition2(pStudioHdr, frame, s, pBone.position, pBone.posscale, panim, pos);
+    }
+}
+//-----------------------------------------------------------------------------
+// Do a piecewise addition of the quaternion elements. This actually makes little
+// mathematical sense, but it's a cheap way to simulate a slerp.
+//-----------------------------------------------------------------------------
+//void QuaternionBlend(const Quaternion &p, const Quaternion &q, float t, Quaternion &qt)
+function QuaternionBlend2(p, q, t, qt) {
+    // decide if one of the quaternions is backwards
+    const q2 = create$2();
+    QuaternionAlign2(p, q, q2);
+    QuaternionBlendNoAlign2(p, q2, t, qt);
+}
+//void QuaternionBlendNoAlign(const Quaternion &p, const Quaternion &q, float t, Quaternion &qt)
+function QuaternionBlendNoAlign2(p, q, t, qt) {
+    // 0.0 returns p, 1.0 return q.
+    const sclp = 1.0 - t;
+    const sclq = t;
+    for (let i = 0; i < 4; ++i) {
+        qt[i] = sclp * p[i] + sclq * q[i];
+    }
+    normalize$3(qt, qt);
+}
+//-----------------------------------------------------------------------------
+// make sure quaternions are within 180 degrees of one another, if not, reverse q
+//-----------------------------------------------------------------------------
+//void QuaternionAlign(const Quaternion &p, const Quaternion &q, Quaternion &qt)
+function QuaternionAlign2(p, q, qt) {
+    // FIXME: can this be done with a quat dot product?
+    // decide if one of the quaternions is backwards
+    let a = 0;
+    let b = 0;
+    for (let i = 0; i < 4; ++i) {
+        a += (p[i] - q[i]) * (p[i] - q[i]);
+        b += (p[i] + q[i]) * (p[i] + q[i]);
+    }
+    if (a > b) {
+        for (let i = 0; i < 4; ++i) {
+            qt[i] = -q[i];
+        }
+    }
+    else if (qt != q) {
+        for (let i = 0; i < 4; ++i) {
+            qt[i] = q[i];
+        }
+    }
+}
+//-----------------------------------------------------------------------------
+// Purpose: Calc Zeroframe Data
+//-----------------------------------------------------------------------------
+function CalcZeroframeData2(pStudioHdr, pAnimStudioHdr, pAnimGroup, pAnimbone, animdesc, fFrame, pos, q, boneMask, flWeight) {
+    /* TODO
+        let pData = animdesc.pZeroFrameData();
+
+        if (!pData) {
+            return;
+        }
+
+        // Msg('zeroframe %s\n', animdesc.pszName());
+        let i;
+        if (animdesc.zeroframecount == 1) {
+            for (let j = 0, boneCount = pStudioHdr.getBoneCount(); j < boneCount; ++j) {
+                if (pAnimGroup)
+                    i = pAnimGroup.masterBone[j];
+                else
+                    i = j;
+
+                if (pAnimbone[j].flags & BONE_HAS_SAVEFRAME_POS) {
+                    if ((i >= 0) && (pStudioHdr.boneFlags(i) & boneMask)) {
+                        const p = vec3.create();//TODOv2
+                        console.error('const p = *(Vector48 *)pData;//TODOv2');
+                        pos[i] = pos[i] * (1.0 - flWeight) + p * flWeight;
+                    }
+                    pData += 6;//sizeof(Vector48);//TODOv2
+                }
+                if (pAnimbone[j].flags & BONE_HAS_SAVEFRAME_ROT) {
+                    if ((i >= 0) && (pStudioHdr.boneFlags(i) & boneMask)) {
+                        const q0 = quat.create();//*(Quaternion64 *)pData;
+                        console.error('const q0 = quat.create();//*(Quaternion64 *)pData;');
+                        QuaternionBlend(q[i], q0, flWeight, q[i]);
+                        //Assert(q[i].IsValid());
+                    }
+                    pData += 8;//sizeof(Quaternion64);
+                }
+            }
+        }
+        else {
+            let s1;
+            let index = fFrame / animdesc.zeroframespan;
+            if (index >= animdesc.zeroframecount - 1) {
+                index = animdesc.zeroframecount - 2;
+                s1 = 1.0;
+            } else {
+                s1 = clamp((fFrame - index * animdesc.zeroframespan) / animdesc.zeroframespan, 0.0, 1.0);
+            }
+            let i0 = Math.max(index - 1, 0);
+            let i1 = index;
+            let i2 = Math.min(index + 1, animdesc.zeroframecount - 1);
+            for (let j = 0, boneCount = pStudioHdr.getBoneCount(); j < boneCount; ++j) {
+                if (pAnimGroup)
+                    i = pAnimGroup.masterBone[j];
+                else
+                    i = j;
+
+                if (pAnimbone[j].flags & BONE_HAS_SAVEFRAME_POS) {
+                    if ((i >= 0) && (pStudioHdr.boneFlags(i) & boneMask)) {
+                        const p0 = vec3.create();//*(((Vector48 *)pData) + i0);//optimize
+                        const p1 = vec3.create();//*(((Vector48 *)pData) + i1);
+                        const p2 = vec3.create();//*(((Vector48 *)pData) + i2);
+                        console.error('Vector p2 = *(((Vector48 *)pData) + i2);');
+                        let p3;
+                        Hermite_Spline(p0, p1, p2, s1, p3);
+                        pos[i] = pos[i] * (1.0 - flWeight) + p3 * flWeight;
+                    }
+                    pData += sizeof(Vector48) * animdesc.zeroframecount;
+                }
+                if (pAnimbone[j].flags & BONE_HAS_SAVEFRAME_ROT) {
+                    if ((i >= 0) && (pStudioHdr.boneFlags(i) & boneMask)) {
+                        const q0 = quat.create();//*(((Quaternion64 *)pData) + i0);
+                        const q1 = quat.create();//*(((Quaternion64 *)pData) + i1);
+                        const q2 = quat.create();//*(((Quaternion64 *)pData) + i2);
+                        console.error('Quaternion q0 = *(((Quaternion64 *)pData) + i0);');
+                        if (flWeight == 1.0) {
+                            Hermite_Spline(q0, q1, q2, s1, q[i]);
+                        }
+                        else {
+                            let q3;
+                            Hermite_Spline(q0, q1, q2, s1, q3);
+                            QuaternionBlend(q[i], q3, flWeight, q[i]);
+                        }
+                    }
+                    pData += sizeof(Quaternion64) * animdesc.zeroframecount;
+                }
+            }
+        }
+    */
+}
+function PoseIsAllZeros2(pStudioHdr, sequence, seqdesc, i0, i1) {
+    // remove 'zero' positional blends
+    //const baseanim = pStudioHdr.iRelativeAnim(sequence, seqdesc.getBlend(i0 , i1));//TODOv2
+    const baseanim = seqdesc.getBlend(i0, i1);
+    const anim = pStudioHdr.getAnimDescription(baseanim);
+    if (!anim) {
+        return false;
+    }
+    return (anim.flags & STUDIO_ALLZEROS) != 0;
+}
+//-----------------------------------------------------------------------------
+// Purpose: turn a 2x2 blend into a 3 way triangle blend
+// Returns: returns the animination indices and barycentric coordinates of a triangle
+//			the triangle is a right triangle, and the diagonal is between elements [0] and [2]
+//-----------------------------------------------------------------------------
+//void Calc3WayBlendIndices(int i0, int i1, float s0, float s1, const mstudioseqdesc_t &seqdesc, int *pAnimIndices, float *pWeight)
+function Calc3WayBlendIndices2(i0, i1, s0, s1, seqdesc, pAnimIndices, pWeight) {
+    // Figure out which bi-section direction we are using to make triangles.
+    const bEven = (((i0 + i1) & 0x1) == 0);
+    let x1, y1;
+    let x2, y2;
+    let x3, y3;
+    // diagonal is between elements 1 & 3
+    // TL to BR
+    if (bEven) {
+        if (s0 > s1) {
+            // B
+            x1 = 0;
+            y1 = 0;
+            x2 = 1;
+            y2 = 0;
+            x3 = 1;
+            y3 = 1;
+            pWeight[0] = (1.0 - s0);
+            pWeight[1] = s0 - s1;
+        }
+        else {
+            // C
+            x1 = 1;
+            y1 = 1;
+            x2 = 0;
+            y2 = 1;
+            x3 = 0;
+            y3 = 0;
+            pWeight[0] = s0;
+            pWeight[1] = s1 - s0;
+        }
+    }
+    // BL to TR
+    else {
+        const flTotal = s0 + s1;
+        if (flTotal > 1.0) {
+            // D
+            x1 = 1;
+            y1 = 0;
+            x2 = 1;
+            y2 = 1;
+            x3 = 0;
+            y3 = 1;
+            pWeight[0] = (1.0 - s1);
+            pWeight[1] = s0 - 1.0 + s1;
+        }
+        else {
+            // A
+            x1 = 0;
+            y1 = 1;
+            x2 = 0;
+            y2 = 0;
+            x3 = 1;
+            y3 = 0;
+            pWeight[0] = s1;
+            pWeight[1] = 1.0 - s0 - s1;
+        }
+    }
+    pAnimIndices[0] = seqdesc.getBlend(i0 + x1, i1 + y1);
+    pAnimIndices[1] = seqdesc.getBlend(i0 + x2, i1 + y2);
+    pAnimIndices[2] = seqdesc.getBlend(i0 + x3, i1 + y3);
+    // clamp the diagonal
+    if (pWeight[1] < 0.001)
+        pWeight[1] = 0.0;
+    pWeight[2] = 1.0 - pWeight[0] - pWeight[1];
+    //Assert(pWeight[0] >= 0.0 && pWeight[0] <= 1.0);
+    //Assert(pWeight[1] >= 0.0 && pWeight[1] <= 1.0);
+    //Assert(pWeight[2] >= 0.0 && pWeight[2] <= 1.0);
+}
+//-----------------------------------------------------------------------------
+// Purpose: calculate a pose for a single sequence //TODOv2
+//			adds autolayers, runs local ik rukes
+//-----------------------------------------------------------------------------
+const AddSequenceLayers2 = function (dynamicProp, pStudioHdr, pIKContext, pos, q, boneFlags, seqdesc, sequence, cycle, poseParameter, boneMask, flWeight, flTime) {
+    //return;
+    for (let i = 0; i < seqdesc.numautolayers; ++i) {
+        const pLayer = seqdesc.getAutoLayer(i);
+        if (pLayer.flags & STUDIO_AL_LOCAL) {
+            continue;
+        }
+        let layerCycle = cycle;
+        let layerWeight = flWeight;
+        if (pLayer.start != pLayer.end) {
+            let s = 1.0;
+            let index;
+            if (!(pLayer.flags & STUDIO_AL_POSE)) {
+                index = cycle;
+            }
+            else {
+                //TODOv2
+                pLayer.iSequence; //int iSequence = pStudioHdr.iRelativeSeq(sequence, pLayer.iSequence);
+                //const iPose = pStudioHdr.GetSharedPoseParameter(iSequence, pLayer.iPose);
+                const iPose = pLayer.iPose;
+                if (iPose != -1) {
+                    //const Pose = pStudioHdr.pPoseParameter(iPose);
+                    const Pose = pStudioHdr.getLocalPoseParameter(iPose);
+                    if (Pose) {
+                        index = poseParameter[iPose] * (Pose.end - Pose.start) + Pose.start;
+                    }
+                    else {
+                        index = 0;
+                    }
+                }
+                else {
+                    index = 0;
+                }
+            }
+            if (index < pLayer.start) {
+                continue;
+            }
+            if (index >= pLayer.end) {
+                continue;
+            }
+            if (index < pLayer.peak && pLayer.start != pLayer.peak) {
+                s = (index - pLayer.start) / (pLayer.peak - pLayer.start);
+            }
+            else if (index > pLayer.tail && pLayer.end != pLayer.tail) {
+                s = (pLayer.end - index) / (pLayer.end - pLayer.tail);
+            }
+            if (pLayer.flags & STUDIO_AL_SPLINE) {
+                s = SimpleSpline(s);
+            }
+            if ((pLayer.flags & STUDIO_AL_XFADE) && (index > pLayer.tail)) {
+                layerWeight = (s * flWeight) / (1 - flWeight + s * flWeight);
+            }
+            else if (pLayer.flags & STUDIO_AL_NOBLEND) {
+                layerWeight = s;
+            }
+            else {
+                layerWeight = flWeight * s;
+            }
+            if (!(pLayer.flags & STUDIO_AL_POSE)) {
+                layerCycle = (cycle - pLayer.start) / (pLayer.end - pLayer.start);
+            }
+        }
+        //const iSequence = pStudioHdr.iRelativeSeq(sequence, pLayer.iSequence);//TODOV2
+        const iSequence = pLayer.iSequence; //pStudioHdr.getSequenceById(pLayer.iSequence);
+        AccumulatePose2(dynamicProp, pStudioHdr, pIKContext, pos, q, boneFlags, iSequence, layerCycle, poseParameter, boneMask, layerWeight);
+    }
+};
+//-----------------------------------------------------------------------------
+// Purpose: accumulate a pose for a single sequence on top of existing animation
+//			adds autolayers, runs local ik rukes
+//-----------------------------------------------------------------------------
+const AccumulatePose_pos2 = Array(SOURCE_MODEL_MAX_BONES);
+const AccumulatePose_q2 = Array(SOURCE_MODEL_MAX_BONES);
+for (let i = 0; i < SOURCE_MODEL_MAX_BONES; i++) {
+    AccumulatePose_pos2[i] = create$4();
+    AccumulatePose_q2[i] = create$2();
+}
+function AccumulatePose2(dynamicProp, pStudioHdr, pIKContext, pos, q, boneFlags, sequence, cycle, poseParameter, boneMask, flWeight, flTime) {
+    //const pos2 = [];
+    //const q2 = [];
+    const pos2 = AccumulatePose_pos2;
+    const q2 = AccumulatePose_q2;
+    // This shouldn't be necessary, but the Assert should help us catch whoever is screwing this up
+    flWeight = clamp(flWeight, 0.0, 1.0);
+    if (sequence < 0) {
+        return;
+    }
+    const seqdesc = pStudioHdr.getSequenceById(sequence);
+    if (seqdesc.flags & STUDIO_LOCAL) {
+        InitPose2(dynamicProp, pStudioHdr, pos2, q2);
+    }
+    /*
+    if (CalcPoseSingle(dynamicProp, pStudioHdr, pos2, q2, boneFlags, seqdesc, sequence, cycle, poseParameter, boneMask, flTime)) {
+        // this weight is wrong, the IK rules won't composite at the correct intensity
+        AddLocalLayers(dynamicProp, pStudioHdr, pIKContext, pos2, q2, boneFlags, seqdesc, sequence, cycle, poseParameter, boneMask, 1.0, flTime);
+        SlerpBones(pStudioHdr, q, pos, seqdesc, sequence, q2, pos2, flWeight, boneMask);
+    }
+    */
+    if (pIKContext) {
+        pIKContext.AddDependencies(seqdesc, sequence, cycle, poseParameter, flWeight);
+    }
+    AddSequenceLayers2(dynamicProp, pStudioHdr, pIKContext, pos, q, boneFlags, seqdesc, sequence, cycle, poseParameter, boneMask, flWeight);
+}
+//-----------------------------------------------------------------------------
+// Purpose: Inter-animation blend.	Assumes both types are identical.
+//			blend together q1,pos1 with q2,pos2.	Return result in q1,pos1.
+//			0 returns q1, pos1.	1 returns q2, pos2
+//-----------------------------------------------------------------------------
+/*void BlendBones(
+    const CStudioHdr *pStudioHdr,
+    Quaternion q1[MAXSTUDIOBONES],
+    Vector pos1[MAXSTUDIOBONES],
+    mstudioseqdesc_t &seqdesc,
+    int sequence,
+    const Quaternion q2[MAXSTUDIOBONES],
+    const Vector pos2[MAXSTUDIOBONES],
+    float s,
+    int boneMask)*/
+function BlendBones2(pStudioHdr, q1, pos1, seqdesc, sequence, q2, pos2, s, boneMask) {
+    const q3 = create$2();
+    /*virtualmodel_t *pVModel = pStudioHdr.GetVirtualModel();TODO
+    const virtualgroup_t *pSeqGroup = NULL;
+    if (pVModel)
+    {
+        pSeqGroup = pVModel.pSeqGroup(sequence);
+    }*/
+    if (s <= 0) {
+        //Assert(0); // shouldn't have been called
+        return;
+    }
+    else if (s >= 1.0) {
+        //Assert(0); // shouldn't have been called
+        for (let i = 0, boneCount = pStudioHdr.getBoneCount(); i < boneCount; ++i) {
+            let j;
+            // skip unused bones
+            if (!(pStudioHdr.boneFlags(i) & boneMask)) {
+                continue;
+            }
+            {
+                j = i;
+            }
+            if (j >= 0 && seqdesc.pBoneweight(j) > 0.0) {
+                q1[i] = q2[i];
+                pos1[i] = pos2[i];
+            }
+        }
+        return;
+    }
+    const s2 = s;
+    const s1 = 1.0 - s2;
+    for (let i = 0, boneCount = pStudioHdr.getBoneCount(); i < boneCount; ++i) {
+        let j;
+        // skip unused bones
+        q1[i] = q1[i] || create$2();
+        pos1[i] = pos1[i] || create$4();
+        q2[i] = q2[i] || create$2();
+        pos2[i] = pos2[i] || create$4();
+        if (!(pStudioHdr.boneFlags(i) & boneMask)) {
+            continue;
+        }
+        {
+            j = i;
+        }
+        if (j >= 0 && seqdesc.pBoneweight(j) > 0.0) {
+            if (pStudioHdr.boneFlags(i) & BONE_FIXED_ALIGNMENT) {
+                QuaternionBlendNoAlign2(q2[i], q1[i], s1, q3);
+            }
+            else {
+                QuaternionBlend2(q2[i], q1[i], s1, q3);
+            }
+            q1[i][0] = q3[0];
+            q1[i][1] = q3[1];
+            q1[i][2] = q3[2];
+            q1[i][3] = q3[3];
+            pos1[i][0] = pos1[i][0] * s1 + pos2[i][0] * s2;
+            pos1[i][1] = pos1[i][1] * s1 + pos2[i][1] * s2;
+            pos1[i][2] = pos1[i][2] * s1 + pos2[i][2] * s2;
+        }
+    }
+}
+//-----------------------------------------------------------------------------
+// Purpose: resolve a global pose parameter to the specific setting for this sequence
+//-----------------------------------------------------------------------------
+//void Studio_LocalPoseParameter(const CStudioHdr *pStudioHdr, const float poseParameter[], mstudioseqdesc_t &seqdesc, int iSequence, int iLocalIndex, float &flSetting, int &index)
+function Studio_LocalPoseParameter2(pStudioHdr, poseParameter, seqdesc, iSequence, iLocalIndex /*, flSetting, index*/) {
+    let flSetting = 0;
+    let index = 0;
+    //const iPose = pStudioHdr.GetSharedPoseParameter(iSequence, seqdesc.paramindex[iLocalIndex]);
+    const iPose = seqdesc.paramindex[iLocalIndex]; //TODOV2
+    if (iPose == -1) {
+        flSetting = 0;
+        index = 0;
+        return { s: flSetting, i: index };
+    }
+    const Pose = pStudioHdr.getLocalPoseParameter(iPose);
+    if (!Pose) {
+        flSetting = 0;
+        index = 0;
+        return { s: flSetting, i: index };
+    }
+    //const flValue = poseParameter[iPose];
+    let flValue = Pose.midpoint;
+    if (poseParameter[Pose.name] !== undefined) {
+        flValue = poseParameter[Pose.name];
+    }
+    if (Pose.loop) {
+        const wrap = (Pose.start + Pose.end) / 2.0 + Pose.loop / 2.0;
+        const shift = Pose.loop - wrap;
+        flValue = flValue - Pose.loop * Math.floor((flValue + shift) / Pose.loop);
+    }
+    if (seqdesc.posekeyindex == 0) {
+        const flLocalStart = (seqdesc.paramstart[iLocalIndex] - Pose.start) / (Pose.end - Pose.start);
+        const flLocalEnd = (seqdesc.paramend[iLocalIndex] - Pose.start) / (Pose.end - Pose.start);
+        // convert into local range
+        flSetting = (flValue - flLocalStart) / (flLocalEnd - flLocalStart);
+        // clamp.	This shouldn't ever need to happen if it's looping.
+        if (flSetting < 0)
+            flSetting = 0;
+        if (flSetting > 1)
+            flSetting = 1;
+        index = 0;
+        if (seqdesc.groupsize[iLocalIndex] > 2) {
+            // estimate index
+            index = Math.round(flSetting * (seqdesc.groupsize[iLocalIndex] - 1));
+            if (index == seqdesc.groupsize[iLocalIndex] - 1)
+                index = seqdesc.groupsize[iLocalIndex] - 2;
+            flSetting = flSetting * (seqdesc.groupsize[iLocalIndex] - 1) - index;
+        }
+    }
+    else {
+        flValue = flValue * (Pose.end - Pose.start) + Pose.start;
+        index = 0;
+        // FIXME: this needs to be 2D
+        // FIXME: this shouldn't be a linear search
+        while (1) {
+            flSetting = (flValue - seqdesc.poseKey(iLocalIndex, index)) / (seqdesc.poseKey(iLocalIndex, index + 1) - seqdesc.poseKey(iLocalIndex, index));
+            //flSetting = 0;//TODOV2
+            /*
+            if (index > 0 && flSetting < 0.0)
+            {
+                index--;
+                continue;
+            }
+            else
+            */
+            if (index < seqdesc.groupsize[iLocalIndex] - 2 && flSetting > 1.0) {
+                index++;
+                continue;
+            }
+            break;
+        }
+        // clamp.
+        if (flSetting < 0.0)
+            flSetting = 0.0;
+        if (flSetting > 1.0)
+            flSetting = 1.0;
+    }
+    return { s: flSetting, i: index };
+}
+function ScaleBones2(pStudioHdr, //const CStudioHdr *pStudioHdr,
+q1, //Quaternion q1[MAXSTUDIOBONES],
+pos1, //Vector pos1[MAXSTUDIOBONES],
+sequence, //int sequence,
+s, //float s,
+boneMask //int boneMask
+) {
+    let i, j; //int			i, j;
+    let seqdesc = pStudioHdr.getSequenceById(sequence); //mstudioseqdesc_t & seqdesc = ((CStudioHdr *)pStudioHdr) -> pSeqdesc(sequence);
+    /*
+    virtualmodel_t * pVModel = pStudioHdr -> GetVirtualModel();
+    const virtualgroup_t * pSeqGroup = NULL;
+    if (pVModel) {
+        pSeqGroup = pVModel -> pSeqGroup(sequence);
+    }
+        */
+    let s2 = s;
+    let s1 = 1.0 - s2;
+    for (i = 0; i < pStudioHdr.getBoneCount(); i++) {
+        // skip unused bones
+        if (!(pStudioHdr.boneFlags(i) & boneMask)) {
+            continue;
+        }
+        {
+            j = i;
+        }
+        if (j >= 0 && seqdesc.pBoneweight(j) > 0.0) {
+            QuaternionIdentityBlend(q1[i], s1, q1[i]);
+            //VectorScale(pos1[i], s2, pos1[i]);
+            scale$5(pos1[i], pos1[i], s2);
+        }
+    }
+}
+//-----------------------------------------------------------------------------
+// Purpose: translate animations done in a non-standard parent space
+//-----------------------------------------------------------------------------
+/*
+function CalcLocalHierarchyAnimation(
+    pStudioHdr,//const CStudioHdr * pStudioHdr,
+    boneToWorld: mat4,//matrix3x4_t * boneToWorld,
+    boneComputed,//CBoneBitList & boneComputed,
+    pos,//Vector * pos,
+    q,//Quaternion * q,
+    //const mstudioanimdesc_t &animdesc,
+    pbone,//const mstudiobone_t * pbone,
+    pHierarchy,//mstudiolocalhierarchy_t * pHierarchy,
+    iBone: number,//int iBone,
+    iNewParent: number,//int iNewParent,
+    cycle: number,//float cycle,
+    iFrame: number,//int iFrame,
+    flFraq: number,//float flFraq,
+    boneMask: number,//int boneMask
+): void {
+
+    let localPos = vec3.create();//Vector localPos;
+    let localQ = quat.create();//Quaternion localQ;
+
+    // make fake root transform
+    //static ALIGN16 matrix3x4_t rootXform ALIGN16_POST(1.0f, 0, 0, 0, 0, 1.0f, 0, 0, 0, 0, 1.0f, 0);
+    let rootXform = mat4.create();
+
+    // FIXME: missing check to see if seq has a weight for this bone
+    //float weight = 1.0f;
+    let weight = 1;
+
+    // check to see if there's a ramp on the influence
+    if (pHierarchy -> tail - pHierarchy -> peak < 1.0f  )
+    {
+        float index = cycle;
+
+        if (pHierarchy -> end > 1.0f && index < pHierarchy -> start)
+        index += 1.0f;
+
+        if (index < pHierarchy -> start)
+            return;
+        if (index >= pHierarchy -> end)
+            return;
+
+        if (index < pHierarchy -> peak && pHierarchy -> start != pHierarchy -> peak) {
+            weight = (index - pHierarchy -> start) / (pHierarchy -> peak - pHierarchy -> start);
+        }
+        else if (index > pHierarchy -> tail && pHierarchy -> end != pHierarchy -> tail) {
+            weight = (pHierarchy -> end - index) / (pHierarchy -> end - pHierarchy -> tail);
+        }
+
+        weight = SimpleSpline(weight);
+    }
+
+    CalcDecompressedAnimation(pHierarchy -> pLocalAnim(), iFrame - pHierarchy -> iStart, flFraq, localPos, localQ);
+
+    BuildBoneChain(pStudioHdr, rootXform, pos, q, iBone, boneToWorld, boneComputed);
+
+    matrix3x4_t localXform;
+    AngleMatrix(localQ, localPos, localXform);
+
+    if (iNewParent != -1) {
+        BuildBoneChain(pStudioHdr, rootXform, pos, q, iNewParent, boneToWorld, boneComputed);
+        ConcatTransforms(boneToWorld[iNewParent], localXform, boneToWorld[iBone]);
+    }
+    else {
+        boneToWorld[iBone] = localXform;
+    }
+
+    // back solve
+    Vector p1;
+    Quaternion q1;
+    int n = pbone[iBone].parent;
+    if (n == -1) {
+        if (weight == 1.0f)
+        {
+            MatrixAngles(boneToWorld[iBone], q[iBone], pos[iBone]);
+        }
+        else
+        {
+            MatrixAngles(boneToWorld[iBone], q1, p1);
+            QuaternionSlerp(q[iBone], q1, weight, q[iBone]);
+            pos[iBone] = Lerp(weight, p1, pos[iBone]);
+        }
+    }
+    else {
+        matrix3x4_t worldToBone;
+        MatrixInvert(boneToWorld[n], worldToBone);
+
+        matrix3x4_t local;
+        ConcatTransforms(worldToBone, boneToWorld[iBone], local);
+        if (weight == 1.0f)
+        {
+            MatrixAngles(local, q[iBone], pos[iBone]);
+        }
+        else
+        {
+            MatrixAngles(local, q1, p1);
+            QuaternionSlerp(q[iBone], q1, weight, q[iBone]);
+            pos[iBone] = Lerp(weight, p1, pos[iBone]);
+        }
+    }
+}
+    */
+//-----------------------------------------------------------------------------
+// Purpose: blend together in world space q1,pos1 with q2,pos2.  Return result in q1,pos1.
+//			0 returns q1, pos1.  1 returns q2, pos2
+//-----------------------------------------------------------------------------
+/*
+function WorldSpaceSlerp(
+    pStudioHdr,//const CStudioHdr *pStudioHdr,
+    q1: Array<quat>,//Quaternion q1[MAXSTUDIOBONES],
+    pos1: Array<vec3>,//Vector pos1[MAXSTUDIOBONES],
+    seqdesc,//mstudioseqdesc_t &seqdesc,
+    sequence: number,//int sequence,
+    q2: Array<quat>,//const Quaternion q2[MAXSTUDIOBONES],
+    pos2: Array<vec3>,//const Vector pos2[MAXSTUDIOBONES],
+    s: number,//float s,
+    boneMask: number//int boneMask
+): void {
+    int			i, j;
+    float		s1; // weight of parent for q2, pos2
+    float		s2; // weight for q2, pos2
+
+    // make fake root transform
+    matrix3x4_t rootXform;
+    SetIdentityMatrix(rootXform);
+
+    // matrices for q2, pos2
+    matrix3x4_t * srcBoneToWorld = g_MatrixPool.Alloc();
+    CBoneBitList srcBoneComputed;
+
+    matrix3x4_t * destBoneToWorld = g_MatrixPool.Alloc();
+    CBoneBitList destBoneComputed;
+
+    matrix3x4_t * targetBoneToWorld = g_MatrixPool.Alloc();
+    CBoneBitList targetBoneComputed;
+
+    virtualmodel_t * pVModel = pStudioHdr -> GetVirtualModel();
+    const virtualgroup_t * pSeqGroup = NULL;
+    if (pVModel) {
+        pSeqGroup = pVModel -> pSeqGroup(sequence);
+    }
+
+    mstudiobone_t * pbone = pStudioHdr -> pBone(0);
+
+    for (i = 0; i < pStudioHdr -> numbones(); i++) {
+        // skip unused bones
+        if (!(pStudioHdr -> boneFlags(i) & boneMask)) {
+            continue;
+        }
+
+        int n = pbone[i].parent;
+        s1 = 0.0;
+        if (pSeqGroup) {
+            j = pSeqGroup -> boneMap[i];
+            if (j >= 0) {
+                s2 = s * seqdesc.weight(j);	// blend in based on this bones weight
+                if (n != -1) {
+                    s1 = s * seqdesc.weight(pSeqGroup -> boneMap[n]);
+                }
+            }
+            else {
+                s2 = 0.0;
+            }
+        }
+        else {
+            s2 = s * seqdesc.weight(i);	// blend in based on this bones weight
+            if (n != -1) {
+                s1 = s * seqdesc.weight(n);
+            }
+        }
+
+        if (s1 == 1.0 && s2 == 1.0) {
+            pos1[i] = pos2[i];
+            q1[i] = q2[i];
+        }
+        else if (s2 > 0.0) {
+            Quaternion srcQ, destQ;
+            Vector srcPos, destPos;
+            Quaternion targetQ;
+            Vector targetPos;
+            Vector tmp;
+
+            BuildBoneChain(pStudioHdr, rootXform, pos1, q1, i, destBoneToWorld, destBoneComputed);
+            BuildBoneChain(pStudioHdr, rootXform, pos2, q2, i, srcBoneToWorld, srcBoneComputed);
+
+            MatrixAngles(destBoneToWorld[i], destQ, destPos);
+            MatrixAngles(srcBoneToWorld[i], srcQ, srcPos);
+
+            QuaternionSlerp(destQ, srcQ, s2, targetQ);
+            AngleMatrix(targetQ, destPos, targetBoneToWorld[i]);
+
+            // back solve
+            if (n == -1) {
+                MatrixAngles(targetBoneToWorld[i], q1[i], tmp);
+            }
+            else {
+                matrix3x4_t worldToBone;
+                MatrixInvert(targetBoneToWorld[n], worldToBone);
+
+                matrix3x4_t local;
+                ConcatTransforms(worldToBone, targetBoneToWorld[i], local);
+                MatrixAngles(local, q1[i], tmp);
+
+                // blend bone lengths (local space)
+                pos1[i] = Lerp(s2, pos1[i], pos2[i]);
+            }
+        }
+    }
+    g_MatrixPool.Free(srcBoneToWorld);
+    g_MatrixPool.Free(destBoneToWorld);
+    g_MatrixPool.Free(targetBoneToWorld);
+}
+*/
+
+class Animation {
+    #name;
+    weight = 1;
+    #frame = 0;
+    #frameCount = 0;
+    #looping = false;
+    //#sequence;
+    #fps = 30;
+    #frames = [];
+    #bones = [];
+    #bonesByName = new Map;
+    constructor(name) {
+        this.#name = name;
+    }
+    [Symbol.iterator] = () => {
+        return this.#frames.entries();
+    };
+    addFrame(animationFrame) {
+        this.#frames.push(animationFrame);
+        ++this.#frameCount;
+    }
+    addBone(bone) {
+        this.#bones[bone.id] = bone;
+        this.#bonesByName.set(bone.name, bone);
+    }
+    get name() {
+        return this.#name;
+    }
+    get frameCount() {
+        return this.#frameCount;
+    }
+    set fps(fps) {
+        this.#fps = fps;
+    }
+    get fps() {
+        return this.#fps;
+    }
+    get bones() {
+        return this.#bones;
+    }
+    getFrame(id) {
+        id = Math.round(id) % Math.max(this.#frameCount, 1);
+        return this.#frames[id];
+    }
+}
+
+var AnimationFrameDataType;
+(function (AnimationFrameDataType) {
+    AnimationFrameDataType[AnimationFrameDataType["Vec3"] = 0] = "Vec3";
+    AnimationFrameDataType[AnimationFrameDataType["Quat"] = 1] = "Quat";
+    AnimationFrameDataType[AnimationFrameDataType["Number"] = 2] = "Number";
+    AnimationFrameDataType[AnimationFrameDataType["Boolean"] = 3] = "Boolean";
+})(AnimationFrameDataType || (AnimationFrameDataType = {}));
+class AnimationFrameData {
+    type;
+    datas = [];
+    constructor(type, datas) {
+        this.type = type;
+        if (datas) {
+            for (const data of datas) {
+                switch (type) {
+                    case AnimationFrameDataType.Vec3:
+                        this.datas.push(clone$4(data));
+                        break;
+                    case AnimationFrameDataType.Quat:
+                        this.datas.push(clone$2(data));
+                        break;
+                    default:
+                        this.datas.push(data);
+                        break;
+                }
+            }
+        }
+    }
+    pushData(data) {
+        this.datas.push(data);
+    }
+}
+
+class AnimationFrame {
+    #frameId;
+    #datas = new Map();
+    constructor(frameId) {
+        this.#frameId = frameId;
+    }
+    setDatas(name, type, datas) {
+        this.#datas.set(name, new AnimationFrameData(type, datas));
+    }
+    pushData(name, data) {
+        const frameDatas = this.#datas.get(name);
+        frameDatas?.pushData(data);
+    }
+    getData(name) {
+        return this.#datas.get(name);
+    }
+}
+
+class AnimationBone {
+    #id;
+    #name;
+    refPosition;
+    refQuaternion;
+    constructor(id, name, position, quaternion) {
+        this.#id = id;
+        this.#name = name.toLowerCase();
+        this.refPosition = clone$4(position);
+        this.refQuaternion = clone$2(quaternion);
+    }
+    get id() {
+        return this.#id;
+    }
+    get name() {
+        return this.#name;
+    }
+}
+
 class SourceModel {
     repository;
     fileName;
     name;
-    mdl;
+    mdl; //TODO: set private ?
     vvd;
     vtx;
     requiredLod = 0;
@@ -66447,16 +68174,15 @@ class SourceModel {
         return new Source1ModelInstance({ sourceModel: this, isDynamic: isDynamic, preventInit: preventInit });
     }
     getBodyNumber(bodygroups) {
+        let bodyPartCount = 1;
         let bodyPartNumber = 0;
-        /*
-        for (const bodyPart of  this.bodyParts) {
+        for (const bodyPart of this.mdl.bodyParts) {
             if (bodyPart && bodyPart.models && (bodyPart.models.length > 1)) {
-                const bodyPartModel = bodygroups[bodyPart.name];
-                bodyPartNumber += (bodyPartModel ? bodyPartModel.modelId : 0) * bodyPartCount;
+                const bodyPartModel = bodygroups.get(bodyPart.name);
+                bodyPartNumber += (bodyPartModel ?? 0) * bodyPartCount;
                 bodyPartCount *= (bodyPart.models.length);
             }
         }
-            */
         return bodyPartNumber;
     }
     getBones() {
@@ -66506,6 +68232,41 @@ class SourceModel {
             return this.mdl.getBodyParts();
         }
         return null;
+    }
+    async getAnimation(animationName, entity) {
+        const animation = new Animation(animationName);
+        const seq = await this.mdl.getSequence(animationName);
+        const bones = this.mdl.getBones();
+        for (const mdlBone of bones) {
+            animation.addBone(new AnimationBone(mdlBone.boneId, mdlBone.name, mdlBone.position, mdlBone.quaternion));
+        }
+        if (seq) {
+            //const t = Studio_Duration(seq.mdl, seq.id, []);
+            const frameCount = StudioFrames2(seq.mdl, seq.id, []);
+            const posRemoveMeTemp = [];
+            const quatRemoveMeTemp = [];
+            const boneFlags = [];
+            const poseParameters = {};
+            for (const [boneId, bone] of animation.bones.entries()) {
+                //posRemoveMeTemp.push(vec3.clone(bone.refPosition));
+                //quatRemoveMeTemp.push(quat.clone(bone.refQuaternion));
+                //posRemoveMeTemp.push(vec3.create());
+                //quatRemoveMeTemp.push(quat.create());
+            }
+            for (let frame = 0; frame < frameCount; frame++) {
+                const animationFrame = new AnimationFrame(frame);
+                const cycle = frameCount > 1 ? frame / (frameCount - 1) : 0;
+                CalcPose2(entity, seq.mdl, undefined, posRemoveMeTemp, quatRemoveMeTemp, boneFlags, seq.id, cycle /*entity.frame / t*/, poseParameters, BONE_USED_BY_ANYTHING, 1.0, cycle /*dynamicProp.frame / t*/);
+                //console.info(posRemoveMeTemp, quatRemoveMeTemp);
+                animationFrame.setDatas('position', AnimationFrameDataType.Vec3, posRemoveMeTemp);
+                animationFrame.setDatas('rotation', AnimationFrameDataType.Quat, quatRemoveMeTemp);
+                animationFrame.setDatas('flags', AnimationFrameDataType.Number, boneFlags);
+                animation.addFrame(animationFrame);
+            }
+            console.log(frameCount, bones);
+        }
+        console.log(seq, animation);
+        return animation;
     }
 }
 class SourceModelMesh {
@@ -66961,6 +68722,1519 @@ class ModelLoader {
     }
 }
 registerLoader('ModelLoader', ModelLoader);
+
+/**
+ * Light Map
+ */
+let lightMapNodeId = 0;
+/**
+ * TODO
+ */
+const SELightMapNode = function (x, y, width, height) {
+    this.y = y;
+    this.x = x;
+    this.height = height;
+    this.width = width;
+    this.content = null;
+    this.filled = false;
+    this.id = ++lightMapNodeId;
+};
+/**
+ * TODO
+ */
+SELightMapNode.prototype.setContent = function (content) {
+    if (this.sub1)
+        return false;
+    this.content = content;
+};
+/**
+ * TODO
+ */
+SELightMapNode.prototype.split = function (x, y) {
+    if (this.content)
+        return false;
+    if (this.filled)
+        return false;
+    if (y >= this.height)
+        return false;
+    if (x >= this.width)
+        return false;
+    if (y != 0 && x != 0)
+        return false;
+    if (y == 0) { /* splitting vertically */
+        this.sub1 = new SELightMapNode(this.x, this.y, x, this.height);
+        this.sub2 = new SELightMapNode(this.x + x, this.y, this.width - x, this.height);
+    }
+    else { /* splitting horizontally */
+        this.sub1 = new SELightMapNode(this.x, this.y, this.width, y);
+        this.sub2 = new SELightMapNode(this.x, this.y + y, this.width, this.height - y);
+    }
+};
+/**
+ * TODO
+ */
+SELightMapNode.prototype.allocate = function (width, height) {
+    if (this.filled)
+        return false;
+    if (this.content)
+        return false;
+    if (height == 0)
+        return false;
+    if (width == 0)
+        return false;
+    if (height > this.height)
+        return false;
+    if (width > this.width)
+        return false;
+    let node;
+    if (this.sub1) {
+        node = this.sub1.allocate(width, height);
+        if (node) {
+            this.checkFull();
+            return node;
+        }
+    }
+    if (this.sub2) {
+        node = this.sub2.allocate(width, height);
+        if (node) {
+            this.checkFull();
+            return node;
+        }
+        return false;
+    }
+    if (height == this.height && width == this.width) {
+        this.filled = true;
+        return this;
+    }
+    if ((height / this.height) > (width / this.width)) {
+        this.split(width, 0);
+    }
+    else {
+        this.split(0, height);
+    }
+    if (this.sub1) {
+        node = this.sub1.allocate(width, height);
+        if (node) {
+            this.checkFull();
+            return node;
+        }
+    }
+    if (this.sub2) {
+        node = this.sub2.allocate(width, height);
+        this.checkFull();
+        if (node) {
+            this.checkFull();
+            return node;
+        }
+    }
+    return null;
+};
+/**
+ * TODO
+ */
+SELightMapNode.prototype.toString = function () {
+    return this.id;
+};
+/**
+ * TODO
+ */
+SELightMapNode.prototype.checkFull = function () {
+    if (this.sub1.filled && this.sub2.filled) {
+        this.filled = true;
+    }
+};
+/**
+ * TODO
+ */
+SELightMapNode.prototype.getAllocatedSize = function () {
+    let total = 0;
+    if (this.sub1) {
+        total += this.sub1.getAllocatedSize();
+        total += this.sub2.getAllocatedSize();
+        return total;
+    }
+    if (this.filled) {
+        return this.height * this.width;
+    }
+    return 0;
+};
+
+/**
+ * BSP lump
+ * @param {Number} type The lump type
+ */
+class SEBaseBspLump {
+    map;
+    initialized = false;
+    mapOffset;
+    mapLength;
+    lumpOffset;
+    lumpLen;
+    lumpDataPromise = null;
+    reader;
+    lzmaReader;
+    mapLen;
+    lumpVersion;
+    lumpData;
+    lumpType;
+    constructor(map, reader, offset, length) {
+        this.map = map;
+        //this.reader = reader;//TODOv3 remove reader
+        this.mapOffset = offset;
+        this.mapLength = length;
+        this.lumpOffset = offset;
+        this.lumpLen = length;
+    }
+    init() {
+        throw 'remove me';
+        /*
+        if (this.reader.getString(4, this.lumpOffset) == 'LZMA') {
+            const uncompressedSize = this.reader.getUint32();
+            const compressedSize = this.reader.getUint32();
+            const properties = this.reader.getBytes(5);
+            const compressedDatas = this.reader.getBytes(this.lumpLen - 17);
+
+            this.lzmaReader = new jDataView(SourceEngine.Choreographies._decompress(properties, compressedDatas, uncompressedSize), undefined, undefined, true);
+
+            this.lumpOffset = 0;
+            this.lumpLen = uncompressedSize;
+        } else {
+            //lumpData.str = this.reader.getString(lump.getLumpLen(), startOffset);
+        }
+        this.initialized = true;
+        */
+    }
+    /**
+     * Set lump offset
+     * @param {Number} newLumpOffset The lump offset
+     */
+    /*setLumpOffset(newLumpOffset) {
+        this.lumpOffset = newLumpOffset;
+    }*/
+    /**
+     * Get lump offset
+     * @return {Number} The lump offset
+     */
+    getLumpOffset() {
+        return this.lumpOffset;
+    }
+    getMapOffset() {
+        return this.mapOffset;
+    }
+    /**
+     * Set lump len
+     * @param {Number} newLumpLen The lump len
+     */
+    /*setLumpLen(newLumpLen) {
+        this.lumpLen = newLumpLen;
+    }*/
+    /**
+     * Get lump len
+     * @return {Number} The lump len
+     */
+    getLumpLen() {
+        return this.lumpLen;
+    }
+    getMapLen() {
+        return this.mapLen;
+    }
+    /**
+     * Set lump Version
+     * @param {Number} newLumpVersion The lump Version
+     */
+    setLumpVersion(newLumpVersion) {
+        this.lumpVersion = newLumpVersion;
+    }
+    /**
+     * Get lump Version
+     * @return {Number} The lump Version
+     */
+    getLumpVersion() {
+        return this.lumpVersion;
+    }
+    /**
+     * Set lump Data
+     * @param {Object} newLumpData The lump data
+     */
+    setLumpData(newLumpData) {
+        this.lumpData = newLumpData;
+    }
+    /**
+     * Get lump data
+     * @return {Object} The lump data
+     */
+    getLumpData() {
+        const datas = this.lumpData;
+        if (!datas) {
+            this.initDatas();
+        }
+        return this.lumpData;
+    }
+    getReader() {
+        if (!this.initialized) {
+            this.init();
+        }
+        if (this.lzmaReader) {
+            this.lzmaReader.seek(0);
+            return this.lzmaReader;
+        }
+        else {
+            this.reader.seek(this.lumpOffset);
+            return this.reader;
+        }
+    }
+    initDatas() {
+    }
+}
+/**
+ * BSP lump
+ * @param {Number} type The lump type
+ */
+class SourceBSPLump extends SEBaseBspLump {
+    constructor(map, type, reader, offset, length) {
+        super(map, reader, offset, length);
+        this.lumpType = type;
+    }
+}
+const LUMP_ENTITIES = 0;
+const LUMP_PLANES = 1;
+const LUMP_TEXDATA = 2;
+const LUMP_VERTEXES = 3;
+const LUMP_VISIBILITY = 4;
+const LUMP_NODES = 5;
+const LUMP_TEXINFO = 6;
+const LUMP_FACES = 7;
+const LUMP_LIGHTING = 8;
+const LUMP_LEAFS = 10;
+const LUMP_EDGES = 12;
+const LUMP_SURFEDGES = 13;
+const LUMP_MODELS = 14;
+const LUMP_LEAFFACES = 16;
+const LUMP_LEAFBRUSHES = 17;
+const LUMP_BRUSHES = 18;
+const LUMP_BRUSHSIDES = 19;
+const LUMP_DISPINFO = 26;
+const LUMP_ORIGINALFACES = 27;
+const LUMP_DISP_VERTS = 33; // CDispVerts
+//		 For each lightmap sample
+//				 byte for index
+//				 if 255; then index = next byte + 255
+//				 3 bytes for barycentric coordinates
+// The game lump is a method of adding game-specific lumps
+// FIXME: Eventually; all lumps could use the game lump system
+const LUMP_GAME_LUMP = 35;
+// A pak file can be embedded in a .bsp now; and the file system will search the pak
+//	file first for any referenced names; before deferring to the game directory
+//	file system/pak files and finally the base directory file system/pak files.
+const LUMP_PAKFILE = 40;
+const LUMP_TEXDATA_STRING_DATA = 43;
+const LUMP_TEXDATA_STRING_TABLE = 44;
+const LUMP_OVERLAYS = 45;
+const LUMP_DISP_TRIS = 48;
+// optional lumps for HDR
+const LUMP_LIGHTING_HDR = 53;
+const LUMP_FACES_HDR = 58; // HDR maps may have different face data.
+const SourceBSPLumpPlane = function () {
+    this.normal = null; // normal vector
+    this.dist = null; // distance from origin
+    this.type = null; // plane axis identifier
+};
+const SourceBSPLumpEdge = function () {
+    // f: first index s: second index
+    this.f = null; // better than store as an array of 2 ?
+    this.s = null;
+};
+const SourceBSPLumpFace = function () {
+    this.planenum = null;
+    this.side = null;
+    this.onNode = null;
+    this.firstedge = null;
+    this.numedges = null;
+    this.texinfo = null;
+    this.dispinfo = null;
+    this.surfaceFogVolumeID = null;
+    this.styles = [];
+    this.lightofs = null;
+    this.area = null;
+    this.LightmapTextureMinsInLuxels = null;
+    this.LightmapTextureSizeInLuxels = null;
+    this.origFace = null;
+    this.numPrims = null;
+    this.firstPrimID = null;
+    this.smoothingGroups = null;
+};
+/*
+unsigned short	planenum;		// the plane number
+byte		side;			// faces opposite to the node's plane direction
+byte		onNode;			// 1 of on node, 0 if in leaf
+int		firstedge;		// index into surfedges
+short		numedges;		// number of surfedges
+short		texinfo;		// texture info
+short		dispinfo;		// displacement info
+short		surfaceFogVolumeID;	// ?
+byte		styles[4];		// switchable lighting info
+int		lightofs;		// offset into lightmap lump
+float		area;			// face area in units^2
+int		LightmapTextureMinsInLuxels[2];	// texture lighting info
+int		LightmapTextureSizeInLuxels[2];	// texture lighting info
+int		origFace;		// original face this was split from
+unsigned short	numPrims;		// primitives
+unsigned short	firstPrimID;
+unsigned int	smoothingGroups;	// lightmap smoothing group
+*/
+const SourceBSPLumpTexData = function () {
+    this.reflectivity = null; // RGB reflectivity
+    this.nameStringTableID = null; // index into TexdataStringTable
+    this.width = null;
+    this.height = null; // source image
+    this.view_width = null;
+    this.view_height = null;
+};
+/*
+const SourceBSPLumpGameLump = function() {
+    this.id = null;		// gamelump ID
+    this.flags = null;		// flags
+    this.version = null;	// gamelump version
+    this.fileofs = null;	// offset to this gamelump
+    this.filelen = null;	// length
+}*/
+/**
+ * BSP lump
+ * @param {Number} type The lump type
+ */
+class SourceBSPLumpGameLump extends SEBaseBspLump {
+    id;
+    flags;
+    version;
+    constructor(map, reader) {
+        super(map, reader); //TODOv3
+        /*this.lumpOffset = this.mapReader.getInt32();
+        this.lumpLen = this.mapReader.getInt32();
+        this.lumpVersion = this.mapReader.getInt32();
+        this.fourCC = this.mapReader.getInt32();
+        this.lumpData = null;*/
+        //lump.setLumpOffset(this.reader.getInt32());
+        //lump.setLumpLen(this.reader.getInt32());
+        //lump.setLumpVersion(this.reader.getInt32());
+        //this.reader.getInt32() // TODO: replace by lump fourCC
+        //this.init();
+    }
+}
+const SourceBSPLumpPropStaticDirectory = function () {
+    this.name = [];
+    this.leaf = [];
+    this.props = [];
+};
+const SourceBSPLumpPropStatic = function () {
+    this.position = null;
+    this.angles = create$4();
+    this.propType = null;
+    this.firstLeaf = null;
+    this.leafCount = null;
+    this.solid = null;
+    this.flags = null;
+    this.skin = null;
+    this.fadeMinDist = null;
+    this.fadeMaxDist = null;
+    this.lightingOrigin = null;
+    this.forcedFadeScale = null;
+    this.minDXLevel = null;
+    this.maxDXLevel = null;
+    this.minCPULevel = null;
+    this.maxCPULevel = null;
+    this.minGPULevel = null;
+    this.maxGPULevel = null;
+    this.diffuseModulation = null;
+    this.disableX360 = null;
+    /*// v4
+    Vector		Origin;		 // origin
+    QAngle		Angles;		 // orientation (pitch roll yaw)
+    unsigned short	PropType;	 // index into model name dictionary
+    unsigned short	FirstLeaf;	 // index into leaf array
+    unsigned short	LeafCount;
+    unsigned char	Solid;		 // solidity type
+    unsigned char	Flags;
+    int		Skin;		 // model skin numbers
+    float		FadeMinDist;
+    float		FadeMaxDist;
+    Vector		LightingOrigin;	// for lighting
+    // since v5
+    float		ForcedFadeScale; // fade distance scale
+    // v6 and v7 only
+    unsigned short	MinDXLevel;			// minimum DirectX version to be visible
+    unsigned short	MaxDXLevel;			// maximum DirectX version to be visible
+    // since v8
+    unsigned char	 MinCPULevel;
+    unsigned char	 MaxCPULevel;
+    unsigned char	 MinGPULevel;
+    unsigned char	 MaxGPULevel;
+    // since v7
+    color32				 DiffuseModulation; // per instance color and alpha modulation
+    // since v10
+    float					 unknown;
+    // since v9
+    bool						DisableX360;		 // if true, don't show on XBox 360
+    */
+};
+const SourceBSPLumpTexInfo = function () {
+    this.textureVecs = []; // [s/t][xyz offset]
+    this.lightmapVecs = []; // [s/t][xyz offset] - length is in units of texels/area
+    this.flags; // miptex flags	overrides
+    this.texdata;
+};
+const SourceBSPLumpDispInfo = function () {
+    /*Vector			startPosition;		// start position used for orientation
+    int			DispVertStart;		// Index into LUMP_DISP_VERTS.
+    int			DispTriStart;		// Index into LUMP_DISP_TRIS.
+    int			power;			// power - indicates size of surface (2^power	1)
+    int			minTess;		// minimum tesselation allowed
+    float			smoothingAngle;		// lighting smoothing angle
+    int			contents;		// surface contents
+    unsigned short		MapFace;		// Which map face this displacement comes from.
+    int			LightmapAlphaStart;	// Index into ddisplightmapalpha.
+    int			LightmapSamplePositionStart;	// Index into LUMP_DISP_LIGHTMAP_SAMPLE_POSITIONS.
+    CDispNeighbor		EdgeNeighbors[4];	// Indexed by NEIGHBOREDGE_ defines.
+    CDispCornerNeighbors	CornerNeighbors[4];	// Indexed by CORNER_ defines.
+    unsigned int		AllowedVerts[10];	// active verticies*/
+};
+const SourceBSPLumpDispNeighbor = function () {
+    //CDispSubNeighbor	m_SubNeighbors[2];
+    this.subNeighbors = [];
+};
+const SourceBSPLumpDispSubNeighbor = function () {
+    /*	unsigned short		m_iNeighbor;		// This indexes into ddispinfos.
+                                                // 0xFFFF if there is no neighbor here.
+
+        unsigned char		m_NeighborOrientation;		// (CCW) rotation of the neighbor wrt this displacement.
+
+        // These use the NeighborSpan type.
+        unsigned char		m_Span;						// Where the neighbor fits onto this side of our displacement.
+        unsigned char		m_NeighborSpan;				// Where we fit onto our neighbor.								 */
+};
+/*TODO
+const SourceBSPLumpDispSubNeighbor
+{
+};*/
+const SourceBSPLumpDispVertex = function () {
+    /*	Vector	vec;	// Vector field defining displacement volume.
+        float	dist;	// Displacement distances.
+        float	alpha;	// 'per vertex' alpha values.*/
+};
+const SourceBSPLumpColorRGBExp32 = function () {
+    /*	Vector	vec;	// Vector field defining displacement volume.
+        float	dist;	// Displacement distances.
+        float	alpha;	// 'per vertex' alpha values.*/
+};
+const SourceBSPLumpBrush = function () {
+    this.firstside = null;
+    this.numsides = null;
+    this.contents = null;
+};
+const SourceBSPLumpBrushSide = function () {
+    this.planenum = null;
+    this.texinfo = null;
+    this.dispinfo = null;
+    this.bevel = null;
+};
+const SourceBSPLumpModel = function () {
+    this.mins = null;
+    this.maxs = null;
+    this.position = null;
+    this.headnode = null;
+    this.firstface = null;
+    this.numfaces = null;
+};
+/*const SourceBSPLumpLeaf = function() {
+/*
+
+    DECLARE_BYTESWAP_DATADESC();
+    int				contents;			// OR of all brushes (not needed?)
+
+    short			cluster;
+
+    BEGIN_BITFIELD(bf);
+    short			area:9;
+    short			flags:7;			// Per leaf flags.
+    END_BITFIELD();
+
+    short			mins[3];			// for frustum culling
+    short			maxs[3];
+
+    unsigned short	firstleafface;
+    unsigned short	numleaffaces;
+
+    unsigned short	firstleafbrush;
+    unsigned short	numleafbrushes;
+    * /
+    this.contents = null;
+    this.cluster = null;
+    this.areaflags = null;
+    this.mins = null;
+    this.maxs = null;
+    this.firstleafface = null;
+    this.numleaffaces = null;
+    this.firstleafbrush = null;
+    this.numleafbrushes = null;
+    this.leafWaterDataID = null;
+}*/
+class SourceBSPLumpLeaf {
+    contents = null;
+    cluster = null;
+    areaflags = null;
+    mins = null;
+    maxs = null;
+    firstleafface = null;
+    numleaffaces = null;
+    firstleafbrush = null;
+    numleafbrushes = null;
+    leafWaterDataID = null;
+    contains(position) {
+        const mins = this.mins;
+        const maxs = this.maxs;
+        if (mins[0] <= position[0]
+            && mins[1] <= position[1]
+            && mins[2] <= position[2]
+            && maxs[0] >= position[0]
+            && maxs[1] >= position[1]
+            && maxs[2] >= position[2]) {
+            return true;
+        }
+        return false;
+    }
+}
+/*const SourceBSPLumpNode = function() {
+/*
+int			planenum;
+int			children[2];	// negative numbers are -(leafs+1), not nodes
+short		mins[3];		// for frustom culling
+short		maxs[3];
+unsigned short	firstface;
+unsigned short	numfaces;	// counting both sides
+short			area;		// If all leaves below this node are in the same area, then
+                            // this is the area index. If not, this is -1.
+    * /
+    this.planenum = null;
+    this.children = null;
+    this.mins = null;
+    this.maxs = null;
+    this.firstface = null;
+    this.numfaces = null;
+    this.area = null;
+}*/
+class SourceBSPLumpNode {
+    planenum = null;
+    children = null;
+    mins = null;
+    maxs = null;
+    firstface = null;
+    numfaces = null;
+    area = null;
+    contains(position) {
+        const mins = this.mins;
+        const maxs = this.maxs;
+        if (mins[0] <= position[0]
+            && mins[1] <= position[1]
+            && mins[2] <= position[2]
+            && maxs[0] >= position[0]
+            && maxs[1] >= position[1]
+            && maxs[2] >= position[2]) {
+            return true;
+        }
+        return false;
+    }
+}
+class SourceBSPLumpOverlay {
+    id;
+    texInfo;
+    FaceCountAndRenderOrder;
+    faces;
+    U;
+    V;
+    UVPoint0;
+    UVPoint1;
+    UVPoint2;
+    UVPoint3;
+    Origin;
+    BasisNormal;
+}
+
+/**
+ * BSP Tree
+ */
+class SourceEngineBspTree {
+    map;
+    visibilityClusters = undefined;
+    clustersCount = 0;
+    countRemoveMe = 0;
+    leavesRemoveme = [];
+    constructor(map) {
+        this.map = map;
+    }
+    set clusters(clusters) {
+        if (clusters) {
+            this.visibilityClusters = clusters.clusterVis;
+            this.clustersCount = clusters.clusterCount;
+            this.countRemoveMe++;
+            if (this.countRemoveMe > 5000) {
+                this.countRemoveMe = 0;
+                console.error('Fix me');
+            }
+        }
+    }
+    getLeafId(pos) {
+        //TODO: optimize
+        const map = this.map;
+        const lumpModels = map.getLumpData(LUMP_MODELS);
+        const lumpPlanes = map.getLumpData(LUMP_PLANES);
+        const lumpNodes = map.getLumpData(LUMP_NODES);
+        const lumpLeafs = map.getLumpData(LUMP_LEAFS);
+        const lumpLeafFaces = map.getLumpData(LUMP_LEAFFACES);
+        const lumpVisibility = map.getLumpData(LUMP_VISIBILITY);
+        if (lumpModels && lumpPlanes && lumpNodes && lumpLeafs && lumpLeafFaces && lumpVisibility) {
+            let model = lumpModels[0];
+            let index = model.headnode;
+            let node = null;
+            let plane = null;
+            create$4();
+            let dist = 0;
+            while (index >= 0) {
+                node = lumpNodes[index];
+                plane = lumpPlanes[node.planenum];
+                //normal[0] = plane.normal.x; normal[1] = plane.normal.y; normal[2] = plane.normal.z; // TODO: Not this.
+                //dist = vec3.dot(normal, pos) - plane.dist;
+                dist = dot$4(plane.normal, pos) - plane.dist;
+                if (dist >= 0) {
+                    index = node.children[0];
+                }
+                else {
+                    index = node.children[1];
+                }
+            }
+            return -(index + 1);
+        }
+        else {
+            return undefined;
+        }
+    }
+    isLeafVisible(fromLeafId, toLeafId) {
+        if (fromLeafId == toLeafId) {
+            return true;
+        } // Leaves are always visible from themselves
+        let lumpLeafs = this.map.getLumpData(LUMP_LEAFS);
+        if (lumpLeafs && this.visibilityClusters) {
+            let fromLeaf = lumpLeafs[fromLeafId];
+            let toLeaf = lumpLeafs[toLeafId];
+            if (fromLeaf.cluster == -1 || toLeaf.cluster != -1) {
+                return false;
+            }
+            return this.visibilityClusters[(fromLeaf.cluster * this.clustersCount) + toLeaf.cluster];
+        }
+        return false;
+    }
+    isVisLeaf(leafId) {
+        let lumpLeafs = this.map.getLumpData(LUMP_LEAFS);
+        if (lumpLeafs) {
+            let lumpLeaf = lumpLeafs[leafId];
+            if (lumpLeaf) {
+                return lumpLeaf.cluster != -1;
+            }
+        }
+        return true;
+    }
+    addPropToLeaf(leafId, propId) {
+        const leaf = this.leavesRemoveme[leafId] || [];
+        this.leavesRemoveme[leafId] = leaf;
+        leaf.push(propId);
+    }
+}
+
+function ParseVector(str) {
+    const regex = / *(-?\d*(\.\d*)?) *(-?\d*(\.\d*)?) *(-?\d*(\.\d*)?) */i;
+    const result = regex.exec(str);
+    if (result) {
+        return fromValues$4(Number.parseFloat(result[1]), Number.parseFloat(result[3]), Number.parseFloat(result[5]));
+    }
+    return null;
+}
+function ParseVector2(out, str) {
+    const regex = / *(-?\d*(\.\d*)?) *(-?\d*(\.\d*)?) *(-?\d*(\.\d*)?) */i;
+    const result = regex.exec(str);
+    if (result) {
+        return set$4(out, Number.parseFloat(result[1]), Number.parseFloat(result[3]), Number.parseFloat(result[5]));
+    }
+    return null;
+}
+function parseLightColorIntensity(value, light, intensityMultiplier = 1) {
+    let colorValue = create$4();
+    let arrayValue = value.split(' ');
+    colorValue[0] = Math.pow(arrayValue[0] / 255.0, 2.2);
+    colorValue[1] = Math.pow(arrayValue[1] / 255.0, 2.2);
+    colorValue[2] = Math.pow(arrayValue[2] / 255.0, 2.2);
+    light.color = colorValue;
+    light.intensity = arrayValue[3] / 255.0 * intensityMultiplier;
+}
+function AngleQuaternion(angles, outQuat) {
+    const sy = Math.sin(angles[1] * 0.5);
+    const cy = Math.cos(angles[1] * 0.5);
+    const sp = Math.sin(angles[0] * 0.5);
+    const cp = Math.cos(angles[0] * 0.5);
+    const sr = Math.sin(angles[2] * 0.5);
+    const cr = Math.cos(angles[2] * 0.5);
+    /*SinCos(DEG2RAD(angles[1]) * 0.5f, &sy, &cy);
+    SinCos(DEG2RAD(angles[0]) * 0.5f, &sp, &cp);
+    SinCos(DEG2RAD(angles[2]) * 0.5f, &sr, &cr);*/
+    // NJS: for some reason VC6 wasn't recognizing the common subexpressions:
+    const srXcp = sr * cp, crXsp = cr * sp;
+    outQuat[0] = srXcp * cy - crXsp * sy; // X
+    outQuat[1] = crXsp * cy + srXcp * sy; // Y
+    const crXcp = cr * cp, srXsp = sr * sp;
+    outQuat[2] = crXcp * sy - srXsp * cy; // Z
+    outQuat[3] = crXcp * cy + srXsp * sy; // W (real component)
+    return outQuat;
+}
+//angles[PITCH, YAW, ROLL]
+function AngleVectors(angles, forward) {
+    const sy = Math.sin(angles[1]);
+    const cy = Math.cos(angles[1]);
+    const sp = Math.sin(angles[0]);
+    const cp = Math.cos(angles[0]);
+    forward[0] = cp * cy;
+    forward[1] = cp * sy;
+    forward[2] = -sp;
+}
+function ParseAngles(str) {
+    const angles = ParseVector(str);
+    if (angles) {
+        return scale$5(angles, angles, Math.PI / 180);
+    }
+    return null;
+}
+function ParseAngles2(out, str) {
+    if (ParseVector2(out, str)) {
+        return scale$5(out, out, Math.PI / 180);
+    }
+    return null;
+}
+/**
+ * Map entity
+ */
+class MapEntity extends Entity {
+    static incrementalId = 0;
+    classname;
+    outputs = [];
+    m_vecVelocity = create$4();
+    m_flMoveDoneTime = -1;
+    m_flLocalTime = 0;
+    f = 0;
+    keys = new Map();
+    targetName;
+    parentName;
+    m;
+    constructor(classname) {
+        super({ name: classname });
+        this.classname = classname;
+        this.id = String(++MapEntity.incrementalId);
+        //this.children = Object.create(null);
+    }
+    setKeyValues(kvElement) {
+        if (kvElement) {
+            if (kvElement.spawnflags) {
+                this.f = kvElement.spawnflags * 1;
+            }
+            let entityParams = Object.keys(kvElement);
+            for (let i = 0, l = entityParams.length; i < l; i++) {
+                let key = entityParams[i];
+                this.setKeyValue(key, kvElement[key]);
+            }
+        }
+    }
+    setKeyValue(key, value) {
+        if (key) {
+            this.keys.set(key, value);
+            if (key.indexOf('on') == 0) {
+                this.addOutput(key.replace(/#\d+$/, ''), value);
+            }
+            switch (key) {
+                case 'targetname':
+                    this.targetName = value;
+                    break;
+                case 'origin':
+                    this._position = ParseVector(value);
+                    break;
+                case 'angles':
+                    AngleQuaternion(ParseAngles(value), this._quaternion);
+                    break;
+                case 'parentname':
+                    this.parentName = value;
+                    break;
+            }
+        }
+    }
+    getValue(key) {
+        return this.keys.get(key);
+    }
+    addOutput(outputName, outputValue) {
+        let output = new MapEntityConnection(outputName);
+        this.m.addConnection(output);
+        this.outputs.push(output);
+        output.fromString(outputValue);
+        //console.log(output.outputName, output.getTargetName(), output.getTargetInput(), output.getTargetParameter(), output.getDelay(), output.getFireOnlyOnce());
+    }
+    setInput(input, parameter) {
+    }
+    getFlag(position) {
+        return (this.f >> position) & 1;
+    }
+    set map(map) {
+        this.m = map;
+    }
+    get map() {
+        return this.m;
+    }
+    move(delta) {
+        this.position = add$5(create$4(), this._position, delta); //todo remove me
+    }
+    /*set position(o) {
+        if (o) {
+            let oo = this._position;
+            if ((o[0] != oo[0]) || (o[1] != oo[1]) || (o[2] != oo[2])) {
+                this._position = o;
+                let delta = vec3.sub(vec3.create(), this._position, o);
+                for (let i in this.children) {
+                    let child = this.children[i];
+                    child.move(delta, /*initiator || * /this);
+                }
+            }
+        }
+    }*/
+    /*
+    get position() {
+        return super.position;
+    }
+        */
+    getAbsOrigin() {
+        return null;
+    }
+    getLocalOrigin() {
+        return this._position;
+    }
+    getLocalVelocity() {
+        return this.m_vecVelocity;
+    }
+    update(map, delta) {
+        this.m_flLocalTime += delta;
+        if (this.parentName) {
+            let parent = map.getEntityByTargetName(this.parentName);
+            if (parent) {
+                this.setParent(parent);
+                delete this.parentName;
+            }
+        }
+        this.position = scaleAndAdd$2(create$4(), this.getLocalOrigin(), this.getLocalVelocity(), delta); //TODO removeme : optimize
+    }
+    setParent(parent) {
+        //void CBaseEntity::SetParent(CBaseEntity *pParentEntity, int iAttachment)
+        let oldParent = this.parent;
+        this.parent = parent;
+        if (parent == this) {
+            this.parent = null;
+        }
+        if (oldParent) {
+            oldParent.removeChild(this);
+        }
+        if (this.parent) {
+            this.parent.addChild(this);
+        }
+    }
+    /*addChild(child) {
+        if (child) {
+            this.children[child.id] = child;
+        }
+    }
+
+    removeChild(child) {
+        if (child) {
+            delete this.children[child.id];
+        }
+    }*/
+    setLocalVelocity(vecVelocity) {
+        copy$4(this.m_vecVelocity, vecVelocity);
+    }
+    setMoveDoneTime(delay) {
+        if (delay >= 0) {
+            this.m_flMoveDoneTime = this.getLocalTime() + delay;
+        }
+        else {
+            this.m_flMoveDoneTime = -1;
+        }
+    }
+    getLocalTime() {
+        return this.m_flLocalTime;
+    }
+    fireOutput(outputName) {
+        let outputs = this.outputs;
+        let result = [];
+        for (let i = 0, l = outputs.length; i < l; i++) {
+            let output = outputs[i];
+            if (outputName == output.outputName) {
+                //result.push(connection);
+                output.fire(this.m);
+            }
+        }
+        return result;
+    }
+    toString() {
+        return this.classname;
+    }
+}
+MapEntity.incrementalId = 0;
+/**
+ * Entity connection
+ */
+class MapEntityConnection {
+    //'OnMapSpawn' 'tonemap_global,SetAutoExposureMax,.8,0,-1'
+    n;
+    p;
+    constructor(name) {
+        this.n = name;
+        this.p = null;
+    }
+    fromString(stringDatas) {
+        let parameters = stringDatas.split(',');
+        if (parameters && parameters.length == 5) {
+            this.p = parameters;
+        }
+    }
+    get outputName() {
+        return this.n;
+    }
+    getTargetName() {
+        let parameters = this.p;
+        if (parameters) {
+            return parameters[0];
+        }
+    }
+    getTargetInput() {
+        let parameters = this.p;
+        if (parameters) {
+            return parameters[1];
+        }
+    }
+    getTargetParameter() {
+        let parameters = this.p;
+        if (parameters) {
+            return parameters[2];
+        }
+    }
+    getDelay() {
+        let parameters = this.p;
+        if (parameters) {
+            return parameters[3];
+        }
+    }
+    getFireOnlyOnce() {
+        let parameters = this.p;
+        if (parameters) {
+            return parameters[4];
+        }
+    }
+    fire(map) {
+        let parameters = this.p;
+        if (parameters) {
+            map.setTargetsInput(parameters[0], parameters[1], parameters[2]);
+        }
+    }
+}
+
+/**
+ * Map entities
+ */
+const MapEntities = function () {
+};
+MapEntities.entities = Object.create(null);
+MapEntities.registerEntity = function (className, entityClass) {
+    this.entities[className] = entityClass;
+};
+MapEntities.createEntity = function (map, className) {
+    const entityClass = this.entities[className];
+    if (!entityClass) {
+        return null;
+    }
+    const entity = new entityClass(className);
+    entity.map = map;
+    return entity;
+};
+
+const DISPLACEMENT_DELTA = 1.0; // max distance from start position
+const LIGTH_MAP_TEXTURE_SIZE = 1024;
+class SourceBSP extends World {
+    repository;
+    bspFileVersion = null;
+    lumps = [];
+    mapRevision = null;
+    loaded = false;
+    bufferInitialized = false;
+    staticGeometry = {};
+    skyBoxStaticGeometry = {};
+    skyboxGeometry = {};
+    overlayVerticesByTexture = {};
+    mainLightMap = new SELightMapNode(0, 0, LIGTH_MAP_TEXTURE_SIZE, LIGTH_MAP_TEXTURE_SIZE);
+    lightMapTexture = null;
+    skyCamera = null;
+    skyName = null;
+    entities = [];
+    connections = [];
+    mapSpawn = true;
+    lastLeaf = undefined;
+    bspTree;
+    frameCount = 0;
+    mustParseHeader = true;
+    funcBrushesRemoveMe = [];
+    partialLoading = false;
+    eventTarget = new EventTarget(); //TODOv3
+    staticProps = new Group({ name: 'Static props' });
+    dynamicProps = new Group({ name: 'Dynamic props' });
+    mapFaces = new Group({ name: 'World geometry' });
+    characterSpawn;
+    #geometries;
+    loader;
+    constructor(params) {
+        super(params);
+        this.repository = params.repository;
+        //this.staticProps = [];
+        this.bspTree = new SourceEngineBspTree(this);
+        //this.loadFile(root, fileName);
+        //BspMap.defaultMaterial = BspMap.defaultMaterial ||	SourceEngine.Materials.MaterialManager._loadMaterial('', SourceEngine.Settings.Materials.defaultLightMappedMaterial).then(function(material){BspMap.defaultMaterial = material;});TODOv3
+        this.addChild(this.staticProps);
+        this.addChild(this.dynamicProps);
+        this.addChild(this.mapFaces);
+    }
+    initMap() {
+        this.initGeometry();
+        this._createEntities();
+        this._createStaticProps();
+    }
+    _createEntities() {
+        const lumpEntities = this.getLumpData(LUMP_ENTITIES);
+        if (lumpEntities) {
+            this.createDynamicEntities(lumpEntities.kv);
+            /*new Promise((resolve, reject) => {
+                this.createDynamicEntities(entities.kv);
+                this.eventTarget.dispatchEvent(new CustomEvent('entitiescreated'));//TODOv3
+                resolve();
+            });*/
+        }
+    }
+    _createStaticProps() {
+        const lumpGameDatas = this.getLumpData(LUMP_GAME_LUMP);
+        if (lumpGameDatas && lumpGameDatas.prps && lumpGameDatas.prps.lumpData) {
+            let propsStatic = lumpGameDatas.prps.lumpData;
+            let propNames = propsStatic.name;
+            let props = propsStatic.props;
+            const tempQuaternion = create$2();
+            for (let prop of props) {
+                Source1ModelManager.createInstance(this.repository, propNames[prop.propType], true).then((model) => {
+                    this.staticProps.addChild(model);
+                    model.position = prop.position;
+                    model.quaternion = AngleQuaternion(prop.angles, tempQuaternion);
+                    model.skin = prop.skin;
+                });
+            }
+        }
+    }
+    createDynamicEntities(kv) {
+        const list = Object.keys(kv.rootElements);
+        for (let i = 0; i < list.length; ++i) {
+            let entity = kv.rootElements[list[i]];
+            if (entity.classname) {
+                let e = MapEntities.createEntity(this, entity.classname);
+                if (e) {
+                    e.setKeyValues(entity);
+                    this.addEntity(e);
+                }
+                else {
+                    console.error('Unknown classname : %s', entity.classname);
+                }
+                if (entity.classname == 'sky_camera') {
+                    this.skyCamera = e;
+                    //this.renderBuffer = false;
+                }
+                if (entity.classname == 'worldspawn' && entity.skyname) {
+                    //console.log(entity.skyname);
+                    this.skyName = entity.skyname;
+                }
+                if (entity.classname == 'info_player_teamspawn') {
+                    if (!this.characterSpawn) {
+                        this.characterSpawn = scale$5(create$4(), entity.origin.split(' '), 1);
+                    }
+                }
+            }
+        }
+    }
+    addLump(lump) {
+        this.lumps.push(lump);
+    }
+    getLumpData(lumpType) {
+        const lump = this.lumps[lumpType];
+        if (lump) {
+            return lump.getLumpData();
+        }
+        return null;
+    }
+    initFaceGeometry(face, position) {
+        if (face.initialized) { //TODOv3
+            return;
+        }
+        face.initialized = true;
+        this.getLumpData(LUMP_FACES);
+        const lumpTexInfo = this.getLumpData(LUMP_TEXINFO);
+        const lumpTexData = this.getLumpData(LUMP_TEXDATA);
+        const lumpTexDataStringData = this.getLumpData(LUMP_TEXDATA_STRING_DATA);
+        const lumpSurfEdges = this.getLumpData(LUMP_SURFEDGES);
+        const lumpEdges = this.getLumpData(LUMP_EDGES);
+        const lumpVertices = this.getLumpData(LUMP_VERTEXES);
+        let texInfo = lumpTexInfo[face.texinfo];
+        let texData = lumpTexData[texInfo.texdata];
+        let texName = lumpTexDataStringData[texData.nameStringTableID];
+        //console.log(face);
+        let buffer = this.#geometries[texName];
+        if (!buffer) {
+            buffer = {
+                lastIndice: 0,
+                vertices: [], indices: [], coords: [], alphas: [],
+                triangleArray: [], alphaArray: [], textureCoord: [], lightMaps: [], textureVecs: lumpTexInfo.textureVecs, height: lumpTexData.height, width: lumpTexData.width
+            }; //TODOv3
+            this.#geometries[texName] = buffer;
+        }
+        let textureVecsU = texInfo.textureVecs[0];
+        let textureVecsV = texInfo.textureVecs[1];
+        const firstEdge = face.firstedge;
+        const lastEdge = firstEdge + face.numedges;
+        let firstIndice = buffer.lastIndice;
+        for (let surfEdgeIndex = firstEdge; surfEdgeIndex < lastEdge; ++surfEdgeIndex) {
+            const surfedge = lumpSurfEdges[surfEdgeIndex];
+            const edge = lumpEdges[Math.abs(surfedge)]; //TODOv3 ? why abs
+            let vertice1, vertice2;
+            if (surfedge <= 0) {
+                vertice1 = lumpVertices[edge.f];
+                vertice2 = lumpVertices[edge.s];
+            }
+            else {
+                vertice2 = lumpVertices[edge.f];
+                vertice1 = lumpVertices[edge.s];
+            }
+            if (vertice1 && vertice2) {
+                if (position) {
+                    buffer.vertices.push(vertice1[0] + position[0]); //TODOv3: optimize
+                    buffer.vertices.push(vertice1[1] + position[1]);
+                    buffer.vertices.push(vertice1[2] + position[2]);
+                    buffer.vertices.push(vertice2[0] + position[0]);
+                    buffer.vertices.push(vertice2[1] + position[1]);
+                    buffer.vertices.push(vertice2[2] + position[2]);
+                }
+                else {
+                    buffer.vertices.push(vertice1[0]); //TODOv3: optimize
+                    buffer.vertices.push(vertice1[1]);
+                    buffer.vertices.push(vertice1[2]);
+                    buffer.vertices.push(vertice2[0]);
+                    buffer.vertices.push(vertice2[1]);
+                    buffer.vertices.push(vertice2[2]);
+                }
+                buffer.coords.push((vertice1[0] * textureVecsU[0] + vertice1[1] * textureVecsU[1] + vertice1[2] * textureVecsU[2] + textureVecsU[3]) / texData.width);
+                buffer.coords.push((vertice1[0] * textureVecsV[0] + vertice1[1] * textureVecsV[1] + vertice1[2] * textureVecsV[2] + textureVecsV[3]) / texData.height);
+                buffer.coords.push((vertice2[0] * textureVecsU[0] + vertice2[1] * textureVecsU[1] + vertice2[2] * textureVecsU[2] + textureVecsU[3]) / texData.width);
+                buffer.coords.push((vertice2[0] * textureVecsV[0] + vertice2[1] * textureVecsV[1] + vertice2[2] * textureVecsV[2] + textureVecsV[3]) / texData.height);
+                buffer.indices.push(firstIndice); //TODOv3: optimize
+                buffer.indices.push(buffer.lastIndice++); //TODOv3: optimize
+                buffer.indices.push(buffer.lastIndice++); //TODOv3: optimize
+            }
+        }
+    }
+    initDispGeometry(dispInfo, face) {
+        if (face.initialized) { //TODOv3
+            return;
+        }
+        face.initialized = true;
+        this.getLumpData(LUMP_FACES);
+        const lumpTexInfo = this.getLumpData(LUMP_TEXINFO);
+        const lumpTexData = this.getLumpData(LUMP_TEXDATA);
+        const lumpTexDataStringData = this.getLumpData(LUMP_TEXDATA_STRING_DATA);
+        const lumpSurfEdges = this.getLumpData(LUMP_SURFEDGES);
+        const lumpEdges = this.getLumpData(LUMP_EDGES);
+        const lumpVertices = this.getLumpData(LUMP_VERTEXES);
+        let texInfo = lumpTexInfo[face.texinfo];
+        let texData = lumpTexData[texInfo.texdata];
+        let texName = lumpTexDataStringData[texData.nameStringTableID];
+        //console.log(face);
+        let buffer = this.#geometries[texName];
+        if (!buffer) {
+            buffer = {
+                lastIndice: 0,
+                vertices: [], indices: [], coords: [], alphas: [],
+                triangleArray: [], alphaArray: [], textureCoord: [], lightMaps: [], textureVecs: lumpTexInfo.textureVecs, height: lumpTexData.height, width: lumpTexData.width
+            }; //TODOv3
+            this.#geometries[texName] = buffer;
+        }
+        let textureVecsU = texInfo.textureVecs[0];
+        let textureVecsV = texInfo.textureVecs[1];
+        const firstEdge = face.firstedge;
+        const lastEdge = firstEdge + face.numedges;
+        const origVertices = [];
+        for (let surfEdgeIndex = firstEdge; surfEdgeIndex < lastEdge; ++surfEdgeIndex) {
+            const surfedge = lumpSurfEdges[surfEdgeIndex];
+            const edge = lumpEdges[Math.abs(surfedge)]; //TODOv3 ? why abs
+            let vertice1;
+            if (surfedge <= 0) {
+                vertice1 = lumpVertices[edge.f];
+                lumpVertices[edge.s];
+            }
+            else {
+                lumpVertices[edge.f];
+                vertice1 = lumpVertices[edge.s];
+            }
+            if (vertice1) {
+                origVertices.push(vertice1);
+            }
+        }
+        for (let testremoveme = 0; testremoveme < 4; testremoveme++) {
+            const vvremoveme = origVertices[0];
+            if (Math.abs(vvremoveme[0] - dispInfo.startPosition[0]) < DISPLACEMENT_DELTA
+                && Math.abs(vvremoveme[1] - dispInfo.startPosition[1]) < DISPLACEMENT_DELTA
+                && Math.abs(vvremoveme[2] - dispInfo.startPosition[2]) < DISPLACEMENT_DELTA) {
+                break;
+            }
+            origVertices.push(origVertices.shift());
+        }
+        const verticesPerSide = Math.pow(2, dispInfo.power) + 1;
+        const tesselateVertices = [];
+        /* create tesslate array */
+        for (let i = 0; i < verticesPerSide; ++i) {
+            const row = [];
+            tesselateVertices.push(row);
+            for (let j = 0; j < verticesPerSide; ++j) {
+                row[j] = null;
+            }
+        }
+        tesselateVertices[0][0] = clone$3(origVertices[0]);
+        tesselateVertices[0][verticesPerSide - 1] = clone$3(origVertices[3]);
+        tesselateVertices[verticesPerSide - 1][verticesPerSide - 1] = clone$3(origVertices[2]);
+        tesselateVertices[verticesPerSide - 1][0] = clone$3(origVertices[1]);
+        let subdiv = Math.pow(2, dispInfo.power);
+        for (let level = 0; level < dispInfo.power; ++level) {
+            const squares = Math.pow(2, level);
+            let subdiv2 = subdiv / 2;
+            for (let i = 0; i < squares; ++i) {
+                for (let j = 0; j < squares; ++j) {
+                    const iMin = subdiv * i;
+                    const iMax = iMin + subdiv;
+                    const jMin = subdiv * j;
+                    const jMax = jMin + subdiv;
+                    const v1 = tesselateVertices[iMin][jMin];
+                    const v2 = tesselateVertices[iMax][jMin];
+                    const v3 = tesselateVertices[iMin][jMax];
+                    const v4 = tesselateVertices[iMax][jMax];
+                    const iMid = iMin + subdiv2;
+                    const jMid = jMin + subdiv2;
+                    if (v1 && v2 && v3 && v4) {
+                        const s1 = Vec3Middle(create$3(), v1, v2);
+                        const s2 = Vec3Middle(create$3(), v3, v4);
+                        const s3 = Vec3Middle(create$3(), v1, v3);
+                        const s4 = Vec3Middle(create$3(), v2, v4);
+                        const s5 = Vec3Middle(create$3(), s3, s4);
+                        tesselateVertices[iMid][jMin] = s1;
+                        tesselateVertices[iMid][jMax] = s2;
+                        tesselateVertices[iMin][jMid] = s3;
+                        tesselateVertices[iMax][jMid] = s4;
+                        tesselateVertices[iMid][jMid] = s5;
+                    }
+                }
+            }
+            subdiv = subdiv2;
+        }
+        /* displace vertices */
+        const lumpDispVerts = this.lumps[LUMP_DISP_VERTS].getLumpData();
+        let vertexIndex = dispInfo.dispVertStart;
+        for (let i = 0; i < verticesPerSide; ++i) {
+            for (let j = 0; j < verticesPerSide; ++j) {
+                const dispVert = lumpDispVerts[vertexIndex];
+                if (dispVert) {
+                    const v = tesselateVertices[i][j];
+                    if (dispVert.dist > 0) {
+                        scaleAndAdd$2(v, v, dispVert.vec, dispVert.dist);
+                    }
+                    v[3] = dispVert.alpha;
+                }
+                ++vertexIndex;
+            }
+        }
+        subdiv = Math.pow(2, dispInfo.power);
+        for (let i = 0; i < subdiv; ++i) {
+            for (let j = 0; j < subdiv; ++j) {
+                let firstIndice = buffer.lastIndice;
+                const v1 = tesselateVertices[i][j];
+                const v2 = tesselateVertices[i + 1][j];
+                const v3 = tesselateVertices[i + 1][j + 1];
+                const v4 = tesselateVertices[i][j + 1];
+                if (v1 && v2 && v3 && v4) {
+                    buffer.vertices.push(v1[0], v1[1], v1[2]); //TODOv3: optimize
+                    buffer.vertices.push(v2[0], v2[1], v2[2]); //TODOv3: optimize
+                    buffer.vertices.push(v3[0], v3[1], v3[2]); //TODOv3: optimize
+                    buffer.vertices.push(v4[0], v4[1], v4[2]); //TODOv3: optimize
+                    buffer.alphas.push(v1[3] / 255.0, v2[3] / 255.0, v3[3] / 255.0, v4[3] / 255.0);
+                    buffer.coords.push((v1[0] * textureVecsU[0] + v1[1] * textureVecsU[1] + v1[2] * textureVecsU[2] + textureVecsU[3]) / texData.width);
+                    buffer.coords.push((v1[0] * textureVecsV[0] + v1[1] * textureVecsV[1] + v1[2] * textureVecsV[2] + textureVecsV[3]) / texData.height);
+                    buffer.coords.push((v2[0] * textureVecsU[0] + v2[1] * textureVecsU[1] + v2[2] * textureVecsU[2] + textureVecsU[3]) / texData.width);
+                    buffer.coords.push((v2[0] * textureVecsV[0] + v2[1] * textureVecsV[1] + v2[2] * textureVecsV[2] + textureVecsV[3]) / texData.height);
+                    buffer.coords.push((v3[0] * textureVecsU[0] + v3[1] * textureVecsU[1] + v3[2] * textureVecsU[2] + textureVecsU[3]) / texData.width);
+                    buffer.coords.push((v3[0] * textureVecsV[0] + v3[1] * textureVecsV[1] + v3[2] * textureVecsV[2] + textureVecsV[3]) / texData.height);
+                    buffer.coords.push((v4[0] * textureVecsU[0] + v4[1] * textureVecsU[1] + v4[2] * textureVecsU[2] + textureVecsU[3]) / texData.width);
+                    buffer.coords.push((v4[0] * textureVecsV[0] + v4[1] * textureVecsV[1] + v4[2] * textureVecsV[2] + textureVecsV[3]) / texData.height);
+                    { //TODOv3
+                        buffer.indices.push(firstIndice); //TODOv3: optimize
+                        buffer.indices.push(firstIndice + 2);
+                        buffer.indices.push(firstIndice + 1);
+                        buffer.indices.push(firstIndice + 3);
+                        buffer.indices.push(firstIndice + 2);
+                        buffer.indices.push(firstIndice);
+                    }
+                    buffer.lastIndice += 4;
+                }
+            }
+        }
+    }
+    initGeometry() {
+        this.#geometries = {};
+        const lumpFaces = this.getLumpData(LUMP_FACES);
+        const lumpLeafs = this.getLumpData(LUMP_LEAFS);
+        const lumpLeafFaces = this.getLumpData(LUMP_LEAFFACES);
+        //const lumpNodes = this.getLumpData(LUMP_NODES);
+        const lumpTexLighting = this.getLumpData(LUMP_LIGHTING);
+        const lumpTexInfo = this.getLumpData(LUMP_TEXINFO);
+        const lumpTexData = this.getLumpData(LUMP_TEXDATA);
+        const lumpTexDataStringData = this.getLumpData(LUMP_TEXDATA_STRING_DATA);
+        const lumpSurfEdges = this.getLumpData(LUMP_SURFEDGES);
+        const lumpEdges = this.getLumpData(LUMP_EDGES);
+        const lumpVertices = this.getLumpData(LUMP_VERTEXES);
+        const lumpModels = this.getLumpData(LUMP_MODELS);
+        const lumpDispInfos = this.getLumpData(LUMP_DISPINFO);
+        if (lumpFaces && lumpLeafs && lumpLeafFaces && /*lumpNodes && */ lumpTexLighting && lumpTexInfo && lumpTexData && lumpTexDataStringData && lumpSurfEdges && lumpEdges && lumpVertices) {
+            if (lumpModels) {
+                for (let i = 0; i < this.funcBrushesRemoveMe.length; ++i) {
+                    const funcBrushesRemove = this.funcBrushesRemoveMe[i];
+                    const modelIndex = funcBrushesRemove.model;
+                    const model = lumpModels[modelIndex];
+                    if (model) {
+                        const firstFace = model.firstface;
+                        const lastFace = firstFace + model.numfaces;
+                        for (let j = firstFace; j < lastFace; ++j) {
+                            const face = lumpFaces[j];
+                            //this.renderLeafFace(renderContext, face, funcBrushesRemove.position, 0/*leafId TODO*/);
+                            this.initFaceGeometry(face, funcBrushesRemove.origin);
+                        }
+                    }
+                }
+            }
+            /* Init displacement buffer */
+            if (lumpDispInfos) {
+                for (let i = 0; i < lumpDispInfos.length; ++i) { //TODO
+                    let dispInfo = lumpDispInfos[i];
+                    let face = lumpFaces[dispInfo.mapFace];
+                    if (face) {
+                        this.initDispGeometry(dispInfo, face);
+                    }
+                }
+            }
+            for (let leafIndex = 0, l = lumpLeafs.length; leafIndex < l; ++leafIndex) {
+                const leaf = lumpLeafs[leafIndex];
+                const firstFace = leaf.firstleafface;
+                const lastFace = leaf.firstleafface + leaf.numleaffaces;
+                for (let faceIndex = firstFace; faceIndex < lastFace; ++faceIndex) {
+                    let face = lumpFaces[lumpLeafFaces[faceIndex]];
+                    this.initFaceGeometry(face);
+                }
+            }
+        }
+        for (let textureName in this.#geometries) {
+            let geometry = this.#geometries[textureName];
+            if (textureName.toLowerCase().substring(0, 5) == 'tools') { //TODOV3
+                continue;
+                //continue;
+            }
+            let bufferGeometry = new BufferGeometry();
+            let vertexPosition = new Float32BufferAttribute(geometry.vertices, 3);
+            let vertexAlpha = new Float32BufferAttribute(geometry.alphas, 1);
+            let textureCoord = new Float32BufferAttribute(geometry.coords, 2);
+            bufferGeometry.setIndex(new Uint16BufferAttribute(geometry.indices, 1));
+            bufferGeometry.setAttribute('aVertexPosition', vertexPosition);
+            bufferGeometry.setAttribute('aVertexAlpha', vertexAlpha);
+            bufferGeometry.setAttribute('aTextureCoord', textureCoord);
+            bufferGeometry.count = geometry.indices.length;
+            let staticMesh = new Mesh(bufferGeometry, null);
+            staticMesh.name = textureName;
+            SourceEngineMaterialManager.getMaterial(this.repository, textureName).then((material) => staticMesh.setMaterial(material)).catch(() => console.error('unable to find material ' + textureName));
+            this.mapFaces.addChild(staticMesh);
+        }
+    }
+    addEntity(entity) {
+        if (entity) {
+            this.entities.push(entity);
+        }
+    }
+    addConnection(connection) {
+        if (connection) {
+            this.connections.push(connection);
+        }
+    }
+    getOBBSize(modelIndex) {
+        let lumpModels = this.getLumpData(LUMP_MODELS);
+        let lumpFaces = this.getLumpData(LUMP_FACES);
+        let lumpSurfEdges = this.getLumpData(LUMP_SURFEDGES);
+        let lumpEdges = this.getLumpData(LUMP_EDGES);
+        let lumpVertices = this.getLumpData(LUMP_VERTEXES);
+        if (lumpModels && lumpFaces && lumpSurfEdges && lumpEdges && lumpVertices) {
+            let model = lumpModels[modelIndex];
+            if (model) {
+                if (model.numfaces == 0) {
+                    return create$4();
+                }
+                function compare(v) {
+                    for (let i = 0; i < 3; i++) {
+                        if (v[i] < min[i]) {
+                            min[i] = v[i];
+                        }
+                        if (v[i] > max[i]) {
+                            max[i] = v[i];
+                        }
+                    }
+                }
+                let min = fromValues$4(Infinity, Infinity, Infinity);
+                let max = fromValues$4(-Infinity, -Infinity, -Infinity);
+                let firstFace = model.firstface;
+                let lastFace = firstFace + model.numfaces;
+                for (let j = firstFace; j < lastFace; j++) {
+                    let face = lumpFaces[j];
+                    if (face) {
+                        let firstEdge = face.firstedge;
+                        let lastEdge = firstEdge + face.numedges;
+                        for (let surfEdgeIndex = firstEdge; surfEdgeIndex < lastEdge; surfEdgeIndex++) {
+                            let surfedge = lumpSurfEdges[surfEdgeIndex];
+                            let edge = lumpEdges[Math.abs(surfedge)];
+                            let vertice1 = lumpVertices[edge.f];
+                            let vertice2 = lumpVertices[edge.s];
+                            compare(vertice1);
+                            compare(vertice2);
+                        }
+                    }
+                }
+                return sub$2(create$4(), max, min);
+            }
+        }
+        return null;
+    }
+    static getEntityName() {
+        return 'BSP Map';
+    }
+}
 
 const BODYPART_STRUCT_SIZE = 16;
 const MODEL_VERTEX_DATA_STRUCT_SIZE = 8; // Size in bytes of mstudio_modelvertexdata_t
@@ -67645,14 +70919,14 @@ class SourceEngineMDLLoader extends SourceBinaryLoader {
         }
         bone.position = reader.getVector3();
         bone.quaternion = reader.getVector4();
-        bone.rot = reader.getVector3();
-        bone.posscale = reader.getVector3();
-        bone.rotscale = reader.getVector3();
+        reader.getVector3(undefined, undefined, bone.rot);
+        reader.getVector3(undefined, undefined, bone.posscale);
+        reader.getVector3(undefined, undefined, bone.rotscale);
         let poseToBone = readMatrix3x4(reader);
         bone.poseToBone = poseToBone;
         bone.initPoseToBone = poseToBone;
         //bone.invPoseToBone = mat4.invert(mat4.create(), bone.poseToBone);
-        bone.qAlignment = reader.getVector4();
+        reader.getVector4(undefined, undefined, bone.qAlignment);
         bone.flags = reader.getInt32();
         bone.proctype = reader.getInt32();
         bone.procindex = reader.getInt32();
@@ -67881,12 +71155,12 @@ function parseHitBoxSets(reader, mdl) {
     let hitboxSetCount = mdl.hitboxCount;
     let hitboxSetOffset = mdl.hitboxOffset;
     if (hitboxSetCount && hitboxSetOffset) {
-        const hitboxSets = [];
+        mdl.hitboxSets = [];
         for (let i = 0; i < hitboxSetCount; ++i) {
-            hitboxSets.push(parseHitboxSet(reader, mdl, hitboxSetOffset));
+            mdl.hitboxSets.push(parseHitboxSet(reader, mdl, hitboxSetOffset));
             hitboxSetOffset += STUDIO_HITBOX_SET_STRUCT_SIZE;
         }
-        mdl.hitboxSets = hitboxSets;
+        //mdl.hitboxSets = hitboxSets;
     }
 }
 function parseHitboxSet(reader, mdl, startOffset) {
@@ -67996,7 +71270,9 @@ class SourceEngineVMTLoaderClass {
             else {
                 let materialClass = this.#materials.get(shaderName);
                 if (materialClass !== undefined) {
-                    material = new materialClass(repositoryName, fileName, vmt);
+                    vmt.repository = repositoryName;
+                    vmt.filename = fileName;
+                    material = new materialClass(/*repositoryName, fileName, */ vmt);
                 }
                 else {
                     console.error('Unknown material : ' + shaderName);
@@ -69770,1519 +73046,6 @@ class CDmxAttribute {
     typeName;
     type;
     value;
-}
-
-/**
- * Light Map
- */
-let lightMapNodeId = 0;
-/**
- * TODO
- */
-const SELightMapNode = function (x, y, width, height) {
-    this.y = y;
-    this.x = x;
-    this.height = height;
-    this.width = width;
-    this.content = null;
-    this.filled = false;
-    this.id = ++lightMapNodeId;
-};
-/**
- * TODO
- */
-SELightMapNode.prototype.setContent = function (content) {
-    if (this.sub1)
-        return false;
-    this.content = content;
-};
-/**
- * TODO
- */
-SELightMapNode.prototype.split = function (x, y) {
-    if (this.content)
-        return false;
-    if (this.filled)
-        return false;
-    if (y >= this.height)
-        return false;
-    if (x >= this.width)
-        return false;
-    if (y != 0 && x != 0)
-        return false;
-    if (y == 0) { /* splitting vertically */
-        this.sub1 = new SELightMapNode(this.x, this.y, x, this.height);
-        this.sub2 = new SELightMapNode(this.x + x, this.y, this.width - x, this.height);
-    }
-    else { /* splitting horizontally */
-        this.sub1 = new SELightMapNode(this.x, this.y, this.width, y);
-        this.sub2 = new SELightMapNode(this.x, this.y + y, this.width, this.height - y);
-    }
-};
-/**
- * TODO
- */
-SELightMapNode.prototype.allocate = function (width, height) {
-    if (this.filled)
-        return false;
-    if (this.content)
-        return false;
-    if (height == 0)
-        return false;
-    if (width == 0)
-        return false;
-    if (height > this.height)
-        return false;
-    if (width > this.width)
-        return false;
-    let node;
-    if (this.sub1) {
-        node = this.sub1.allocate(width, height);
-        if (node) {
-            this.checkFull();
-            return node;
-        }
-    }
-    if (this.sub2) {
-        node = this.sub2.allocate(width, height);
-        if (node) {
-            this.checkFull();
-            return node;
-        }
-        return false;
-    }
-    if (height == this.height && width == this.width) {
-        this.filled = true;
-        return this;
-    }
-    if ((height / this.height) > (width / this.width)) {
-        this.split(width, 0);
-    }
-    else {
-        this.split(0, height);
-    }
-    if (this.sub1) {
-        node = this.sub1.allocate(width, height);
-        if (node) {
-            this.checkFull();
-            return node;
-        }
-    }
-    if (this.sub2) {
-        node = this.sub2.allocate(width, height);
-        this.checkFull();
-        if (node) {
-            this.checkFull();
-            return node;
-        }
-    }
-    return null;
-};
-/**
- * TODO
- */
-SELightMapNode.prototype.toString = function () {
-    return this.id;
-};
-/**
- * TODO
- */
-SELightMapNode.prototype.checkFull = function () {
-    if (this.sub1.filled && this.sub2.filled) {
-        this.filled = true;
-    }
-};
-/**
- * TODO
- */
-SELightMapNode.prototype.getAllocatedSize = function () {
-    let total = 0;
-    if (this.sub1) {
-        total += this.sub1.getAllocatedSize();
-        total += this.sub2.getAllocatedSize();
-        return total;
-    }
-    if (this.filled) {
-        return this.height * this.width;
-    }
-    return 0;
-};
-
-/**
- * BSP lump
- * @param {Number} type The lump type
- */
-class SEBaseBspLump {
-    map;
-    initialized = false;
-    mapOffset;
-    mapLength;
-    lumpOffset;
-    lumpLen;
-    lumpDataPromise = null;
-    reader;
-    lzmaReader;
-    mapLen;
-    lumpVersion;
-    lumpData;
-    lumpType;
-    constructor(map, reader, offset, length) {
-        this.map = map;
-        //this.reader = reader;//TODOv3 remove reader
-        this.mapOffset = offset;
-        this.mapLength = length;
-        this.lumpOffset = offset;
-        this.lumpLen = length;
-    }
-    init() {
-        throw 'remove me';
-        /*
-        if (this.reader.getString(4, this.lumpOffset) == 'LZMA') {
-            const uncompressedSize = this.reader.getUint32();
-            const compressedSize = this.reader.getUint32();
-            const properties = this.reader.getBytes(5);
-            const compressedDatas = this.reader.getBytes(this.lumpLen - 17);
-
-            this.lzmaReader = new jDataView(SourceEngine.Choreographies._decompress(properties, compressedDatas, uncompressedSize), undefined, undefined, true);
-
-            this.lumpOffset = 0;
-            this.lumpLen = uncompressedSize;
-        } else {
-            //lumpData.str = this.reader.getString(lump.getLumpLen(), startOffset);
-        }
-        this.initialized = true;
-        */
-    }
-    /**
-     * Set lump offset
-     * @param {Number} newLumpOffset The lump offset
-     */
-    /*setLumpOffset(newLumpOffset) {
-        this.lumpOffset = newLumpOffset;
-    }*/
-    /**
-     * Get lump offset
-     * @return {Number} The lump offset
-     */
-    getLumpOffset() {
-        return this.lumpOffset;
-    }
-    getMapOffset() {
-        return this.mapOffset;
-    }
-    /**
-     * Set lump len
-     * @param {Number} newLumpLen The lump len
-     */
-    /*setLumpLen(newLumpLen) {
-        this.lumpLen = newLumpLen;
-    }*/
-    /**
-     * Get lump len
-     * @return {Number} The lump len
-     */
-    getLumpLen() {
-        return this.lumpLen;
-    }
-    getMapLen() {
-        return this.mapLen;
-    }
-    /**
-     * Set lump Version
-     * @param {Number} newLumpVersion The lump Version
-     */
-    setLumpVersion(newLumpVersion) {
-        this.lumpVersion = newLumpVersion;
-    }
-    /**
-     * Get lump Version
-     * @return {Number} The lump Version
-     */
-    getLumpVersion() {
-        return this.lumpVersion;
-    }
-    /**
-     * Set lump Data
-     * @param {Object} newLumpData The lump data
-     */
-    setLumpData(newLumpData) {
-        this.lumpData = newLumpData;
-    }
-    /**
-     * Get lump data
-     * @return {Object} The lump data
-     */
-    getLumpData() {
-        const datas = this.lumpData;
-        if (!datas) {
-            this.initDatas();
-        }
-        return this.lumpData;
-    }
-    getReader() {
-        if (!this.initialized) {
-            this.init();
-        }
-        if (this.lzmaReader) {
-            this.lzmaReader.seek(0);
-            return this.lzmaReader;
-        }
-        else {
-            this.reader.seek(this.lumpOffset);
-            return this.reader;
-        }
-    }
-    initDatas() {
-    }
-}
-/**
- * BSP lump
- * @param {Number} type The lump type
- */
-class SourceBSPLump extends SEBaseBspLump {
-    constructor(map, type, reader, offset, length) {
-        super(map, reader, offset, length);
-        this.lumpType = type;
-    }
-}
-const LUMP_ENTITIES = 0;
-const LUMP_PLANES = 1;
-const LUMP_TEXDATA = 2;
-const LUMP_VERTEXES = 3;
-const LUMP_VISIBILITY = 4;
-const LUMP_NODES = 5;
-const LUMP_TEXINFO = 6;
-const LUMP_FACES = 7;
-const LUMP_LIGHTING = 8;
-const LUMP_LEAFS = 10;
-const LUMP_EDGES = 12;
-const LUMP_SURFEDGES = 13;
-const LUMP_MODELS = 14;
-const LUMP_LEAFFACES = 16;
-const LUMP_LEAFBRUSHES = 17;
-const LUMP_BRUSHES = 18;
-const LUMP_BRUSHSIDES = 19;
-const LUMP_DISPINFO = 26;
-const LUMP_ORIGINALFACES = 27;
-const LUMP_DISP_VERTS = 33; // CDispVerts
-//		 For each lightmap sample
-//				 byte for index
-//				 if 255; then index = next byte + 255
-//				 3 bytes for barycentric coordinates
-// The game lump is a method of adding game-specific lumps
-// FIXME: Eventually; all lumps could use the game lump system
-const LUMP_GAME_LUMP = 35;
-// A pak file can be embedded in a .bsp now; and the file system will search the pak
-//	file first for any referenced names; before deferring to the game directory
-//	file system/pak files and finally the base directory file system/pak files.
-const LUMP_PAKFILE = 40;
-const LUMP_TEXDATA_STRING_DATA = 43;
-const LUMP_TEXDATA_STRING_TABLE = 44;
-const LUMP_OVERLAYS = 45;
-const LUMP_DISP_TRIS = 48;
-// optional lumps for HDR
-const LUMP_LIGHTING_HDR = 53;
-const LUMP_FACES_HDR = 58; // HDR maps may have different face data.
-const SourceBSPLumpPlane = function () {
-    this.normal = null; // normal vector
-    this.dist = null; // distance from origin
-    this.type = null; // plane axis identifier
-};
-const SourceBSPLumpEdge = function () {
-    // f: first index s: second index
-    this.f = null; // better than store as an array of 2 ?
-    this.s = null;
-};
-const SourceBSPLumpFace = function () {
-    this.planenum = null;
-    this.side = null;
-    this.onNode = null;
-    this.firstedge = null;
-    this.numedges = null;
-    this.texinfo = null;
-    this.dispinfo = null;
-    this.surfaceFogVolumeID = null;
-    this.styles = [];
-    this.lightofs = null;
-    this.area = null;
-    this.LightmapTextureMinsInLuxels = null;
-    this.LightmapTextureSizeInLuxels = null;
-    this.origFace = null;
-    this.numPrims = null;
-    this.firstPrimID = null;
-    this.smoothingGroups = null;
-};
-/*
-unsigned short	planenum;		// the plane number
-byte		side;			// faces opposite to the node's plane direction
-byte		onNode;			// 1 of on node, 0 if in leaf
-int		firstedge;		// index into surfedges
-short		numedges;		// number of surfedges
-short		texinfo;		// texture info
-short		dispinfo;		// displacement info
-short		surfaceFogVolumeID;	// ?
-byte		styles[4];		// switchable lighting info
-int		lightofs;		// offset into lightmap lump
-float		area;			// face area in units^2
-int		LightmapTextureMinsInLuxels[2];	// texture lighting info
-int		LightmapTextureSizeInLuxels[2];	// texture lighting info
-int		origFace;		// original face this was split from
-unsigned short	numPrims;		// primitives
-unsigned short	firstPrimID;
-unsigned int	smoothingGroups;	// lightmap smoothing group
-*/
-const SourceBSPLumpTexData = function () {
-    this.reflectivity = null; // RGB reflectivity
-    this.nameStringTableID = null; // index into TexdataStringTable
-    this.width = null;
-    this.height = null; // source image
-    this.view_width = null;
-    this.view_height = null;
-};
-/*
-const SourceBSPLumpGameLump = function() {
-    this.id = null;		// gamelump ID
-    this.flags = null;		// flags
-    this.version = null;	// gamelump version
-    this.fileofs = null;	// offset to this gamelump
-    this.filelen = null;	// length
-}*/
-/**
- * BSP lump
- * @param {Number} type The lump type
- */
-class SourceBSPLumpGameLump extends SEBaseBspLump {
-    id;
-    flags;
-    version;
-    constructor(map, reader) {
-        super(map, reader); //TODOv3
-        /*this.lumpOffset = this.mapReader.getInt32();
-        this.lumpLen = this.mapReader.getInt32();
-        this.lumpVersion = this.mapReader.getInt32();
-        this.fourCC = this.mapReader.getInt32();
-        this.lumpData = null;*/
-        //lump.setLumpOffset(this.reader.getInt32());
-        //lump.setLumpLen(this.reader.getInt32());
-        //lump.setLumpVersion(this.reader.getInt32());
-        //this.reader.getInt32() // TODO: replace by lump fourCC
-        //this.init();
-    }
-}
-const SourceBSPLumpPropStaticDirectory = function () {
-    this.name = [];
-    this.leaf = [];
-    this.props = [];
-};
-const SourceBSPLumpPropStatic = function () {
-    this.position = null;
-    this.angles = create$4();
-    this.propType = null;
-    this.firstLeaf = null;
-    this.leafCount = null;
-    this.solid = null;
-    this.flags = null;
-    this.skin = null;
-    this.fadeMinDist = null;
-    this.fadeMaxDist = null;
-    this.lightingOrigin = null;
-    this.forcedFadeScale = null;
-    this.minDXLevel = null;
-    this.maxDXLevel = null;
-    this.minCPULevel = null;
-    this.maxCPULevel = null;
-    this.minGPULevel = null;
-    this.maxGPULevel = null;
-    this.diffuseModulation = null;
-    this.disableX360 = null;
-    /*// v4
-    Vector		Origin;		 // origin
-    QAngle		Angles;		 // orientation (pitch roll yaw)
-    unsigned short	PropType;	 // index into model name dictionary
-    unsigned short	FirstLeaf;	 // index into leaf array
-    unsigned short	LeafCount;
-    unsigned char	Solid;		 // solidity type
-    unsigned char	Flags;
-    int		Skin;		 // model skin numbers
-    float		FadeMinDist;
-    float		FadeMaxDist;
-    Vector		LightingOrigin;	// for lighting
-    // since v5
-    float		ForcedFadeScale; // fade distance scale
-    // v6 and v7 only
-    unsigned short	MinDXLevel;			// minimum DirectX version to be visible
-    unsigned short	MaxDXLevel;			// maximum DirectX version to be visible
-    // since v8
-    unsigned char	 MinCPULevel;
-    unsigned char	 MaxCPULevel;
-    unsigned char	 MinGPULevel;
-    unsigned char	 MaxGPULevel;
-    // since v7
-    color32				 DiffuseModulation; // per instance color and alpha modulation
-    // since v10
-    float					 unknown;
-    // since v9
-    bool						DisableX360;		 // if true, don't show on XBox 360
-    */
-};
-const SourceBSPLumpTexInfo = function () {
-    this.textureVecs = []; // [s/t][xyz offset]
-    this.lightmapVecs = []; // [s/t][xyz offset] - length is in units of texels/area
-    this.flags; // miptex flags	overrides
-    this.texdata;
-};
-const SourceBSPLumpDispInfo = function () {
-    /*Vector			startPosition;		// start position used for orientation
-    int			DispVertStart;		// Index into LUMP_DISP_VERTS.
-    int			DispTriStart;		// Index into LUMP_DISP_TRIS.
-    int			power;			// power - indicates size of surface (2^power	1)
-    int			minTess;		// minimum tesselation allowed
-    float			smoothingAngle;		// lighting smoothing angle
-    int			contents;		// surface contents
-    unsigned short		MapFace;		// Which map face this displacement comes from.
-    int			LightmapAlphaStart;	// Index into ddisplightmapalpha.
-    int			LightmapSamplePositionStart;	// Index into LUMP_DISP_LIGHTMAP_SAMPLE_POSITIONS.
-    CDispNeighbor		EdgeNeighbors[4];	// Indexed by NEIGHBOREDGE_ defines.
-    CDispCornerNeighbors	CornerNeighbors[4];	// Indexed by CORNER_ defines.
-    unsigned int		AllowedVerts[10];	// active verticies*/
-};
-const SourceBSPLumpDispNeighbor = function () {
-    //CDispSubNeighbor	m_SubNeighbors[2];
-    this.subNeighbors = [];
-};
-const SourceBSPLumpDispSubNeighbor = function () {
-    /*	unsigned short		m_iNeighbor;		// This indexes into ddispinfos.
-                                                // 0xFFFF if there is no neighbor here.
-
-        unsigned char		m_NeighborOrientation;		// (CCW) rotation of the neighbor wrt this displacement.
-
-        // These use the NeighborSpan type.
-        unsigned char		m_Span;						// Where the neighbor fits onto this side of our displacement.
-        unsigned char		m_NeighborSpan;				// Where we fit onto our neighbor.								 */
-};
-/*TODO
-const SourceBSPLumpDispSubNeighbor
-{
-};*/
-const SourceBSPLumpDispVertex = function () {
-    /*	Vector	vec;	// Vector field defining displacement volume.
-        float	dist;	// Displacement distances.
-        float	alpha;	// 'per vertex' alpha values.*/
-};
-const SourceBSPLumpColorRGBExp32 = function () {
-    /*	Vector	vec;	// Vector field defining displacement volume.
-        float	dist;	// Displacement distances.
-        float	alpha;	// 'per vertex' alpha values.*/
-};
-const SourceBSPLumpBrush = function () {
-    this.firstside = null;
-    this.numsides = null;
-    this.contents = null;
-};
-const SourceBSPLumpBrushSide = function () {
-    this.planenum = null;
-    this.texinfo = null;
-    this.dispinfo = null;
-    this.bevel = null;
-};
-const SourceBSPLumpModel = function () {
-    this.mins = null;
-    this.maxs = null;
-    this.position = null;
-    this.headnode = null;
-    this.firstface = null;
-    this.numfaces = null;
-};
-/*const SourceBSPLumpLeaf = function() {
-/*
-
-    DECLARE_BYTESWAP_DATADESC();
-    int				contents;			// OR of all brushes (not needed?)
-
-    short			cluster;
-
-    BEGIN_BITFIELD(bf);
-    short			area:9;
-    short			flags:7;			// Per leaf flags.
-    END_BITFIELD();
-
-    short			mins[3];			// for frustum culling
-    short			maxs[3];
-
-    unsigned short	firstleafface;
-    unsigned short	numleaffaces;
-
-    unsigned short	firstleafbrush;
-    unsigned short	numleafbrushes;
-    * /
-    this.contents = null;
-    this.cluster = null;
-    this.areaflags = null;
-    this.mins = null;
-    this.maxs = null;
-    this.firstleafface = null;
-    this.numleaffaces = null;
-    this.firstleafbrush = null;
-    this.numleafbrushes = null;
-    this.leafWaterDataID = null;
-}*/
-class SourceBSPLumpLeaf {
-    contents = null;
-    cluster = null;
-    areaflags = null;
-    mins = null;
-    maxs = null;
-    firstleafface = null;
-    numleaffaces = null;
-    firstleafbrush = null;
-    numleafbrushes = null;
-    leafWaterDataID = null;
-    contains(position) {
-        const mins = this.mins;
-        const maxs = this.maxs;
-        if (mins[0] <= position[0]
-            && mins[1] <= position[1]
-            && mins[2] <= position[2]
-            && maxs[0] >= position[0]
-            && maxs[1] >= position[1]
-            && maxs[2] >= position[2]) {
-            return true;
-        }
-        return false;
-    }
-}
-/*const SourceBSPLumpNode = function() {
-/*
-int			planenum;
-int			children[2];	// negative numbers are -(leafs+1), not nodes
-short		mins[3];		// for frustom culling
-short		maxs[3];
-unsigned short	firstface;
-unsigned short	numfaces;	// counting both sides
-short			area;		// If all leaves below this node are in the same area, then
-                            // this is the area index. If not, this is -1.
-    * /
-    this.planenum = null;
-    this.children = null;
-    this.mins = null;
-    this.maxs = null;
-    this.firstface = null;
-    this.numfaces = null;
-    this.area = null;
-}*/
-class SourceBSPLumpNode {
-    planenum = null;
-    children = null;
-    mins = null;
-    maxs = null;
-    firstface = null;
-    numfaces = null;
-    area = null;
-    contains(position) {
-        const mins = this.mins;
-        const maxs = this.maxs;
-        if (mins[0] <= position[0]
-            && mins[1] <= position[1]
-            && mins[2] <= position[2]
-            && maxs[0] >= position[0]
-            && maxs[1] >= position[1]
-            && maxs[2] >= position[2]) {
-            return true;
-        }
-        return false;
-    }
-}
-class SourceBSPLumpOverlay {
-    id;
-    texInfo;
-    FaceCountAndRenderOrder;
-    faces;
-    U;
-    V;
-    UVPoint0;
-    UVPoint1;
-    UVPoint2;
-    UVPoint3;
-    Origin;
-    BasisNormal;
-}
-
-/**
- * BSP Tree
- */
-class SourceEngineBspTree {
-    map;
-    visibilityClusters = undefined;
-    clustersCount = 0;
-    countRemoveMe = 0;
-    leavesRemoveme = [];
-    constructor(map) {
-        this.map = map;
-    }
-    set clusters(clusters) {
-        if (clusters) {
-            this.visibilityClusters = clusters.clusterVis;
-            this.clustersCount = clusters.clusterCount;
-            this.countRemoveMe++;
-            if (this.countRemoveMe > 5000) {
-                this.countRemoveMe = 0;
-                console.error('Fix me');
-            }
-        }
-    }
-    getLeafId(pos) {
-        //TODO: optimize
-        const map = this.map;
-        const lumpModels = map.getLumpData(LUMP_MODELS);
-        const lumpPlanes = map.getLumpData(LUMP_PLANES);
-        const lumpNodes = map.getLumpData(LUMP_NODES);
-        const lumpLeafs = map.getLumpData(LUMP_LEAFS);
-        const lumpLeafFaces = map.getLumpData(LUMP_LEAFFACES);
-        const lumpVisibility = map.getLumpData(LUMP_VISIBILITY);
-        if (lumpModels && lumpPlanes && lumpNodes && lumpLeafs && lumpLeafFaces && lumpVisibility) {
-            let model = lumpModels[0];
-            let index = model.headnode;
-            let node = null;
-            let plane = null;
-            create$4();
-            let dist = 0;
-            while (index >= 0) {
-                node = lumpNodes[index];
-                plane = lumpPlanes[node.planenum];
-                //normal[0] = plane.normal.x; normal[1] = plane.normal.y; normal[2] = plane.normal.z; // TODO: Not this.
-                //dist = vec3.dot(normal, pos) - plane.dist;
-                dist = dot$4(plane.normal, pos) - plane.dist;
-                if (dist >= 0) {
-                    index = node.children[0];
-                }
-                else {
-                    index = node.children[1];
-                }
-            }
-            return -(index + 1);
-        }
-        else {
-            return undefined;
-        }
-    }
-    isLeafVisible(fromLeafId, toLeafId) {
-        if (fromLeafId == toLeafId) {
-            return true;
-        } // Leaves are always visible from themselves
-        let lumpLeafs = this.map.getLumpData(LUMP_LEAFS);
-        if (lumpLeafs && this.visibilityClusters) {
-            let fromLeaf = lumpLeafs[fromLeafId];
-            let toLeaf = lumpLeafs[toLeafId];
-            if (fromLeaf.cluster == -1 || toLeaf.cluster != -1) {
-                return false;
-            }
-            return this.visibilityClusters[(fromLeaf.cluster * this.clustersCount) + toLeaf.cluster];
-        }
-        return false;
-    }
-    isVisLeaf(leafId) {
-        let lumpLeafs = this.map.getLumpData(LUMP_LEAFS);
-        if (lumpLeafs) {
-            let lumpLeaf = lumpLeafs[leafId];
-            if (lumpLeaf) {
-                return lumpLeaf.cluster != -1;
-            }
-        }
-        return true;
-    }
-    addPropToLeaf(leafId, propId) {
-        const leaf = this.leavesRemoveme[leafId] || [];
-        this.leavesRemoveme[leafId] = leaf;
-        leaf.push(propId);
-    }
-}
-
-function ParseVector(str) {
-    const regex = / *(-?\d*(\.\d*)?) *(-?\d*(\.\d*)?) *(-?\d*(\.\d*)?) */i;
-    const result = regex.exec(str);
-    if (result) {
-        return fromValues$4(Number.parseFloat(result[1]), Number.parseFloat(result[3]), Number.parseFloat(result[5]));
-    }
-    return null;
-}
-function ParseVector2(out, str) {
-    const regex = / *(-?\d*(\.\d*)?) *(-?\d*(\.\d*)?) *(-?\d*(\.\d*)?) */i;
-    const result = regex.exec(str);
-    if (result) {
-        return set$4(out, Number.parseFloat(result[1]), Number.parseFloat(result[3]), Number.parseFloat(result[5]));
-    }
-    return null;
-}
-function parseLightColorIntensity(value, light, intensityMultiplier = 1) {
-    let colorValue = create$4();
-    let arrayValue = value.split(' ');
-    colorValue[0] = Math.pow(arrayValue[0] / 255.0, 2.2);
-    colorValue[1] = Math.pow(arrayValue[1] / 255.0, 2.2);
-    colorValue[2] = Math.pow(arrayValue[2] / 255.0, 2.2);
-    light.color = colorValue;
-    light.intensity = arrayValue[3] / 255.0 * intensityMultiplier;
-}
-function AngleQuaternion(angles, outQuat) {
-    const sy = Math.sin(angles[1] * 0.5);
-    const cy = Math.cos(angles[1] * 0.5);
-    const sp = Math.sin(angles[0] * 0.5);
-    const cp = Math.cos(angles[0] * 0.5);
-    const sr = Math.sin(angles[2] * 0.5);
-    const cr = Math.cos(angles[2] * 0.5);
-    /*SinCos(DEG2RAD(angles[1]) * 0.5f, &sy, &cy);
-    SinCos(DEG2RAD(angles[0]) * 0.5f, &sp, &cp);
-    SinCos(DEG2RAD(angles[2]) * 0.5f, &sr, &cr);*/
-    // NJS: for some reason VC6 wasn't recognizing the common subexpressions:
-    const srXcp = sr * cp, crXsp = cr * sp;
-    outQuat[0] = srXcp * cy - crXsp * sy; // X
-    outQuat[1] = crXsp * cy + srXcp * sy; // Y
-    const crXcp = cr * cp, srXsp = sr * sp;
-    outQuat[2] = crXcp * sy - srXsp * cy; // Z
-    outQuat[3] = crXcp * cy + srXsp * sy; // W (real component)
-    return outQuat;
-}
-//angles[PITCH, YAW, ROLL]
-function AngleVectors(angles, forward) {
-    const sy = Math.sin(angles[1]);
-    const cy = Math.cos(angles[1]);
-    const sp = Math.sin(angles[0]);
-    const cp = Math.cos(angles[0]);
-    forward[0] = cp * cy;
-    forward[1] = cp * sy;
-    forward[2] = -sp;
-}
-function ParseAngles(str) {
-    const angles = ParseVector(str);
-    if (angles) {
-        return scale$5(angles, angles, Math.PI / 180);
-    }
-    return null;
-}
-function ParseAngles2(out, str) {
-    if (ParseVector2(out, str)) {
-        return scale$5(out, out, Math.PI / 180);
-    }
-    return null;
-}
-/**
- * Map entity
- */
-class MapEntity extends Entity {
-    static incrementalId = 0;
-    classname;
-    outputs = [];
-    m_vecVelocity = create$4();
-    m_flMoveDoneTime = -1;
-    m_flLocalTime = 0;
-    f = 0;
-    keys = new Map();
-    targetName;
-    parentName;
-    m;
-    constructor(classname) {
-        super({ name: classname });
-        this.classname = classname;
-        this.id = String(++MapEntity.incrementalId);
-        //this.children = Object.create(null);
-    }
-    setKeyValues(kvElement) {
-        if (kvElement) {
-            if (kvElement.spawnflags) {
-                this.f = kvElement.spawnflags * 1;
-            }
-            let entityParams = Object.keys(kvElement);
-            for (let i = 0, l = entityParams.length; i < l; i++) {
-                let key = entityParams[i];
-                this.setKeyValue(key, kvElement[key]);
-            }
-        }
-    }
-    setKeyValue(key, value) {
-        if (key) {
-            this.keys.set(key, value);
-            if (key.indexOf('on') == 0) {
-                this.addOutput(key.replace(/#\d+$/, ''), value);
-            }
-            switch (key) {
-                case 'targetname':
-                    this.targetName = value;
-                    break;
-                case 'origin':
-                    this._position = ParseVector(value);
-                    break;
-                case 'angles':
-                    AngleQuaternion(ParseAngles(value), this._quaternion);
-                    break;
-                case 'parentname':
-                    this.parentName = value;
-                    break;
-            }
-        }
-    }
-    getValue(key) {
-        return this.keys.get(key);
-    }
-    addOutput(outputName, outputValue) {
-        let output = new MapEntityConnection(outputName);
-        this.m.addConnection(output);
-        this.outputs.push(output);
-        output.fromString(outputValue);
-        //console.log(output.outputName, output.getTargetName(), output.getTargetInput(), output.getTargetParameter(), output.getDelay(), output.getFireOnlyOnce());
-    }
-    setInput(input, parameter) {
-    }
-    getFlag(position) {
-        return (this.f >> position) & 1;
-    }
-    set map(map) {
-        this.m = map;
-    }
-    get map() {
-        return this.m;
-    }
-    move(delta) {
-        this.position = add$5(create$4(), this._position, delta); //todo remove me
-    }
-    /*set position(o) {
-        if (o) {
-            let oo = this._position;
-            if ((o[0] != oo[0]) || (o[1] != oo[1]) || (o[2] != oo[2])) {
-                this._position = o;
-                let delta = vec3.sub(vec3.create(), this._position, o);
-                for (let i in this.children) {
-                    let child = this.children[i];
-                    child.move(delta, /*initiator || * /this);
-                }
-            }
-        }
-    }*/
-    /*
-    get position() {
-        return super.position;
-    }
-        */
-    getAbsOrigin() {
-        return null;
-    }
-    getLocalOrigin() {
-        return this._position;
-    }
-    getLocalVelocity() {
-        return this.m_vecVelocity;
-    }
-    update(map, delta) {
-        this.m_flLocalTime += delta;
-        if (this.parentName) {
-            let parent = map.getEntityByTargetName(this.parentName);
-            if (parent) {
-                this.setParent(parent);
-                delete this.parentName;
-            }
-        }
-        this.position = scaleAndAdd$2(create$4(), this.getLocalOrigin(), this.getLocalVelocity(), delta); //TODO removeme : optimize
-    }
-    setParent(parent) {
-        //void CBaseEntity::SetParent(CBaseEntity *pParentEntity, int iAttachment)
-        let oldParent = this.parent;
-        this.parent = parent;
-        if (parent == this) {
-            this.parent = null;
-        }
-        if (oldParent) {
-            oldParent.removeChild(this);
-        }
-        if (this.parent) {
-            this.parent.addChild(this);
-        }
-    }
-    /*addChild(child) {
-        if (child) {
-            this.children[child.id] = child;
-        }
-    }
-
-    removeChild(child) {
-        if (child) {
-            delete this.children[child.id];
-        }
-    }*/
-    setLocalVelocity(vecVelocity) {
-        copy$4(this.m_vecVelocity, vecVelocity);
-    }
-    setMoveDoneTime(delay) {
-        if (delay >= 0) {
-            this.m_flMoveDoneTime = this.getLocalTime() + delay;
-        }
-        else {
-            this.m_flMoveDoneTime = -1;
-        }
-    }
-    getLocalTime() {
-        return this.m_flLocalTime;
-    }
-    fireOutput(outputName) {
-        let outputs = this.outputs;
-        let result = [];
-        for (let i = 0, l = outputs.length; i < l; i++) {
-            let output = outputs[i];
-            if (outputName == output.outputName) {
-                //result.push(connection);
-                output.fire(this.m);
-            }
-        }
-        return result;
-    }
-    toString() {
-        return this.classname;
-    }
-}
-MapEntity.incrementalId = 0;
-/**
- * Entity connection
- */
-class MapEntityConnection {
-    //'OnMapSpawn' 'tonemap_global,SetAutoExposureMax,.8,0,-1'
-    n;
-    p;
-    constructor(name) {
-        this.n = name;
-        this.p = null;
-    }
-    fromString(stringDatas) {
-        let parameters = stringDatas.split(',');
-        if (parameters && parameters.length == 5) {
-            this.p = parameters;
-        }
-    }
-    get outputName() {
-        return this.n;
-    }
-    getTargetName() {
-        let parameters = this.p;
-        if (parameters) {
-            return parameters[0];
-        }
-    }
-    getTargetInput() {
-        let parameters = this.p;
-        if (parameters) {
-            return parameters[1];
-        }
-    }
-    getTargetParameter() {
-        let parameters = this.p;
-        if (parameters) {
-            return parameters[2];
-        }
-    }
-    getDelay() {
-        let parameters = this.p;
-        if (parameters) {
-            return parameters[3];
-        }
-    }
-    getFireOnlyOnce() {
-        let parameters = this.p;
-        if (parameters) {
-            return parameters[4];
-        }
-    }
-    fire(map) {
-        let parameters = this.p;
-        if (parameters) {
-            map.setTargetsInput(parameters[0], parameters[1], parameters[2]);
-        }
-    }
-}
-
-/**
- * Map entities
- */
-const MapEntities = function () {
-};
-MapEntities.entities = Object.create(null);
-MapEntities.registerEntity = function (className, entityClass) {
-    this.entities[className] = entityClass;
-};
-MapEntities.createEntity = function (map, className) {
-    const entityClass = this.entities[className];
-    if (!entityClass) {
-        return null;
-    }
-    const entity = new entityClass(className);
-    entity.map = map;
-    return entity;
-};
-
-const DISPLACEMENT_DELTA = 1.0; // max distance from start position
-const LIGTH_MAP_TEXTURE_SIZE = 1024;
-class SourceBSP extends World {
-    repository;
-    bspFileVersion = null;
-    lumps = [];
-    mapRevision = null;
-    loaded = false;
-    bufferInitialized = false;
-    staticGeometry = {};
-    skyBoxStaticGeometry = {};
-    skyboxGeometry = {};
-    overlayVerticesByTexture = {};
-    mainLightMap = new SELightMapNode(0, 0, LIGTH_MAP_TEXTURE_SIZE, LIGTH_MAP_TEXTURE_SIZE);
-    lightMapTexture = null;
-    skyCamera = null;
-    skyName = null;
-    entities = [];
-    connections = [];
-    mapSpawn = true;
-    lastLeaf = undefined;
-    bspTree;
-    frameCount = 0;
-    mustParseHeader = true;
-    funcBrushesRemoveMe = [];
-    partialLoading = false;
-    eventTarget = new EventTarget(); //TODOv3
-    staticProps = new Group({ name: 'Static props' });
-    dynamicProps = new Group({ name: 'Dynamic props' });
-    mapFaces = new Group({ name: 'World geometry' });
-    characterSpawn;
-    #geometries;
-    loader;
-    constructor(params) {
-        super(params);
-        this.repository = params.repository;
-        //this.staticProps = [];
-        this.bspTree = new SourceEngineBspTree(this);
-        //this.loadFile(root, fileName);
-        //BspMap.defaultMaterial = BspMap.defaultMaterial ||	SourceEngine.Materials.MaterialManager._loadMaterial('', SourceEngine.Settings.Materials.defaultLightMappedMaterial).then(function(material){BspMap.defaultMaterial = material;});TODOv3
-        this.addChild(this.staticProps);
-        this.addChild(this.dynamicProps);
-        this.addChild(this.mapFaces);
-    }
-    initMap() {
-        this.initGeometry();
-        this._createEntities();
-        this._createStaticProps();
-    }
-    _createEntities() {
-        const lumpEntities = this.getLumpData(LUMP_ENTITIES);
-        if (lumpEntities) {
-            this.createDynamicEntities(lumpEntities.kv);
-            /*new Promise((resolve, reject) => {
-                this.createDynamicEntities(entities.kv);
-                this.eventTarget.dispatchEvent(new CustomEvent('entitiescreated'));//TODOv3
-                resolve();
-            });*/
-        }
-    }
-    _createStaticProps() {
-        const lumpGameDatas = this.getLumpData(LUMP_GAME_LUMP);
-        if (lumpGameDatas && lumpGameDatas.prps && lumpGameDatas.prps.lumpData) {
-            let propsStatic = lumpGameDatas.prps.lumpData;
-            let propNames = propsStatic.name;
-            let props = propsStatic.props;
-            const tempQuaternion = create$2();
-            for (let prop of props) {
-                Source1ModelManager.createInstance(this.repository, propNames[prop.propType], true).then((model) => {
-                    this.staticProps.addChild(model);
-                    model.position = prop.position;
-                    model.quaternion = AngleQuaternion(prop.angles, tempQuaternion);
-                    model.skin = prop.skin;
-                });
-            }
-        }
-    }
-    createDynamicEntities(kv) {
-        const list = Object.keys(kv.rootElements);
-        for (let i = 0; i < list.length; ++i) {
-            let entity = kv.rootElements[list[i]];
-            if (entity.classname) {
-                let e = MapEntities.createEntity(this, entity.classname);
-                if (e) {
-                    e.setKeyValues(entity);
-                    this.addEntity(e);
-                }
-                else {
-                    console.error('Unknown classname : %s', entity.classname);
-                }
-                if (entity.classname == 'sky_camera') {
-                    this.skyCamera = e;
-                    //this.renderBuffer = false;
-                }
-                if (entity.classname == 'worldspawn' && entity.skyname) {
-                    //console.log(entity.skyname);
-                    this.skyName = entity.skyname;
-                }
-                if (entity.classname == 'info_player_teamspawn') {
-                    if (!this.characterSpawn) {
-                        this.characterSpawn = scale$5(create$4(), entity.origin.split(' '), 1);
-                    }
-                }
-            }
-        }
-    }
-    addLump(lump) {
-        this.lumps.push(lump);
-    }
-    getLumpData(lumpType) {
-        const lump = this.lumps[lumpType];
-        if (lump) {
-            return lump.getLumpData();
-        }
-        return null;
-    }
-    initFaceGeometry(face, position) {
-        if (face.initialized) { //TODOv3
-            return;
-        }
-        face.initialized = true;
-        this.getLumpData(LUMP_FACES);
-        const lumpTexInfo = this.getLumpData(LUMP_TEXINFO);
-        const lumpTexData = this.getLumpData(LUMP_TEXDATA);
-        const lumpTexDataStringData = this.getLumpData(LUMP_TEXDATA_STRING_DATA);
-        const lumpSurfEdges = this.getLumpData(LUMP_SURFEDGES);
-        const lumpEdges = this.getLumpData(LUMP_EDGES);
-        const lumpVertices = this.getLumpData(LUMP_VERTEXES);
-        let texInfo = lumpTexInfo[face.texinfo];
-        let texData = lumpTexData[texInfo.texdata];
-        let texName = lumpTexDataStringData[texData.nameStringTableID];
-        //console.log(face);
-        let buffer = this.#geometries[texName];
-        if (!buffer) {
-            buffer = {
-                lastIndice: 0,
-                vertices: [], indices: [], coords: [], alphas: [],
-                triangleArray: [], alphaArray: [], textureCoord: [], lightMaps: [], textureVecs: lumpTexInfo.textureVecs, height: lumpTexData.height, width: lumpTexData.width
-            }; //TODOv3
-            this.#geometries[texName] = buffer;
-        }
-        let textureVecsU = texInfo.textureVecs[0];
-        let textureVecsV = texInfo.textureVecs[1];
-        const firstEdge = face.firstedge;
-        const lastEdge = firstEdge + face.numedges;
-        let firstIndice = buffer.lastIndice;
-        for (let surfEdgeIndex = firstEdge; surfEdgeIndex < lastEdge; ++surfEdgeIndex) {
-            const surfedge = lumpSurfEdges[surfEdgeIndex];
-            const edge = lumpEdges[Math.abs(surfedge)]; //TODOv3 ? why abs
-            let vertice1, vertice2;
-            if (surfedge <= 0) {
-                vertice1 = lumpVertices[edge.f];
-                vertice2 = lumpVertices[edge.s];
-            }
-            else {
-                vertice2 = lumpVertices[edge.f];
-                vertice1 = lumpVertices[edge.s];
-            }
-            if (vertice1 && vertice2) {
-                if (position) {
-                    buffer.vertices.push(vertice1[0] + position[0]); //TODOv3: optimize
-                    buffer.vertices.push(vertice1[1] + position[1]);
-                    buffer.vertices.push(vertice1[2] + position[2]);
-                    buffer.vertices.push(vertice2[0] + position[0]);
-                    buffer.vertices.push(vertice2[1] + position[1]);
-                    buffer.vertices.push(vertice2[2] + position[2]);
-                }
-                else {
-                    buffer.vertices.push(vertice1[0]); //TODOv3: optimize
-                    buffer.vertices.push(vertice1[1]);
-                    buffer.vertices.push(vertice1[2]);
-                    buffer.vertices.push(vertice2[0]);
-                    buffer.vertices.push(vertice2[1]);
-                    buffer.vertices.push(vertice2[2]);
-                }
-                buffer.coords.push((vertice1[0] * textureVecsU[0] + vertice1[1] * textureVecsU[1] + vertice1[2] * textureVecsU[2] + textureVecsU[3]) / texData.width);
-                buffer.coords.push((vertice1[0] * textureVecsV[0] + vertice1[1] * textureVecsV[1] + vertice1[2] * textureVecsV[2] + textureVecsV[3]) / texData.height);
-                buffer.coords.push((vertice2[0] * textureVecsU[0] + vertice2[1] * textureVecsU[1] + vertice2[2] * textureVecsU[2] + textureVecsU[3]) / texData.width);
-                buffer.coords.push((vertice2[0] * textureVecsV[0] + vertice2[1] * textureVecsV[1] + vertice2[2] * textureVecsV[2] + textureVecsV[3]) / texData.height);
-                buffer.indices.push(firstIndice); //TODOv3: optimize
-                buffer.indices.push(buffer.lastIndice++); //TODOv3: optimize
-                buffer.indices.push(buffer.lastIndice++); //TODOv3: optimize
-            }
-        }
-    }
-    initDispGeometry(dispInfo, face) {
-        if (face.initialized) { //TODOv3
-            return;
-        }
-        face.initialized = true;
-        this.getLumpData(LUMP_FACES);
-        const lumpTexInfo = this.getLumpData(LUMP_TEXINFO);
-        const lumpTexData = this.getLumpData(LUMP_TEXDATA);
-        const lumpTexDataStringData = this.getLumpData(LUMP_TEXDATA_STRING_DATA);
-        const lumpSurfEdges = this.getLumpData(LUMP_SURFEDGES);
-        const lumpEdges = this.getLumpData(LUMP_EDGES);
-        const lumpVertices = this.getLumpData(LUMP_VERTEXES);
-        let texInfo = lumpTexInfo[face.texinfo];
-        let texData = lumpTexData[texInfo.texdata];
-        let texName = lumpTexDataStringData[texData.nameStringTableID];
-        //console.log(face);
-        let buffer = this.#geometries[texName];
-        if (!buffer) {
-            buffer = {
-                lastIndice: 0,
-                vertices: [], indices: [], coords: [], alphas: [],
-                triangleArray: [], alphaArray: [], textureCoord: [], lightMaps: [], textureVecs: lumpTexInfo.textureVecs, height: lumpTexData.height, width: lumpTexData.width
-            }; //TODOv3
-            this.#geometries[texName] = buffer;
-        }
-        let textureVecsU = texInfo.textureVecs[0];
-        let textureVecsV = texInfo.textureVecs[1];
-        const firstEdge = face.firstedge;
-        const lastEdge = firstEdge + face.numedges;
-        const origVertices = [];
-        for (let surfEdgeIndex = firstEdge; surfEdgeIndex < lastEdge; ++surfEdgeIndex) {
-            const surfedge = lumpSurfEdges[surfEdgeIndex];
-            const edge = lumpEdges[Math.abs(surfedge)]; //TODOv3 ? why abs
-            let vertice1;
-            if (surfedge <= 0) {
-                vertice1 = lumpVertices[edge.f];
-                lumpVertices[edge.s];
-            }
-            else {
-                lumpVertices[edge.f];
-                vertice1 = lumpVertices[edge.s];
-            }
-            if (vertice1) {
-                origVertices.push(vertice1);
-            }
-        }
-        for (let testremoveme = 0; testremoveme < 4; testremoveme++) {
-            const vvremoveme = origVertices[0];
-            if (Math.abs(vvremoveme[0] - dispInfo.startPosition[0]) < DISPLACEMENT_DELTA
-                && Math.abs(vvremoveme[1] - dispInfo.startPosition[1]) < DISPLACEMENT_DELTA
-                && Math.abs(vvremoveme[2] - dispInfo.startPosition[2]) < DISPLACEMENT_DELTA) {
-                break;
-            }
-            origVertices.push(origVertices.shift());
-        }
-        const verticesPerSide = Math.pow(2, dispInfo.power) + 1;
-        const tesselateVertices = [];
-        /* create tesslate array */
-        for (let i = 0; i < verticesPerSide; ++i) {
-            const row = [];
-            tesselateVertices.push(row);
-            for (let j = 0; j < verticesPerSide; ++j) {
-                row[j] = null;
-            }
-        }
-        tesselateVertices[0][0] = clone$3(origVertices[0]);
-        tesselateVertices[0][verticesPerSide - 1] = clone$3(origVertices[3]);
-        tesselateVertices[verticesPerSide - 1][verticesPerSide - 1] = clone$3(origVertices[2]);
-        tesselateVertices[verticesPerSide - 1][0] = clone$3(origVertices[1]);
-        let subdiv = Math.pow(2, dispInfo.power);
-        for (let level = 0; level < dispInfo.power; ++level) {
-            const squares = Math.pow(2, level);
-            let subdiv2 = subdiv / 2;
-            for (let i = 0; i < squares; ++i) {
-                for (let j = 0; j < squares; ++j) {
-                    const iMin = subdiv * i;
-                    const iMax = iMin + subdiv;
-                    const jMin = subdiv * j;
-                    const jMax = jMin + subdiv;
-                    const v1 = tesselateVertices[iMin][jMin];
-                    const v2 = tesselateVertices[iMax][jMin];
-                    const v3 = tesselateVertices[iMin][jMax];
-                    const v4 = tesselateVertices[iMax][jMax];
-                    const iMid = iMin + subdiv2;
-                    const jMid = jMin + subdiv2;
-                    if (v1 && v2 && v3 && v4) {
-                        const s1 = Vec3Middle(create$3(), v1, v2);
-                        const s2 = Vec3Middle(create$3(), v3, v4);
-                        const s3 = Vec3Middle(create$3(), v1, v3);
-                        const s4 = Vec3Middle(create$3(), v2, v4);
-                        const s5 = Vec3Middle(create$3(), s3, s4);
-                        tesselateVertices[iMid][jMin] = s1;
-                        tesselateVertices[iMid][jMax] = s2;
-                        tesselateVertices[iMin][jMid] = s3;
-                        tesselateVertices[iMax][jMid] = s4;
-                        tesselateVertices[iMid][jMid] = s5;
-                    }
-                }
-            }
-            subdiv = subdiv2;
-        }
-        /* displace vertices */
-        const lumpDispVerts = this.lumps[LUMP_DISP_VERTS].getLumpData();
-        let vertexIndex = dispInfo.dispVertStart;
-        for (let i = 0; i < verticesPerSide; ++i) {
-            for (let j = 0; j < verticesPerSide; ++j) {
-                const dispVert = lumpDispVerts[vertexIndex];
-                if (dispVert) {
-                    const v = tesselateVertices[i][j];
-                    if (dispVert.dist > 0) {
-                        scaleAndAdd$2(v, v, dispVert.vec, dispVert.dist);
-                    }
-                    v[3] = dispVert.alpha;
-                }
-                ++vertexIndex;
-            }
-        }
-        subdiv = Math.pow(2, dispInfo.power);
-        for (let i = 0; i < subdiv; ++i) {
-            for (let j = 0; j < subdiv; ++j) {
-                let firstIndice = buffer.lastIndice;
-                const v1 = tesselateVertices[i][j];
-                const v2 = tesselateVertices[i + 1][j];
-                const v3 = tesselateVertices[i + 1][j + 1];
-                const v4 = tesselateVertices[i][j + 1];
-                if (v1 && v2 && v3 && v4) {
-                    buffer.vertices.push(v1[0], v1[1], v1[2]); //TODOv3: optimize
-                    buffer.vertices.push(v2[0], v2[1], v2[2]); //TODOv3: optimize
-                    buffer.vertices.push(v3[0], v3[1], v3[2]); //TODOv3: optimize
-                    buffer.vertices.push(v4[0], v4[1], v4[2]); //TODOv3: optimize
-                    buffer.alphas.push(v1[3] / 255.0, v2[3] / 255.0, v3[3] / 255.0, v4[3] / 255.0);
-                    buffer.coords.push((v1[0] * textureVecsU[0] + v1[1] * textureVecsU[1] + v1[2] * textureVecsU[2] + textureVecsU[3]) / texData.width);
-                    buffer.coords.push((v1[0] * textureVecsV[0] + v1[1] * textureVecsV[1] + v1[2] * textureVecsV[2] + textureVecsV[3]) / texData.height);
-                    buffer.coords.push((v2[0] * textureVecsU[0] + v2[1] * textureVecsU[1] + v2[2] * textureVecsU[2] + textureVecsU[3]) / texData.width);
-                    buffer.coords.push((v2[0] * textureVecsV[0] + v2[1] * textureVecsV[1] + v2[2] * textureVecsV[2] + textureVecsV[3]) / texData.height);
-                    buffer.coords.push((v3[0] * textureVecsU[0] + v3[1] * textureVecsU[1] + v3[2] * textureVecsU[2] + textureVecsU[3]) / texData.width);
-                    buffer.coords.push((v3[0] * textureVecsV[0] + v3[1] * textureVecsV[1] + v3[2] * textureVecsV[2] + textureVecsV[3]) / texData.height);
-                    buffer.coords.push((v4[0] * textureVecsU[0] + v4[1] * textureVecsU[1] + v4[2] * textureVecsU[2] + textureVecsU[3]) / texData.width);
-                    buffer.coords.push((v4[0] * textureVecsV[0] + v4[1] * textureVecsV[1] + v4[2] * textureVecsV[2] + textureVecsV[3]) / texData.height);
-                    { //TODOv3
-                        buffer.indices.push(firstIndice); //TODOv3: optimize
-                        buffer.indices.push(firstIndice + 2);
-                        buffer.indices.push(firstIndice + 1);
-                        buffer.indices.push(firstIndice + 3);
-                        buffer.indices.push(firstIndice + 2);
-                        buffer.indices.push(firstIndice);
-                    }
-                    buffer.lastIndice += 4;
-                }
-            }
-        }
-    }
-    initGeometry() {
-        this.#geometries = {};
-        const lumpFaces = this.getLumpData(LUMP_FACES);
-        const lumpLeafs = this.getLumpData(LUMP_LEAFS);
-        const lumpLeafFaces = this.getLumpData(LUMP_LEAFFACES);
-        //const lumpNodes = this.getLumpData(LUMP_NODES);
-        const lumpTexLighting = this.getLumpData(LUMP_LIGHTING);
-        const lumpTexInfo = this.getLumpData(LUMP_TEXINFO);
-        const lumpTexData = this.getLumpData(LUMP_TEXDATA);
-        const lumpTexDataStringData = this.getLumpData(LUMP_TEXDATA_STRING_DATA);
-        const lumpSurfEdges = this.getLumpData(LUMP_SURFEDGES);
-        const lumpEdges = this.getLumpData(LUMP_EDGES);
-        const lumpVertices = this.getLumpData(LUMP_VERTEXES);
-        const lumpModels = this.getLumpData(LUMP_MODELS);
-        const lumpDispInfos = this.getLumpData(LUMP_DISPINFO);
-        if (lumpFaces && lumpLeafs && lumpLeafFaces && /*lumpNodes && */ lumpTexLighting && lumpTexInfo && lumpTexData && lumpTexDataStringData && lumpSurfEdges && lumpEdges && lumpVertices) {
-            if (lumpModels) {
-                for (let i = 0; i < this.funcBrushesRemoveMe.length; ++i) {
-                    const funcBrushesRemove = this.funcBrushesRemoveMe[i];
-                    const modelIndex = funcBrushesRemove.model;
-                    const model = lumpModels[modelIndex];
-                    if (model) {
-                        const firstFace = model.firstface;
-                        const lastFace = firstFace + model.numfaces;
-                        for (let j = firstFace; j < lastFace; ++j) {
-                            const face = lumpFaces[j];
-                            //this.renderLeafFace(renderContext, face, funcBrushesRemove.position, 0/*leafId TODO*/);
-                            this.initFaceGeometry(face, funcBrushesRemove.origin);
-                        }
-                    }
-                }
-            }
-            /* Init displacement buffer */
-            if (lumpDispInfos) {
-                for (let i = 0; i < lumpDispInfos.length; ++i) { //TODO
-                    let dispInfo = lumpDispInfos[i];
-                    let face = lumpFaces[dispInfo.mapFace];
-                    if (face) {
-                        this.initDispGeometry(dispInfo, face);
-                    }
-                }
-            }
-            for (let leafIndex = 0, l = lumpLeafs.length; leafIndex < l; ++leafIndex) {
-                const leaf = lumpLeafs[leafIndex];
-                const firstFace = leaf.firstleafface;
-                const lastFace = leaf.firstleafface + leaf.numleaffaces;
-                for (let faceIndex = firstFace; faceIndex < lastFace; ++faceIndex) {
-                    let face = lumpFaces[lumpLeafFaces[faceIndex]];
-                    this.initFaceGeometry(face);
-                }
-            }
-        }
-        for (let textureName in this.#geometries) {
-            let geometry = this.#geometries[textureName];
-            if (textureName.toLowerCase().substring(0, 5) == 'tools') { //TODOV3
-                continue;
-                //continue;
-            }
-            let bufferGeometry = new BufferGeometry();
-            let vertexPosition = new Float32BufferAttribute(geometry.vertices, 3);
-            let vertexAlpha = new Float32BufferAttribute(geometry.alphas, 1);
-            let textureCoord = new Float32BufferAttribute(geometry.coords, 2);
-            bufferGeometry.setIndex(new Uint16BufferAttribute(geometry.indices, 1));
-            bufferGeometry.setAttribute('aVertexPosition', vertexPosition);
-            bufferGeometry.setAttribute('aVertexAlpha', vertexAlpha);
-            bufferGeometry.setAttribute('aTextureCoord', textureCoord);
-            bufferGeometry.count = geometry.indices.length;
-            let staticMesh = new Mesh(bufferGeometry, null);
-            staticMesh.name = textureName;
-            SourceEngineMaterialManager.getMaterial(this.repository, textureName).then((material) => staticMesh.setMaterial(material)).catch(() => console.error('unable to find material ' + textureName));
-            this.mapFaces.addChild(staticMesh);
-        }
-    }
-    addEntity(entity) {
-        if (entity) {
-            this.entities.push(entity);
-        }
-    }
-    addConnection(connection) {
-        if (connection) {
-            this.connections.push(connection);
-        }
-    }
-    getOBBSize(modelIndex) {
-        let lumpModels = this.getLumpData(LUMP_MODELS);
-        let lumpFaces = this.getLumpData(LUMP_FACES);
-        let lumpSurfEdges = this.getLumpData(LUMP_SURFEDGES);
-        let lumpEdges = this.getLumpData(LUMP_EDGES);
-        let lumpVertices = this.getLumpData(LUMP_VERTEXES);
-        if (lumpModels && lumpFaces && lumpSurfEdges && lumpEdges && lumpVertices) {
-            let model = lumpModels[modelIndex];
-            if (model) {
-                if (model.numfaces == 0) {
-                    return create$4();
-                }
-                function compare(v) {
-                    for (let i = 0; i < 3; i++) {
-                        if (v[i] < min[i]) {
-                            min[i] = v[i];
-                        }
-                        if (v[i] > max[i]) {
-                            max[i] = v[i];
-                        }
-                    }
-                }
-                let min = fromValues$4(Infinity, Infinity, Infinity);
-                let max = fromValues$4(-Infinity, -Infinity, -Infinity);
-                let firstFace = model.firstface;
-                let lastFace = firstFace + model.numfaces;
-                for (let j = firstFace; j < lastFace; j++) {
-                    let face = lumpFaces[j];
-                    if (face) {
-                        let firstEdge = face.firstedge;
-                        let lastEdge = firstEdge + face.numedges;
-                        for (let surfEdgeIndex = firstEdge; surfEdgeIndex < lastEdge; surfEdgeIndex++) {
-                            let surfedge = lumpSurfEdges[surfEdgeIndex];
-                            let edge = lumpEdges[Math.abs(surfedge)];
-                            let vertice1 = lumpVertices[edge.f];
-                            let vertice2 = lumpVertices[edge.s];
-                            compare(vertice1);
-                            compare(vertice2);
-                        }
-                    }
-                }
-                return sub$2(create$4(), max, min);
-            }
-        }
-        return null;
-    }
-    static getEntityName() {
-        return 'BSP Map';
-    }
 }
 
 const BSP_HEADER_LUMPS_COUNT = 64;
@@ -73573,8 +75336,8 @@ class Detex {
             return this.#webAssembly;
         }
         const env = {
-            'abortStackOverflow': _ => { throw new Error('overflow'); },
-            'emscripten_notify_memory_growth': _ => { /*console.error('growth ', this.#webAssembly.instance.exports.memory.buffer.byteLength);*/ this.#initHeap(); },
+            'abortStackOverflow': (_) => { throw new Error('overflow'); },
+            'emscripten_notify_memory_growth': (_) => { /*console.error('growth ', this.#webAssembly.instance.exports.memory.buffer.byteLength);*/ this.#initHeap(); },
             'table': new WebAssembly.Table({ initial: 0, maximum: 0, element: 'anyfunc' }),
             'tableBase': 0,
             'memoryBase': 1024,
@@ -73762,7 +75525,7 @@ class SourceEngineVTF {
         }
         else {
             glContext.pixelStorei(GL_UNPACK_FLIP_Y_WEBGL, false);
-            glContext.texImage2D(GL_TEXTURE_2D, 0, this.getInternalFormat(glContext), mipmap.width, mipmap.height, 0, this.getFormat(glContext), this.getType(glContext), mipmap.frames[frame][face]);
+            glContext.texImage2D(GL_TEXTURE_2D, 0, this.#getInternalFormat(srgb), mipmap.width, mipmap.height, 0, this.getFormat(glContext), this.getType(glContext), mipmap.frames[frame][face]);
         }
         glContext.texParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
         glContext.texParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
@@ -73816,12 +75579,12 @@ class SourceEngineVTF {
         }
         else {
             glContext.pixelStorei(GL_UNPACK_FLIP_Y_WEBGL, false);
-            glContext.texImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X, 0, this.getInternalFormat(glContext), mipmap.width, mipmap.height, 0, this.getFormat(glContext), this.getType(glContext), mipmap.frames[frame][0]);
-            glContext.texImage2D(GL_TEXTURE_CUBE_MAP_NEGATIVE_X, 0, this.getInternalFormat(glContext), mipmap.width, mipmap.height, 0, this.getFormat(glContext), this.getType(glContext), mipmap.frames[frame][1]);
-            glContext.texImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_Y, 0, this.getInternalFormat(glContext), mipmap.width, mipmap.height, 0, this.getFormat(glContext), this.getType(glContext), mipmap.frames[frame][2]);
-            glContext.texImage2D(GL_TEXTURE_CUBE_MAP_NEGATIVE_Y, 0, this.getInternalFormat(glContext), mipmap.width, mipmap.height, 0, this.getFormat(glContext), this.getType(glContext), mipmap.frames[frame][3]);
-            glContext.texImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_Z, 0, this.getInternalFormat(glContext), mipmap.width, mipmap.height, 0, this.getFormat(glContext), this.getType(glContext), mipmap.frames[frame][4]);
-            glContext.texImage2D(GL_TEXTURE_CUBE_MAP_NEGATIVE_Z, 0, this.getInternalFormat(glContext), mipmap.width, mipmap.height, 0, this.getFormat(glContext), this.getType(glContext), mipmap.frames[frame][5]);
+            glContext.texImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X, 0, this.#getInternalFormat(srgb), mipmap.width, mipmap.height, 0, this.getFormat(glContext), this.getType(glContext), mipmap.frames[frame][0]);
+            glContext.texImage2D(GL_TEXTURE_CUBE_MAP_NEGATIVE_X, 0, this.#getInternalFormat(srgb), mipmap.width, mipmap.height, 0, this.getFormat(glContext), this.getType(glContext), mipmap.frames[frame][1]);
+            glContext.texImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_Y, 0, this.#getInternalFormat(srgb), mipmap.width, mipmap.height, 0, this.getFormat(glContext), this.getType(glContext), mipmap.frames[frame][2]);
+            glContext.texImage2D(GL_TEXTURE_CUBE_MAP_NEGATIVE_Y, 0, this.#getInternalFormat(srgb), mipmap.width, mipmap.height, 0, this.getFormat(glContext), this.getType(glContext), mipmap.frames[frame][3]);
+            glContext.texImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_Z, 0, this.#getInternalFormat(srgb), mipmap.width, mipmap.height, 0, this.getFormat(glContext), this.getType(glContext), mipmap.frames[frame][4]);
+            glContext.texImage2D(GL_TEXTURE_CUBE_MAP_NEGATIVE_Z, 0, this.#getInternalFormat(srgb), mipmap.width, mipmap.height, 0, this.getFormat(glContext), this.getType(glContext), mipmap.frames[frame][5]);
         }
         glContext.texParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
         glContext.texParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
@@ -73866,15 +75629,15 @@ class SourceEngineVTF {
     /**
      * TODO
      */
-    getInternalFormat(glContext) {
+    #getInternalFormat(allowSrgb = true) {
         switch (this.highResImageFormat) {
             case IMAGE_FORMAT_RGB888:
             case IMAGE_FORMAT_BGR888:
-                return this.isSRGB() ? GL_SRGB8 : GL_RGB;
+                return this.isSRGB() && allowSrgb ? GL_SRGB8 : GL_RGB;
             case IMAGE_FORMAT_RGBA8888:
             case IMAGE_FORMAT_BGRA8888:
             case IMAGE_FORMAT_ABGR8888:
-                return this.isSRGB() ? GL_SRGB8_ALPHA8 : GL_RGBA;
+                return this.isSRGB() && allowSrgb ? GL_SRGB8_ALPHA8 : GL_RGBA;
             case IMAGE_FORMAT_RGBA16161616F: // Note: format has been inverted at load time
                 return GL_RGBA16F;
         }
@@ -74613,6 +76376,7 @@ const VMT_PARAMETERS = {
     $phongexponent: [SHADER_PARAM_TYPE_FLOAT, 5.0],
     $phongexponentfactor: [SHADER_PARAM_TYPE_FLOAT, 0.0],
     $phongexponenttexture: [SHADER_PARAM_TYPE_STRING, ""],
+    $phongboost: [SHADER_PARAM_TYPE_FLOAT, 1.0],
     $lightwarptexture: [SHADER_PARAM_TYPE_STRING, ""],
     $selfillumtint: [SHADER_PARAM_TYPE_COLOR, [1, 1, 1]],
     $detailscale: [SHADER_PARAM_TYPE_VEC2, [1, 1]],
@@ -74656,17 +76420,17 @@ class SourceEngineMaterial extends Material {
     frameX;
     frameY;
     sequenceLength;
-    constructor(repository, fileName, parameters = Object.create(null)) {
-        super(parameters);
-        this.repository = repository;
-        this.fileName = fileName;
-        this.proxyParams = Object.create(null);
+    constructor(params = {} /*repository, fileName, parameters = Object.create(null)*/) {
+        super(params);
+        this.repository = params.repository;
+        this.fileName = params.filename;
+        this.proxyParams = {};
         this.proxies = [];
         this.variables = new Map();
         this.#initUniforms();
         let variables = this.variables;
-        initDefaultParameters(VMT_PARAMETERS, parameters, variables);
-        initDefaultParameters(this.getDefaultParameters(), parameters, variables);
+        initDefaultParameters(VMT_PARAMETERS, params, variables);
+        initDefaultParameters(this.getDefaultParameters(), params, variables);
         let readParameters = (parameters) => {
             for (let parameterName in parameters) {
                 const value = parameters[parameterName];
@@ -74706,42 +76470,42 @@ class SourceEngineMaterial extends Material {
                 }
             }
         };
-        readParameters(parameters);
-        if (parameters['>=dx90']) {
-            readParameters(parameters['>=dx90']);
+        readParameters(params);
+        if (params['>=dx90']) {
+            readParameters(params['>=dx90']);
         }
         let baseTexture = variables.get('$basetexture');
         if (baseTexture) {
-            this.setColorMap(Source1TextureManager.getTexture(this.repository, baseTexture, parameters['$frame'] || 0, false, parameters.useSrgb ?? true));
+            this.setColorMap(Source1TextureManager.getTexture(this.repository, baseTexture, params['$frame'] || 0, false, params.useSrgb ?? true));
         }
         else {
             this.setColorMap(getDefaultTexture());
         }
-        if (parameters['$bumpmap']) {
-            this.setNormalMap(Source1TextureManager.getTexture(this.repository, parameters['$bumpmap'], 0, false, false));
+        if (params['$bumpmap']) {
+            this.setNormalMap(Source1TextureManager.getTexture(this.repository, params['$bumpmap'], 0, false, false));
         }
         else {
             this.setNormalMap(null);
         }
         let translucent = false;
-        if (parameters['$alpha']) {
+        if (params['$alpha']) {
             this.setTransparency(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
             this.setDefine('IS_TRANSLUCENT');
             translucent = true;
         }
-        if (parameters['$vertexalpha'] == 1) {
+        if (params['$vertexalpha'] == 1) {
             this.setTransparency(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
             this.setDefine('IS_TRANSLUCENT');
             translucent = true;
             //TODOv3 activate proper define in shader
             //also add vertexcolor
         }
-        if (parameters['$translucent'] == 1) {
+        if (params['$translucent'] == 1) {
             this.setBlending(MATERIAL_BLENDING_NORMAL);
             this.setDefine('IS_TRANSLUCENT');
             translucent = true;
         }
-        if (parameters['$additive'] == 1) {
+        if (params['$additive'] == 1) {
             if (translucent) {
                 this.setBlending(MATERIAL_BLENDING_ADDITIVE);
             }
@@ -74750,14 +76514,14 @@ class SourceEngineMaterial extends Material {
             }
             this.setDefine('IS_ADDITIVE');
         }
-        if (parameters['$alphatest'] == 1) {
+        if (params['$alphatest'] == 1) {
             this.alphaTest = true;
-            this.alphaTestReference = Number.parseFloat(parameters['$alphatestreference'] ?? 0.5);
+            this.alphaTestReference = Number.parseFloat(params['$alphatestreference'] ?? 0.5);
         }
-        if (parameters['$vertexalpha'] == 1) {
+        if (params['$vertexalpha'] == 1) {
             this.setDefine('VERTEX_ALPHA');
         }
-        if (parameters['$vertexcolor'] == 1) {
+        if (params['$vertexcolor'] == 1) {
             this.setDefine('VERTEX_COLOR');
         }
         let envmaptint = variables.get('$envmaptint');
@@ -74771,32 +76535,32 @@ class SourceEngineMaterial extends Material {
             this.setDefine('USE_NORMAL_ALPHA_AS_ENVMAP_MASK');
         }
         this.uniforms['uTextureTransform'] = IDENTITY_MAT4$3;
-        if (parameters['$basetexturetransform']) {
-            let textureTransform = GetTextureTransform(parameters['$basetexturetransform']);
+        if (params['$basetexturetransform']) {
+            let textureTransform = GetTextureTransform(params['$basetexturetransform']);
             if (textureTransform) {
                 this.variables.set('$basetexturetransform', textureTransform);
                 this.uniforms['uTextureTransform'] = textureTransform;
             }
         }
-        if (parameters['$nocull'] == 1) {
+        if (params['$nocull'] == 1) {
             this.renderFace(RenderFace.Both);
         }
-        let lightWarpTexture = parameters['$lightwarptexture'];
+        let lightWarpTexture = params['$lightwarptexture'];
         this.setTexture('lightWarpMap', lightWarpTexture ? Source1TextureManager.getTexture(this.repository, lightWarpTexture, 0) : null, 'USE_LIGHT_WARP_MAP');
-        if (parameters['$phong'] == 1) {
+        if (params['$phong'] == 1) {
             this.setDefine('USE_PHONG_SHADING');
             // The $phongexponenttexture is overrided by $phongexponent
-            let phongExponentTexture = parameters['$phongexponenttexture'];
+            let phongExponentTexture = params['$phongexponenttexture'];
             this.setTexture('phongExponentMap', phongExponentTexture ? Source1TextureManager.getTexture(this.repository, phongExponentTexture, 0) : null, 'USE_PHONG_EXPONENT_MAP');
             if (phongExponentTexture) {
                 this.uniforms['uPhongExponentFactor'] = variables.get('$phongexponentfactor');
             }
             this.uniforms['uPhongExponent'] = variables.get('$phongexponent');
-            this.uniforms['uPhongBoost'] = parameters['$phongboost'] ?? 0;
-            if (parameters['$basemapalphaphongmask'] == 1) {
+            this.uniforms['uPhongBoost'] = variables.get('$phongboost');
+            if (params['$basemapalphaphongmask'] == 1) {
                 this.setDefine('USE_COLOR_ALPHA_AS_PHONG_MASK');
             }
-            if (parameters['$phongalbedotint'] == 1) {
+            if (params['$phongalbedotint'] == 1) {
                 this.setDefine('USE_PHONG_ALBEDO_TINT');
             }
             /*VertexLitGeneric
@@ -74856,7 +76620,7 @@ class SourceEngineMaterial extends Material {
         else {
             this.removeDefine('USE_SSBUMP');
         }
-        const proxies = parameters['proxies'];
+        const proxies = params['proxies'];
         if (proxies) {
             this.initProxies(proxies);
         }
@@ -75071,7 +76835,14 @@ class SourceEngineMaterial extends Material {
                     return readColor(value);
                 case SHADER_PARAM_TYPE_FLOAT:
                     let fl = Number(value);
-                    return Number.isNaN(fl) ? param[1] : fl;
+                    if (!Number.isNaN(fl)) {
+                        return fl;
+                    }
+                    const c = readColor(value);
+                    if (c) {
+                        return c[0];
+                    }
+                    return param[1];
                 case SHADER_PARAM_TYPE_INTEGER:
                     return Number(value) << 0;
                 case SHADER_PARAM_TYPE_BOOL:
@@ -75224,9 +76995,9 @@ static const char* s_pShaderStateString[] =
 //TODO: deprecate
 class CharacterMaterial extends SourceEngineMaterial {
     diffuseModulation = fromValues$3(1.0, 1.0, 1.0, 1.0);
-    constructor(repository, fileName, parameters = Object.create(null)) {
-        super(repository, fileName, parameters);
-        this.setValues(parameters);
+    constructor(params = {}) {
+        super(params);
+        this.setValues(params);
         let variables = this.variables;
         //"$masks1"                   models/weapons/v_models/arms/glove_bloodhound/glove_bloodhound_masks1
         //"$masks2"                   models/weapons/v_models/arms/glove_bloodhound/glove_bloodhound_masks2
@@ -75307,7 +77078,7 @@ class CharacterMaterial extends SourceEngineMaterial {
         this.uniforms['g_DiffuseModulation'] = this.computeModulationColor(this.diffuseModulation);
     }
     clone() {
-        return new CharacterMaterial(this.repository, this.fileName, this.parameters);
+        return new CharacterMaterial(this.parameters);
     }
     get shaderSource() {
         return 'source1_character'; //TODO: setup proper shader
@@ -75319,9 +77090,9 @@ const DEFAULT_WEAR_PROGRESS = 0.0; //0.45;
 //TODO: deprecate
 class CustomWeaponMaterial extends SourceEngineMaterial {
     diffuseModulation = fromValues$3(1.0, 1.0, 1.0, 1.0);
-    constructor(repository, fileName, parameters = Object.create(null)) {
-        super(repository, fileName, parameters);
-        this.setValues(parameters);
+    constructor(params = {}) {
+        super(params);
+        this.setValues(params);
         //this.uniforms['phongfresnelranges'] = SourceEngineMaterial.readColor(parameters['$phongfresnelranges']);
         /*float fPixelFogType = pShaderAPI->GetPixelFogCombo() == 1 ? 1 : 0;
         float fWriteDepthToAlpha = bWriteDepthToAlpha && IsPC() ? 1 : 0;
@@ -75395,7 +77166,7 @@ class CustomWeaponMaterial extends SourceEngineMaterial {
             this.setDefine('USE_POS_MAP'); //TODOv3: set this automaticaly
         }
         /*
-        
+
                     if( bAOTexture )
                     {
                         pShaderShadow->EnableTexture( SHADER_SAMPLER0, true );		// [sRGB] Ambient Occlusion
@@ -75483,15 +77254,15 @@ class CustomWeaponMaterial extends SourceEngineMaterial {
                                                             transformMatrix[1], transformMatrix[5], transformMatrix[9], transformMatrix[13]
                                                             ]);
         }
-    
+
         setPatternTexCoordTransform(scale, translation, rotation) {
             this.setUniformTransform('g_patternTexCoordTransform[0]', scale, translation, rotation);
         }
-    
+
         setWearTexCoordTransform(scale, translation, rotation) {
             this.setUniformTransform('g_wearTexCoordTransform[0]', scale, translation, rotation);
         }
-    
+
         setGrungeTexCoordTransform(scale, translation, rotation) {
             this.setUniformTransform('g_grungeTexCoordTransform[0]', scale, translation, rotation);
         }
@@ -75500,7 +77271,7 @@ class CustomWeaponMaterial extends SourceEngineMaterial {
         this.uniforms['g_PreviewPhongBoosts'][2] = scale;
     }
     /*
-    
+
         "name": "aa_vertigo",
         "desc": "#PaintKit_aa_vertigo",
         "rarity": "mythical",
@@ -75524,7 +77295,7 @@ class CustomWeaponMaterial extends SourceEngineMaterial {
         "phongalbedoboost": "80"
         */
     clone() {
-        return new CustomWeaponMaterial(this.repository, this.fileName, this.parameters);
+        return new CustomWeaponMaterial(this.parameters);
     }
     get shaderSource() {
         return 'source1_customweapon';
@@ -75540,13 +77311,13 @@ class EyeRefractMaterial extends SourceEngineMaterial {
     #eyeRight = create$4();
     #irisProjectionU = create$3();
     #irisProjectionV = create$3();
-    constructor(repository, fileName, parameters = {}) {
-        parameters.useSrgb = false;
-        super(repository, fileName, parameters);
-        this.setValues(parameters);
+    constructor(params = {}) {
+        params.useSrgb = false;
+        super(params);
+        this.setValues(params);
         //this.uniforms['phongfresnelranges'] = SourceEngineMaterial.readColor(parameters['$phongfresnelranges']);
-        if (parameters['$iris']) {
-            this.setColorMap(Source1TextureManager.getTexture(this.repository, parameters['$iris'], parameters['$frame'] || 0));
+        if (params['$iris']) {
+            this.setColorMap(Source1TextureManager.getTexture(this.repository, params['$iris'], params['$frame'] || 0));
         }
         else {
             this.setColorMap(TextureManager.createCheckerTexture());
@@ -75561,9 +77332,10 @@ class EyeRefractMaterial extends SourceEngineMaterial {
         if (parameters['$corneatexture']) {
             this.setTexture('corneaMap', Source1TextureManager.getTexture(this.repository, parameters['$corneatexture'], 0));
         }
+        /*
         const eyeballArray = this.properties.get('eyeballArray');
         const skeleton = this.properties.get('skeleton');
-        if (eyeballArray && skeleton) { //TODOv3: do this only once
+        if (eyeballArray && skeleton) {//TODOv3: do this only once
             let eyeBall = eyeballArray[this.properties.get('materialParam')];
             if (eyeBall) {
                 let bone = skeleton._bones[eyeBall.bone];
@@ -75573,6 +77345,7 @@ class EyeRefractMaterial extends SourceEngineMaterial {
                 }
             }
         }
+        */
     }
     beforeRender(camera) {
         const eyeballArray = this.properties.get('eyeballArray');
@@ -75582,6 +77355,7 @@ class EyeRefractMaterial extends SourceEngineMaterial {
             if (eyeBall) {
                 let bone = skeleton._bones[eyeBall.bone];
                 if (bone) {
+                    bone.getWorldPosOffset(eyeBall.org, this.#eyeOrigin);
                     transformQuat$1(this.#eyeUp, eyeBall.up, bone.worldQuat);
                     sub$2(this.#eyeForward, camera.position, this.#eyeOrigin);
                     cross$2(this.#eyeRight, this.#eyeForward, this.#eyeUp);
@@ -75599,12 +77373,13 @@ class EyeRefractMaterial extends SourceEngineMaterial {
                     this.#irisProjectionV[3] = -dot$4(this.#eyeOrigin, this.#irisProjectionV) + 0.5;
                     this.uniforms['uIrisProjectionU'] = this.#irisProjectionU;
                     this.uniforms['uIrisProjectionV'] = this.#irisProjectionV;
+                    this.uniforms['uEyeOrigin'] = this.#eyeOrigin;
                 }
             }
         }
     }
     clone() {
-        return new EyeRefractMaterial(this.repository, this.fileName, this.parameters);
+        return new EyeRefractMaterial(this.parameters);
     }
     get shaderSource() {
         return 'source1_eyerefract';
@@ -75613,12 +77388,12 @@ class EyeRefractMaterial extends SourceEngineMaterial {
 SourceEngineVMTLoader.registerMaterial('eyerefract', EyeRefractMaterial);
 
 class LightMappedGenericMaterial extends SourceEngineMaterial {
-    constructor(repository, fileName, parameters = Object.create(null)) {
-        super(repository, fileName, parameters);
-        this.setValues(parameters);
+    constructor(params = {}) {
+        super(params);
+        this.setValues(params);
     }
     clone() {
-        return new LightMappedGenericMaterial(this.repository, this.fileName, this.parameters);
+        return new LightMappedGenericMaterial(this.parameters);
     }
     getShaderSource() {
         return 'source1_lightmappedgeneric';
@@ -75628,7 +77403,7 @@ SourceEngineVMTLoader.registerMaterial('lightmappedgeneric', LightMappedGenericM
 
 class RefractMaterial extends SourceEngineMaterial {
     clone() {
-        return new RefractMaterial(this.repository, this.fileName, this.parameters);
+        return new RefractMaterial(this.parameters);
     }
     getShaderSource() {
         return 'source1_refract';
@@ -75637,22 +77412,22 @@ class RefractMaterial extends SourceEngineMaterial {
 SourceEngineVMTLoader.registerMaterial('refract', RefractMaterial);
 
 class SpriteCardMaterial extends SourceEngineMaterial {
-    constructor(repository, fileName, parameters = Object.create(null)) {
-        if (parameters['$color']) {
-            parameters.useSrgb = false;
+    constructor(params = {}) {
+        if (params['$color']) {
+            params.useSrgb = false;
         }
-        super(repository, fileName, parameters);
+        super(params);
         // Disable back face culling
         this.renderFace(RenderFace.Both);
         this.colorMask[3] = 0.0;
         this.setDefine('IS_TRANSLUCENT');
         this.setDefine('IS_SPRITE_CARD_MATERIAL');
         this.setDefine('USE_PARTICLE_YAW', '0'); //This material never yaw
-        if ( /*bAdditive2ndTexture || bAddOverBlend || */parameters['$addself'] !== undefined) {
+        if ( /*bAdditive2ndTexture || bAddOverBlend || */params['$addself'] !== undefined) {
             this.setTransparency(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
         }
         else {
-            if (parameters['$additive'] == 1) {
+            if (params['$additive'] == 1) {
                 this.setTransparency(GL_SRC_ALPHA, GL_ONE);
             }
             else {
@@ -75661,15 +77436,15 @@ class SpriteCardMaterial extends SourceEngineMaterial {
         }
         // this material always has blending
         //this.setTransparency(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-        if (parameters['$additive'] == 1) ;
+        if (params['$additive'] == 1) ;
         /*if (parameters['$addself']) {
             this.setDefine('ALPHA_TEST', false);
         } else {
             this.setDefine('ALPHA_TEST');
             this.uniforms['uAlphaTestReference'] = Number.parseFloat(parameters['$alphatestreference'] || 0.5);
         }*/
-        if (parameters['$addself'] !== undefined) {
-            this.uniforms['uAddSelf'] = Number.parseFloat(parameters['$addself']);
+        if (params['$addself'] !== undefined) {
+            this.uniforms['uAddSelf'] = Number.parseFloat(params['$addself']);
             this.setDefine('ADD_SELF');
             //this.setTransparency(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
         }
@@ -75680,7 +77455,7 @@ class SpriteCardMaterial extends SourceEngineMaterial {
         this.modeAlpha = GL_MAX;
     }
     clone() {
-        return new SpriteCardMaterial(this.repository, this.fileName, this.parameters);
+        return new SpriteCardMaterial(this.parameters);
     }
     get shaderSource() {
         return 'source1_spritecard';
@@ -75703,24 +77478,24 @@ var RenderMode;
     RenderMode[RenderMode["None"] = 10] = "None";
 })(RenderMode || (RenderMode = {}));
 class SpriteMaterial extends SourceEngineMaterial {
-    constructor(repository, fileName, parameters = {}) {
-        super(repository, fileName, parameters);
+    constructor(params = {}) {
+        super(params);
         // Disable back face culling
         this.renderFace(RenderFace.Both);
         this.colorMask[3] = 0.0;
         this.setDefine('IS_TRANSLUCENT');
-        if ( /*bAdditive2ndTexture || bAddOverBlend || */parameters['$addself'] !== undefined) {
+        if ( /*bAdditive2ndTexture || bAddOverBlend || */params['$addself'] !== undefined) {
             this.setTransparency(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
         }
         else {
-            if (parameters['$additive'] == 1) {
+            if (params['$additive'] == 1) {
                 this.setTransparency(GL_SRC_ALPHA, GL_ONE);
             }
             else {
                 this.setTransparency(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
             }
         }
-        switch (Number(parameters['$spriterendermode'])) {
+        switch (Number(params['$spriterendermode'])) {
             //TODO: add other modes
             case RenderMode.TransAdd:
                 this.setTransparency(GL_SRC_ALPHA, GL_ONE);
@@ -75728,15 +77503,15 @@ class SpriteMaterial extends SourceEngineMaterial {
         }
         // this material always has blending
         //this.setTransparency(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-        if (parameters['$additive'] == 1) ;
+        if (params['$additive'] == 1) ;
         /*if (parameters['$addself']) {
             this.setDefine('ALPHA_TEST', false);
         } else {
             this.setDefine('ALPHA_TEST');
             this.uniforms['uAlphaTestReference'] = Number.parseFloat(parameters['$alphatestreference'] || 0.5);
         }*/
-        if (parameters['$addself'] !== undefined) {
-            this.uniforms['uAddSelf'] = Number.parseFloat(parameters['$addself']);
+        if (params['$addself'] !== undefined) {
+            this.uniforms['uAddSelf'] = Number.parseFloat(params['$addself']);
             this.setDefine('ADD_SELF');
             //this.setTransparency(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
         }
@@ -75747,7 +77522,7 @@ class SpriteMaterial extends SourceEngineMaterial {
         this.modeAlpha = GL_MAX;
     }
     clone() {
-        return new SpriteMaterial(this.repository, this.fileName, this.parameters);
+        return new SpriteMaterial(this.parameters);
     }
     get shaderSource() {
         return 'source1_sprite';
@@ -75757,19 +77532,18 @@ SourceEngineVMTLoader.registerMaterial('sprite', SpriteMaterial);
 
 class UnlitGenericMaterial extends SourceEngineMaterial {
     diffuseModulation = fromValues$3(1.0, 1.0, 1.0, 1.0);
-    constructor(repository, fileName, parameters = Object.create(null)) {
-        super(repository, fileName, parameters);
-        this.setValues(parameters);
+    constructor(params = {}) {
+        super(params);
+        this.setValues(params);
         this.uniforms['g_ShaderControls'] = fromValues$3(1, 0, 1, 0); //TODOv3
         this.uniforms['g_DiffuseModulation'] = this.diffuseModulation;
-        if (parameters['$additive'] == 1) {
-            this.setTransparency(GL_SRC_ALPHA, GL_ONE);
+        if (params['$additive'] == 1) {
             //this.setBlending('additive');
+            this.setBlending(MATERIAL_BLENDING_ADDITIVE);
         }
-        this.modeAlpha = GL_MAX;
     }
     clone() {
-        return new UnlitGenericMaterial(this.repository, this.fileName, this.parameters);
+        return new UnlitGenericMaterial(this.parameters);
     }
     get shaderSource() {
         //Note: this is vertexlitgeneric without lighting
@@ -75780,16 +77554,16 @@ SourceEngineVMTLoader.registerMaterial('unlitgeneric', UnlitGenericMaterial);
 
 const IDENTITY_MATRIX = create$5();
 class UnlitTwoTextureMaterial extends SourceEngineMaterial {
-    constructor(repository, fileName, parameters = Object.create(null)) {
-        super(repository, fileName, parameters);
-        if (parameters['$texture2']) {
-            this.setColor2Map(Source1TextureManager.getTexture(this.repository, parameters['$texture2'], parameters['$frame2'] || 0));
+    constructor(params = {}) {
+        super(params);
+        if (params['$texture2']) {
+            this.setColor2Map(Source1TextureManager.getTexture(this.repository, params['$texture2'], params['$frame2'] || 0));
         }
         else {
             this.setColor2Map(TextureManager.createCheckerTexture());
         }
         this.setTransparency(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
-        if (parameters['$additive'] == 1) {
+        if (params['$additive'] == 1) {
             this.setTransparency(GL_SRC_ALPHA, GL_ONE);
             //this.setBlending('additive');
         }
@@ -75800,7 +77574,7 @@ class UnlitTwoTextureMaterial extends SourceEngineMaterial {
         this.setDefine('USE_TEXTURE2_TRANSFORM');
     }
     clone() {
-        return new UnlitTwoTextureMaterial(this.repository, this.fileName, this.parameters);
+        return new UnlitTwoTextureMaterial(this.parameters);
     }
     get shaderSource() {
         return 'source1_unlittwotexture';
@@ -75823,10 +77597,10 @@ SourceEngineVMTLoader.registerMaterial('unlittwotexture', UnlitTwoTextureMateria
 
 class VertexLitGenericMaterial extends SourceEngineMaterial {
     diffuseModulation = fromValues$3(1.0, 1.0, 1.0, 1.0);
-    constructor(repository, fileName, parameters = Object.create(null)) {
-        parameters.useSrgb = false;
-        super(repository, fileName, parameters);
-        this.setValues(parameters);
+    constructor(params = {}) {
+        params.useSrgb = false;
+        super(params /*repository, fileName, parameters*/);
+        this.setValues(params);
         //this.uniforms['phongfresnelranges'] = SourceEngineMaterial.readColor(parameters['$phongfresnelranges']);
         /*float fPixelFogType = pShaderAPI->GetPixelFogCombo() == 1 ? 1 : 0;
         float fWriteDepthToAlpha = bWriteDepthToAlpha && IsPC() ? 1 : 0;
@@ -75890,7 +77664,7 @@ class VertexLitGenericMaterial extends SourceEngineMaterial {
         this.uniforms['g_DiffuseModulation'] = this.computeModulationColor(this.diffuseModulation);
     }
     clone() {
-        return new VertexLitGenericMaterial(this.repository, this.fileName, this.parameters);
+        return new VertexLitGenericMaterial(/*this.repository, this.fileName, */ this.parameters);
     }
     get shaderSource() {
         return 'source1_vertexlitgeneric';
@@ -75900,16 +77674,16 @@ SourceEngineVMTLoader.registerMaterial('vertexlitgeneric', VertexLitGenericMater
 MaterialManager.registerMaterial('VertexLitGeneric', VertexLitGenericMaterial, SourceEngineMaterialManager);
 
 class WaterMaterial extends SourceEngineMaterial {
-    constructor(repository, fileName, parameters = Object.create(null)) {
-        super(repository, fileName, parameters);
+    constructor(params = {}) {
+        super(params);
         // Disable back face culling
         this.renderFace(RenderFace.Both);
-        this.setValues(parameters);
+        this.setValues(params);
         this.setTransparency(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         this.setDefine('IS_TRANSLUCENT');
     }
     clone() {
-        return new WaterMaterial(this.repository, this.fileName, this.parameters);
+        return new WaterMaterial(this.parameters);
     }
     getShaderSource() {
         return 'source1_water';
@@ -75919,9 +77693,9 @@ SourceEngineVMTLoader.registerMaterial('water', WaterMaterial);
 
 //TODO: deprecate
 class WeaponDecalMaterial extends SourceEngineMaterial {
-    constructor(repository, fileName, parameters = Object.create(null)) {
-        super(repository, fileName, parameters);
-        this.setValues(parameters);
+    constructor(params = {}) {
+        super(params);
+        this.setValues(params);
         let variables = this.variables;
         this.setDefine('MIRROR', variables.get('$mirrorhorizontal') ?? 0);
         this.setDefine('DESATBASETINT', variables.get('$desatbasetint') ? '1' : '0');
@@ -75990,7 +77764,7 @@ class WeaponDecalMaterial extends SourceEngineMaterial {
             this.setDefine('USE_HOLO_SPECTRUM_MAP'); //TODOv3: set this automaticaly
         }
         /*
-        
+
                     if( bAOTexture )
                     {
                         pShaderShadow->EnableTexture( SHADER_SAMPLER0, true );		// [sRGB] Ambient Occlusion
@@ -76107,7 +77881,7 @@ class WeaponDecalMaterial extends SourceEngineMaterial {
         return WEAPON_DECAL_DEFAULT_PARAMETERS;
     }
     clone() {
-        return new WeaponDecalMaterial(this.repository, this.fileName, this.parameters);
+        return new WeaponDecalMaterial(this.parameters);
     }
     get shaderSource() {
         return 'source1_weapondecal';
@@ -76135,8 +77909,8 @@ const WEAPON_DECAL_DEFAULT_PARAMETERS = {
 };
 
 class WorldVertexTransitionMaterial extends SourceEngineMaterial {
-    constructor(repository, fileName, parameters = Object.create(null)) {
-        super(repository, fileName, parameters);
+    constructor(params = {}) {
+        super(params);
     }
     afterProcessProxies(proxyParams) {
         this.variables;
@@ -76149,7 +77923,7 @@ class WorldVertexTransitionMaterial extends SourceEngineMaterial {
         }
     }
     clone() {
-        return new WorldVertexTransitionMaterial(this.repository, this.fileName, this.parameters);
+        return new WorldVertexTransitionMaterial(this.parameters);
     }
     getShaderSource() {
         return 'source1_worldvertextransition';
@@ -80416,6 +82190,7 @@ var source1_varying_eyerefract = `
 
 var source1_varying_refract = `
 #include varying_standard
+varying vec4 vDetailTextureCoord;
 `;
 
 var source1_varying_sprite = `
@@ -84410,10 +86185,6 @@ function _initProperties(system, systemDefinition) {
             case 'm_flConstantRotationSpeed':
                 system.baseProperties.rotationSpeedRoll = value;
                 break;
-            default:
-                {
-                    console.warn('CParticleSystemDefinition : unknown parameter : ' + key, value);
-                }
         }
     }
 }
@@ -85290,7 +87061,7 @@ class Source2TextureManagerClass extends EventTarget {
         this.#texturesList.set(path, texture);
     }
     #initTexture(texture, vtexFile) {
-        if (!texture) {
+        if (!texture || !vtexFile) {
             return;
         }
         var imageData = vtexFile.blocks.DATA.imageData;
@@ -85395,7 +87166,7 @@ class Source2TextureManagerClass extends EventTarget {
                     dxtFormat = s3tc.COMPRESSED_RGBA_S3TC_DXT5_EXT;
                     break;
             }
-            gl.bindTexture(target, texture);
+            //gl.bindTexture(target, texture);
             gl.compressedTexImage2D(target, 0, dxtFormat, width, height, 0, datas);
         }
         else {
@@ -85419,6 +87190,7 @@ class Source2TextureManagerClass extends EventTarget {
             }
             if (decompressFunc) {
                 Detex[decompressFunc](width, height, datas, uncompressedData).then(() => {
+                    // TODO: fix target in the 3 lines below
                     gl.bindTexture(GL_TEXTURE_2D, texture);
                     gl.texImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, uncompressedData); //TODO: params
                     gl.bindTexture(GL_TEXTURE_2D, null);
@@ -94971,18 +96743,20 @@ class RemGenerator {
     #textureToCubeUV(texture, cubeUVRenderTarget) {
         const renderer = this.#renderer;
         const isCubeTexture = texture.is('CubeTexture'); //(texture.mapping === CubeReflectionMapping || texture.mapping === CubeRefractionMapping);
+        let material;
         if (isCubeTexture) {
-            if (this.#cubemapMaterial === null) {
+            if (!this.#cubemapMaterial) {
                 this.#cubemapMaterial = getCubemapMaterial();
             }
             this.#cubemapMaterial.uniforms.flipEnvMap = (texture.isRenderTargetTexture === false) ? -1 : 1;
+            material = this.#cubemapMaterial;
         }
         else {
-            if (this.#equirectMaterial === null) {
+            if (!this.#equirectMaterial) {
                 this.#equirectMaterial = getEquirectMaterial();
             }
+            material = this.#equirectMaterial;
         }
-        const material = isCubeTexture ? this.#cubemapMaterial : this.#equirectMaterial;
         const mesh = new Mesh(this.#lodPlanes[0], material);
         const scene = new Scene();
         scene.addChild(mesh);
@@ -95013,20 +96787,24 @@ class RemGenerator {
      * accurate at the poles, but still does a decent job.
      */
     #blur(cubeUVRenderTarget, lodIn, lodOut, sigma, poleAxis) {
-        const pingPongRenderTarget = this.#pingPongRenderTarget;
-        this.#halfBlur(cubeUVRenderTarget, pingPongRenderTarget, lodIn, lodOut, sigma, 'latitudinal', poleAxis);
-        this.#halfBlur(pingPongRenderTarget, cubeUVRenderTarget, lodOut, lodOut, sigma, 'longitudinal', poleAxis);
+        if (!this.#pingPongRenderTarget) {
+            return;
+        }
+        this.#halfBlur(cubeUVRenderTarget, this.#pingPongRenderTarget, lodIn, lodOut, sigma, 'latitudinal', poleAxis);
+        this.#halfBlur(this.#pingPongRenderTarget, cubeUVRenderTarget, lodOut, lodOut, sigma, 'longitudinal', poleAxis);
     }
     #halfBlur(targetIn, targetOut, lodIn, lodOut, sigmaRadians, direction, poleAxis) {
         const renderer = this.#renderer;
-        const blurMaterial = this.#blurMaterial;
+        if (!this.#blurMaterial) {
+            return;
+        }
         if (direction !== 'latitudinal' && direction !== 'longitudinal') {
             console.error('blur direction must be either latitudinal or longitudinal!');
         }
         // Number of standard deviations at which to cut off the discrete approximation.
         const STANDARD_DEVIATIONS = 3;
-        const blurMesh = new Mesh(this.#lodPlanes[lodOut], blurMaterial);
-        const blurUniforms = blurMaterial.uniforms;
+        const blurMesh = new Mesh(this.#lodPlanes[lodOut], this.#blurMaterial);
+        const blurUniforms = this.#blurMaterial.uniforms;
         const scene = new Scene();
         scene.addChild(blurMesh);
         const pixels = this.#sizeLods[lodIn] - 1;
@@ -95479,8 +97257,8 @@ function getCommonVertexShader() {
 
 class ObjExporter {
     static #instance;
-    #lines;
-    #startIndex;
+    #lines = [];
+    #startIndex = 1;
     #fullScreenQuadMesh = new FullScreenQuad();
     scene = new Scene();
     camera = new Camera({ position: fromValues$4(0, 0, 100) });
@@ -95504,7 +97282,7 @@ class ObjExporter {
             if (!mesh.is('Mesh')) {
                 continue;
             }
-            if (mesh.parent.isParticleSystem) {
+            if (mesh.parent?.isParticleSystem) {
                 continue;
             }
             this.#fullScreenQuadMesh.material = mesh.material;
@@ -95566,7 +97344,9 @@ class ObjExporter {
                 mtlLines.push(`newmtl mat_${objectId}.png\n`);
                 mtlLines.push(`map_Kd mat_${objectId}.png\n`);
                 this.#addLine(`usemtl mat_${objectId}.png`);
-                this.#exportMesh(faces, vertices, normals, uvs, digits);
+                if (faces && vertices) {
+                    this.#exportMesh(digits, faces, vertices, normals, uvs);
+                }
                 ++objectId;
             }
         }
@@ -95576,7 +97356,7 @@ class ObjExporter {
         }
         return files;
     }
-    async #exportMesh(indices, vertices, normals, uvs, digits) {
+    async #exportMesh(digits, indices, vertices, normals, uvs) {
         let attributes = [
             { name: 'v', stride: 3, arr: vertices },
             { name: 'vn', stride: 3, arr: normals },
@@ -95625,358 +97405,6 @@ class ObjExporter {
             this.#addLine(`f ${i0}${uv0}${normals0} ${i1}${uv1}${normals1} ${i2}${uv2}${normals2}`);
         }
         this.#startIndex += verticeCount;
-    }
-}
-
-//TODOv3 replace XMLHttpRequest with fetch
-function BinaryAsyncRangeRequest(url, firstByte, byteLength) {
-    let promise = new Promise(function (resolve, reject) {
-        let xhr = new XMLHttpRequest();
-        xhr.open('GET', url, true);
-        xhr.overrideMimeType('text\/plain; charset=x-user-defined');
-        if ((firstByte !== undefined) && (byteLength !== undefined)) {
-            let lastByte = firstByte + byteLength - 1;
-            xhr.setRequestHeader('Range', 'bytes=' + firstByte + '-' + lastByte); // ==> 206
-        }
-        xhr.onload = function (e) {
-            if (xhr.readyState === 4) {
-                if (xhr.status === 200 || xhr.status === 0) {
-                    let length = xhr.responseText.length;
-                    resolve([xhr.responseText, 0, length - 1, length]);
-                }
-                else if (xhr.status === 206) {
-                    let contentRange = xhr.getResponseHeader('Content-Range');
-                    let result = /bytes (\d*)\-(\d*)\/(\d*)/.exec(contentRange);
-                    if (result) {
-                        let firstByte = Number(result[1]);
-                        let lastByte = Number(result[2]);
-                        let totalBytes = Number(result[3]);
-                        resolve([xhr.responseText, firstByte, lastByte - firstByte + 1, totalBytes]);
-                    }
-                    else {
-                        resolve([xhr.responseText]);
-                    }
-                }
-                else {
-                    reject(null);
-                }
-            }
-        };
-        xhr.onerror = function (e) {
-            reject(null);
-        };
-        xhr.send(null);
-    });
-    return promise;
-}
-
-class RemoteBinaryReader {
-    byteOffset = 0;
-    byteLength = 0;
-    url;
-    littleEndian;
-    chunkSize;
-    loadedChunks = [];
-    #lockPromise;
-    #dataView;
-    #lockPromiseResolve;
-    constructor(url, littleEndian = true, chunkSize = 0) {
-        this.url = url;
-        this.littleEndian = littleEndian;
-        this.chunkSize = chunkSize;
-        //this._initDataview(buffer, byteOffset, byteLength);
-    }
-    /*
-        _initDataview(buffer, byteOffset, byteLength) {
-            if (buffer instanceof BinaryReader) {
-                this.#dataView = new DataView(buffer.buffer, byteOffset, byteLength);
-            } else if (buffer instanceof Uint8Array) {
-                this.#dataView = new DataView(buffer.buffer, byteOffset, byteLength);
-            } else if (buffer instanceof ArrayBuffer) {
-                this.#dataView = new DataView(buffer, byteOffset, byteLength);
-            } else if (typeof buffer === 'string') {
-                this.#dataView = new DataView(getCharCodes(buffer).buffer, byteOffset, byteLength);
-            } else if (typeof buffer === 'number') {
-                this.#dataView = new DataView(new Uint8Array(buffer).buffer, byteOffset, byteLength);
-            } else {
-                console.error(`Unknow buffer type : ${buffer}`);
-            }
-        }
-    */
-    async getLock() {
-        do {
-            await this.#lockPromise;
-        } while (this.#lockPromise !== undefined);
-        this.#lockPromise = new Promise((resolve) => {
-            this.#lockPromiseResolve = resolve;
-        });
-    }
-    releaseLock() {
-        this.#lockPromise = undefined;
-        this.#lockPromiseResolve(true);
-    }
-    async _hasChunk(firstByte, size) {
-        let lastByte;
-        if (this.#dataView !== undefined) {
-            lastByte = Math.min(this.byteLength - 1, firstByte + size);
-        }
-        else {
-            lastByte = firstByte + size;
-        }
-        let firstChunk; // = Math.floor(firstByte / this.chunkSize);
-        let lastChunk; // = Math.floor(lastByte / this.chunkSize);
-        if (this.chunkSize !== 0) {
-            firstChunk = Math.floor(firstByte / this.chunkSize);
-            lastChunk = Math.floor(lastByte / this.chunkSize);
-        }
-        else {
-            firstChunk = lastChunk = 0;
-        }
-        let hasChunk = true;
-        for (let i = firstChunk; i <= lastChunk; ++i) {
-            if (this.loadedChunks[i] !== 2) {
-                hasChunk = false;
-                break;
-            }
-        }
-        if (!hasChunk) {
-            await this._loadChunk(firstChunk, lastChunk);
-            hasChunk = true;
-        }
-        return hasChunk;
-    }
-    async _loadChunk(firstChunk, lastChunk) {
-        /*const callback = (value) => {
-                this.chunkLoaded(value[0], value[1], value[2], value[3]);
-            };
-        const ajaxReject = (value) => {/*TODO: ????* /};*/
-        if (this.chunkSize !== 0) {
-            let firstRequestedChunk = undefined;
-            let countRequestedChunk = 0;
-            for (let i = firstChunk; i <= lastChunk; ++i) {
-                if (!this.loadedChunks[i]) {
-                    this.loadedChunks[i] = 1;
-                    ++countRequestedChunk;
-                    if (firstRequestedChunk === undefined) {
-                        firstRequestedChunk = i;
-                    }
-                }
-                else {
-                    if (countRequestedChunk) {
-                        let value = await BinaryAsyncRangeRequest(this.url, firstRequestedChunk * this.chunkSize, countRequestedChunk * this.chunkSize); //.then(callback, ajaxReject);
-                        this._chunkLoaded(value[0], value[1], value[2], value[3]);
-                    }
-                    firstRequestedChunk = undefined;
-                    countRequestedChunk = 0;
-                }
-            }
-            if (countRequestedChunk) {
-                let value = await BinaryAsyncRangeRequest(this.url, firstRequestedChunk * this.chunkSize, countRequestedChunk * this.chunkSize); //.then(callback, ajaxReject);
-                this._chunkLoaded(value[0], value[1], value[2], value[3]);
-            }
-        }
-        else {
-            if (!this.loadedChunks[0]) {
-                this.loadedChunks[0] = 1;
-                let value = await BinaryAsyncRangeRequest(this.url); //.then(callback, ajaxReject);
-                this._chunkLoaded(value[0], value[1], value[2], value[3]);
-            }
-        }
-    }
-    _chunkLoaded(chunkContent, chunkFirstByte, chunkSize, totalSize) {
-        if (!chunkContent) {
-            return;
-        }
-        if (this.#dataView === undefined) {
-            this.#dataView = new DataView(new Uint8Array(totalSize).buffer);
-            this.byteLength = totalSize;
-            if (this.chunkSize !== 0) {
-                let chunkCount = Math.ceil(totalSize / this.chunkSize);
-                if (chunkCount > 0) {
-                    while (chunkCount--) {
-                        this.loadedChunks.push(0);
-                    }
-                }
-            }
-            else {
-                this.loadedChunks.push(0);
-            }
-        }
-        this.setString(chunkFirstByte, chunkContent);
-        let firstChunk; // = Math.floor(firstByte / this.chunkSize);
-        let lastChunk; // = Math.floor(lastByte / this.chunkSize);
-        if (this.chunkSize !== 0) {
-            firstChunk = Math.floor(chunkFirstByte / this.chunkSize);
-            lastChunk = Math.floor((chunkFirstByte + chunkSize - 1) / this.chunkSize);
-        }
-        else {
-            firstChunk = lastChunk = 0;
-        }
-        //let firstChunk = Math.floor(chunkFirstByte / this.chunkSize);// Math.floor should not be needed here
-        //let lastChunk = Math.floor((chunkFirstByte + chunkSize - 1) / this.chunkSize);// Math.floor should not be needed here
-        for (let i = firstChunk; i <= lastChunk; ++i) {
-            this.loadedChunks[i] = 2;
-        }
-    }
-    /*get buffer() {
-        return this.#dataView.buffer;
-    }
-
-    get byteLength() {
-        return this.#dataView.byteLength;
-    }*/
-    tell() {
-        return this.byteOffset;
-    }
-    seek(byteOffset = this.byteOffset) {
-        // /_checkBounds
-        this.byteOffset = byteOffset;
-    }
-    skip(byteLength = 0) {
-        // /_checkBounds
-        this.byteOffset += byteLength;
-    }
-    async getString(byteLength, byteOffset = this.byteOffset) {
-        await this._hasChunk(byteOffset, byteLength);
-        let string = '';
-        let readBuffer = new Uint8Array(this.#dataView.buffer, byteOffset, byteLength);
-        // /_checkBounds
-        this.byteOffset = byteOffset + byteLength;
-        for (var i = 0; i < byteLength; i++) {
-            string += String.fromCharCode(readBuffer[i]);
-        }
-        return string;
-    }
-    async getNullString(byteOffset = this.byteOffset) {
-        let string = '';
-        let readBuffer = new Uint8Array(this.#dataView.buffer);
-        this.byteOffset = byteOffset;
-        let c;
-        do {
-            await this._hasChunk(this.byteOffset, this.chunkSize);
-            c = String.fromCharCode(readBuffer[this.byteOffset++]);
-            if (c == '\0') ;
-            else {
-                string += c;
-            }
-        } while (c != '\0');
-        return string;
-    }
-    setString(byteOffset = this.byteOffset, string) {
-        let writeBuffer = new Uint8Array(this.#dataView.buffer, byteOffset, string.length);
-        //TODO: check len
-        for (var i = 0, length = string.length; i < length; i++) {
-            writeBuffer[i] = string.charCodeAt(i) & 0xff;
-        }
-    }
-    async getBytes(byteLength, byteOffset = this.byteOffset) {
-        await this._hasChunk(byteOffset, byteLength);
-        let readBuffer = new Uint8Array(this.#dataView.buffer, byteOffset, byteLength);
-        this.byteOffset = byteOffset + byteLength;
-        return readBuffer;
-    }
-    async getInt8(byteOffset = this.byteOffset) {
-        this.byteOffset = byteOffset + 1;
-        await this._hasChunk(byteOffset, 1);
-        return this.#dataView.getInt8(byteOffset);
-    }
-    async getUint8(byteOffset = this.byteOffset) {
-        this.byteOffset = byteOffset + 1;
-        await this._hasChunk(byteOffset, 1);
-        return this.#dataView.getUint8(byteOffset);
-    }
-    async getInt16(byteOffset = this.byteOffset, littleEndian = this.littleEndian) {
-        this.byteOffset = byteOffset + 2;
-        await this._hasChunk(byteOffset, 2);
-        return this.#dataView.getInt16(byteOffset, littleEndian);
-    }
-    async getUint16(byteOffset = this.byteOffset, littleEndian = this.littleEndian) {
-        this.byteOffset = byteOffset + 2;
-        await this._hasChunk(byteOffset, 2);
-        return this.#dataView.getUint16(byteOffset, littleEndian);
-    }
-    async getFloat16(byteOffset = this.byteOffset, littleEndian = this.littleEndian) {
-        //TODO: fix endianness
-        this.byteOffset = byteOffset + 2;
-        await this._hasChunk(byteOffset, 2);
-        let readBuffer = new Uint8Array(this.#dataView.buffer, byteOffset, 2); //TODOv3: optimize
-        let b = readBuffer; //this._getBytes(2, byteOffset, littleEndian);
-        let sign = b[1] >> 7;
-        let exponent = ((b[1] & 0x7C) >> 2);
-        let mantissa = ((b[1] & 0x03) << 8) | b[0];
-        if (exponent == 0) {
-            return (sign ? -1 : 1) * TWO_POW_MINUS_14 * (mantissa / TWO_POW_10);
-        }
-        else if (exponent == 0x1F) {
-            return mantissa ? NaN : ((sign ? -1 : 1) * Infinity);
-        }
-        return (sign ? -1 : 1) * Math.pow(2, exponent - 15) * (1 + (mantissa / TWO_POW_10));
-    }
-    async getInt32(byteOffset = this.byteOffset, littleEndian = this.littleEndian) {
-        this.byteOffset = byteOffset + 4;
-        await this._hasChunk(byteOffset, 4);
-        return this.#dataView.getInt32(byteOffset, littleEndian);
-    }
-    async getUint32(byteOffset = this.byteOffset, littleEndian = this.littleEndian) {
-        this.byteOffset = byteOffset + 4;
-        await this._hasChunk(byteOffset, 4);
-        return this.#dataView.getUint32(byteOffset, littleEndian);
-    }
-    async getFloat32(byteOffset = this.byteOffset, littleEndian = this.littleEndian) {
-        this.byteOffset = byteOffset + 4;
-        await this._hasChunk(byteOffset, 4);
-        return this.#dataView.getFloat32(byteOffset, littleEndian);
-    }
-    async getBigInt64(byteOffset = this.byteOffset, littleEndian = this.littleEndian) {
-        this.byteOffset = byteOffset + 8;
-        await this._hasChunk(byteOffset, 8);
-        return this.#dataView.getBigInt64(byteOffset, littleEndian);
-    }
-    async getBigUint64(byteOffset = this.byteOffset, littleEndian = this.littleEndian) {
-        this.byteOffset = byteOffset + 8;
-        await this._hasChunk(byteOffset, 8);
-        return this.#dataView.getBigUint64(byteOffset, littleEndian);
-    }
-    async getFloat64(byteOffset = this.byteOffset, littleEndian = this.littleEndian) {
-        this.byteOffset = byteOffset + 8;
-        await this._hasChunk(byteOffset, 8);
-        return this.#dataView.getFloat64(byteOffset, littleEndian);
-    }
-    async getVector2(byteOffset = this.byteOffset, littleEndian = this.littleEndian) {
-        let vec = new Float32Array(2);
-        vec[0] = await this.getFloat32(byteOffset, littleEndian);
-        vec[1] = await this.getFloat32(undefined, littleEndian);
-        return vec;
-    }
-    async getVector3(byteOffset = this.byteOffset, littleEndian = this.littleEndian) {
-        let vec = new Float32Array(3);
-        vec[0] = await this.getFloat32(byteOffset, littleEndian);
-        vec[1] = await this.getFloat32(undefined, littleEndian);
-        vec[2] = await this.getFloat32(undefined, littleEndian);
-        return vec;
-    }
-    async getVector4(byteOffset = this.byteOffset, littleEndian = this.littleEndian) {
-        let vec = new Float32Array(4);
-        vec[0] = await this.getFloat32(byteOffset, littleEndian);
-        vec[1] = await this.getFloat32(undefined, littleEndian);
-        vec[2] = await this.getFloat32(undefined, littleEndian);
-        vec[3] = await this.getFloat32(undefined, littleEndian);
-        return vec;
-    }
-    async getVector48(byteOffset = this.byteOffset, littleEndian = this.littleEndian) {
-        let vec = new Float32Array(3);
-        vec[0] = await this.getFloat16(byteOffset, littleEndian);
-        vec[1] = await this.getFloat16(undefined, littleEndian);
-        vec[2] = await this.getFloat16(undefined, littleEndian);
-        return vec;
-    }
-    async getQuaternion(byteOffset = this.byteOffset, littleEndian = this.littleEndian) {
-        let vec = new Float32Array(4);
-        vec[0] = await this.getFloat32(byteOffset, littleEndian);
-        vec[1] = await this.getFloat32(undefined, littleEndian);
-        vec[2] = await this.getFloat32(undefined, littleEndian);
-        vec[3] = await this.getFloat32(undefined, littleEndian);
-        return vec;
     }
 }
 
@@ -96056,6 +97484,8 @@ var index = /*#__PURE__*/Object.freeze({
   BeamSegment: BeamSegment,
   BenefactorLevel: BenefactorLevel,
   Bias: Bias,
+  get BlendingEquation () { return BlendingEquation; },
+  get BlendingFactors () { return BlendingFactors; },
   get BlendingMode () { return BlendingMode; },
   Bone: Bone,
   BoundingBox: BoundingBox,
@@ -96597,7 +98027,6 @@ var index = /*#__PURE__*/Object.freeze({
   RemapScalarToVector: RemapScalarToVector,
   RemapValClamped: RemapValClamped,
   RemapValClampedBias: RemapValClampedBias,
-  RemoteBinaryReader: RemoteBinaryReader,
   RenderAnimatedSprites: RenderAnimatedSprites,
   RenderBlobs: RenderBlobs,
   get RenderBufferInternalFormat () { return RenderBufferInternalFormat; },
@@ -96728,6 +98157,7 @@ var index = /*#__PURE__*/Object.freeze({
   Source2VrSimple3LayerParallax: Source2VrSimple3LayerParallax,
   Source2VrSkin: Source2VrSkin,
   Source2VrXenFoliage: Source2VrXenFoliage,
+  SourceBSP: SourceBSP,
   SourceEngineBSPLoader: SourceEngineBSPLoader,
   SourceEngineMDLLoader: SourceEngineMDLLoader,
   SourceEngineMaterialManager: SourceEngineMaterialManager,
@@ -97804,6 +99234,9 @@ class WeaponManager {
     async initPaintKitDefinitions(url) {
         let response = await fetch(url);
         this.protoDefs = await response.json();
+        await this.refreshPaintKitDefinitions();
+    }
+    async refreshPaintKitDefinitions() {
         let definitions = await PaintKitDefinitions.getWarpaintDefinitions();
         if (definitions) {
             this._protoElements = definitions;
