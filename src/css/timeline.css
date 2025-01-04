@@ -128,3 +128,9 @@
 	line-height: 1;
 	padding-inline-start: var(--ruler-num-pi);
 }
+
+.cursor {
+	position: absolute;
+	height: 100%;
+	width: 1rem;
+}

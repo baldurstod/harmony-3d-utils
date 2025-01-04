@@ -7,6 +7,7 @@ export class HTMLTimelineElement extends HTMLElement {
 	#htmlContainer: HTMLElement;
 	#htmlRuler: HTMLElement;
 	#htmlContent: HTMLElement;
+	#htmlCursor: HTMLElement;
 
 	#childs = new Map<TimelineElement, any/*TODO: proper type*/>();
 
@@ -28,13 +29,13 @@ export class HTMLTimelineElement extends HTMLElement {
 			childs: [
 				this.#htmlRuler = createElement('ul', {
 					class: 'ruler-x',
-					parent: this.#shadowRoot,
 					innerHTML: '<li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>',
 					events: {
 						mousedown: (event: MouseEvent) => this.#startDragRuler(event),
 					}
 				}),
-				this.#htmlContent = createElement('div', { class: 'content', parent: this.#shadowRoot, }),
+				this.#htmlContent = createElement('div', { class: 'content' }),
+				this.#htmlCursor = createElement('div', { class: 'cursor' }),
 			]
 		});
 
