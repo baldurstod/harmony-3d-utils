@@ -11298,6 +11298,10 @@ const pauseSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0
 
 const playSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="currentColor"><path d="M320-200v-560l440 280-440 280Z"/></svg>';
 
+const repeatOnSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentcolor"><path d="M120-40q-33 0-56.5-23.5T40-120v-720q0-33 23.5-56.5T120-920h720q33 0 56.5 23.5T920-840v720q0 33-23.5 56.5T840-40H120Zm160-40 56-58-62-62h486v-240h-80v160H274l62-62-56-58-160 160L280-80Zm-80-440h80v-160h406l-62 62 56 58 160-160-160-160-56 58 62 62H200v240Z"/></svg>';
+
+const repeatSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentcolor"><path d="M280-80 120-240l160-160 56 58-62 62h406v-160h80v240H274l62 62-56 58Zm-80-440v-240h486l-62-62 56-58 160 160-160 160-56-58 62-62H280v160h-80Z"/></svg>';
+
 const restartSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M440-122q-121-15-200.5-105.5T160-440q0-66 26-126.5T260-672l57 57q-38 34-57.5 79T240-440q0 88 56 155.5T440-202v80Zm80 0v-80q87-16 143.5-83T720-440q0-100-70-170t-170-70h-3l44 44-56 56-140-140 140-140 56 56-44 44h3q134 0 227 93t93 227q0 121-79.5 211.5T520-122Z"/></svg>';
 
 const rotateSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M482-160q-134 0-228-93t-94-227v-7l-64 64-56-56 160-160 160 160-56 56-64-64v7q0 100 70.5 170T482-240q26 0 51-6t49-18l60 60q-38 22-78 33t-82 11Zm278-161L600-481l56-56 64 64v-7q0-100-70.5-170T478-720q-26 0-51 6t-49 18l-60-60q38-22 78-33t82-11q134 0 228 93t94 227v7l64-64 56 56-160 160Z"/></svg>';
@@ -33318,6 +33322,9 @@ class Material {
     }
     beforeRender(camera) {
     }
+    /**
+     * @deprecated Please use `renderFace` instead.
+     */
     set culling(mode) {
         throw 'deprecated';
     }
@@ -34110,6 +34117,9 @@ class Entity {
             EntityObserver.propertyChanged(this, 'visible', oldValue, visible);
         }
     }
+    /**
+     * @deprecated Please use `setVisible` instead.
+     */
     set visible(visible) {
         this.setVisible(visible);
     }
@@ -34121,16 +34131,25 @@ class Entity {
             return this.#visible;
         }
     }
+    isVisibleSelf() {
+        return this.#visible;
+    }
+    /**
+     * @deprecated Please use `isVisible` instead.
+     */
     get visible() {
         return this.isVisible();
     }
+    /**
+     * @deprecated Please use `isVisibleSelf` instead.
+     */
     get visibleSelf() {
         return this.#visible;
     }
     toggleVisibility() {
         const oldValue = this.#visible;
         if (this.#visible === undefined) {
-            if (this.visible) {
+            if (this.isVisible()) {
                 this.setVisible(false);
             }
             else {
@@ -34139,7 +34158,7 @@ class Entity {
         }
         else if (this.#visible === true) {
             if (this._parent) {
-                if (this._parent.visible) {
+                if (this._parent.isVisible()) {
                     this.setVisible(false);
                 }
                 else {
@@ -34152,7 +34171,7 @@ class Entity {
         }
         else { // false
             if (this._parent) {
-                if (this._parent.visible) {
+                if (this._parent.isVisible()) {
                     this.setVisible(undefined);
                 }
                 else {
@@ -34389,7 +34408,7 @@ class Entity {
         let currentEntity = this;
         let objectStack = [];
         while (currentEntity) {
-            if (currentEntity.isRenderable && (currentEntity.visible !== false)) {
+            if (currentEntity.isRenderable && (currentEntity.isVisible() !== false)) {
                 meshList.add(currentEntity);
             }
             for (let child of currentEntity.#children) {
@@ -34608,7 +34627,7 @@ class Entity {
     }
     buildContextMenu() {
         let menu = {
-            visibility: { i18n: '#visibility', selected: this.visible, f: () => this.toggleVisibility() },
+            visibility: { i18n: '#visibility', selected: this.isVisible(), f: () => this.toggleVisibility() },
             remove: { i18n: '#remove', f: () => this.remove() },
             destroy: { i18n: '#destroy', f: () => this.dispose() },
             remove_more: {
@@ -35849,6 +35868,7 @@ class Mesh extends Entity {
     isRenderable = true;
     uniforms = {};
     defines = Object.create(null);
+    isMesh = true;
     constructor(geometry, material) {
         super();
         this.setGeometry(geometry);
@@ -36357,7 +36377,7 @@ class WebGLShaderSource {
                                             }
                                             break;
                                         case '/':
-                                            startIndex = unrollSubstring.indexOf("\n", startIndex);
+                                            startIndex = unrollSubstring.indexOf('\n', startIndex);
                                             break;
                                     }
                                     break;
@@ -37061,13 +37081,6 @@ class Camera extends Entity {
     dirty() {
         this.#dirtyCameraMatrix = true;
         this.#dirtyProjectionMatrix = true;
-    }
-    /**
-    * Get camera matrix
-    * @return TODO
-    */
-    get matrix() {
-        throw 'deprecated';
     }
     get cameraMatrix() {
         if (this.#dirtyCameraMatrix) {
@@ -38471,7 +38484,7 @@ class Renderer {
         let pointShadowMap = [];
         let pointShadowMatrix = [];
         for (let pointLight of pointLights) {
-            if (pointLight.visible) {
+            if (pointLight.isVisible()) {
                 pointLight.getWorldPosition(lightPositionWorldSpace);
                 transformMat4$2(lightPositionCameraSpace, lightPositionWorldSpace, viewMatrix);
                 program.setUniformValue('uPointLights[' + pointLightId + '].position', lightPositionCameraSpace);
@@ -38533,7 +38546,7 @@ class Renderer {
         let ambientLights = renderList.ambientLights; //scene.getChildList(AmbientLight);
         let ambientAccumulator = create$4(); //TODO: do not create a vec3
         for (let ambientLight of ambientLights) {
-            if (ambientLight.visible) {
+            if (ambientLight.isVisible()) {
                 scaleAndAdd$2(ambientAccumulator, ambientAccumulator, ambientLight.color, ambientLight.intensity);
             }
         }
@@ -38560,7 +38573,7 @@ class Renderer {
         if (!object.isRenderable) {
             return;
         }
-        if (object.visible === false) {
+        if (object.isVisible() === false) {
             return;
         }
         if (geometry.count === 0) {
@@ -38809,7 +38822,7 @@ class RenderList {
         this.spotLights.sort(sortLights);
     }
     addObject(entity) {
-        if (entity.visible !== false) {
+        if (entity.isVisible() !== false) {
             if (entity.isLight) {
                 this.lights.push(entity);
                 if (entity.isAmbientLight) {
@@ -38829,7 +38842,7 @@ class RenderList {
                 }
             }
             else {
-                let material = entity.material;
+                const material = entity.material;
                 if (material) {
                     if (material.blend) { //TODOv3 changeblend
                         this.transparentList.push(entity);
@@ -39638,6 +39651,9 @@ class RenderTarget {
     getTexture() {
         return this.#texture;
     }
+    /**
+     * @deprecated Please use `getTexture` instead.
+     */
     get texture() {
         throw 'deprecated, use getTexture()';
     }
@@ -39724,12 +39740,12 @@ class OutlinePass extends Pass {
         this.scene.forEach((entity) => {
             if (entity.properties.get('selected') && entity.isRenderable) {
                 if (visible) {
-                    entity.visible = entity.properties.get('oldVisible');
+                    entity.setVisible(entity.properties.get('oldVisible'));
                     entity.properties.delete('oldVisible');
                 }
                 else {
-                    entity.properties.set('oldVisible', entity.visibleSelf);
-                    entity.visible = visible;
+                    entity.properties.set('oldVisible', entity.isVisibleSelf());
+                    entity.setVisible(visible);
                 }
             }
         });
@@ -39738,12 +39754,12 @@ class OutlinePass extends Pass {
         this.scene.forEach((entity) => {
             if (!entity.properties.get('selected') && entity.isRenderable) {
                 if (visible) {
-                    entity.visible = entity.properties.get('oldVisible');
+                    entity.setVisible(entity.properties.get('oldVisible'));
                     entity.properties.delete('oldVisible');
                 }
                 else {
-                    entity.properties.set('oldVisible', entity.visibleSelf);
-                    entity.visible = visible;
+                    entity.properties.set('oldVisible', entity.isVisibleSelf());
+                    entity.setVisible(visible);
                 }
             }
         });
@@ -42080,7 +42096,7 @@ class Manipulator extends Entity {
         });
         GraphicsEvents.addEventListener(GraphicsEvent.MouseMove, (event) => {
             let detail = event.detail;
-            if (!detail.entity?.visible) {
+            if (!detail.entity?.isVisible()) {
                 return;
             }
             if (this.#entityAxis.has(detail.entity)) {
@@ -42112,7 +42128,7 @@ class Manipulator extends Entity {
         new ShortcutHandler().addEventListener(MANIPULATOR_SHORTCUT_TOGGLE_Z, event => this.enableZ = !this.enableZ);
     }
     resize(camera) {
-        if (!this.visible) {
+        if (!this.isVisible()) {
             return;
         }
         let scaleFactor = 1;
@@ -42556,26 +42572,29 @@ class Manipulator extends Entity {
     setCamera(camera) {
         this.camera = camera;
     }
+    /**
+     * @deprecated Please use `setMode` instead.
+     */
     set mode(mode) {
         console.warn('deprecated, use setMode()');
         this.setMode(mode);
     }
     setMode(mode) {
-        this.#translationManipulator.visible = false;
-        this.#rotationManipulator.visible = false;
-        this.#scaleManipulator.visible = false;
+        this.#translationManipulator.setVisible(false);
+        this.#rotationManipulator.setVisible(false);
+        this.#scaleManipulator.setVisible(false);
         this.#setAxisSelected(false);
         new Graphics().dragging = false;
         this.#mode = mode;
         switch (mode) {
             case 0:
-                this.#translationManipulator.visible = undefined;
+                this.#translationManipulator.setVisible(undefined);
                 break;
             case 1:
-                this.#rotationManipulator.visible = undefined;
+                this.#rotationManipulator.setVisible(undefined);
                 break;
             case 2:
-                this.#scaleManipulator.visible = undefined;
+                this.#scaleManipulator.setVisible(undefined);
                 break;
         }
         this.#setAxisSelected(false);
@@ -42610,9 +42629,9 @@ class Manipulator extends Entity {
     set enableX(enableX) {
         this.#enableX = enableX;
         let enable = enableX ? undefined : false;
-        this.#xArrow.visible = enable;
-        this.#xCircle.visible = enable;
-        this.#xScale.visible = enable;
+        this.#xArrow.setVisible(enable);
+        this.#xCircle.setVisible(enable);
+        this.#xScale.setVisible(enable);
     }
     get enableX() {
         return this.#enableX;
@@ -42620,9 +42639,9 @@ class Manipulator extends Entity {
     set enableY(enableY) {
         this.#enableY = enableY;
         let enable = enableY ? undefined : false;
-        this.#yArrow.visible = enable;
-        this.#yCircle.visible = enable;
-        this.#yScale.visible = enable;
+        this.#yArrow.setVisible(enable);
+        this.#yCircle.setVisible(enable);
+        this.#yScale.setVisible(enable);
     }
     get enableY() {
         return this.#enableY;
@@ -42630,9 +42649,9 @@ class Manipulator extends Entity {
     set enableZ(enableZ) {
         this.#enableZ = enableZ;
         let enable = enableZ ? undefined : false;
-        this.#zArrow.visible = enable;
-        this.#zCircle.visible = enable;
-        this.#zScale.visible = enable;
+        this.#zArrow.setVisible(enable);
+        this.#zCircle.setVisible(enable);
+        this.#zScale.setVisible(enable);
     }
     get enableZ() {
         return this.#enableZ;
@@ -45321,7 +45340,7 @@ class LoopSubdivision {
                 fd_write: (fd, iovsPtr, iovsLength, bytesWrittenPtr) => {
                     const iovs = new Uint32Array(this.#heapBuffer, iovsPtr, iovsLength * 2);
                     if (fd === 1 || fd === 2) { //stdout
-                        let text = "";
+                        let text = '';
                         let totalBytesWritten = 0;
                         const decoder = new TextDecoder();
                         for (let i = 0; i < iovsLength * 2; i += 2) {
@@ -46726,6 +46745,9 @@ class NodeImageEditorGui {
         this.#initResizeObserver();
         this.#setCanvasSize();
     }
+    /**
+     * @deprecated Please use `setNodeImageEditor` instead.
+     */
     set nodeImageEditor(nodeImageEditor) {
         console.warn('set nodeImageEditor is deprecated, use setNodeImageEditor instead');
         this.setNodeImageEditor(nodeImageEditor);
@@ -46846,7 +46868,7 @@ class NodeImageEditorGui {
             }
             context.bezierCurveTo(xa, y1, xb, y2, x2, y2);
             context.lineWidth = 2;
-            context.strokeStyle = "#EEEEEE";
+            context.strokeStyle = '#EEEEEE';
             context.stroke();
         }
     }
@@ -48065,8 +48087,6 @@ class SkeletonHelper extends Entity {
         this.#boneStart = new Sphere({ radius: 1, material: this.#boneTipMaterial });
         this.#boneEnd = new Sphere({ radius: 1, material: this.#boneTipMaterial });
         this.addChilds(this.#boneStart, this.#boneEnd);
-        this.#boneStart.userData = {};
-        this.#boneEnd.userData = {};
         this.#initListeners();
     }
     parentChanged(parent) {
@@ -48087,8 +48107,8 @@ class SkeletonHelper extends Entity {
     #clearSkeleton() {
         this.#lines.forEach(value => value.dispose());
         this.#lines.clear();
-        this.#boneStart.visible = false;
-        this.#boneEnd.visible = false;
+        this.#boneStart.setVisible(false);
+        this.#boneEnd.setVisible(false);
     }
     /*
         set skeleton(skeleton) {
@@ -48112,7 +48132,7 @@ class SkeletonHelper extends Entity {
             let boneLine = this.#lines.get(bone);
             if (!boneLine) {
                 boneLine = new Line({ material: this.#lineMaterial, parent: this });
-                boneLine.userData = { bone: bone };
+                boneLine.properties.set('bone', bone);
                 this.#lines.set(bone, boneLine);
                 this.addChild(boneLine);
             }
@@ -48121,8 +48141,8 @@ class SkeletonHelper extends Entity {
             boneLine.end = bone.worldPos;
             const boneParent = bone.parent;
             if (boneParent?.isBone) {
-                boneLine.start = boneParent.worldPos;
-                boneLine.userData.boneParent = boneParent;
+                boneLine.start = boneParent.getWorldPosition( /*TODO: optimize*/);
+                boneLine.properties.set('boneParent', boneParent);
             }
         }
     }
@@ -48131,7 +48151,7 @@ class SkeletonHelper extends Entity {
     }
     #initListeners() {
         GraphicsEvents.addEventListener(GraphicsEvent.Tick, () => {
-            if (!this.visible) {
+            if (!this.isVisible()) {
                 return;
             }
             this.#update();
@@ -48150,15 +48170,15 @@ class SkeletonHelper extends Entity {
         const closest = this.#pickBone(event);
         this.#highlit(closest);
         if (closest) {
-            let bone = closest.userData.bone;
+            let bone = closest.properties.get('bone');
             if (closest.isLine) {
-                bone = bone?.parent ?? bone;
+                bone = bone?.parent /*TODO case where parent is not Bone*/ ?? bone;
             }
             SceneExplorerEvents.dispatchEvent(new CustomEvent('bonepicked', { detail: { bone: bone } }));
         }
     }
     #pickBone(event) {
-        if (!this.visible) {
+        if (!this.isVisible()) {
             return;
         }
         let normalizedX = (event.detail.x / new Graphics().getWidth()) * 2 - 1;
@@ -48202,10 +48222,10 @@ class SkeletonHelper extends Entity {
             line.material = this.#highlitLineMaterial;
             this.#boneStart.position = line.getStart(tempVec3$n);
             this.#boneEnd.position = line.getEnd(tempVec3$n);
-            this.#boneStart.visible = true;
-            this.#boneEnd.visible = true;
-            this.#boneStart.userData.bone = line.userData.boneParent;
-            this.#boneEnd.userData.bone = line.userData.bone;
+            this.#boneStart.setVisible(true);
+            this.#boneEnd.setVisible(true);
+            this.#boneStart.properties.set('bone', line.properties.get('boneParent'));
+            this.#boneEnd.properties.set('bone', line.properties.get('bone'));
         }
         this.#highlitLine = line;
     }
@@ -50521,7 +50541,7 @@ class RepositoryEntry {
 }
 _a$3 = RepositoryEntry;
 function splitFilename(filename) {
-    const pos = filename.lastIndexOf(".");
+    const pos = filename.lastIndexOf('.');
     if (pos < 1) {
         // No dot found or dot in first position
         return { name: filename, extension: '' };
@@ -50894,6 +50914,7 @@ class SceneExplorerEntity extends HTMLElement {
     #htmlVisible;
     #htmlPlaying;
     #htmlAnimationsButton;
+    #htmlLoopedButton;
     #htmlReset;
     static #entitiesHTML = new Map();
     static #selectedEntity;
@@ -50951,6 +50972,21 @@ class SceneExplorerEntity extends HTMLElement {
                             ],
                             events: {
                                 change: (event) => this.#displayAnimations(event.target.state),
+                            }
+                        }),
+                        this.#htmlLoopedButton = createElement('harmony-toggle-button', {
+                            hidden: true,
+                            class: 'scene-explorer-entity-button-animations',
+                            childs: [
+                                createElement('off', {
+                                    innerHTML: repeatSVG,
+                                }),
+                                createElement('on', {
+                                    innerHTML: repeatOnSVG,
+                                }),
+                            ],
+                            events: {
+                                change: (event) => this.#entity?.setlooping(event.target.state),
                             }
                         }),
                         this.#htmlReset = createElement('div', {
@@ -51012,6 +51048,9 @@ class SceneExplorerEntity extends HTMLElement {
             });
         }
     }
+    /**
+     * @deprecated Please use `setEntity` instead.
+     */
     set entity(entity) {
         //TODO: deprecate
         console.warn('deprecated, use setEntity instaed');
@@ -51025,6 +51064,7 @@ class SceneExplorerEntity extends HTMLElement {
         display(this.#htmlPlaying, entity?.animable);
         display(this.#htmlAnimationsButton, entity?.hasAnimations);
         display(this.#htmlReset, entity?.resetable);
+        display(this.#htmlLoopedButton, entity?.isLoopable);
     }
     static setExplorer(explorer) {
         _a$2.#explorer = explorer;
@@ -51103,7 +51143,7 @@ class SceneExplorerEntity extends HTMLElement {
         }
     }
     #updateVisibility() {
-        if (this.#entity?.visible) {
+        if (this.#entity?.isVisible()) {
             this.#htmlVisible.innerHTML = visibilityOnSVG;
         }
         else {
@@ -53289,7 +53329,7 @@ function readHandle(reader) {
     for (var i = 0; i < 8; i++) {
         c = reader.getUint8();
         hex = c.toString(16); // convert to hex
-        hex = (hex.length == 1 ? "0" + hex : hex);
+        hex = (hex.length == 1 ? '0' + hex : hex);
         str += hex;
     }
     return str;
@@ -53670,7 +53710,7 @@ function loadField(reader, reference, field, block, startOffset, introspection, 
                 return loadStruct(reader, reference, struct, null, fieldOffset + pos, introspection);
             }
             else {
-                console.log("Unknown struct " + field.type, fieldOffset);
+                console.log('Unknown struct ' + field.type, fieldOffset);
             }
             console.log(fieldOffset);
             return fieldOffset;
@@ -53696,7 +53736,7 @@ function loadField(reader, reference, field, block, startOffset, introspection, 
                             }
                         }
                         else {
-                            console.log("Unknown struct " + field.type, fieldOffset);
+                            console.log('Unknown struct ' + field.type, fieldOffset);
                         }
                     }
                     else if (field.type2 == DATA_TYPE_HANDLE) { // HANDLE
@@ -53712,7 +53752,7 @@ function loadField(reader, reference, field, block, startOffset, introspection, 
                         return values; //this.reference.externalFiles[handle];
                     }
                     else {
-                        console.log("Unknown struct type for array " + field, fieldOffset);
+                        console.log('Unknown struct type for array ' + field, fieldOffset);
                     }
                 }
                 else {
@@ -53747,7 +53787,7 @@ function loadField(reader, reference, field, block, startOffset, introspection, 
                 console.log(fieldOffset);
                 return;
             case DATA_TYPE_ENUM: //2
-                return ["enum", field.name, field.type2, fieldOffset, reader.getInt32(fieldOffset)];
+                return ['enum', field.name, field.type2, fieldOffset, reader.getInt32(fieldOffset)];
             case DATA_TYPE_HANDLE: //3
                 // Handle to an external ressource in the RERL block
                 reader.seek(fieldOffset);
@@ -53926,7 +53966,7 @@ function getImage(reader, mipmapWidth, mipmapHeight, imageFormat, compressedLeng
             entrySize = Math.max(mipmapWidth, 4) * Math.max(mipmapHeight, 4); // 1 byte per pixel, blocks of 16 bytes
             break;
         default:
-            console.warn("Unknown image format " + imageFormat, reader, mipmapWidth, mipmapHeight, compressedLength);
+            console.warn('Unknown image format ' + imageFormat, reader, mipmapWidth, mipmapHeight, compressedLength);
     }
     let imageDatas;
     if (compressedLength === null || compressedLength === entrySize) {
@@ -54279,7 +54319,7 @@ const MeshManager = new function () {
         }
         else {
             //TODO; create a dummy mesh
-            console.error("No mesh loaded");
+            console.error('No mesh loaded');
         }
         return mesh;
     };
@@ -54519,13 +54559,13 @@ class Source2ModelInstance extends Entity {
         }
         for (const mesh of this.meshes) {
             const geometry = mesh.geometry;
-            mesh.visible = undefined;
+            mesh.setVisible(undefined);
             if (geometry) {
                 const meshGroupMask = BigInt(geometry.properties.get('mesh_group_mask'));
                 const lodGroupMask = BigInt(geometry.properties.get('lodGroupMask'));
-                mesh.visible = (meshGroupMask & mask) > 0 ? undefined : false;
+                mesh.setVisible((meshGroupMask & mask) > 0 ? undefined : false);
                 if (lodGroupMask && ((lodGroupMask & this.#lod) == 0n)) {
-                    mesh.visible = false;
+                    mesh.setVisible(false);
                 }
             }
         }
@@ -54706,7 +54746,7 @@ class Source2ModelInstance extends Entity {
                         if (geometry.hasAttribute('aVertexTangent')) {
                             mesh.setDefine('USE_VERTEX_TANGENT');
                         }
-                        mesh.visible = undefined;
+                        mesh.setVisible(undefined);
                         mesh.properties.set('materialPath', geometry.properties.get('materialPath'));
                         newModel.push(mesh);
                         this.addChild(mesh);
@@ -55321,7 +55361,7 @@ const AnimManager = new (function () {
             }
             else {
                 //TODO; create dummy
-                console.error("No anim group loaded");
+                console.error('No anim group loaded');
             }
             return animGroup;
         }
@@ -55365,7 +55405,7 @@ const AnimManager = new (function () {
             }
             else {
                 //TODO; create dummy
-                console.error("No anim group loaded");
+                console.error('No anim group loaded');
             }
             return seqGroup;
         }
@@ -56665,6 +56705,9 @@ class SceneExplorer {
         EntityObserver.addEventListener(PROPERTY_CHANGED$1, (event) => this.#handlePropertyChanged(event.detail));
         SceneExplorerEvents.addEventListener('bonepicked', (event) => this.selectEntity(event.detail.bone));
     }
+    /**
+     * @deprecated Please use `setScene` instead.
+     */
     set scene(scene) {
         console.warn('deprecated, use setScene instead');
         this.setScene(scene);
@@ -56784,7 +56827,7 @@ class SceneExplorer {
                         htmlManipulator = createElement('input', {
                             type: 'checkbox',
                             events: {
-                                change: (event) => this.#manipulator.visible = event.target.checked,
+                                change: (event) => this.#manipulator.setVisible(event.target.checked),
                             },
                         }),
                         createElement('span', { i18n: '#display_manipulator', }),
@@ -56797,7 +56840,7 @@ class SceneExplorer {
                         click: () => {
                             this.#manipulator.setMode(ManipulatorMode.Translation);
                             htmlManipulator.checked = true;
-                            this.#manipulator.visible = true;
+                            this.#manipulator.setVisible(true);
                         },
                     }
                 }),
@@ -56808,7 +56851,7 @@ class SceneExplorer {
                         click: () => {
                             this.#manipulator.setMode(ManipulatorMode.Rotation);
                             htmlManipulator.checked = true;
-                            this.#manipulator.visible = true;
+                            this.#manipulator.setVisible(true);
                         },
                     }
                 }),
@@ -56819,7 +56862,7 @@ class SceneExplorer {
                         click: () => {
                             this.#manipulator.setMode(ManipulatorMode.Scale);
                             htmlManipulator.checked = true;
-                            this.#manipulator.visible = true;
+                            this.#manipulator.setVisible(true);
                         },
                     }
                 }),
@@ -56832,7 +56875,7 @@ class SceneExplorer {
                     type: 'checkbox',
                     id: skeletonId,
                     events: {
-                        change: (event) => this.#skeletonHelper.visible = event.target.checked
+                        change: (event) => this.#skeletonHelper.setVisible(event.target.checked)
                     }
                 }),
                 createElement('label', {
@@ -60408,7 +60451,7 @@ class ShaderEditor extends HTMLElement {
         if (this.#initialized) {
             return;
         }
-        this.#shadowRoot = this.attachShadow({ mode: "closed" });
+        this.#shadowRoot = this.attachShadow({ mode: 'closed' });
         I18n.observeElement(this.#shadowRoot);
         let aceScript = options.aceUrl ?? ACE_EDITOR_URI;
         this.#initialized = true;
@@ -66217,7 +66260,7 @@ class Source1ModelInstance extends Entity {
                 console.info(arr);
 
             }
-*/
+    */
             for (const bone of animation.bones) {
                 const skeletonBone = skeleton.getBoneById(bone.id);
                 if (!skeletonBone) {
@@ -66325,7 +66368,7 @@ class Source1ModelInstance extends Entity {
                     group2.properties.set('modelId', modelId);
                     group2.name = `${bodyPartName} ${modelId}`;
                     if (Number(modelId) != 0) {
-                        group2.visible = false;
+                        group2.setVisible(false);
                     }
                     group.addChild(group2);
                     for (let modelMesh of model) {
@@ -66409,6 +66452,7 @@ class Source1ModelInstance extends Entity {
     getBoneById(boneId) {
         return this.#skeleton ? this.#skeleton.getBoneById(boneId) : null;
     }
+    /*
     setBodyGroup(bodyPartName, bodyPartModelId) {
         let bodyPart = this.bodyParts[bodyPartName];
         if (bodyPart) {
@@ -66424,6 +66468,7 @@ class Source1ModelInstance extends Entity {
             }
         }
     }
+    */
     renderBodyParts(render) {
         for (let bodyPartName in this.bodyParts) {
             this.renderBodyPart(bodyPartName, render);
@@ -66440,7 +66485,7 @@ class Source1ModelInstance extends Entity {
     renderBodyPart(bodyPartName, render) {
         let bodyPart = this.bodyParts[bodyPartName];
         if (bodyPart) {
-            bodyPart.visible = render ? undefined : false;
+            bodyPart.setVisible(render ? undefined : false);
             /*for (let model of bodyPart) {
                 for (let mesh of model) {
                     mesh.visible = render ? undefined : false;
@@ -66465,7 +66510,7 @@ class Source1ModelInstance extends Entity {
             //let id = 0;
             for (let bodyPartModel of bodyPart.children) {
                 //let bodyPartModel = bodyPart.children.get(id);
-                bodyPartModel.visible = (bodyPartModel.properties.get('modelId') == modelId) ? undefined : false;
+                bodyPartModel.setVisible((bodyPartModel.properties.get('modelId') == modelId) ? undefined : false);
                 //++id;
             }
         }
@@ -71922,7 +71967,9 @@ class ParamType {
 class SourceEngineParticleSystem extends Entity {
     isParticleSystem = true;
     repository;
-    #autoKill;
+    #autoKill = false;
+    #looping = false;
+    isLoopable = true;
     #sequenceNumber = 0;
     #materialPromiseResolve;
     #materialPromise;
@@ -71967,7 +72014,7 @@ class SourceEngineParticleSystem extends Entity {
     pcf;
     material;
     materialName;
-    maxParticles = 0;
+    maxParticles = DEFAULT_MAX_PARTICLES;
     resetDelay = 0;
     snapshot;
     static #speed = 1.0;
@@ -71976,7 +72023,6 @@ class SourceEngineParticleSystem extends Entity {
     constructor(params) {
         params.name = params.name ?? `System ${systemNumber++}`;
         super(params);
-        this.#autoKill = false;
         this.repository = params.repository;
         this.addParam('max_particles', PARAM_TYPE_INT, 50);
         this.addParam('initial_particles', PARAM_TYPE_INT, 0);
@@ -71990,7 +72036,6 @@ class SourceEngineParticleSystem extends Entity {
         this.addParam('maximum sim tick rate', PARAM_TYPE_FLOAT, 1);
         this.addParam('maximum time step', PARAM_TYPE_FLOAT, 0.1);
         //this.maxParticles = null;
-        this.setMaxParticles(DEFAULT_MAX_PARTICLES);
         //this.getControlPoint(0);
         /*for (let i = 0; i < MAX_PARTICLE_CONTROL_POINTS; ++i) {
             let cp = new ControlPoint();
@@ -72044,9 +72089,6 @@ class SourceEngineParticleSystem extends Entity {
     reset() {
         this.stop();
         this.start();
-        //this.resetChilds();
-        //this.resetEmitters();
-        //this.emitInitialParticles();
     }
     #reset() {
         //console.log('Reset PS');
@@ -72170,18 +72212,23 @@ class SourceEngineParticleSystem extends Entity {
                         break;
                 }
             }
-            this.#checkAutoKill();
+            this.#checkFinished();
         }
     }
-    #checkAutoKill() {
-        if (this.#autoKill) {
-            if (this.#canKill()) {
+    #checkFinished() {
+        if (this.#finished()) {
+            if (this.#autoKill) {
                 this.stop();
                 this.remove();
+                return;
+            }
+            if (this.#looping) {
+                //TODO: add delay
+                this.#reset();
             }
         }
     }
-    #canKill() {
+    #finished() {
         if (Object.keys(this.tempChildren).length) {
             return false;
         }
@@ -72192,7 +72239,7 @@ class SourceEngineParticleSystem extends Entity {
             }
         }
         for (let child of this.childrenSystems) {
-            if ((child.livingParticles.length > 0) || !child.#canKill()) {
+            if ((child.livingParticles.length > 0) || !child.#finished()) {
                 return false;
             }
         }
@@ -72633,6 +72680,12 @@ class SourceEngineParticleSystem extends Entity {
     }
     get autoKill() {
         return this.#autoKill;
+    }
+    setlooping(looping) {
+        this.#looping = looping;
+    }
+    getlooping() {
+        return this.#looping;
     }
     dispose() {
         super.dispose();
@@ -76375,9 +76428,9 @@ const VMT_PARAMETERS = {
     $phongalbedotint: [SHADER_PARAM_TYPE_BOOL, false],
     $phongexponent: [SHADER_PARAM_TYPE_FLOAT, 5.0],
     $phongexponentfactor: [SHADER_PARAM_TYPE_FLOAT, 0.0],
-    $phongexponenttexture: [SHADER_PARAM_TYPE_STRING, ""],
+    $phongexponenttexture: [SHADER_PARAM_TYPE_STRING, ''],
     $phongboost: [SHADER_PARAM_TYPE_FLOAT, 1.0],
-    $lightwarptexture: [SHADER_PARAM_TYPE_STRING, ""],
+    $lightwarptexture: [SHADER_PARAM_TYPE_STRING, ''],
     $selfillumtint: [SHADER_PARAM_TYPE_COLOR, [1, 1, 1]],
     $detailscale: [SHADER_PARAM_TYPE_VEC2, [1, 1]],
     $detailblendmode: [SHADER_PARAM_TYPE_INTEGER, 0],
@@ -77889,10 +77942,10 @@ class WeaponDecalMaterial extends SourceEngineMaterial {
 }
 SourceEngineVMTLoader.registerMaterial('weapondecal', WeaponDecalMaterial);
 const WEAPON_DECAL_DEFAULT_PARAMETERS = {
-    //$basetexture : [SHADER_PARAM_TYPE_STRING, "models/weapons/customization/stickers/default/sticker_default"],
-    //$aotexture : [SHADER_PARAM_TYPE_STRING, "models/weapons/customization/stickers/default/ao_default"],
-    $grungetexture: [SHADER_PARAM_TYPE_STRING, "models/weapons/customization/shared/sticker_paper"],
-    $weartexture: [SHADER_PARAM_TYPE_STRING, "models/weapons/customization/shared/paint_wear"],
+    //$basetexture : [SHADER_PARAM_TYPE_STRING, 'models/weapons/customization/stickers/default/sticker_default'],
+    //$aotexture : [SHADER_PARAM_TYPE_STRING, 'models/weapons/customization/stickers/default/ao_default'],
+    $grungetexture: [SHADER_PARAM_TYPE_STRING, 'models/weapons/customization/shared/sticker_paper'],
+    $weartexture: [SHADER_PARAM_TYPE_STRING, 'models/weapons/customization/shared/paint_wear'],
     $decalstyle: [SHADER_PARAM_TYPE_INTEGER, 0],
     $colortint: [SHADER_PARAM_TYPE_COLOR, [255, 255, 255]],
     $colortint2: [SHADER_PARAM_TYPE_COLOR, [0, 0, 0]],
@@ -78397,6 +78450,12 @@ class EmitContinuously extends SourceEngineParticleOperator {
             }
             currentTime += timeStampStep;
         }
+    }
+    finished() {
+        const emission_start_time = this.getParameter('emission_start_time') ?? 0;
+        const emission_duration = this.getParameter('emission_duration') ?? 0;
+        let currentTime = this.particleSystem.currentTime;
+        return emission_duration != 0 && (currentTime > emission_start_time + emission_duration);
     }
 }
 SourceEngineParticleOperators.registerOperator(EmitContinuously);
@@ -81125,7 +81184,7 @@ class RenderAnimatedSprites extends SourceEngineParticleOperator {
         this.setupParticlesTexture(particleList, maxParticles);
         this.mesh.setUniform('uMaxParticles', maxParticles); //TODOv3:optimize
         this.mesh.setUniform('uVisibilityCameraDepthBias', this.getParameter('Visibility Camera Depth Bias')); //TODOv3:optimize
-        this.mesh.visible = Source1ParticleControler.visible;
+        this.mesh.setVisible(Source1ParticleControler.visible);
         let orientationControlPointNumber = this.getParameter('orientation control point');
         let orientationControlPoint = this.particleSystem.getControlPoint(orientationControlPointNumber);
         if (orientationControlPoint) {
@@ -81505,7 +81564,7 @@ class RenderSpriteTrail extends SourceEngineParticleOperator {
         let maxParticles = new Graphics().isWebGL2 ? particleSystem.maxParticles : ceilPowerOfTwo(particleSystem.maxParticles);
         this.setupParticlesTexture(particleList, maxParticles, elapsedTime);
         this.mesh.setUniform('uMaxParticles', maxParticles); //TODOv3:optimize
-        this.mesh.visible = Source1ParticleControler.visible;
+        this.mesh.setVisible(Source1ParticleControler.visible);
         let index = 0;
         for (const particle of particleList) {
             let coords = this.particleSystem.material.getTexCoords(0, particle.currentTime, rate * SEQUENCE_SAMPLE_COUNT, particle.sequence);
@@ -88085,7 +88144,7 @@ class Operator {
         curve.m_vDomainMaxs[1];
         parameter.m_nInputMode;
         //let modeClamped = parameter.m_nInputMode == "PF_INPUT_MODE_CLAMPED" ? true : false;
-        if (parameter.m_nInputMode == "PF_INPUT_MODE_CLAMPED") {
+        if (parameter.m_nInputMode == 'PF_INPUT_MODE_CLAMPED') {
             inputValue = clamp(inputValue, inputMin, inputMax);
         }
         else {
@@ -94039,7 +94098,7 @@ class RenderSprites extends RenderBase {
         let maxParticles = this.#maxParticles;
         this.setupParticlesTexture(particleList, maxParticles);
         this.mesh.setUniform('uMaxParticles', maxParticles); //TODOv3:optimize
-        this.mesh.visible = Source2ParticleManager.visible;
+        this.mesh.setVisible(Source2ParticleManager.visible);
         this.mesh.setUniform('uOverbrightFactor', this.getParamScalarValue('m_flOverbrightFactor') ?? 1);
         const uvs = this.geometry.attributes.get('aTextureCoord')._array;
         const uvs2 = this.geometry.attributes.get('aTextureCoord2')._array;
@@ -94287,7 +94346,7 @@ class RenderTrails extends Operator {
         let maxParticles = this.#maxParticles;
         this.setupParticlesTexture(particleList, maxParticles, elapsedTime);
         this.mesh.setUniform('uMaxParticles', maxParticles); //TODOv3:optimize
-        this.mesh.visible = Source2ParticleManager.visible;
+        this.mesh.setVisible(Source2ParticleManager.visible);
         set(tempVec2, this.getParamScalarValue('m_flFinalTextureScaleU') ?? 1, this.getParamScalarValue('m_flFinalTextureScaleV') ?? 1);
         this.material.setUniform('uFinalTextureScale', tempVec2);
         geometry.attributes.get('aTextureCoord')._array;
@@ -97425,6 +97484,9 @@ class RenderTargetViewer {
         this.#renderTarget = renderTarget;
         this.refreshPlane();
     }
+    /**
+     * @deprecated Please use `setMaterial` instead.
+     */
     set material(material) {
         throw 'deprecated';
     }
@@ -97440,6 +97502,9 @@ class RenderTargetViewer {
     getMaterial() {
         return this.#material;
     }
+    /**
+     * @deprecated Please use `getMaterial` instead.
+     */
     get material() {
         throw 'deprecated';
     }

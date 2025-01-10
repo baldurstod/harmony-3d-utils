@@ -61,7 +61,7 @@ export declare class TextureCombiner {
 export declare class WarpaintEditor {
     #private;
     constructor();
-    init(container: HTMLElement): void;
+    init(container: HTMLElement | ShadowRoot): void;
     getGui(): NodeImageEditorGui;
 }
 

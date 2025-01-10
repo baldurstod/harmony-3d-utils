@@ -1,6 +1,6 @@
 {
   "name": "harmony-3d-utils",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

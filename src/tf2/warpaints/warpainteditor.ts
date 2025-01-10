@@ -11,7 +11,7 @@ export class WarpaintEditor {
 		WarpaintEditor.#instance = this;
 	}
 
-	init(container: HTMLElement) {
+	init(container: HTMLElement | ShadowRoot) {
 		container.append(this.#nodeImageEditorGui.htmlElement);
 		this.#nodeImageEditorGui.setNodeImageEditor(new TextureCombiner().nodeImageEditor);
 	}
