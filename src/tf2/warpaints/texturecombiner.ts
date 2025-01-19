@@ -68,7 +68,7 @@ export class TextureCombiner {
 					let item = null;
 					for (let itemDefinitionKey in paintKitDefinition) {
 						let itemDefinitionPerItem = paintKitDefinition[itemDefinitionKey];
-						let itemDefinitionTemplate = itemDefinitionPerItem.itemDefinitionTemplate;
+						let itemDefinitionTemplate = itemDefinitionPerItem.itemDefinitionTemplate ?? itemDefinitionPerItem.item_definition_template;
 						if (itemDefinitionTemplate) {
 							let itemDefinition = await this._getDefindex(itemDefinitionTemplate);
 							if (itemDefinition?.itemDefinitionIndex == weaponDefIndex) {
@@ -83,7 +83,7 @@ export class TextureCombiner {
 						let items = paintKitDefinition['item'];
 						if (items) {
 							for (let it of items) {
-								let itemDefinition = await this._getDefindex(it.itemDefinitionTemplate);
+								let itemDefinition = await this._getDefindex(it.itemDefinitionTemplate ?? it.item_definition_template);
 								if (getLegacyPaintKit(itemDefinition?.itemDefinitionIndex) == weaponDefIndex) {
 									item = it;
 									break;
@@ -95,7 +95,7 @@ export class TextureCombiner {
 					if (item) {
 						let template = paintKitDefinition.operationTemplate;// || item.itemDefinitionTemplate;
 						if (!template) {
-							let itemDefinitionTemplate = await this._getDefindex(item.itemDefinitionTemplate);
+							let itemDefinitionTemplate = await this._getDefindex(item.itemDefinitionTemplate ?? item.item_definition_template);
 							if (itemDefinitionTemplate && itemDefinitionTemplate.definition && itemDefinitionTemplate.definition[wearLevel]) {
 								template = itemDefinitionTemplate.definition[wearLevel].operationTemplate;
 							}
@@ -171,8 +171,8 @@ export class TextureCombiner {
 			if (item.data) {
 				this.#addVariables(item.data.variable);
 			}
-			if (item.itemDefinitionTemplate) {
-				let itemDefinition = await this._getDefindex(item.itemDefinitionTemplate)
+			if (item.itemDefinitionTemplate ?? item.item_definition_template) {
+				let itemDefinition = await this._getDefindex(item.itemDefinitionTemplate ?? item.item_definition_template)
 				if (itemDefinition) {
 					if (itemDefinition.definition && itemDefinition.definition[wearLevel]) {
 						this.#addVariables(itemDefinition.definition[wearLevel].variable);

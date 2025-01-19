@@ -197,15 +197,15 @@ export class WeaponManager {
 				if (propertyName == 'item') {
 					for (let i = 0; i < paintKitDefinitionItem.length; i++) {
 						let paintKitDefinitionItem2 = paintKitDefinitionItem[i];
-						if (paintKitDefinitionItem2.itemDefinitionTemplate) {
+						if (paintKitDefinitionItem2.itemDefinitionTemplate ?? paintKitDefinitionItem2.item_definition_template) {
 							//itemList.push(paintKitDefinitionItem2.itemDefinitionTemplate.defindex);
-							itemList['item' + i] = paintKitDefinitionItem2.itemDefinitionTemplate.defindex;
+							itemList['item' + i] = (paintKitDefinitionItem2.itemDefinitionTemplate ?? paintKitDefinitionItem2.item_definition_template).defindex;
 						}
 					}
 				} else {
-					if (paintKitDefinitionItem.itemDefinitionTemplate) {
+					if (paintKitDefinitionItem.itemDefinitionTemplate ?? paintKitDefinitionItem.item_definition_template) {
 						//itemList.push(paintKitDefinitionItem.itemDefinitionTemplate.defindex);
-						itemList[propertyName] = paintKitDefinitionItem.itemDefinitionTemplate.defindex;
+						itemList[propertyName] = (paintKitDefinitionItem.itemDefinitionTemplate ?? paintKitDefinitionItem.item_definition_template).defindex;
 					}
 				}
 			}
