@@ -247,6 +247,7 @@ export class TextureCombiner {
 				return 'select';
 				break;
 			case stage.applySticker != undefined:
+			case stage.apply_sticker != undefined:
 				return 'applySticker';
 				break;
 			default:
@@ -284,7 +285,8 @@ export class TextureCombiner {
 					stage2 = s;
 					break;
 				case stage.applySticker != undefined:
-					s = stage.applySticker;
+				case stage.apply_sticker != undefined:
+					s = stage.applySticker ?? stage.apply_sticker;
 					subStage = this.#processApplyStickerStage(s);
 					stage2 = s;
 					break;
