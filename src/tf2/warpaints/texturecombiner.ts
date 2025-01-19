@@ -228,6 +228,7 @@ export class TextureCombiner {
 	#getStageName(stage: any) {
 		switch (true) {
 			case stage.textureLookup != undefined:
+			case stage.texture_lookup != undefined:
 				return 'textureLookup';
 				break;
 			case stage.combineAdd != undefined:
@@ -260,7 +261,8 @@ export class TextureCombiner {
 			let s;
 			switch (true) {
 				case stage.textureLookup != undefined:
-					s = stage.textureLookup;
+				case stage.texture_lookup != undefined:
+					s = stage.textureLookup ?? stage.texture_lookup;
 					subStage = this.#processTextureStage(s);
 					stage2 = s;
 					break;
