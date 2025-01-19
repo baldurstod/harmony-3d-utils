@@ -103,9 +103,9 @@ export class TextureCombiner {
 						if (template) {
 							let operationTemplate = await this._getDefindex(template);
 							//console.error(operationTemplate);//removeme
-							if (operationTemplate && operationTemplate.operationNode) {
+							if (operationTemplate && (operationTemplate.operationNode ?? operationTemplate.operation_node)) {
 								await this.#setupVariables(paintKitDefinition, wearLevel, item);
-								let stage = await this.#processOperationNode(operationTemplate.operationNode[0]);//top level node has 1 operation
+								let stage = await this.#processOperationNode((operationTemplate.operationNode ?? operationTemplate.operation_node)[0]);//top level node has 1 operation
 								//console.error(stage.toString());
 								(stage as Stage).linkNodes();
 
@@ -291,8 +291,8 @@ export class TextureCombiner {
 				default:
 					throw 'Unsuported stage';
 			}
-			if (stage2.operationNode) {
-				let chidren = await this.#processOperationNodeArray(stage2.operationNode/*, subStage/*, node*/);
+			if (stage2.operationNode ?? stage2.operation_node) {
+				let chidren = await this.#processOperationNodeArray(stage2.operationNode ?? stage2.operation_node/*, subStage/*, node*/);
 				if (subStage) {
 					subStage.appendChildren(chidren);
 				}
@@ -300,9 +300,9 @@ export class TextureCombiner {
 
 		} else if (operationNode.operationTemplate) {
 			let template = await this._getDefindex(operationNode.operationTemplate)
-			if (template && template.operationNode) {
+			if (template && (template.operationNode ?? template.operation_node)) {
 				//console.error('template.operationNode', template.operationNode.length, template.operationNode);
-				let chidren = await this.#processOperationNodeArray(template.operationNode/*, parentStage/*, node, inputs*/);
+				let chidren = await this.#processOperationNodeArray(template.operationNode ?? template.operation_node/*, parentStage/*, node, inputs*/);
 				return chidren;
 			} else {
 				throw 'Invalid template';
