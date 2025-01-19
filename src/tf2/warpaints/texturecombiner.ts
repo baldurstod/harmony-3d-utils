@@ -234,6 +234,7 @@ export class TextureCombiner {
 				return 'combine_add';
 				break;
 			case stage.combineLerp != undefined:
+			case stage.combine_lerp != undefined:
 				return 'combine_lerp';
 				break;
 			case stage.combineMultiply != undefined:
@@ -265,8 +266,9 @@ export class TextureCombiner {
 					break;
 				case stage.combineAdd != undefined:
 				case stage.combineLerp != undefined:
+				case stage.combine_lerp != undefined:
 				case stage.combineMultiply != undefined:
-					s = stage.combineAdd || stage.combineLerp || stage.combineMultiply;
+					s = stage.combineAdd || stage.combineLerp || stage.combine_lerp || stage.combineMultiply;
 					subStage = this.#processCombineStage(s, this.#getStageName(stage));
 					stage2 = s;
 					break;
