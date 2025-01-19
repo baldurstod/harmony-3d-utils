@@ -71,7 +71,7 @@ export class TextureCombiner {
 						let itemDefinitionTemplate = itemDefinitionPerItem.itemDefinitionTemplate ?? itemDefinitionPerItem.item_definition_template;
 						if (itemDefinitionTemplate) {
 							let itemDefinition = await this._getDefindex(itemDefinitionTemplate);
-							if (itemDefinition?.itemDefinitionIndex == weaponDefIndex) {
+							if ((itemDefinition?.itemDefinitionIndex ?? itemDefinition?.item_definition_index) == weaponDefIndex) {
 								item = itemDefinitionPerItem;
 								break;
 							}
@@ -84,7 +84,7 @@ export class TextureCombiner {
 						if (items) {
 							for (let it of items) {
 								let itemDefinition = await this._getDefindex(it.itemDefinitionTemplate ?? it.item_definition_template);
-								if (getLegacyPaintKit(itemDefinition?.itemDefinitionIndex) == weaponDefIndex) {
+								if (getLegacyPaintKit(itemDefinition?.itemDefinitionIndex ?? itemDefinition?.item_definition_index) == weaponDefIndex) {
 									item = it;
 									break;
 								}
