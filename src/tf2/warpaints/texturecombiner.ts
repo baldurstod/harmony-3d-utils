@@ -372,9 +372,9 @@ console.error('node or subnode is null', node, subNode);
 
 		var texture;
 		if (this.#team == 0) {
-			texture = stage.textureRed || stage.texture;
+			texture = (stage.textureRed ?? stage.texture_red) || stage.texture;
 		} else {
-			texture = stage.textureBlue || stage.texture;
+			texture = (stage.textureBlue ?? stage.texture_blue) || stage.texture;
 		}
 
 		let texturePath = this.#getVarField(texture);
