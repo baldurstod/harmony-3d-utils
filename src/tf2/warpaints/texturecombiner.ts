@@ -400,8 +400,8 @@ console.error('node or subnode is null', node, subNode);
 		if (stage.adjustGamma) {
 			ParseInverseRange(textureStage.parameters.adjustGamma, this.#getVarField(stage.adjustGamma));
 		}
-		if (stage.scaleUv) {
-			ParseRange(textureStage.parameters.scaleUV, this.#getVarField(stage.scaleUv));
+		if (stage.scaleUv ?? stage.scale_uv) {
+			ParseRange(textureStage.parameters.scaleUV, this.#getVarField(stage.scaleUv ?? stage.scale_uv));
 		}
 		if (stage.rotation) {
 			ParseRange(textureStage.parameters.rotation, this.#getVarField(stage.rotation));
