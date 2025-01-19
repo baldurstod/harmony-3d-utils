@@ -7675,13 +7675,194 @@ var index$2 = /*#__PURE__*/Object.freeze({
   vec4: vec4
 });
 
+function setTimeoutPromise(timeout, signal) {
+    return new Promise((resolve, reject) => {
+        const timeoutID = setTimeout(resolve, timeout);
+        if (signal) {
+            if (signal.aborted) {
+                clearTimeout(timeoutID);
+                reject('aborted');
+            }
+            else {
+                signal.addEventListener('abort', () => {
+                    clearTimeout(timeoutID);
+                    reject('aborted');
+                });
+            }
+        }
+    });
+}
+
+function rgbToHsl(r, g, b) {
+    const max = Math.max(r, g, b), min = Math.min(r, g, b);
+    let h = 0, s, l = (max + min) / 2;
+    if (max == min) {
+        h = s = 0; // achromatic
+    }
+    else {
+        var d = max - min;
+        s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+        switch (max) {
+            case r:
+                h = (g - b) / d + (g < b ? 6 : 0);
+                break;
+            case g:
+                h = (b - r) / d + 2;
+                break;
+            case b:
+                h = (r - g) / d + 4;
+                break;
+        }
+        h /= 6;
+    }
+    return [h, s, l];
+}
+function hslToRgb(h, s, l) {
+    var r, g, b;
+    if (s == 0) {
+        r = g = b = l; // achromatic
+    }
+    else {
+        function hue2rgb(p, q, t) {
+            if (t < 0)
+                t += 1;
+            if (t > 1)
+                t -= 1;
+            if (t < 1 / 6)
+                return p + (q - p) * 6 * t;
+            if (t < 1 / 2)
+                return q;
+            if (t < 2 / 3)
+                return p + (q - p) * (2 / 3 - t) * 6;
+            return p;
+        }
+        var q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+        var p = 2 * l - q;
+        r = hue2rgb(p, q, h + 1 / 3);
+        g = hue2rgb(p, q, h);
+        b = hue2rgb(p, q, h - 1 / 3);
+    }
+    return [r, g, b];
+}
+class Color$1 {
+    #rgba = [];
+    constructor({ red = 0, green = 0, blue = 0, alpha = 1, hex = '' } = {}) {
+        this.#rgba[0] = red;
+        this.#rgba[1] = green;
+        this.#rgba[2] = blue;
+        this.#rgba[3] = alpha;
+        if (hex) {
+            this.setHex(hex);
+        }
+    }
+    setHue(hue) {
+        const hsl = rgbToHsl(this.#rgba[0], this.#rgba[1], this.#rgba[2]);
+        const rgb = hslToRgb(hue, hsl[1], hsl[2]);
+        this.#rgba[0] = rgb[0];
+        this.#rgba[1] = rgb[1];
+        this.#rgba[2] = rgb[2];
+    }
+    setSatLum(sat, lum) {
+        const hsl = rgbToHsl(this.#rgba[0], this.#rgba[1], this.#rgba[2]);
+        const rgb = hslToRgb(hsl[0], sat, lum);
+        this.#rgba[0] = rgb[0];
+        this.#rgba[1] = rgb[1];
+        this.#rgba[2] = rgb[2];
+    }
+    setHex(hex) {
+        hex = (hex.startsWith('#') ? hex.slice(1) : hex)
+            .replace(/^(\w{3})$/, '$1F') //987      -> 987F
+            .replace(/^(\w)(\w)(\w)(\w)$/, '$1$1$2$2$3$3$4$4') //9876     -> 99887766
+            .replace(/^(\w{6})$/, '$1FF'); //987654   -> 987654FF
+        if (!hex.match(/^([0-9a-fA-F]{8})$/)) {
+            throw new Error('Unknown hex color; ' + hex);
+        }
+        const rgba = hex
+            .match(/^(\w\w)(\w\w)(\w\w)(\w\w)$/)?.slice(1) //98765432 -> 98 76 54 32
+            .map(x => parseInt(x, 16)); //Hex to decimal
+        if (rgba) {
+            this.#rgba[0] = rgba[0] / 255;
+            this.#rgba[1] = rgba[1] / 255;
+            this.#rgba[2] = rgba[2] / 255;
+            this.#rgba[3] = rgba[3] / 255;
+        }
+    }
+    getHex() {
+        const hex = this.#rgba.map(x => Math.round(x * 255).toString(16));
+        return '#' + hex.map(x => x.padStart(2, '0')).join('');
+    }
+    getHue() {
+        return rgbToHsl(this.#rgba[0], this.#rgba[1], this.#rgba[2])[0];
+    }
+    getHsl() {
+        return rgbToHsl(this.#rgba[0], this.#rgba[1], this.#rgba[2]);
+    }
+    getRgba() {
+        return this.#rgba;
+    }
+    set red(red) {
+        this.#rgba[0] = red;
+    }
+    get red() {
+        return this.#rgba[0];
+    }
+    set green(green) {
+        this.#rgba[1] = green;
+    }
+    get green() {
+        return this.#rgba[1];
+    }
+    set blue(blue) {
+        this.#rgba[2] = blue;
+    }
+    get blue() {
+        return this.#rgba[2];
+    }
+    set alpha(alpha) {
+        this.#rgba[3] = alpha;
+    }
+    get alpha() {
+        return this.#rgba[3];
+    }
+}
+
 const checkOutlineSVG = '<svg xmlns="http://www.w3.org/2000/svg"  height="24" viewBox="0 -960 960 960" width="24" fill="currentColor"><path d="m 381,-240 424,-424 -57,-56 -368,367 -169,-170 -57,57 z m 0,113 -339,-339 169,-170 170,170 366,-367 172,168 z"/><path fill="#ffffff" d="m 381,-240 424,-424 -57,-56 -368,367 -169,-170 -57,57 z m 366,-593 c -498,-84.66667 -249,-42.33333 0,0 z"/></svg>';
 
 const closeSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="currentColor"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>';
 
+const contentCopySVG = '<svg height="24" viewBox="0 -960 960 960" width="24" fill="currentColor"><path d="M360-240q-33 0-56.5-23.5T280-320v-480q0-33 23.5-56.5T360-880h360q33 0 56.5 23.5T800-800v480q0 33-23.5 56.5T720-240H360Zm0-80h360v-480H360v480ZM200-80q-33 0-56.5-23.5T120-160v-560h80v560h440v80H200Zm160-240v-480 480Z"/></svg>';
+
+const dragPanSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M480-80 310-250l57-57 73 73v-206H235l73 72-58 58L80-480l169-169 57 57-72 72h206v-206l-73 73-57-57 170-170 170 170-57 57-73-73v206h205l-73-72 58-58 170 170-170 170-57-57 73-73H520v205l72-73 58 58L480-80Z"/></svg>';
+
 const folderOpenSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h240l80 80h320q33 0 56.5 23.5T880-640H447l-80-80H160v480l96-320h684L837-217q-8 26-29.5 41.5T760-160H160Zm84-80h516l72-240H316l-72 240Zm0 0 72-240-72 240Zm-84-400v-80 80Z"/></svg>';
 
 const infoSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M440-280h80v-240h-80v240Zm40-320q17 0 28.5-11.5T520-640q0-17-11.5-28.5T480-680q-17 0-28.5 11.5T440-640q0 17 11.5 28.5T480-600Zm0 520q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>';
+
+const panZoomSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M120-120v-240h80v104l124-124 56 56-124 124h104v80H120Zm516-460-56-56 124-124H600v-80h240v240h-80v-104L636-580Z"/></svg>';
+
+const pauseSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="currentColor"><path d="M560-200v-560h160v560H560Zm-320 0v-560h160v560H240Z"/></svg>';
+
+const playSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="currentColor"><path d="M320-200v-560l440 280-440 280Z"/></svg>';
+
+const repeatOnSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentcolor"><path d="M120-40q-33 0-56.5-23.5T40-120v-720q0-33 23.5-56.5T120-920h720q33 0 56.5 23.5T920-840v720q0 33-23.5 56.5T840-40H120Zm160-40 56-58-62-62h486v-240h-80v160H274l62-62-56-58-160 160L280-80Zm-80-440h80v-160h406l-62 62 56 58 160-160-160-160-56 58 62 62H200v240Z"/></svg>';
+
+const repeatSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentcolor"><path d="M280-80 120-240l160-160 56 58-62 62h406v-160h80v240H274l62 62-56 58Zm-80-440v-240h486l-62-62 56-58 160 160-160 160-56-58 62-62H280v160h-80Z"/></svg>';
+
+const restartSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M440-122q-121-15-200.5-105.5T160-440q0-66 26-126.5T260-672l57 57q-38 34-57.5 79T240-440q0 88 56 155.5T440-202v80Zm80 0v-80q87-16 143.5-83T720-440q0-100-70-170t-170-70h-3l44 44-56 56-140-140 140-140 56 56-44 44h3q134 0 227 93t93 227q0 121-79.5 211.5T520-122Z"/></svg>';
+
+const rotateSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M482-160q-134 0-228-93t-94-227v-7l-64 64-56-56 160-160 160 160-56 56-64-64v7q0 100 70.5 170T482-240q26 0 51-6t49-18l60 60q-38 22-78 33t-82 11Zm278-161L600-481l56-56 64 64v-7q0-100-70.5-170T478-720q-26 0-51 6t-49 18l-60-60q38-22 78-33t82-11q134 0 228 93t94 227v7l64-64 56 56-160 160Z"/></svg>';
+
+const runSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"  fill="currentColor"><path d="M520-40v-240l-84-80-40 176-276-56 16-80 192 40 64-324-72 28v136h-80v-188l158-68q35-15 51.5-19.5T480-720q21 0 39 11t29 29l40 64q26 42 70.5 69T760-520v80q-66 0-123.5-27.5T540-540l-24 120 84 80v300h-80Zm20-700q-33 0-56.5-23.5T460-820q0-33 23.5-56.5T540-900q33 0 56.5 23.5T620-820q0 33-23.5 56.5T540-740Z"/></svg>';
+
+const visibilityOffSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor"><path d="M0 0h24v24H0zm0 0h24v24H0zm0 0h24v24H0zm0 0h24v24H0z" fill="none"/><path d="M12 7c2.76 0 5 2.24 5 5 0 .65-.13 1.26-.36 1.83l2.92 2.92c1.51-1.26 2.7-2.89 3.43-4.75-1.73-4.39-6-7.5-11-7.5-1.4 0-2.74.25-3.98.7l2.16 2.16C10.74 7.13 11.35 7 12 7zM2 4.27l2.28 2.28.46.46C3.08 8.3 1.78 10.02 1 12c1.73 4.39 6 7.5 11 7.5 1.55 0 3.03-.3 4.38-.84l.42.42L19.73 22 21 20.73 3.27 3 2 4.27zM7.53 9.8l1.55 1.55c-.05.21-.08.43-.08.65 0 1.66 1.34 3 3 3 .22 0 .44-.03.65-.08l1.55 1.55c-.67.33-1.41.53-2.2.53-2.76 0-5-2.24-5-5 0-.79.2-1.53.53-2.2zm4.31-.78l3.15 3.15.02-.16c0-1.66-1.34-3-3-3l-.17.01z"/></svg>';
+
+const visibilityOnSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>';
+
+const walkSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="m280-40 112-564-72 28v136h-80v-188l202-86q14-6 29.5-7t29.5 4q14 5 26.5 14t20.5 23l40 64q26 42 70.5 69T760-520v80q-70 0-125-29t-94-74l-25 123 84 80v300h-80v-260l-84-64-72 324h-84Zm260-700q-33 0-56.5-23.5T460-820q0-33 23.5-56.5T540-900q33 0 56.5 23.5T620-820q0 33-23.5 56.5T540-740Z"/></svg>';
+
+const zoomInSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="currentColor"><path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Zm-40-60v-80h-80v-80h80v-80h80v80h80v80h-80v80h-80Z"/></svg>';
+
+const zoomOutSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="currentColor"><path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400ZM280-540v-80h200v80H280Z"/></svg>';
 
 function cloneEvent(event) {
     return new event.constructor(event.type, event);
@@ -7704,183 +7885,47 @@ function shadowRootStyleSync(shadowRoot, cssText) {
     shadowRoot.adoptedStyleSheets.push(sheet);
 }
 
-function createElement(tagName, options) {
-    const element = document.createElement(tagName);
-    createElementOptions(element, options);
-    return element;
-}
-function createElementNS(namespaceURI, tagName, options) {
-    const element = document.createElementNS(namespaceURI, tagName);
-    createElementOptions(element, options);
-    return element;
-}
-function createShadowRoot(tagName, options, mode = 'closed') {
-    const element = document.createElement(tagName);
-    const shadowRoot = element.attachShadow({ mode: mode });
-    createElementOptions(element, options, shadowRoot);
-    return shadowRoot;
-}
-function updateElement(element, options) {
-    createElementOptions(element, options);
-    return element;
-}
-function append$1(element, child) {
-    if (child === null || child === undefined) {
-        return;
-    }
-    if (child instanceof ShadowRoot) {
-        element.append(child.host);
-    }
-    else {
-        element.append(child);
-    }
-}
-function createElementOptions(element, options, shadowRoot) {
-    if (options) {
-        for (const optionName in options) {
-            const optionValue = options[optionName];
-            switch (optionName) {
-                case 'id':
-                    element.id = optionValue;
-                    break;
-                case 'class':
-                    element.classList.add(...optionValue.split(' '));
-                    break;
-                case 'i18n':
-                    element.setAttribute('data-i18n', optionValue);
-                    element.innerHTML = optionValue;
-                    element.classList.add('i18n');
-                    break;
-                case 'i18n-title':
-                    element.setAttribute('data-i18n-title', optionValue);
-                    element.classList.add('i18n-title');
-                    break;
-                case 'i18n-placeholder':
-                    element.setAttribute('data-i18n-placeholder', optionValue);
-                    element.classList.add('i18n-placeholder');
-                    break;
-                case 'i18n-label':
-                    element.setAttribute('data-i18n-label', optionValue);
-                    element.classList.add('i18n-label');
-                    break;
-                case 'i18n-json':
-                    element.setAttribute('data-i18n-json', JSON.stringify(optionValue));
-                    element.classList.add('i18n');
-                    break;
-                case 'i18n-values':
-                    element.setAttribute('data-i18n-values', JSON.stringify(optionValue));
-                    element.classList.add('i18n');
-                    break;
-                case 'parent':
-                    optionValue.append(element);
-                    break;
-                case 'child':
-                    append$1(shadowRoot ?? element, optionValue);
-                    break;
-                case 'childs':
-                    optionValue.forEach((entry) => append$1(shadowRoot ?? element, entry));
-                    break;
-                case 'events':
-                    for (let eventType in optionValue) {
-                        let eventParams = optionValue[eventType];
-                        if (typeof eventParams === 'function') {
-                            element.addEventListener(eventType, eventParams);
-                        }
-                        else {
-                            element.addEventListener(eventType, eventParams.listener, eventParams.options);
-                        }
-                    }
-                    break;
-                case 'hidden':
-                    if (optionValue) {
-                        hide(element);
-                    }
-                    break;
-                case 'attributes':
-                    for (let attributeName in optionValue) {
-                        element.setAttribute(attributeName, optionValue[attributeName]);
-                    }
-                    break;
-                case 'list':
-                    element.setAttribute(optionName, optionValue);
-                    break;
-                case 'slot':
-                    element.slot = optionValue;
-                    break;
-                case 'adoptStyle':
-                    adoptStyleSheet(shadowRoot ?? element, optionValue);
-                    break;
-                case 'adoptStyles':
-                    optionValue.forEach((entry) => {
-                        adoptStyleSheet(shadowRoot ?? element, entry);
-                    });
-                    break;
-                default:
-                    if (optionName.startsWith('data-')) {
-                        element.setAttribute(optionName, optionValue);
-                    }
-                    else {
-                        element[optionName] = optionValue;
-                    }
-                    break;
-            }
-        }
-        options.elementCreated?.(element, shadowRoot);
-    }
-}
-async function adoptStyleSheet(element, cssText) {
-    const sheet = new CSSStyleSheet;
-    await sheet.replace(cssText);
-    if (element.adoptStyleSheet) {
-        element.adoptStyleSheet(sheet);
-    }
-    else {
-        if (element.adoptedStyleSheets) {
-            element.adoptedStyleSheets.push(sheet);
-        }
-    }
-}
-function display(htmlElement, visible) {
-    if (htmlElement == undefined) {
-        return;
-    }
-    if (htmlElement instanceof ShadowRoot) {
-        htmlElement = htmlElement.host;
-    }
-    if (visible) {
-        htmlElement.style.display = '';
-    }
-    else {
-        htmlElement.style.display = 'none';
-    }
-}
-function show(htmlElement) {
-    display(htmlElement, true);
-}
-function hide(htmlElement) {
-    display(htmlElement, false);
-}
-function toggle(htmlElement) {
-    if (!(htmlElement instanceof HTMLElement)) {
-        return;
-    }
-    if (htmlElement.style.display == 'none') {
-        htmlElement.style.display = '';
-    }
-    else {
-        htmlElement.style.display = 'none';
-    }
-}
-function isVisible(htmlElement) {
-    return htmlElement.style.display == '';
-}
-const visible = isVisible;
-function styleInject(css) {
-    document.head.append(createElement('style', { textContent: css }));
-}
+const ET = new EventTarget();
 
 const I18N_DELAY_BEFORE_REFRESH = 100;
+var I18nEvents;
+(function (I18nEvents) {
+    I18nEvents["LangChanged"] = "langchanged";
+    I18nEvents["TranslationsUpdated"] = "translationsupdated";
+    I18nEvents["Any"] = "*";
+})(I18nEvents || (I18nEvents = {}));
+const targets = ['innerHTML', 'innerText', 'placeholder', 'title', 'label'];
+const I18nElements = new Map();
+function AddI18nElement(element, descriptor) {
+    if (typeof descriptor == 'string') {
+        descriptor = { innerText: descriptor };
+    }
+    const existing = I18nElements.get(element);
+    if (existing) {
+        for (const target of targets) {
+            const desc = descriptor[target];
+            if (desc === null) {
+                delete existing[target];
+            }
+            else if (desc !== undefined) {
+                existing[target] = desc;
+            }
+        }
+        if (descriptor.values) {
+            if (!existing.values) {
+                existing.values = {};
+            }
+            for (const name in descriptor.values) {
+                existing.values[name] = descriptor.values[name];
+            }
+        }
+    }
+    else {
+        I18nElements.set(element, descriptor);
+    }
+}
 class I18n {
+    static #started = false;
     static #lang = 'english';
     static #translations = new Map();
     static #executing = false;
@@ -7888,14 +7933,23 @@ class I18n {
     static #observerConfig = { childList: true, subtree: true, attributeFilter: ['i18n', 'data-i18n-json', 'data-i18n-values'] };
     static #observer;
     static #observed = new Set();
+    static #eventTarget = new EventTarget();
     static start() {
+        if (this.#started) {
+            return;
+        }
+        this.#started = true;
         this.observeElement(document.body);
+        ET.addEventListener('created', (event) => this.#processElement2(event.detail));
+        ET.addEventListener('updated', (event) => this.#processElement2(event.detail));
     }
     static setOptions(options) {
         if (options.translations) {
-            for (let translation of options.translations) {
+            for (const translation of options.translations) {
                 this.addTranslation(translation);
             }
+            this.#eventTarget.dispatchEvent(new CustomEvent(I18nEvents.TranslationsUpdated));
+            this.#eventTarget.dispatchEvent(new CustomEvent(I18nEvents.Any));
         }
         this.i18n();
     }
@@ -7906,10 +7960,10 @@ class I18n {
         if (this.#observer) {
             return;
         }
-        const callback = async (mutationsList, observer) => {
-            for (let mutation of mutationsList) {
+        const callback = async (mutationsList) => {
+            for (const mutation of mutationsList) {
                 if (mutation.type === 'childList') {
-                    for (let node of mutation.addedNodes) {
+                    for (const node of mutation.addedNodes) {
                         if (node instanceof HTMLElement) {
                             this.updateElement(node);
                         }
@@ -7933,7 +7987,7 @@ class I18n {
         if (parentNode.classList?.contains(className)) {
             this.#processElement(parentNode, attribute, subElement);
         }
-        for (let element of elements) {
+        for (const element of elements) {
             this.#processElement(element, attribute, subElement);
         }
     }
@@ -7943,14 +7997,27 @@ class I18n {
         if (parentNode.classList?.contains(className)) {
             this.#processElementJSON(parentNode);
         }
-        for (let element of elements) {
+        for (const element of elements) {
             this.#processElementJSON(element);
         }
     }
     static #processElement(htmlElement, attribute, subElement) {
-        let dataLabel = htmlElement.getAttribute(attribute);
+        const dataLabel = htmlElement.getAttribute(attribute);
         if (dataLabel) {
             htmlElement[subElement] = this.getString(dataLabel);
+        }
+    }
+    // TODO: merge with function above
+    static #processElement2(htmlElement) {
+        const descriptor = I18nElements.get(htmlElement);
+        if (descriptor) {
+            const values = descriptor.values ?? {};
+            for (const target of targets) {
+                const desc = descriptor[target];
+                if (desc && (htmlElement[target] !== undefined)) {
+                    htmlElement[target] = this.formatString(desc, values);
+                }
+            }
         }
     }
     static #processElementJSON(htmlElement) {
@@ -7974,6 +8041,10 @@ class I18n {
         if (innerHTML) {
             htmlElement.innerHTML = this.formatString(innerHTML, valuesJSON);
         }
+        const innerText = dataJSON.innerText;
+        if (innerText && (htmlElement.innerText !== undefined)) {
+            htmlElement.innerText = this.formatString(innerText, valuesJSON);
+        }
     }
     static i18n() {
         if (!this.#refreshTimeout) {
@@ -7988,34 +8059,40 @@ class I18n {
         this.#executing = true;
         for (const element of this.#observed) {
             this.#processList(element, 'i18n', 'data-i18n', 'innerHTML');
-            this.#processList(element, 'i18n-title', 'data-i18n-title', 'title');
-            this.#processList(element, 'i18n-placeholder', 'data-i18n-placeholder', 'placeholder');
-            this.#processList(element, 'i18n-label', 'data-i18n-label', 'label');
             this.#processJSON(element);
+        }
+        for (const [element] of I18nElements) {
+            this.#processElement2(element);
         }
         this.#executing = false;
         return;
     }
     static updateElement(htmlElement) {
         this.#processList(htmlElement, 'i18n', 'data-i18n', 'innerHTML');
-        this.#processList(htmlElement, 'i18n-title', 'data-i18n-title', 'title');
-        this.#processList(htmlElement, 'i18n-placeholder', 'data-i18n-placeholder', 'placeholder');
-        this.#processList(htmlElement, 'i18n-label', 'data-i18n-label', 'label');
         this.#processJSON(htmlElement);
     }
+    /**
+     * @deprecated use setLang() instead
+     */
     static set lang(lang) {
         throw 'Deprecated, use setLang() instead';
     }
     static setLang(lang) {
         if (this.#lang != lang) {
+            const oldLang = this.#lang;
             this.#lang = lang;
+            this.#eventTarget.dispatchEvent(new CustomEvent(I18nEvents.LangChanged, { detail: { oldLang: oldLang, newLang: lang } }));
+            this.#eventTarget.dispatchEvent(new CustomEvent(I18nEvents.Any));
             this.i18n();
         }
+    }
+    static addEventListener(type, callback, options) {
+        this.#eventTarget.addEventListener(type, callback, options);
     }
     static getString(s) {
         const strings = this.#translations.get(this.#lang)?.strings;
         if (strings) {
-            let s2 = strings[s];
+            const s2 = strings[s];
             if (typeof s2 == 'string') {
                 return s2;
             }
@@ -8028,17 +8105,221 @@ class I18n {
     }
     static formatString(s, values) {
         let str = this.getString(s);
-        for (let key in values) {
-            str = str.replace(new RegExp("\\\${" + key + "\\}", "gi"), values[key]);
+        for (const key in values) {
+            str = str.replace(new RegExp("\\${" + key + "\\}", "gi"), String(values[key]));
         }
         return str;
     }
+    /**
+     * @deprecated use getAuthors() instead
+     */
     static get authors() {
         throw 'Deprecated, use getAuthors() instead';
     }
     static getAuthors() {
         return this.#translations.get(this.#lang)?.authors ?? [];
     }
+    static setValue(element, name, value) {
+        if (!element) {
+            return;
+        }
+        const i18n = {};
+        i18n[name] = value;
+        AddI18nElement(element, { values: i18n });
+        this.#processElement2(element);
+    }
+}
+
+function createElement(tagName, options) {
+    const element = document.createElement(tagName);
+    createElementOptions(element, options);
+    ET.dispatchEvent(new CustomEvent('created', { detail: element }));
+    return element;
+}
+function createElementNS(namespaceURI, tagName, options) {
+    const element = document.createElementNS(namespaceURI, tagName);
+    createElementOptions(element, options);
+    return element;
+}
+function createShadowRoot(tagName, options, mode = 'closed') {
+    const element = document.createElement(tagName);
+    const shadowRoot = element.attachShadow({ mode: mode });
+    createElementOptions(element, options, shadowRoot);
+    return shadowRoot;
+}
+function updateElement(element, options) {
+    if (!element) {
+        return;
+    }
+    createElementOptions(element, options);
+    ET.dispatchEvent(new CustomEvent('updated', { detail: element }));
+    return element;
+}
+function append$1(element, child) {
+    if (child === null || child === undefined) {
+        return;
+    }
+    if (child instanceof ShadowRoot) {
+        element.append(child.host);
+    }
+    else {
+        element.append(child);
+    }
+}
+function createElementOptions(element, options, shadowRoot) {
+    if (options) {
+        for (const optionName in options) {
+            const optionValue = options[optionName];
+            if (optionName.startsWith('$')) {
+                const eventType = optionName.substring(1);
+                if (typeof optionValue === 'function') {
+                    element.addEventListener(eventType, optionValue);
+                }
+                else {
+                    element.addEventListener(eventType, optionValue.listener, optionValue.options);
+                }
+                continue;
+            }
+            switch (optionName) {
+                case 'id':
+                    element.id = optionValue;
+                    break;
+                case 'class':
+                    element.classList.add(...optionValue.split(' ').filter((n) => n));
+                    break;
+                case 'i18n':
+                    AddI18nElement(element, optionValue);
+                    break;
+                case 'parent':
+                    optionValue.append(element);
+                    break;
+                case 'child':
+                    append$1(shadowRoot ?? element, optionValue);
+                    break;
+                case 'childs':
+                    optionValue.forEach((entry) => append$1(shadowRoot ?? element, entry));
+                    break;
+                case 'events':
+                    for (const eventType in optionValue) {
+                        const eventParams = optionValue[eventType];
+                        if (typeof eventParams === 'function') {
+                            element.addEventListener(eventType, eventParams);
+                        }
+                        else {
+                            element.addEventListener(eventType, eventParams.listener, eventParams.options);
+                        }
+                    }
+                    break;
+                case 'properties':
+                    for (const name in optionValue) {
+                        element[name] = optionValue[name];
+                    }
+                    break;
+                case 'hidden':
+                    if (optionValue) {
+                        hide(element);
+                    }
+                    break;
+                case 'innerHTML':
+                    element.innerHTML = optionValue;
+                    break;
+                case 'innerText':
+                    element.innerText = optionValue;
+                    break;
+                case 'attributes':
+                    for (const attributeName in optionValue) {
+                        element.setAttribute(attributeName, optionValue[attributeName]);
+                    }
+                    break;
+                case 'slot':
+                    element.slot = optionValue;
+                    break;
+                case 'htmlFor':
+                    element.htmlFor = optionValue;
+                    break;
+                case 'adoptStyle':
+                    adoptStyleSheet(shadowRoot ?? element, optionValue);
+                    break;
+                case 'adoptStyles':
+                    optionValue.forEach((entry) => {
+                        adoptStyleSheet(shadowRoot ?? element, entry);
+                    });
+                    break;
+                case 'style':
+                    element.style.cssText = optionValue;
+                    break;
+                case 'elementCreated':
+                    break;
+                default:
+                    element.setAttribute(optionName, optionValue);
+                    break;
+            }
+        }
+        options.elementCreated?.(element, shadowRoot);
+    }
+}
+async function adoptStyleSheet(element, cssText) {
+    const sheet = new CSSStyleSheet;
+    await sheet.replace(cssText);
+    if (element.adoptStyleSheet) {
+        element.adoptStyleSheet(sheet);
+    }
+    else {
+        if (element.adoptedStyleSheets) {
+            element.adoptedStyleSheets.push(sheet);
+        }
+    }
+}
+function display(htmlElement, visible) {
+    if (Array.isArray(htmlElement)) {
+        for (const e of htmlElement) {
+            disp(e, visible);
+        }
+    }
+    else {
+        disp(htmlElement, visible);
+    }
+}
+function disp(htmlElement, visible) {
+    if (!htmlElement) {
+        return;
+    }
+    if (htmlElement instanceof ShadowRoot) {
+        htmlElement = htmlElement.host;
+    }
+    if (visible) {
+        htmlElement.style.display = '';
+    }
+    else {
+        htmlElement.style.display = 'none';
+    }
+}
+function show(htmlElement) {
+    display(htmlElement, true);
+}
+function hide(htmlElement) {
+    display(htmlElement, false);
+}
+function toggle(htmlElement) {
+    if (!htmlElement) {
+        return;
+    }
+    if (htmlElement instanceof ShadowRoot) {
+        htmlElement = htmlElement.host;
+    }
+    if (htmlElement.style.display == 'none') {
+        htmlElement.style.display = '';
+    }
+    else {
+        htmlElement.style.display = 'none';
+    }
+}
+function isVisible(htmlElement) {
+    return htmlElement.style.display == '';
+}
+const visible = isVisible;
+function styleInject(css) {
+    document.head.append(createElement('style', { textContent: css }));
 }
 
 var manipulator2dCSS = ":host {\n\t--harmony-2d-manipulator-shadow-radius: var(--harmony-2d-manipulator-radius, 0.5rem);\n\t--harmony-2d-manipulator-shadow-bg-color: var(--harmony-2d-manipulator-bg-color, red);\n\t--harmony-2d-manipulator-shadow-border: var(--harmony-2d-manipulator-border, none);\n\t--harmony-2d-manipulator-shadow-handle-bg-color: var(--harmony-2d-manipulator-handle-bg-color, chartreuse);\n\n\twidth: 10rem;\n\theight: 10rem;\n\tdisplay: block;\n\tuser-select: none;\n\tpointer-events: all;\n}\n\n:host-context(.grabbing) {\n\tcursor: grabbing;\n}\n\n.manipulator {\n\tposition: absolute;\n\tbackground-color: var(--harmony-2d-manipulator-shadow-bg-color);\n\tborder: var(--harmony-2d-manipulator-shadow-border);\n\tcursor: move;\n\tpointer-events: all;\n}\n\n.rotator {\n\tposition: absolute;\n\twidth: var(--harmony-2d-manipulator-shadow-radius);\n\theight: var(--harmony-2d-manipulator-shadow-radius);\n\tbackground-color: var(--harmony-2d-manipulator-shadow-handle-bg-color);\n\tborder-radius: calc(var(--harmony-2d-manipulator-shadow-radius) * 0.5);\n\ttransform: translate(-50%, -50%);\n\tcursor: grab;\n}\n\n.corner {\n\tposition: absolute;\n\twidth: var(--harmony-2d-manipulator-shadow-radius);\n\theight: var(--harmony-2d-manipulator-shadow-radius);\n\tbackground-color: var(--harmony-2d-manipulator-shadow-handle-bg-color);\n\tborder-radius: calc(var(--harmony-2d-manipulator-shadow-radius) * 0.5);\n\ttransform: translate(-50%, -50%);\n\tcursor: grab;\n}\n\n.side {\n\tposition: absolute;\n\twidth: var(--harmony-2d-manipulator-shadow-radius);\n\theight: var(--harmony-2d-manipulator-shadow-radius);\n\tbackground-color: var(--harmony-2d-manipulator-shadow-handle-bg-color);\n\tborder-radius: calc(var(--harmony-2d-manipulator-shadow-radius) * 0.5);\n\ttransform: translate(-50%, -50%);\n\tcursor: grab;\n}\n\n.corner.grabbing {\n\tcursor: grabbing;\n}\n";
@@ -8370,7 +8651,6 @@ class HTMLHarmony2dManipulatorElement extends HTMLElement {
             return null;
         }
         const c = CORNERS[i];
-        this.#htmlQuad.getBoundingClientRect();
         const centerX = this.#left + this.#width * 0.5;
         const centerY = this.#top + this.#height * 0.5;
         const x = c[0] * this.#width * 0.5;
@@ -8379,6 +8659,24 @@ class HTMLHarmony2dManipulatorElement extends HTMLElement {
             x: x * Math.cos(this.#rotation) - y * Math.sin(this.#rotation) + centerX,
             y: x * Math.sin(this.#rotation) + y * Math.cos(this.#rotation) + centerY,
         };
+    }
+    set(values) {
+        if (values.rotation !== undefined) {
+            this.#rotation = values.rotation;
+        }
+        if (values.left !== undefined) {
+            this.#left = values.left;
+        }
+        if (values.top !== undefined) {
+            this.#top = values.top;
+        }
+        if (values.width !== undefined) {
+            this.#width = values.width;
+        }
+        if (values.height !== undefined) {
+            this.#height = values.height;
+        }
+        this.#refresh();
     }
     connectedCallback() {
         this.#refresh();
@@ -8656,16 +8954,66 @@ function defineHarmony2dManipulator() {
 
 var accordionCSS = ":host {\n\toverflow: hidden;\n\tdisplay: flex;\n\tjustify-content: center;\n\tflex-direction: column;\n\tposition: relative;\n\n\t/*--accordion-text-color: #000;*/\n}\n\n.item .header {\n\tcursor: pointer;\n\tdisplay: block;\n\tuser-select: none;\n\tpadding: 5px;\n\t/*color: var(--accordion-text-color)\n\tcolor: var(--accordion-text-color)*/\n}\n\n.item .content {\n\tdisplay: block;\n\toverflow: hidden;\n\theight: 0;\n\t/*transition: all 0.5s ease 0s;*/\n}\n\n.item .content.selected {\n\theight: unset;\n\tpadding: 10px;\n}\n\n\n@media (prefers-color-scheme: light) {\n\t:host {\n\t\t--accordion-text-color: #000;\n\t\t--accordion-background-color: #eee;\n\t\tcolor: #000;\n\t\tbackground: #eee;\n\t}\n}\n\n@media (prefers-color-scheme: dark) {\n\t:host {\n\t\t--accordion-text-color: #eee;\n\t\t--accordion-background-color: #000;\n\t\tcolor: #eee;\n\t\tbackground: #000;\n\t}\n}\n";
 
+var itemCSS = "slot[name=\"header\"] {\n\tcursor: pointer;\n}\n";
+
+class HTMLHarmonyItem extends HTMLElement {
+    #shadowRoot;
+    #htmlHeader;
+    #htmlContent;
+    #id = '';
+    constructor() {
+        super();
+        this.#shadowRoot = this.attachShadow({ mode: 'closed' });
+        shadowRootStyle(this.#shadowRoot, itemCSS);
+        this.#htmlHeader = createElement('slot', {
+            name: 'header',
+            parent: this.#shadowRoot,
+        });
+        this.#htmlContent = createElement('slot', {
+            name: 'content',
+            parent: this.#shadowRoot,
+        });
+    }
+    getHeader() {
+        return this.#htmlHeader;
+    }
+    getContent() {
+        return this.#htmlContent;
+    }
+    getId() {
+        return this.#id;
+    }
+    attributeChangedCallback(name, oldValue, newValue) {
+        switch (name) {
+            case 'id':
+            case 'item-id':
+                this.#id = newValue;
+                break;
+        }
+    }
+    static get observedAttributes() {
+        return ['id', 'item-id'];
+    }
+}
+let definedHarmonyItem = false;
+function defineHarmonyItem() {
+    if (window.customElements && !definedHarmonyItem) {
+        customElements.define('harmony-item', HTMLHarmonyItem);
+        definedHarmonyItem = true;
+    }
+}
+
 class HTMLHarmonyAccordionElement extends HTMLElement {
     #doOnce = true;
     #multiple = false;
     #disabled = false;
-    #items = new Map();
+    #items = new Set();
     #selected = new Set();
     #shadowRoot;
+    //#htmlSlots = new Set<HTMLSlotElement>();
     constructor() {
         super();
-        this.#shadowRoot = this.attachShadow({ mode: 'closed' });
+        this.#shadowRoot = this.attachShadow({ mode: 'closed', slotAssignment: "manual", });
         shadowRootStyle(this.#shadowRoot, accordionCSS);
         this.#initMutationObserver();
     }
@@ -8678,62 +9026,77 @@ class HTMLHarmonyAccordionElement extends HTMLElement {
     #processChilds() {
         //This is a 2 steps process cause we may change DOM
         const children = this.children;
-        let list = [];
-        for (let child of children) {
+        const list = [];
+        for (const child of children) {
             list.push(child);
         }
         list.forEach(element => this.addItem(element));
     }
     addItem(item) {
-        if (item.tagName == 'ITEM') {
-            let header = item.getElementsByTagName('header')[0];
-            let content = item.getElementsByTagName('content')[0];
-            const htmlItemHeader = createElement('div', { class: 'header' });
-            const htmlItemContent = createElement('div', { class: 'content' });
-            htmlItemHeader.addEventListener('click', () => this.#toggle(htmlItemHeader));
-            htmlItemHeader.append(header);
-            htmlItemContent.append(content);
-            this.#items.set(htmlItemHeader, htmlItemContent);
-            this.#refresh();
-            item.remove();
-            if (header.getAttribute('select')) {
-                this.#toggle(htmlItemHeader);
-            }
+        if (this.#items.has(item)) {
+            return;
         }
+        if (item.tagName == 'HARMONY-ITEM') {
+            const htmlSlot = createElement('slot', {
+                parent: this.#shadowRoot,
+            });
+            htmlSlot.assign(item);
+            this.#items.add(item);
+            item.getHeader().addEventListener('click', () => this.#toggle(item));
+        }
+        this.#refresh();
     }
     createItem(header, content) {
-        let item = createElement('item', { childs: [header, content] });
-        this.#shadowRoot.append(item);
+        const item = createElement('harmony-item', { childs: [header, content] });
+        header.slot = 'header';
+        content.slot = 'content';
+        this.append(item);
         return item;
     }
     #refresh() {
-        this.innerHTML = '';
-        for (let [header, content] of this.#items) {
-            let htmlItem = createElement('div', { class: 'item' });
-            htmlItem.append(header, content);
-            this.#shadowRoot.append(htmlItem);
+        for (const htmlItem of this.#items) {
+            hide(htmlItem.getContent());
         }
     }
-    #toggle(header, collapse = true) {
-        let content = this.#items.get(header);
+    #toggle(htmlItem, collapse = true) {
+        //let content = this.#items.get(header);
+        /*
         if (collapse && !this.#multiple) {
             for (let selected of this.#selected) {
-                if (header != selected) {
+                if (htmlItem != selected) {
                     this.#toggle(selected, false);
                 }
             }
-        }
-        if (this.#selected.has(header)) {
-            this.#selected.delete(header);
-            header.classList.remove('selected');
-            content.classList.remove('selected');
-            this.#dispatchSelect(false, header, content);
+        }*/
+        if (this.#selected.has(htmlItem)) {
+            this.#display(htmlItem, false);
         }
         else {
-            this.#selected.add(header);
-            header.classList.add('selected');
-            content.classList.add('selected');
-            this.#dispatchSelect(true, header, content);
+            this.#display(htmlItem, true);
+        }
+    }
+    #display(htmlItem, display) {
+        if (display) {
+            this.#selected.add(htmlItem);
+            //htmlHeader.classList.add('selected');
+            //htmlContent.classList.add('selected');
+            show(htmlItem);
+            show(htmlItem.getContent());
+            this.#dispatchSelect(true, htmlItem);
+            if (!this.#multiple) {
+                for (const selected of this.#selected) {
+                    if (htmlItem != selected) {
+                        this.#display(selected, false);
+                    }
+                }
+            }
+        }
+        else {
+            this.#selected.delete(htmlItem);
+            //htmlHeader.classList.remove('selected');
+            //htmlContent.classList.remove('selected');
+            hide(htmlItem.getContent());
+            this.#dispatchSelect(false, htmlItem);
         }
     }
     clear() {
@@ -8741,22 +9104,54 @@ class HTMLHarmonyAccordionElement extends HTMLElement {
         this.#selected.clear();
         this.#refresh();
     }
-    #dispatchSelect(selected, header, content) {
-        this.dispatchEvent(new CustomEvent(selected ? 'select' : 'unselect', { detail: { header: header.children[0], content: content.children[0] } }));
+    expand(id) {
+        for (const htmlItem of this.#items) {
+            if (htmlItem.getId() == id) {
+                this.#display(htmlItem, true);
+            }
+        }
+    }
+    expandAll() {
+        for (const htmlItem of this.#items) {
+            this.#display(htmlItem, true);
+        }
+    }
+    collapse(id) {
+        for (const htmlItem of this.#items) {
+            if (htmlItem.getId() == id) {
+                this.#display(htmlItem, false);
+            }
+        }
+    }
+    collapseAll() {
+        for (const htmlItem of this.#items) {
+            this.#display(htmlItem, false);
+        }
+    }
+    #dispatchSelect(selected, htmlItem) {
+        const htmlHeader = htmlItem.getHeader();
+        const htmlContent = htmlItem.getContent();
+        this.dispatchEvent(new CustomEvent(selected ? 'select' : 'unselect', {
+            detail: {
+                id: htmlItem.getId(),
+                header: htmlHeader.assignedElements()[0],
+                content: htmlContent.assignedElements()[0]
+            }
+        }));
     }
     #initMutationObserver() {
-        let config = { childList: true, subtree: true };
+        const config = { childList: true, subtree: true };
         const mutationCallback = (mutationsList, observer) => {
             for (const mutation of mutationsList) {
-                let addedNodes = mutation.addedNodes;
-                for (let addedNode of addedNodes) {
+                const addedNodes = mutation.addedNodes;
+                for (const addedNode of addedNodes) {
                     if (addedNode.parentNode == this) {
                         this.addItem(addedNode);
                     }
                 }
             }
         };
-        let observer = new MutationObserver(mutationCallback);
+        const observer = new MutationObserver(mutationCallback);
         observer.observe(this, config);
     }
     set disabled(disabled) {
@@ -8780,142 +9175,10 @@ class HTMLHarmonyAccordionElement extends HTMLElement {
 let definedAccordion = false;
 function defineHarmonyAccordion() {
     if (window.customElements && !definedAccordion) {
+        defineHarmonyItem();
         customElements.define('harmony-accordion', HTMLHarmonyAccordionElement);
         definedAccordion = true;
         injectGlobalCss();
-    }
-}
-
-function rgbToHsl(r, g, b) {
-    const max = Math.max(r, g, b), min = Math.min(r, g, b);
-    let h = 0, s, l = (max + min) / 2;
-    if (max == min) {
-        h = s = 0; // achromatic
-    }
-    else {
-        var d = max - min;
-        s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
-        switch (max) {
-            case r:
-                h = (g - b) / d + (g < b ? 6 : 0);
-                break;
-            case g:
-                h = (b - r) / d + 2;
-                break;
-            case b:
-                h = (r - g) / d + 4;
-                break;
-        }
-        h /= 6;
-    }
-    return [h, s, l];
-}
-function hslToRgb(h, s, l) {
-    var r, g, b;
-    if (s == 0) {
-        r = g = b = l; // achromatic
-    }
-    else {
-        function hue2rgb(p, q, t) {
-            if (t < 0)
-                t += 1;
-            if (t > 1)
-                t -= 1;
-            if (t < 1 / 6)
-                return p + (q - p) * 6 * t;
-            if (t < 1 / 2)
-                return q;
-            if (t < 2 / 3)
-                return p + (q - p) * (2 / 3 - t) * 6;
-            return p;
-        }
-        var q = l < 0.5 ? l * (1 + s) : l + s - l * s;
-        var p = 2 * l - q;
-        r = hue2rgb(p, q, h + 1 / 3);
-        g = hue2rgb(p, q, h);
-        b = hue2rgb(p, q, h - 1 / 3);
-    }
-    return [r, g, b];
-}
-class Color$1 {
-    #rgba = [];
-    constructor({ red = 0, green = 0, blue = 0, alpha = 1, hex = '' } = {}) {
-        this.#rgba[0] = red;
-        this.#rgba[1] = green;
-        this.#rgba[2] = blue;
-        this.#rgba[3] = alpha;
-        if (hex) {
-            this.setHex(hex);
-        }
-    }
-    setHue(hue) {
-        const hsl = rgbToHsl(this.#rgba[0], this.#rgba[1], this.#rgba[2]);
-        const rgb = hslToRgb(hue, hsl[1], hsl[2]);
-        this.#rgba[0] = rgb[0];
-        this.#rgba[1] = rgb[1];
-        this.#rgba[2] = rgb[2];
-    }
-    setSatLum(sat, lum) {
-        const hsl = rgbToHsl(this.#rgba[0], this.#rgba[1], this.#rgba[2]);
-        const rgb = hslToRgb(hsl[0], sat, lum);
-        this.#rgba[0] = rgb[0];
-        this.#rgba[1] = rgb[1];
-        this.#rgba[2] = rgb[2];
-    }
-    setHex(hex) {
-        hex = (hex.startsWith('#') ? hex.slice(1) : hex)
-            .replace(/^(\w{3})$/, '$1F') //987      -> 987F
-            .replace(/^(\w)(\w)(\w)(\w)$/, '$1$1$2$2$3$3$4$4') //9876     -> 99887766
-            .replace(/^(\w{6})$/, '$1FF'); //987654   -> 987654FF
-        if (!hex.match(/^([0-9a-fA-F]{8})$/)) {
-            throw new Error('Unknown hex color; ' + hex);
-        }
-        const rgba = hex
-            .match(/^(\w\w)(\w\w)(\w\w)(\w\w)$/)?.slice(1) //98765432 -> 98 76 54 32
-            .map(x => parseInt(x, 16)); //Hex to decimal
-        if (rgba) {
-            this.#rgba[0] = rgba[0] / 255;
-            this.#rgba[1] = rgba[1] / 255;
-            this.#rgba[2] = rgba[2] / 255;
-            this.#rgba[3] = rgba[3] / 255;
-        }
-    }
-    getHex() {
-        const hex = this.#rgba.map(x => Math.round(x * 255).toString(16));
-        return '#' + hex.map(x => x.padStart(2, '0')).join('');
-    }
-    getHue() {
-        return rgbToHsl(this.#rgba[0], this.#rgba[1], this.#rgba[2])[0];
-    }
-    getHsl() {
-        return rgbToHsl(this.#rgba[0], this.#rgba[1], this.#rgba[2]);
-    }
-    getRgba() {
-        return this.#rgba;
-    }
-    set red(red) {
-        this.#rgba[0] = red;
-    }
-    get red() {
-        return this.#rgba[0];
-    }
-    set green(green) {
-        this.#rgba[1] = green;
-    }
-    get green() {
-        return this.#rgba[1];
-    }
-    set blue(blue) {
-        this.#rgba[2] = blue;
-    }
-    get blue() {
-        return this.#rgba[2];
-    }
-    set alpha(alpha) {
-        this.#rgba[3] = alpha;
-    }
-    get alpha() {
-        return this.#rgba[3];
     }
 }
 
@@ -9154,8 +9417,8 @@ class HTMLHarmonyContextMenuElement extends HTMLElement {
         this.#checkSize();
     }
     #checkSize() {
-        let bodyRect = document.body.getBoundingClientRect();
-        let elemRect = this.getBoundingClientRect();
+        const bodyRect = document.body.getBoundingClientRect();
+        const elemRect = this.getBoundingClientRect();
         this.style.maxWidth = bodyRect.width + 'px';
         this.style.maxHeight = bodyRect.height + 'px';
         if (elemRect.right > bodyRect.right) {
@@ -9188,12 +9451,12 @@ class HTMLHarmonyContextMenuElement extends HTMLElement {
         if (this.#doOnce) {
             I18n.observeElement(this.#shadowRoot);
             shadowRootStyle(this.#shadowRoot, contextMenuCSS);
-            let callback = (entries, observer) => {
+            const callback = (entries, observer) => {
                 entries.forEach(() => {
                     this.#checkSize();
                 });
             };
-            let resizeObserver = new ResizeObserver(callback);
+            const resizeObserver = new ResizeObserver(callback);
             resizeObserver.observe(this);
             resizeObserver.observe(document.body);
             this.#doOnce = false;
@@ -9202,19 +9465,19 @@ class HTMLHarmonyContextMenuElement extends HTMLElement {
     #setItems(items, userData) {
         this.#shadowRoot.innerHTML = '';
         if (items instanceof Array) {
-            for (let item of items) {
+            for (const item of items) {
                 this.#shadowRoot.append(this.addItem(item, userData));
             }
         }
         else {
-            for (let itemId in items) {
-                let item = items[itemId];
+            for (const itemId in items) {
+                const item = items[itemId];
                 this.#shadowRoot.append(this.addItem(item, userData));
             }
         }
     }
     #openSubMenu(htmlSubMenu) {
-        for (let [htmlItem, sub] of this.#subMenus) {
+        for (const [htmlItem, sub] of this.#subMenus) {
             if (sub == htmlSubMenu || sub.contains(htmlSubMenu)) {
                 htmlItem.classList.add('opened');
                 htmlItem.classList.remove('closed');
@@ -9227,7 +9490,7 @@ class HTMLHarmonyContextMenuElement extends HTMLElement {
         this.#checkSize();
     }
     addItem(item, userData) {
-        let htmlItem = createElement('div', {
+        const htmlItem = createElement('div', {
             class: 'harmony-context-menu-item',
         });
         if (!item) {
@@ -9243,7 +9506,7 @@ class HTMLHarmonyContextMenuElement extends HTMLElement {
                 htmlItemTitle.innerHTML = item.i18n;
             }
             else {
-                htmlItemTitle.innerHTML = item.name;
+                htmlItemTitle.innerText = item.name ?? '';
             }
             htmlItem.append(htmlItemTitle);
             if (item.selected) {
@@ -9257,21 +9520,27 @@ class HTMLHarmonyContextMenuElement extends HTMLElement {
                     class: 'submenu',
                 });
                 this.#subMenus.set(htmlItem, htmlSubMenu);
+                let subItems = 0;
                 if (item.submenu instanceof Array) {
-                    for (let subItem of item.submenu) {
+                    for (const subItem of item.submenu) {
                         htmlSubMenu.append(this.addItem(subItem, userData));
+                        ++subItems;
                     }
                 }
                 else {
-                    for (let subItemName in item.submenu) {
-                        let subItem = item.submenu[subItemName];
+                    for (const subItemName in item.submenu) {
+                        const subItem = item.submenu[subItemName];
                         htmlSubMenu.append(this.addItem(subItem, userData));
+                        ++subItems;
                     }
                 }
                 htmlItem.append(htmlSubMenu);
                 //htmlSubMenu.style.display = 'none';
                 htmlItem.classList.add('closed');
                 htmlItem.addEventListener('click', event => { this.#openSubMenu(htmlSubMenu); event.stopPropagation(); });
+                if (subItems == 0) {
+                    hide(htmlItem);
+                }
             }
             else {
                 htmlItem.addEventListener('click', () => {
@@ -9547,8 +9816,8 @@ class HTMLHarmonyPaletteElement extends HTMLElement {
     #processChilds() {
         //This is a 2 steps process cause we may change DOM
         const children = this.children;
-        let list = [];
-        for (let child of children) {
+        const list = [];
+        for (const child of children) {
             list.push(child);
         }
         list.forEach(element => {
@@ -9564,7 +9833,7 @@ class HTMLHarmonyPaletteElement extends HTMLElement {
         if (!this.#initialized) {
             return;
         }
-        this.innerHTML = '';
+        this.innerText = '';
         this.#colorElements.clear();
         for (const [colorHex, color] of this.#colors) {
             const element = createElement('div', {
@@ -9649,7 +9918,7 @@ class HTMLHarmonyPaletteElement extends HTMLElement {
         let r = 0, g = 0, b = 0;
         switch (true) {
             case typeof color == 'string':
-                let c = parseInt('0x' + color.replace('#', ''), 16);
+                const c = parseInt('0x' + color.replace('#', ''), 16);
                 r = ((c >> 16) & 0xFF) / 255;
                 g = ((c >> 8) & 0xFF) / 255;
                 b = (c & 0xFF) / 255;
@@ -9685,7 +9954,7 @@ function defineHarmonyPalette() {
 var panelCSS = ":host {\n\tdisplay: flex;\n\tflex: 1;\n\tflex-direction: column;\n\n\tflex: 0 0 auto;\n\t/*flex-grow: 0;\n\tflex-shrink: 0;\n\tflex-basis: auto;*/\n\t/*flex-basis: 0;*/\n\t/*flex: 1;*/\n\t/*height:100%;\n\twidth:100%;*/\n\n\t/*padding: 5px !important;*/\n\tbox-sizing: border-box;\n\tpointer-events: all;\n\toverflow: hidden;\n\tposition: relative;\n\tflex-direction: column;\n\tbox-sizing: border-box;\n}\n\n.harmony-panel-row {\n\tflex-direction: row;\n}\n\n.harmony-panel-row>harmony-panel {\n\theight: 100%;\n}\n\n.harmony-panel-column {\n\tflex-direction: column;\n}\n\n.harmony-panel-column>harmony-panel {\n\twidth: 100%;\n}\n\n.harmony-panel-splitter {\n\tdisplay: none;\n\tflex: 0 0 10px;\n\tbackground-color: red;\n}\n\n.title {\n\tcursor: pointer;\n\ttext-align: center;\n\tfont-size: 1.5em;\n\tpadding: 4px;\n\toverflow: hidden;\n}\n\n.content {\n\twidth: 100%;\n\tbox-sizing: border-box;\n}\n\n[collapsible='1']>.title::after {\n\tcontent: \"-\";\n\tright: 5px;\n\tposition: absolute;\n}\n\n[collapsed='1']>.title::after {\n\tcontent: \"+\";\n}\n";
 
 let nextId = 0;
-//let spliter: HTMLElement = createElement('div', { className: 'harmony-panel-splitter' }) as HTMLElement;
+//let spliter: HTMLElement = createElement('div', { class: 'harmony-panel-splitter' }) as HTMLElement;
 let highlitPanel;
 class HTMLHarmonyPanelElement extends HTMLElement {
     #doOnce = true;
@@ -9713,14 +9982,14 @@ class HTMLHarmonyPanelElement extends HTMLElement {
         //this.addEventListener('mousemove', event => this._handleMouseMove(event));
         //this.addEventListener('mouseleave', event => this._handleMouseLeave(event));
         this.htmlTitle = createElement('div', {
-            className: 'title',
+            class: 'title',
             parent: this.#shadowRoot,
             events: {
                 click: () => this.#toggleCollapse(),
             }
         });
         this.htmlContent = createElement('div', {
-            className: 'content',
+            class: 'content',
             parent: this.#shadowRoot,
         });
     }
@@ -10057,9 +10326,9 @@ class HTMLHarmonyPanelElement extends HTMLElement {
         return `harmony-panel-dummy-${++nextId}`;
     }
     static saveDisposition() {
-        let list = document.getElementsByTagName('harmony-panel');
-        let json = { panels: {}, dummies: [] };
-        for (let panel of list) {
+        const list = document.getElementsByTagName('harmony-panel');
+        const json = { panels: {}, dummies: [] };
+        for (const panel of list) {
             if (panel.id && panel.parentElement && panel.parentElement.id && panel.parentElement.tagName == 'HARMONY-PANEL') {
                 json.panels[panel.id] = { parent: panel.parentElement.id, size: panel.size, direction: panel.direction };
                 if (panel.#isDummy) {
@@ -10170,10 +10439,10 @@ class HTMLHarmonyRadioElement extends HTMLElement {
     }
     select(value, select) {
         this.#selected[select ? 'add' : 'delete'](value);
-        let htmlButton = this.#buttons.get(value);
+        const htmlButton = this.#buttons.get(value);
         if (htmlButton) {
             if (select && !this.#multiple) {
-                for (let child of this.#shadowRoot.children) {
+                for (const child of this.#shadowRoot.children) {
                     if (child.hasAttribute('selected')) {
                         child.removeAttribute('selected');
                         this.dispatchEvent(new CustomEvent('change', { detail: { value: child.value, state: false } }));
@@ -10187,7 +10456,7 @@ class HTMLHarmonyRadioElement extends HTMLElement {
         }
     }
     isSelected(value) {
-        let htmlButton = this.#buttons.get(value);
+        const htmlButton = this.#buttons.get(value);
         return htmlButton?.value ?? false;
     }
     set disabled(disabled) {
@@ -10198,18 +10467,18 @@ class HTMLHarmonyRadioElement extends HTMLElement {
         return this.#disabled;
     }
     #initObserver() {
-        let config = { childList: true, subtree: true };
+        const config = { childList: true, subtree: true };
         const mutationCallback = (mutationsList, observer) => {
             for (const mutation of mutationsList) {
-                let addedNodes = mutation.addedNodes;
-                for (let addedNode of addedNodes) {
+                const addedNodes = mutation.addedNodes;
+                for (const addedNode of addedNodes) {
                     if (addedNode.parentNode == this) {
                         this.#initButton(addedNode);
                     }
                 }
             }
         };
-        let observer = new MutationObserver(mutationCallback);
+        const observer = new MutationObserver(mutationCallback);
         observer.observe(this, config);
     }
     attributeChangedCallback(name, oldValue, newValue) {
@@ -10250,6 +10519,8 @@ function defineHarmonyRadio() {
 
 var slideshowCSS = ":host {\n\toverflow: hidden;\n\tdisplay: flex;\n\talign-items: center;\n\tjustify-content: center;\n\tflex-direction: column;\n\tposition: relative;\n}\n\n.image {\n\tposition: relative;\n\tflex-shrink: 0;\n}\n\n.images {\n\toverflow: hidden;\n\tflex: 1;\n\twidth: 100%;\n}\n\n.images-outer {\n\toverflow: hidden;\n\tmargin: auto;\n}\n\n.images-inner {\n\tdisplay: flex;\n\tposition: relative;\n\twidth: 100%;\n\theight: 100%;\n}\n\n:host(.dynamic) .images-inner {\n\ttransition: all 0.5s ease 0s;\n}\n\n/* Controls */\n.controls {\n\tposition: absolute;\n\tz-index: 1000;\n\topacity: 0;\n\twidth: 100%;\n\theight: 100%;\n\tdisplay: none;\n}\n\n:host(.dynamic) .controls {\n\tdisplay: unset;\n}\n\n.controls>div {\n\tposition: absolute;\n\n\tbackground-size: 100%;\n\tbackground-repeat: no-repeat;\n\tbackground-position: center;\n\tpointer-events: all;\n\tcursor: pointer;\n}\n\n.previous-image,\n.next-image {\n\ttop: calc(50% - 24px);\n\twidth: 48px;\n\theight: 48px;\n\tbackground-image: url(\"data:image/svg+xml,%3C%3Fxml version='1.0'%3F%3E%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath style='fill:%23ffffff;stroke:%23000000;stroke-width:10;' d='M 360,100 300,30 30,256 300,482 360,412 175,256 Z'/%3E%3C/svg%3E%0A\");\n\n}\n\n.previous-image {\n\tleft: 10px;\n}\n\n.next-image {\n\tright: 10px;\n\ttransform: scaleX(-1);\n}\n\n.play,\n.pause {\n\tbottom: 10px;\n\tleft: 10px;\n\twidth: 25px;\n\theight: 25px;\n}\n\n.play {\n\tbackground-image: url(\"data:image/svg+xml,%3C%3Fxml version='1.0'%3F%3E%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath style='fill:%23ffffff;stroke:%23000000;stroke-width:40;' d='M20 20 L470 256 L20 492 Z'/%3E%3C/svg%3E%0A\");\n}\n\n.pause {\n\tright: 0px;\n\tbackground-image: url(\"data:image/svg+xml,%3C%3Fxml version='1.0'%3F%3E%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cg style='fill:%23ffffff;stroke:%23000000;stroke-width:30;'%3E%3Crect width='140' height='452' x='30' y='30' /%3E%3Crect width='140' height='452' x='342' y='30' /%3E%3C/g%3E%3C/svg%3E%0A\");\n}\n\n/* thumbnails */\n.thumbnails {\n\twidth: 100%;\n\t/*background-color: red;*/\n\tflex: 0;\n\tdisplay: flex;\n\tjustify-content: center;\n}\n\n:host(.dynamic) .thumbnails {\n\tdisplay: none;\n}\n\n.thumbnails>img {\n\tobject-fit: contain;\n\theight: 80px;\n\tcursor: pointer;\n\tmargin: 3px;\n}\n\n.zoom {\n\tposition: fixed;\n\tpointer-events: none;\n\t/*transform: scale(3);*/\n\twidth: 100%;\n\theight: 100%;\n}\n\n.zoom>img {\n\t/*transform: scale(3);*/\n\twidth: 100%;\n\tposition: relative;\n\twidth: 1500px;\n}\n";
 
+var slideshowZoomCSS = ":host {\n\tposition: fixed;\n\tpointer-events: none;\n\twidth: 100%;\n\theight: 100%;\n\tz-index: var(--harmony-slideshow-zoom-z-index, 1000000);\n\ttop: 0;\n\tleft: 0;\n\n}\n\nimg {\n\twidth: 100%;\n\tposition: relative;\n\twidth: 1500px;\n}\n";
+
 const resizeCallback = (entries, observer) => {
     entries.forEach(entry => {
         entry.target.onResized();
@@ -10259,6 +10530,7 @@ const DEFAULT_AUTO_PLAY_DELAY = 3000;
 const DEFAULT_SCROLL_TRANSITION_TIME = 0.5;
 class HTMLHarmonySlideshowElement extends HTMLElement {
     #shadowRoot;
+    #zoomShadowRoot;
     #activeImage;
     #currentImage = 0;
     #doOnce = true;
@@ -10270,7 +10542,6 @@ class HTMLHarmonySlideshowElement extends HTMLElement {
     #htmlPauseButton;
     #htmlPlayButton;
     #htmlThumbnails;
-    #htmlZoomContainer;
     #images = [];
     #imgSet = new Set();
     #htmlZoomImage;
@@ -10337,8 +10608,8 @@ class HTMLHarmonySlideshowElement extends HTMLElement {
             },
         });
         this.#htmlZoomImage = createElement('img');
-        this.#htmlZoomContainer = createElement('div', {
-            class: 'zoom',
+        this.#zoomShadowRoot = createShadowRoot('div', {
+            adoptStyle: slideshowZoomCSS,
             parent: document.body,
             childs: [
                 this.#htmlZoomImage,
@@ -10378,15 +10649,14 @@ class HTMLHarmonySlideshowElement extends HTMLElement {
         }
         this.#resizeObserver.observe(this);
         this.checkImagesSize();
-        document.body.append(this.#htmlZoomContainer);
         if (this.#dynamic) {
             this.classList.add('dynamic');
         }
     }
     disconnectedCallback() {
-        if (this.#htmlZoomContainer) {
-            this.#htmlZoomContainer.remove();
-            hide(this.#htmlZoomContainer);
+        if (this.#zoomShadowRoot) {
+            this.#zoomShadowRoot.host.remove();
+            hide(this.#zoomShadowRoot);
         }
     }
     addImage(htmlImage) {
@@ -10403,7 +10673,7 @@ class HTMLHarmonySlideshowElement extends HTMLElement {
                     this.refresh();
                 });
                 htmlImage.onload = () => this.checkImageSize(htmlImage);
-                let htmlThumbnailImage = htmlImage.cloneNode();
+                const htmlThumbnailImage = htmlImage.cloneNode();
                 this.#htmlThumbnails.append(htmlThumbnailImage);
                 htmlThumbnailImage.addEventListener('click', () => this.active = htmlImage);
             }
@@ -10412,12 +10682,12 @@ class HTMLHarmonySlideshowElement extends HTMLElement {
     removeAllImages() {
         this.#images = [];
         this.#imgSet = new Set();
-        this.#htmlImagesInner.innerHTML = '';
-        this.#htmlThumbnails.innerHTML = '';
+        this.#htmlImagesInner.innerText = '';
+        this.#htmlThumbnails.innerText = '';
         this.#activeImage = undefined;
         // Remove pending images
-        let list = [];
-        for (let child of this.children) {
+        const list = [];
+        for (const child of this.children) {
             if (child.constructor.name == 'HTMLImageElement') {
                 list.push(child);
             }
@@ -10425,7 +10695,7 @@ class HTMLHarmonySlideshowElement extends HTMLElement {
         list.forEach(element => element.remove());
     }
     refresh() {
-        for (let image of this.#images) {
+        for (const image of this.#images) {
             //image.style.display = (image ==  this.#activeImage) ? '' : 'none';
             image.style.display = '';
         }
@@ -10436,7 +10706,7 @@ class HTMLHarmonySlideshowElement extends HTMLElement {
         this.#smoothScroll = options.smoothScroll ?? true;
         this.#smoothScrollTransitionTime = options.smoothScrollTransitionTime ?? DEFAULT_SCROLL_TRANSITION_TIME;
         if (options.images) {
-            for (let image of options.images) {
+            for (const image of options.images) {
                 const htmlImage = createElement('img');
                 htmlImage.src = image;
                 this.addImage(htmlImage);
@@ -10452,7 +10722,7 @@ class HTMLHarmonySlideshowElement extends HTMLElement {
     #processChilds() {
         //This is a 2 steps process cause we may change DOM
         const list = [];
-        for (let child of this.children) {
+        for (const child of this.children) {
             list.push(child);
         }
         list.forEach(element => this.addImage(element));
@@ -10503,8 +10773,8 @@ class HTMLHarmonySlideshowElement extends HTMLElement {
         this.checkImagesSize();
     }
     checkImagesSize() {
-        let rect = this.#htmlImages.getBoundingClientRect();
-        for (let image of this.#images) {
+        const rect = this.#htmlImages.getBoundingClientRect();
+        for (const image of this.#images) {
             this.checkImageSize(image, rect);
         }
     }
@@ -10514,35 +10784,35 @@ class HTMLHarmonySlideshowElement extends HTMLElement {
         }
         let widthRatio = 1.0;
         let heightRatio = 1.0;
-        let naturalWidth = htmlImage.naturalWidth;
-        let naturalHeight = htmlImage.naturalHeight;
+        const naturalWidth = htmlImage.naturalWidth;
+        const naturalHeight = htmlImage.naturalHeight;
         if (naturalWidth > rect.width) {
             widthRatio = rect.width / naturalWidth;
         }
         if (naturalHeight > rect.height) {
             heightRatio = rect.height / naturalHeight;
         }
-        let ratio = Math.min(widthRatio, heightRatio);
-        let imageWidth = naturalWidth * ratio + 'px';
-        let imageHeight = naturalHeight * ratio + 'px';
+        const ratio = Math.min(widthRatio, heightRatio);
+        const imageWidth = naturalWidth * ratio + 'px';
+        const imageHeight = naturalHeight * ratio + 'px';
         this.#htmlImagesOuter.style.width = imageWidth;
         this.#htmlImagesOuter.style.height = imageHeight;
     }
     #zoomImage(event) {
-        let activeImage = this.#activeImage;
+        const activeImage = this.#activeImage;
         switch (event.type) {
             case 'mouseover':
                 if (activeImage) {
                     this.#htmlZoomImage.src = activeImage.src;
-                    show(this.#htmlZoomContainer);
+                    show(this.#zoomShadowRoot);
                 }
                 break;
             case 'mousemove':
                 if (activeImage) {
-                    let deltaWidth = this.#htmlZoomContainer.clientWidth - this.#htmlZoomImage.clientWidth;
-                    let deltaHeight = this.#htmlZoomContainer.clientHeight - this.#htmlZoomImage.clientHeight;
-                    let mouseX = event.offsetX / activeImage.offsetWidth - 0.5;
-                    let mouseY = event.offsetY / activeImage.offsetHeight - 0.5;
+                    const deltaWidth = this.#zoomShadowRoot.host.clientWidth - this.#htmlZoomImage.clientWidth;
+                    const deltaHeight = this.#zoomShadowRoot.host.clientHeight - this.#htmlZoomImage.clientHeight;
+                    const mouseX = event.offsetX / activeImage.offsetWidth - 0.5;
+                    const mouseY = event.offsetY / activeImage.offsetHeight - 0.5;
                     /*if (deltaWidth >= 0) {
                         this.#htmlZoomImage.style.left = `${-mouseX * deltaWidth}px`;
                     } else {
@@ -10553,29 +10823,27 @@ class HTMLHarmonySlideshowElement extends HTMLElement {
                     }*/
                     //console.log(deltaWidth, deltaHeight);
                     //console.log(mouseX, mouseY);
-                    this.#htmlZoomImage.style.left = `${Math.sign(deltaWidth) * mouseX * deltaWidth}px`;
-                    this.#htmlZoomImage.style.top = `${Math.sign(deltaHeight) * mouseY * deltaHeight}px`;
                     this.#htmlZoomImage.style.left = `${deltaWidth * 0.5 - Math.sign(deltaWidth) * mouseX * deltaWidth}px`;
                     this.#htmlZoomImage.style.top = `${deltaHeight * 0.5 - Math.sign(deltaHeight) * mouseY * deltaHeight}px`;
                 }
                 break;
             case 'mouseout':
-                hide(this.#htmlZoomContainer);
+                hide(this.#zoomShadowRoot);
                 break;
         }
     }
     #initObserver() {
-        let config = { childList: true, subtree: true };
+        const config = { childList: true, subtree: true };
         const mutationCallback = (mutationsList, observer) => {
             for (const mutation of mutationsList) {
-                for (let addedNode of mutation.addedNodes) {
+                for (const addedNode of mutation.addedNodes) {
                     if (addedNode.parentNode == this) {
                         this.addImage(addedNode);
                     }
                 }
             }
         };
-        let observer = new MutationObserver(mutationCallback);
+        const observer = new MutationObserver(mutationCallback);
         observer.observe(this, config);
     }
     attributeChangedCallback(name, oldValue, newValue) {
@@ -10628,14 +10896,14 @@ class HTMLHarmonySelectElement extends HTMLElement {
     */
     addOption(value, text) {
         text = text ?? value;
-        let option = document.createElement('option');
+        const option = document.createElement('option');
         option.value = value;
         option.innerHTML = text;
         this.#htmlSelect.append(option);
     }
     addOptions(values) {
         if (values && values.entries) {
-            for (let [value, text] of values.entries()) {
+            for (const [value, text] of values.entries()) {
                 this.addOption(value, text);
             }
         }
@@ -10645,7 +10913,7 @@ class HTMLHarmonySelectElement extends HTMLElement {
         this.addOptions(values);
     }
     removeOption(value) {
-        let list = this.#htmlSelect.children;
+        const list = this.#htmlSelect.children;
         for (let i = 0; i < list.length; i++) {
             if (list[i].value === value) {
                 list[i].remove();
@@ -10653,13 +10921,13 @@ class HTMLHarmonySelectElement extends HTMLElement {
         }
     }
     removeAllOptions() {
-        let list = this.#htmlSelect.children;
+        const list = this.#htmlSelect.children;
         while (list[0]) {
             list[0].remove();
         }
     }
     select(value) {
-        let list = this.#htmlSelect.children;
+        const list = this.#htmlSelect.children;
         for (let i = 0; i < list.length; i++) {
             if (list[i].value === value) {
                 list[i].selected = true;
@@ -10673,7 +10941,7 @@ class HTMLHarmonySelectElement extends HTMLElement {
         }
     }
     unselect(value) {
-        let list = this.#htmlSelect.children;
+        const list = this.#htmlSelect.children;
         for (let i = 0; i < list.length; i++) {
             if (list[i].value === value) {
                 list[i].selected = false;
@@ -10681,7 +10949,7 @@ class HTMLHarmonySelectElement extends HTMLElement {
         }
     }
     unselectAll() {
-        let list = this.#htmlSelect.children;
+        const list = this.#htmlSelect.children;
         for (let i = 0; i < list.length; i++) {
             list[i].selected = false;
         }
@@ -10695,6 +10963,229 @@ function defineHarmonySelect() {
     if (window.customElements && !definedSelect) {
         customElements.define('harmony-select', HTMLHarmonySelectElement);
         definedSelect = true;
+        injectGlobalCss();
+    }
+}
+
+var sliderCSS = ":host {\n\tdisplay: flex;\n}\n\nlabel {\n\twidth: var(--h-slider-label-width, auto);\n}\n\ninput[type=range] {\n\tflex: auto;\n}\n\ninput[type=number] {\n\tflex: 0 0 var(--h-slider-input-width, 4rem);\n\tfont-size: var(--h-slider-input-font-size, 1.2rem);\n\tmin-width: 0;\n\ttext-align: center;\n}\n";
+
+class HTMLHarmonyElement extends HTMLElement {
+    initialized = false;
+    initElement() {
+        if (this.initialized) {
+            return;
+        }
+        this.initialized = true;
+        this.createElement();
+    }
+    createElement() {
+    }
+    connectedCallback() {
+        this.initElement();
+    }
+    attributeChangedCallback(name, oldValue, newValue) {
+        this.initElement();
+        this.onAttributeChanged(name, oldValue, newValue);
+    }
+    onAttributeChanged(name, oldValue, newValue) {
+    }
+    static get observedAttributes() {
+        return ['label'];
+    }
+}
+
+class HTMLHarmonySliderElement extends HTMLHarmonyElement {
+    #initialized = false;
+    #shadowRoot;
+    #htmlLabel;
+    #htmlSlider;
+    #htmlInput;
+    #htmlPrependSlot;
+    #htmlAppendSlot;
+    #htmlPrependIcon;
+    #htmlAppendIcon;
+    #min = 0;
+    #max = 100;
+    #value = [50, 50];
+    #isRange = false;
+    createElement() {
+        this.#shadowRoot = this.attachShadow({ mode: 'closed' });
+        shadowRootStyle(this.#shadowRoot, sliderCSS);
+        I18n.observeElement(this.#shadowRoot);
+        this.#htmlLabel = createElement('label', {
+            parent: this.#shadowRoot,
+            hidden: true,
+        });
+        this.#htmlPrependSlot = createElement('slot', {
+            parent: this.#shadowRoot,
+            name: 'prepend',
+        });
+        this.#htmlPrependIcon = createElement('img', {
+            parent: this.#shadowRoot,
+        });
+        this.#htmlSlider = createElement('input', {
+            type: 'range',
+            parent: this.#shadowRoot,
+            step: 'any',
+            $change: (event) => this.#setValue(Number(event.target.value), undefined, event.target),
+            $input: (event) => this.#setValue(Number(event.target.value), undefined, event.target),
+        });
+        this.#htmlAppendIcon = createElement('img', {
+            parent: this.#shadowRoot,
+        });
+        this.#htmlAppendSlot = createElement('slot', {
+            parent: this.#shadowRoot,
+            name: 'append',
+        });
+        this.#htmlInput = createElement('input', {
+            type: 'number',
+            hidden: true,
+            parent: this.#shadowRoot,
+            value: 50,
+            step: 'any',
+            min: 0,
+            max: 1000,
+            $change: (event) => this.#setValue(Number(event.target.value), undefined, event.target),
+            $input: (event) => this.#setValue(Number(event.target.value), undefined, event.target),
+        });
+    }
+    #checkMin(value) {
+        if (value < this.#min) {
+            return this.#min;
+        }
+        return value;
+    }
+    #checkMax(max) {
+        if (max > this.#max) {
+            return this.#max;
+        }
+        return max;
+    }
+    #setValue(min, max, initiator) {
+        //	 TODO: swap min/max
+        if (min !== undefined) {
+            this.#value[0] = this.#checkMin(min);
+        }
+        if (max !== undefined) {
+            this.#value[1] = this.#checkMax(max);
+        }
+        if (initiator != this.#htmlSlider) {
+            this.#htmlSlider.value = String(min ?? this.#value[0]);
+        }
+        if (initiator != this.#htmlInput) {
+            this.#htmlInput.value = String((min ?? this.#value[0]).toFixed(2));
+        }
+        this.dispatchEvent(new CustomEvent('input', {
+            detail: {
+                value: this.#isRange ? this.#value : this.#value[0],
+            }
+        }));
+    }
+    get value() {
+        return this.#isRange ? this.#value : this.#value[0];
+    }
+    isRange() {
+        return this.#isRange;
+    }
+    setValue(value) {
+        if (Array.isArray(value)) {
+            this.#setValue(value[0], value[1]);
+        }
+        else {
+            if (this.#isRange) {
+                console.error('value must be an array');
+            }
+            else {
+                this.#setValue(value);
+            }
+        }
+    }
+    onAttributeChanged(name, oldValue, newValue) {
+        let step;
+        switch (name) {
+            case 'label':
+                updateElement(this.#htmlLabel, { i18n: newValue, });
+                this.#htmlLabel.innerHTML = newValue;
+                show(this.#htmlLabel);
+                break;
+            case 'min':
+                this.#min = Number(newValue);
+                this.#htmlSlider.setAttribute('min', String(this.#min));
+                this.#htmlInput.setAttribute('min', String(this.#min));
+                break;
+            case 'max':
+                this.#max = Number(newValue);
+                this.#htmlSlider.setAttribute('max', String(this.#max));
+                this.#htmlInput.setAttribute('max', String(this.#max));
+                break;
+            case 'value':
+                if (newValue === null) {
+                    break;
+                }
+                const value = JSON.parse(newValue);
+                if (Array.isArray(value)) {
+                    this.setValue(value);
+                }
+                else {
+                    const n = Number(value);
+                    if (!Number.isNaN(n)) {
+                        this.setValue(n);
+                    }
+                }
+                break;
+            case 'step':
+                step = Number(newValue);
+                if (Number.isNaN(step)) {
+                    step = undefined;
+                }
+                else {
+                    step = step;
+                }
+                this.#htmlSlider.setAttribute('step', step ? String(step) : 'any');
+                break;
+            case 'input-step':
+                step = Number(newValue);
+                if (Number.isNaN(step)) {
+                    step = undefined;
+                }
+                else {
+                    step = step;
+                }
+                this.#htmlInput.setAttribute('step', step ? String(step) : 'any');
+                break;
+            case 'has-input':
+                if (newValue === null) {
+                    hide(this.#htmlInput);
+                }
+                else {
+                    show(this.#htmlInput);
+                }
+                break;
+            /*
+            case 'data-label':
+                this.#htmlText.innerHTML = newValue;
+                this.#htmlText.classList.remove('i18n');
+                break;
+            case 'data-i18n':
+                this.#htmlText.setAttribute('data-i18n', newValue);
+                this.#htmlText.innerHTML = newValue;
+                this.#htmlText.classList.add('i18n');
+                break;
+            case 'data-position':
+                this.#htmlText.setAttribute('data-position', newValue);
+                break;
+                */
+        }
+    }
+    static get observedAttributes() {
+        return super.observedAttributes.concat(['label', 'min', 'max', 'input-step', 'has-input', 'append-icon', 'prepend-icon', 'value']);
+    }
+}
+let definedSlider = false;
+function defineHarmonySlider() {
+    if (window.customElements && !definedSlider) {
+        customElements.define('harmony-slider', HTMLHarmonySliderElement);
+        definedSlider = true;
         injectGlobalCss();
     }
 }
@@ -10781,7 +11272,7 @@ class HTMLHarmonySplitterElement extends HTMLElement {
         if (!this.#dragging) {
             return;
         }
-        let elemRect = this.getBoundingClientRect();
+        const elemRect = this.getBoundingClientRect();
         const clientX = event.clientX;
         const clientY = event.clientY;
         if (this.#orientation == 'v') {
@@ -10920,11 +11411,23 @@ class HTMLHarmonySwitchElement extends HTMLElement {
                 break;
             case 'ternary':
                 this.ternary = true;
+            case 'state':
+                if (newValue == '' || newValue == 'undefined') {
+                    this.state = undefined;
+                }
+                else {
+                    if (newValue == 'true' || newValue == '1') {
+                        this.state = true;
+                    }
+                    else {
+                        this.state = false;
+                    }
+                }
                 break;
         }
     }
     static get observedAttributes() {
-        return ['data-label', 'data-i18n', 'disabled', 'ternary'];
+        return ['data-label', 'data-i18n', 'disabled', 'ternary', 'state'];
     }
 }
 let definedSwitch = false;
@@ -10985,9 +11488,16 @@ class HTMLHarmonyTabElement extends HTMLElement {
         return this.#disabled;
     }
     activate() {
-        this.active = true;
+        this.setActive(true);
     }
+    /**
+     * @deprecated use setActive() instead
+     */
     set active(active) {
+        console.warn('deprecated, use setActive instead');
+        this.setActive(active);
+    }
+    setActive(active) {
         if (this.#active != active) {
             this.#active = active;
             if (active) {
@@ -11005,10 +11515,17 @@ class HTMLHarmonyTabElement extends HTMLElement {
             this.#header.classList.remove('activated');
         }
         if (active && this.#group) {
-            this.#group.active = this;
+            this.#group.activateTab(this);
         }
     }
+    /**
+     * @deprecated use isActive() instead
+     */
     get active() {
+        console.warn('deprecated, use getActive instead');
+        return this.isActive();
+    }
+    isActive() {
         return this.#active;
     }
     #click() {
@@ -11073,18 +11590,23 @@ class HTMLHarmonyTabGroupElement extends HTMLElement {
         this.#refresh();
     }
     #refresh() {
-        for (let tab of this.#tabs) {
+        for (const tab of this.#tabs) {
             this.#header.append(tab.htmlHeader);
             this.#content.append(tab);
             if (tab != this.#activeTab) {
-                tab.active = false;
+                tab.setActive(false);
             }
         }
-        if (this.#activeTab) {
-            this.#activeTab.active = true;
-        }
+        this.#activeTab?.setActive(true);
     }
+    /**
+     * @deprecated use activateTab() instead
+     */
     set active(tab) {
+        console.warn('deprecated, use activateTab instead');
+        this.activateTab(tab);
+    }
+    activateTab(tab) {
         if (this.#activeTab != tab) {
             this.#activeTab = tab;
             this.#refresh();
@@ -11093,8 +11615,8 @@ class HTMLHarmonyTabGroupElement extends HTMLElement {
     clear() {
         this.#tabs.clear();
         this.#activeTab = undefined;
-        this.#header.innerHTML = '';
-        this.#content.innerHTML = '';
+        this.#header.innerText = '';
+        this.#content.innerText = '';
     }
 }
 let definedTabGroup = false;
@@ -11106,13 +11628,15 @@ function defineHarmonyTabGroup() {
     }
 }
 
-var toggleButtonCSS = ":host {\n\tcursor: pointer;\n\theight: 50px;\n\twidth: 50px;\n\tdisplay: inline-block;\n\tposition: relative;\n}\n\non,\noff {\n\tposition: absolute;\n\ttop: 0px;\n\tleft: 0px;\n\theight: 100%;\n\twidth: 100%;\n\tbackground-size: 100% auto;\n\tbox-sizing: border-box;\n}\n";
+var toggleButtonCSS = ":host {\n\tcursor: pointer;\n\tdisplay: inline-block;\n\tposition: relative;\n}\n\non,\noff {\n\theight: 100%;\n\twidth: 100%;\n\tbackground-size: 100% auto;\n\tbox-sizing: border-box;\n}\n";
 
 class HTMLHarmonyToggleButtonElement extends HTMLElement {
     #buttonOn;
     #buttonOff;
     #state = false;
     #shadowRoot;
+    #i18nOn;
+    #i18nOff;
     constructor() {
         super();
         this.#shadowRoot = this.attachShadow({ mode: 'closed' });
@@ -11132,7 +11656,7 @@ class HTMLHarmonyToggleButtonElement extends HTMLElement {
     }
     #processChilds() {
         const childs = new Set(this.children);
-        for (let child of childs) {
+        for (const child of childs) {
             this.#processChild(child);
         }
         this.#refresh();
@@ -11142,34 +11666,42 @@ class HTMLHarmonyToggleButtonElement extends HTMLElement {
             case 'ON':
                 this.#buttonOn = htmlChildElement;
                 this.#shadowRoot.append(this.#buttonOn);
+                if (this.#i18nOn) {
+                    updateElement(this.#buttonOn, { i18n: { title: this.#i18nOn, }, });
+                }
                 break;
             case 'OFF':
                 this.#buttonOff = htmlChildElement;
                 this.#shadowRoot.append(this.#buttonOff);
+                if (this.#i18nOff) {
+                    updateElement(this.#buttonOff, { i18n: { title: this.#i18nOff, }, });
+                }
                 break;
         }
         this.#refresh();
     }
     attributeChangedCallback(name, oldValue, newValue) {
         if (name == 'data-i18n-on') {
-            this.#buttonOn?.setAttribute('data-i18n-title', newValue);
+            this.#i18nOn = newValue;
+            this.#buttonOn && updateElement(this.#buttonOn, { i18n: { title: newValue, }, });
         }
         if (name == 'data-i18n-off') {
-            this.#buttonOff?.setAttribute('data-i18n-title', newValue);
+            this.#i18nOff = newValue;
+            this.#buttonOff && updateElement(this.#buttonOff, { i18n: { title: newValue, }, });
         }
         if (name == 'state') {
             this.state = toBool(newValue);
         }
         if (name == 'src-on') {
             this.#buttonOn = this.#buttonOn ?? createElement('span', {
-                class: 'i18n-title toggle-button-on',
+                class: 'toggle-button-on',
                 hidden: true,
             });
             this.#buttonOn.style.backgroundImage = `url(${newValue})`;
         }
         if (name == 'src-off') {
             this.#buttonOff = this.#buttonOff ?? createElement('span', {
-                class: 'i18n-title toggle-button-off',
+                class: 'toggle-button-off',
             });
             this.#buttonOff.style.backgroundImage = `url(${newValue})`;
         }
@@ -11199,17 +11731,17 @@ class HTMLHarmonyToggleButtonElement extends HTMLElement {
         this.state = !this.#state;
     }
     #initObserver() {
-        let config = { childList: true, subtree: true };
+        const config = { childList: true, subtree: true };
         const mutationCallback = (mutationsList, observer) => {
             for (const mutation of mutationsList) {
-                for (let addedNode of mutation.addedNodes) {
+                for (const addedNode of mutation.addedNodes) {
                     if (addedNode.parentNode == this) {
                         this.#processChild(addedNode);
                     }
                 }
             }
         };
-        let observer = new MutationObserver(mutationCallback);
+        const observer = new MutationObserver(mutationCallback);
         observer.observe(this, config);
     }
     adoptStyleSheet(styleSheet) {
@@ -11220,7 +11752,7 @@ class HTMLHarmonyToggleButtonElement extends HTMLElement {
     }
 }
 let definedToggleButton = false;
-function defineHarmonyToggleButton() {
+function defineToggleButton() {
     if (window.customElements && !definedToggleButton) {
         customElements.define('harmony-toggle-button', HTMLHarmonyToggleButtonElement);
         definedToggleButton = true;
@@ -11230,6 +11762,7 @@ function defineHarmonyToggleButton() {
 
 var index$1 = /*#__PURE__*/Object.freeze({
   __proto__: null,
+  AddI18nElement: AddI18nElement,
   HTMLHarmony2dManipulatorElement: HTMLHarmony2dManipulatorElement,
   HTMLHarmonyAccordionElement: HTMLHarmonyAccordionElement,
   HTMLHarmonyColorPickerElement: HTMLHarmonyColorPickerElement,
@@ -11241,6 +11774,7 @@ var index$1 = /*#__PURE__*/Object.freeze({
   HTMLHarmonyPanelElement: HTMLHarmonyPanelElement,
   HTMLHarmonyRadioElement: HTMLHarmonyRadioElement,
   HTMLHarmonySelectElement: HTMLHarmonySelectElement,
+  HTMLHarmonySliderElement: HTMLHarmonySliderElement,
   HTMLHarmonySlideshowElement: HTMLHarmonySlideshowElement,
   HTMLHarmonySplitterElement: HTMLHarmonySplitterElement,
   HTMLHarmonySwitchElement: HTMLHarmonySwitchElement,
@@ -11249,6 +11783,8 @@ var index$1 = /*#__PURE__*/Object.freeze({
   HTMLHarmonyToggleButtonElement: HTMLHarmonyToggleButtonElement,
   HTMLHarmonyTooltipElement: HTMLHarmonyTooltipElement,
   I18n: I18n,
+  I18nElements: I18nElements,
+  get I18nEvents () { return I18nEvents; },
   get ManipulatorCorner () { return ManipulatorCorner; },
   get ManipulatorDirection () { return ManipulatorDirection; },
   get ManipulatorSide () { return ManipulatorSide; },
@@ -11267,13 +11803,14 @@ var index$1 = /*#__PURE__*/Object.freeze({
   defineHarmonyPanel: defineHarmonyPanel,
   defineHarmonyRadio: defineHarmonyRadio,
   defineHarmonySelect: defineHarmonySelect,
+  defineHarmonySlider: defineHarmonySlider,
   defineHarmonySlideshow: defineHarmonySlideshow,
   defineHarmonySplitter: defineHarmonySplitter,
   defineHarmonySwitch: defineHarmonySwitch,
   defineHarmonyTab: defineHarmonyTab,
   defineHarmonyTabGroup: defineHarmonyTabGroup,
-  defineHarmonyToggleButton: defineHarmonyToggleButton,
   defineHarmonyTooltip: defineHarmonyTooltip,
+  defineToggleButton: defineToggleButton,
   display: display,
   documentStyle: documentStyle,
   documentStyleSync: documentStyleSync,
@@ -11287,36 +11824,6 @@ var index$1 = /*#__PURE__*/Object.freeze({
   updateElement: updateElement,
   visible: visible
 });
-
-const contentCopySVG = '<svg height="24" viewBox="0 -960 960 960" width="24" fill="currentColor"><path d="M360-240q-33 0-56.5-23.5T280-320v-480q0-33 23.5-56.5T360-880h360q33 0 56.5 23.5T800-800v480q0 33-23.5 56.5T720-240H360Zm0-80h360v-480H360v480ZM200-80q-33 0-56.5-23.5T120-160v-560h80v560h440v80H200Zm160-240v-480 480Z"/></svg>';
-
-const dragPanSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M480-80 310-250l57-57 73 73v-206H235l73 72-58 58L80-480l169-169 57 57-72 72h206v-206l-73 73-57-57 170-170 170 170-57 57-73-73v206h205l-73-72 58-58 170 170-170 170-57-57 73-73H520v205l72-73 58 58L480-80Z"/></svg>';
-
-const panZoomSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M120-120v-240h80v104l124-124 56 56-124 124h104v80H120Zm516-460-56-56 124-124H600v-80h240v240h-80v-104L636-580Z"/></svg>';
-
-const pauseSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="currentColor"><path d="M560-200v-560h160v560H560Zm-320 0v-560h160v560H240Z"/></svg>';
-
-const playSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="currentColor"><path d="M320-200v-560l440 280-440 280Z"/></svg>';
-
-const repeatOnSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentcolor"><path d="M120-40q-33 0-56.5-23.5T40-120v-720q0-33 23.5-56.5T120-920h720q33 0 56.5 23.5T920-840v720q0 33-23.5 56.5T840-40H120Zm160-40 56-58-62-62h486v-240h-80v160H274l62-62-56-58-160 160L280-80Zm-80-440h80v-160h406l-62 62 56 58 160-160-160-160-56 58 62 62H200v240Z"/></svg>';
-
-const repeatSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentcolor"><path d="M280-80 120-240l160-160 56 58-62 62h406v-160h80v240H274l62 62-56 58Zm-80-440v-240h486l-62-62 56-58 160 160-160 160-56-58 62-62H280v160h-80Z"/></svg>';
-
-const restartSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M440-122q-121-15-200.5-105.5T160-440q0-66 26-126.5T260-672l57 57q-38 34-57.5 79T240-440q0 88 56 155.5T440-202v80Zm80 0v-80q87-16 143.5-83T720-440q0-100-70-170t-170-70h-3l44 44-56 56-140-140 140-140 56 56-44 44h3q134 0 227 93t93 227q0 121-79.5 211.5T520-122Z"/></svg>';
-
-const rotateSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M482-160q-134 0-228-93t-94-227v-7l-64 64-56-56 160-160 160 160-56 56-64-64v7q0 100 70.5 170T482-240q26 0 51-6t49-18l60 60q-38 22-78 33t-82 11Zm278-161L600-481l56-56 64 64v-7q0-100-70.5-170T478-720q-26 0-51 6t-49 18l-60-60q38-22 78-33t82-11q134 0 228 93t94 227v7l64-64 56 56-160 160Z"/></svg>';
-
-const runSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"  fill="currentColor"><path d="M520-40v-240l-84-80-40 176-276-56 16-80 192 40 64-324-72 28v136h-80v-188l158-68q35-15 51.5-19.5T480-720q21 0 39 11t29 29l40 64q26 42 70.5 69T760-520v80q-66 0-123.5-27.5T540-540l-24 120 84 80v300h-80Zm20-700q-33 0-56.5-23.5T460-820q0-33 23.5-56.5T540-900q33 0 56.5 23.5T620-820q0 33-23.5 56.5T540-740Z"/></svg>';
-
-const visibilityOffSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor"><path d="M0 0h24v24H0zm0 0h24v24H0zm0 0h24v24H0zm0 0h24v24H0z" fill="none"/><path d="M12 7c2.76 0 5 2.24 5 5 0 .65-.13 1.26-.36 1.83l2.92 2.92c1.51-1.26 2.7-2.89 3.43-4.75-1.73-4.39-6-7.5-11-7.5-1.4 0-2.74.25-3.98.7l2.16 2.16C10.74 7.13 11.35 7 12 7zM2 4.27l2.28 2.28.46.46C3.08 8.3 1.78 10.02 1 12c1.73 4.39 6 7.5 11 7.5 1.55 0 3.03-.3 4.38-.84l.42.42L19.73 22 21 20.73 3.27 3 2 4.27zM7.53 9.8l1.55 1.55c-.05.21-.08.43-.08.65 0 1.66 1.34 3 3 3 .22 0 .44-.03.65-.08l1.55 1.55c-.67.33-1.41.53-2.2.53-2.76 0-5-2.24-5-5 0-.79.2-1.53.53-2.2zm4.31-.78l3.15 3.15.02-.16c0-1.66-1.34-3-3-3l-.17.01z"/></svg>';
-
-const visibilityOnSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>';
-
-const walkSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="m280-40 112-564-72 28v136h-80v-188l202-86q14-6 29.5-7t29.5 4q14 5 26.5 14t20.5 23l40 64q26 42 70.5 69T760-520v80q-70 0-125-29t-94-74l-25 123 84 80v300h-80v-260l-84-64-72 324h-84Zm260-700q-33 0-56.5-23.5T460-820q0-33 23.5-56.5T540-900q33 0 56.5 23.5T620-820q0 33-23.5 56.5T540-740Z"/></svg>';
-
-const zoomInSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="currentColor"><path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Zm-40-60v-80h-80v-80h80v-80h80v80h80v80h-80v80h-80Z"/></svg>';
-
-const zoomOutSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="currentColor"><path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400ZM280-540v-80h200v80H280Z"/></svg>';
 
 function SaveFile(file) {
     var link = document.createElement('a');
@@ -11423,6 +11930,55 @@ class ShortcutHandler extends EventTarget {
         }
     }
 }
+
+const FBX_DATA_TYPE_INT_8 = 67;
+const FBX_DATA_TYPE_DOUBLE = 68;
+const FBX_DATA_TYPE_FLOAT = 70;
+const FBX_DATA_TYPE_INT_32 = 73;
+const FBX_DATA_TYPE_INT_64 = 76;
+const FBX_DATA_TYPE_RAW = 82;
+const FBX_DATA_TYPE_STRING = 83;
+const FBX_DATA_TYPE_INT_16 = 89;
+
+const FBX_DATA_TYPE_ARRAY_INT_8 = 98;
+const FBX_DATA_TYPE_ARRAY_DOUBLE = 100;
+const FBX_DATA_TYPE_ARRAY_FLOAT = 102;
+const FBX_DATA_TYPE_ARRAY_INT_32 = 105;
+const FBX_DATA_TYPE_ARRAY_INT_64 = 108;
+
+const FBX_DATA_LEN = {};
+FBX_DATA_LEN[FBX_DATA_TYPE_INT_8] = 1;
+FBX_DATA_LEN[FBX_DATA_TYPE_DOUBLE] = 8;
+FBX_DATA_LEN[FBX_DATA_TYPE_FLOAT] = 4;
+FBX_DATA_LEN[FBX_DATA_TYPE_INT_32] = 4;
+FBX_DATA_LEN[FBX_DATA_TYPE_INT_64] = 8;
+FBX_DATA_LEN[FBX_DATA_TYPE_INT_16] = 2;
+
+FBX_DATA_LEN[FBX_DATA_TYPE_ARRAY_INT_8] = 1;
+FBX_DATA_LEN[FBX_DATA_TYPE_ARRAY_DOUBLE] = 8;
+FBX_DATA_LEN[FBX_DATA_TYPE_ARRAY_FLOAT] = 4;
+FBX_DATA_LEN[FBX_DATA_TYPE_ARRAY_INT_32] = 4;
+FBX_DATA_LEN[FBX_DATA_TYPE_ARRAY_INT_64] = 8;
+
+const FBX_BINARY_MAGIC = 'Kaydara FBX Binary  \0';
+
+const FBX_HEADER_VERSION = 1003;
+const FBX_SCENEINFO_VERSION = 100;
+const FBX_TEMPLATES_VERSION = 100;
+
+const FBX_KTIME = 46186158000n;
+
+const FBX_GEOMETRY_VERSION = 124;
+const FBX_GEOMETRY_UV_VERSION = 101;
+const FBX_GEOMETRY_MATERIAL_VERSION = 101;
+const FBX_GEOMETRY_LAYER_VERSION = 100;
+const FBX_MATERIAL_VERSION = 102;
+const FBX_TEXTURE_VERSION = 202;
+const FBX_DEFORMER_SKIN_VERSION = 101;
+const FBX_DEFORMER_CLUSTER_VERSION = 100;
+const FBX_POSE_BIND_VERSION = 100;
+
+const FBX_MODELS_VERSION = 232;
 
 var _a$4;
 const TWO_POW_10 = 1024;
@@ -11581,31 +12137,36 @@ class BinaryReader {
         this.#byteOffset = byteOffset + 8;
         return this.#dataView.getFloat64(byteOffset, littleEndian);
     }
-    getVector2(byteOffset = this.#byteOffset, littleEndian = this.#littleEndian, vec = new Float32Array(2)) {
+    getVector2(byteOffset = this.#byteOffset, littleEndian = this.#littleEndian) {
+        let vec = new Float32Array(2);
         vec[0] = this.getFloat32(byteOffset, littleEndian);
         vec[1] = this.getFloat32(undefined, littleEndian);
         return vec;
     }
-    getVector3(byteOffset = this.#byteOffset, littleEndian = this.#littleEndian, vec = new Float32Array(3)) {
+    getVector3(byteOffset = this.#byteOffset, littleEndian = this.#littleEndian) {
+        let vec = new Float32Array(3);
         vec[0] = this.getFloat32(byteOffset, littleEndian);
         vec[1] = this.getFloat32(undefined, littleEndian);
         vec[2] = this.getFloat32(undefined, littleEndian);
         return vec;
     }
-    getVector4(byteOffset = this.#byteOffset, littleEndian = this.#littleEndian, vec = new Float32Array(4)) {
+    getVector4(byteOffset = this.#byteOffset, littleEndian = this.#littleEndian) {
+        let vec = new Float32Array(4);
         vec[0] = this.getFloat32(byteOffset, littleEndian);
         vec[1] = this.getFloat32(undefined, littleEndian);
         vec[2] = this.getFloat32(undefined, littleEndian);
         vec[3] = this.getFloat32(undefined, littleEndian);
         return vec;
     }
-    getVector48(byteOffset = this.#byteOffset, littleEndian = this.#littleEndian, vec = new Float32Array(3)) {
+    getVector48(byteOffset = this.#byteOffset, littleEndian = this.#littleEndian) {
+        let vec = new Float32Array(3);
         vec[0] = this.getFloat16(byteOffset, littleEndian);
         vec[1] = this.getFloat16(undefined, littleEndian);
         vec[2] = this.getFloat16(undefined, littleEndian);
         return vec;
     }
-    getQuaternion(byteOffset = this.#byteOffset, littleEndian = this.#littleEndian, vec = new Float32Array(4)) {
+    getQuaternion(byteOffset = this.#byteOffset, littleEndian = this.#littleEndian) {
+        let vec = new Float32Array(4);
         vec[0] = this.getFloat32(byteOffset, littleEndian);
         vec[1] = this.getFloat32(undefined, littleEndian);
         vec[2] = this.getFloat32(undefined, littleEndian);
@@ -11659,6 +12220,478 @@ class BinaryReader {
     }
 }
 _a$4 = BinaryReader;
+
+if (!BigInt.prototype.toJSON) {
+	BigInt.prototype.toJSON = function() { return this.toString() };
+}
+
+class FBXRecordProperty {
+	#type;
+	#value;
+	#srcObjects = new Set();
+	#flags = 0;
+	#parent;
+	constructor(parent, type, value) {
+		if (parent) {
+			if (parent.isFBXProperty) {
+				this.#parent = parent;
+			} else if (parent.isFBXObject) {
+				this.#parent = parent.rootProperty;
+			} else {
+				throw 'Parent must be FBXRecordProperty or FBXObject';
+			}
+		}
+		this.#type = type;
+		this.#value = value;
+		//TODO: check the value type
+	}
+
+	get type() {
+		return this.#type;
+	}
+
+	set value(value) {
+		this.#value = value;
+	}
+
+	get value() {
+		return this.#value;
+	}
+
+	set(value) {
+		this.#value = value;
+	}
+
+	get() {
+		return this.#value;
+	}
+
+	set flags(flags) {
+		this.#flags = flags;
+	}
+
+	get flags() {
+		return this.#flags;
+	}
+
+	get parent() {
+		return this.#parent;
+	}
+
+	connectSrcObject(fbxObject) {
+		//TODO: add connection type ?
+		if (!fbxObject.isFBXObject) {
+			throw 'connectSrcObject: fbxObject must be a FBXObject';
+		}
+		this.#srcObjects.add(fbxObject);
+	}
+
+	get srcObjects() {
+		return this.#srcObjects;
+	}
+
+	createProperty(type, value) {
+		return new FBXRecordProperty(this, type, value);
+	}
+
+	toJSON() {
+		return {
+			type: this.#type,
+			value: this.#value,
+		}
+	}
+}
+FBXRecordProperty.prototype.isFBXProperty = true;
+
+function createInt16Property(value) {
+	return new FBXRecordProperty(null, FBX_DATA_TYPE_INT_16, value);
+}
+function createInt32Property(value) {
+	return new FBXRecordProperty(null, FBX_DATA_TYPE_INT_32, value);
+}
+function createInt64Property(value) {
+	return new FBXRecordProperty(null, FBX_DATA_TYPE_INT_64, BigInt(value));
+}
+function createDoubleProperty(value) {
+	return new FBXRecordProperty(null, FBX_DATA_TYPE_DOUBLE, value);
+}
+function createRawProperty(value) {
+	return new FBXRecordProperty(null, FBX_DATA_TYPE_RAW, value);
+}
+function createStringProperty(value) {
+	return new FBXRecordProperty(null, FBX_DATA_TYPE_STRING, value);
+}
+
+class FBXRecord {
+	#name = '';
+	#childs = new Set();
+	#properties = new Set();
+	constructor(name) {
+		this.name = name;
+	}
+
+	addChild(child) {
+		if (!child.isFBXRecord) {
+			throw 'FBXFile: trying to insert a non FBXRecord child';
+		}
+		this.#childs.add(child);
+		return child;
+	}
+
+	addChilds(childs) {
+		for (let child of childs) {
+			this.addChild(child);
+		}
+	}
+
+	addProperty(property) {
+		this.#properties.add(property);
+	}
+
+	addProperties(properties) {
+		for (let property of properties) {
+			this.addProperty(property);
+		}
+	}
+
+	set name(name) {
+		if (name.length > 255) {
+			throw `Record name above 255 characters ${name}`;
+		}
+		this.#name = name;
+	}
+
+	get name() {
+		return this.#name;
+	}
+
+	get childs() {
+		return this.#childs;
+	}
+
+	get properties() {
+		return this.#properties;
+	}
+
+	getRecordsByName(recordName) {
+		let output = [];
+
+		for (let child of this.#childs) {
+			if (child.name == recordName) {
+				output.push(child);
+			}
+		}
+
+		return output;
+	}
+
+	getRecordByName(recordName) {
+		for (let child of this.#childs) {
+			if (child.name == recordName) {
+				return child;
+			}
+		}
+	}
+
+	getProperty(type) {
+		for (let property of this.#properties) {
+			if (property.type == type) {
+				return property.value;
+			}
+		}
+	}
+
+	getPropertyInt32() {
+		return this.getProperty(FBX_DATA_TYPE_INT_32);
+	}
+
+	getPropertyString() {
+		return this.getProperty(FBX_DATA_TYPE_STRING);
+	}
+
+	toJSON() {
+		return {
+			name: this.#name,
+			childs: this.#childs.size ? [...this.#childs] : undefined,
+			properties: this.#properties.size ? [...this.#properties] : undefined,
+		}
+	}
+}
+FBXRecord.prototype.isFBXRecord = true;
+
+const _TIME_ID = '1970-01-01 10:00:00:000';
+const _FILE_ID = new Uint8Array([0x28, 0xb3, 0x2a, 0xeb, 0xb6, 0x24, 0xcc, 0xc2, 0xbf, 0xc8, 0xb0, 0x2a, 0xa9, 0x2b, 0xfc, 0xf1]);
+const _FOOT_ID = new Uint8Array([0xfa, 0xbc, 0xab, 0x09, 0xd0, 0xc8, 0xd4, 0x66, 0xb1, 0x76, 0xfb, 0x83, 0x1c, 0xf7, 0x26, 0x7e]);
+
+const FBX_FOOTER2 = '\xf8\x5a\x8c\x6a\xde\xf5\xd9\x7e\xec\xe9\x0c\xe3\x75\x8f\x29\x0b';
+
+class FBXExporter {
+	constructor() {
+	}
+
+	exportBinary(fbxFile) {
+		checkFile(fbxFile);
+		let version = fbxFile.version;
+		let size = getFileSize(fbxFile, version);
+		//console.log('File Size: ', size);
+
+		let writer = new BinaryReader(new Uint8Array(size));
+
+		return exportBinaryFile(writer, fbxFile);
+
+	}
+}
+
+function checkFile(fbxFile) {
+	for (let child of fbxFile.childs) {
+		if (child.name == 'CreationTime' || child.name == 'FileId') {
+			fbxFile.childs.delete(child);
+		}
+	}
+
+	formatCreationTimeRecord(fbxFile);
+	formatFileIdRecord(fbxFile);
+}
+
+function exportBinaryFile(writer, fbxFile) {
+	let version = fbxFile.version;
+	writer.seek(0);
+	writer.setString(FBX_BINARY_MAGIC);
+	writer.setUint8(0x1A);
+	writer.setUint8(0x00);
+	writer.setUint32(version);
+	for (let child of fbxFile.childs) {
+		exportBinaryRecord(writer, child, version);
+	}
+
+	writer.skip((version >= 7500) ? 25 : 13);//Null record
+	writer.setBytes(generateFooterCode(fbxFile.dateCreated));
+	writer.skip(align16(writer.tell()));
+	if (version != 7400) {
+		writer.skip(4);
+	}
+	writer.setUint32(version);
+	writer.skip(120);
+	writer.setString(FBX_FOOTER2);
+
+	return writer.buffer;
+}
+
+function formatFileIdRecord(fbxFile) {
+	let fbxRecord = fbxFile.addChild(new FBXRecord('FileId'));
+	fbxRecord.properties.clear();
+	let fbxProperty = createRawProperty(_FILE_ID);
+	fbxRecord.addProperty(fbxProperty);
+}
+
+function formatCreationTimeRecord(fbxFile) {
+	let fbxRecord = fbxFile.addChild(new FBXRecord('CreationTime'));
+	fbxRecord.properties.clear();
+	let dateCreated = fbxFile.dateCreated;
+	`${dateCreated.getFullYear()}-${padNumber(dateCreated.getMonth() + 1, 2)}-${padNumber(dateCreated.getDate(), 2)} ${padNumber(dateCreated.getHours(), 2)}:${padNumber(dateCreated.getMinutes(), 2)}:${padNumber(dateCreated.getSeconds(), 2)}:${padNumber(dateCreated.getMilliseconds(), 3)}`;
+
+	//console.log(creationTime);
+	//let fbxProperty = createStringProperty(creationTime);
+	let fbxProperty = createStringProperty(_TIME_ID);
+	fbxRecord.addProperty(fbxProperty);
+}
+
+function align16(offset) {
+	let pad = ((offset + 15) & ~15) - offset;
+	if (pad == 0) {
+		pad = 16;
+	}
+	return pad;
+}
+
+function exportBinaryRecord(writer, fbxRecord, version) {
+	let startOffset = writer.tell();
+	let recordLen = getRecordSize(fbxRecord, version);
+	//console.log(startOffset);
+	if (version >= 7500) {
+		writer.setBigUint64(BigInt(startOffset + recordLen));
+		writer.setBigUint64(BigInt(fbxRecord.properties.size));
+		writer.setBigUint64(BigInt(getRecordPropertiesSize(fbxRecord)));
+	} else {
+		writer.setUint32(startOffset + recordLen);
+		writer.setUint32(fbxRecord.properties.size);
+		writer.setUint32(getRecordPropertiesSize(fbxRecord));
+	}
+	writer.setUint8(fbxRecord.name.length);
+	writer.setString(fbxRecord.name);
+	exportProperties(writer, fbxRecord);
+	for (let child of fbxRecord.childs) {
+		exportBinaryRecord(writer, child, version);
+	}
+
+	writer.skip((version >= 7500) ? 25 : 13);//Null record
+}
+
+function exportProperties(writer, fbxRecord) {
+	for (let property of fbxRecord.properties) {
+		exportProperty(writer, property);
+	}
+}
+
+function exportProperty(writer, fbxProperty) {
+	//console.log(fbxProperty);
+
+	writer.setUint8(fbxProperty.type);
+	switch (fbxProperty.type) {
+		case FBX_DATA_TYPE_INT_16:
+			writer.setInt16(fbxProperty.value);
+			break;
+		case FBX_DATA_TYPE_INT_8:
+			writer.setInt8(fbxProperty.value);
+			break;
+		case FBX_DATA_TYPE_INT_32:
+			writer.setInt32(fbxProperty.value);
+			break;
+		case FBX_DATA_TYPE_FLOAT:
+			writer.setFloat32(fbxProperty.value);
+			break;
+		case FBX_DATA_TYPE_DOUBLE:
+			writer.setFloat64(fbxProperty.value);
+			break;
+		case FBX_DATA_TYPE_INT_64:
+			writer.setBigInt64(BigInt(fbxProperty.value));
+			break;
+		case FBX_DATA_TYPE_RAW:
+			writer.setUint32(fbxProperty.value.length);
+			writer.setBytes(fbxProperty.value);
+			break;
+		case FBX_DATA_TYPE_STRING:
+			writer.setUint32(fbxProperty.value.length);
+			writer.setString(fbxProperty.value);
+			break;
+		case FBX_DATA_TYPE_ARRAY_INT_8:
+		case FBX_DATA_TYPE_ARRAY_DOUBLE:
+		case FBX_DATA_TYPE_ARRAY_FLOAT:
+		case FBX_DATA_TYPE_ARRAY_INT_32:
+		case FBX_DATA_TYPE_ARRAY_INT_64:
+			exportPropertyArray(writer, fbxProperty);
+			break;
+		default:
+			throw 'Unknown property type ' + fbxProperty.type;
+	}
+}
+
+function exportPropertyArray(writer, fbxProperty) {
+	writer.setUint32(fbxProperty.value.length);
+	writer.setUint32(0);//Encoding
+	writer.setUint32(FBX_DATA_LEN[fbxProperty.type] * fbxProperty.value.length);
+
+	let functionName;
+	switch (fbxProperty.type) {
+		case FBX_DATA_TYPE_ARRAY_INT_8:
+			functionName = 'setInt8';
+			break;
+		case FBX_DATA_TYPE_ARRAY_DOUBLE:
+			functionName = 'setFloat64';
+			break;
+		case FBX_DATA_TYPE_ARRAY_FLOAT:
+			functionName = 'setFloat32';
+			break;
+		case FBX_DATA_TYPE_ARRAY_INT_32:
+			functionName = 'setInt32';
+			break;
+		case FBX_DATA_TYPE_ARRAY_INT_64:
+			functionName = 'setBigInt64';
+			for (let value of fbxProperty.value) {
+				writer[functionName](BigInt(value));
+			}
+			return;
+		default:
+			throw 'Unknown array property type ' + fbxProperty.type;
+	}
+
+	for (let value of fbxProperty.value) {
+		writer[functionName](value);
+	}
+}
+
+function getFileSize(fbxFile, version) {
+	let size = 27;//header
+	for (let child of fbxFile.childs) {
+		size += getRecordSize(child, version);
+	}
+	size += (version >= 7500) ? 25 : 13;//Null record
+
+	size += 16; // footer1
+	//size += 4 // padding
+	size += align16(size);//alignment
+	if (version != 7400) {
+		size += 4; // padding
+	}
+
+	size += 140;//version + padding + footer2
+
+	return size;
+}
+
+function getRecordSize(fbxRecord, version) {
+	let size;
+	if (version >= 7500) {
+		size = 8 + 8 + 8 + 1;
+	} else {
+		size = 4 + 4 + 4 + 1;
+	}
+
+	size += fbxRecord.name.length;
+
+	size += getRecordPropertiesSize(fbxRecord);
+
+	for (let child of fbxRecord.childs) {
+		size += getRecordSize(child, version);
+	}
+
+	size += (version >= 7500) ? 25 : 13;//Null record
+
+	return size;
+}
+
+function getRecordPropertiesSize(fbxRecord) {
+	let size = 0;
+	for (let property of fbxRecord.properties) {
+		switch (property.type) {
+			case FBX_DATA_TYPE_INT_8:
+			case FBX_DATA_TYPE_DOUBLE:
+			case FBX_DATA_TYPE_FLOAT:
+			case FBX_DATA_TYPE_INT_32:
+			case FBX_DATA_TYPE_INT_64:
+			case FBX_DATA_TYPE_INT_16:
+				++size;//Typecode
+				size += FBX_DATA_LEN[property.type];
+				break;
+			case FBX_DATA_TYPE_RAW:
+			case FBX_DATA_TYPE_STRING:
+				++size;//Typecode
+				size += 4;//string len
+				size += property.value.length;
+				break;
+			case FBX_DATA_TYPE_ARRAY_INT_8:
+			case FBX_DATA_TYPE_ARRAY_DOUBLE:
+			case FBX_DATA_TYPE_ARRAY_FLOAT:
+			case FBX_DATA_TYPE_ARRAY_INT_32:
+			case FBX_DATA_TYPE_ARRAY_INT_64:
+				size += 13;//Typecode + array header
+				size += FBX_DATA_LEN[property.type] * property.value.length;
+				break;
+			default:
+				throw 'Unknown property type ' + property.type;
+		}
+	}
+	return size;
+}
+//const extension = new Uint8Array([0xF8, 0x5A, 0x8C, 0x6A, 0xDE, 0xF5, 0xD9, 0x7E, 0xEC, 0xE9, 0x0C, 0xE3, 0x75, 0x8F, 0x29, 0x0B]);
+
+function padNumber(number, targetLength) {//TODO: move
+	return number.toString().padStart(targetLength, 0);
+}
+
+function generateFooterCode(date) {
+	return _FOOT_ID;
+}
 
 /*! pako 2.1.0 https://github.com/nodeca/pako @license (MIT AND Zlib) */
 // (C) 1995-2013 Jean-loup Gailly and Mark Adler
@@ -18327,2303 +19360,1048 @@ Inflate$1.prototype.onEnd = function (status) {
   this.msg = this.strm.msg;
 };
 
-// I'm not sure there is reserved ids, let's start big
-let uniqueId = 1000000n;
-function getUniqueId() {
-    return ++uniqueId;
+class FBXFile {
+	#version = 7500;
+	#childs = new Set();
+	#dateCreated = new Date();
+	constructor() {
+	}
+
+	set version(version) {
+		this.#version = version;
+	}
+
+	get version() {
+		return this.#version;
+	}
+
+	addChild(child) {
+		if (!child.isFBXRecord) {
+			throw 'FBXFile: trying to insert a non FBXRecord child';
+		}
+		this.#childs.add(child);
+		return child;
+	}
+
+	get childs() {
+		return this.#childs;
+	}
+
+	getRecordsByName(recordName) {
+		let output = [];
+
+		for (let child of this.#childs) {
+			if (child.name == recordName) {
+				output.push(child);
+			}
+		}
+
+		return output;
+	}
+
+	getRecordByName(recordName) {
+		for (let child of this.#childs) {
+			if (child.name == recordName) {
+				return child;
+			}
+		}
+	}
+
+	set dateCreated(dateCreated) {
+		this.#dateCreated = dateCreated;
+	}
+
+	get dateCreated() {
+		return this.#dateCreated;
+	}
+
+	toJSON() {
+		return {
+			version: this.#version,
+			childs: this.#childs.size ? [...this.#childs] : undefined,
+		}
+	}
 }
 
-var FbxPropertyType;
-(function (FbxPropertyType) {
-    FbxPropertyType[FbxPropertyType["Double"] = 50] = "Double";
-    FbxPropertyType[FbxPropertyType["Double3"] = 100] = "Double3";
-    FbxPropertyType[FbxPropertyType["String"] = 200] = "String";
-    FbxPropertyType[FbxPropertyType["Time"] = 300] = "Time";
-    FbxPropertyType[FbxPropertyType["Enum"] = 1000] = "Enum";
-    FbxPropertyType[FbxPropertyType["Compound"] = 2000] = "Compound";
-    FbxPropertyType[FbxPropertyType["Color3"] = 3000] = "Color3";
-    FbxPropertyType[FbxPropertyType["Bool"] = 5000] = "Bool";
-})(FbxPropertyType || (FbxPropertyType = {}));
 const FBX_PROPERTY_TYPE_DOUBLE = 50;
 const FBX_PROPERTY_TYPE_DOUBLE_3 = 100;
 const FBX_PROPERTY_TYPE_STRING = 200;
 const FBX_PROPERTY_TYPE_TIME = 300;
 const FBX_PROPERTY_TYPE_ENUM = 1000;
+const FBX_PROPERTY_TYPE_COMPOUND = 2000;
 const FBX_PROPERTY_TYPE_COLOR_3 = 3000;
 const FBX_PROPERTY_TYPE_BOOL = 5000;
 
 if (!BigInt.prototype.toJSON) {
-    BigInt.prototype.toJSON = function () { return this.toString(); };
+	BigInt.prototype.toJSON = function() { return this.toString() };
 }
+
 const FBX_PROPERTY_HIERARCHICAL_SEPARATOR = '|';
+
 class FBXProperty {
-    #type;
-    #name;
-    #value;
-    #srcObjects = new Set();
-    #flags = 0;
-    #parent = null;
-    isFBXProperty = true;
-    constructor(parent, type = FbxPropertyType.Compound, name = '', value = undefined, flags = 0) {
-        if (type != FbxPropertyType.Compound && value === undefined) {
-            throw 'name is null';
-        }
-        if (parent) {
-            if (parent.isFBXProperty) {
-                if (parent.#type === FbxPropertyType.Compound) {
-                    this.#parent = parent;
-                    parent.#value.set(name, this);
-                }
-                else {
-                    throw 'Parent must be of type compound';
-                }
-            }
-            else if (parent.isFBXObject) {
-                this.#parent = parent;
-            }
-            else {
-                throw 'Parent must be FBXProperty or FBXObject';
-            }
-        }
-        this.#type = type;
-        this.#name = name;
-        if (type === FbxPropertyType.Compound) {
-            this.#value = new Map();
-        }
-        else {
-            this.#value = value;
-        }
-        this.#flags = flags;
-        //TODO: check the value type
-    }
-    get type() {
-        return this.#type;
-    }
-    set value(value) {
-        this.#value = value;
-    }
-    get value() {
-        return this.#value;
-    }
-    set(value) {
-        this.#value = value;
-    }
-    get() {
-        return this.#value;
-    }
-    set flags(flags) {
-        this.#flags = flags;
-    }
-    get flags() {
-        return this.#flags;
-    }
-    set name(name) {
-        this.#name = name;
-    }
-    get name() {
-        return this.#name;
-    }
-    get hierarchicalName() {
-        //TODO: remove recursion
-        if (this.#parent?.isFBXProperty) {
-            const parentHierarchicalName = this.#parent.hierarchicalName;
-            if (parentHierarchicalName) {
-                return parentHierarchicalName + FBX_PROPERTY_HIERARCHICAL_SEPARATOR + this.#name;
-            }
-            else {
-                return this.#name;
-            }
-        }
-        else {
-            return this.#name;
-        }
-    }
-    get parent() {
-        return this.#parent;
-    }
-    isCompound() {
-        return this.#type === FbxPropertyType.Compound;
-    }
-    isRootProperty() {
-        return this.#parent?.isFBXObject;
-    }
-    connectSrcObject(object) {
-        //TODO: add connection type ?
-        this.#srcObjects.add(object);
-    }
-    get srcObjects() {
-        return this.#srcObjects;
-    }
-    createProperty(type, name, value, flags) {
-        if (this.#type === FbxPropertyType.Compound) {
-            if (this.#value.has(name)) {
-                return false;
-            }
-            const newProperty = new FBXProperty(this, type, name, value, flags);
-            this.#value.set(name, newProperty);
-            return newProperty;
-        }
-        else {
-            throw 'Trying to create a child property on a non coumpound property';
-        }
-    }
-    getAllProperties(includeSelf = true) {
-        return this.#getAllProperties(new Set(), includeSelf);
-    }
-    #getAllProperties(childs = new Set(), includeSelf = true) {
-        if (includeSelf) {
-            childs.add(this);
-        }
-        if (this.#type === FbxPropertyType.Compound) {
-            for (let [childName, child] of this.#value) {
-                child.#getAllProperties(childs);
-            }
-        }
-        return childs;
-    }
-    getParentObject() {
-        const parent = this.#parent;
-        if (parent.isFBXObject) {
-            return parent;
-        }
-        if (parent.isFBXProperty) {
-            // TODO: remove recursion
-            return parent.getParentObject();
-        }
-        return null;
-    }
-    findProperty(propertyName) {
-        if (this.#name === propertyName) {
-            return this;
-        }
-        if (this.isCompound()) {
-            for (const [key, subProperty] of this.#value) {
-                const found = subProperty.findProperty(propertyName);
-                if (found) {
-                    return found;
-                }
-            }
-        }
-        return null;
-    }
-    toJSON() {
-        return {
-            type: this.#type,
-            value: this.#value,
-        };
-    }
+	#type;
+	#name;
+	#label;
+	#value;
+	#srcObjects = new Set();
+	#flags = 0;
+	#parent;
+	constructor(parent, type = FBX_PROPERTY_TYPE_COMPOUND, name, value, flags = 0) {
+		if (type != FBX_PROPERTY_TYPE_COMPOUND && value === undefined) {
+			throw 'name is null';
+		}
+		if (parent) {
+			if (parent.isFBXProperty) {
+				if (parent.#type === FBX_PROPERTY_TYPE_COMPOUND) {
+					this.#parent = parent;
+					parent.#value.set(name, this);
+				} else {
+					throw 'Parent must be of type compound';
+				}
+			} else if (parent.isFBXObject) {
+				this.#parent = parent;
+			} else {
+				throw 'Parent must be FBXProperty or FBXObject';
+			}
+		}
+		this.#type = type;
+		this.#name = name;
+		if (type === FBX_PROPERTY_TYPE_COMPOUND) {
+			this.#value = new Map();
+		} else {
+			this.#value = value;
+		}
+		this.#flags = flags;
+		//TODO: check the value type
+	}
+
+	get type() {
+		return this.#type;
+	}
+
+	set value(value) {
+		this.#value = value;
+	}
+
+	get value() {
+		return this.#value;
+	}
+
+	set(value) {
+		this.#value = value;
+	}
+
+	get() {
+		return this.#value;
+	}
+
+	set flags(flags) {
+		this.#flags = flags;
+	}
+
+	get flags() {
+		return this.#flags;
+	}
+
+	set name(name) {
+		this.#name = name;
+	}
+
+	get name() {
+		return this.#name;
+	}
+
+	get hierarchicalName() {
+		//TODO: remove recursion
+		if (this.#parent?.isFBXProperty) {
+			const parentHierarchicalName = this.#parent.hierarchicalName;
+			if (parentHierarchicalName) {
+				return parentHierarchicalName + FBX_PROPERTY_HIERARCHICAL_SEPARATOR + this.#name;
+			} else {
+				return this.#name;
+			}
+		} else {
+			return this.#name;
+		}
+	}
+
+	set label(label) {
+		this.#label = label;
+	}
+
+	get label() {
+		return this.#label;
+	}
+
+	get parent() {
+		return this.#parent;
+	}
+
+	isCompound() {
+		return this.#type === FBX_PROPERTY_TYPE_COMPOUND;
+	}
+
+	isRootProperty() {
+		return this.#parent.isFBXObject;
+	}
+
+	connectSrcObject(fbxObject) {
+		//TODO: add connection type ?
+		if (!fbxObject.isFBXObject) {
+			throw 'connectSrcObject: fbxObject must be a FBXObject';
+		}
+		this.#srcObjects.add(fbxObject);
+	}
+
+	get srcObjects() {
+		return this.#srcObjects;
+	}
+
+	createProperty(type, name, value, flags) {
+		if (this.#type === FBX_PROPERTY_TYPE_COMPOUND) {
+			if (this.#value.has(name)) {
+				return false;
+			}
+			const newProperty = new FBXProperty(this, type, name, value, flags);
+			this.#value.set(name, newProperty);
+			return newProperty;
+		} else {
+			throw 'Trying to create a child property on a non coumpound property';
+		}
+	}
+
+	getAllProperties(includeSelf = true) {
+		return this.#getAllProperties(new Set(), includeSelf);
+	}
+
+	#getAllProperties(childs = new Set(), includeSelf = true) {
+		if (includeSelf) {
+			childs.add(this);
+		}
+		if (this.#type === FBX_PROPERTY_TYPE_COMPOUND) {
+			for (let [childName, child] of this.#value) {
+				child.#getAllProperties(childs);
+			}
+		}
+
+		return childs;
+	}
+
+	getParentObject() {
+		const parent = this.#parent;
+		if (parent.isFBXObject) {
+			return parent;
+		}
+		if (parent.isFBXProperty) {
+			// TODO: remove recursion
+			return parent.getParentObject();
+		}
+	}
+
+	findProperty(propertyName) {
+		if (this.#name === propertyName) {
+			return this;
+		}
+
+		if (this.isCompound()) {
+			for (const [key, subProperty] of this.#value) {
+				const found = subProperty.findProperty(propertyName);
+				if (found) {
+					return found;
+				}
+			}
+		}
+	}
+
+	toJSON() {
+		return {
+			type: this.#type,
+			value: this.#value,
+		}
+	}
+}
+FBXProperty.prototype.isFBXProperty = true;
+
+function createFBXRecord(name, options) {
+	let fbxRecord = new FBXRecord(name);
+	if (options) {
+		for (let optionName in options) {
+			let optionValue = options[optionName];
+			switch (optionName) {
+				case 'parent':
+					optionValue.addChild(fbxRecord);
+					break;
+				case 'child':
+					fbxRecord.addChild(optionValue);
+					break;
+				case 'childs':
+					fbxRecord.addChilds(optionValue);
+					break;
+				case 'property':
+					fbxRecord.addProperty(optionValue);
+					break;
+				case 'properties':
+					fbxRecord.addProperties(optionValue);
+					break;
+				default:
+					console.log(`Unknown property: ${optionName}`);
+			}
+		}
+	}
+	return fbxRecord;
 }
 
-class FBXObject {
-    #id = getUniqueId();
-    #name = '';
-    #srcObjects = new Set();
-    #rootProperty;
-    #manager;
-    isFBXObject = true;
-    constructor(manager, name = '', ...args) {
-        if (!manager.isFBXManager) {
-            console.trace('Missing manager in FBXObject');
-            throw 'Missing manager in FBXObject';
-        }
-        this.#manager = manager;
-        this.name = name;
-        this.#rootProperty = new FBXProperty(this);
-    }
-    set id(id) {
-        this.#id = id;
-    }
-    get id() {
-        return this.#id;
-    }
-    set name(name) {
-        this.#name = name;
-    }
-    get name() {
-        return this.#name;
-    }
-    get rootProperty() {
-        return this.#rootProperty;
-    }
-    get manager() {
-        return this.#manager;
-    }
-    connectSrcObject(object) {
-        //TODO: add connection type ?
-        this.#srcObjects.add(object);
-    }
-    get srcObjects() {
-        return this.#srcObjects;
-    }
-    createProperty(type, name, value, flags) {
-        return new FBXProperty(this.#rootProperty, type, name, value, flags);
-    }
-    getAllProperties() {
-        return this.#rootProperty.getAllProperties(false);
-    }
-    findProperty(propertyName) {
-        return this.#rootProperty.findProperty(propertyName);
-    }
-}
-
-class FBXCollection extends FBXObject {
-    #members = new Set();
-    isFBXCollection = true;
-    add(member) {
-        this.#members.add(member);
-    }
-    remove(member) {
-        this.#members.delete(member);
-    }
-    get count() {
-        return this.#members.size;
-    }
-    get members() {
-        return this.#members;
-    }
-}
-
-class FBXManager {
-    #objects = new Set();
-    #documents = new Set();
-    isFBXManager = true;
-    static #registry = new Map();
-    destroy() {
-        this.#objects.clear();
-        this.#documents.clear();
-    }
-    static registerClass(className, classConstructor) {
-        FBXManager.#registry.set(className, classConstructor);
-    }
-    createObject(className, objectName, ...args) {
-        const classConstructor = FBXManager.#registry.get(className);
-        if (!classConstructor) {
-            throw 'Unknown constructor in FBXManager.createObject(): ' + className;
-        }
-        const createdObject = new classConstructor(this, objectName, args);
-        if (createdObject) {
-            if (createdObject.isFBXDocument) {
-                this.#documents.add(createdObject);
-            }
-            else {
-                this.#objects.add(createdObject);
-            }
-        }
-        return createdObject;
-    }
-}
-
-class FBXAnimLayer extends FBXCollection {
-    //TODO: add Properties
-    /*P: "Weight", "Number", "", "A",100
-    P: "Mute", "bool", "", "",0
-    P: "Solo", "bool", "", "",0
-    P: "Lock", "bool", "", "",0
-    P: "Color", "ColorRGB", "Color", "",0.8,0.8,0.8
-    P: "BlendMode", "enum", "", "",0
-    P: "RotationAccumulationMode", "enum", "", "",0
-    P: "ScaleAccumulationMode", "enum", "", "",0
-    P: "BlendModeBypass", "ULongLong", "", "",0*/
-    isFBXAnimLayer = true;
-}
-FBXManager.registerClass('FBXAnimLayer', FBXAnimLayer);
-const FBX_PROPERTY_FLAG_STATIC = 1 << 0;
-
-class FBXAnimStack extends FBXCollection {
-    #description;
-    #localStart;
-    #localStop;
-    #referenceStart;
-    #referenceStop;
-    isFBXAnimStack = true;
-    constructor(manager, name) {
-        super(manager, name);
-        this.#description = this.createProperty(FBX_PROPERTY_TYPE_STRING, 'Description', '', FBX_PROPERTY_FLAG_STATIC);
-        this.#localStart = this.createProperty(FBX_PROPERTY_TYPE_TIME, 'LocalStart', 0, FBX_PROPERTY_FLAG_STATIC);
-        this.#localStop = this.createProperty(FBX_PROPERTY_TYPE_TIME, 'LocalStop', 0, FBX_PROPERTY_FLAG_STATIC);
-        this.#referenceStart = this.createProperty(FBX_PROPERTY_TYPE_TIME, 'ReferenceStart', 0, FBX_PROPERTY_FLAG_STATIC);
-        this.#referenceStop = this.createProperty(FBX_PROPERTY_TYPE_TIME, 'ReferenceStop', 0, FBX_PROPERTY_FLAG_STATIC);
-    }
-}
-FBXManager.registerClass('FBXAnimStack', FBXAnimStack);
-
-const FBX_NODE_ATTRIBUTE_TYPE_UNKNOWN = 0;
-const FBX_NODE_ATTRIBUTE_TYPE_SKELETON = 3;
-const FBX_NODE_ATTRIBUTE_TYPE_CAMERA = 7;
-
-class FBXNodeAttribute extends FBXObject {
-    isFBXNodeAttribute = true;
-    getAttributeType() {
-        return FBX_NODE_ATTRIBUTE_TYPE_UNKNOWN;
-    }
-}
-
-class FBXCamera extends FBXNodeAttribute {
-    #position;
-    #upVector;
-    #interestPosition;
-    #roll;
-    //#opticalCenterX;
-    //#opticalCenterY;
-    #nearPlane;
-    #farPlane;
-    #projectionType;
-    #orthoZoom;
-    isFBXCamera = true;
-    constructor(manager, name) {
-        super(manager, name);
-        this.#position = this.createProperty(FBX_PROPERTY_TYPE_DOUBLE_3, 'Position', [0, 0, 0], FBX_PROPERTY_FLAG_STATIC);
-        this.#upVector = this.createProperty(FBX_PROPERTY_TYPE_DOUBLE_3, 'UpVector', [0, 0, 0], FBX_PROPERTY_FLAG_STATIC);
-        this.#interestPosition = this.createProperty(FBX_PROPERTY_TYPE_DOUBLE_3, 'InterestPosition', [0, 0, 0], FBX_PROPERTY_FLAG_STATIC);
-        this.#roll = this.createProperty(FBX_PROPERTY_TYPE_DOUBLE, 'Roll', 0, FBX_PROPERTY_FLAG_STATIC);
-        //this.#opticalCenterX = this.createProperty(FBX_PROPERTY_TYPE_DOUBLE, 'OpticalCenterX', 0, FBX_PROPERTY_FLAG_STATIC);
-        //this.#opticalCenterY = this.createProperty(FBX_PROPERTY_TYPE_DOUBLE, 'OpticalCenterY', 0, FBX_PROPERTY_FLAG_STATIC);
-        this.#nearPlane = this.createProperty(FBX_PROPERTY_TYPE_DOUBLE, 'NearPlane', 0, FBX_PROPERTY_FLAG_STATIC);
-        this.#farPlane = this.createProperty(FBX_PROPERTY_TYPE_DOUBLE, 'FarPlane', 0, FBX_PROPERTY_FLAG_STATIC);
-        this.#projectionType = this.createProperty(FBX_PROPERTY_TYPE_ENUM, 'CameraProjectionType', 0, FBX_PROPERTY_FLAG_STATIC);
-        this.#orthoZoom = this.createProperty(FBX_PROPERTY_TYPE_DOUBLE, 'OrthoZoom', 1, FBX_PROPERTY_FLAG_STATIC);
-    }
-    set position(position) {
-        this.#position = position;
-    }
-    get position() {
-        return this.#position;
-    }
-    set upVector(upVector) {
-        this.#upVector = upVector;
-    }
-    get upVector() {
-        return this.#upVector;
-    }
-    set interestPosition(interestPosition) {
-        this.#interestPosition = interestPosition;
-    }
-    get interestPosition() {
-        return this.#interestPosition;
-    }
-    set roll(roll) {
-        this.#roll = roll;
-    }
-    get roll() {
-        return this.#roll;
-    }
-    set nearPlane(nearPlane) {
-        this.#nearPlane = nearPlane;
-    }
-    get nearPlane() {
-        return this.#nearPlane;
-    }
-    set farPlane(farPlane) {
-        this.#farPlane = farPlane;
-    }
-    get farPlane() {
-        return this.#farPlane;
-    }
-    set projectionType(projectionType) {
-        this.#projectionType = projectionType;
-    }
-    get projectionType() {
-        return this.#projectionType;
-    }
-    set orthoZoom(orthoZoom) {
-        this.#orthoZoom = orthoZoom;
-    }
-    get orthoZoom() {
-        return this.#orthoZoom;
-    }
-    getAttributeType() {
-        return FBX_NODE_ATTRIBUTE_TYPE_CAMERA;
-    }
-}
-FBXManager.registerClass('FBXCamera', FBXCamera);
-
-const FBX_SUB_DEFORMER_TYPE_UNKNOWN = 0;
-const FBX_SUB_DEFORMER_TYPE_CLUSTER = 1;
-
-class FBXSubDeformer extends FBXObject {
-    isFBXSubDeformer = true;
-    get subDeformerType() {
-        return FBX_SUB_DEFORMER_TYPE_UNKNOWN;
-    }
-}
-
-const FBX_LINK_MODE_NORMALIZE = 0;
-
-class FBXCluster extends FBXSubDeformer {
-    #linkMode = FBX_LINK_MODE_NORMALIZE;
-    #link;
-    #indexes = [];
-    #weights = [];
-    #transformMatrix = create$5();
-    #transformLinkMatrix = create$5();
-    //#transformParentMatrix;
-    isFBXCluster = true;
-    set linkMode(linkMode) {
-        this.#linkMode = linkMode;
-    }
-    get linkMode() {
-        return this.#linkMode;
-    }
-    set link(link) {
-        this.#link = link;
-    }
-    get link() {
-        return this.#link;
-    }
-    addVertexIndex(index, weight) {
-        this.#indexes.push(index);
-        this.#weights.push(weight);
-    }
-    get indexes() {
-        return this.#indexes;
-    }
-    get weights() {
-        return this.#weights;
-    }
-    get subDeformerType() {
-        return FBX_SUB_DEFORMER_TYPE_CLUSTER;
-    }
-    set transformMatrix(transformMatrix) {
-        copy$5(this.#transformMatrix, transformMatrix);
-    }
-    get transformMatrix() {
-        return clone$5(this.#transformMatrix);
-    }
-    set transformLinkMatrix(transformLinkMatrix) {
-        copy$5(this.#transformLinkMatrix, transformLinkMatrix);
-    }
-    get transformLinkMatrix() {
-        return clone$5(this.#transformLinkMatrix);
-    }
-}
-FBXManager.registerClass('FBXCluster', FBXCluster);
-
-class FBXColor {
-    #red;
-    #green;
-    #blue;
-    #alpha;
-    isFBXColor = true;
-    constructor(red = 0.0, green = 0.0, blue = 0.0, alpha = 1.0) {
-        this.#red = red;
-        this.#green = green;
-        this.#blue = blue;
-        this.#alpha = alpha;
-    }
-    set red(red) {
-        this.#red = red;
-    }
-    get red() {
-        return this.#red;
-    }
-    set green(green) {
-        this.#green = green;
-    }
-    get green() {
-        return this.#green;
-    }
-    set blue(blue) {
-        this.#blue = blue;
-    }
-    get blue() {
-        return this.#blue;
-    }
-    set alpha(alpha) {
-        this.#alpha = alpha;
-    }
-    get alpha() {
-        return this.#alpha;
-    }
-}
-
-class FBXAxisSystem {
-    isFBXAxisSystem = true;
-    #upAxis;
-    #frontAxis;
-    constructor(upAxis, frontAxis) {
-        this.#upAxis = upAxis;
-        this.#frontAxis = frontAxis;
-    }
-    set upAxis(upAxis) {
-        this.#upAxis = upAxis;
-    }
-    get upAxis() {
-        return this.#upAxis;
-    }
-    set frontAxis(frontAxis) {
-        this.#frontAxis = frontAxis;
-    }
-    get frontAxis() {
-        return this.#frontAxis;
-    }
-    get coordAxis() {
-        return this.#frontAxis;
-    }
-}
-
-class FBXGlobalSettings extends FBXObject {
-    #ambientColor = new FBXColor();
-    #defaultCamera = '';
-    #axisSystem = new FBXAxisSystem(2, 1);
-    isFBXGlobalSettings = true;
-    set ambientColor(ambientColor) {
-        this.#ambientColor = ambientColor;
-    }
-    get ambientColor() {
-        return this.#ambientColor;
-    }
-    set defaultCamera(defaultCamera) {
-        this.#defaultCamera = defaultCamera;
-    }
-    get defaultCamera() {
-        return this.#defaultCamera;
-    }
-}
-FBXManager.registerClass('FBXGlobalSettings', FBXGlobalSettings);
-
-class FBXLayerContainer extends FBXNodeAttribute {
-    isFBXLayerContainer = true;
-}
-
-class FBXGeometryBase extends FBXLayerContainer {
-    isFBXGeometryBase = true;
-}
-
-class FBXGeometry extends FBXGeometryBase {
-    #deformers = new Set();
-    isFBXGeometry = true;
-    addDeformer(deformer) {
-        this.#deformers.add(deformer);
-    }
-    removeDeformer(deformer) {
-        this.#deformers.delete(deformer);
-    }
-    get deformers() {
-        return this.#deformers;
-    }
-}
-
-class FBXMesh extends FBXGeometry {
-    #vertices = [];
-    #normals = [];
-    #polygons = [];
-    #edges = [];
-    #uv = [];
-    #uvIndex = [];
-    isFBXMesh = true;
-    set vertices(vertices) {
-        this.#vertices = vertices;
-    }
-    get vertices() {
-        return this.#vertices;
-    }
-    set normals(normals) {
-        this.#normals = normals;
-    }
-    get normals() {
-        return this.#normals;
-    }
-    set polygons(polygons) {
-        this.#polygons = polygons;
-    }
-    get polygons() {
-        return this.#polygons;
-    }
-    set edges(edges) {
-        this.#edges = edges;
-    }
-    get edges() {
-        return this.#edges;
-    }
-    set uv(uv) {
-        this.#uv = uv;
-    }
-    get uv() {
-        return this.#uv;
-    }
-    set uvIndex(uvIndex) {
-        this.#uvIndex = uvIndex;
-    }
-    get uvIndex() {
-        return this.#uvIndex;
-    }
-}
-FBXManager.registerClass('FBXMesh', FBXMesh);
-//Scaling of parent is applied before rotation of child
-const FBX_INHERIT_TYPE_PARENT_SCALING_FIRST = 1;
-
-class FBXNode extends FBXObject {
-    #parent = null;
-    #childs = new Set();
-    #materials = [];
-    #nodeAttribute;
-    #inheritType = FBX_INHERIT_TYPE_PARENT_SCALING_FIRST;
-    #show;
-    #localTranslation;
-    #localRotation;
-    #localScaling;
-    isFBXNode = true;
-    constructor(manager, name) {
-        super(manager, name);
-        this.#show = this.createProperty(FBX_PROPERTY_TYPE_BOOL, 'Show', 1.0, FBX_PROPERTY_FLAG_STATIC);
-        this.#localTranslation = this.createProperty(FBX_PROPERTY_TYPE_DOUBLE_3, 'Lcl Translation', [0, 0, 0], FBX_PROPERTY_FLAG_STATIC);
-        this.#localRotation = this.createProperty(FBX_PROPERTY_TYPE_DOUBLE_3, 'Lcl Rotation', [0, 0, 0], FBX_PROPERTY_FLAG_STATIC);
-        this.#localScaling = this.createProperty(FBX_PROPERTY_TYPE_DOUBLE_3, 'Lcl Scaling', [1, 1, 1], FBX_PROPERTY_FLAG_STATIC);
-    }
-    set parent(parent) {
-        if (this.#checkParent(parent)) {
-            if (this.#parent) {
-                this.#parent.#childs.delete(this);
-            }
-            this.#parent = parent;
-            if (parent) {
-                parent.#childs.add(this);
-            }
-        }
-        else {
-            console.log(this, parent);
-            throw 'Invalid parent';
-        }
-    }
-    addChild(child) {
-        child.parent = this;
-    }
-    removeChild(child) {
-        child.parent = null;
-    }
-    get childs() {
-        return this.#childs;
-    }
-    get parent() {
-        return this.#parent;
-    }
-    #checkParent(parent) {
-        if (parent === null) {
-            return true;
-        }
-        if (!parent.isFBXNode) {
-            console.log('Parent is not FBXNode');
-            return false;
-        }
-        let current = parent;
-        for (;;) {
-            if (current == this) {
-                console.log('Parent hierarchy contains self');
-                return false;
-            }
-            if (!(current = current.parent)) {
-                break;
-            }
-        }
-        return true;
-    }
-    set nodeAttribute(nodeAttribute) {
-        this.#nodeAttribute = nodeAttribute;
-    }
-    get nodeAttribute() {
-        return this.#nodeAttribute;
-    }
-    set inheritType(inheritType) {
-        this.#inheritType = inheritType;
-    }
-    get inheritType() {
-        return this.#inheritType;
-    }
-    set show(show) {
-        this.#show.value = show;
-    }
-    get show() {
-        return this.#show.value;
-    }
-    set localTranslation(localTranslation) {
-        this.#localTranslation = localTranslation;
-    }
-    get localTranslation() {
-        return this.#localTranslation;
-    }
-    set localRotation(localRotation) {
-        this.#localRotation = localRotation;
-    }
-    get localRotation() {
-        return this.#localRotation;
-    }
-    set localScaling(localScaling) {
-        this.#localScaling = localScaling;
-    }
-    get localScaling() {
-        return this.#localScaling;
-    }
-    addMaterial(surfaceMaterial) {
-        this.#materials.push(surfaceMaterial);
-    }
-    get materials() {
-        return this.#materials;
-    }
-    toJSON() {
-        return {};
-    }
-}
-FBXManager.registerClass('FBXNode', FBXNode);
-
-class FBXPoseInfo {
-    #matrix = create$5();
-    #matrixIsLocal = false;
-    #node;
-    constructor(node, matrix, matrixIsLocal) {
-        this.#node = node;
-        copy$5(this.#matrix, matrix);
-        this.#matrixIsLocal = matrixIsLocal;
-    }
-    set matrix(matrix) {
-        this.#matrix = matrix;
-    }
-    get matrix() {
-        return this.#matrix;
-    }
-    set matrixIsLocal(matrixIsLocal) {
-        this.#matrixIsLocal = matrixIsLocal;
-    }
-    get matrixIsLocal() {
-        return this.#matrixIsLocal;
-    }
-    set node(node) {
-        this.#node = node;
-    }
-    get node() {
-        return this.#node;
-    }
-}
-
-class FBXPose extends FBXObject {
-    #isBindPose = true;
-    #poseInfos = [];
-    isFBXPose = true;
-    set isBindPose(isBindPose) {
-        this.#isBindPose = isBindPose;
-    }
-    get isBindPose() {
-        return this.#isBindPose;
-    }
-    get isRestPose() {
-        return !this.#isBindPose;
-    }
-    add(node, matrix, matrixIsLocal) {
-        this.#poseInfos.push(new FBXPoseInfo(node, matrix, matrixIsLocal));
-    }
-    get poseInfos() {
-        return this.#poseInfos;
-    }
-}
-FBXManager.registerClass('FBXPose', FBXPose);
-
-class FBXDocument extends FBXCollection {
-    #documentInfo;
-    isFBXDocument = true;
-    constructor(manager, name) {
-        super(manager, name);
-    }
-    set documentInfo(documentInfo) {
-        this.#documentInfo = documentInfo;
-    }
-    get documentInfo() {
-        return this.#documentInfo;
-    }
-}
-
-class FBXScene extends FBXDocument {
-    #rootNode;
-    #globalSettings;
-    #sceneInfo;
-    #objects = new Set();
-    isFBXScene = true;
-    constructor(manager, name) {
-        super(manager, name);
-        this.#rootNode = manager.createObject('FBXNode', 'Root node. This node is not saved');
-        this.#globalSettings = manager.createObject('FBXGlobalSettings', 'TODO: name me FBXScene / #globalSettings');
-        this.#rootNode.id = 0n;
-    }
-    set sceneInfo(sceneInfo) {
-        this.#sceneInfo = sceneInfo;
-    }
-    get sceneInfo() {
-        return this.#sceneInfo;
-    }
-    get rootNode() {
-        return this.#rootNode;
-    }
-    get globalSettings() {
-        return this.#globalSettings;
-    }
-    addObject(object) {
-        this.#objects.add(object);
-    }
-    get objects() {
-        return this.#objects;
-    }
-}
-FBXManager.registerClass('FBXScene', FBXScene);
-
-class FBXSkeleton extends FBXNodeAttribute {
-    skeletonType;
-    isFBXSkeleton = true;
-    constructor(manager, name, skeletonType) {
-        super(manager, name);
-        this.skeletonType = skeletonType;
-    }
-    getAttributeType() {
-        return FBX_NODE_ATTRIBUTE_TYPE_SKELETON;
-    }
-}
-FBXManager.registerClass('FBXSkeleton', FBXSkeleton);
-
-const FBX_DEFORMER_TYPE_UNKNOWN = 0;
-const FBX_DEFORMER_TYPE_SKIN = 1;
-
-class FBXDeformer extends FBXObject {
-    isFBXDeformer = true;
-    get deformerType() {
-        return FBX_DEFORMER_TYPE_UNKNOWN;
-    }
-}
-const FBX_SKINNING_TYPE_LINEAR = 1;
-
-class FBXSkin extends FBXDeformer {
-    #geometry;
-    #skinningType = FBX_SKINNING_TYPE_LINEAR;
-    #clusters = new Set();
-    isFBXSkin = true;
-    set geometry(geometry) {
-        if (geometry && !geometry.isFBXGeometry) {
-            throw 'geometry must be of type FBXGeometry';
-        }
-        if (this.#geometry) {
-            this.#geometry.removeDeformer(this);
-        }
-        if (geometry) {
-            geometry.addDeformer(this);
-        }
-        this.#geometry = geometry;
-    }
-    get geometry() {
-        return this.#geometry;
-    }
-    set skinningType(skinningType) {
-        this.#skinningType = skinningType;
-    }
-    get skinningType() {
-        return this.#skinningType;
-    }
-    addCluster(fbxCluster) {
-        this.#clusters.add(fbxCluster);
-    }
-    removeCluster(fbxCluster) {
-        this.#clusters.delete(fbxCluster);
-    }
-    get clusters() {
-        return this.#clusters;
-    }
-    get deformerType() {
-        return FBX_DEFORMER_TYPE_SKIN;
-    }
-}
-FBXManager.registerClass('FBXSkin', FBXSkin);
-
-class FBXSurfaceMaterial extends FBXObject {
-    #shadingModel;
-    #multiLayer;
-    isFBXSurfaceMaterial = true;
-    constructor(manager, name) {
-        super(manager, name);
-        this.#shadingModel = this.createProperty(FBX_PROPERTY_TYPE_STRING, 'ShadingModel', 'Unknown', FBX_PROPERTY_FLAG_STATIC);
-        this.#multiLayer = this.createProperty(FBX_PROPERTY_TYPE_BOOL, 'MultiLayer', false, FBX_PROPERTY_FLAG_STATIC);
-    }
-    set shadingModel(shadingModel) {
-        this.#shadingModel.value = shadingModel;
-    }
-    get shadingModel() {
-        return this.#shadingModel.value;
-    }
-    set multiLayer(multiLayer) {
-        this.#multiLayer.value = multiLayer;
-    }
-    get multiLayer() {
-        return this.#multiLayer.value;
-    }
-}
-FBXManager.registerClass('FBXSurfaceMaterial', FBXSurfaceMaterial);
-
-class FBXSurfaceLambert extends FBXSurfaceMaterial {
-    #diffuse;
-    isFBXSurfaceLambert = true;
-    constructor(manager, name) {
-        super(manager, name);
-        this.shadingModel = 'Lambert';
-        this.#diffuse = this.createProperty(FBX_PROPERTY_TYPE_COLOR_3, 'DiffuseColor', [0.2, 0.2, 0.2], FBX_PROPERTY_FLAG_STATIC);
-    }
-    set diffuse(diffuse) {
-        console.assert(diffuse.isFBXProperty && diffuse.type == FBX_PROPERTY_TYPE_COLOR_3, "diffuse is not an FBXProperty");
-        this.#diffuse = diffuse;
-    }
-    get diffuse() {
-        return this.#diffuse;
-    }
-}
-FBXManager.registerClass('FBXSurfaceLambert', FBXSurfaceLambert);
-
-class FBXSurfacePhong extends FBXSurfaceLambert {
-    isFBXSurfacePhong = true;
-    constructor(manager, name) {
-        super(manager, name);
-        this.shadingModel = 'Phong';
-    }
-}
-FBXManager.registerClass('FBXSurfacePhong', FBXSurfacePhong);
-
-class FBXTexture extends FBXObject {
-    #media;
-    #type = 'TextureVideoClip';
-    isFBXTexture = true;
-    set type(type) {
-        throw 'We might want to check the exporter if we change the type';
-    }
-    get type() {
-        return this.#type;
-    }
-    set media(media) {
-        this.#media = media;
-    }
-    get media() {
-        return this.#media;
-    }
-}
-FBXManager.registerClass('FBXTexture', FBXTexture);
-
-class FBXVideo extends FBXObject {
-    #content;
-    #type = 'Clip';
-    isFBXVideo = true;
-    set content(content) {
-        this.#content = content;
-    }
-    get content() {
-        return this.#content;
-    }
-    set type(type) {
-        throw 'We might want to check the exporter if we change the type';
-    }
-    get type() {
-        return this.#type;
-    }
-}
-FBXManager.registerClass('FBXVideo', FBXVideo);
-
-var FbxType;
-(function (FbxType) {
-    FbxType[FbxType["Int8"] = 67] = "Int8";
-    FbxType[FbxType["Double"] = 68] = "Double";
-    FbxType[FbxType["Float"] = 70] = "Float";
-    FbxType[FbxType["Int32"] = 73] = "Int32";
-    FbxType[FbxType["Int64"] = 76] = "Int64";
-    FbxType[FbxType["Raw"] = 82] = "Raw";
-    FbxType[FbxType["String"] = 83] = "String";
-    FbxType[FbxType["Int16"] = 89] = "Int16";
-    FbxType[FbxType["Int8Array"] = 98] = "Int8Array";
-    FbxType[FbxType["DoubleArray"] = 100] = "DoubleArray";
-    FbxType[FbxType["FloatArray"] = 102] = "FloatArray";
-    FbxType[FbxType["Int32Array"] = 105] = "Int32Array";
-    FbxType[FbxType["Int64Array"] = 108] = "Int64Array";
-})(FbxType || (FbxType = {}));
-const FBX_DATA_TYPE_INT_8 = 67;
-const FBX_DATA_TYPE_DOUBLE = 68;
-const FBX_DATA_TYPE_FLOAT = 70;
-const FBX_DATA_TYPE_INT_32 = 73;
-const FBX_DATA_TYPE_INT_64 = 76;
-const FBX_DATA_TYPE_RAW = 82;
-const FBX_DATA_TYPE_STRING = 83;
-const FBX_DATA_TYPE_INT_16 = 89;
-const FBX_DATA_TYPE_ARRAY_INT_8 = 98;
-const FBX_DATA_TYPE_ARRAY_DOUBLE = 100;
-const FBX_DATA_TYPE_ARRAY_FLOAT = 102;
-const FBX_DATA_TYPE_ARRAY_INT_32 = 105;
-const FBX_DATA_TYPE_ARRAY_INT_64 = 108;
-const FBX_DATA_LEN = new Map();
-FBX_DATA_LEN.set(FBX_DATA_TYPE_INT_8, 1);
-FBX_DATA_LEN.set(FBX_DATA_TYPE_DOUBLE, 8);
-FBX_DATA_LEN.set(FBX_DATA_TYPE_FLOAT, 4);
-FBX_DATA_LEN.set(FBX_DATA_TYPE_INT_32, 4);
-FBX_DATA_LEN.set(FBX_DATA_TYPE_INT_64, 8);
-FBX_DATA_LEN.set(FBX_DATA_TYPE_INT_16, 2);
-FBX_DATA_LEN.set(FBX_DATA_TYPE_ARRAY_INT_8, 1);
-FBX_DATA_LEN.set(FBX_DATA_TYPE_ARRAY_DOUBLE, 8);
-FBX_DATA_LEN.set(FBX_DATA_TYPE_ARRAY_FLOAT, 4);
-FBX_DATA_LEN.set(FBX_DATA_TYPE_ARRAY_INT_32, 4);
-FBX_DATA_LEN.set(FBX_DATA_TYPE_ARRAY_INT_64, 8);
-const FBX_BINARY_MAGIC = 'Kaydara FBX Binary  \0';
-const FBX_HEADER_VERSION = 1003;
-const FBX_SCENEINFO_VERSION = 100;
-const FBX_TEMPLATES_VERSION = 100;
-const FBX_KTIME = 46186158000n;
-const FBX_GEOMETRY_VERSION = 124;
-const FBX_GEOMETRY_UV_VERSION = 101;
-const FBX_GEOMETRY_MATERIAL_VERSION = 101;
-const FBX_GEOMETRY_LAYER_VERSION = 100;
-const FBX_MATERIAL_VERSION = 102;
-const FBX_TEXTURE_VERSION = 202;
-const FBX_DEFORMER_SKIN_VERSION = 101;
-const FBX_DEFORMER_CLUSTER_VERSION = 100;
-const FBX_POSE_BIND_VERSION = 100;
-const FBX_MODELS_VERSION = 232;
-
-if (!BigInt.prototype.toJSON) {
-    BigInt.prototype.toJSON = function () { return this.toString(); };
-}
-class FBXRecordProperty {
-    #type;
-    #value;
-    #srcObjects = new Set();
-    #flags = 0;
-    #parent = null;
-    isFBXProperty = true;
-    constructor(parent, type, value) {
-        if (parent) {
-            if (parent.isFBXProperty) {
-                this.#parent = parent;
-            }
-            else if (parent.isFBXObject) {
-                this.#parent = parent.rootProperty;
-            }
-            else {
-                throw 'Parent must be FBXRecordProperty or FBXObject';
-            }
-        }
-        this.#type = type;
-        this.#value = value;
-        //TODO: check the value type
-    }
-    get type() {
-        return this.#type;
-    }
-    set value(value) {
-        this.#value = value;
-    }
-    get value() {
-        return this.#value;
-    }
-    set(value) {
-        this.#value = value;
-    }
-    get() {
-        return this.#value;
-    }
-    set flags(flags) {
-        this.#flags = flags;
-    }
-    get flags() {
-        return this.#flags;
-    }
-    get parent() {
-        return this.#parent;
-    }
-    connectSrcObject(fbxObject) {
-        //TODO: add connection type ?
-        this.#srcObjects.add(fbxObject);
-    }
-    get srcObjects() {
-        return this.#srcObjects;
-    }
-    createProperty(type, value) {
-        return new FBXRecordProperty(this, type, value);
-    }
-    toJSON() {
-        return {
-            type: this.#type,
-            value: this.#value,
-        };
-    }
-}
-
-function createInt16Property(value) {
-    return new FBXRecordProperty(null, FBX_DATA_TYPE_INT_16, value);
-}
-function createInt32Property(value) {
-    return new FBXRecordProperty(null, FBX_DATA_TYPE_INT_32, value);
-}
-function createInt64Property(value) {
-    return new FBXRecordProperty(null, FBX_DATA_TYPE_INT_64, value);
-}
-function createDoubleProperty(value) {
-    return new FBXRecordProperty(null, FBX_DATA_TYPE_DOUBLE, value);
-}
-function createRawProperty(value /*TODO: better type*/) {
-    return new FBXRecordProperty(null, FBX_DATA_TYPE_RAW, value);
-}
-function createStringProperty(value) {
-    return new FBXRecordProperty(null, FBX_DATA_TYPE_STRING, value);
-}
-
-class FBXRecord {
-    #name = '';
-    #childs = new Set();
-    #properties = new Set();
-    isFBXRecord = true;
-    constructor(name) {
-        this.name = name;
-    }
-    addChild(child) {
-        if (!child.isFBXRecord) {
-            throw 'FBXFile: trying to insert a non FBXRecord child';
-        }
-        this.#childs.add(child);
-        return child;
-    }
-    addChilds(childs) {
-        for (let child of childs) {
-            this.addChild(child);
-        }
-    }
-    addProperty(property) {
-        this.#properties.add(property);
-    }
-    addProperties(properties) {
-        for (let property of properties) {
-            this.addProperty(property);
-        }
-    }
-    set name(name) {
-        if (name.length > 255) {
-            throw `Record name above 255 characters ${name}`;
-        }
-        this.#name = name;
-    }
-    get name() {
-        return this.#name;
-    }
-    get childs() {
-        return this.#childs;
-    }
-    get properties() {
-        return this.#properties;
-    }
-    getRecordsByName(recordName) {
-        let output = [];
-        for (let child of this.#childs) {
-            if (child.name == recordName) {
-                output.push(child);
-            }
-        }
-        return output;
-    }
-    getRecordByName(recordName) {
-        for (let child of this.#childs) {
-            if (child.name == recordName) {
-                return child;
-            }
-        }
-    }
-    getProperty(type) {
-        for (let property of this.#properties) {
-            if (property.type == type) {
-                return property.value;
-            }
-        }
-    }
-    getPropertyInt32() {
-        return this.getProperty(FBX_DATA_TYPE_INT_32);
-    }
-    getPropertyString() {
-        return this.getProperty(FBX_DATA_TYPE_STRING);
-    }
-    toJSON() {
-        return {
-            name: this.#name,
-            childs: this.#childs.size ? [...this.#childs] : undefined,
-            properties: this.#properties.size ? [...this.#properties] : undefined,
-        };
-    }
-}
-
-const _TIME_ID = '1970-01-01 10:00:00:000';
-const _FILE_ID = new Uint8Array([0x28, 0xb3, 0x2a, 0xeb, 0xb6, 0x24, 0xcc, 0xc2, 0xbf, 0xc8, 0xb0, 0x2a, 0xa9, 0x2b, 0xfc, 0xf1]);
-const _FOOT_ID = new Uint8Array([0xfa, 0xbc, 0xab, 0x09, 0xd0, 0xc8, 0xd4, 0x66, 0xb1, 0x76, 0xfb, 0x83, 0x1c, 0xf7, 0x26, 0x7e]);
-const FBX_FOOTER2 = '\xf8\x5a\x8c\x6a\xde\xf5\xd9\x7e\xec\xe9\x0c\xe3\x75\x8f\x29\x0b';
-class FBXExporter {
-    exportBinary(fbxFile) {
-        checkFile(fbxFile);
-        let version = fbxFile.version;
-        let size = getFileSize(fbxFile, version);
-        //console.log('File Size: ', size);
-        let writer = new BinaryReader(new Uint8Array(size));
-        return exportBinaryFile(writer, fbxFile);
-    }
-}
-function checkFile(fbxFile) {
-    for (let child of fbxFile.childs) {
-        if (child.name == 'CreationTime' || child.name == 'FileId') {
-            fbxFile.childs.delete(child);
-        }
-    }
-    formatCreationTimeRecord(fbxFile);
-    formatFileIdRecord(fbxFile);
-}
-function exportBinaryFile(writer, fbxFile) {
-    let version = fbxFile.version;
-    writer.seek(0);
-    writer.setString(FBX_BINARY_MAGIC);
-    writer.setUint8(0x1A);
-    writer.setUint8(0x00);
-    writer.setUint32(version);
-    for (let child of fbxFile.childs) {
-        exportBinaryRecord(writer, child, version);
-    }
-    writer.skip((version >= 7500) ? 25 : 13); //Null record
-    writer.setBytes(generateFooterCode(fbxFile.dateCreated));
-    writer.skip(align16(writer.tell()));
-    if (version != 7400) {
-        writer.skip(4);
-    }
-    writer.setUint32(version);
-    writer.skip(120);
-    writer.setString(FBX_FOOTER2);
-    return writer.buffer;
-}
-function formatFileIdRecord(fbxFile) {
-    let fbxRecord = fbxFile.addChild(new FBXRecord('FileId'));
-    fbxRecord.properties.clear();
-    let fbxProperty = createRawProperty(_FILE_ID);
-    fbxRecord.addProperty(fbxProperty);
-}
-function formatCreationTimeRecord(fbxFile) {
-    let fbxRecord = fbxFile.addChild(new FBXRecord('CreationTime'));
-    fbxRecord.properties.clear();
-    let dateCreated = fbxFile.dateCreated;
-    `${dateCreated.getFullYear()}-${padNumber(dateCreated.getMonth() + 1, 2)}-${padNumber(dateCreated.getDate(), 2)} ${padNumber(dateCreated.getHours(), 2)}:${padNumber(dateCreated.getMinutes(), 2)}:${padNumber(dateCreated.getSeconds(), 2)}:${padNumber(dateCreated.getMilliseconds(), 3)}`;
-    //console.log(creationTime);
-    //let fbxProperty = createStringProperty(creationTime);
-    let fbxProperty = createStringProperty(_TIME_ID);
-    fbxRecord.addProperty(fbxProperty);
-}
-function align16(offset) {
-    let pad = ((offset + 15) & ~15) - offset;
-    if (pad == 0) {
-        pad = 16;
-    }
-    return pad;
-}
-function exportBinaryRecord(writer, fbxRecord, version) {
-    let startOffset = writer.tell();
-    let recordLen = getRecordSize(fbxRecord, version);
-    //console.log(startOffset);
-    if (version >= 7500) {
-        writer.setBigUint64(BigInt(startOffset + recordLen));
-        writer.setBigUint64(BigInt(fbxRecord.properties.size));
-        writer.setBigUint64(BigInt(getRecordPropertiesSize(fbxRecord)));
-    }
-    else {
-        writer.setUint32(startOffset + recordLen);
-        writer.setUint32(fbxRecord.properties.size);
-        writer.setUint32(getRecordPropertiesSize(fbxRecord));
-    }
-    writer.setUint8(fbxRecord.name.length);
-    writer.setString(fbxRecord.name);
-    exportProperties(writer, fbxRecord);
-    for (let child of fbxRecord.childs) {
-        exportBinaryRecord(writer, child, version);
-    }
-    writer.skip((version >= 7500) ? 25 : 13); //Null record
-}
-function exportProperties(writer, fbxRecord) {
-    for (let property of fbxRecord.properties) {
-        exportRecordProperty(writer, property);
-    }
-}
-function exportRecordProperty(writer, fbxProperty) {
-    //console.log(fbxProperty);
-    writer.setUint8(fbxProperty.type);
-    switch (fbxProperty.type) {
-        case FBX_DATA_TYPE_INT_16:
-            writer.setInt16(fbxProperty.value);
-            break;
-        case FBX_DATA_TYPE_INT_8:
-            writer.setInt8(fbxProperty.value);
-            break;
-        case FBX_DATA_TYPE_INT_32:
-            writer.setInt32(fbxProperty.value);
-            break;
-        case FBX_DATA_TYPE_FLOAT:
-            writer.setFloat32(fbxProperty.value);
-            break;
-        case FBX_DATA_TYPE_DOUBLE:
-            writer.setFloat64(fbxProperty.value);
-            break;
-        case FBX_DATA_TYPE_INT_64:
-            writer.setBigInt64(BigInt(fbxProperty.value));
-            break;
-        case FBX_DATA_TYPE_RAW:
-            writer.setUint32(fbxProperty.value.length);
-            writer.setBytes(fbxProperty.value);
-            break;
-        case FBX_DATA_TYPE_STRING:
-            writer.setUint32(fbxProperty.value.length);
-            writer.setString(fbxProperty.value);
-            break;
-        case FBX_DATA_TYPE_ARRAY_INT_8:
-        case FBX_DATA_TYPE_ARRAY_DOUBLE:
-        case FBX_DATA_TYPE_ARRAY_FLOAT:
-        case FBX_DATA_TYPE_ARRAY_INT_32:
-        case FBX_DATA_TYPE_ARRAY_INT_64:
-            exportRecordPropertyArray(writer, fbxProperty);
-            break;
-        default:
-            throw 'Unknown property type ' + fbxProperty.type;
-    }
-}
-function exportRecordPropertyArray(writer, fbxProperty) {
-    writer.setUint32(fbxProperty.value.length);
-    writer.setUint32(0); //Encoding
-    writer.setUint32(FBX_DATA_LEN.get(fbxProperty.type) * fbxProperty.value.length);
-    let functionName;
-    switch (fbxProperty.type) {
-        case FBX_DATA_TYPE_ARRAY_INT_8:
-            functionName = 'setInt8';
-            break;
-        case FBX_DATA_TYPE_ARRAY_DOUBLE:
-            functionName = 'setFloat64';
-            break;
-        case FBX_DATA_TYPE_ARRAY_FLOAT:
-            functionName = 'setFloat32';
-            break;
-        case FBX_DATA_TYPE_ARRAY_INT_32:
-            functionName = 'setInt32';
-            break;
-        case FBX_DATA_TYPE_ARRAY_INT_64:
-            functionName = 'setBigInt64';
-            for (let value of fbxProperty.value) {
-                writer.setBigInt64(value);
-            }
-            return;
-        default:
-            throw 'Unknown array property type ' + fbxProperty.type;
-    }
-    for (let value of fbxProperty.value) {
-        writer[functionName](value);
-    }
-}
-function getFileSize(fbxFile, version) {
-    let size = 27; //header
-    for (let child of fbxFile.childs) {
-        size += getRecordSize(child, version);
-    }
-    size += (version >= 7500) ? 25 : 13; //Null record
-    size += 16; // footer1
-    //size += 4 // padding
-    size += align16(size); //alignment
-    if (version != 7400) {
-        size += 4; // padding
-    }
-    size += 140; //version + padding + footer2
-    return size;
-}
-function getRecordSize(fbxRecord, version) {
-    let size;
-    if (version >= 7500) {
-        size = 8 + 8 + 8 + 1;
-    }
-    else {
-        size = 4 + 4 + 4 + 1;
-    }
-    size += fbxRecord.name.length;
-    size += getRecordPropertiesSize(fbxRecord);
-    for (let child of fbxRecord.childs) {
-        size += getRecordSize(child, version);
-    }
-    size += (version >= 7500) ? 25 : 13; //Null record
-    return size;
-}
-function getRecordPropertiesSize(fbxRecord) {
-    let size = 0;
-    for (let property of fbxRecord.properties) {
-        switch (property.type) {
-            case FBX_DATA_TYPE_INT_8:
-            case FBX_DATA_TYPE_DOUBLE:
-            case FBX_DATA_TYPE_FLOAT:
-            case FBX_DATA_TYPE_INT_32:
-            case FBX_DATA_TYPE_INT_64:
-            case FBX_DATA_TYPE_INT_16:
-                ++size; //Typecode
-                size += FBX_DATA_LEN.get(property.type);
-                break;
-            case FBX_DATA_TYPE_RAW:
-            case FBX_DATA_TYPE_STRING:
-                ++size; //Typecode
-                size += 4; //string len
-                size += property.value.length;
-                break;
-            case FBX_DATA_TYPE_ARRAY_INT_8:
-            case FBX_DATA_TYPE_ARRAY_DOUBLE:
-            case FBX_DATA_TYPE_ARRAY_FLOAT:
-            case FBX_DATA_TYPE_ARRAY_INT_32:
-            case FBX_DATA_TYPE_ARRAY_INT_64:
-                size += 13; //Typecode + array header
-                size += FBX_DATA_LEN.get(property.type) * property.value.length;
-                break;
-            default:
-                throw 'Unknown property type ' + property.type;
-        }
-    }
-    return size;
-}
-//const extension = new Uint8Array([0xF8, 0x5A, 0x8C, 0x6A, 0xDE, 0xF5, 0xD9, 0x7E, 0xEC, 0xE9, 0x0C, 0xE3, 0x75, 0x8F, 0x29, 0x0B]);
-function padNumber(number, targetLength) {
-    return number.toString().padStart(targetLength, '0');
-}
-function generateFooterCode(date) {
-    return _FOOT_ID;
-}
-
-class FBXFile {
-    #version = 7500;
-    #childs = new Set();
-    #dateCreated = new Date();
-    set version(version) {
-        this.#version = version;
-    }
-    get version() {
-        return this.#version;
-    }
-    addChild(child) {
-        this.#childs.add(child);
-        return child;
-    }
-    get childs() {
-        return this.#childs;
-    }
-    getRecordsByName(recordName) {
-        let output = [];
-        for (let child of this.#childs) {
-            if (child.name == recordName) {
-                output.push(child);
-            }
-        }
-        return output;
-    }
-    getRecordByName(recordName) {
-        for (let child of this.#childs) {
-            if (child.name == recordName) {
-                return child;
-            }
-        }
-    }
-    set dateCreated(dateCreated) {
-        this.#dateCreated = dateCreated;
-    }
-    get dateCreated() {
-        return this.#dateCreated;
-    }
-    toJSON() {
-        return {
-            version: this.#version,
-            childs: this.#childs.size ? [...this.#childs] : undefined,
-        };
-    }
-}
-
-function createFBXRecord(name, options /*TODO: improve type*/) {
-    let fbxRecord = new FBXRecord(name);
-    if (options) {
-        for (let optionName in options) {
-            let optionValue = options[optionName];
-            switch (optionName) {
-                case 'parent':
-                    optionValue.addChild(fbxRecord);
-                    break;
-                case 'child':
-                    fbxRecord.addChild(optionValue);
-                    break;
-                case 'childs':
-                    fbxRecord.addChilds(optionValue);
-                    break;
-                case 'property':
-                    fbxRecord.addProperty(optionValue);
-                    break;
-                case 'properties':
-                    fbxRecord.addProperties(optionValue);
-                    break;
-                default:
-                    console.log(`Unknown property: ${optionName}`);
-            }
-        }
-    }
-    return fbxRecord;
-}
 function fbxNameClass(name, className) {
-    return name + '\x00\x01' + className;
+	return name + '\x00\x01' + className;
 }
+
 function createFBXRecordSingle(name, type, value) {
-    let fbxRecord = new FBXRecord(name);
-    fbxRecord.addProperty(new FBXRecordProperty(null, type, value));
-    return fbxRecord;
+	let fbxRecord = new FBXRecord(name);
+	fbxRecord.addProperty(new FBXRecordProperty(null, type, value));
+	return fbxRecord;
 }
 function createFBXRecordMultiple(name, type, values) {
-    let fbxRecord = new FBXRecord(name);
-    for (let value of values) {
-        fbxRecord.addProperty(new FBXRecordProperty(null, type, value));
-    }
-    return fbxRecord;
+	let fbxRecord = new FBXRecord(name);
+	for (let value of values) {
+		fbxRecord.addProperty(new FBXRecordProperty(null, type, value));
+	}
+	return fbxRecord;
 }
 function createFBXRecordSingleInt8(name, value) {
-    return createFBXRecordSingle(name, FBX_DATA_TYPE_INT_8, value);
+	return createFBXRecordSingle(name, FBX_DATA_TYPE_INT_8, value);
 }
 function createFBXRecordSingleInt32(name, value) {
-    return createFBXRecordSingle(name, FBX_DATA_TYPE_INT_32, value);
+	return createFBXRecordSingle(name, FBX_DATA_TYPE_INT_32, value);
 }
 function createFBXRecordSingleInt64(name, value) {
-    return createFBXRecordSingle(name, FBX_DATA_TYPE_INT_64, value);
+	return createFBXRecordSingle(name, FBX_DATA_TYPE_INT_64, value);
 }
+
 function createFBXRecordSingleDouble(name, value) {
-    return createFBXRecordSingle(name, FBX_DATA_TYPE_DOUBLE, value);
+	return createFBXRecordSingle(name, FBX_DATA_TYPE_DOUBLE, value);
 }
+
 function createFBXRecordSingleString(name, value) {
-    return createFBXRecordSingle(name, FBX_DATA_TYPE_STRING, value);
+	return createFBXRecordSingle(name, FBX_DATA_TYPE_STRING, value);
 }
 function createFBXRecordMultipleStrings(name, values) {
-    return createFBXRecordMultiple(name, FBX_DATA_TYPE_STRING, values);
+	return createFBXRecordMultiple(name, FBX_DATA_TYPE_STRING, values);
 }
+
 function createFBXRecordSingleBytes(name, value) {
-    return createFBXRecordSingle(name, FBX_DATA_TYPE_RAW, value);
+	return createFBXRecordSingle(name, FBX_DATA_TYPE_RAW, value);
 }
+
+
+
 function createFBXRecordFloatArray(name, value) {
-    return createFBXRecordSingle(name, FBX_DATA_TYPE_ARRAY_FLOAT, value);
+	return createFBXRecordSingle(name, FBX_DATA_TYPE_ARRAY_FLOAT, value);
 }
 function createFBXRecordDoubleArray(name, value) {
-    return createFBXRecordSingle(name, FBX_DATA_TYPE_ARRAY_DOUBLE, value);
+	return createFBXRecordSingle(name, FBX_DATA_TYPE_ARRAY_DOUBLE, value);
 }
 function createFBXRecordInt32Array(name, value) {
-    return createFBXRecordSingle(name, FBX_DATA_TYPE_ARRAY_INT_32, value);
+	return createFBXRecordSingle(name, FBX_DATA_TYPE_ARRAY_INT_32, value);
 }
 function createFBXRecordInt64Array(name, value) {
-    return createFBXRecordSingle(name, FBX_DATA_TYPE_ARRAY_INT_64, value);
+	return createFBXRecordSingle(name, FBX_DATA_TYPE_ARRAY_INT_64, value);
 }
 
 function createPString(name, value) {
-    return createFBXRecordMultipleStrings('P', [name, 'KString', '', '', value]);
+	return createFBXRecordMultipleStrings('P', [name, 'KString', '', '', value]);
 }
 function createPInteger(name, value) {
-    return createFBXRecord('P', {
-        properties: [
-            createStringProperty(name),
-            createStringProperty('int'),
-            createStringProperty('Integer'),
-            createStringProperty(''),
-            createInt32Property(value),
-        ],
-    });
+	return createFBXRecord('P', {
+		properties: [
+			createStringProperty(name),
+			createStringProperty('int'),
+			createStringProperty('Integer'),
+			createStringProperty(''),
+			createInt32Property(value),
+		],
+	});
 }
 function createPDouble(name, value) {
-    return createFBXRecord('P', {
-        properties: [
-            createStringProperty(name),
-            createStringProperty('double'),
-            createStringProperty('Number'),
-            createStringProperty(''),
-            createDoubleProperty(value),
-        ],
-    });
+	return createFBXRecord('P', {
+		properties: [
+			createStringProperty(name),
+			createStringProperty('double'),
+			createStringProperty('Number'),
+			createStringProperty(''),
+			createDoubleProperty(value),
+		],
+	});
 }
 function createPColorRGB(name, value) {
-    return createFBXRecord('P', {
-        properties: [
-            createStringProperty(name),
-            createStringProperty('ColorRGB'),
-            createStringProperty('Color'),
-            createStringProperty(''),
-            createDoubleProperty(value[0]),
-            createDoubleProperty(value[1]),
-            createDoubleProperty(value[2]),
-        ],
-    });
+	return createFBXRecord('P', {
+		properties: [
+			createStringProperty(name),
+			createStringProperty('ColorRGB'),
+			createStringProperty('Color'),
+			createStringProperty(''),
+			createDoubleProperty(value[0]),
+			createDoubleProperty(value[1]),
+			createDoubleProperty(value[2]),
+		],
+	});
 }
 function createPEnum(name, value) {
-    return createFBXRecord('P', {
-        properties: [
-            createStringProperty(name),
-            createStringProperty('enum'),
-            createStringProperty(''),
-            createStringProperty(''),
-            createInt32Property(value),
-        ],
-    });
+	return createFBXRecord('P', {
+		properties: [
+			createStringProperty(name),
+			createStringProperty('enum'),
+			createStringProperty(''),
+			createStringProperty(''),
+			createInt32Property(value),
+		],
+	});
 }
 function createPTime(name, value) {
-    return createFBXRecord('P', {
-        properties: [
-            createStringProperty(name),
-            createStringProperty('KTime'),
-            createStringProperty('Time'),
-            createStringProperty(''),
-            createInt64Property(value),
-        ],
-    });
+	return createFBXRecord('P', {
+		properties: [
+			createStringProperty(name),
+			createStringProperty('KTime'),
+			createStringProperty('Time'),
+			createStringProperty(''),
+			createInt64Property(value),
+		],
+	});
 }
 function createPObject(name) {
-    return createFBXRecord('P', {
-        properties: [
-            createStringProperty(name),
-            createStringProperty('object'),
-            createStringProperty(''),
-            createStringProperty(''),
-        ],
-    });
+	return createFBXRecord('P', {
+		properties: [
+			createStringProperty(name),
+			createStringProperty('object'),
+			createStringProperty(''),
+			createStringProperty(''),
+		],
+	});
 }
 function createPBool(name, value) {
-    return createFBXRecord('P', {
-        properties: [
-            createStringProperty(name),
-            createStringProperty('bool'),
-            createStringProperty(''),
-            createStringProperty(''),
-            createInt32Property(value ? 1 : 0),
-        ],
-    });
+	return createFBXRecord('P', {
+		properties: [
+			createStringProperty(name),
+			createStringProperty('bool'),
+			createStringProperty(''),
+			createStringProperty(''),
+			createInt32Property(value),
+		],
+	});
 }
 function createPVector3D(name, value) {
-    return createFBXRecord('P', {
-        properties: [
-            createStringProperty(name),
-            createStringProperty('Vector3D'),
-            createStringProperty('Vector'),
-            createStringProperty(''),
-            createDoubleProperty(value[0]),
-            createDoubleProperty(value[1]),
-            createDoubleProperty(value[2]),
-        ],
-    });
+	return createFBXRecord('P', {
+		properties: [
+			createStringProperty(name),
+			createStringProperty('Vector3D'),
+			createStringProperty('Vector'),
+			createStringProperty(''),
+			createDoubleProperty(value[0]),
+			createDoubleProperty(value[1]),
+			createDoubleProperty(value[2]),
+		],
+	});
 }
 
 function exportFBXGlobalSettings(fbxGlobalSettings) {
-    let globalSettings = createFBXRecord('GlobalSettings', {
-        childs: [
-            createFBXRecordSingleInt32('Version', 1000),
-            createFBXRecord('Properties70', {
-                childs: [
-                    createPInteger('UpAxis', 1), //TODO
-                    createPInteger('UpAxisSign', 1), //TODO
-                    createPInteger('FrontAxis', 2), //TODO
-                    createPInteger('FrontAxisSign', 1), //TODO
-                    createPInteger('CoordAxis', 0), //TODO
-                    createPInteger('CoordAxisSign', 1), //TODO
-                    createPInteger('OriginalUpAxis', 1), //TODO
-                    createPInteger('OriginalUpAxisSign', 1), //TODO
-                    createPDouble('UnitScaleFactor', 1), //TODO
-                    createPDouble('OriginalUnitScaleFactor', 1), //TODO
-                    createPColorRGB('AmbientColor', [0, 0, 0]), //TODO
-                    createPString('DefaultCamera', 'Producer Perspective'), //TODO
-                    createPEnum('TimeMode', 17), //TODO
-                    createPTime('TimeSpanStart', 0n), //TODO
-                    createPTime('TimeSpanStop', FBX_KTIME), //TODO
-                    createPDouble('CustomFrameRate', -1), //TODO
-                    createPEnum('TimeProtocol', 2), //TODO
-                    createPEnum('SnapOnFrameMode', 0), //TODO
-                    createFBXRecordMultipleStrings('P', ['TimeMarker', 'Compound', '', '']),
-                    createPInteger('CurrentTimeMarker', -1), //TODO
-                ]
-            }),
-        ]
-    });
-    return globalSettings;
+	let globalSettings = createFBXRecord('GlobalSettings', {
+		childs: [
+			createFBXRecordSingleInt32('Version', 1000),
+			createFBXRecord('Properties70', {
+				childs: [
+					createPInteger('UpAxis', 1),//TODO
+					createPInteger('UpAxisSign', 1),//TODO
+					createPInteger('FrontAxis', 2),//TODO
+					createPInteger('FrontAxisSign', 1),//TODO
+					createPInteger('CoordAxis', 0),//TODO
+					createPInteger('CoordAxisSign', 1),//TODO
+					createPInteger('OriginalUpAxis', 1),//TODO
+					createPInteger('OriginalUpAxisSign', 1),//TODO
+					createPDouble('UnitScaleFactor', 1),//TODO
+					createPDouble('OriginalUnitScaleFactor', 1),//TODO
+					createPColorRGB('AmbientColor', [0, 0, 0]),//TODO
+					createPString('DefaultCamera', 'Producer Perspective'),//TODO
+					createPEnum('TimeMode', 17),//TODO
+					createPTime('TimeSpanStart', 0n),//TODO
+					createPTime('TimeSpanStop', FBX_KTIME),//TODO
+					createPDouble('CustomFrameRate', -1),//TODO
+					createPEnum('TimeProtocol', 2),//TODO
+					createPEnum('SnapOnFrameMode', 0),//TODO
+					createFBXRecordMultipleStrings('P', ['TimeMarker', 'Compound', '', '']),
+					createPInteger('CurrentTimeMarker', -1),//TODO
+				]
+			}),
+		]
+	});
+	return globalSettings;
 }
-/*
-export function exportFBXGlobalSettings(fbxGlobalSettings) {
-    let upVector = fbxGlobalSettings.axisSystem.upVector;
-    let frontVector = fbxGlobalSettings.axisSystem.frontVector;
-    let coordVector = fbxGlobalSettings.axisSystem.coordVector;
-
-    let globalSettings = createFBXRecord('GlobalSettings', {
-        childs: [
-            createFBXRecordSingleInt32('Version', 1000),
-            createFBXRecord('Properties70', {
-                childs: [
-                    createPInteger('UpAxis', upVector),//TODO
-                    createPInteger('UpAxisSign', Math.sign(upVector)),//TODO
-                    createPInteger('FrontAxis', frontVector),//TODO
-                    createPInteger('FrontAxisSign', Math.sign(frontVector)),//TODO
-                    createPInteger('CoordAxis', coordVector),//TODO
-                    createPInteger('CoordAxisSign', Math.sign(coordVector)),//TODO
-                    createPInteger('OriginalUpAxis', 1),//TODO
-                    createPInteger('OriginalUpAxisSign', 1),//TODO
-                    createPDouble('UnitScaleFactor', 1),//TODO
-                    createPDouble('OriginalUnitScaleFactor', 1),//TODO
-                    createPColorRGB('AmbientColor', [0, 0, 0]),//TODO
-                    createPString('DefaultCamera', 'Producer Perspective'),//TODO
-                    createPEnum('TimeMode', 17),//TODO
-                    createPTime('TimeSpanStart', 0n),//TODO
-                    createPTime('TimeSpanStop', FBX_KTIME),//TODO
-                    createPDouble('CustomFrameRate', -1),//TODO
-                    createPEnum('TimeProtocol', 2),//TODO
-                    createPEnum('SnapOnFrameMode', 0),//TODO
-                    createFBXRecordMultipleStrings('P', ['TimeMarker', 'Compound', '', '']),
-                    createPInteger('CurrentTimeMarker', -1),//TODO
-                ]
-            }),
-        ]
-    });
-    return globalSettings;
-}
-
-*/
 
 function exportFBXScene(fbxScene) {
-    let documents = createFBXRecord('Documents', {
-        childs: [
-            createFBXRecordSingleInt32('Count', 1),
-            createFBXRecord('Document', {
-                childs: [
-                    createFBXRecord('Properties70', {
-                        childs: [
-                            createPObject('SourceObject'),
-                            createPString('ActiveAnimStackName', ''), //TODO
-                        ]
-                    }),
-                    createFBXRecordSingleInt64('RootNode', 0n),
-                ],
-                properties: [
-                    createInt64Property(fbxScene.id),
-                    createStringProperty(''),
-                    createStringProperty('Scene'),
-                ]
-            }),
-        ],
-    });
-    return documents;
+	let documents = createFBXRecord('Documents', {
+		childs: [
+			createFBXRecordSingleInt32('Count', 1),
+			createFBXRecord('Document', {
+				childs: [
+					createFBXRecord('Properties70', {
+						childs: [
+							createPObject('SourceObject'),
+							createPString('ActiveAnimStackName', ''),//TODO
+						]
+					}),
+					createFBXRecordSingleInt64('RootNode', 0n),
+				],
+				properties: [
+					createInt64Property(fbxScene.id),
+					createStringProperty(''),
+					createStringProperty('Scene'),
+				]
+			}),
+		],
+	});
+	return documents;
 }
 
 function createPropertiesRecord(fbxObject) {
-    const fbxRecord = new FBXRecord('Properties70');
-    const objectProperties = fbxObject.getAllProperties();
-    for (let property of objectProperties) {
-        if (!property.isCompound()) {
-            const propertyRecord = createPropertyRecord(property);
-            if (propertyRecord) {
-                fbxRecord.addChild(propertyRecord);
-            }
-        }
-    }
-    return fbxRecord;
+	const fbxRecord = new FBXRecord('Properties70');
+	const objectProperties = fbxObject.getAllProperties();
+
+	for (let property of objectProperties) {
+		if (!property.isCompound()) {
+			const propertyRecord = createPropertyRecord(property);
+			if (propertyRecord) {
+				fbxRecord.addChild(propertyRecord);
+			}
+		}
+	}
+	return fbxRecord;
 }
+
 function createPropertyRecord(fbxProperty) {
-    let fn = TYPE_PROPERTY.get(fbxProperty.type);
-    if (!fn) {
-        throw 'Unsupported property type';
-    }
-    return fn(fbxProperty.hierarchicalName, fbxProperty.value);
+	let fn = TYPE_PROPERTY.get(fbxProperty.type);
+	if (!fn) {
+		throw 'Unsupported property type';
+	}
+
+	return fn(fbxProperty.hierarchicalName, fbxProperty.value);
 }
+
 const TYPE_PROPERTY = new Map();
 TYPE_PROPERTY.set(FBX_PROPERTY_TYPE_DOUBLE, createPDouble);
 
 function fbxAnimCurveNodeToRecord(fbxAnimCurveNode) {
-    return createFBXRecord('AnimationCurveNode', {
-        childs: [
-            createPropertiesRecord(fbxAnimCurveNode),
-        ],
-        properties: [
-            createInt64Property(fbxAnimCurveNode.id),
-            createStringProperty(fbxAnimCurveNode.name + '\x00\x01AnimCurveNode'),
-            createStringProperty(''),
-        ],
-    });
+	return createFBXRecord('AnimationCurveNode', {
+		childs: [
+			createPropertiesRecord(fbxAnimCurveNode),
+		],
+		properties: [
+			createInt64Property(fbxAnimCurveNode.id),
+			createStringProperty(fbxAnimCurveNode.name + '\x00\x01AnimCurveNode'),
+			createStringProperty(''),
+		],
+	})
 }
 
 function fbxAnimCurveToRecord(fbxAnimCurve) {
-    return createFBXRecord('AnimationCurve', {
-        childs: [
-            createFBXRecordSingleDouble('Default', 0.0), //TODO: const
-            createFBXRecordSingleInt32('KeyVer', 4008), //TODO: const
-            createFBXRecordInt64Array('KeyTime', [100000n, 200000n, 300000n, 400000n]),
-            createFBXRecordFloatArray('KeyValueFloat', [1, 2, 3, 4]),
-            createFBXRecordInt32Array('KeyAttrFlags', [8456]),
-            createFBXRecordFloatArray('KeyAttrDataFloat', [0, 0, 218434821, 0]),
-            createFBXRecordInt32Array('KeyAttrRefCount', [4]),
-        ],
-        properties: [
-            createInt64Property(fbxAnimCurve.id),
-            createStringProperty(fbxAnimCurve.name + '\x00\x01AnimCurve'),
-            createStringProperty(''),
-        ],
-    });
+	return createFBXRecord('AnimationCurve', {
+		childs: [
+			createFBXRecordSingleDouble('Default', 0.0),//TODO: const
+			createFBXRecordSingleInt32('KeyVer', 4008),//TODO: const
+			createFBXRecordInt64Array('KeyTime', [100000, 200000, 300000, 400000]),
+			createFBXRecordFloatArray('KeyValueFloat', [1, 2, 3, 4]),
+			createFBXRecordInt32Array('KeyAttrFlags', [8456]),
+			createFBXRecordFloatArray('KeyAttrDataFloat', [0, 0, 218434821, 0]),
+			createFBXRecordInt32Array('KeyAttrRefCount', [4]),
+		],
+		properties: [
+			createInt64Property(fbxAnimCurve.id),
+			createStringProperty(fbxAnimCurve.name + '\x00\x01AnimCurve'),
+			createStringProperty(''),
+		],
+	})
 }
 
 function fbxAnimLayerToRecord(fbxAnimLayer) {
-    return createFBXRecord('AnimationLayer', {
-        properties: [
-            createInt64Property(fbxAnimLayer.id),
-            createStringProperty(fbxAnimLayer.name + '\x00\x01AnimLayer'),
-            createStringProperty(''),
-        ],
-    });
+	return createFBXRecord('AnimationLayer', {
+		properties: [
+			createInt64Property(fbxAnimLayer.id),
+			createStringProperty(fbxAnimLayer.name + '\x00\x01AnimLayer'),
+			createStringProperty(''),
+		],
+	})
 }
 
 function fbxAnimStackToRecord(fbxAnimStack) {
-    return createFBXRecord('AnimationStack', {
-        childs: [
-            createFBXRecord('Properties70', {
-                childs: [
-                    createPTime('LocalStart', 0n),
-                    createPTime('LocalStop', 12345678900n),
-                    createPTime('ReferenceStart', 0n),
-                    createPTime('ReferenceStop', 12345678900n),
-                ]
-            }),
-        ],
-        properties: [
-            createInt64Property(fbxAnimStack.id),
-            createStringProperty(fbxAnimStack.name + '\x00\x01AnimStack'),
-            createStringProperty('AnimationStack'),
-        ],
-    });
+	return createFBXRecord('AnimationStack', {
+		childs: [
+			createFBXRecord('Properties70', {
+				childs: [
+					createPTime('LocalStart', 0n),
+					createPTime('LocalStop', 12345678900n),
+					createPTime('ReferenceStart', 0n),
+					createPTime('ReferenceStop', 12345678900n),
+				]
+			}),
+		],
+		properties: [
+			createInt64Property(fbxAnimStack.id),
+			createStringProperty(fbxAnimStack.name + '\x00\x01AnimStack'),
+			createStringProperty('AnimationStack'),
+		],
+	})
 }
 
 function fbxPropertyToRecord(fbxProperty, name = '') {
-    switch (fbxProperty.type) {
-        case FBX_PROPERTY_TYPE_DOUBLE_3:
-            return fbxPropertyDouble3ToRecord(fbxProperty, name);
-        default:
-            throw 'unknown property type';
-    }
+	switch (fbxProperty.type) {
+		case FBX_PROPERTY_TYPE_DOUBLE_3:
+			return fbxPropertyDouble3ToRecord(fbxProperty, name);
+		default:
+			throw 'unknown property type';
+	}
 }
+
 function fbxPropertyDouble3ToRecord(fbxProperty, name) {
-    let value = fbxProperty.value;
-    return createFBXRecord('P', {
-        properties: [
-            createStringProperty(name),
-            createStringProperty('Vector'),
-            createStringProperty(''),
-            createStringProperty('A'), //TODO: property flag
-            createDoubleProperty(value[0]),
-            createDoubleProperty(value[1]),
-            createDoubleProperty(value[2]),
-        ],
-    });
+	let value = fbxProperty.value;
+	return createFBXRecord('P', {
+		properties: [
+			createStringProperty(name),
+			createStringProperty('Vector'),
+			createStringProperty(''),
+			createStringProperty('A'),//TODO: property flag
+			createDoubleProperty(value[0]),
+			createDoubleProperty(value[1]),
+			createDoubleProperty(value[2]),
+		],
+	});
 }
 
 function fbxCameraToRecord(fbxCamera) {
-    return createFBXRecord('NodeAttribute', {
-        childs: [
-            createFBXRecordSingleString('TypeFlags', 'Camera'),
-            createFBXRecordSingleInt32('GeometryVersion', FBX_GEOMETRY_VERSION),
-            createFBXRecord('Properties70', {
-                childs: [
-                    fbxPropertyToRecord(fbxCamera.position, 'Position'),
-                    fbxPropertyToRecord(fbxCamera.upVector, 'UpVector'),
-                ],
-            }),
-        ],
-        properties: [
-            createInt64Property(fbxCamera.id),
-            createStringProperty(fbxCamera.name + '\x00\x01NodeAttribute'),
-            createStringProperty('Camera'),
-        ],
-    });
+	return createFBXRecord('NodeAttribute', {
+		childs: [
+			createFBXRecordSingleString('TypeFlags', 'Camera'),
+			createFBXRecordSingleInt32('GeometryVersion', FBX_GEOMETRY_VERSION),
+			createFBXRecord('Properties70', {
+				childs: [
+					fbxPropertyToRecord(fbxCamera.position, 'Position'),
+					fbxPropertyToRecord(fbxCamera.upVector, 'UpVector'),
+				],
+			}),
+		],
+		properties: [
+			createInt64Property(fbxCamera.id),
+			createStringProperty(fbxCamera.name + '\x00\x01NodeAttribute'),
+			createStringProperty('Camera'),
+		],
+	});
 }
 
 function fbxClusterToRecord(fbxCluster) {
-    return createFBXRecord('Deformer', {
-        childs: [
-            createFBXRecordSingleInt32('Version', FBX_DEFORMER_CLUSTER_VERSION),
-            createFBXRecordMultipleStrings('UserData', ['', '']),
-            createFBXRecordInt32Array('Indexes', fbxCluster.indexes),
-            createFBXRecordDoubleArray('Weights', fbxCluster.weights),
-            createFBXRecordDoubleArray('Transform', fbxCluster.transformMatrix),
-            createFBXRecordDoubleArray('TransformLink', fbxCluster.transformLinkMatrix),
-        ],
-        properties: [
-            createInt64Property(fbxCluster.id),
-            createStringProperty(fbxCluster.name + '\x00\x01SubDeformer'),
-            createStringProperty('Cluster'),
-        ],
-    });
+	return createFBXRecord('Deformer', {
+		childs: [
+			createFBXRecordSingleInt32('Version', FBX_DEFORMER_CLUSTER_VERSION),
+			createFBXRecordMultipleStrings('UserData', ['', '']),
+			createFBXRecordInt32Array('Indexes', fbxCluster.indexes),
+			createFBXRecordDoubleArray('Weights', fbxCluster.weights),
+			createFBXRecordDoubleArray('Transform', fbxCluster.transformMatrix),
+			createFBXRecordDoubleArray('TransformLink', fbxCluster.transformLinkMatrix),
+
+		],
+		properties: [
+			createInt64Property(fbxCluster.id),
+			createStringProperty(fbxCluster.name + '\x00\x01SubDeformer'),
+			createStringProperty('Cluster'),
+		],
+	});
 }
 
 function fbxMeshToRecord(fbxMesh) {
-    return createFBXRecord('Geometry', {
-        childs: [
-            createFBXRecord('Properties70'),
-            createFBXRecordSingleInt32('GeometryVersion', FBX_GEOMETRY_VERSION),
-            createFBXRecordDoubleArray('Vertices', fbxMesh.vertices),
-            createFBXRecordInt32Array('PolygonVertexIndex', fbxMesh.polygons),
-            createFBXRecordInt32Array('Edges', fbxMesh.edges),
-            /*createFBXRecord('LayerElementNormal', {
-                childs: [
-                    createFBXRecordSingleInt32('Version', FBX_GEOMETRY_NORMAL_VERSION),
-                    createFBXRecordSingleString('Name', ''),
-                    createFBXRecordSingleString('MappingInformationType', 'ByPolygonVertex'),
-                    createFBXRecordSingleString('ReferenceInformationType', 'Direct'),
-                    createFBXRecordDoubleArray('Normals', fbxMesh.normals),//[0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0, -1, 0, -1, 0, 0, -1, 0, 0, -1, 0,  0, -1, 0, 0, 0, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0, -1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0]),//TODO
-                ],
-                properties: [
-                    createInt32Property(0),//What is this ?
-                ],
-            }),*/
-            createFBXRecord('LayerElementUV', {
-                childs: [
-                    createFBXRecordSingleInt32('Version', FBX_GEOMETRY_UV_VERSION),
-                    createFBXRecordSingleString('Name', 'UVMap'), //TODO: change name
-                    createFBXRecordSingleString('MappingInformationType', 'ByPolygonVertex'),
-                    createFBXRecordSingleString('ReferenceInformationType', 'IndexToDirect'),
-                    createFBXRecordDoubleArray('UV', fbxMesh.uv), //[0.625, 1, 0.625, 0.25, 0.375, 0.5, 0.875, 0.5, 0.625, 0.75, 0.375, 1, 0.375, 0.75, 0.625, 0, 0.375, 0, 0.375, 0.25, 0.125, 0.5, 0.875, 0.75, 0.125, 0.75, 0.625, 0.5]),//TODO
-                    createFBXRecordInt32Array('UVIndex', fbxMesh.uvIndex), //[13, 3, 11, 4, 6, 4, 0, 5, 8, 7, 1, 9, 10, 2, 6, 12, 2, 13, 4, 6, 9, 1, 13, 2]),//TODO
-                ],
-                properties: [
-                    createInt32Property(0), //What is this ?
-                ],
-            }),
-            createFBXRecord('LayerElementMaterial', {
-                childs: [
-                    createFBXRecordSingleInt32('Version', FBX_GEOMETRY_MATERIAL_VERSION),
-                    createFBXRecordSingleString('Name', ''),
-                    createFBXRecordSingleString('MappingInformationType', 'AllSame'),
-                    createFBXRecordSingleString('ReferenceInformationType', 'IndexToDirect'),
-                    createFBXRecordInt32Array('Materials', [0]), //TODO
-                ],
-                properties: [
-                    createInt32Property(0), //What is this ?
-                ],
-            }),
-            createFBXRecord('Layer', {
-                childs: [
-                    createFBXRecordSingleInt32('Version', FBX_GEOMETRY_LAYER_VERSION),
-                    createFBXRecord('LayerElement', {
-                        childs: [
-                            createFBXRecordSingleString('Type', 'LayerElementNormal'),
-                            createFBXRecordSingleInt32('TypedIndex', 0),
-                        ],
-                    }),
-                    createFBXRecord('LayerElement', {
-                        childs: [
-                            createFBXRecordSingleString('Type', 'LayerElementUV'),
-                            createFBXRecordSingleInt32('TypedIndex', 0),
-                        ],
-                    }),
-                    createFBXRecord('LayerElement', {
-                        childs: [
-                            createFBXRecordSingleString('Type', 'LayerElementMaterial'),
-                            createFBXRecordSingleInt32('TypedIndex', 0),
-                        ],
-                    }),
-                ],
-                properties: [
-                    createInt32Property(0), //What is this ?
-                ],
-            }),
-        ],
-        properties: [
-            createInt64Property(fbxMesh.id),
-            createStringProperty(fbxMesh.name + '\x00\x01Geometry'),
-            createStringProperty('Mesh'),
-        ],
-    });
+	return createFBXRecord('Geometry', {
+		childs: [
+			createFBXRecord('Properties70'),
+			createFBXRecordSingleInt32('GeometryVersion', FBX_GEOMETRY_VERSION),
+			createFBXRecordDoubleArray('Vertices', fbxMesh.vertices),
+			createFBXRecordInt32Array('PolygonVertexIndex', fbxMesh.polygons),
+			createFBXRecordInt32Array('Edges', fbxMesh.edges),
+			/*createFBXRecord('LayerElementNormal', {
+				childs: [
+					createFBXRecordSingleInt32('Version', FBX_GEOMETRY_NORMAL_VERSION),
+					createFBXRecordSingleString('Name', ''),
+					createFBXRecordSingleString('MappingInformationType', 'ByPolygonVertex'),
+					createFBXRecordSingleString('ReferenceInformationType', 'Direct'),
+					createFBXRecordDoubleArray('Normals', fbxMesh.normals),//[0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0, -1, 0, -1, 0, 0, -1, 0, 0, -1, 0,  0, -1, 0, 0, 0, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0, -1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0]),//TODO
+				],
+				properties: [
+					createInt32Property(0),//What is this ?
+				],
+			}),*/
+			createFBXRecord('LayerElementUV', {
+				childs: [
+					createFBXRecordSingleInt32('Version', FBX_GEOMETRY_UV_VERSION),
+					createFBXRecordSingleString('Name', 'UVMap'),//TODO: change name
+					createFBXRecordSingleString('MappingInformationType', 'ByPolygonVertex'),
+					createFBXRecordSingleString('ReferenceInformationType', 'IndexToDirect'),
+					createFBXRecordDoubleArray('UV', fbxMesh.uv),//[0.625, 1, 0.625, 0.25, 0.375, 0.5, 0.875, 0.5, 0.625, 0.75, 0.375, 1, 0.375, 0.75, 0.625, 0, 0.375, 0, 0.375, 0.25, 0.125, 0.5, 0.875, 0.75, 0.125, 0.75, 0.625, 0.5]),//TODO
+					createFBXRecordInt32Array('UVIndex', fbxMesh.uvIndex),//[13, 3, 11, 4, 6, 4, 0, 5, 8, 7, 1, 9, 10, 2, 6, 12, 2, 13, 4, 6, 9, 1, 13, 2]),//TODO
+				],
+				properties: [
+					createInt32Property(0),//What is this ?
+				],
+			}),
+			createFBXRecord('LayerElementMaterial', {
+				childs: [
+					createFBXRecordSingleInt32('Version', FBX_GEOMETRY_MATERIAL_VERSION),
+					createFBXRecordSingleString('Name', ''),
+					createFBXRecordSingleString('MappingInformationType', 'AllSame'),
+					createFBXRecordSingleString('ReferenceInformationType', 'IndexToDirect'),
+					createFBXRecordInt32Array('Materials', [0]),//TODO
+				],
+				properties: [
+					createInt32Property(0),//What is this ?
+				],
+			}),
+			createFBXRecord('Layer', {
+				childs: [
+					createFBXRecordSingleInt32('Version', FBX_GEOMETRY_LAYER_VERSION),
+					createFBXRecord('LayerElement', {
+						childs: [
+							createFBXRecordSingleString('Type', 'LayerElementNormal'),
+							createFBXRecordSingleInt32('TypedIndex', 0),
+						],
+					}),
+					createFBXRecord('LayerElement', {
+						childs: [
+							createFBXRecordSingleString('Type', 'LayerElementUV'),
+							createFBXRecordSingleInt32('TypedIndex', 0),
+						],
+					}),
+					createFBXRecord('LayerElement', {
+						childs: [
+							createFBXRecordSingleString('Type', 'LayerElementMaterial'),
+							createFBXRecordSingleInt32('TypedIndex', 0),
+						],
+					}),
+
+
+				],
+				properties: [
+					createInt32Property(0),//What is this ?
+				],
+			}),
+		],
+		properties: [
+			createInt64Property(fbxMesh.id),
+			createStringProperty(fbxMesh.name + '\x00\x01Geometry'),
+			createStringProperty('Mesh'),
+		],
+	});
 }
 
 function fbxNodeToRecord(fbxNode, type = '') {
-    return createFBXRecord('Model', {
-        childs: [
-            createFBXRecordSingleInt32('Version', FBX_MODELS_VERSION),
-            createFBXRecord('Properties70', {
-                childs: [
-                    fbxPropertyToRecord(fbxNode.localTranslation, 'Lcl Translation'),
-                    /*createFBXRecord('P', {
-                        properties: [
-                            createStringProperty('Lcl Translation'),
-                            createStringProperty('Lcl Translation'),
-                            createStringProperty(''),
-                            createStringProperty('A+'),
-                            createDoubleProperty(0),
-                            createDoubleProperty(0),
-                            createDoubleProperty(0),
-                        ],
-                    }),*/
-                    fbxPropertyToRecord(fbxNode.localRotation, 'Lcl Rotation'),
-                    /*createFBXRecord('P', {
-                        properties: [
-                            createStringProperty('Lcl Rotation'),
-                            createStringProperty('Lcl Rotation'),
-                            createStringProperty(''),
-                            createStringProperty('A'),
-                            createDoubleProperty(0),
-                            createDoubleProperty(0),
-                            createDoubleProperty(0),
-                        ],
-                    }),*/
-                    fbxPropertyToRecord(fbxNode.localScaling, 'Lcl Scaling'),
-                    /*createFBXRecord('P', {
-                        properties: [
-                            createStringProperty('Lcl Scaling'),
-                            createStringProperty('Lcl Scaling'),
-                            createStringProperty(''),
-                            createStringProperty('A'),
-                            createDoubleProperty(1),
-                            createDoubleProperty(1),
-                            createDoubleProperty(1),
-                        ],
-                    }),*/
-                    createPInteger('DefaultAttributeIndex', 0),
-                    createPEnum('InheritType', fbxNode.inheritType),
-                    createPBool('RotationActive', true),
-                    createPVector3D('ScalingMax', [0, 0, 0]),
-                    createPDouble('PreferedAngleX', 0),
-                    createPDouble('PreferedAngleY', 0),
-                    createPDouble('PreferedAngleZ', 0),
-                    createPBool('lockInfluenceWeights', false),
-                    createFBXRecord('P', {
-                        properties: [
-                            createStringProperty('filmboxTypeID'),
-                            createStringProperty('Short'),
-                            createStringProperty(''),
-                            createStringProperty('A+UH'),
-                            createInt16Property(5),
-                            createInt16Property(5),
-                            createInt16Property(5),
-                        ],
-                    }),
-                ],
-            }),
-            createFBXRecordSingleInt32('MultiLayer', 0), //What is this ?
-            createFBXRecordSingleInt32('MultiTake', 0), //What is this ?
-            createFBXRecordSingleInt8('Shading', 89), //89 = Y
-            createFBXRecordSingleString('Culling', 'CullingOff'),
-        ],
-        properties: [
-            createInt64Property(fbxNode.id), //TODO
-            createStringProperty(fbxNode.name + '\x00\x01Model'),
-            createStringProperty(type),
-        ],
-    });
+	return createFBXRecord('Model', {
+		childs: [
+			createFBXRecordSingleInt32('Version', FBX_MODELS_VERSION),
+			createFBXRecord('Properties70', {
+				childs: [
+					fbxPropertyToRecord(fbxNode.localTranslation, 'Lcl Translation'),
+					/*createFBXRecord('P', {
+						properties: [
+							createStringProperty('Lcl Translation'),
+							createStringProperty('Lcl Translation'),
+							createStringProperty(''),
+							createStringProperty('A+'),
+							createDoubleProperty(0),
+							createDoubleProperty(0),
+							createDoubleProperty(0),
+						],
+					}),*/
+					fbxPropertyToRecord(fbxNode.localRotation, 'Lcl Rotation'),
+					/*createFBXRecord('P', {
+						properties: [
+							createStringProperty('Lcl Rotation'),
+							createStringProperty('Lcl Rotation'),
+							createStringProperty(''),
+							createStringProperty('A'),
+							createDoubleProperty(0),
+							createDoubleProperty(0),
+							createDoubleProperty(0),
+						],
+					}),*/
+					fbxPropertyToRecord(fbxNode.localScaling, 'Lcl Scaling'),
+					/*createFBXRecord('P', {
+						properties: [
+							createStringProperty('Lcl Scaling'),
+							createStringProperty('Lcl Scaling'),
+							createStringProperty(''),
+							createStringProperty('A'),
+							createDoubleProperty(1),
+							createDoubleProperty(1),
+							createDoubleProperty(1),
+						],
+					}),*/
+					createPInteger('DefaultAttributeIndex', 0),
+					createPEnum('InheritType', fbxNode.inheritType),
+
+					createPBool('RotationActive', 1),
+					createPVector3D('ScalingMax', [0, 0, 0]),
+					createPDouble('PreferedAngleX', 0),
+					createPDouble('PreferedAngleY', 0),
+					createPDouble('PreferedAngleZ', 0),
+					createPBool('lockInfluenceWeights', 0),
+					createFBXRecord('P', {
+						properties: [
+							createStringProperty('filmboxTypeID'),
+							createStringProperty('Short'),
+							createStringProperty(''),
+							createStringProperty('A+UH'),
+							createInt16Property(5),
+							createInt16Property(5),
+							createInt16Property(5),
+						],
+					}),
+				],
+
+			}),
+			createFBXRecordSingleInt32('MultiLayer', 0),//What is this ?
+			createFBXRecordSingleInt32('MultiTake', 0),//What is this ?
+			createFBXRecordSingleInt8('Shading', 89),//89 = Y
+			createFBXRecordSingleString('Culling', 'CullingOff'),
+		],
+		properties: [
+			createInt64Property(fbxNode.id),//TODO
+			createStringProperty(fbxNode.name + '\x00\x01Model'),
+			createStringProperty(type),
+		],
+	});
 }
 
 function fbxPoseToRecord(fbxPose) {
-    let poseType = fbxPose.isBindPose ? 'BindPose' : 'RestPose'; //TODO: not sure about this
-    let poseNodes = [];
-    for (let poseInfo of fbxPose.poseInfos) {
-        poseNodes.push(createFBXRecord('PoseNode', {
-            childs: [
-                createFBXRecordSingleInt64('Node', poseInfo.node.id),
-                createFBXRecordDoubleArray('Matrix', poseInfo.matrix),
-            ],
-        }));
-    }
-    return createFBXRecord('Pose', {
-        childs: [
-            createFBXRecordSingleString('Type', poseType),
-            createFBXRecordSingleInt32('Version', FBX_POSE_BIND_VERSION),
-            createFBXRecordSingleInt32('NbPoseNodes', poseNodes.length),
-            ...poseNodes,
-        ],
-        properties: [
-            createInt64Property(fbxPose.id),
-            createStringProperty(fbxPose.name + '\x00\x01Pose'),
-            createStringProperty(poseType),
-        ],
-    });
+	let poseType = fbxPose.isBindPose ? 'BindPose' : 'RestPose';//TODO: not sure about this
+	let poseNodes = [];
+	for (let poseInfo of fbxPose.poseInfos) {
+		poseNodes.push(
+			createFBXRecord('PoseNode', {
+				childs: [
+					createFBXRecordSingleInt64('Node', poseInfo.node.id),
+					createFBXRecordDoubleArray('Matrix', poseInfo.matrix),
+				],
+			}),
+		);
+	}
+
+	return createFBXRecord('Pose', {
+		childs: [
+			createFBXRecordSingleString('Type', poseType),
+			createFBXRecordSingleInt32('Version', FBX_POSE_BIND_VERSION),
+			createFBXRecordSingleInt32('NbPoseNodes', poseNodes.length),
+			...poseNodes,
+		],
+		properties: [
+			createInt64Property(fbxPose.id),
+			createStringProperty(fbxPose.name + '\x00\x01Pose'),
+			createStringProperty(poseType),
+		],
+	});
 }
 
 function fbxSkeletonToRecord(fbxSkeleton) {
-    return createFBXRecord('NodeAttribute', {
-        childs: [
-            createFBXRecordSingleString('TypeFlags', 'Skeleton'),
-        ],
-        properties: [
-            createInt64Property(fbxSkeleton.id),
-            createStringProperty(fbxSkeleton.name + '\x00\x01NodeAttribute'),
-            createStringProperty('LimbNode'),
-        ],
-    });
+	return createFBXRecord('NodeAttribute', {
+		childs: [
+			createFBXRecordSingleString('TypeFlags', 'Skeleton'),
+		],
+		properties: [
+			createInt64Property(fbxSkeleton.id),
+			createStringProperty(fbxSkeleton.name + '\x00\x01NodeAttribute'),
+			createStringProperty('LimbNode'),
+		],
+	});
 }
 
 function fbxSkinToRecord(fbxSkin) {
-    return createFBXRecord('Deformer', {
-        childs: [
-            createFBXRecordSingleInt32('Version', FBX_DEFORMER_SKIN_VERSION),
-            createFBXRecordSingleDouble('Link_DeformAcuracy', 50.), //TODO
-        ],
-        properties: [
-            createInt64Property(fbxSkin.id),
-            createStringProperty(fbxSkin.name + '\x00\x01Deformer'),
-            createStringProperty('Skin'),
-        ],
-    });
+	return createFBXRecord('Deformer', {
+		childs: [
+			createFBXRecordSingleInt32('Version', FBX_DEFORMER_SKIN_VERSION),
+			createFBXRecordSingleDouble('Link_DeformAcuracy', 50.),//TODO
+		],
+		properties: [
+			createInt64Property(fbxSkin.id),
+			createStringProperty(fbxSkin.name + '\x00\x01Deformer'),
+			createStringProperty('Skin'),
+		],
+	});
 }
 
 function fbxSurfaceMaterialToRecord(fbxSurfaceMaterial) {
-    return createFBXRecord('Material', {
-        childs: [
-            createFBXRecordSingleInt32('Version', FBX_MATERIAL_VERSION),
-            createFBXRecordSingleString('ShadingModel', 'Phong'),
-            createFBXRecordSingleInt32('MultiLayer', 0), //What is this ?
-            createFBXRecord('Properties70', {
-                childs: [
-                    createFBXRecord('P', {
-                        properties: [
-                            createStringProperty('DiffuseColor'),
-                            createStringProperty('Color'),
-                            createStringProperty(''),
-                            createStringProperty('A'),
-                            createDoubleProperty(0.8),
-                            createDoubleProperty(0.8),
-                            createDoubleProperty(0.8),
-                        ],
-                    }),
-                    createFBXRecord('P', {
-                        properties: [
-                            createStringProperty('AmbientColor'),
-                            createStringProperty('Color'),
-                            createStringProperty(''),
-                            createStringProperty('A'),
-                            createDoubleProperty(0.05),
-                            createDoubleProperty(0.05),
-                            createDoubleProperty(0.05),
-                        ],
-                    }),
-                    createFBXRecord('P', {
-                        properties: [
-                            createStringProperty('AmbientFactor'),
-                            createStringProperty('Number'),
-                            createStringProperty(''),
-                            createStringProperty('A'),
-                            createDoubleProperty(0),
-                        ],
-                    }),
-                    createFBXRecord('P', {
-                        properties: [
-                            createStringProperty('BumpFactor'),
-                            createStringProperty('double'),
-                            createStringProperty('Number'),
-                            createStringProperty(''),
-                            createDoubleProperty(0),
-                        ],
-                    }),
-                    createFBXRecord('P', {
-                        properties: [
-                            createStringProperty('SpecularColor'),
-                            createStringProperty('Color'),
-                            createStringProperty(''),
-                            createStringProperty('A'),
-                            createDoubleProperty(0.8),
-                            createDoubleProperty(0.8),
-                            createDoubleProperty(0.8),
-                        ],
-                    }),
-                    createFBXRecord('P', {
-                        properties: [
-                            createStringProperty('SpecularFactor'),
-                            createStringProperty('Number'),
-                            createStringProperty(''),
-                            createStringProperty('A'),
-                            createDoubleProperty(0.25),
-                        ],
-                    }),
-                    createFBXRecord('P', {
-                        properties: [
-                            createStringProperty('Shininess'),
-                            createStringProperty('Number'),
-                            createStringProperty(''),
-                            createStringProperty('A'),
-                            createDoubleProperty(25),
-                        ],
-                    }),
-                    createFBXRecord('P', {
-                        properties: [
-                            createStringProperty('ShininessExponent'),
-                            createStringProperty('Number'),
-                            createStringProperty(''),
-                            createStringProperty('A'),
-                            createDoubleProperty(25),
-                        ],
-                    }),
-                    createFBXRecord('P', {
-                        properties: [
-                            createStringProperty('ReflectionColor'),
-                            createStringProperty('Color'),
-                            createStringProperty(''),
-                            createStringProperty('A'),
-                            createDoubleProperty(0.8),
-                            createDoubleProperty(0.8),
-                            createDoubleProperty(0.8),
-                        ],
-                    }),
-                    createFBXRecord('P', {
-                        properties: [
-                            createStringProperty('ReflectionFactor'),
-                            createStringProperty('Number'),
-                            createStringProperty(''),
-                            createStringProperty('A'),
-                            createDoubleProperty(0),
-                        ],
-                    }),
-                    createFBXRecord('P', {
-                        properties: [
-                            createStringProperty('TransparencyFactor'),
-                            createStringProperty('double'),
-                            createStringProperty('Number'),
-                            createStringProperty(''),
-                            createDoubleProperty(0.0),
-                        ],
-                    }),
-                ],
-            }),
-        ],
-        properties: [
-            createInt64Property(fbxSurfaceMaterial.id),
-            createStringProperty(fbxSurfaceMaterial.name + '\x00\x01Material'),
-            createStringProperty(''),
-        ],
-    });
+	return createFBXRecord('Material', {
+		childs: [
+			createFBXRecordSingleInt32('Version', FBX_MATERIAL_VERSION),
+			createFBXRecordSingleString('ShadingModel', 'Phong'),
+			createFBXRecordSingleInt32('MultiLayer', 0),//What is this ?
+			createFBXRecord('Properties70', {
+				childs: [
+					createFBXRecord('P', {
+						properties: [
+							createStringProperty('DiffuseColor'),
+							createStringProperty('Color'),
+							createStringProperty(''),
+							createStringProperty('A'),
+							createDoubleProperty(0.8),
+							createDoubleProperty(0.8),
+							createDoubleProperty(0.8),
+						],
+					}),
+					createFBXRecord('P', {
+						properties: [
+							createStringProperty('AmbientColor'),
+							createStringProperty('Color'),
+							createStringProperty(''),
+							createStringProperty('A'),
+							createDoubleProperty(0.05),
+							createDoubleProperty(0.05),
+							createDoubleProperty(0.05),
+						],
+					}),
+					createFBXRecord('P', {
+						properties: [
+							createStringProperty('AmbientFactor'),
+							createStringProperty('Number'),
+							createStringProperty(''),
+							createStringProperty('A'),
+							createDoubleProperty(0),
+						],
+					}),
+					createFBXRecord('P', {
+						properties: [
+							createStringProperty('BumpFactor'),
+							createStringProperty('double'),
+							createStringProperty('Number'),
+							createStringProperty(''),
+							createDoubleProperty(0),
+						],
+					}),
+					createFBXRecord('P', {
+						properties: [
+							createStringProperty('SpecularColor'),
+							createStringProperty('Color'),
+							createStringProperty(''),
+							createStringProperty('A'),
+							createDoubleProperty(0.8),
+							createDoubleProperty(0.8),
+							createDoubleProperty(0.8),
+						],
+					}),
+					createFBXRecord('P', {
+						properties: [
+							createStringProperty('SpecularFactor'),
+							createStringProperty('Number'),
+							createStringProperty(''),
+							createStringProperty('A'),
+							createDoubleProperty(0.25),
+						],
+					}),
+					createFBXRecord('P', {
+						properties: [
+							createStringProperty('Shininess'),
+							createStringProperty('Number'),
+							createStringProperty(''),
+							createStringProperty('A'),
+							createDoubleProperty(25),
+						],
+					}),
+					createFBXRecord('P', {
+						properties: [
+							createStringProperty('ShininessExponent'),
+							createStringProperty('Number'),
+							createStringProperty(''),
+							createStringProperty('A'),
+							createDoubleProperty(25),
+						],
+					}),
+					createFBXRecord('P', {
+						properties: [
+							createStringProperty('ReflectionColor'),
+							createStringProperty('Color'),
+							createStringProperty(''),
+							createStringProperty('A'),
+							createDoubleProperty(0.8),
+							createDoubleProperty(0.8),
+							createDoubleProperty(0.8),
+						],
+					}),
+					createFBXRecord('P', {
+						properties: [
+							createStringProperty('ReflectionFactor'),
+							createStringProperty('Number'),
+							createStringProperty(''),
+							createStringProperty('A'),
+							createDoubleProperty(0),
+						],
+					}),
+					createFBXRecord('P', {
+						properties: [
+							createStringProperty('TransparencyFactor'),
+							createStringProperty('double'),
+							createStringProperty('Number'),
+							createStringProperty(''),
+							createDoubleProperty(0.0),
+						],
+					}),
+				],
+			}),
+		],
+		properties: [
+			createInt64Property(fbxSurfaceMaterial.id),
+			createStringProperty(fbxSurfaceMaterial.name + '\x00\x01Material'),
+			createStringProperty(''),
+		],
+	});
 }
 
 function fbxTextureToRecord(fbxTexture) {
-    let mediaRecord;
-    let filenameRecord;
-    let relativeFilenameRecord;
-    let textureMedia = fbxTexture.media;
-    if (textureMedia) {
-        mediaRecord = createFBXRecordSingleString('Media', textureMedia.name + '\x00\x01' + 'Video');
-        filenameRecord = createFBXRecordSingleString('FileName', textureMedia.name);
-        relativeFilenameRecord = createFBXRecordSingleString('RelativeFilename', textureMedia.name);
-    }
-    return createFBXRecord('Texture', {
-        childs: [
-            createFBXRecordSingleString('Type', fbxTexture.type),
-            createFBXRecordSingleInt32('Version', FBX_TEXTURE_VERSION),
-            createFBXRecordSingleString('TextureName', fbxTexture.name + '\x00\x01' + 'Texture'),
-            mediaRecord,
-            filenameRecord,
-            relativeFilenameRecord,
-            createFBXRecord('Properties70', {
-                childs: [
-                    createFBXRecord('P', {
-                        properties: [
-                            createStringProperty('UseMaterial'),
-                            createStringProperty('bool'),
-                            createStringProperty(''),
-                            createStringProperty(''),
-                            createInt32Property(1),
-                        ],
-                    }),
-                    /*createFBXRecord('P', {
-                        properties: [
-                            createStringProperty('AlphaSource'),
-                            createStringProperty('enum'),
-                            createStringProperty(''),
-                            createStringProperty(''),
-                            createDoubleProperty(2),
-                        ],
-                    }),*/
-                ],
-            }),
-        ],
-        properties: [
-            createInt64Property(fbxTexture.id),
-            createStringProperty(fbxTexture.name + '\x00\x01' + 'Texture'),
-            createStringProperty(''),
-        ],
-    });
+	let mediaRecord;
+	let filenameRecord;
+	let relativeFilenameRecord;
+	let textureMedia = fbxTexture.media;
+	if (textureMedia) {
+		mediaRecord = createFBXRecordSingleString('Media', textureMedia.name + '\x00\x01' + 'Video');
+		filenameRecord = createFBXRecordSingleString('FileName', textureMedia.name);
+		relativeFilenameRecord = createFBXRecordSingleString('RelativeFilename', textureMedia.name);
+	}
+
+	return createFBXRecord('Texture', {
+		childs: [
+			createFBXRecordSingleString('Type', fbxTexture.type),
+			createFBXRecordSingleInt32('Version', FBX_TEXTURE_VERSION),
+			createFBXRecordSingleString('TextureName', fbxTexture.name + '\x00\x01' + 'Texture'),
+			mediaRecord,
+			filenameRecord,
+			relativeFilenameRecord,
+			createFBXRecord('Properties70', {
+				childs: [
+					createFBXRecord('P', {
+						properties: [
+							createStringProperty('UseMaterial'),
+							createStringProperty('bool'),
+							createStringProperty(''),
+							createStringProperty(''),
+							createInt32Property(1),
+						],
+					}),
+					/*createFBXRecord('P', {
+						properties: [
+							createStringProperty('AlphaSource'),
+							createStringProperty('enum'),
+							createStringProperty(''),
+							createStringProperty(''),
+							createDoubleProperty(2),
+						],
+					}),*/
+				],
+			}),
+		],
+		properties: [
+			createInt64Property(fbxTexture.id),
+			createStringProperty(fbxTexture.name + '\x00\x01' + 'Texture'),
+			createStringProperty(''),
+		],
+	});
 }
 
 const FBX_RECORD_NAME_CONNECTIONS = 'Connections';
@@ -20633,703 +20411,1699 @@ const FBX_RECORD_NAME_REFERENCES = 'References';
 const FBX_RECORD_NAME_TAKES = 'Takes';
 
 function createConnectionRecord(id, parentId, target) {
-    let fbxRecord = new FBXRecord('C');
-    fbxRecord.addProperty(createStringProperty(target ? 'OP' : 'OO'));
-    fbxRecord.addProperty(createInt64Property(id));
-    fbxRecord.addProperty(createInt64Property(parentId));
-    if (target != undefined) {
-        fbxRecord.addProperty(createStringProperty(target));
-    }
-    return fbxRecord;
+	let fbxRecord = new FBXRecord('C');
+	fbxRecord.addProperty(createStringProperty(target ? 'OP' : 'OO'));
+	fbxRecord.addProperty(createInt64Property(id));
+	fbxRecord.addProperty(createInt64Property(parentId));
+	if (target != undefined) {
+		fbxRecord.addProperty(createStringProperty(target));
+	}
+	return fbxRecord;
 }
+
 function createHeaderExtensionRecord(fbxFile, creator, appVendor, appName, appVersion) {
-    let date = new Date();
-    let fbxHeaderExtension = createFBXRecord('FBXHeaderExtension', {
-        childs: [
-            createFBXRecordSingleInt32('FBXHeaderVersion', FBX_HEADER_VERSION),
-            createFBXRecordSingleInt32('FBXVersion', fbxFile.version),
-            createFBXRecordSingleInt32('EncryptionType', 0),
-            createFBXRecord('CreationTimeStamp', {
-                childs: [
-                    createFBXRecordSingleInt32('Version', 1000),
-                    createFBXRecordSingleInt32('Year', date.getFullYear()),
-                    createFBXRecordSingleInt32('Month', date.getMonth() + 1),
-                    createFBXRecordSingleInt32('Day', date.getDate()),
-                    createFBXRecordSingleInt32('Hour', date.getHours()),
-                    createFBXRecordSingleInt32('Minute', date.getMinutes()),
-                    createFBXRecordSingleInt32('Second', date.getSeconds()),
-                    createFBXRecordSingleInt32('Millisecond', date.getMilliseconds()),
-                ]
-            }),
-            createFBXRecordSingleString('Creator', creator),
-            createFBXRecord('SceneInfo', {
-                properties: [
-                    createStringProperty(fbxNameClass('GlobalInfo', 'SceneInfo')),
-                    createStringProperty('UserData'),
-                ],
-                childs: [
-                    createFBXRecordSingleString('Type', 'UserData'),
-                    createFBXRecordSingleInt32('Version', FBX_SCENEINFO_VERSION),
-                    createFBXRecord('MetaData', {
-                        childs: [
-                            createFBXRecordSingleInt32('Version', FBX_SCENEINFO_VERSION),
-                            createFBXRecordSingleString('Title', ''), //TODO
-                            createFBXRecordSingleString('Subject', ''), //TODO
-                            createFBXRecordSingleString('Author', ''), //TODO
-                            createFBXRecordSingleString('Keywords', ''), //TODO
-                            createFBXRecordSingleString('Revision', ''), //TODO
-                            createFBXRecordSingleString('Comment', ''), //TODO
-                        ]
-                    }),
-                    createFBXRecord('Properties70', {
-                        childs: [
-                            createFBXRecordMultipleStrings('P', ['DocumentUrl', 'KString', 'Url', '', './test.fbx']), //TODO
-                            createFBXRecordMultipleStrings('P', ['SrcDocumentUrl', 'KString', 'Url', '', './test.fbx']), //TODO
-                            createFBXRecordMultipleStrings('P', ['Original', 'Compound', '', '']),
-                            createFBXRecordMultipleStrings('P', ['Original|ApplicationVendor', 'KString', '', '', appVendor]),
-                            createFBXRecordMultipleStrings('P', ['Original|ApplicationName', 'KString', '', '', appName]),
-                            createFBXRecordMultipleStrings('P', ['Original|ApplicationVersion', 'KString', '', '', appVersion]),
-                            createFBXRecordMultipleStrings('P', ['Original|DateTime_GMT', 'DateTime', '', '', '01/01/1970 00:00:00.000']),
-                            createFBXRecordMultipleStrings('P', ['Original|FileName', 'KString', '', '', './test.fbx']), //TODO
-                            createFBXRecordMultipleStrings('P', ['LastSaved', 'Compound', '', '']),
-                            createFBXRecordMultipleStrings('P', ['LastSaved|ApplicationVendor', 'KString', '', '', appVersion]),
-                            createFBXRecordMultipleStrings('P', ['LastSaved|ApplicationName', 'KString', '', '', appName]),
-                            createFBXRecordMultipleStrings('P', ['LastSaved|ApplicationVersion', 'KString', '', '', appVersion]),
-                            createFBXRecordMultipleStrings('P', ['LastSaved|DateTime_GMT', 'DateTime', '', '', '01/01/1970 00:00:00.000']),
-                            createFBXRecordMultipleStrings('P', ['LastSaved|ApplicationActiveProject', 'KString', '', '', './test.fbx']), //TODO
-                        ]
-                    }),
-                ]
-            }),
-        ]
-    });
-    return fbxHeaderExtension;
+	let date = new Date();
+	let fbxHeaderExtension = createFBXRecord('FBXHeaderExtension', {
+		childs: [
+			createFBXRecordSingleInt32('FBXHeaderVersion', FBX_HEADER_VERSION),
+			createFBXRecordSingleInt32('FBXVersion', fbxFile.version),
+			createFBXRecordSingleInt32('EncryptionType', 0),
+			createFBXRecord('CreationTimeStamp', {
+				childs: [
+					createFBXRecordSingleInt32('Version', 1000),
+					createFBXRecordSingleInt32('Year', date.getFullYear()),
+					createFBXRecordSingleInt32('Month', date.getMonth() + 1),
+					createFBXRecordSingleInt32('Day', date.getDate()),
+					createFBXRecordSingleInt32('Hour', date.getHours()),
+					createFBXRecordSingleInt32('Minute', date.getMinutes()),
+					createFBXRecordSingleInt32('Second', date.getSeconds()),
+					createFBXRecordSingleInt32('Millisecond', date.getMilliseconds()),
+
+				]
+			}),
+			createFBXRecordSingleString('Creator', creator),
+			createFBXRecord('SceneInfo', {
+				properties: [
+					createStringProperty(fbxNameClass('GlobalInfo', 'SceneInfo')),
+					createStringProperty('UserData'),
+				],
+				childs: [
+					createFBXRecordSingleString('Type', 'UserData'),
+					createFBXRecordSingleInt32('Version', FBX_SCENEINFO_VERSION),
+					createFBXRecord('MetaData', {
+						childs: [
+							createFBXRecordSingleInt32('Version', FBX_SCENEINFO_VERSION),
+							createFBXRecordSingleString('Title', ''),//TODO
+							createFBXRecordSingleString('Subject', ''),//TODO
+							createFBXRecordSingleString('Author', ''),//TODO
+							createFBXRecordSingleString('Keywords', ''),//TODO
+							createFBXRecordSingleString('Revision', ''),//TODO
+							createFBXRecordSingleString('Comment', ''),//TODO
+						]
+					}),
+					createFBXRecord('Properties70', {
+						childs: [
+							createFBXRecordMultipleStrings('P', ['DocumentUrl', 'KString', 'Url', '', './test.fbx']),//TODO
+							createFBXRecordMultipleStrings('P', ['SrcDocumentUrl', 'KString', 'Url', '', './test.fbx']),//TODO
+							createFBXRecordMultipleStrings('P', ['Original', 'Compound', '', '']),
+							createFBXRecordMultipleStrings('P', ['Original|ApplicationVendor', 'KString', '', '', appVendor]),
+							createFBXRecordMultipleStrings('P', ['Original|ApplicationName', 'KString', '', '', appName]),
+							createFBXRecordMultipleStrings('P', ['Original|ApplicationVersion', 'KString', '', '', appVersion]),
+							createFBXRecordMultipleStrings('P', ['Original|DateTime_GMT', 'DateTime', '', '', '01/01/1970 00:00:00.000']),
+							createFBXRecordMultipleStrings('P', ['Original|FileName', 'KString', '', '', './test.fbx']),//TODO
+							createFBXRecordMultipleStrings('P', ['LastSaved', 'Compound', '', '']),
+							createFBXRecordMultipleStrings('P', ['LastSaved|ApplicationVendor', 'KString', '', '', appVersion]),
+							createFBXRecordMultipleStrings('P', ['LastSaved|ApplicationName', 'KString', '', '', appName]),
+							createFBXRecordMultipleStrings('P', ['LastSaved|ApplicationVersion', 'KString', '', '', appVersion]),
+							createFBXRecordMultipleStrings('P', ['LastSaved|DateTime_GMT', 'DateTime', '', '', '01/01/1970 00:00:00.000']),
+							createFBXRecordMultipleStrings('P', ['LastSaved|ApplicationActiveProject', 'KString', '', '', './test.fbx']),//TODO
+						]
+					}),
+
+				]
+			}),
+		]
+	});
+
+	return fbxHeaderExtension;
 }
+
 function createDefinitionsRecord() {
-    let definitions = createFBXRecord('Definitions', {
-        childs: [
-            createFBXRecordSingleInt32('Version', FBX_TEMPLATES_VERSION),
-            createFBXRecordSingleInt32('Count', 4), //TODO: Sum of every template below
-            createFBXRecord('ObjectType', {
-                childs: [
-                    createFBXRecordSingleInt32('Count', 1),
-                ],
-                properties: [
-                    createStringProperty('GlobalSettings'),
-                ],
-            }),
-            createFBXRecord('ObjectType', {
-                childs: [
-                    createFBXRecordSingleInt32('Count', 1),
-                    createFBXRecord('PropertyTemplate', {
-                        properties: [
-                            createStringProperty('FbxMesh'),
-                        ],
-                    }),
-                ],
-                properties: [
-                    createStringProperty('Geometry'),
-                ],
-            }),
-            createFBXRecord('ObjectType', {
-                childs: [
-                    createFBXRecordSingleInt32('Count', 1),
-                    createFBXRecord('PropertyTemplate', {
-                        childs: [],
-                        properties: [
-                            createStringProperty('FbxNode'),
-                        ],
-                    }),
-                ],
-                properties: [
-                    createStringProperty('Model'),
-                ],
-            }),
-            createFBXRecord('ObjectType', {
-                childs: [
-                    createFBXRecordSingleInt32('Count', 1),
-                    createFBXRecord('PropertyTemplate', {
-                        childs: [],
-                        properties: [
-                            createStringProperty('FbxSurfacePhong'),
-                        ],
-                    }),
-                ],
-                properties: [
-                    createStringProperty('Material'),
-                ],
-            }),
-            createFBXRecord('ObjectType', {
-                childs: [
-                    createFBXRecordSingleInt32('Count', 1),
-                    createFBXRecord('PropertyTemplate', {
-                        childs: [],
-                        properties: [
-                            createStringProperty('FbxFileTexture'),
-                        ],
-                    }),
-                ],
-                properties: [
-                    createStringProperty('Texture'),
-                ],
-            }),
-            createFBXRecord('ObjectType', {
-                childs: [
-                    createFBXRecordSingleInt32('Count', 1),
-                    createFBXRecord('PropertyTemplate', {
-                        childs: [],
-                        properties: [
-                            createStringProperty('FbxVideo'),
-                        ],
-                    }),
-                ],
-                properties: [
-                    createStringProperty('Video'),
-                ],
-            }),
-            createFBXRecord('ObjectType', {
-                childs: [
-                    createFBXRecordSingleInt32('Count', 1),
-                ],
-                properties: [
-                    createStringProperty('Deformer'),
-                ],
-            }),
-            createFBXRecord('ObjectType', {
-                childs: [
-                    createFBXRecordSingleInt32('Count', 1),
-                    createFBXRecord('PropertyTemplate', {
-                        childs: [
-                            createFBXRecord('Properties70', {
-                                childs: [
-                                    createPColorRGB('Color', [0.8, 0.8, 0.8]),
-                                    createPDouble('Size', 100),
-                                    createPDouble('LimbLength', 1), //TODO: P: "LimbLength", "double", "Number", "H",1
-                                ]
-                            }),
-                        ],
-                        properties: [
-                            createStringProperty('FbxSkeleton'),
-                        ]
-                    }),
-                ],
-                properties: [
-                    createStringProperty('NodeAttribute'),
-                ],
-            }),
-            createFBXRecord('ObjectType', {
-                childs: [
-                    createFBXRecordSingleInt32('Count', 1),
-                ],
-                properties: [
-                    createStringProperty('Pose'),
-                ],
-            }),
-            createFBXRecord('ObjectType', {
-                childs: [
-                    createFBXRecordSingleInt32('Count', 1),
-                ],
-                properties: [
-                    createStringProperty('AnimationStack'),
-                ],
-            }),
-            createFBXRecord('ObjectType', {
-                childs: [
-                    createFBXRecordSingleInt32('Count', 1),
-                ],
-                properties: [
-                    createStringProperty('AnimationLayer'),
-                ],
-            }),
-            createFBXRecord('ObjectType', {
-                childs: [
-                    createFBXRecordSingleInt32('Count', 1),
-                ],
-                properties: [
-                    createStringProperty('AnimationCurveNode'),
-                ],
-            }),
-            createFBXRecord('ObjectType', {
-                childs: [
-                    createFBXRecordSingleInt32('Count', 1),
-                ],
-                properties: [
-                    createStringProperty('AnimationCurve'),
-                ],
-            }),
-        ],
-    });
-    return definitions;
+	let definitions = createFBXRecord('Definitions', {
+		childs: [
+			createFBXRecordSingleInt32('Version', FBX_TEMPLATES_VERSION),
+			createFBXRecordSingleInt32('Count', 4),//TODO: Sum of every template below
+			createFBXRecord('ObjectType', {
+				childs: [
+					createFBXRecordSingleInt32('Count', 1),
+				],
+				properties: [
+					createStringProperty('GlobalSettings'),
+				],
+			}),
+			createFBXRecord('ObjectType', {
+				childs: [
+					createFBXRecordSingleInt32('Count', 1),
+					createFBXRecord('PropertyTemplate', {
+						properties: [
+							createStringProperty('FbxMesh'),
+						],
+					}),
+				],
+				properties: [
+					createStringProperty('Geometry'),
+				],
+			}),
+			createFBXRecord('ObjectType', {
+				childs: [
+					createFBXRecordSingleInt32('Count', 1),
+					createFBXRecord('PropertyTemplate', {
+						childs: [
+
+						],
+						properties: [
+							createStringProperty('FbxNode'),
+						],
+					}),
+				],
+				properties: [
+					createStringProperty('Model'),
+				],
+			}),
+			createFBXRecord('ObjectType', {
+				childs: [
+					createFBXRecordSingleInt32('Count', 1),
+					createFBXRecord('PropertyTemplate', {
+						childs: [
+
+						],
+						properties: [
+							createStringProperty('FbxSurfacePhong'),
+						],
+					}),
+				],
+				properties: [
+					createStringProperty('Material'),
+				],
+			}),
+			createFBXRecord('ObjectType', {
+				childs: [
+					createFBXRecordSingleInt32('Count', 1),
+					createFBXRecord('PropertyTemplate', {
+						childs: [
+						],
+						properties: [
+							createStringProperty('FbxFileTexture'),
+						],
+					}),
+				],
+				properties: [
+					createStringProperty('Texture'),
+				],
+			}),
+			createFBXRecord('ObjectType', {
+				childs: [
+					createFBXRecordSingleInt32('Count', 1),
+					createFBXRecord('PropertyTemplate', {
+						childs: [
+						],
+						properties: [
+							createStringProperty('FbxVideo'),
+						],
+					}),
+				],
+				properties: [
+					createStringProperty('Video'),
+				],
+			}),
+			createFBXRecord('ObjectType', {
+				childs: [
+					createFBXRecordSingleInt32('Count', 1),
+				],
+				properties: [
+					createStringProperty('Deformer'),
+				],
+			}),
+			createFBXRecord('ObjectType', {
+				childs: [
+					createFBXRecordSingleInt32('Count', 1),
+					createFBXRecord('PropertyTemplate', {
+						childs: [
+							createFBXRecord('Properties70', {
+								childs: [
+									createPColorRGB('Color', [0.8, 0.8, 0.8]),
+									createPDouble('Size', 100),
+									createPDouble('LimbLength', 1),//TODO: P: "LimbLength", "double", "Number", "H",1
+								]
+							}),
+						],
+						properties: [
+							createStringProperty('FbxSkeleton'),
+						]
+					}),
+				],
+				properties: [
+					createStringProperty('NodeAttribute'),
+				],
+			}),
+			createFBXRecord('ObjectType', {
+				childs: [
+					createFBXRecordSingleInt32('Count', 1),
+				],
+				properties: [
+					createStringProperty('Pose'),
+				],
+			}),
+			createFBXRecord('ObjectType', {
+				childs: [
+					createFBXRecordSingleInt32('Count', 1),
+				],
+				properties: [
+					createStringProperty('AnimationStack'),
+				],
+			}),
+			createFBXRecord('ObjectType', {
+				childs: [
+					createFBXRecordSingleInt32('Count', 1),
+				],
+				properties: [
+					createStringProperty('AnimationLayer'),
+				],
+			}),
+			createFBXRecord('ObjectType', {
+				childs: [
+					createFBXRecordSingleInt32('Count', 1),
+				],
+				properties: [
+					createStringProperty('AnimationCurveNode'),
+				],
+			}),
+			createFBXRecord('ObjectType', {
+				childs: [
+					createFBXRecordSingleInt32('Count', 1),
+				],
+				properties: [
+					createStringProperty('AnimationCurve'),
+				],
+			}),
+		],
+	});
+	return definitions;
 }
+
 function createTakesRecord() {
-    let takes = createFBXRecord(FBX_RECORD_NAME_TAKES, {
-        childs: [
-            createFBXRecordSingleString('Current', ''),
-        ],
-    });
-    return takes;
+	let takes = createFBXRecord(FBX_RECORD_NAME_TAKES, {
+		childs: [
+			createFBXRecordSingleString('Current', ''),
+		],
+	});
+	return takes;
 }
 
 function createVideoRecord(fbxVideo) {
-    return createFBXRecord('Video', {
-        childs: [
-            createFBXRecordSingleString('Type', fbxVideo.type),
-            createFBXRecordSingleString('RelativeFilename', `mat_${fbxVideo.id}.png`),
-            /*createFBXRecordSingleString('Filename', `C:\\Users\\Guillaume\\Desktop\\fbx\\untitled.fbm\\mat_${fbxVideo.id}.png`),*/
-            createFBXRecordSingleBytes('Content', fbxVideo.content),
-            createFBXRecord('Properties70', {
-                childs: [
-                    createFBXRecordMultipleStrings('P', ['Path', 'KString', 'XRefUrl', '', `C:\\fbx\\untitled.fbm\\mat_${fbxVideo.id}.png`]),
-                ],
-            }),
-        ],
-        properties: [
-            createInt64Property(fbxVideo.id),
-            createStringProperty(fbxVideo.name + '\x00\x01' + 'Video'),
-            createStringProperty('Clip'),
-        ],
-    });
+	return createFBXRecord('Video', {
+		childs: [
+			createFBXRecordSingleString('Type', fbxVideo.type),
+			createFBXRecordSingleString('RelativeFilename', `mat_${fbxVideo.id}.png`),
+			/*createFBXRecordSingleString('Filename', `C:\\Users\\Guillaume\\Desktop\\fbx\\untitled.fbm\\mat_${fbxVideo.id}.png`),*/
+			createFBXRecordSingleBytes('Content', fbxVideo.content),
+			createFBXRecord('Properties70', {
+				childs: [
+					createFBXRecordMultipleStrings('P', ['Path', 'KString', 'XRefUrl', '', `C:\\fbx\\untitled.fbm\\mat_${fbxVideo.id}.png`]),
+				],
+			}),
+		],
+		properties: [
+			createInt64Property(fbxVideo.id),
+			createStringProperty(fbxVideo.name + '\x00\x01' + 'Video'),
+			createStringProperty('Clip'),
+		],
+	});
 }
 
 const FBX_RECORD_TYPE_MESH = 'Mesh';
 const FBX_RECORD_TYPE_LIMB_NODE = 'LimbNode';
 const FBX_RECORD_TYPE_CAMERA = 'Camera';
+
 function fbxSceneToFBXFile(scene, creator = 'harmony-fbx', appVendor = 'harmony-fbx', appName = 'harmony-fbx', appVersion = '1') {
-    let fbxFile = new FBXFile();
-    fbxFile.version = 7400;
-    fbxFile.addChild(createHeaderExtensionRecord(fbxFile, creator, appVendor, appName, appVersion));
-    fbxFile.addChild(createFBXRecordSingleString(FBX_RECORD_NAME_CREATOR, creator));
-    fbxFile.addChild(exportFBXGlobalSettings(scene.globalSettings));
-    fbxFile.addChild(exportFBXScene(scene));
-    fbxFile.addChild(createFBXRecord(FBX_RECORD_NAME_REFERENCES)); //TODO ?
-    fbxFile.addChild(createDefinitionsRecord());
-    fbxFile.addChild(createFBXRecord(FBX_RECORD_NAME_OBJECTS));
-    fbxFile.addChild(createFBXRecord(FBX_RECORD_NAME_CONNECTIONS));
-    fbxFile.addChild(createTakesRecord());
-    exportObjects(fbxFile, scene);
-    exportTakes(fbxFile, scene);
-    return fbxFile;
+	let fbxFile = new FBXFile();
+	fbxFile.version = 7400;
+
+	fbxFile.addChild(createHeaderExtensionRecord(fbxFile, creator, appVendor, appName, appVersion));
+	fbxFile.addChild(createFBXRecordSingleString(FBX_RECORD_NAME_CREATOR, creator));
+	fbxFile.addChild(exportFBXGlobalSettings(scene.globalSettings));
+	fbxFile.addChild(exportFBXScene(scene));
+	fbxFile.addChild(createFBXRecord(FBX_RECORD_NAME_REFERENCES));//TODO ?
+	fbxFile.addChild(createDefinitionsRecord());
+	fbxFile.addChild(createFBXRecord(FBX_RECORD_NAME_OBJECTS));
+	fbxFile.addChild(createFBXRecord(FBX_RECORD_NAME_CONNECTIONS));
+	fbxFile.addChild(createTakesRecord());
+
+	exportObjects(fbxFile, scene);
+	exportTakes(fbxFile, scene);
+
+	return fbxFile;
 }
+
 function exportObjects(fbxFile, scene) {
-    /*
-    let nodesReferences = new Set();
-    let nodesConnections = new Set();
-    let alreadyExported = new Set<FBXObject>();
-    */
-    const context = {
-        nodesReferences: new Set(),
-        nodesConnections: new Set(),
-        alreadyExported: new Set(),
-    };
-    for (let child of scene.rootNode.childs) {
-        exportObject(fbxFile, child, context /*nodesReferences, nodesConnections, alreadyExported*/);
-    }
-    for (let object of scene.objects) {
-        exportObject(fbxFile, object, context /*nodesReferences, nodesConnections, alreadyExported*/);
-    }
-    for (;;) {
-        //let nodesReferences2 = new Set();
-        const context2 = {
-            nodesReferences: new Set(),
-            nodesConnections: context.nodesConnections,
-            alreadyExported: context.alreadyExported,
-        };
-        for (let child of context.nodesReferences) {
-            exportObject(fbxFile, child, context2 /*nodesReferences2, nodesConnections, alreadyExported*/);
-        }
-        if (context2.nodesReferences.size == 0) {
-            break;
-        }
-        context.nodesReferences = context2.nodesReferences;
-    }
-    createConnections(fbxFile, context.nodesConnections);
+	let nodesReferences = new Set();
+	let nodesConnections = new Set();
+	let alreadyExported = new Set();
+	for (let child of scene.rootNode.childs) {
+		exportObject(fbxFile, child, nodesReferences, nodesConnections, alreadyExported);
+	}
+	for (let object of scene.objects) {
+		exportObject(fbxFile, object, nodesReferences, nodesConnections, alreadyExported);
+	}
+	for (;;) {
+		let nodesReferences2 = new Set();
+		for (let child of nodesReferences) {
+			exportObject(fbxFile, child, nodesReferences2, nodesConnections, alreadyExported);
+		}
+		if (nodesReferences2.size == 0) {
+			break;
+		}
+		nodesReferences = nodesReferences2;
+	}
+
+	createConnections(fbxFile, nodesConnections);
 }
-function exportObject(fbxFile, object, context /*nodesReferences, nodesConnections, alreadyExported*/) {
-    if (context.alreadyExported.has(object)) {
-        return;
-    }
-    switch (true) {
-        case object.isFBXNode:
-            exportNode(fbxFile, object, context /*nodesReferences, nodesConnections, alreadyExported*/);
-            break;
-        case object.isFBXObject:
-            exportObject2(fbxFile, object, context /*nodesReferences, nodesConnections*/);
-            break;
-        default:
-            console.log(object);
-            throw 'Trying to export an unknown object';
-    }
-    context.alreadyExported.add(object);
+
+function exportObject(fbxFile, object, nodesReferences, nodesConnections, alreadyExported) {
+	if (alreadyExported.has(object)) {
+		return;
+	}
+	switch (true) {
+		case object.isFBXNode:
+			exportNode(fbxFile, object, nodesReferences, nodesConnections, alreadyExported);
+			break;
+		case object.isFBXObject:
+			exportObject2(fbxFile, object, nodesReferences, nodesConnections);
+			break;
+		default:
+			console.log(object);
+			throw 'Trying to export an unknown object';
+	}
+	alreadyExported.add(object);
 }
-function exportObject2(fbxFile, object, context) {
-    exportObjectPropertiesConnections(fbxFile, object, context);
-    switch (true) {
-        case object.isFBXSurfacePhong:
-            exportSurfacePhongObject(fbxFile, object, context);
-            break;
-        case object.isFBXTexture:
-            exportFBXTexture(fbxFile, object, context);
-            break;
-        case object.isFBXVideo:
-            exportFBXVideo(fbxFile, object);
-            break;
-        case object.isFBXSkin:
-            exportFBXSkin(fbxFile, object, context);
-            break;
-        case object.isFBXCluster:
-            exportFBXCluster(fbxFile, object, context);
-            break;
-        case object.isFBXPose:
-            exportFBXPose(fbxFile, object);
-            break;
-        case object.isFBXAnimStack:
-            exportFBXAnimStack(fbxFile, object, context);
-            break;
-        case object.isFBXAnimLayer:
-            exportFBXAnimLayer(fbxFile, object, context);
-            break;
-        case object.isFBXAnimCurveNode:
-            exportFBXAnimCurveNode(fbxFile, object);
-            break;
-        case object.isFBXAnimCurve:
-            exportFBXAnimCurve(fbxFile, object);
-            break;
-        default:
-            console.log(object);
-            throw 'Export of this object is missing';
-    }
+
+function exportObject2(fbxFile, object, nodesReferences, nodesConnections) {
+	exportObjectPropertiesConnections(fbxFile, object, nodesReferences, nodesConnections);
+
+
+	switch (true) {
+		case object.isFBXSurfacePhong:
+			exportSurfacePhongObject(fbxFile, object, nodesReferences, nodesConnections);
+			break;
+		case object.isFBXTexture:
+			exportFBXTexture(fbxFile, object, nodesReferences, nodesConnections);
+			break;
+		case object.isFBXVideo:
+			exportFBXVideo(fbxFile, object);
+			break;
+		case object.isFBXSkin:
+			exportFBXSkin(fbxFile, object, nodesReferences, nodesConnections);
+			break;
+		case object.isFBXCluster:
+			exportFBXCluster(fbxFile, object, nodesReferences, nodesConnections);
+			break;
+		case object.isFBXPose:
+			exportFBXPose(fbxFile, object);
+			break;
+		case object.isFBXAnimStack:
+			exportFBXAnimStack(fbxFile, object, nodesReferences, nodesConnections);
+			break;
+		case object.isFBXAnimLayer:
+			exportFBXAnimLayer(fbxFile, object, nodesReferences, nodesConnections);
+			break;
+		case object.isFBXAnimCurveNode:
+			exportFBXAnimCurveNode(fbxFile, object);
+			break;
+		case object.isFBXAnimCurve:
+			exportFBXAnimCurve(fbxFile, object);
+			break;
+		default:
+			console.log(object);
+			throw 'Export of this object is missing';
+	}
 }
-function exportObjectPropertiesConnections(fbxFile, fbxObject, context) {
-    exportPropertiesConnections(fbxFile, fbxObject.rootProperty, context);
+
+function exportObjectPropertiesConnections(fbxFile, fbxObject, nodesReferences, nodesConnections) {
+	exportPropertiesConnections(fbxFile, fbxObject.rootProperty, nodesReferences, nodesConnections);
 }
-function exportPropertiesConnections(fbxFile, fbxProperty, context /*nodesReferences, nodesConnections*/) {
-    fbxProperty.srcObjects.forEach(object => {
-        const parentObject = fbxProperty.getParentObject();
-        if (!parentObject) {
-            return;
-        }
-        // Ensure the parent object is exported
-        context.nodesReferences.add(parentObject);
-        context.nodesReferences.add(object);
-        context.nodesConnections.add(createConnection(object, parentObject, fbxProperty.hierarchicalName));
-        console.log(fbxProperty);
-    });
-    if (fbxProperty.isCompound()) {
-        for (const [key, value] of fbxProperty.value) {
-            //console.log(key, value);
-            exportPropertiesConnections(fbxFile, value, context /*nodesReferences, nodesConnections*/);
-        }
-    }
+
+function exportPropertiesConnections(fbxFile, fbxProperty, nodesReferences, nodesConnections) {
+	fbxProperty.srcObjects.forEach(object => {
+		const parentObject = fbxProperty.getParentObject();
+		// Ensure the parent object is exported
+		nodesReferences.add(parentObject);
+		nodesReferences.add(object);
+		nodesConnections.add(createConnection(object, parentObject, fbxProperty.hierarchicalName));
+		console.log(fbxProperty);
+	});
+
+
+	if (fbxProperty.isCompound()) {
+		for (const [key, value] of fbxProperty.value) {
+			//console.log(key, value);
+			exportPropertiesConnections(fbxFile, value, nodesReferences, nodesConnections);
+		}
+	}
 }
-function exportNode(fbxFile, node, context /*nodesReferences, nodesConnections, alreadyExported*/) {
-    if (context.alreadyExported.has(node)) {
-        return;
-    }
-    exportObjectPropertiesConnections(fbxFile, node, context /*nodesReferences, nodesConnections*/);
-    if (node.nodeAttribute) {
-        let nodeAttribute = node.nodeAttribute;
-        switch (true) {
-            case nodeAttribute.isFBXMesh:
-                exportMeshNode(fbxFile, node, context);
-                break;
-            case nodeAttribute.isFBXSkeleton:
-                exportSkeletonNode(fbxFile, node, context);
-                break;
-            case nodeAttribute.isFBXCamera:
-                exportCameraNode(fbxFile, node, context);
-                break;
-            default:
-                console.log(nodeAttribute);
-                throw 'Error in exportNode: export of this nodeAttribute is missing';
-        }
-    }
-    else {
-        throw 'nodeAttribute is null ' + node.id;
-    }
-    for (let child of node.childs) {
-        exportNode(fbxFile, child, context /*nodesReferences, nodesConnections, alreadyExported*/);
-    }
+
+function exportNode(fbxFile, node, nodesReferences, nodesConnections, alreadyExported) {
+	if (alreadyExported.has(node)) {
+		return;
+	}
+
+	exportObjectPropertiesConnections(fbxFile, node, nodesReferences, nodesConnections);
+
+	if (node.nodeAttribute) {
+		let nodeAttribute = node.nodeAttribute;
+		switch (true) {
+			case nodeAttribute.isFBXMesh:
+				exportMeshNode(fbxFile, node, nodesReferences, nodesConnections);
+				break;
+			case nodeAttribute.isFBXSkeleton:
+				exportSkeletonNode(fbxFile, node, nodesReferences, nodesConnections);
+				break;
+			case nodeAttribute.isFBXCamera:
+				exportCameraNode(fbxFile, node, nodesReferences, nodesConnections);
+				break;
+			default:
+				console.log(nodeAttribute);
+				throw 'Error in exportNode: export of this nodeAttribute is missing';
+		}
+	} else {
+		throw 'nodeAttribute is null ' + node.id;
+	}
+
+	for (let child of node.childs) {
+		exportNode(fbxFile, child, nodesReferences, nodesConnections, alreadyExported);
+	}
 }
-function exportMeshNode(fbxFile, node, context) {
-    // Add the materials for writing
-    let objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
-    node.materials.forEach(material => {
-        context.nodesReferences.add(material);
-        context.nodesConnections.add(createConnection(material, node));
-    });
-    node.nodeAttribute.deformers.forEach(deformer => {
-        context.nodesReferences.add(deformer);
-        context.nodesConnections.add(createConnection(deformer, node.nodeAttribute));
-    });
-    objectsRecord.addChild(fbxNodeToRecord(node, FBX_RECORD_TYPE_MESH));
-    objectsRecord.addChild(fbxMeshToRecord(node.nodeAttribute));
-    context.nodesConnections.add(createConnection(node, node.parent));
-    context.nodesConnections.add(createConnection(node.nodeAttribute, node));
+
+function exportMeshNode(fbxFile, node, nodesReferences, nodesConnections) {
+	// Add the materials for writing
+	let objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
+
+	node.materials.forEach(material => {
+		nodesReferences.add(material);
+		nodesConnections.add(createConnection(material, node));
+	});
+	node.nodeAttribute.deformers.forEach(deformer => {
+		nodesReferences.add(deformer);
+		nodesConnections.add(createConnection(deformer, node.nodeAttribute));
+	});
+
+	objectsRecord.addChild(fbxNodeToRecord(node, FBX_RECORD_TYPE_MESH));
+	objectsRecord.addChild(fbxMeshToRecord(node.nodeAttribute));
+
+	nodesConnections.add(createConnection(node, node.parent));
+	nodesConnections.add(createConnection(node.nodeAttribute, node));
 }
-function exportSkeletonNode(fbxFile, node, context) {
-    const objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
-    objectsRecord.addChild(fbxNodeToRecord(node, FBX_RECORD_TYPE_LIMB_NODE));
-    objectsRecord.addChild(fbxSkeletonToRecord(node.nodeAttribute));
-    context.nodesConnections.add(createConnection(node, node.parent));
-    context.nodesConnections.add(createConnection(node.nodeAttribute, node));
+
+function exportSkeletonNode(fbxFile, node, nodesReferences, nodesConnections) {
+	let objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
+
+
+	objectsRecord.addChild(fbxNodeToRecord(node, FBX_RECORD_TYPE_LIMB_NODE));
+	objectsRecord.addChild(fbxSkeletonToRecord(node.nodeAttribute));
+
+	nodesConnections.add(createConnection(node, node.parent));
+	nodesConnections.add(createConnection(node.nodeAttribute, node));
 }
-function exportCameraNode(fbxFile, node, context) {
-    let objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
-    objectsRecord.addChild(fbxNodeToRecord(node, FBX_RECORD_TYPE_CAMERA));
-    objectsRecord.addChild(fbxCameraToRecord(node.nodeAttribute));
-    context.nodesConnections.add(createConnection(node, node.parent));
-    context.nodesConnections.add(createConnection(node.nodeAttribute, node));
+
+function exportCameraNode(fbxFile, node, nodesReferences, nodesConnections) {
+	let objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
+
+	objectsRecord.addChild(fbxNodeToRecord(node, FBX_RECORD_TYPE_CAMERA));
+	objectsRecord.addChild(fbxCameraToRecord(node.nodeAttribute));
+
+	nodesConnections.add(createConnection(node, node.parent));
+	nodesConnections.add(createConnection(node.nodeAttribute, node));
 }
+
 function createConnection(src, dst, target) {
-    return { source: src.id, destination: dst.id, target: target };
+	return {s: src.id, d: dst.id, t: target};
 }
-function exportSurfacePhongObject(fbxFile, fbxSurfacePhong, context /*, nodesReferences, nodesConnections*/) {
-    let objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
-    let propertyNames = ['diffuse'];
-    for (let propertyName of propertyNames) {
-        const fbxProperty = fbxSurfacePhong.findProperty(propertyName);
-        if (!fbxProperty) {
-            continue;
-        }
-        fbxProperty.srcObjects.forEach(object => {
-            context.nodesReferences.add(object);
-            context.nodesConnections.add(createConnection(object, fbxSurfacePhong, 'DiffuseColor'));
-        });
-    }
-    objectsRecord.addChild(fbxSurfaceMaterialToRecord(fbxSurfacePhong));
+
+function exportSurfacePhongObject(fbxFile, fbxSurfacePhong, nodesReferences, nodesConnections) {
+	let objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
+
+	let propertyNames = ['diffuse'];
+	for (let propertyName of propertyNames) {
+		let fbxProperty = fbxSurfacePhong[propertyName];
+		fbxProperty.srcObjects.forEach(object => {
+			nodesReferences.add(object);
+			nodesConnections.add(createConnection(object, fbxSurfacePhong, 'DiffuseColor'));
+		});
+	}
+	objectsRecord.addChild(fbxSurfaceMaterialToRecord(fbxSurfacePhong));
 }
-function exportFBXTexture(fbxFile, fbxTexture, context /*, nodesReferences, nodesConnections*/) {
-    let objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
-    let textureMedia = fbxTexture.media;
-    if (textureMedia) {
-        context.nodesReferences.add(textureMedia);
-        context.nodesConnections.add(createConnection(textureMedia, fbxTexture));
-    }
-    objectsRecord.addChild(fbxTextureToRecord(fbxTexture));
+
+function exportFBXTexture(fbxFile, fbxTexture, nodesReferences, nodesConnections) {
+	let objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
+
+	let textureMedia = fbxTexture.media;
+	if (textureMedia) {
+		nodesReferences.add(textureMedia);
+		nodesConnections.add(createConnection(textureMedia, fbxTexture));
+	}
+
+	objectsRecord.addChild(fbxTextureToRecord(fbxTexture));
 }
-function exportFBXVideo(fbxFile, fbxVideo) {
-    let objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
-    objectsRecord.addChild(createVideoRecord(fbxVideo));
+
+function exportFBXVideo(fbxFile, fbxVideo, nodesReferences, nodesConnections) {
+	let objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
+	objectsRecord.addChild(createVideoRecord(fbxVideo));
 }
-function exportFBXSkin(fbxFile, fbxSkin, context /*, nodesReferences, nodesConnections*/) {
-    let objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
-    fbxSkin.clusters.forEach(cluster => {
-        context.nodesReferences.add(cluster);
-        context.nodesConnections.add(createConnection(cluster, fbxSkin));
-    });
-    objectsRecord.addChild(fbxSkinToRecord(fbxSkin));
+
+function exportFBXSkin(fbxFile, fbxSkin, nodesReferences, nodesConnections) {
+	let objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
+
+	fbxSkin.clusters.forEach(cluster => {
+		nodesReferences.add(cluster);
+		nodesConnections.add(createConnection(cluster, fbxSkin));
+	});
+
+	objectsRecord.addChild(fbxSkinToRecord(fbxSkin));
 }
-function exportFBXCluster(fbxFile, fbxCluster, context /*, nodesReferences, nodesConnections*/) {
-    if (fbxCluster.indexes.length == 0) {
-        return;
-    }
-    let objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
-    if (fbxCluster.link) {
-        context.nodesReferences.add(fbxCluster.link);
-        context.nodesConnections.add(createConnection(fbxCluster.link, fbxCluster));
-    }
-    objectsRecord.addChild(fbxClusterToRecord(fbxCluster));
+
+function exportFBXCluster(fbxFile, fbxCluster, nodesReferences, nodesConnections) {
+	if (fbxCluster.indexes.length == 0) {
+		return;
+	}
+	let objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
+	if (fbxCluster.link) {
+		nodesReferences.add(fbxCluster.link);
+		nodesConnections.add(createConnection(fbxCluster.link, fbxCluster));
+	}
+	objectsRecord.addChild(fbxClusterToRecord(fbxCluster));
 }
-function exportFBXAnimStack(fbxFile, fbxAnimStack, context) {
-    let objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
-    /*if (fbxAnimStack.link) {
-        nodesReferences.add(fbxAnimStack.link);
-        nodesConnections.add(createConnection(fbxAnimStack.link, fbxAnimStack));
-    }*/
-    fbxAnimStack.members.forEach(member => {
-        context.nodesReferences.add(member);
-        context.nodesConnections.add(createConnection(member, fbxAnimStack));
-    });
-    objectsRecord.addChild(fbxAnimStackToRecord(fbxAnimStack));
+
+function exportFBXAnimStack(fbxFile, fbxAnimStack, nodesReferences, nodesConnections) {
+	let objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
+	/*if (fbxAnimStack.link) {
+		nodesReferences.add(fbxAnimStack.link);
+		nodesConnections.add(createConnection(fbxAnimStack.link, fbxAnimStack));
+	}*/
+
+	fbxAnimStack.members.forEach(member => {
+		nodesReferences.add(member);
+		nodesConnections.add(createConnection(member, fbxAnimStack));
+	});
+
+	objectsRecord.addChild(fbxAnimStackToRecord(fbxAnimStack));
 }
-function exportFBXAnimLayer(fbxFile, fbxAnimLayer, context) {
-    let objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
-    fbxAnimLayer.members.forEach(member => {
-        context.nodesReferences.add(member);
-        context.nodesConnections.add(createConnection(member, fbxAnimLayer));
-    });
-    objectsRecord.addChild(fbxAnimLayerToRecord(fbxAnimLayer));
+
+function exportFBXAnimLayer(fbxFile, fbxAnimLayer, nodesReferences, nodesConnections) {
+	let objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
+
+	fbxAnimLayer.members.forEach(member => {
+		nodesReferences.add(member);
+		nodesConnections.add(createConnection(member, fbxAnimLayer));
+	});
+
+	objectsRecord.addChild(fbxAnimLayerToRecord(fbxAnimLayer));
 }
-function exportFBXAnimCurveNode(fbxFile, fbxAnimCurveNode) {
-    const objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
-    objectsRecord.addChild(fbxAnimCurveNodeToRecord(fbxAnimCurveNode));
+
+function exportFBXAnimCurveNode(fbxFile, fbxAnimCurveNode, nodesReferences, nodesConnections) {
+	const objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
+	objectsRecord.addChild(fbxAnimCurveNodeToRecord(fbxAnimCurveNode));
 }
-function exportFBXAnimCurve(fbxFile, fbxAnimCurve) {
-    const objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
-    objectsRecord.addChild(fbxAnimCurveToRecord(fbxAnimCurve));
+
+function exportFBXAnimCurve(fbxFile, fbxAnimCurveNode, nodesReferences, nodesConnections) {
+	const objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
+	objectsRecord.addChild(fbxAnimCurveToRecord(fbxAnimCurveNode));
 }
+
 function createConnections(fbxFile, connections) {
-    let connectionsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_CONNECTIONS);
-    for (let connection of connections) {
-        connectionsRecord.addChild(createConnectionRecord(connection.source, connection.destination, connection.target));
-    }
+	let connectionsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_CONNECTIONS);
+	for (let connection of connections) {
+		connectionsRecord.addChild(createConnectionRecord(connection.s, connection.d, connection.t));
+	}
 }
+
 function exportTakes(fbxFile, fbxScene) {
-    fbxFile.getRecordByName(FBX_RECORD_NAME_TAKES);
-    let srcObjects = fbxScene.srcObjects;
-    for (let srcObject of srcObjects) {
-        if (srcObject.isFBXAnimStack) ;
-    }
+	fbxFile.getRecordByName(FBX_RECORD_NAME_TAKES);
+	let srcObjects = fbxScene.srcObjects;
+	for (let srcObject of srcObjects) {
+		if (srcObject.isFBXAnimStack) ;
+	}
 }
-function exportFBXPose(fbxFile, fbxPose) {
-    let objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
-    objectsRecord.addChild(fbxPoseToRecord(fbxPose));
+
+function exportFBXPose(fbxFile, fbxPose, nodesReferences, nodesConnections) {
+	let objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
+	objectsRecord.addChild(fbxPoseToRecord(fbxPose));
 }
-const FBX_TC_MILLISECOND = 141120n;
-const FBX_TC_SECOND = FBX_TC_MILLISECOND * 1000n;
-const FBX_TC_MINUTE = FBX_TC_SECOND * 60n;
-const FBX_TC_HOUR = FBX_TC_MINUTE * 60n;
 
-var MappingMode;
-(function (MappingMode) {
-    MappingMode[MappingMode["None"] = 0] = "None";
-    MappingMode[MappingMode["ControlPoint"] = 1] = "ControlPoint";
-    MappingMode[MappingMode["PolygonVertex"] = 2] = "PolygonVertex";
-    MappingMode[MappingMode["Polygon"] = 3] = "Polygon";
-    MappingMode[MappingMode["Edge"] = 4] = "Edge";
-    MappingMode[MappingMode["AllSame"] = 5] = "AllSame";
-})(MappingMode || (MappingMode = {}));
+//Rotation of child is applied before parent's scaling
+//Scaling of parent is applied before rotation of child
+const FBX_INHERIT_TYPE_PARENT_SCALING_FIRST = 1;
 
-var ReferenceMode;
-(function (ReferenceMode) {
-    ReferenceMode[ReferenceMode["Direct"] = 0] = "Direct";
-    ReferenceMode[ReferenceMode["Index"] = 1] = "Index";
-    ReferenceMode[ReferenceMode["IndexToDirect"] = 2] = "IndexToDirect";
-})(ReferenceMode || (ReferenceMode = {}));
+const FBX_NODE_ATTRIBUTE_TYPE_UNKNOWN = 0;
+const FBX_NODE_ATTRIBUTE_TYPE_SKELETON = 3;
+const FBX_NODE_ATTRIBUTE_TYPE_CAMERA = 7;
 
-var SkeletonType;
-(function (SkeletonType) {
-    SkeletonType[SkeletonType["Root"] = 0] = "Root";
-    SkeletonType[SkeletonType["Limb"] = 1] = "Limb";
-    SkeletonType[SkeletonType["LimbNode"] = 2] = "LimbNode";
-    SkeletonType[SkeletonType["Effector"] = 3] = "Effector";
-})(SkeletonType || (SkeletonType = {}));
+const FBX_PROPERTY_FLAG_STATIC = 1 << 0;
+
 const FBX_SKELETON_TYPE_LIMB = 1;
 
-var TimeMode;
-(function (TimeMode) {
-    TimeMode[TimeMode["Default"] = 0] = "Default";
-    TimeMode[TimeMode["Frames120"] = 1] = "Frames120";
-    TimeMode[TimeMode["Frames100"] = 2] = "Frames100";
-    TimeMode[TimeMode["Frames60"] = 3] = "Frames60";
-    TimeMode[TimeMode["Frames50"] = 4] = "Frames50";
-    TimeMode[TimeMode["Frames48"] = 5] = "Frames48";
-    TimeMode[TimeMode["Frames30"] = 6] = "Frames30";
-    TimeMode[TimeMode["Frames30Drop"] = 7] = "Frames30Drop";
-    TimeMode[TimeMode["NtscDropFrame"] = 8] = "NtscDropFrame";
-    TimeMode[TimeMode["NtscFullFrame"] = 9] = "NtscFullFrame";
-    TimeMode[TimeMode["Pal"] = 10] = "Pal";
-    TimeMode[TimeMode["Frames24"] = 11] = "Frames24";
-    TimeMode[TimeMode["Frames1000"] = 12] = "Frames1000";
-    TimeMode[TimeMode["FilmFullFrame"] = 13] = "FilmFullFrame";
-    TimeMode[TimeMode["Custom"] = 14] = "Custom";
-    TimeMode[TimeMode["Frames96"] = 15] = "Frames96";
-    TimeMode[TimeMode["Frames72"] = 16] = "Frames72";
-    TimeMode[TimeMode["Frames59_94"] = 17] = "Frames59_94";
-    TimeMode[TimeMode["Frames119_88"] = 18] = "Frames119_88";
-})(TimeMode || (TimeMode = {}));
-// TODO: remove those
-const FBX_TIME_MODE_DEFAULT = 0;
-const FBX_TIME_MODE_FRAMES = [
-    30,
-    120,
-    100,
-    60,
-    50,
-    48,
-    30,
-    30,
-    29.97,
-    29.97,
-    25,
-    24,
-    1000,
-    23.976,
-    -1,
-    96,
-    72,
-    59.94,
-    119.88,
-];
+const FBX_SKINNING_TYPE_LINEAR = 1;
 
-var TimeProtocol;
-(function (TimeProtocol) {
-    TimeProtocol[TimeProtocol["Smpte"] = 0] = "Smpte";
-    TimeProtocol[TimeProtocol["FrameCount"] = 1] = "FrameCount";
-    TimeProtocol[TimeProtocol["Default"] = 2] = "Default";
-})(TimeProtocol || (TimeProtocol = {}));
+class FBXManager {
+	#objects = new Set();
+	#documents = new Set();
+	static #registry = new Map();
 
-class FBXTime {
-    static #globalTimeMode = TimeMode.Frames30;
-    static #globalTimeProtocol = TimeProtocol.FrameCount;
-    #time = 0n;
-    constructor(time = 0n) {
-        this.time = time;
-    }
-    set time(time) {
-        this.#time = time;
-    }
-    get time() {
-        return this.#time;
-    }
-    copy(other) {
-        this.#time = other.#time;
-    }
-    static setGlobalTimeMode(timeMode, frameRate = 0) {
-        FBXTime.#globalTimeMode = timeMode;
-    }
-    static getGlobalTimeMode() {
-        return FBXTime.#globalTimeMode;
-    }
-    static setGlobalTimeProtocol(timeProtocol) {
-        FBXTime.#globalTimeProtocol = timeProtocol;
-    }
-    static getGlobalTimeProtocol() {
-        return FBXTime.#globalTimeProtocol;
-    }
-    static getFrameRate(timeMode) {
-        const frameRate = FBX_TIME_MODE_FRAMES[timeMode];
-        if (frameRate === -1) {
-            throw 'return global frame rate';
-        }
-        else {
-            return frameRate;
-        }
-    }
-    static convertFrameRateToTimeMode(frameRate, precision = 1e-8) {
-        const lowRate = frameRate - precision;
-        const highRate = frameRate + precision;
-        for (let i = 1, l = FBX_TIME_MODE_FRAMES.length; i < l; ++i) {
-            const targetFrameRate = FBX_TIME_MODE_FRAMES[i];
-            if ((targetFrameRate >= lowRate) && (targetFrameRate <= highRate)) {
-                return i;
-            }
-        }
-        return FBX_TIME_MODE_DEFAULT;
-    }
-    static getOneFrameValue(timeMode) {
-        const frameRate = FBXTime.getFrameRate(timeMode);
-        return BigInt(Math.round(Number(FBX_TC_SECOND) / frameRate));
-    }
-    setMilliSeconds(milliSeconds) {
-        this.#time = BigInt(milliSeconds) * FBX_TC_MILLISECOND;
-    }
-    getMilliSeconds() {
-        return this.#time / FBX_TC_MILLISECOND;
-    }
-    setSecondDouble(seconds) {
-        this.#time = BigInt(Math.round(Number(FBX_TC_SECOND) * seconds));
-    }
-    getSecondDouble() {
-        return Number(this.#time) / Number(FBX_TC_SECOND);
-    }
-    setTime(hour, minute, second, frame = 0, field = 0, timeMode = FBX_TIME_MODE_DEFAULT) {
-        this.#time = BigInt(hour) * FBX_TC_HOUR +
-            BigInt(minute) * FBX_TC_MINUTE +
-            BigInt(second) * FBX_TC_SECOND +
-            BigInt(frame) * FBXTime.getOneFrameValue(timeMode);
-    }
+	constructor() {
+		this.isFBXManager = true;
+	}
+
+	destroy() {
+		this.#objects.clear();
+		this.#documents.clear();
+	}
+
+	static registerClass(className, classConstructor) {
+		FBXManager.#registry.set(className, classConstructor);
+	}
+
+	createObject(className, objectName, ...args) {
+		const classConstructor = FBXManager.#registry.get(className);
+		if (!classConstructor) {
+			throw 'Unknown constructor in FBXManager.createObject(): ' + className;
+		}
+
+		const createdObject = new classConstructor(this, objectName, ...args);
+		if (createdObject) {
+			if (createdObject.isFBXDocument) {
+				this.#documents.add(createdObject);
+			} else {
+				this.#objects.add(createdObject);
+			}
+		}
+		return createdObject;
+	}
+
 }
+
+// I'm not sure there is reserved ids, let's start big
+let uniqueId = 1000000n;
+
+function getUniqueId() {
+	return ++uniqueId;
+}
+
+class FBXObject {
+	#id = getUniqueId();
+	#name = '';
+	#srcObjects = new Set();
+	#rootProperty;
+	#manager;
+	constructor(manager, name = '') {
+		if (!manager.isFBXManager) {
+			console.trace('Missing manager in FBXObject');
+			throw 'Missing manager in FBXObject';
+		}
+		this.#manager = manager;
+		this.name = name;
+		this.#rootProperty = new FBXProperty(this);
+	}
+
+	set id(id) {
+		this.#id = id;
+	}
+
+	get id() {
+		return this.#id;
+	}
+
+	set name(name) {
+		this.#name = name;
+	}
+
+	get name() {
+		return this.#name;
+	}
+
+	get rootProperty() {
+		return this.#rootProperty;
+	}
+
+	get manager() {
+		return this.#manager;
+	}
+
+	connectSrcObject(fbxObject) {
+		//TODO: add connection type ?
+		if (!fbxObject.isFBXObject) {
+			throw 'connectSrcObject: fbxObject must be a FBXObject';
+		}
+		this.#srcObjects.add(fbxObject);
+	}
+
+	get srcObjects() {
+		return this.#srcObjects;
+	}
+
+	createProperty(type, name, value, flags) {
+		return new FBXProperty(this.#rootProperty, type, name, value, flags);
+	}
+
+	getAllProperties() {
+		return this.#rootProperty.getAllProperties(false);
+	}
+
+	findProperty(propertyName) {
+		return this.#rootProperty.findProperty(propertyName);
+	}
+}
+FBXObject.prototype.isFBXObject = true;
+
+class FBXAnimCurve extends FBXObject {
+	#keys = new Map();
+	constructor(manager, name) {
+		super(manager, name);
+		this.isFBXAnimCurve = true;
+	}
+
+	addKey(animCurveKey) {
+		this.#keys.set(animCurveKey.time.time, animCurveKey);
+	}
+}
+FBXManager.registerClass('FBXAnimCurve', FBXAnimCurve);
+
+class FBXAnimCurveNode extends FBXObject {
+	#channels;
+	constructor(manager, name) {
+		super(manager, name);
+		this.isFBXAnimCurveNode = true;
+		this.#channels = this.createProperty(FBX_PROPERTY_TYPE_COMPOUND, 'd', null, FBX_PROPERTY_FLAG_STATIC);
+	}
+
+	isAnimated(recurse = false) {
+		throw 'Code me';
+	}
+
+	createTypedCurveNode(property, scene) {
+		throw 'Code me';
+	}
+
+	addChannel(type, name, value, flags) {
+		return this.#channels.createProperty(type, name, value, flags);
+	}
+}
+FBXManager.registerClass('FBXAnimCurveNode', FBXAnimCurveNode);
+
+class FBXCollection extends FBXObject {
+	#members = new Set();
+	constructor(manager, name) {
+		super(manager, name);
+		this.isFBXCollection = true;
+	}
+
+	add(member) {
+		if (!member.isFBXObject) {
+			throw 'member must be an FBXObject';
+		}
+		this.#members.add(member);
+	}
+
+	remove(member) {
+		this.#members.delete(member);
+	}
+
+	get count() {
+		return this.#members.size;
+	}
+
+	get members() {
+		return this.#members;
+	}
+}
+
+class FBXAnimLayer extends FBXCollection {
+	//TODO: add Properties
+
+				/*P: "Weight", "Number", "", "A",100
+				P: "Mute", "bool", "", "",0
+				P: "Solo", "bool", "", "",0
+				P: "Lock", "bool", "", "",0
+				P: "Color", "ColorRGB", "Color", "",0.8,0.8,0.8
+				P: "BlendMode", "enum", "", "",0
+				P: "RotationAccumulationMode", "enum", "", "",0
+				P: "ScaleAccumulationMode", "enum", "", "",0
+				P: "BlendModeBypass", "ULongLong", "", "",0*/
+	constructor(manager, name) {
+		super(manager, name);
+		this.isFBXAnimLayer = true;
+	}
+}
+FBXManager.registerClass('FBXAnimLayer', FBXAnimLayer);
+
+class FBXAnimStack extends FBXCollection {
+	#description;
+	#localStart;
+	#localStop;
+	#referenceStart;
+	#referenceStop;
+
+	constructor(manager, name) {
+		super(manager, name);
+		this.isFBXAnimStack = true;
+		this.#description = this.createProperty(FBX_PROPERTY_TYPE_STRING, 'Description', '', FBX_PROPERTY_FLAG_STATIC);
+		this.#localStart = this.createProperty(FBX_PROPERTY_TYPE_TIME, 'LocalStart', 0, FBX_PROPERTY_FLAG_STATIC);
+		this.#localStop = this.createProperty(FBX_PROPERTY_TYPE_TIME, 'LocalStop', 0, FBX_PROPERTY_FLAG_STATIC);
+		this.#referenceStart = this.createProperty(FBX_PROPERTY_TYPE_TIME, 'ReferenceStart', 0, FBX_PROPERTY_FLAG_STATIC);
+		this.#referenceStop = this.createProperty(FBX_PROPERTY_TYPE_TIME, 'ReferenceStop', 0, FBX_PROPERTY_FLAG_STATIC);
+	}
+}
+FBXManager.registerClass('FBXAnimStack', FBXAnimStack);
+
+class FBXAxisSystem {
+	#upAxis;
+	#frontAxis;
+	constructor(upAxis, frontAxis) {
+		this.#upAxis = upAxis;
+		this.#frontAxis = frontAxis;
+	}
+
+	set upAxis(upAxis) {
+		this.#upAxis = upAxis;
+	}
+
+	get upAxis() {
+		return this.#upAxis;
+	}
+
+	set frontAxis(frontAxis) {
+		this.#frontAxis = frontAxis;
+	}
+
+	get frontAxis() {
+		return this.#frontAxis;
+	}
+
+	get coordAxis() {
+		return this.#frontAxis;
+	}
+}
+FBXAxisSystem.prototype.isFBXAxisSystem = true;
+
+class FBXNodeAttribute extends FBXObject {
+	constructor(manager, name) {
+		super(manager, name);
+		this.isFBXNodeAttribute = true;
+	}
+
+	getAttributeType() {
+		return FBX_NODE_ATTRIBUTE_TYPE_UNKNOWN;
+	}
+}
+
+class FBXCamera extends FBXNodeAttribute {
+	#position;
+	#upVector;
+	#interestPosition;
+	#roll;
+	//#opticalCenterX;
+	//#opticalCenterY;
+	#nearPlane;
+	#farPlane;
+	#projectionType;
+	#orthoZoom;
+	constructor(manager, name) {
+		super(manager, name);
+		this.isFBXCamera = true;
+
+		this.#position = this.createProperty(FBX_PROPERTY_TYPE_DOUBLE_3, 'Position', [0, 0, 0], FBX_PROPERTY_FLAG_STATIC);
+		this.#upVector = this.createProperty(FBX_PROPERTY_TYPE_DOUBLE_3, 'UpVector', [0, 0, 0], FBX_PROPERTY_FLAG_STATIC);
+		this.#interestPosition = this.createProperty(FBX_PROPERTY_TYPE_DOUBLE_3, 'InterestPosition', [0, 0, 0], FBX_PROPERTY_FLAG_STATIC);
+		this.#roll = this.createProperty(FBX_PROPERTY_TYPE_DOUBLE, 'Roll', 0, FBX_PROPERTY_FLAG_STATIC);
+		//this.#opticalCenterX = this.createProperty(FBX_PROPERTY_TYPE_DOUBLE, 'OpticalCenterX', 0, FBX_PROPERTY_FLAG_STATIC);
+		//this.#opticalCenterY = this.createProperty(FBX_PROPERTY_TYPE_DOUBLE, 'OpticalCenterY', 0, FBX_PROPERTY_FLAG_STATIC);
+		this.#nearPlane = this.createProperty(FBX_PROPERTY_TYPE_DOUBLE, 'NearPlane', 0, FBX_PROPERTY_FLAG_STATIC);
+		this.#farPlane = this.createProperty(FBX_PROPERTY_TYPE_DOUBLE, 'FarPlane', 0, FBX_PROPERTY_FLAG_STATIC);
+		this.#projectionType = this.createProperty(FBX_PROPERTY_TYPE_ENUM, 'CameraProjectionType', 0, FBX_PROPERTY_FLAG_STATIC);
+		this.#orthoZoom = this.createProperty(FBX_PROPERTY_TYPE_DOUBLE, 'OrthoZoom', 1, FBX_PROPERTY_FLAG_STATIC);
+	}
+
+	set position(position) {
+		this.#position = position;
+	}
+
+	get position() {
+		return this.#position;
+	}
+
+	set upVector(upVector) {
+		this.#upVector = upVector;
+	}
+
+	get upVector() {
+		return this.#upVector;
+	}
+
+	set interestPosition(interestPosition) {
+		this.#interestPosition = interestPosition;
+	}
+
+	get interestPosition() {
+		return this.#interestPosition;
+	}
+
+	set roll(roll) {
+		this.#roll = roll;
+	}
+
+	get roll() {
+		return this.#roll;
+	}
+
+	set nearPlane(nearPlane) {
+		this.#nearPlane = nearPlane;
+	}
+
+	get nearPlane() {
+		return this.#nearPlane;
+	}
+
+	set farPlane(farPlane) {
+		this.#farPlane = farPlane;
+	}
+
+	get farPlane() {
+		return this.#farPlane;
+	}
+
+	set projectionType(projectionType) {
+		this.#projectionType = projectionType;
+	}
+
+	get projectionType() {
+		return this.#projectionType;
+	}
+
+	set orthoZoom(orthoZoom) {
+		this.#orthoZoom = orthoZoom;
+	}
+
+	get orthoZoom() {
+		return this.#orthoZoom;
+	}
+
+	getAttributeType() {
+		return FBX_NODE_ATTRIBUTE_TYPE_CAMERA;
+	}
+}
+FBXManager.registerClass('FBXCamera', FBXCamera);
+
+const FBX_SUB_DEFORMER_TYPE_UNKNOWN = 0;
+const FBX_SUB_DEFORMER_TYPE_CLUSTER = 1;
+
+class FBXSubDeformer extends FBXObject {
+	constructor(manager, name) {
+		super(manager, name);
+		this.isFBXSubDeformer = true;
+	}
+
+	get subDeformerType() {
+		return FBX_SUB_DEFORMER_TYPE_UNKNOWN;
+	}
+}
+
+const FBX_LINK_MODE_NORMALIZE = 0;
+
+class FBXCluster extends FBXSubDeformer {
+	#linkMode = FBX_LINK_MODE_NORMALIZE;
+	#link;
+	#indexes = [];
+	#weights = [];
+	#transformMatrix = create$5();
+	#transformLinkMatrix = create$5();
+	#transformParentMatrix;
+	constructor(manager, name) {
+		super(manager, name);
+		this.isFBXCluster = true;
+	}
+
+	set linkMode(linkMode) {
+		this.#linkMode = linkMode;
+	}
+
+	get linkMode() {
+		return this.#linkMode;
+	}
+
+	set link(link) {
+		this.#link = link;
+	}
+
+	get link() {
+		return this.#link;
+	}
+
+	addVertexIndex(index, weight) {
+		this.#indexes.push(index);
+		this.#weights.push(weight);
+	}
+
+	get indexes() {
+		return this.#indexes;
+	}
+
+	get weights() {
+		return this.#weights;
+	}
+
+	get subDeformerType() {
+		return FBX_SUB_DEFORMER_TYPE_CLUSTER;
+	}
+
+	set transformMatrix(transformMatrix) {
+		copy$5(this.#transformMatrix, transformMatrix);
+	}
+
+	get transformMatrix() {
+		return clone$5(this.#transformMatrix);
+	}
+
+	set transformLinkMatrix(transformLinkMatrix) {
+		copy$5(this.#transformLinkMatrix, transformLinkMatrix);
+	}
+
+	get transformLinkMatrix() {
+		return clone$5(this.#transformLinkMatrix);
+	}
+
+	set transformParentMatrix(transformParentMatrix) {
+		this.#transformParentMatrix = transformParentMatrix;
+	}
+
+	get transformParentMatrix() {
+		return this.#transformParentMatrix;
+	}
+}
+FBXManager.registerClass('FBXCluster', FBXCluster);
+
+class FBXColor {
+	#red;
+	#green;
+	#blue;
+	#alpha;
+	constructor(red = 0.0, green = 0.0, blue = 0.0, alpha = 1.0) {
+		this.#red = red;
+		this.#green = green;
+		this.#blue = blue;
+		this.#alpha = alpha;
+	}
+
+	set red(red) {
+		this.#red = red;
+	}
+
+	get red() {
+		return this.#red;
+	}
+
+	set green(green) {
+		this.#green = green;
+	}
+
+	get green() {
+		return this.#green;
+	}
+
+	set blue(blue) {
+		this.#blue = blue;
+	}
+
+	get blue() {
+		return this.#blue;
+	}
+
+	set alpha(alpha) {
+		this.#alpha = alpha;
+	}
+
+	get alpha() {
+		return this.#alpha;
+	}
+}
+FBXColor.prototype.isFBXColor = true;
+
+class FBXGlobalSettings extends FBXObject {
+	#ambientColor = new FBXColor();
+	#defaultCamera = '';
+	#axisSystem = new FBXAxisSystem(2, 1);
+	constructor(manager, name) {
+		super(manager, name);
+		this.isFBXGlobalSettings = true;
+	}
+
+	set ambientColor(ambientColor) {
+		if (!ambientColor.isFBXColor) {
+			throw 'ambientColor must be a FBXColor';
+		}
+		this.#ambientColor = ambientColor;
+	}
+
+	get ambientColor() {
+		return this.#ambientColor;
+	}
+
+	set defaultCamera(defaultCamera) {
+		this.#defaultCamera = defaultCamera;
+	}
+
+	get defaultCamera() {
+		return this.#defaultCamera;
+	}
+}
+FBXManager.registerClass('FBXGlobalSettings', FBXGlobalSettings);
+
+class FBXLayerContainer extends FBXNodeAttribute {
+	constructor(manager, name) {
+		super(manager, name);
+		this.isFBXLayerContainer = true;
+	}
+}
+
+class FBXGeometryBase extends FBXLayerContainer {
+	constructor(manager, name) {
+		super(manager, name);
+		this.isFBXGeometryBase = true;
+	}
+}
+
+class FBXGeometry extends FBXGeometryBase {
+	#deformers = new Set();
+	constructor(manager, name) {
+		super(manager, name);
+		this.isFBXGeometry = true;
+	}
+
+	addDeformer(deformer) {
+		if (!deformer.isFBXDeformer) {
+			throw 'deformer must be of type FBXDeformer';
+		}
+
+		this.#deformers.add(deformer);
+	}
+
+	removeDeformer(deformer) {
+		if (!deformer.isFBXDeformer) {
+			throw 'deformer must be of type FBXDeformer';
+		}
+
+		this.#deformers.delete(deformer);
+	}
+
+	get deformers() {
+		return this.#deformers;
+	}
+}
+
+class FBXMesh extends FBXGeometry {
+	#vertices = [];
+	#normals = [];
+	#polygons = [];
+	#edges = [];
+	#uv = [];
+	#uvIndex = [];
+	constructor(manager, name) {
+		super(manager, name);
+		this.isFBXMesh = true;
+	}
+
+	set vertices(vertices) {
+		this.#vertices = vertices;
+	}
+
+	get vertices() {
+		return this.#vertices;
+	}
+
+	set normals(normals) {
+		this.#normals = normals;
+	}
+
+	get normals() {
+		return this.#normals;
+	}
+
+	set polygons(polygons) {
+		this.#polygons = polygons;
+	}
+
+	get polygons() {
+		return this.#polygons;
+	}
+
+	set edges(edges) {
+		this.#edges = edges;
+	}
+
+	get edges() {
+		return this.#edges;
+	}
+
+	set uv(uv) {
+		this.#uv = uv;
+	}
+
+	get uv() {
+		return this.#uv;
+	}
+
+	set uvIndex(uvIndex) {
+		this.#uvIndex = uvIndex;
+	}
+
+	get uvIndex() {
+		return this.#uvIndex;
+	}
+}
+FBXManager.registerClass('FBXMesh', FBXMesh);
+
+class FBXNode extends FBXObject {
+	#parent;
+	#childs = new Set();
+	#materials = [];
+	#nodeAttribute;
+	#inheritType = FBX_INHERIT_TYPE_PARENT_SCALING_FIRST;
+
+	#show;
+	#localTranslation;
+	#localRotation;
+	#localScaling;
+
+	constructor(manager, name) {
+		super(manager, name);
+		this.isFBXNode = true;
+		this.#show = this.createProperty(FBX_PROPERTY_TYPE_BOOL, 'Show', 1.0, FBX_PROPERTY_FLAG_STATIC);
+		this.#localTranslation = this.createProperty(FBX_PROPERTY_TYPE_DOUBLE_3, 'Lcl Translation', [0, 0, 0], FBX_PROPERTY_FLAG_STATIC);
+		this.#localRotation = this.createProperty(FBX_PROPERTY_TYPE_DOUBLE_3, 'Lcl Rotation', [0, 0, 0], FBX_PROPERTY_FLAG_STATIC);
+		this.#localScaling = this.createProperty(FBX_PROPERTY_TYPE_DOUBLE_3, 'Lcl Scaling', [1, 1, 1], FBX_PROPERTY_FLAG_STATIC);
+	}
+
+	set parent(parent) {
+		if (this.#checkParent(parent)) {
+			if (this.#parent) {
+				this.#parent.#childs.delete(this);
+			}
+			this.#parent = parent;
+			if (parent) {
+				parent.#childs.add(this);
+			}
+		} else {
+			console.log(this, parent);
+			throw 'Invalid parent';
+		}
+	}
+
+	addChild(child) {
+		if (!child.isFBXNode) {
+			throw 'Child is not FBXNode';
+		}
+		child.parent = this;
+	}
+
+	removeChild(child) {
+		if (!child.isFBXNode) {
+			throw 'Child is not FBXNode';
+		}
+		child.parent = null;
+	}
+
+	get childs() {
+		return this.#childs;
+	}
+
+	get parent() {
+		return this.#parent;
+	}
+
+	#checkParent(parent) {
+		if (parent === null) {
+			return true;
+		}
+		if (!parent.isFBXNode) {
+			console.log('Parent is not FBXNode');
+			return false;
+		}
+
+		let current = parent;
+		for (;;) {
+			if (current == this) {
+				console.log('Parent hierarchy contains self');
+				return false;
+			}
+			if (!(current = current.parent)) {
+				break;
+			}
+		}
+		return true;
+	}
+
+	set nodeAttribute(nodeAttribute) {
+		if (!nodeAttribute.isFBXNodeAttribute) {
+			throw 'nodeAttribute must be of type FBXNodeAttribute';
+		}
+		this.#nodeAttribute = nodeAttribute;
+	}
+
+	get nodeAttribute() {
+		return this.#nodeAttribute;
+	}
+
+	set inheritType(inheritType) {
+		this.#inheritType = inheritType;
+	}
+
+	get inheritType() {
+		return this.#inheritType;
+	}
+
+	set show(show) {
+		this.#show.value = show;
+	}
+
+	get show() {
+		return this.#show.value;
+	}
+
+	set localTranslation(localTranslation) {
+		this.#localTranslation = localTranslation;
+	}
+
+	get localTranslation() {
+		return this.#localTranslation;
+	}
+
+	set localRotation(localRotation) {
+		this.#localRotation = localRotation;
+	}
+
+	get localRotation() {
+		return this.#localRotation;
+	}
+
+	set localScaling(localScaling) {
+		this.#localScaling = localScaling;
+	}
+
+	get localScaling() {
+		return this.#localScaling;
+	}
+
+	addMaterial(surfaceMaterial) {
+		if (!surfaceMaterial.isFBXSurfaceMaterial ) {
+			throw 'surfaceMaterial must be of type FBXSurfaceMaterial';
+		}
+		this.#materials.push(surfaceMaterial);
+	}
+
+	get materials() {
+		return this.#materials;
+	}
+
+	toJSON() {
+		return {
+		}
+	}
+}
+FBXManager.registerClass('FBXNode', FBXNode);
+
+class FBXPoseInfo {
+	#matrix;
+	#matrixIsLocal = false;
+	#node;
+	constructor(node, matrix, matrixIsLocal) {
+		this.node = node;
+		this.matrix = matrix;
+		this.matrixIsLocal = matrixIsLocal;
+	}
+
+	set matrix(matrix) {
+		this.#matrix = matrix;
+	}
+
+	get matrix() {
+		return this.#matrix;
+	}
+
+	set matrixIsLocal(matrixIsLocal) {
+		this.#matrixIsLocal = matrixIsLocal;
+	}
+
+	get matrixIsLocal() {
+		return this.#matrixIsLocal;
+	}
+
+	set node(node) {
+		this.#node = node;
+	}
+
+	get node() {
+		return this.#node;
+	}
+}
+
+class FBXPose extends FBXObject {
+	#isBindPose = true;
+	#poseInfos = [];
+	constructor(manager, name) {
+		super(manager, name);
+		this.isFBXPose = true;
+	}
+
+	set isBindPose(isBindPose) {
+		this.#isBindPose = isBindPose;
+	}
+
+	get isBindPose() {
+		return this.#isBindPose;
+	}
+
+	get isRestPose() {
+		return !this.#isBindPose;
+	}
+
+	add(node, matrix, matrixIsLocal) {
+		this.#poseInfos.push(new FBXPoseInfo(node, matrix, matrixIsLocal));
+	}
+
+	get poseInfos() {
+		return this.#poseInfos;
+	}
+}
+FBXManager.registerClass('FBXPose', FBXPose);
+
+class FBXDocument extends FBXCollection {
+	#documentInfo;
+	constructor(manager, name) {
+		super(manager, name);
+		this.isFBXDocument = true;
+	}
+
+	set documentInfo(documentInfo) {
+		if (!documentInfo.isFBXDocumentInfo) {
+			throw 'documentInfo must be of type FBXDocumentInfo';
+		}
+		this.#documentInfo = documentInfo;
+	}
+
+	get documentInfo() {
+		return this.#documentInfo;
+	}
+}
+
+class FBXScene extends FBXDocument {
+	#rootNode;
+	#globalSettings;
+	#sceneInfo;
+	#objects = new Set();
+	constructor(manager, name) {
+		super(manager, name);
+		this.isFBXScene = true;
+		this.#rootNode = manager.createObject('FBXNode', 'Root node. This node is not saved');
+		this.#globalSettings = manager.createObject('FBXGlobalSettings', 'TODO: name me FBXScene / #globalSettings');
+		this.#rootNode.id = 0;
+	}
+
+	set sceneInfo(sceneInfo) {
+		if (!sceneInfo.isFBXDocumentInfo) {
+			throw 'sceneInfo must be of type FBXDocumentInfo';
+		}
+		this.#sceneInfo = sceneInfo;
+	}
+
+	get sceneInfo() {
+		return this.#sceneInfo;
+	}
+
+	get rootNode() {
+		return this.#rootNode;
+	}
+
+	get globalSettings() {
+		return this.#globalSettings;
+	}
+
+	addObject(object) {
+		if (!object.isFBXObject) {
+			throw 'object must be of type FBXObject';
+		}
+		this.#objects.add(object);
+	}
+
+	get objects() {
+		return this.#objects;
+	}
+}
+FBXManager.registerClass('FBXScene', FBXScene);
+
+class FBXSkeleton extends FBXNodeAttribute {
+	#skeletonType;
+	constructor(manager, name, skeletonType) {
+		super(manager, name);
+		this.isFBXSkeleton = true;
+		this.skeletonType = skeletonType;
+	}
+
+	set skeletonType(skeletonType) {
+		this.#skeletonType = skeletonType;
+	}
+
+	get skeletonType() {
+		return this.#skeletonType;
+	}
+
+	getAttributeType() {
+		return FBX_NODE_ATTRIBUTE_TYPE_SKELETON;
+	}
+}
+FBXManager.registerClass('FBXSkeleton', FBXSkeleton);
+
+const FBX_DEFORMER_TYPE_UNKNOWN = 0;
+const FBX_DEFORMER_TYPE_SKIN = 1;
+
+class FBXDeformer extends FBXObject {
+	constructor(manager, name) {
+		super(manager, name);
+		this.isFBXDeformer = true;
+	}
+
+	get deformerType() {
+		return FBX_DEFORMER_TYPE_UNKNOWN;
+	}
+}
+
+class FBXSkin extends FBXDeformer {
+	#geometry;
+	#skinningType = FBX_SKINNING_TYPE_LINEAR;
+	#clusters = new Set();
+	constructor(manager, name) {
+		super(manager, name);
+		this.isFBXSkin = true;
+	}
+
+	set geometry(geometry) {
+		if (geometry && !geometry.isFBXGeometry) {
+			throw 'geometry must be of type FBXGeometry';
+		}
+		if (this.#geometry) {
+			this.#geometry.removeDeformer(this);
+		}
+		if (geometry) {
+			geometry.addDeformer(this);
+		}
+		this.#geometry = geometry;
+	}
+
+	get geometry() {
+		return this.#geometry;
+	}
+
+	set skinningType(skinningType) {
+		this.#skinningType = skinningType;
+	}
+
+	get skinningType() {
+		return this.#skinningType;
+	}
+
+	addCluster(fbxCluster) {
+		this.#clusters.add(fbxCluster);
+	}
+
+	removeCluster(fbxCluster) {
+		this.#clusters.delete(fbxCluster);
+	}
+
+	get clusters() {
+		return this.#clusters;
+	}
+
+	get deformerType() {
+		return FBX_DEFORMER_TYPE_SKIN;
+	}
+}
+FBXManager.registerClass('FBXSkin', FBXSkin);
+
+class FBXSurfaceMaterial extends FBXObject {
+	#shadingModel;
+	#multiLayer;
+	constructor(manager, name) {
+		super(manager, name);
+		this.isFBXSurfaceMaterial = true;
+
+		this.#shadingModel = this.createProperty(FBX_PROPERTY_TYPE_STRING, 'ShadingModel', 'Unknown', FBX_PROPERTY_FLAG_STATIC);
+		this.#multiLayer = this.createProperty(FBX_PROPERTY_TYPE_BOOL, 'MultiLayer', false, FBX_PROPERTY_FLAG_STATIC);
+	}
+
+	set shadingModel(shadingModel) {
+		this.#shadingModel.value = shadingModel;
+	}
+
+	get shadingModel() {
+		return this.#shadingModel.value;
+	}
+
+	set multiLayer(multiLayer) {
+		this.#multiLayer.value = multiLayer;
+	}
+
+	get multiLayer() {
+		return this.#multiLayer.value;
+	}
+}
+FBXManager.registerClass('FBXSurfaceMaterial', FBXSurfaceMaterial);
+
+class FBXSurfaceLambert extends FBXSurfaceMaterial {
+	#diffuse;
+	constructor(manager, name) {
+		super(manager, name);
+		this.isFBXSurfaceLambert = true;
+		this.shadingModel = 'Lambert';
+		this.#diffuse = this.createProperty(FBX_PROPERTY_TYPE_COLOR_3, 'DiffuseColor', [0.2, 0.2, 0.2], FBX_PROPERTY_FLAG_STATIC);
+	}
+
+	set diffuse(diffuse) {
+		console.assert(diffuse.isFBXProperty && diffuse.type == FBX_PROPERTY_TYPE_COLOR_3, "diffuse is not an FBXProperty");
+		this.#diffuse = diffuse;
+	}
+
+	get diffuse() {
+		return this.#diffuse;
+	}
+}
+FBXManager.registerClass('FBXSurfaceLambert', FBXSurfaceLambert);
+
+class FBXSurfacePhong extends FBXSurfaceLambert {
+	constructor(manager, name) {
+		super(manager, name);
+		this.isFBXSurfacePhong = true;
+		this.shadingModel = 'Phong';
+	}
+}
+FBXManager.registerClass('FBXSurfacePhong', FBXSurfacePhong);
+
+class FBXTexture extends FBXObject {
+	#media;
+	#type = 'TextureVideoClip';
+	constructor(manager, name) {
+		super(manager, name);
+		this.isFBXTexture = true;
+	}
+
+	set type(type) {
+		throw 'We might want to check the exporter if we change the type';
+	}
+
+	get type() {
+		return this.#type;
+	}
+
+	set media(media) {
+		this.#media = media;
+	}
+
+	get media() {
+		return this.#media;
+	}
+
+}
+FBXManager.registerClass('FBXTexture', FBXTexture);
+
+class FBXVideo extends FBXObject {
+	#content;
+	#type = 'Clip';
+	constructor(manager, name) {
+		super(manager, name);
+		this.isFBXVideo = true;
+	}
+
+	set content(content) {
+		this.#content = content;
+	}
+
+	get content() {
+		return this.#content;
+	}
+
+	set type(type) {
+		throw 'We might want to check the exporter if we change the type';
+	}
+
+	get type() {
+		return this.#type;
+	}
+}
+FBXManager.registerClass('FBXVideo', FBXVideo);
 
 /**
  * HDRImageData contains all decompressed image data.
@@ -21536,24 +22310,6 @@ function flipY(data, header) {
             swap(data, b1 + x, b2 + x);
         }
     }
-}
-
-function setTimeoutPromise(timeout, signal) {
-    return new Promise((resolve, reject) => {
-        const timeoutID = setTimeout(resolve, timeout);
-        if (signal) {
-            if (signal.aborted) {
-                clearTimeout(timeoutID);
-                reject('aborted');
-            }
-            else {
-                signal.addEventListener('abort', () => {
-                    clearTimeout(timeoutID);
-                    reject('aborted');
-                });
-            }
-        }
-    });
 }
 
 //import { File } from 'node:buffer';
@@ -33605,24 +34361,28 @@ const CHILD_REMOVED = 'childremoved';
 const ENTITY_DELETED = 'entitydeleted';
 const PROPERTY_CHANGED$1 = 'propertychanged';
 const ATTRIBUTE_CHANGED = 'attributechanged';
-class EntityObserverClass extends EventTarget {
+class EntityObserverClass {
+    #eventTarget = new EventTarget();
     parentChanged(child, oldParent, newParent) {
-        this.dispatchEvent(new CustomEvent(PARENT_CHANGED, { detail: { child: child, oldParent: oldParent, newParent: newParent } }));
+        this.#eventTarget.dispatchEvent(new CustomEvent(PARENT_CHANGED, { detail: { child: child, oldParent: oldParent, newParent: newParent } }));
     }
     childAdded(parent, child) {
-        this.dispatchEvent(new CustomEvent(CHILD_ADDED, { detail: { child: child, parent: parent } }));
+        this.#eventTarget.dispatchEvent(new CustomEvent(CHILD_ADDED, { detail: { child: child, parent: parent } }));
     }
     childRemoved(parent, child) {
-        this.dispatchEvent(new CustomEvent(CHILD_REMOVED, { detail: { child: child, parent: parent } }));
+        this.#eventTarget.dispatchEvent(new CustomEvent(CHILD_REMOVED, { detail: { child: child, parent: parent } }));
     }
     entityDeleted(entity) {
-        this.dispatchEvent(new CustomEvent(ENTITY_DELETED, { detail: { entity: entity } }));
+        this.#eventTarget.dispatchEvent(new CustomEvent(ENTITY_DELETED, { detail: { entity: entity } }));
     }
     propertyChanged(entity, propertyName, oldValue, newValue) {
-        this.dispatchEvent(new CustomEvent(PROPERTY_CHANGED$1, { detail: { entity: entity, name: propertyName, value: newValue, oldValue: oldValue } }));
+        this.#eventTarget.dispatchEvent(new CustomEvent(PROPERTY_CHANGED$1, { detail: { entity: entity, name: propertyName, value: newValue, oldValue: oldValue } }));
     }
     attributeChanged(entity, attributeName, oldValue, newValue) {
-        this.dispatchEvent(new CustomEvent(ATTRIBUTE_CHANGED, { detail: { entity: entity, name: attributeName, value: newValue, oldValue: oldValue } }));
+        this.#eventTarget.dispatchEvent(new CustomEvent(ATTRIBUTE_CHANGED, { detail: { entity: entity, name: attributeName, value: newValue, oldValue: oldValue } }));
+    }
+    addEventListener(type, callback, options) {
+        this.#eventTarget.addEventListener(type, callback, options);
     }
 }
 const EntityObserver = new EntityObserverClass();
@@ -34329,7 +35089,7 @@ class Entity {
         return false;
     }
     removeChild(child) {
-        if (this.#children.has(child)) {
+        if (child && this.#children.has(child)) {
             this.#children.delete(child);
             child.#setParent(null);
             EntityObserver.childRemoved(this, child);
@@ -34813,6 +35573,12 @@ class Entity {
         copy$4(this._position, source._position);
         copy$2(this._quaternion, source._quaternion);
         copy$4(this._scale, source._scale);
+    }
+    getProperty(name) {
+        return this.properties.get(name);
+    }
+    setProperty(name, value) {
+        return this.properties.set(name, value);
     }
     toJSON() {
         let children = [];
@@ -35401,7 +36167,7 @@ class FileSelectorDirectory extends HTMLElement {
         }
         else {
             let filterName = this.#selector?.filter.name ?? '';
-            return file.name.toLowerCase().includes(filterName) || file.path.toLowerCase().includes(filterName);
+            return file.name.toLowerCase().includes(filterName) || file.path?.toLowerCase().includes(filterName) || false;
         }
         return false;
     }
@@ -38974,17 +39740,17 @@ class Graphics {
     currentTick = 0;
     #renderBuffers = new Set();
     #renderTargetStack = [];
-    #readyPromise;
     #readyPromiseResolve;
+    #readyPromise = new Promise((resolve) => this.#readyPromiseResolve = resolve);
     #canvas;
-    #width;
-    #height;
+    #width = 0;
+    #height = 0;
     #offscreenCanvas;
     #forwardRenderer;
     glContext;
     #bipmapContext;
-    #pickedEntity;
-    #animationFrame;
+    #pickedEntity = null;
+    #animationFrame = 0;
     ANGLE_instanced_arrays;
     OES_texture_float_linear;
     #mediaRecorder;
@@ -38998,14 +39764,10 @@ class Graphics {
         this.setShaderQuality(ShaderQuality.Medium);
         this.setShaderDebugMode(ShaderDebugMode.None);
         this.setIncludeCode('MAX_HARDWARE_BONES', '#define MAX_HARDWARE_BONES ' + MAX_HARDWARE_BONES);
-        this.#readyPromise = new Promise((resolve, reject) => {
-            this.#readyPromiseResolve = resolve;
-        });
     }
     initCanvas(contextAttributes = {}) {
-        this.#canvas = contextAttributes.canvas ?? document.createElement('canvas');
-        this.#canvas.setAttribute('tabindex', '1');
-        new ShortcutHandler().addContext('3dview', this.#canvas);
+        this.#canvas = contextAttributes.canvas ?? createElement('canvas', { tabindex: 1 });
+        ShortcutHandler.addContext('3dview', this.#canvas);
         this.#width = this.#canvas.width;
         this.#height = this.#canvas.height;
         this.#initContext(contextAttributes);
@@ -39016,7 +39778,7 @@ class Graphics {
         // init state end
         //this.clearColor = vec4.fromValues(0, 0, 0, 255);
         this.#forwardRenderer = new ForwardRenderer(this);
-        let autoResize = contextAttributes['autoResize'];
+        let autoResize = contextAttributes.autoResize;
         if (autoResize !== undefined) {
             this.autoResize = autoResize;
         }
@@ -39033,6 +39795,9 @@ class Graphics {
         return this;
     }
     pickEntity(x, y) {
+        if (!this.#canvas) {
+            return null;
+        }
         this.setIncludeCode('pickingMode', '#define PICKING_MODE');
         GraphicsEvents.tick(0, performance.now());
         this.setIncludeCode('pickingMode', '#undef PICKING_MODE');
@@ -39258,7 +40023,7 @@ class Graphics {
     }
     set pixelRatio(pixelRatio) {
         this.#pixelRatio = pixelRatio;
-        this._updateSize();
+        this.#updateSize();
     }
     get pixelRatio() {
         return this.#pixelRatio;
@@ -39274,7 +40039,7 @@ class Graphics {
         if (isNumeric(height)) {
             this.#height = height;
         }
-        this._updateSize();
+        this.#updateSize();
         GraphicsEvents.resize(width, height);
         return [previousWidth, previousHeight];
     }
@@ -39283,7 +40048,10 @@ class Graphics {
         ret[1] = this.#height;
         return ret;
     }
-    _updateSize() {
+    #updateSize() {
+        if (!this.#canvas) {
+            return;
+        }
         this.#canvas.width = this.#width * this.#pixelRatio;
         this.#canvas.height = this.#height * this.#pixelRatio;
         this.viewport = fromValues$3(0, 0, this.#width, this.#height);
@@ -39312,7 +40080,7 @@ class Graphics {
             return;
         }
         const canvas = this.#canvas;
-        if (!canvas.parentElement) {
+        if (!canvas?.parentElement) {
             return;
         }
         const width = canvas.parentElement.clientWidth;
@@ -39329,7 +40097,7 @@ class Graphics {
             });
         };
         const resizeObserver = new ResizeObserver(callback);
-        if (this.#canvas.parentElement) {
+        if (this.#canvas?.parentElement) {
             resizeObserver.observe(this.#canvas.parentElement);
         }
     }
@@ -39361,10 +40129,12 @@ class Graphics {
     deleteRenderbuffer(renderBuffer) {
         this.glContext.deleteRenderbuffer(renderBuffer);
     }
-    setFramebuffer(framebuffer) {
+    /*
+    setFramebuffer(framebuffer: WebGLFramebuffer) {
         framebuffer.bind();
         //this.glContext.bindFramebuffer(_gl.FRAMEBUFFER, framebuffer);
     }
+    */
     pushRenderTarget(renderTarget) {
         this.#renderTargetStack.push(renderTarget);
         this.#setRenderTarget(renderTarget);
@@ -39400,7 +40170,7 @@ class Graphics {
         }
     }
     async savePictureAsFile(filename) {
-        return new File([await this.toBlob()], filename);
+        return new File([await this.toBlob() ?? new Blob()], filename);
     }
     async toBlob() {
         let promiseResolve;
@@ -39413,12 +40183,13 @@ class Graphics {
         this.#canvas.toBlob(callback);
         return promise;
     }
-    _savePicture(filename) {
+    async _savePicture(filename) {
+        /*
         const callback = function (blob) {
             //SaveFile(filename, blob);
-            SaveFile(new File([blob], filename));
         };
-        this.#canvas.toBlob(callback);
+        this.#canvas.toBlob(callback);*/
+        SaveFile(await this.savePictureAsFile(filename));
     }
     startRecording(frameRate = 60, bitsPerSecond) {
         const stream = this.#canvas.captureStream(frameRate);
@@ -39426,6 +40197,9 @@ class Graphics {
         this.#mediaRecorder.start();
     }
     stopRecording(fileName = RECORDER_DEFAULT_FILENAME) {
+        if (!this.#mediaRecorder) {
+            return;
+        }
         this.#mediaRecorder.ondataavailable = (event) => {
             const blob = new Blob([event.data], { 'type': RECORDER_MIME_TYPE });
             SaveFile(new File([blob], fileName));
@@ -39440,16 +40214,16 @@ class Graphics {
     async isReady() {
         await this.#readyPromise;
     }
-    getParameter(parameterName) {
-        return this.glContext?.getParameter(parameterName);
+    getParameter(param) {
+        return this.glContext?.getParameter(param);
     }
     cleanupGLError() {
-        this.glContext.getError(); //empty the error
+        this.glContext?.getError(); //empty the error
     }
-    getGLError(reason) {
-        let glError = this.glContext.getError();
+    getGLError(context) {
+        let glError = this.glContext?.getError() ?? 0;
         if (glError) {
-            console.error(`GL Error in ${reason} : `, glError);
+            console.error(`GL Error in ${context} : `, glError);
         }
     }
     useLogDepth(use) {
@@ -42117,15 +42891,15 @@ class Manipulator extends Entity {
                 this.#setAxisSelected(false);
             }
         });
-        new ShortcutHandler().addEventListener(MANIPULATOR_SHORTCUT_INCREASE, event => this.size *= 1.1);
-        new ShortcutHandler().addEventListener(MANIPULATOR_SHORTCUT_DECREASE, event => this.size *= 0.9);
-        new ShortcutHandler().addEventListener(MANIPULATOR_SHORTCUT_TRANSLATION, event => this.mode = 0);
-        new ShortcutHandler().addEventListener(MANIPULATOR_SHORTCUT_ROTATION, event => this.mode = 1);
-        new ShortcutHandler().addEventListener(MANIPULATOR_SHORTCUT_SCALE, event => this.mode = 2);
-        new ShortcutHandler().addEventListener(MANIPULATOR_SHORTCUT_AXIS_ORIENTATION, event => this.#axisOrientation = (++this.#axisOrientation) % 2);
-        new ShortcutHandler().addEventListener(MANIPULATOR_SHORTCUT_TOGGLE_X, event => this.enableX = !this.enableX);
-        new ShortcutHandler().addEventListener(MANIPULATOR_SHORTCUT_TOGGLE_Y, event => this.enableY = !this.enableY);
-        new ShortcutHandler().addEventListener(MANIPULATOR_SHORTCUT_TOGGLE_Z, event => this.enableZ = !this.enableZ);
+        ShortcutHandler.addEventListener(MANIPULATOR_SHORTCUT_INCREASE, event => this.size *= 1.1);
+        ShortcutHandler.addEventListener(MANIPULATOR_SHORTCUT_DECREASE, event => this.size *= 0.9);
+        ShortcutHandler.addEventListener(MANIPULATOR_SHORTCUT_TRANSLATION, event => this.mode = 0);
+        ShortcutHandler.addEventListener(MANIPULATOR_SHORTCUT_ROTATION, event => this.mode = 1);
+        ShortcutHandler.addEventListener(MANIPULATOR_SHORTCUT_SCALE, event => this.mode = 2);
+        ShortcutHandler.addEventListener(MANIPULATOR_SHORTCUT_AXIS_ORIENTATION, event => this.#axisOrientation = (++this.#axisOrientation) % 2);
+        ShortcutHandler.addEventListener(MANIPULATOR_SHORTCUT_TOGGLE_X, event => this.enableX = !this.enableX);
+        ShortcutHandler.addEventListener(MANIPULATOR_SHORTCUT_TOGGLE_Y, event => this.enableY = !this.enableY);
+        ShortcutHandler.addEventListener(MANIPULATOR_SHORTCUT_TOGGLE_Z, event => this.enableZ = !this.enableZ);
     }
     resize(camera) {
         if (!this.isVisible()) {
@@ -42676,7 +43450,7 @@ class Manipulator extends Entity {
     }
 }
 //Set default shortcuts
-new ShortcutHandler().setShortcuts('3dview,scene-explorer', new Map([
+ShortcutHandler.setShortcuts('3dview,scene-explorer', new Map([
     [MANIPULATOR_SHORTCUT_INCREASE, 'PLUS'],
     [MANIPULATOR_SHORTCUT_DECREASE, '-'],
     [MANIPULATOR_SHORTCUT_TRANSLATION, 'ALT+T'],
@@ -50929,7 +51703,7 @@ class SceneExplorerEntity extends HTMLElement {
     constructor() {
         super();
         this.#doOnce = true;
-        defineHarmonyToggleButton();
+        defineToggleButton();
         this.#htmlHeader = createElement('div', {
             class: 'scene-explorer-entity-header',
             childs: [
@@ -56805,9 +57579,9 @@ class SceneExplorer {
         this.#initHtmlHeader();
         this.#initHtmlProperties();
         this.applyFilter();
-        new ShortcutHandler().addContext('scene-explorer,scene-explorer-nodes', this.#htmlScene);
-        new ShortcutHandler().addContext('scene-explorer,scene-explorer-files', this.htmlFileSelector);
-        new ShortcutHandler().addContext('scene-explorer,scene-explorer-properties', this.#htmlProperties);
+        ShortcutHandler.addContext('scene-explorer,scene-explorer-nodes', this.#htmlScene);
+        ShortcutHandler.addContext('scene-explorer,scene-explorer-files', this.htmlFileSelector);
+        ShortcutHandler.addContext('scene-explorer,scene-explorer-properties', this.#htmlProperties);
     }
     #initHtmlHeader() {
         this.#htmlNameFilter = createElement('input', {
@@ -56905,7 +57679,7 @@ class SceneExplorer {
     }
     #populateTypeFilter() {
         for (let type of ENTITIES) {
-            let option = createElement('option', { innerHTML: type, value: type });
+            let option = createElement('option', { innerText: type, value: type });
             this.#htmlTypeFilter.append(option);
         }
     }
@@ -60527,7 +61301,7 @@ class ShaderEditor extends HTMLElement {
             return;
         }
         this.#htmlShaderNameSelect.innerText = '';
-        let shaderGroup = createElement('optgroup', { 'i18n-label': '#shader_editor_shaders', parent: this.#htmlShaderNameSelect });
+        let shaderGroup = createElement('optgroup', { i18n: { label: '#shader_editor_shaders', }, parent: this.#htmlShaderNameSelect });
         const shaderList = [...ShaderManager.shaderList].sort();
         for (let shaderName of shaderList) {
             const option = createElement('option', {
@@ -60541,7 +61315,7 @@ class ShaderEditor extends HTMLElement {
                 option.selected = true;
             }
         }
-        let includeGroup = createElement('optgroup', { 'i18n-label': '#shader_editor_includes', parent: this.#htmlShaderNameSelect });
+        let includeGroup = createElement('optgroup', { i18n: { label: '#shader_editor_includes', }, parent: this.#htmlShaderNameSelect });
         const includeList = [...getIncludeList()].sort();
         for (let includeName of includeList) {
             const option = createElement('option', {
@@ -60674,6 +61448,96 @@ function loadScripts(array, callback) {
         }
     })();
 }
+
+create$4(); //TODO: use IDENTITY_VEC3
+create$2();
+const tempVec3$l = create$4();
+const tempQuat$6 = create$2();
+let mat$2 = create$5();
+class ControlPoint extends Entity {
+    isControlPoint = true;
+    #parentControlPoint;
+    currentWorldPosition = create$4();
+    prevWorldPosition = create$4();
+    deltaWorldPosition = create$4();
+    currentWorldQuaternion = create$2();
+    prevWorldQuaternion = create$2();
+    currentWorldTransformation = create$5();
+    prevWorldTransformation = create$5();
+    deltaWorldTransformation = create$5();
+    //TODO: keep these vectors ?
+    // Forward vector
+    fVector = create$4();
+    // Up vector
+    uVector = create$4();
+    // Right vector
+    rVector = create$4();
+    parentModel = null;
+    lastComputed = -1;
+    getWorldTransformation(mat = create$5()) {
+        this.getWorldQuaternion(tempQuat$6);
+        this.getWorldPosition(tempVec3$l);
+        return fromRotationTranslation$1(mat, tempQuat$6, tempVec3$l);
+    }
+    getWorldQuaternion(q = create$2()) {
+        if (this.#parentControlPoint) {
+            this.#parentControlPoint.getWorldQuaternion(q);
+            mul$2(q, q, this._quaternion);
+        }
+        else {
+            super.getWorldQuaternion(q);
+        }
+        return q;
+    }
+    parentChanged(parent) {
+        let parentModel = this.getParentModel();
+        this.forEach(entity => {
+            if (entity.isControlPoint) {
+                entity.parentModel = parentModel;
+            }
+        });
+    }
+    set parentControlPoint(parentControlPoint) {
+        this.#parentControlPoint = parentControlPoint;
+    }
+    get parentControlPoint() {
+        return this.#parentControlPoint;
+    }
+    step() {
+        if (this.lastComputed < new Graphics().currentTick) {
+            this.lastComputed = new Graphics().currentTick;
+            copy$4(this.prevWorldPosition, this.currentWorldPosition);
+            copy$2(this.prevWorldQuaternion, this.currentWorldQuaternion);
+            copy$5(this.prevWorldTransformation, this.currentWorldTransformation);
+            this.#compute();
+        }
+    }
+    resetDelta() {
+        this.#compute();
+        zero$4(this.deltaWorldPosition);
+        identity$2(this.deltaWorldTransformation);
+    }
+    #compute() {
+        super.getWorldPosition(this.currentWorldPosition);
+        super.getWorldQuaternion(this.currentWorldQuaternion);
+        fromRotationTranslation$1(this.currentWorldTransformation, this.currentWorldQuaternion, this.currentWorldPosition);
+        // compute delta world position
+        sub$2(this.deltaWorldPosition, this.currentWorldPosition, this.prevWorldPosition);
+        // compute delta world transformation
+        invert$2(mat$2, this.prevWorldTransformation);
+        mul$5(this.deltaWorldTransformation, this.currentWorldTransformation, mat$2);
+    }
+    deltaPosFrom(other, out = create$4()) {
+        return sub$2(out, other.currentWorldPosition, this.currentWorldPosition);
+    }
+    static async constructFromJSON(json) {
+        return new ControlPoint();
+    }
+    static getEntityName() {
+        return 'ControlPoint';
+    }
+}
+registerEntity(ControlPoint);
 
 let randomFloats;
 const MAX_FLOATS = 4096;
@@ -61267,22 +62131,26 @@ class FlexAnimationTrack {
 class Sound {
     #repository;
     #wave;
-    constructor(repository, wave) {
+    #channel;
+    constructor(repository, wave, channel) {
         this.#repository = repository;
         this.#wave = wave;
+        this.#channel = channel;
     }
     getRepository() {
         return this.#repository;
     }
     getWave() {
-        const wave = this.#wave;
-        if (wave instanceof Array) {
-            const index = Math.floor(Math.random() * wave.length);
-            return wave[index];
+        if (Array.isArray(this.#wave)) {
+            const index = Math.floor(Math.random() * this.#wave.length);
+            return this.#wave[index];
         }
         else {
-            return wave;
+            return this.#wave;
         }
+    }
+    getChannel() {
+        return this.#channel;
     }
 }
 
@@ -61606,12 +62474,12 @@ class KvReader {
 
 class Source1SoundManager {
     static #mute = false;
-    static #audioList = {};
+    static #audioList = new Map();
     static #soundList = {};
-    static #soundsPerRepository = {};
+    static #soundsPerRepository = new Map();
     static #soundListPerRepository = {};
-    static #manifestsPerRepository = {};
-    static #promisePerRepository = {};
+    static #manifestsPerRepository = new Map();
+    static #promisePerRepository = new Map();
     /**
      * Play a sound
      * @param {String} soundName soundName
@@ -61626,13 +62494,13 @@ class Source1SoundManager {
             let wave = sound.getWave();
             // Remove #, *, ( and ) from paths
             wave = wave.replace(/[\(\)\#\*]/g, '').toLowerCase();
-            let audio = this.#audioList[wave];
+            let audio = this.#audioList.get(wave);
             //audio = null;//removeme
             if (!audio) {
                 const response = await new Repositories().getFileAsBlob(sound.getRepository(), '/sound/' + wave);
                 if (!response.error) {
                     audio = new Audio(URL.createObjectURL(response.blob) /*new URL('/sound/' + wave, repository.base).toString()*/);
-                    this.#audioList[wave] = audio;
+                    this.#audioList.set(wave, audio);
                     audio.volume = 0.1;
                     //audio.play();
                     AudioMixer.playAudio('master', audio); //TODO: change master per actual channel
@@ -61650,18 +62518,20 @@ class Source1SoundManager {
         if (repo) {
             return repo[soundName];
         }*/
-        return this.#soundsPerRepository[repositoryName]?.[soundName];
+        return this.#soundsPerRepository.get(repositoryName)?.get(soundName);
     }
     static async #fetchManifests(repositoryName) {
-        if (this.#promisePerRepository[repositoryName]) {
-            await this.#promisePerRepository[repositoryName];
+        if (this.#promisePerRepository.has(repositoryName)) {
+            await this.#promisePerRepository.get(repositoryName);
         }
-        this.#soundsPerRepository[repositoryName] = this.#soundsPerRepository[repositoryName] ?? {};
+        if (!this.#soundsPerRepository.has(repositoryName)) {
+            this.#soundsPerRepository.set(repositoryName, new Map());
+        }
         let promiseResolve;
-        this.#promisePerRepository[repositoryName] = new Promise(resolve => promiseResolve = resolve);
-        let manifests = this.#manifestsPerRepository[repositoryName];
+        this.#promisePerRepository.set(repositoryName, new Promise(resolve => promiseResolve = resolve));
+        let manifests = this.#manifestsPerRepository.get(repositoryName);
         if (manifests) {
-            delete this.#manifestsPerRepository[repositoryName];
+            this.#manifestsPerRepository.delete(repositoryName);
             for (const manifest of manifests) {
                 await this.#fetchManifest(repositoryName, manifest);
             }
@@ -61675,14 +62545,14 @@ class Source1SoundManager {
         }
     }
     static #loadManifest(repositoryName, manifestTxt) {
-        const sounds = this.#soundsPerRepository[repositoryName];
+        const sounds = this.#soundsPerRepository.get(repositoryName);
         const kv = new KvReader();
         kv.readText(manifestTxt);
         const list = kv.rootElements;
         const keyArray = Object.keys(list);
         for (let i = 0; i < keyArray.length; ++i) {
             const soundKey = keyArray[i];
-            const sound = list[soundKey];
+            const sound = list[soundKey] /*TODO: improve type*/;
             let wave;
             if (sound.rndwave) {
                 wave = [];
@@ -61694,8 +62564,8 @@ class Source1SoundManager {
                 wave = sound.wave;
             }
             //const wave = sound.rndwave ? sound.rndwave : sound.wave;
-            sounds[soundKey] = new Sound(repositoryName, wave);
-            sounds[soundKey].channel = sound.channel;
+            const s = new Sound(repositoryName, wave, sound.channel);
+            sounds?.set(soundKey, s);
         }
     }
     /**
@@ -61751,10 +62621,10 @@ class Source1SoundManager {
         }
         */
     static loadManifest(repositoryName, fileName) {
-        let manifests = this.#manifestsPerRepository[repositoryName];
+        let manifests = this.#manifestsPerRepository.get(repositoryName);
         if (!manifests) {
             manifests = [];
-            this.#manifestsPerRepository[repositoryName] = manifests;
+            this.#manifestsPerRepository.set(repositoryName, manifests);
         }
         manifests.push(fileName);
     }
@@ -64175,7 +65045,7 @@ const STUDIO_ANIM_ANIMROT = 0x08; // mstudioanim_valueptr_t
 const STUDIO_ANIM_DELTA = 0x10;
 const STUDIO_ANIM_RAWROT2 = 0x20; // Quaternion64
 const tempMat4$1 = create$5();
-const tempQuat$6 = create$2();
+const tempQuat$5 = create$2();
 class MdlStudioAnim {
     animValuePtrRot;
     animValuePtrPos;
@@ -64259,7 +65129,7 @@ class MdlStudioAnim {
             return out;
         };
         var Eul_FromHMatrix = function (out, M, i, j, k, h, parity, repeat, frame) {
-            var ea = tempQuat$6;
+            var ea = tempQuat$5;
             if (repeat == 'yes') {
                 var sy = Math.sqrt(M[i * 4 + j] * M[i * 4 + j] + M[i * 4 + k] * M[i * 4 + k]);
                 if (sy > 16 * FLT_EPSILON) {
@@ -68308,9 +69178,7 @@ class SourceModel {
                 animationFrame.setDatas('flags', AnimationFrameDataType.Number, boneFlags);
                 animation.addFrame(animationFrame);
             }
-            console.log(frameCount, bones);
         }
-        console.log(seq, animation);
         return animation;
     }
 }
@@ -70316,7 +71184,13 @@ function MdlStudioVertAnim() {
 }
 function MdlEyeball() {
 }
-function MdlAttachement() {
+class MdlAttachement {
+    name;
+    lowcasename;
+    mdl;
+    flags = 0;
+    localbone = 0;
+    local = [];
 }
 function MdlStudioAnimDesc() {
     this.animSections = [];
@@ -70358,7 +71232,12 @@ function MdlStudioFlexRule() {
 }
 function MdlStudioFlexOp() {
 }
-function MdlStudioFlexController() {
+class MdlStudioFlexController {
+    localToGlobal = 0;
+    min = 0;
+    max = 0;
+    type = '';
+    name = '';
 }
 function MdlStudioHitboxSet() {
 }
@@ -71862,96 +72741,6 @@ const PARTICLE_ORIENTATION_WORLD_Z_ALIGNED = 2;
 const PARTICLE_ORIENTATION_ALIGN_TO_PARTICLE_NORMAL = 3;
 const PARTICLE_ORIENTATION_SCREENALIGN_TO_PARTICLE_NORMAL = 4;
 const PARTICLE_ORIENTATION_FULL_3AXIS_ROTATION = 5;
-
-create$4(); //TODO: use IDENTITY_VEC3
-create$2();
-const tempVec3$l = create$4();
-const tempQuat$5 = create$2();
-let mat$2 = create$5();
-class ControlPoint extends Entity {
-    isControlPoint = true;
-    #parentControlPoint;
-    currentWorldPosition = create$4();
-    prevWorldPosition = create$4();
-    deltaWorldPosition = create$4();
-    currentWorldQuaternion = create$2();
-    prevWorldQuaternion = create$2();
-    currentWorldTransformation = create$5();
-    prevWorldTransformation = create$5();
-    deltaWorldTransformation = create$5();
-    //TODO: keep these vectors ?
-    // Forward vector
-    fVector = create$4();
-    // Up vector
-    uVector = create$4();
-    // Right vector
-    rVector = create$4();
-    parentModel = null;
-    lastComputed = -1;
-    getWorldTransformation(mat = create$5()) {
-        this.getWorldQuaternion(tempQuat$5);
-        this.getWorldPosition(tempVec3$l);
-        return fromRotationTranslation$1(mat, tempQuat$5, tempVec3$l);
-    }
-    getWorldQuaternion(q = create$2()) {
-        if (this.#parentControlPoint) {
-            this.#parentControlPoint.getWorldQuaternion(q);
-            mul$2(q, q, this._quaternion);
-        }
-        else {
-            super.getWorldQuaternion(q);
-        }
-        return q;
-    }
-    parentChanged(parent) {
-        let parentModel = this.getParentModel();
-        this.forEach(entity => {
-            if (entity.isControlPoint) {
-                entity.parentModel = parentModel;
-            }
-        });
-    }
-    set parentControlPoint(parentControlPoint) {
-        this.#parentControlPoint = parentControlPoint;
-    }
-    get parentControlPoint() {
-        return this.#parentControlPoint;
-    }
-    step() {
-        if (this.lastComputed < new Graphics().currentTick) {
-            this.lastComputed = new Graphics().currentTick;
-            copy$4(this.prevWorldPosition, this.currentWorldPosition);
-            copy$2(this.prevWorldQuaternion, this.currentWorldQuaternion);
-            copy$5(this.prevWorldTransformation, this.currentWorldTransformation);
-            this.#compute();
-        }
-    }
-    resetDelta() {
-        this.#compute();
-        zero$4(this.deltaWorldPosition);
-        identity$2(this.deltaWorldTransformation);
-    }
-    #compute() {
-        super.getWorldPosition(this.currentWorldPosition);
-        super.getWorldQuaternion(this.currentWorldQuaternion);
-        fromRotationTranslation$1(this.currentWorldTransformation, this.currentWorldQuaternion, this.currentWorldPosition);
-        // compute delta world position
-        sub$2(this.deltaWorldPosition, this.currentWorldPosition, this.prevWorldPosition);
-        // compute delta world transformation
-        invert$2(mat$2, this.prevWorldTransformation);
-        mul$5(this.deltaWorldTransformation, this.currentWorldTransformation, mat$2);
-    }
-    deltaPosFrom(other, out = create$4()) {
-        return sub$2(out, other.currentWorldPosition, this.currentWorldPosition);
-    }
-    static async constructFromJSON(json) {
-        return new ControlPoint();
-    }
-    static getEntityName() {
-        return 'ControlPoint';
-    }
-}
-registerEntity(ControlPoint);
 
 var _a;
 const MAX_PARTICLE_CONTROL_POINTS = 64;
@@ -97530,6 +98319,7 @@ class RenderTargetViewer {
 
 var index = /*#__PURE__*/Object.freeze({
   __proto__: null,
+  ATTRIBUTE_CHANGED: ATTRIBUTE_CHANGED,
   Add: Add,
   AddVectorToVector: AddVectorToVector,
   AlphaFadeAndDecay: AlphaFadeAndDecay,
@@ -97592,6 +98382,7 @@ var index = /*#__PURE__*/Object.freeze({
   ConstrainDistanceToPathBetweenTwoControlPoints: ConstrainDistanceToPathBetweenTwoControlPoints,
   ContextObserver: ContextObserver,
   ContinuousEmitter: ContinuousEmitter,
+  ControlPoint: ControlPoint,
   CopyPass: CopyPass,
   CreateFromParentParticles: CreateFromParentParticles,
   CreateOnModel: CreateOnModel,
@@ -97618,6 +98409,7 @@ var index = /*#__PURE__*/Object.freeze({
   Divide: Divide,
   DrawCircle: DrawCircle,
   DummyEntity: DummyEntity,
+  ENTITY_DELETED: ENTITY_DELETED,
   EPSILON: EPSILON$2,
   EmitContinuously: EmitContinuously,
   EmitInstantaneously: EmitInstantaneously,
@@ -98824,10 +99616,10 @@ class TextureCombiner {
                     let item = null;
                     for (let itemDefinitionKey in paintKitDefinition) {
                         let itemDefinitionPerItem = paintKitDefinition[itemDefinitionKey];
-                        let itemDefinitionTemplate = itemDefinitionPerItem.itemDefinitionTemplate;
+                        let itemDefinitionTemplate = itemDefinitionPerItem.itemDefinitionTemplate ?? itemDefinitionPerItem.item_definition_template;
                         if (itemDefinitionTemplate) {
                             let itemDefinition = await this._getDefindex(itemDefinitionTemplate);
-                            if (itemDefinition?.itemDefinitionIndex == weaponDefIndex) {
+                            if ((itemDefinition?.itemDefinitionIndex ?? itemDefinition?.item_definition_index) == weaponDefIndex) {
                                 item = itemDefinitionPerItem;
                                 break;
                             }
@@ -98838,8 +99630,8 @@ class TextureCombiner {
                         let items = paintKitDefinition['item'];
                         if (items) {
                             for (let it of items) {
-                                let itemDefinition = await this._getDefindex(it.itemDefinitionTemplate);
-                                if (getLegacyPaintKit(itemDefinition?.itemDefinitionIndex) == weaponDefIndex) {
+                                let itemDefinition = await this._getDefindex(it.itemDefinitionTemplate ?? it.item_definition_template);
+                                if (getLegacyPaintKit(itemDefinition?.itemDefinitionIndex ?? itemDefinition?.item_definition_index) == weaponDefIndex) {
                                     item = it;
                                     break;
                                 }
@@ -98847,19 +99639,19 @@ class TextureCombiner {
                         }
                     }
                     if (item) {
-                        let template = paintKitDefinition.operationTemplate; // || item.itemDefinitionTemplate;
+                        let template = paintKitDefinition.operationTemplate ?? paintKitDefinition.operation_template; // || item.itemDefinitionTemplate;
                         if (!template) {
-                            let itemDefinitionTemplate = await this._getDefindex(item.itemDefinitionTemplate);
+                            let itemDefinitionTemplate = await this._getDefindex(item.itemDefinitionTemplate ?? item.item_definition_template);
                             if (itemDefinitionTemplate && itemDefinitionTemplate.definition && itemDefinitionTemplate.definition[wearLevel]) {
-                                template = itemDefinitionTemplate.definition[wearLevel].operationTemplate;
+                                template = itemDefinitionTemplate.definition[wearLevel].operationTemplate ?? itemDefinitionTemplate.definition[wearLevel].operation_template;
                             }
                         }
                         if (template) {
                             let operationTemplate = await this._getDefindex(template);
                             //console.error(operationTemplate);//removeme
-                            if (operationTemplate && operationTemplate.operationNode) {
+                            if (operationTemplate && (operationTemplate.operationNode ?? operationTemplate.operation_node)) {
                                 await this.#setupVariables(paintKitDefinition, wearLevel, item);
-                                let stage = await this.#processOperationNode(operationTemplate.operationNode[0]); //top level node has 1 operation
+                                let stage = await this.#processOperationNode((operationTemplate.operationNode ?? operationTemplate.operation_node)[0]); //top level node has 1 operation
                                 //console.error(stage.toString());
                                 stage.linkNodes();
                                 function GetSeed(seed) {
@@ -98918,8 +99710,8 @@ class TextureCombiner {
             if (item.data) {
                 this.#addVariables(item.data.variable);
             }
-            if (item.itemDefinitionTemplate) {
-                let itemDefinition = await this._getDefindex(item.itemDefinitionTemplate);
+            if (item.itemDefinitionTemplate ?? item.item_definition_template) {
+                let itemDefinition = await this._getDefindex(item.itemDefinitionTemplate ?? item.item_definition_template);
                 if (itemDefinition) {
                     if (itemDefinition.definition && itemDefinition.definition[wearLevel]) {
                         this.#addVariables(itemDefinition.definition[wearLevel].variable);
@@ -98970,16 +99762,21 @@ class TextureCombiner {
     #getStageName(stage) {
         switch (true) {
             case stage.textureLookup != undefined:
+            case stage.texture_lookup != undefined:
                 return 'textureLookup';
             case stage.combineAdd != undefined:
+            case stage.combine_add != undefined:
                 return 'combine_add';
             case stage.combineLerp != undefined:
+            case stage.combine_lerp != undefined:
                 return 'combine_lerp';
             case stage.combineMultiply != undefined:
+            case stage.combine_multiply != undefined:
                 return 'multiply';
             case stage.select != undefined:
                 return 'select';
             case stage.applySticker != undefined:
+            case stage.apply_sticker != undefined:
                 return 'applySticker';
             default:
                 throw 'Unsuported stage';
@@ -98993,14 +99790,18 @@ class TextureCombiner {
             let s;
             switch (true) {
                 case stage.textureLookup != undefined:
-                    s = stage.textureLookup;
+                case stage.texture_lookup != undefined:
+                    s = stage.textureLookup ?? stage.texture_lookup;
                     subStage = this.#processTextureStage(s);
                     stage2 = s;
                     break;
                 case stage.combineAdd != undefined:
+                case stage.combine_add != undefined:
                 case stage.combineLerp != undefined:
+                case stage.combine_lerp != undefined:
                 case stage.combineMultiply != undefined:
-                    s = stage.combineAdd || stage.combineLerp || stage.combineMultiply;
+                case stage.combine_multiply != undefined:
+                    s = stage.combineAdd || stage.combine_add || stage.combineLerp || stage.combine_lerp || stage.combineMultiply || stage.combine_multiply;
                     subStage = this.#processCombineStage(s, this.#getStageName(stage));
                     stage2 = s;
                     break;
@@ -99010,25 +99811,26 @@ class TextureCombiner {
                     stage2 = s;
                     break;
                 case stage.applySticker != undefined:
-                    s = stage.applySticker;
+                case stage.apply_sticker != undefined:
+                    s = stage.applySticker ?? stage.apply_sticker;
                     subStage = this.#processApplyStickerStage(s);
                     stage2 = s;
                     break;
                 default:
                     throw 'Unsuported stage';
             }
-            if (stage2.operationNode) {
-                let chidren = await this.#processOperationNodeArray(stage2.operationNode /*, subStage/*, node*/);
+            if (stage2.operationNode ?? stage2.operation_node) {
+                let chidren = await this.#processOperationNodeArray(stage2.operationNode ?? stage2.operation_node /*, subStage/*, node*/);
                 if (subStage) {
                     subStage.appendChildren(chidren);
                 }
             }
         }
-        else if (operationNode.operationTemplate) {
-            let template = await this._getDefindex(operationNode.operationTemplate);
-            if (template && template.operationNode) {
+        else if (operationNode.operationTemplate ?? operationNode.operation_template) {
+            let template = await this._getDefindex(operationNode.operationTemplate ?? operationNode.operation_template);
+            if (template && (template.operationNode ?? template.operation_node)) {
                 //console.error('template.operationNode', template.operationNode.length, template.operationNode);
-                let chidren = await this.#processOperationNodeArray(template.operationNode /*, parentStage/*, node, inputs*/);
+                let chidren = await this.#processOperationNodeArray(template.operationNode ?? template.operation_node /*, parentStage/*, node, inputs*/);
                 return chidren;
             }
             else {
@@ -99093,10 +99895,10 @@ console.error('node or subnode is null', node, subNode);
         let node = null;
         var texture;
         if (this.#team == 0) {
-            texture = stage.textureRed || stage.texture;
+            texture = (stage.textureRed ?? stage.texture_red) || stage.texture;
         }
         else {
-            texture = stage.textureBlue || stage.texture;
+            texture = (stage.textureBlue ?? stage.texture_blue) || stage.texture;
         }
         let texturePath = this.#getVarField(texture);
         texturePath = texturePath.replace(/\.tga$/, '');
@@ -99112,32 +99914,32 @@ console.error('node or subnode is null', node, subNode);
         }
         let textureStage = new TextureStage(node);
         textureStage.texturePath = texturePath;
-        if (stage.adjustBlack) {
-            ParseRangeThenDivideBy(textureStage.parameters.adjustBlack, this.#getVarField(stage.adjustBlack));
+        if (stage.adjustBlack ?? stage.adjust_black) {
+            ParseRangeThenDivideBy(textureStage.parameters.adjustBlack, this.#getVarField(stage.adjustBlack ?? stage.adjust_black));
         }
-        if (stage.adjustOffset) {
-            ParseRangeThenDivideBy(textureStage.parameters.adjustOffset, this.#getVarField(stage.adjustOffset));
+        if (stage.adjustOffset ?? stage.adjust_offset) {
+            ParseRangeThenDivideBy(textureStage.parameters.adjustOffset, this.#getVarField(stage.adjustOffset ?? stage.adjust_offset));
         }
-        if (stage.adjustGamma) {
-            ParseInverseRange(textureStage.parameters.adjustGamma, this.#getVarField(stage.adjustGamma));
+        if (stage.adjustGamma ?? stage.adjust_gamma) {
+            ParseInverseRange(textureStage.parameters.adjustGamma, this.#getVarField(stage.adjustGamma ?? stage.adjust_gamma));
         }
-        if (stage.scaleUv) {
-            ParseRange(textureStage.parameters.scaleUV, this.#getVarField(stage.scaleUv));
+        if (stage.scaleUv ?? stage.scale_uv) {
+            ParseRange(textureStage.parameters.scaleUV, this.#getVarField(stage.scaleUv ?? stage.scale_uv));
         }
         if (stage.rotation) {
             ParseRange(textureStage.parameters.rotation, this.#getVarField(stage.rotation));
         }
-        if (stage.translateU) {
-            ParseRange(textureStage.parameters.translateU, this.#getVarField(stage.translateU));
+        if (stage.translateU ?? stage.translate_u) {
+            ParseRange(textureStage.parameters.translateU, this.#getVarField(stage.translateU ?? stage.translate_u));
         }
-        if (stage.translateV) {
-            ParseRange(textureStage.parameters.translateV, this.#getVarField(stage.translateV));
+        if (stage.translateV ?? stage.translate_v) {
+            ParseRange(textureStage.parameters.translateV, this.#getVarField(stage.translateV ?? stage.translate_v));
         }
-        if (stage.flipU) {
-            textureStage.parameters.allowFlipU = this.#getVarField(stage.flipU) != 0;
+        if (stage.flipU ?? stage.flip_u) {
+            textureStage.parameters.allowFlipU = this.#getVarField(stage.flipU ?? stage.flip_u) != 0;
         }
-        if (stage.flipV) {
-            textureStage.parameters.allowFlipV = this.#getVarField(stage.flipV) != 0;
+        if (stage.flipV ?? stage.flip_v) {
+            textureStage.parameters.allowFlipV = this.#getVarField(stage.flipV ?? stage.flip_v) != 0;
         }
         return textureStage;
     }
@@ -99164,23 +99966,23 @@ console.error('node or subnode is null', node, subNode);
     #processApplyStickerStage(stage) {
         let applyStickerNode = this.nodeImageEditor.addNode(this.textureApplyStickerNode);
         let applyStickerStage = new ApplyStickerStage(applyStickerNode);
-        if (stage.adjustBlack) {
-            ParseRangeThenDivideBy(applyStickerStage.parameters.adjustBlack, this.#getVarField(stage.adjustBlack));
+        if (stage.adjustBlack ?? stage.adjust_black) {
+            ParseRangeThenDivideBy(applyStickerStage.parameters.adjustBlack, this.#getVarField(stage.adjustBlack ?? stage.adjust_black));
         }
-        if (stage.adjustOffset) {
-            ParseRangeThenDivideBy(applyStickerStage.parameters.adjustOffset, this.#getVarField(stage.adjustOffset));
+        if (stage.adjustOffset ?? stage.adjust_offset) {
+            ParseRangeThenDivideBy(applyStickerStage.parameters.adjustOffset, this.#getVarField(stage.adjustOffset ?? stage.adjust_offset));
         }
-        if (stage.adjustGamma) {
-            ParseInverseRange(applyStickerStage.parameters.adjustGamma, this.#getVarField(stage.adjustGamma));
+        if (stage.adjustGamma ?? stage.adjust_gamma) {
+            ParseInverseRange(applyStickerStage.parameters.adjustGamma, this.#getVarField(stage.adjustGamma ?? stage.adjust_gamma));
         }
-        if (stage.destBl) {
-            ParseVec2(applyStickerStage.parameters.bl, this.#getVarField(stage.destBl));
+        if (stage.destBl ?? stage.dest_bl) {
+            ParseVec2(applyStickerStage.parameters.bl, this.#getVarField(stage.destBl ?? stage.dest_bl));
         }
-        if (stage.destTl) {
-            ParseVec2(applyStickerStage.parameters.tl, this.#getVarField(stage.destTl));
+        if (stage.destTl ?? stage.dest_tl) {
+            ParseVec2(applyStickerStage.parameters.tl, this.#getVarField(stage.destTl ?? stage.dest_tl));
         }
-        if (stage.destTr) {
-            ParseVec2(applyStickerStage.parameters.tr, this.#getVarField(stage.destTr));
+        if (stage.destTr ?? stage.dest_tr) {
+            ParseVec2(applyStickerStage.parameters.tr, this.#getVarField(stage.destTr ?? stage.dest_tr));
         }
         if (stage.sticker) {
             let arr = stage.sticker;
@@ -99308,7 +100110,7 @@ class WeaponManager {
             let paintKitDefinitions = definitions[9];
             for (let paintKitDefId in paintKitDefinitions) {
                 let definition = paintKitDefinitions[paintKitDefId];
-                let token = this.protoDefs ? this.protoDefs[definition.locDesctoken] || definition.locDesctoken : definition.locDesctoken;
+                let token = this.protoDefs ? this.protoDefs[(definition.locDesctoken ?? definition.loc_desctoken)] || (definition.locDesctoken ?? definition.loc_desctoken) : (definition.locDesctoken ?? definition.loc_desctoken);
                 this.#addPaintKit(definition, token);
             }
         }
@@ -99331,7 +100133,7 @@ class WeaponManager {
             for (let weaponName in itemList) {
                 let itemDefinition = paintKitItemDefinitions[itemList[weaponName]];
                 if (itemDefinition) {
-                    this.#addWeapon(paintKit, paintKit.header.defindex, weaponName, itemList[weaponName], itemDefinition.itemDefinitionIndex, descToken);
+                    this.#addWeapon(paintKit, paintKit.header.defindex, weaponName, itemList[weaponName], itemDefinition.itemDefinitionIndex ?? itemDefinition.item_definition_index, descToken);
                 }
             }
         }
@@ -99439,16 +100241,16 @@ class WeaponManager {
                 if (propertyName == 'item') {
                     for (let i = 0; i < paintKitDefinitionItem.length; i++) {
                         let paintKitDefinitionItem2 = paintKitDefinitionItem[i];
-                        if (paintKitDefinitionItem2.itemDefinitionTemplate) {
+                        if (paintKitDefinitionItem2.itemDefinitionTemplate ?? paintKitDefinitionItem2.item_definition_template) {
                             //itemList.push(paintKitDefinitionItem2.itemDefinitionTemplate.defindex);
-                            itemList['item' + i] = paintKitDefinitionItem2.itemDefinitionTemplate.defindex;
+                            itemList['item' + i] = (paintKitDefinitionItem2.itemDefinitionTemplate ?? paintKitDefinitionItem2.item_definition_template).defindex;
                         }
                     }
                 }
                 else {
-                    if (paintKitDefinitionItem.itemDefinitionTemplate) {
+                    if (paintKitDefinitionItem.itemDefinitionTemplate ?? paintKitDefinitionItem.item_definition_template) {
                         //itemList.push(paintKitDefinitionItem.itemDefinitionTemplate.defindex);
-                        itemList[propertyName] = paintKitDefinitionItem.itemDefinitionTemplate.defindex;
+                        itemList[propertyName] = (paintKitDefinitionItem.itemDefinitionTemplate ?? paintKitDefinitionItem.item_definition_template).defindex;
                     }
                 }
             }
