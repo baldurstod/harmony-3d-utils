@@ -347,10 +347,10 @@ class TextureCombiner {
                     let item = null;
                     for (let itemDefinitionKey in paintKitDefinition) {
                         let itemDefinitionPerItem = paintKitDefinition[itemDefinitionKey];
-                        let itemDefinitionTemplate = itemDefinitionPerItem.itemDefinitionTemplate;
+                        let itemDefinitionTemplate = itemDefinitionPerItem.itemDefinitionTemplate ?? itemDefinitionPerItem.item_definition_template;
                         if (itemDefinitionTemplate) {
                             let itemDefinition = await this._getDefindex(itemDefinitionTemplate);
-                            if (itemDefinition?.itemDefinitionIndex == weaponDefIndex) {
+                            if ((itemDefinition?.itemDefinitionIndex ?? itemDefinition?.item_definition_index) == weaponDefIndex) {
                                 item = itemDefinitionPerItem;
                                 break;
                             }
@@ -361,8 +361,8 @@ class TextureCombiner {
                         let items = paintKitDefinition['item'];
                         if (items) {
                             for (let it of items) {
-                                let itemDefinition = await this._getDefindex(it.itemDefinitionTemplate);
-                                if (getLegacyPaintKit(itemDefinition?.itemDefinitionIndex) == weaponDefIndex) {
+                                let itemDefinition = await this._getDefindex(it.itemDefinitionTemplate ?? it.item_definition_template);
+                                if (getLegacyPaintKit(itemDefinition?.itemDefinitionIndex ?? itemDefinition?.item_definition_index) == weaponDefIndex) {
                                     item = it;
                                     break;
                                 }
@@ -370,19 +370,19 @@ class TextureCombiner {
                         }
                     }
                     if (item) {
-                        let template = paintKitDefinition.operationTemplate; // || item.itemDefinitionTemplate;
+                        let template = paintKitDefinition.operationTemplate ?? paintKitDefinition.operation_template; // || item.itemDefinitionTemplate;
                         if (!template) {
-                            let itemDefinitionTemplate = await this._getDefindex(item.itemDefinitionTemplate);
+                            let itemDefinitionTemplate = await this._getDefindex(item.itemDefinitionTemplate ?? item.item_definition_template);
                             if (itemDefinitionTemplate && itemDefinitionTemplate.definition && itemDefinitionTemplate.definition[wearLevel]) {
-                                template = itemDefinitionTemplate.definition[wearLevel].operationTemplate;
+                                template = itemDefinitionTemplate.definition[wearLevel].operationTemplate ?? itemDefinitionTemplate.definition[wearLevel].operation_template;
                             }
                         }
                         if (template) {
                             let operationTemplate = await this._getDefindex(template);
                             //console.error(operationTemplate);//removeme
-                            if (operationTemplate && operationTemplate.operationNode) {
+                            if (operationTemplate && (operationTemplate.operationNode ?? operationTemplate.operation_node)) {
                                 await this.#setupVariables(paintKitDefinition, wearLevel, item);
-                                let stage = await this.#processOperationNode(operationTemplate.operationNode[0]); //top level node has 1 operation
+                                let stage = await this.#processOperationNode((operationTemplate.operationNode ?? operationTemplate.operation_node)[0]); //top level node has 1 operation
                                 //console.error(stage.toString());
                                 stage.linkNodes();
                                 function GetSeed(seed) {
@@ -441,8 +441,8 @@ class TextureCombiner {
             if (item.data) {
                 this.#addVariables(item.data.variable);
             }
-            if (item.itemDefinitionTemplate) {
-                let itemDefinition = await this._getDefindex(item.itemDefinitionTemplate);
+            if (item.itemDefinitionTemplate ?? item.item_definition_template) {
+                let itemDefinition = await this._getDefindex(item.itemDefinitionTemplate ?? item.item_definition_template);
                 if (itemDefinition) {
                     if (itemDefinition.definition && itemDefinition.definition[wearLevel]) {
                         this.#addVariables(itemDefinition.definition[wearLevel].variable);
@@ -493,16 +493,21 @@ class TextureCombiner {
     #getStageName(stage) {
         switch (true) {
             case stage.textureLookup != undefined:
+            case stage.texture_lookup != undefined:
                 return 'textureLookup';
             case stage.combineAdd != undefined:
+            case stage.combine_add != undefined:
                 return 'combine_add';
             case stage.combineLerp != undefined:
+            case stage.combine_lerp != undefined:
                 return 'combine_lerp';
             case stage.combineMultiply != undefined:
+            case stage.combine_multiply != undefined:
                 return 'multiply';
             case stage.select != undefined:
                 return 'select';
             case stage.applySticker != undefined:
+            case stage.apply_sticker != undefined:
                 return 'applySticker';
             default:
                 throw 'Unsuported stage';
@@ -516,14 +521,18 @@ class TextureCombiner {
             let s;
             switch (true) {
                 case stage.textureLookup != undefined:
-                    s = stage.textureLookup;
+                case stage.texture_lookup != undefined:
+                    s = stage.textureLookup ?? stage.texture_lookup;
                     subStage = this.#processTextureStage(s);
                     stage2 = s;
                     break;
                 case stage.combineAdd != undefined:
+                case stage.combine_add != undefined:
                 case stage.combineLerp != undefined:
+                case stage.combine_lerp != undefined:
                 case stage.combineMultiply != undefined:
-                    s = stage.combineAdd || stage.combineLerp || stage.combineMultiply;
+                case stage.combine_multiply != undefined:
+                    s = stage.combineAdd || stage.combine_add || stage.combineLerp || stage.combine_lerp || stage.combineMultiply || stage.combine_multiply;
                     subStage = this.#processCombineStage(s, this.#getStageName(stage));
                     stage2 = s;
                     break;
@@ -533,25 +542,26 @@ class TextureCombiner {
                     stage2 = s;
                     break;
                 case stage.applySticker != undefined:
-                    s = stage.applySticker;
+                case stage.apply_sticker != undefined:
+                    s = stage.applySticker ?? stage.apply_sticker;
                     subStage = this.#processApplyStickerStage(s);
                     stage2 = s;
                     break;
                 default:
                     throw 'Unsuported stage';
             }
-            if (stage2.operationNode) {
-                let chidren = await this.#processOperationNodeArray(stage2.operationNode /*, subStage/*, node*/);
+            if (stage2.operationNode ?? stage2.operation_node) {
+                let chidren = await this.#processOperationNodeArray(stage2.operationNode ?? stage2.operation_node /*, subStage/*, node*/);
                 if (subStage) {
                     subStage.appendChildren(chidren);
                 }
             }
         }
-        else if (operationNode.operationTemplate) {
-            let template = await this._getDefindex(operationNode.operationTemplate);
-            if (template && template.operationNode) {
+        else if (operationNode.operationTemplate ?? operationNode.operation_template) {
+            let template = await this._getDefindex(operationNode.operationTemplate ?? operationNode.operation_template);
+            if (template && (template.operationNode ?? template.operation_node)) {
                 //console.error('template.operationNode', template.operationNode.length, template.operationNode);
-                let chidren = await this.#processOperationNodeArray(template.operationNode /*, parentStage/*, node, inputs*/);
+                let chidren = await this.#processOperationNodeArray(template.operationNode ?? template.operation_node /*, parentStage/*, node, inputs*/);
                 return chidren;
             }
             else {
@@ -616,10 +626,10 @@ console.error('node or subnode is null', node, subNode);
         let node = null;
         var texture;
         if (this.#team == 0) {
-            texture = stage.textureRed || stage.texture;
+            texture = (stage.textureRed ?? stage.texture_red) || stage.texture;
         }
         else {
-            texture = stage.textureBlue || stage.texture;
+            texture = (stage.textureBlue ?? stage.texture_blue) || stage.texture;
         }
         let texturePath = this.#getVarField(texture);
         texturePath = texturePath.replace(/\.tga$/, '');
@@ -635,32 +645,32 @@ console.error('node or subnode is null', node, subNode);
         }
         let textureStage = new TextureStage(node);
         textureStage.texturePath = texturePath;
-        if (stage.adjustBlack) {
-            ParseRangeThenDivideBy(textureStage.parameters.adjustBlack, this.#getVarField(stage.adjustBlack));
+        if (stage.adjustBlack ?? stage.adjust_black) {
+            ParseRangeThenDivideBy(textureStage.parameters.adjustBlack, this.#getVarField(stage.adjustBlack ?? stage.adjust_black));
         }
-        if (stage.adjustOffset) {
-            ParseRangeThenDivideBy(textureStage.parameters.adjustOffset, this.#getVarField(stage.adjustOffset));
+        if (stage.adjustOffset ?? stage.adjust_offset) {
+            ParseRangeThenDivideBy(textureStage.parameters.adjustOffset, this.#getVarField(stage.adjustOffset ?? stage.adjust_offset));
         }
-        if (stage.adjustGamma) {
-            ParseInverseRange(textureStage.parameters.adjustGamma, this.#getVarField(stage.adjustGamma));
+        if (stage.adjustGamma ?? stage.adjust_gamma) {
+            ParseInverseRange(textureStage.parameters.adjustGamma, this.#getVarField(stage.adjustGamma ?? stage.adjust_gamma));
         }
-        if (stage.scaleUv) {
-            ParseRange(textureStage.parameters.scaleUV, this.#getVarField(stage.scaleUv));
+        if (stage.scaleUv ?? stage.scale_uv) {
+            ParseRange(textureStage.parameters.scaleUV, this.#getVarField(stage.scaleUv ?? stage.scale_uv));
         }
         if (stage.rotation) {
             ParseRange(textureStage.parameters.rotation, this.#getVarField(stage.rotation));
         }
-        if (stage.translateU) {
-            ParseRange(textureStage.parameters.translateU, this.#getVarField(stage.translateU));
+        if (stage.translateU ?? stage.translate_u) {
+            ParseRange(textureStage.parameters.translateU, this.#getVarField(stage.translateU ?? stage.translate_u));
         }
-        if (stage.translateV) {
-            ParseRange(textureStage.parameters.translateV, this.#getVarField(stage.translateV));
+        if (stage.translateV ?? stage.translate_v) {
+            ParseRange(textureStage.parameters.translateV, this.#getVarField(stage.translateV ?? stage.translate_v));
         }
-        if (stage.flipU) {
-            textureStage.parameters.allowFlipU = this.#getVarField(stage.flipU) != 0;
+        if (stage.flipU ?? stage.flip_u) {
+            textureStage.parameters.allowFlipU = this.#getVarField(stage.flipU ?? stage.flip_u) != 0;
         }
-        if (stage.flipV) {
-            textureStage.parameters.allowFlipV = this.#getVarField(stage.flipV) != 0;
+        if (stage.flipV ?? stage.flip_v) {
+            textureStage.parameters.allowFlipV = this.#getVarField(stage.flipV ?? stage.flip_v) != 0;
         }
         return textureStage;
     }
@@ -687,23 +697,23 @@ console.error('node or subnode is null', node, subNode);
     #processApplyStickerStage(stage) {
         let applyStickerNode = this.nodeImageEditor.addNode(this.textureApplyStickerNode);
         let applyStickerStage = new ApplyStickerStage(applyStickerNode);
-        if (stage.adjustBlack) {
-            ParseRangeThenDivideBy(applyStickerStage.parameters.adjustBlack, this.#getVarField(stage.adjustBlack));
+        if (stage.adjustBlack ?? stage.adjust_black) {
+            ParseRangeThenDivideBy(applyStickerStage.parameters.adjustBlack, this.#getVarField(stage.adjustBlack ?? stage.adjust_black));
         }
-        if (stage.adjustOffset) {
-            ParseRangeThenDivideBy(applyStickerStage.parameters.adjustOffset, this.#getVarField(stage.adjustOffset));
+        if (stage.adjustOffset ?? stage.adjust_offset) {
+            ParseRangeThenDivideBy(applyStickerStage.parameters.adjustOffset, this.#getVarField(stage.adjustOffset ?? stage.adjust_offset));
         }
-        if (stage.adjustGamma) {
-            ParseInverseRange(applyStickerStage.parameters.adjustGamma, this.#getVarField(stage.adjustGamma));
+        if (stage.adjustGamma ?? stage.adjust_gamma) {
+            ParseInverseRange(applyStickerStage.parameters.adjustGamma, this.#getVarField(stage.adjustGamma ?? stage.adjust_gamma));
         }
-        if (stage.destBl) {
-            ParseVec2(applyStickerStage.parameters.bl, this.#getVarField(stage.destBl));
+        if (stage.destBl ?? stage.dest_bl) {
+            ParseVec2(applyStickerStage.parameters.bl, this.#getVarField(stage.destBl ?? stage.dest_bl));
         }
-        if (stage.destTl) {
-            ParseVec2(applyStickerStage.parameters.tl, this.#getVarField(stage.destTl));
+        if (stage.destTl ?? stage.dest_tl) {
+            ParseVec2(applyStickerStage.parameters.tl, this.#getVarField(stage.destTl ?? stage.dest_tl));
         }
-        if (stage.destTr) {
-            ParseVec2(applyStickerStage.parameters.tr, this.#getVarField(stage.destTr));
+        if (stage.destTr ?? stage.dest_tr) {
+            ParseVec2(applyStickerStage.parameters.tr, this.#getVarField(stage.destTr ?? stage.dest_tr));
         }
         if (stage.sticker) {
             let arr = stage.sticker;
@@ -831,7 +841,7 @@ class WeaponManager {
             let paintKitDefinitions = definitions[9];
             for (let paintKitDefId in paintKitDefinitions) {
                 let definition = paintKitDefinitions[paintKitDefId];
-                let token = this.protoDefs ? this.protoDefs[definition.locDesctoken] || definition.locDesctoken : definition.locDesctoken;
+                let token = this.protoDefs ? this.protoDefs[(definition.locDesctoken ?? definition.loc_desctoken)] || (definition.locDesctoken ?? definition.loc_desctoken) : (definition.locDesctoken ?? definition.loc_desctoken);
                 this.#addPaintKit(definition, token);
             }
         }
@@ -854,7 +864,7 @@ class WeaponManager {
             for (let weaponName in itemList) {
                 let itemDefinition = paintKitItemDefinitions[itemList[weaponName]];
                 if (itemDefinition) {
-                    this.#addWeapon(paintKit, paintKit.header.defindex, weaponName, itemList[weaponName], itemDefinition.itemDefinitionIndex, descToken);
+                    this.#addWeapon(paintKit, paintKit.header.defindex, weaponName, itemList[weaponName], itemDefinition.itemDefinitionIndex ?? itemDefinition.item_definition_index, descToken);
                 }
             }
         }
@@ -962,16 +972,16 @@ class WeaponManager {
                 if (propertyName == 'item') {
                     for (let i = 0; i < paintKitDefinitionItem.length; i++) {
                         let paintKitDefinitionItem2 = paintKitDefinitionItem[i];
-                        if (paintKitDefinitionItem2.itemDefinitionTemplate) {
+                        if (paintKitDefinitionItem2.itemDefinitionTemplate ?? paintKitDefinitionItem2.item_definition_template) {
                             //itemList.push(paintKitDefinitionItem2.itemDefinitionTemplate.defindex);
-                            itemList['item' + i] = paintKitDefinitionItem2.itemDefinitionTemplate.defindex;
+                            itemList['item' + i] = (paintKitDefinitionItem2.itemDefinitionTemplate ?? paintKitDefinitionItem2.item_definition_template).defindex;
                         }
                     }
                 }
                 else {
-                    if (paintKitDefinitionItem.itemDefinitionTemplate) {
+                    if (paintKitDefinitionItem.itemDefinitionTemplate ?? paintKitDefinitionItem.item_definition_template) {
                         //itemList.push(paintKitDefinitionItem.itemDefinitionTemplate.defindex);
-                        itemList[propertyName] = paintKitDefinitionItem.itemDefinitionTemplate.defindex;
+                        itemList[propertyName] = (paintKitDefinitionItem.itemDefinitionTemplate ?? paintKitDefinitionItem.item_definition_template).defindex;
                     }
                 }
             }
