@@ -406,11 +406,11 @@ console.error('node or subnode is null', node, subNode);
 		if (stage.rotation) {
 			ParseRange(textureStage.parameters.rotation, this.#getVarField(stage.rotation));
 		}
-		if (stage.translateU) {
-			ParseRange(textureStage.parameters.translateU, this.#getVarField(stage.translateU));
+		if (stage.translateU ?? stage.translate_u) {
+			ParseRange(textureStage.parameters.translateU, this.#getVarField(stage.translateU ?? stage.translate_u));
 		}
-		if (stage.translateV) {
-			ParseRange(textureStage.parameters.translateV, this.#getVarField(stage.translateV));
+		if (stage.translateV ?? stage.translate_v) {
+			ParseRange(textureStage.parameters.translateV, this.#getVarField(stage.translateV ?? stage.translate_v));
 		}
 		if (stage.flipU) {
 			textureStage.parameters.allowFlipU = this.#getVarField(stage.flipU) != 0;
