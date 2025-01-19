@@ -38,24 +38,24 @@ export class TextureCombiner {
 		}
 			*/
 
-	 setTextureSize(textureSize: number) {
+	setTextureSize(textureSize: number) {
 		this.#textureSize = textureSize;
 		this.nodeImageEditor.textureSize = textureSize;
 	}
 
-	 set team(t) {
+	set team(t) {
 		this.#team = t;
 	}
 
-	 get team() {
+	get team() {
 		return this.#team;
 	}
 
-	 async _getDefindex(CMsgProtoDefID: any) {
+	async _getDefindex(CMsgProtoDefID: any) {
 		return PaintKitDefinitions.getDefinition(CMsgProtoDefID);
 	}
 
-	 async combinePaint(paintKitDefId: number, wearLevel: number, weaponDefIndex: string, outputTextureName: string, outputTexture: Texture, seed: bigint = 0n) {
+	async combinePaint(paintKitDefId: number, wearLevel: number, weaponDefIndex: string, outputTextureName: string, outputTexture: Texture, seed: bigint = 0n) {
 		this.lookupNodes = new Map();
 		let combinePaintPromise = new Promise(async (resolve, reject) => {
 			let finalPromise;
@@ -164,7 +164,7 @@ export class TextureCombiner {
 		return combinePaintPromise;
 	}
 
-	 async #setupVariables(paintKitDefinition: any, wearLevel: number, item: any) {
+	async #setupVariables(paintKitDefinition: any, wearLevel: number, item: any) {
 		this.variables = {};
 
 		if (item) {
@@ -189,7 +189,7 @@ export class TextureCombiner {
 		}
 	}
 
-	 #addVariables(variableArray: Array<any>) {
+	#addVariables(variableArray: Array<any>) {
 		if (variableArray) {
 			for (let i = 0; i < variableArray.length; i++) {
 				let v = variableArray[i];
@@ -198,7 +198,7 @@ export class TextureCombiner {
 		}
 	}
 
-	 #addVariables2(variableArray: Array<any>) {
+	#addVariables2(variableArray: Array<any>) {
 		if (variableArray) {
 			for (let i = 0; i < variableArray.length; i++) {
 				let v = variableArray[i];
@@ -209,7 +209,7 @@ export class TextureCombiner {
 		}
 	}
 
-	 async #processOperationNodeArray(operationNodeArray: Array<any>/*, parentStage: Stage*/) {
+	async #processOperationNodeArray(operationNodeArray: Array<any>/*, parentStage: Stage*/) {
 		let chidren: Array<Stage> = [];
 		for (var i = 0; i < operationNodeArray.length; i++) {
 			let child = await this.#processOperationNode(operationNodeArray[i]/*, parentStage*/);
@@ -224,7 +224,8 @@ export class TextureCombiner {
 		return chidren;
 	}
 
-	 #getStageName(stage: any) {
+
+	#getStageName(stage: any) {
 		switch (true) {
 			case stage.textureLookup != undefined:
 				return 'textureLookup';
@@ -250,7 +251,7 @@ export class TextureCombiner {
 
 	}
 
-	 async #processOperationNode(operationNode: any/*, parentStage: Stage/*, parentStage*//*, inputs*/): Promise<Stage | undefined | Array<Stage>> {
+	async #processOperationNode(operationNode: any/*, parentStage: Stage/*, parentStage*//*, inputs*/): Promise<Stage | undefined | Array<Stage>> {
 		let subStage = null;
 		if (operationNode.stage) {
 			let stage = operationNode.stage;
@@ -312,7 +313,7 @@ console.error('node or subnode is null', node, subNode);
 		return subStage;
 	}
 
-	 #processCombineStage(stage: any, combineMode: string) {
+	#processCombineStage(stage: any, combineMode: string) {
 		let node = this.nodeImageEditor.addNode(combineMode);
 
 		let combineStage = new CombineStage(node, combineMode);
@@ -356,7 +357,7 @@ console.error('node or subnode is null', node, subNode);
 			return node;
 		}*/
 
-	 #processTextureStage(stage: any) {
+	#processTextureStage(stage: any) {
 		let node = null;
 
 		var texture;
@@ -414,7 +415,7 @@ console.error('node or subnode is null', node, subNode);
 		return textureStage;
 	}
 
-	 #processSelectStage(stage: any) {
+	#processSelectStage(stage: any) {
 		let selectParametersNode = this.nodeImageEditor.addNode('int array', { length: 16 });
 
 		let selectNode = this.nodeImageEditor.addNode('select');
@@ -440,7 +441,7 @@ console.error('node or subnode is null', node, subNode);
 		return selectStage;
 	}
 
-	 #processApplyStickerStage(stage: any) {
+	#processApplyStickerStage(stage: any) {
 		let applyStickerNode = this.nodeImageEditor.addNode(this.textureApplyStickerNode);
 		let applyStickerStage = new ApplyStickerStage(applyStickerNode);
 
@@ -482,7 +483,7 @@ console.error('node or subnode is null', node, subNode);
 		return applyStickerStage;
 	}
 
-	 #getVarField(field: any) {
+	#getVarField(field: any) {
 		if (!field) { return null; }
 		if (field.variable) {
 			let v = this.variables[field.variable];
