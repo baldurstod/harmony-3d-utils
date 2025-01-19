@@ -93,11 +93,11 @@ export class TextureCombiner {
 					}
 
 					if (item) {
-						let template = paintKitDefinition.operationTemplate;// || item.itemDefinitionTemplate;
+						let template = paintKitDefinition.operationTemplate ?? paintKitDefinition.operation_template;// || item.itemDefinitionTemplate;
 						if (!template) {
 							let itemDefinitionTemplate = await this._getDefindex(item.itemDefinitionTemplate ?? item.item_definition_template);
 							if (itemDefinitionTemplate && itemDefinitionTemplate.definition && itemDefinitionTemplate.definition[wearLevel]) {
-								template = itemDefinitionTemplate.definition[wearLevel].operationTemplate;
+								template = itemDefinitionTemplate.definition[wearLevel].operationTemplate ?? itemDefinitionTemplate.definition[wearLevel].operation_template;
 							}
 						}
 						if (template) {
@@ -298,8 +298,8 @@ export class TextureCombiner {
 				}
 			}
 
-		} else if (operationNode.operationTemplate) {
-			let template = await this._getDefindex(operationNode.operationTemplate)
+		} else if (operationNode.operationTemplate ?? operationNode.operation_template) {
+			let template = await this._getDefindex(operationNode.operationTemplate ?? operationNode.operation_template);
 			if (template && (template.operationNode ?? template.operation_node)) {
 				//console.error('template.operationNode', template.operationNode.length, template.operationNode);
 				let chidren = await this.#processOperationNodeArray(template.operationNode ?? template.operation_node/*, parentStage/*, node, inputs*/);
