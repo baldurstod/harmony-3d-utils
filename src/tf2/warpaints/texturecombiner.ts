@@ -391,8 +391,8 @@ console.error('node or subnode is null', node, subNode);
 		let textureStage = new TextureStage(node);
 		textureStage.texturePath = texturePath;
 
-		if (stage.adjustBlack) {
-			ParseRangeThenDivideBy(textureStage.parameters.adjustBlack, this.#getVarField(stage.adjustBlack));
+		if (stage.adjustBlack ?? stage.adjust_black) {
+			ParseRangeThenDivideBy(textureStage.parameters.adjustBlack, this.#getVarField(stage.adjustBlack ?? stage.adjust_black));
 		}
 		if (stage.adjustOffset) {
 			ParseRangeThenDivideBy(textureStage.parameters.adjustOffset, this.#getVarField(stage.adjustOffset));
@@ -453,8 +453,8 @@ console.error('node or subnode is null', node, subNode);
 		let applyStickerNode = this.nodeImageEditor.addNode(this.textureApplyStickerNode);
 		let applyStickerStage = new ApplyStickerStage(applyStickerNode);
 
-		if (stage.adjustBlack) {
-			ParseRangeThenDivideBy(applyStickerStage.parameters.adjustBlack, this.#getVarField(stage.adjustBlack));
+		if (stage.adjustBlack ?? stage.adjust_black) {
+			ParseRangeThenDivideBy(applyStickerStage.parameters.adjustBlack, this.#getVarField(stage.adjustBlack ?? stage.adjust_black));
 		}
 		if (stage.adjustOffset) {
 			ParseRangeThenDivideBy(applyStickerStage.parameters.adjustOffset, this.#getVarField(stage.adjustOffset));
