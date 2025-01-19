@@ -414,11 +414,11 @@ console.error('node or subnode is null', node, subNode);
 		if (stage.translateV ?? stage.translate_v) {
 			ParseRange(textureStage.parameters.translateV, this.#getVarField(stage.translateV ?? stage.translate_v));
 		}
-		if (stage.flipU) {
-			textureStage.parameters.allowFlipU = this.#getVarField(stage.flipU) != 0;
+		if (stage.flipU ?? stage.flip_u) {
+			textureStage.parameters.allowFlipU = this.#getVarField(stage.flipU ?? stage.flip_u) != 0;
 		}
-		if (stage.flipV) {
-			textureStage.parameters.allowFlipV = this.#getVarField(stage.flipV) != 0
+		if (stage.flipV ?? stage.flip_v) {
+			textureStage.parameters.allowFlipV = this.#getVarField(stage.flipV ?? stage.flip_v) != 0
 		}
 
 
