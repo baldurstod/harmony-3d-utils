@@ -397,8 +397,8 @@ console.error('node or subnode is null', node, subNode);
 		if (stage.adjustOffset ?? stage.adjust_offset) {
 			ParseRangeThenDivideBy(textureStage.parameters.adjustOffset, this.#getVarField(stage.adjustOffset ?? stage.adjust_offset));
 		}
-		if (stage.adjustGamma) {
-			ParseInverseRange(textureStage.parameters.adjustGamma, this.#getVarField(stage.adjustGamma));
+		if (stage.adjustGamma ?? stage.adjust_gamma) {
+			ParseInverseRange(textureStage.parameters.adjustGamma, this.#getVarField(stage.adjustGamma ?? stage.adjust_gamma));
 		}
 		if (stage.scaleUv ?? stage.scale_uv) {
 			ParseRange(textureStage.parameters.scaleUV, this.#getVarField(stage.scaleUv ?? stage.scale_uv));
@@ -459,8 +459,8 @@ console.error('node or subnode is null', node, subNode);
 		if (stage.adjustOffset ?? stage.adjust_offset) {
 			ParseRangeThenDivideBy(applyStickerStage.parameters.adjustOffset, this.#getVarField(stage.adjustOffset ?? stage.adjust_offset));
 		}
-		if (stage.adjustGamma) {
-			ParseInverseRange(applyStickerStage.parameters.adjustGamma, this.#getVarField(stage.adjustGamma));
+		if (stage.adjustGamma ?? stage.adjust_gamma) {
+			ParseInverseRange(applyStickerStage.parameters.adjustGamma, this.#getVarField(stage.adjustGamma ?? stage.adjust_gamma));
 		}
 
 		if (stage.destBl) {
