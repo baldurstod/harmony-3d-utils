@@ -465,14 +465,14 @@ console.error('node or subnode is null', node, subNode);
 			ParseInverseRange(applyStickerStage.parameters.adjustGamma, this.#getVarField(stage.adjustGamma ?? stage.adjust_gamma));
 		}
 
-		if (stage.destBl) {
-			ParseVec2(applyStickerStage.parameters.bl, this.#getVarField(stage.destBl));
+		if (stage.destBl ?? stage.dest_bl) {
+			ParseVec2(applyStickerStage.parameters.bl, this.#getVarField(stage.destBl ?? stage.dest_bl));
 		}
-		if (stage.destTl) {
-			ParseVec2(applyStickerStage.parameters.tl, this.#getVarField(stage.destTl));
+		if (stage.destTl ?? stage.dest_tl) {
+			ParseVec2(applyStickerStage.parameters.tl, this.#getVarField(stage.destTl ?? stage.dest_tl));
 		}
-		if (stage.destTr) {
-			ParseVec2(applyStickerStage.parameters.tr, this.#getVarField(stage.destTr));
+		if (stage.destTr ?? stage.dest_tr) {
+			ParseVec2(applyStickerStage.parameters.tr, this.#getVarField(stage.destTr ?? stage.dest_tr));
 		}
 
 		if (stage.sticker) {
