@@ -55,7 +55,7 @@ export class WeaponManager {
 			let paintKitDefinitions = definitions[9];
 			for (let paintKitDefId in paintKitDefinitions) {
 				let definition = paintKitDefinitions[paintKitDefId];
-				let token = this.protoDefs ? this.protoDefs[definition.locDesctoken] || definition.locDesctoken : definition.locDesctoken;
+				let token = this.protoDefs ? this.protoDefs[(definition.locDesctoken ?? definition.loc_desctoken)] || (definition.locDesctoken ?? definition.loc_desctoken) : (definition.locDesctoken ?? definition.loc_desctoken);
 
 				this.#addPaintKit(definition, token);
 			}
@@ -82,7 +82,7 @@ export class WeaponManager {
 			for (let weaponName in itemList) {
 				let itemDefinition = paintKitItemDefinitions[itemList[weaponName]];
 				if (itemDefinition) {
-					this.#addWeapon(paintKit, paintKit.header.defindex, weaponName, itemList[weaponName], itemDefinition.itemDefinitionIndex, descToken);
+					this.#addWeapon(paintKit, paintKit.header.defindex, weaponName, itemList[weaponName], itemDefinition.itemDefinitionIndex ?? itemDefinition.item_definition_index, descToken);
 				}
 			}
 		}
