@@ -4,6 +4,7 @@
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+	"type": "module",
   "dependencies": {
     "gl-matrix": "^3.4.3",
     "harmony-3d": "github:baldurstod/harmony-3d",

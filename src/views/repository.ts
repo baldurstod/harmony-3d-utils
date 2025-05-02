@@ -16,6 +16,7 @@ export class HTMLRepositoryElement extends HTMLElement {
 	#repository?: Repository;
 	#displayMode: RepositoryDisplayMode = RepositoryDisplayMode.Flat;
 	#filter?: RepositoryFilter;
+
 	constructor() {
 		super();
 

@@ -51,12 +51,12 @@ if (!Math.hypot) Math.hypot = function () {
 
 var common$1 = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  EPSILON: EPSILON$3,
   get ARRAY_TYPE () { return ARRAY_TYPE; },
+  EPSILON: EPSILON$3,
   RANDOM: RANDOM,
+  equals: equals$a,
   setMatrixArrayType: setMatrixArrayType,
-  toRadian: toRadian,
-  equals: equals$a
+  toRadian: toRadian
 });
 
 /**
@@ -155,7 +155,7 @@ function fromValues$8(m00, m01, m10, m11) {
  * @returns {mat2} out
  */
 
-function set$8(out, m00, m01, m10, m11) {
+function set$9(out, m00, m01, m10, m11) {
   out[0] = m00;
   out[1] = m01;
   out[2] = m10;
@@ -194,7 +194,7 @@ function transpose$2(out, a) {
  * @returns {mat2} out
  */
 
-function invert$5(out, a) {
+function invert$6(out, a) {
   var a0 = a[0],
       a1 = a[1],
       a2 = a[2],
@@ -493,32 +493,32 @@ var sub$6 = subtract$7;
 
 var mat2 = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  create: create$8,
-  clone: clone$8,
-  copy: copy$8,
-  identity: identity$5,
-  fromValues: fromValues$8,
-  set: set$8,
-  transpose: transpose$2,
-  invert: invert$5,
-  adjoint: adjoint$2,
-  determinant: determinant$3,
-  multiply: multiply$9,
-  rotate: rotate$4,
-  scale: scale$9,
-  fromRotation: fromRotation$4,
-  fromScaling: fromScaling$3,
-  str: str$8,
-  frob: frob$3,
   LDU: LDU,
   add: add$9,
-  subtract: subtract$7,
-  exactEquals: exactEquals$8,
+  adjoint: adjoint$2,
+  clone: clone$8,
+  copy: copy$8,
+  create: create$8,
+  determinant: determinant$3,
   equals: equals$9,
+  exactEquals: exactEquals$8,
+  frob: frob$3,
+  fromRotation: fromRotation$4,
+  fromScaling: fromScaling$3,
+  fromValues: fromValues$8,
+  identity: identity$5,
+  invert: invert$6,
+  mul: mul$8,
+  multiply: multiply$9,
   multiplyScalar: multiplyScalar$3,
   multiplyScalarAndAdd: multiplyScalarAndAdd$3,
-  mul: mul$8,
-  sub: sub$6
+  rotate: rotate$4,
+  scale: scale$9,
+  set: set$9,
+  str: str$8,
+  sub: sub$6,
+  subtract: subtract$7,
+  transpose: transpose$2
 });
 
 /**
@@ -645,7 +645,7 @@ function fromValues$7(a, b, c, d, tx, ty) {
  * @returns {mat2d} out
  */
 
-function set$7(out, a, b, c, d, tx, ty) {
+function set$8(out, a, b, c, d, tx, ty) {
   out[0] = a;
   out[1] = b;
   out[2] = c;
@@ -662,7 +662,7 @@ function set$7(out, a, b, c, d, tx, ty) {
  * @returns {mat2d} out
  */
 
-function invert$4(out, a) {
+function invert$5(out, a) {
   var aa = a[0],
       ab = a[1],
       ac = a[2],
@@ -1009,31 +1009,31 @@ var sub$5 = subtract$6;
 
 var mat2d = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  create: create$7,
+  add: add$8,
   clone: clone$7,
   copy: copy$7,
-  identity: identity$4,
-  fromValues: fromValues$7,
-  set: set$7,
-  invert: invert$4,
+  create: create$7,
   determinant: determinant$2,
-  multiply: multiply$8,
-  rotate: rotate$3,
-  scale: scale$8,
-  translate: translate$3,
+  equals: equals$8,
+  exactEquals: exactEquals$7,
+  frob: frob$2,
   fromRotation: fromRotation$3,
   fromScaling: fromScaling$2,
   fromTranslation: fromTranslation$3,
-  str: str$7,
-  frob: frob$2,
-  add: add$8,
-  subtract: subtract$6,
+  fromValues: fromValues$7,
+  identity: identity$4,
+  invert: invert$5,
+  mul: mul$7,
+  multiply: multiply$8,
   multiplyScalar: multiplyScalar$2,
   multiplyScalarAndAdd: multiplyScalarAndAdd$2,
-  exactEquals: exactEquals$7,
-  equals: equals$8,
-  mul: mul$7,
-  sub: sub$5
+  rotate: rotate$3,
+  scale: scale$8,
+  set: set$8,
+  str: str$7,
+  sub: sub$5,
+  subtract: subtract$6,
+  translate: translate$3
 });
 
 /**
@@ -1168,7 +1168,7 @@ function fromValues$6(m00, m01, m02, m10, m11, m12, m20, m21, m22) {
  * @returns {mat3} out
  */
 
-function set$6(out, m00, m01, m02, m10, m11, m12, m20, m21, m22) {
+function set$7(out, m00, m01, m02, m10, m11, m12, m20, m21, m22) {
   out[0] = m00;
   out[1] = m01;
   out[2] = m02;
@@ -1241,7 +1241,7 @@ function transpose$1(out, a) {
  * @returns {mat3} out
  */
 
-function invert$3(out, a) {
+function invert$4(out, a) {
   var a00 = a[0],
       a01 = a[1],
       a02 = a[2];
@@ -1816,38 +1816,38 @@ var sub$4 = subtract$5;
 
 var mat3 = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  create: create$6,
-  fromMat4: fromMat4$1,
+  add: add$7,
+  adjoint: adjoint$1,
   clone: clone$6,
   copy: copy$6,
-  fromValues: fromValues$6,
-  set: set$6,
-  identity: identity$3,
-  transpose: transpose$1,
-  invert: invert$3,
-  adjoint: adjoint$1,
+  create: create$6,
   determinant: determinant$1,
-  multiply: multiply$7,
-  translate: translate$2,
-  rotate: rotate$2,
-  scale: scale$7,
-  fromTranslation: fromTranslation$2,
+  equals: equals$7,
+  exactEquals: exactEquals$6,
+  frob: frob$1,
+  fromMat2d: fromMat2d,
+  fromMat4: fromMat4$1,
+  fromQuat: fromQuat$1,
   fromRotation: fromRotation$2,
   fromScaling: fromScaling$1,
-  fromMat2d: fromMat2d,
-  fromQuat: fromQuat$1,
-  normalFromMat4: normalFromMat4,
-  projection: projection,
-  str: str$6,
-  frob: frob$1,
-  add: add$7,
-  subtract: subtract$5,
+  fromTranslation: fromTranslation$2,
+  fromValues: fromValues$6,
+  identity: identity$3,
+  invert: invert$4,
+  mul: mul$6,
+  multiply: multiply$7,
   multiplyScalar: multiplyScalar$1,
   multiplyScalarAndAdd: multiplyScalarAndAdd$1,
-  exactEquals: exactEquals$6,
-  equals: equals$7,
-  mul: mul$6,
-  sub: sub$4
+  normalFromMat4: normalFromMat4,
+  projection: projection,
+  rotate: rotate$2,
+  scale: scale$7,
+  set: set$7,
+  str: str$6,
+  sub: sub$4,
+  subtract: subtract$5,
+  translate: translate$2,
+  transpose: transpose$1
 });
 
 /**
@@ -2004,7 +2004,7 @@ function fromValues$5(m00, m01, m02, m03, m10, m11, m12, m13, m20, m21, m22, m23
  * @returns {mat4} out
  */
 
-function set$5(out, m00, m01, m02, m03, m10, m11, m12, m13, m20, m21, m22, m23, m30, m31, m32, m33) {
+function set$6(out, m00, m01, m02, m03, m10, m11, m12, m13, m20, m21, m22, m23, m30, m31, m32, m33) {
   out[0] = m00;
   out[1] = m01;
   out[2] = m02;
@@ -2107,7 +2107,7 @@ function transpose(out, a) {
  * @returns {mat4} out
  */
 
-function invert$2(out, a) {
+function invert$3(out, a) {
   var a00 = a[0],
       a01 = a[1],
       a02 = a[2],
@@ -3762,57 +3762,57 @@ var sub$3 = subtract$4;
 
 var mat4 = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  create: create$5,
+  add: add$6,
+  adjoint: adjoint,
   clone: clone$5,
   copy: copy$5,
-  fromValues: fromValues$5,
-  set: set$5,
-  identity: identity$2,
-  transpose: transpose,
-  invert: invert$2,
-  adjoint: adjoint,
+  create: create$5,
   determinant: determinant,
+  equals: equals$6,
+  exactEquals: exactEquals$5,
+  frob: frob,
+  fromQuat: fromQuat,
+  fromQuat2: fromQuat2,
+  fromRotation: fromRotation$1,
+  fromRotationTranslation: fromRotationTranslation$1,
+  fromRotationTranslationScale: fromRotationTranslationScale,
+  fromRotationTranslationScaleOrigin: fromRotationTranslationScaleOrigin,
+  fromScaling: fromScaling,
+  fromTranslation: fromTranslation$1,
+  fromValues: fromValues$5,
+  fromXRotation: fromXRotation,
+  fromYRotation: fromYRotation,
+  fromZRotation: fromZRotation,
+  frustum: frustum,
+  getRotation: getRotation,
+  getScaling: getScaling,
+  getTranslation: getTranslation$1,
+  identity: identity$2,
+  invert: invert$3,
+  lookAt: lookAt,
+  mul: mul$5,
   multiply: multiply$6,
-  translate: translate$1,
-  scale: scale$6,
+  multiplyScalar: multiplyScalar,
+  multiplyScalarAndAdd: multiplyScalarAndAdd,
+  ortho: ortho,
+  orthoNO: orthoNO,
+  orthoZO: orthoZO,
+  perspective: perspective,
+  perspectiveFromFieldOfView: perspectiveFromFieldOfView,
+  perspectiveNO: perspectiveNO,
+  perspectiveZO: perspectiveZO,
   rotate: rotate$1,
   rotateX: rotateX$3,
   rotateY: rotateY$3,
   rotateZ: rotateZ$3,
-  fromTranslation: fromTranslation$1,
-  fromScaling: fromScaling,
-  fromRotation: fromRotation$1,
-  fromXRotation: fromXRotation,
-  fromYRotation: fromYRotation,
-  fromZRotation: fromZRotation,
-  fromRotationTranslation: fromRotationTranslation$1,
-  fromQuat2: fromQuat2,
-  getTranslation: getTranslation$1,
-  getScaling: getScaling,
-  getRotation: getRotation,
-  fromRotationTranslationScale: fromRotationTranslationScale,
-  fromRotationTranslationScaleOrigin: fromRotationTranslationScaleOrigin,
-  fromQuat: fromQuat,
-  frustum: frustum,
-  perspectiveNO: perspectiveNO,
-  perspective: perspective,
-  perspectiveZO: perspectiveZO,
-  perspectiveFromFieldOfView: perspectiveFromFieldOfView,
-  orthoNO: orthoNO,
-  ortho: ortho,
-  orthoZO: orthoZO,
-  lookAt: lookAt,
-  targetTo: targetTo,
+  scale: scale$6,
+  set: set$6,
   str: str$5,
-  frob: frob,
-  add: add$6,
+  sub: sub$3,
   subtract: subtract$4,
-  multiplyScalar: multiplyScalar,
-  multiplyScalarAndAdd: multiplyScalarAndAdd,
-  exactEquals: exactEquals$5,
-  equals: equals$6,
-  mul: mul$5,
-  sub: sub$3
+  targetTo: targetTo,
+  translate: translate$1,
+  transpose: transpose
 });
 
 /**
@@ -3904,7 +3904,7 @@ function copy$4(out, a) {
  * @returns {vec3} out
  */
 
-function set$4(out, x, y, z) {
+function set$5(out, x, y, z) {
   out[0] = x;
   out[1] = y;
   out[2] = z;
@@ -4081,7 +4081,7 @@ function scaleAndAdd$2(out, a, b, scale) {
  * @returns {Number} distance between a and b
  */
 
-function distance$2(a, b) {
+function distance$3(a, b) {
   var x = b[0] - a[0];
   var y = b[1] - a[1];
   var z = b[2] - a[2];
@@ -4537,7 +4537,7 @@ var div$2 = divide$3;
  * @function
  */
 
-var dist$2 = distance$2;
+var dist$2 = distance$3;
 /**
  * Alias for {@link vec3.squaredDistance}
  * @function
@@ -4604,54 +4604,54 @@ var forEach$2 = function () {
 
 var vec3 = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  create: create$4,
-  clone: clone$4,
-  length: length$5,
-  fromValues: fromValues$4,
-  copy: copy$4,
-  set: set$4,
   add: add$5,
-  subtract: subtract$3,
-  multiply: multiply$5,
-  divide: divide$3,
-  ceil: ceil$3,
-  floor: floor$3,
-  min: min$3,
-  max: max$3,
-  round: round$2,
-  scale: scale$5,
-  scaleAndAdd: scaleAndAdd$2,
-  distance: distance$2,
-  squaredDistance: squaredDistance$2,
-  squaredLength: squaredLength$4,
-  negate: negate$2,
-  inverse: inverse$2,
-  normalize: normalize$5,
-  dot: dot$4,
-  cross: cross$2,
-  lerp: lerp$5,
-  hermite: hermite,
+  angle: angle$1,
   bezier: bezier,
+  ceil: ceil$3,
+  clone: clone$4,
+  copy: copy$4,
+  create: create$4,
+  cross: cross$2,
+  dist: dist$2,
+  distance: distance$3,
+  div: div$2,
+  divide: divide$3,
+  dot: dot$4,
+  equals: equals$5,
+  exactEquals: exactEquals$4,
+  floor: floor$3,
+  forEach: forEach$2,
+  fromValues: fromValues$4,
+  hermite: hermite,
+  inverse: inverse$2,
+  len: len$4,
+  length: length$5,
+  lerp: lerp$5,
+  max: max$3,
+  min: min$3,
+  mul: mul$4,
+  multiply: multiply$5,
+  negate: negate$2,
+  normalize: normalize$5,
   random: random$5,
-  transformMat4: transformMat4$2,
-  transformMat3: transformMat3$1,
-  transformQuat: transformQuat$1,
   rotateX: rotateX$2,
   rotateY: rotateY$2,
   rotateZ: rotateZ$2,
-  angle: angle$1,
-  zero: zero$4,
-  str: str$4,
-  exactEquals: exactEquals$4,
-  equals: equals$5,
-  sub: sub$2,
-  mul: mul$4,
-  div: div$2,
-  dist: dist$2,
+  round: round$2,
+  scale: scale$5,
+  scaleAndAdd: scaleAndAdd$2,
+  set: set$5,
   sqrDist: sqrDist$2,
-  len: len$4,
   sqrLen: sqrLen$4,
-  forEach: forEach$2
+  squaredDistance: squaredDistance$2,
+  squaredLength: squaredLength$4,
+  str: str$4,
+  sub: sub$2,
+  subtract: subtract$3,
+  transformMat3: transformMat3$1,
+  transformMat4: transformMat4$2,
+  transformQuat: transformQuat$1,
+  zero: zero$4
 });
 
 /**
@@ -4736,7 +4736,7 @@ function copy$3(out, a) {
  * @returns {vec4} out
  */
 
-function set$3(out, x, y, z, w) {
+function set$4(out, x, y, z, w) {
   out[0] = x;
   out[1] = y;
   out[2] = z;
@@ -4925,7 +4925,7 @@ function scaleAndAdd$1(out, a, b, scale) {
  * @returns {Number} distance between a and b
  */
 
-function distance$1(a, b) {
+function distance$2(a, b) {
   var x = b[0] - a[0];
   var y = b[1] - a[1];
   var z = b[2] - a[2];
@@ -5250,7 +5250,7 @@ var div$1 = divide$2;
  * @function
  */
 
-var dist$1 = distance$1;
+var dist$1 = distance$2;
 /**
  * Alias for {@link vec4.squaredDistance}
  * @function
@@ -5319,47 +5319,47 @@ var forEach$1 = function () {
 
 var vec4 = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  create: create$3,
-  clone: clone$3,
-  fromValues: fromValues$3,
-  copy: copy$3,
-  set: set$3,
   add: add$4,
-  subtract: subtract$2,
-  multiply: multiply$4,
-  divide: divide$2,
   ceil: ceil$2,
+  clone: clone$3,
+  copy: copy$3,
+  create: create$3,
+  cross: cross$1,
+  dist: dist$1,
+  distance: distance$2,
+  div: div$1,
+  divide: divide$2,
+  dot: dot$3,
+  equals: equals$4,
+  exactEquals: exactEquals$3,
   floor: floor$2,
-  min: min$2,
+  forEach: forEach$1,
+  fromValues: fromValues$3,
+  inverse: inverse$1,
+  len: len$3,
+  length: length$4,
+  lerp: lerp$4,
   max: max$2,
+  min: min$2,
+  mul: mul$3,
+  multiply: multiply$4,
+  negate: negate$1,
+  normalize: normalize$4,
+  random: random$4,
   round: round$1,
   scale: scale$4,
   scaleAndAdd: scaleAndAdd$1,
-  distance: distance$1,
+  set: set$4,
+  sqrDist: sqrDist$1,
+  sqrLen: sqrLen$3,
   squaredDistance: squaredDistance$1,
-  length: length$4,
   squaredLength: squaredLength$3,
-  negate: negate$1,
-  inverse: inverse$1,
-  normalize: normalize$4,
-  dot: dot$3,
-  cross: cross$1,
-  lerp: lerp$4,
-  random: random$4,
+  str: str$3,
+  sub: sub$1,
+  subtract: subtract$2,
   transformMat4: transformMat4$1,
   transformQuat: transformQuat,
-  zero: zero$3,
-  str: str$3,
-  exactEquals: exactEquals$3,
-  equals: equals$4,
-  sub: sub$1,
-  mul: mul$3,
-  div: div$1,
-  dist: dist$1,
-  sqrDist: sqrDist$1,
-  len: len$3,
-  sqrLen: sqrLen$3,
-  forEach: forEach$1
+  zero: zero$3
 });
 
 /**
@@ -5715,7 +5715,7 @@ function random$3(out) {
  * @returns {quat} out
  */
 
-function invert$1(out, a) {
+function invert$2(out, a) {
   var a0 = a[0],
       a1 = a[1],
       a2 = a[2],
@@ -5871,7 +5871,7 @@ var copy$2 = copy$3;
  * @function
  */
 
-var set$2 = set$3;
+var set$3 = set$4;
 /**
  * Adds two quat's
  *
@@ -6071,45 +6071,45 @@ var setAxes = function () {
 
 var quat = /*#__PURE__*/Object.freeze({
   __proto__: null,
+  add: add$3,
+  calculateW: calculateW,
+  clone: clone$2,
+  conjugate: conjugate$1,
+  copy: copy$2,
   create: create$2,
-  identity: identity$1,
-  setAxisAngle: setAxisAngle,
-  getAxisAngle: getAxisAngle,
+  dot: dot$2,
+  equals: equals$3,
+  exactEquals: exactEquals$2,
+  exp: exp$1,
+  fromEuler: fromEuler,
+  fromMat3: fromMat3,
+  fromValues: fromValues$2,
   getAngle: getAngle,
+  getAxisAngle: getAxisAngle,
+  identity: identity$1,
+  invert: invert$2,
+  len: len$2,
+  length: length$3,
+  lerp: lerp$3,
+  ln: ln,
+  mul: mul$2,
   multiply: multiply$3,
+  normalize: normalize$3,
+  pow: pow$1,
+  random: random$3,
   rotateX: rotateX$1,
   rotateY: rotateY$1,
   rotateZ: rotateZ$1,
-  calculateW: calculateW,
-  exp: exp$1,
-  ln: ln,
-  pow: pow$1,
-  slerp: slerp,
-  random: random$3,
-  invert: invert$1,
-  conjugate: conjugate$1,
-  fromMat3: fromMat3,
-  fromEuler: fromEuler,
-  str: str$2,
-  clone: clone$2,
-  fromValues: fromValues$2,
-  copy: copy$2,
-  set: set$2,
-  add: add$3,
-  mul: mul$2,
-  scale: scale$3,
-  dot: dot$2,
-  lerp: lerp$3,
-  length: length$3,
-  len: len$2,
-  squaredLength: squaredLength$2,
-  sqrLen: sqrLen$2,
-  normalize: normalize$3,
-  exactEquals: exactEquals$2,
-  equals: equals$3,
   rotationTo: rotationTo,
+  scale: scale$3,
+  set: set$3,
+  setAxes: setAxes,
+  setAxisAngle: setAxisAngle,
+  slerp: slerp,
   sqlerp: sqlerp,
-  setAxes: setAxes
+  sqrLen: sqrLen$2,
+  squaredLength: squaredLength$2,
+  str: str$2
 });
 
 /**
@@ -6358,7 +6358,7 @@ function identity(out) {
  * @function
  */
 
-function set$1(out, x1, y1, z1, w1, x2, y2, z2, w2) {
+function set$2(out, x1, y1, z1, w1, x2, y2, z2, w2) {
   out[0] = x1;
   out[1] = y1;
   out[2] = z1;
@@ -6799,7 +6799,7 @@ function lerp$2(out, a, b, t) {
  * @returns {quat2} out
  */
 
-function invert(out, a) {
+function invert$1(out, a) {
   var sqlen = squaredLength$1(a);
   out[0] = -a[0] / sqlen;
   out[1] = -a[1] / sqlen;
@@ -6947,45 +6947,45 @@ function equals$2(a, b) {
 
 var quat2 = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  create: create$1,
+  add: add$2,
   clone: clone$1,
-  fromValues: fromValues$1,
-  fromRotationTranslationValues: fromRotationTranslationValues,
-  fromRotationTranslation: fromRotationTranslation,
-  fromTranslation: fromTranslation,
-  fromRotation: fromRotation,
-  fromMat4: fromMat4,
+  conjugate: conjugate,
   copy: copy$1,
-  identity: identity,
-  set: set$1,
-  getReal: getReal,
+  create: create$1,
+  dot: dot$1,
+  equals: equals$2,
+  exactEquals: exactEquals$1,
+  fromMat4: fromMat4,
+  fromRotation: fromRotation,
+  fromRotationTranslation: fromRotationTranslation,
+  fromRotationTranslationValues: fromRotationTranslationValues,
+  fromTranslation: fromTranslation,
+  fromValues: fromValues$1,
   getDual: getDual,
-  setReal: setReal,
-  setDual: setDual,
+  getReal: getReal,
   getTranslation: getTranslation,
-  translate: translate,
+  identity: identity,
+  invert: invert$1,
+  len: len$1,
+  length: length$2,
+  lerp: lerp$2,
+  mul: mul$1,
+  multiply: multiply$2,
+  normalize: normalize$2,
+  rotateAroundAxis: rotateAroundAxis,
+  rotateByQuatAppend: rotateByQuatAppend,
+  rotateByQuatPrepend: rotateByQuatPrepend,
   rotateX: rotateX,
   rotateY: rotateY,
   rotateZ: rotateZ,
-  rotateByQuatAppend: rotateByQuatAppend,
-  rotateByQuatPrepend: rotateByQuatPrepend,
-  rotateAroundAxis: rotateAroundAxis,
-  add: add$2,
-  multiply: multiply$2,
-  mul: mul$1,
   scale: scale$2,
-  dot: dot$1,
-  lerp: lerp$2,
-  invert: invert,
-  conjugate: conjugate,
-  length: length$2,
-  len: len$1,
-  squaredLength: squaredLength$1,
+  set: set$2,
+  setDual: setDual,
+  setReal: setReal,
   sqrLen: sqrLen$1,
-  normalize: normalize$2,
+  squaredLength: squaredLength$1,
   str: str$1,
-  exactEquals: exactEquals$1,
-  equals: equals$2
+  translate: translate
 });
 
 /**
@@ -7058,7 +7058,7 @@ function copy(out, a) {
  * @returns {vec2} out
  */
 
-function set(out, x, y) {
+function set$1(out, x, y) {
   out[0] = x;
   out[1] = y;
   return out;
@@ -7223,7 +7223,7 @@ function scaleAndAdd(out, a, b, scale) {
  * @returns {Number} distance between a and b
  */
 
-function distance(a, b) {
+function distance$1(a, b) {
   var x = b[0] - a[0],
       y = b[1] - a[1];
   return Math.hypot(x, y);
@@ -7555,7 +7555,7 @@ var div = divide$1;
  * @function
  */
 
-var dist = distance;
+var dist = distance$1;
 /**
  * Alias for {@link vec2.squaredDistance}
  * @function
@@ -7614,51 +7614,51 @@ var forEach = function () {
 
 var vec2 = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  create: create,
-  clone: clone,
-  fromValues: fromValues,
-  copy: copy,
-  set: set,
   add: add$1,
-  subtract: subtract$1,
-  multiply: multiply$1,
-  divide: divide$1,
+  angle: angle,
   ceil: ceil$1,
+  clone: clone,
+  copy: copy,
+  create: create,
+  cross: cross,
+  dist: dist,
+  distance: distance$1,
+  div: div,
+  divide: divide$1,
+  dot: dot,
+  equals: equals$1,
+  exactEquals: exactEquals,
   floor: floor$1,
-  min: min$1,
+  forEach: forEach,
+  fromValues: fromValues,
+  inverse: inverse,
+  len: len,
+  length: length$1,
+  lerp: lerp$1,
   max: max$1,
+  min: min$1,
+  mul: mul,
+  multiply: multiply$1,
+  negate: negate,
+  normalize: normalize$1,
+  random: random$2,
+  rotate: rotate,
   round: round,
   scale: scale$1,
   scaleAndAdd: scaleAndAdd,
-  distance: distance,
+  set: set$1,
+  sqrDist: sqrDist,
+  sqrLen: sqrLen,
   squaredDistance: squaredDistance,
-  length: length$1,
   squaredLength: squaredLength,
-  negate: negate,
-  inverse: inverse,
-  normalize: normalize$1,
-  dot: dot,
-  cross: cross,
-  lerp: lerp$1,
-  random: random$2,
+  str: str,
+  sub: sub,
+  subtract: subtract$1,
   transformMat2: transformMat2,
   transformMat2d: transformMat2d,
   transformMat3: transformMat3,
   transformMat4: transformMat4,
-  rotate: rotate,
-  angle: angle,
-  zero: zero$2,
-  str: str,
-  exactEquals: exactEquals,
-  equals: equals$1,
-  len: len,
-  sub: sub,
-  mul: mul,
-  div: div,
-  dist: dist,
-  sqrDist: sqrDist,
-  sqrLen: sqrLen,
-  forEach: forEach
+  zero: zero$2
 });
 
 var index$2 = /*#__PURE__*/Object.freeze({
@@ -7744,7 +7744,7 @@ function hslToRgb(h, s, l) {
     }
     return [r, g, b];
 }
-class Color$1 {
+let Color$1 = class Color {
     #rgba = [];
     constructor({ red = 0, green = 0, blue = 0, alpha = 1, hex = '' } = {}) {
         this.#rgba[0] = red;
@@ -7824,7 +7824,10 @@ class Color$1 {
     get alpha() {
         return this.#rgba[3];
     }
-}
+    getLuminance() {
+        return 0.2126 * this.#rgba[0] + 0.7152 * this.#rgba[1] + 0.0722 * this.#rgba[2];
+    }
+};
 
 const checkOutlineSVG = '<svg xmlns="http://www.w3.org/2000/svg"  height="24" viewBox="0 -960 960 960" width="24" fill="currentColor"><path d="m 381,-240 424,-424 -57,-56 -368,367 -169,-170 -57,57 z m 0,113 -339,-339 169,-170 170,170 366,-367 172,168 z"/><path fill="#ffffff" d="m 381,-240 424,-424 -57,-56 -368,367 -169,-170 -57,57 z m 366,-593 c -498,-84.66667 -249,-42.33333 0,0 z"/></svg>';
 
@@ -7838,15 +7841,19 @@ const folderOpenSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" vie
 
 const infoSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M440-280h80v-240h-80v240Zm40-320q17 0 28.5-11.5T520-640q0-17-11.5-28.5T480-680q-17 0-28.5 11.5T440-640q0 17 11.5 28.5T480-600Zm0 520q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>';
 
+const lockSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M240-80q-33 0-56.5-23.5T160-160v-400q0-33 23.5-56.5T240-640h40v-80q0-83 58.5-141.5T480-920q83 0 141.5 58.5T680-720v80h40q33 0 56.5 23.5T800-560v400q0 33-23.5 56.5T720-80H240Zm0-80h480v-400H240v400Zm240-120q33 0 56.5-23.5T560-360q0-33-23.5-56.5T480-440q-33 0-56.5 23.5T400-360q0 33 23.5 56.5T480-280ZM360-640h240v-80q0-50-35-85t-85-35q-50 0-85 35t-35 85v80ZM240-160v-400 400Z"/></svg>';
+
+const lockOpenRightSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M240-160h480v-400H240v400Zm240-120q33 0 56.5-23.5T560-360q0-33-23.5-56.5T480-440q-33 0-56.5 23.5T400-360q0 33 23.5 56.5T480-280ZM240-160v-400 400Zm0 80q-33 0-56.5-23.5T160-160v-400q0-33 23.5-56.5T240-640h280v-80q0-83 58.5-141.5T720-920q83 0 141.5 58.5T920-720h-80q0-50-35-85t-85-35q-50 0-85 35t-35 85v80h120q33 0 56.5 23.5T800-560v400q0 33-23.5 56.5T720-80H240Z"/></svg>';
+
 const panZoomSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M120-120v-240h80v104l124-124 56 56-124 124h104v80H120Zm516-460-56-56 124-124H600v-80h240v240h-80v-104L636-580Z"/></svg>';
 
 const pauseSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="currentColor"><path d="M560-200v-560h160v560H560Zm-320 0v-560h160v560H240Z"/></svg>';
 
 const playSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="currentColor"><path d="M320-200v-560l440 280-440 280Z"/></svg>';
 
-const repeatOnSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentcolor"><path d="M120-40q-33 0-56.5-23.5T40-120v-720q0-33 23.5-56.5T120-920h720q33 0 56.5 23.5T920-840v720q0 33-23.5 56.5T840-40H120Zm160-40 56-58-62-62h486v-240h-80v160H274l62-62-56-58-160 160L280-80Zm-80-440h80v-160h406l-62 62 56 58 160-160-160-160-56 58 62 62H200v240Z"/></svg>';
-
 const repeatSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentcolor"><path d="M280-80 120-240l160-160 56 58-62 62h406v-160h80v240H274l62 62-56 58Zm-80-440v-240h486l-62-62 56-58 160 160-160 160-56-58 62-62H280v160h-80Z"/></svg>';
+
+const repeatOnSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentcolor"><path d="M120-40q-33 0-56.5-23.5T40-120v-720q0-33 23.5-56.5T120-920h720q33 0 56.5 23.5T920-840v720q0 33-23.5 56.5T840-40H120Zm160-40 56-58-62-62h486v-240h-80v160H274l62-62-56-58-160 160L280-80Zm-80-440h80v-160h406l-62 62 56 58 160-160-160-160-56 58 62 62H200v240Z"/></svg>';
 
 const restartSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M440-122q-121-15-200.5-105.5T160-440q0-66 26-126.5T260-672l57 57q-38 34-57.5 79T240-440q0 88 56 155.5T440-202v80Zm80 0v-80q87-16 143.5-83T720-440q0-100-70-170t-170-70h-3l44 44-56 56-140-140 140-140 56 56-44 44h3q134 0 227 93t93 227q0 121-79.5 211.5T520-122Z"/></svg>';
 
@@ -7902,6 +7909,10 @@ function AddI18nElement(element, descriptor) {
     }
     const existing = I18nElements.get(element);
     if (existing) {
+        if (descriptor === null) {
+            I18nElements.delete(element);
+            return;
+        }
         for (const target of targets) {
             const desc = descriptor[target];
             if (desc === null) {
@@ -7921,12 +7932,15 @@ function AddI18nElement(element, descriptor) {
         }
     }
     else {
-        I18nElements.set(element, descriptor);
+        if (descriptor) {
+            I18nElements.set(element, descriptor);
+        }
     }
 }
 class I18n {
     static #started = false;
     static #lang = 'english';
+    static #defaultLang = 'english';
     static #translations = new Map();
     static #executing = false;
     static #refreshTimeout;
@@ -7946,7 +7960,7 @@ class I18n {
     static setOptions(options) {
         if (options.translations) {
             for (const translation of options.translations) {
-                this.addTranslation(translation);
+                this.#addTranslation(translation);
             }
             this.#eventTarget.dispatchEvent(new CustomEvent(I18nEvents.TranslationsUpdated));
             this.#eventTarget.dispatchEvent(new CustomEvent(I18nEvents.Any));
@@ -7954,6 +7968,12 @@ class I18n {
         this.i18n();
     }
     static addTranslation(translation) {
+        this.#addTranslation(translation);
+        if (translation.lang == this.#lang) {
+            this.i18n();
+        }
+    }
+    static #addTranslation(translation) {
         this.#translations.set(translation.lang, translation);
     }
     static #initObserver() {
@@ -8086,22 +8106,21 @@ class I18n {
             this.i18n();
         }
     }
+    static setDefaultLang(defaultLang) {
+        this.#defaultLang = defaultLang;
+    }
     static addEventListener(type, callback, options) {
         this.#eventTarget.addEventListener(type, callback, options);
     }
     static getString(s) {
-        const strings = this.#translations.get(this.#lang)?.strings;
-        if (strings) {
-            const s2 = strings[s];
-            if (typeof s2 == 'string') {
-                return s2;
-            }
-            else {
-                console.warn('Missing translation for key ' + s);
-                return s;
-            }
+        const s2 = this.#translations.get(this.#lang)?.strings?.[s] ?? this.#translations.get(this.#defaultLang)?.strings?.[s];
+        if (typeof s2 == 'string') {
+            return s2;
         }
-        return s;
+        else {
+            console.warn('Missing translation for key ' + s);
+            return s;
+        }
     }
     static formatString(s, values) {
         let str = this.getString(s);
@@ -8248,6 +8267,9 @@ function createElementOptions(element, options, shadowRoot) {
                 case 'style':
                     element.style.cssText = optionValue;
                     break;
+                case 'checked':
+                    element.checked = optionValue;
+                    break;
                 case 'elementCreated':
                     break;
                 default:
@@ -8317,12 +8339,12 @@ function toggle(htmlElement) {
 function isVisible(htmlElement) {
     return htmlElement.style.display == '';
 }
-const visible = isVisible;
+const visible$1 = isVisible;
 function styleInject(css) {
     document.head.append(createElement('style', { textContent: css }));
 }
 
-var manipulator2dCSS = ":host {\n\t--harmony-2d-manipulator-shadow-radius: var(--harmony-2d-manipulator-radius, 0.5rem);\n\t--harmony-2d-manipulator-shadow-bg-color: var(--harmony-2d-manipulator-bg-color, red);\n\t--harmony-2d-manipulator-shadow-border: var(--harmony-2d-manipulator-border, none);\n\t--harmony-2d-manipulator-shadow-handle-bg-color: var(--harmony-2d-manipulator-handle-bg-color, chartreuse);\n\n\twidth: 10rem;\n\theight: 10rem;\n\tdisplay: block;\n\tuser-select: none;\n\tpointer-events: all;\n}\n\n:host-context(.grabbing) {\n\tcursor: grabbing;\n}\n\n.manipulator {\n\tposition: absolute;\n\tbackground-color: var(--harmony-2d-manipulator-shadow-bg-color);\n\tborder: var(--harmony-2d-manipulator-shadow-border);\n\tcursor: move;\n\tpointer-events: all;\n}\n\n.rotator {\n\tposition: absolute;\n\twidth: var(--harmony-2d-manipulator-shadow-radius);\n\theight: var(--harmony-2d-manipulator-shadow-radius);\n\tbackground-color: var(--harmony-2d-manipulator-shadow-handle-bg-color);\n\tborder-radius: calc(var(--harmony-2d-manipulator-shadow-radius) * 0.5);\n\ttransform: translate(-50%, -50%);\n\tcursor: grab;\n}\n\n.corner {\n\tposition: absolute;\n\twidth: var(--harmony-2d-manipulator-shadow-radius);\n\theight: var(--harmony-2d-manipulator-shadow-radius);\n\tbackground-color: var(--harmony-2d-manipulator-shadow-handle-bg-color);\n\tborder-radius: calc(var(--harmony-2d-manipulator-shadow-radius) * 0.5);\n\ttransform: translate(-50%, -50%);\n\tcursor: grab;\n}\n\n.side {\n\tposition: absolute;\n\twidth: var(--harmony-2d-manipulator-shadow-radius);\n\theight: var(--harmony-2d-manipulator-shadow-radius);\n\tbackground-color: var(--harmony-2d-manipulator-shadow-handle-bg-color);\n\tborder-radius: calc(var(--harmony-2d-manipulator-shadow-radius) * 0.5);\n\ttransform: translate(-50%, -50%);\n\tcursor: grab;\n}\n\n.corner.grabbing {\n\tcursor: grabbing;\n}\n";
+var manipulator2dCSS = ":host {\n\t--handle-radius: var(--harmony-2d-manipulator-radius, 0.5rem);\n\t--harmony-2d-manipulator-shadow-bg-color: var(--harmony-2d-manipulator-bg-color, red);\n\t--harmony-2d-manipulator-shadow-border: var(--harmony-2d-manipulator-border, none);\n\t--handle-bg-color: var(--harmony-2d-manipulator-handle-bg-color, chartreuse);\n\t--corner-bg-color: var(--harmony-2d-manipulator-corner-bg-color, var(--handle-bg-color));\n\t--side-bg-color: var(--harmony-2d-manipulator-side-bg-color, var(--handle-bg-color));\n\t--rotate-bg-color: var(--harmony-2d-manipulator-rotate-bg-color, var(--handle-bg-color));\n\n\twidth: 1rem;\n\theight: 1rem;\n\tdisplay: block;\n\tuser-select: none;\n\tpointer-events: all;\n}\n\n:host-context(.grabbing) {\n\tcursor: grabbing;\n}\n\n.manipulator {\n\tposition: absolute;\n\tbackground-color: var(--harmony-2d-manipulator-shadow-bg-color);\n\tborder: var(--harmony-2d-manipulator-shadow-border);\n\tcursor: move;\n\tpointer-events: all;\n}\n\n.rotator {\n\tscale: var(--rotate);\n\tposition: absolute;\n\twidth: var(--handle-radius);\n\theight: var(--handle-radius);\n\tbackground-color: var(--rotate-bg-color);\n\tborder-radius: calc(var(--handle-radius) * 0.5);\n\ttransform: translate(-50%, -50%);\n\tcursor: grab;\n}\n\n.corner {\n\tscale: var(--scale);\n\tposition: absolute;\n\twidth: var(--handle-radius);\n\theight: var(--handle-radius);\n\tbackground-color: var(--corner-bg-color);\n\tborder-radius: calc(var(--handle-radius) * 0.5);\n\ttransform: translate(-50%, -50%);\n\tcursor: grab;\n}\n\n.side {\n\tposition: absolute;\n\twidth: var(--handle-radius);\n\theight: var(--handle-radius);\n\tbackground-color: var(--side-bg-color);\n\tborder-radius: calc(var(--handle-radius) * 0.5);\n\ttransform: translate(-50%, -50%);\n\tcursor: grab;\n}\n\n.side.x {\n\tscale: var(--resize-x);\n}\n\n.side.y {\n\tscale: var(--resize-y);\n}\n\n.corner.grabbing {\n\tcursor: grabbing;\n}\n";
 
 function toBool(s) {
     return s === '1' || s === 'true';
@@ -8359,8 +8381,27 @@ function getDirection(s) {
             return ManipulatorDirection.All;
     }
 }
+function getResizeOrigin(s) {
+    switch (s) {
+        case 'center':
+            return ManipulatorResizeOrigin.Center;
+        default:
+            return ManipulatorResizeOrigin.OppositeCorner;
+    }
+}
+function hasX(d) {
+    return d == ManipulatorDirection.All || d == ManipulatorDirection.X;
+}
+function hasY(d) {
+    return d == ManipulatorDirection.All || d == ManipulatorDirection.Y;
+}
+var ManipulatorUpdatedEventType;
+(function (ManipulatorUpdatedEventType) {
+    ManipulatorUpdatedEventType["Position"] = "position";
+    ManipulatorUpdatedEventType["Size"] = "size";
+    ManipulatorUpdatedEventType["Rotation"] = "rotation";
+})(ManipulatorUpdatedEventType || (ManipulatorUpdatedEventType = {}));
 const CORNERS = [[-1, -1], [1, -1], [-1, 1], [1, 1]];
-const SCALE_CORNERS = [[-1, -1], [1, -1], [-1, 1], [1, 1]];
 const SIDES = [[0.5, 0], [0.5, 1], [0, 0.5], [1, 0.5]];
 const SCALE_SIDES = [[0, 1], [0, 1], [1, 0], [1, 0]];
 const SNAP_POSITION = 20; // Pixels
@@ -8383,22 +8424,26 @@ var ManipulatorSide;
     ManipulatorSide[ManipulatorSide["Left"] = 2] = "Left";
     ManipulatorSide[ManipulatorSide["Right"] = 3] = "Right";
 })(ManipulatorSide || (ManipulatorSide = {}));
+var ManipulatorResizeOrigin;
+(function (ManipulatorResizeOrigin) {
+    ManipulatorResizeOrigin[ManipulatorResizeOrigin["OppositeCorner"] = 0] = "OppositeCorner";
+    ManipulatorResizeOrigin[ManipulatorResizeOrigin["Center"] = 1] = "Center";
+})(ManipulatorResizeOrigin || (ManipulatorResizeOrigin = {}));
 class HTMLHarmony2dManipulatorElement extends HTMLElement {
     #shadowRoot;
     #htmlQuad;
     #translationMode = ManipulatorDirection.All;
     #canRotate = true;
+    #resizeMode = ManipulatorDirection.All;
     #scale = ManipulatorDirection.All;
     #skew = ManipulatorDirection.All;
     #htmlScaleCorners = [];
     #htmlResizeSides = [];
     #htmlRotator;
-    #top = 0;
-    #left = 0;
+    #center = { x: 25, y: 25 };
     #width = 50;
     #height = 50;
-    #previousTop = -1;
-    #previousLeft = -1;
+    #previousCenter = { x: -1, y: -1 };
     #previousWidth = -1;
     #previousHeight = -1;
     #rotation = 0;
@@ -8415,8 +8460,9 @@ class HTMLHarmony2dManipulatorElement extends HTMLElement {
     #startHeight = 0;
     #startTop = 0;
     #startLeft = 0;
-    #centerX = 0;
-    #centerY = 0;
+    #startCenter = { x: 0, y: 0 };
+    #startRotationCenter = { x: 0, y: 0 };
+    #startCorners = [];
     #c0_x = 0;
     #c0_y = 0;
     #qp0_x = 0;
@@ -8424,6 +8470,8 @@ class HTMLHarmony2dManipulatorElement extends HTMLElement {
     #pp_x = 0;
     #pp_y = 0;
     #dragging = false;
+    #transformScale = 1;
+    #resizeOrigin = ManipulatorResizeOrigin.OppositeCorner;
     constructor() {
         super();
         this.#shadowRoot = this.attachShadow({ mode: 'closed' });
@@ -8477,7 +8525,7 @@ class HTMLHarmony2dManipulatorElement extends HTMLElement {
         }
         for (let i = 0; i < 4; i++) {
             const htmlCorner = createElement('div', {
-                class: 'side',
+                class: `side ${i < 2 ? 'y' : 'x'}`,
                 parent: this.#htmlQuad,
                 events: {
                     mousedown: (event) => {
@@ -8501,8 +8549,21 @@ class HTMLHarmony2dManipulatorElement extends HTMLElement {
     }
     #stopDrag(event) {
         if (this.#dragging) {
+            let type = ManipulatorUpdatedEventType.Position;
+            switch (true) {
+                case this.#dragThis:
+                    type = ManipulatorUpdatedEventType.Position;
+                    break;
+                case this.#dragRotator:
+                    type = ManipulatorUpdatedEventType.Rotation;
+                    break;
+                case this.#dragCorner >= 0:
+                case this.#dragSide >= 0:
+                    type = ManipulatorUpdatedEventType.Size;
+                    break;
+            }
             this.#dragging = false;
-            this.#dispatchEvent('updateend');
+            this.#dispatchEvent('updateend', type);
         }
         this.#stopTranslate(event);
         this.#stopDragRotator(event);
@@ -8573,7 +8634,7 @@ class HTMLHarmony2dManipulatorElement extends HTMLElement {
         if (!this.#dragThis) {
             return;
         }
-        this.#deltaMove(event, true, true);
+        this.#deltaMove(event);
         this.#refresh();
         /*
         if (this.drag === 'x-axis') {
@@ -8592,14 +8653,14 @@ class HTMLHarmony2dManipulatorElement extends HTMLElement {
         }
     }
     #rotate(event) {
-        if (this.#dragRotator) {
+        if (this.#dragRotator && this.#canRotate) {
             const currentX = event.clientX;
             const currentY = event.clientY;
-            this.#rotation = -Math.atan2(currentX - this.#centerX, currentY - this.#centerY) + Math.PI;
+            this.#rotation = -Math.atan2(currentX - this.#startRotationCenter.x, currentY - this.#startRotationCenter.y) + Math.PI;
             if (event.ctrlKey) {
                 this.#snapRotation();
             }
-            this.#update();
+            this.#update(ManipulatorUpdatedEventType.Rotation);
             this.#refresh();
         }
     }
@@ -8609,21 +8670,22 @@ class HTMLHarmony2dManipulatorElement extends HTMLElement {
     #snapRotation() {
         this.#rotation = Math.round(this.#rotation * RAD_TO_DEG$1 / SNAP_ROTATION) * SNAP_ROTATION * DEG_TO_RAD$1;
     }
-    #update() {
-        if (this.#previousHeight == this.#height && this.#previousLeft == this.#left && this.#previousTop == this.#top && this.#previousWidth == this.#width && this.#previousRotation == this.#rotation) {
+    #update(type) {
+        if (this.#previousHeight == this.#height && this.#previousCenter.x == this.#center.x && this.#previousCenter.y == this.#center.y && this.#previousWidth == this.#width && this.#previousRotation == this.#rotation) {
             return;
         }
         this.#previousHeight = this.#height;
         this.#previousWidth = this.#width;
-        this.#previousTop = this.#top;
-        this.#previousLeft = this.#left;
+        this.#previousCenter.x = this.#center.x;
+        this.#previousCenter.y = this.#center.y;
         this.#previousRotation = this.#rotation;
-        this.#dispatchEvent('change');
+        this.#dispatchEvent('change', type);
     }
-    #dispatchEvent(name) {
+    #dispatchEvent(name, type) {
         this.dispatchEvent(new CustomEvent(name, {
             detail: {
-                position: { x: this.#left, y: this.#top },
+                type: type,
+                position: { x: this.#center.x, y: this.#center.y },
                 width: this.#width,
                 height: this.#height,
                 rotation: this.#rotation,
@@ -8648,16 +8710,14 @@ class HTMLHarmony2dManipulatorElement extends HTMLElement {
     }
     getCorner(i) {
         if (i < 0 || i >= 4) {
-            return null;
+            return { x: 0, y: 0 };
         }
         const c = CORNERS[i];
-        const centerX = this.#left + this.#width * 0.5;
-        const centerY = this.#top + this.#height * 0.5;
         const x = c[0] * this.#width * 0.5;
         const y = c[1] * this.#height * 0.5;
         return {
-            x: x * Math.cos(this.#rotation) - y * Math.sin(this.#rotation) + centerX,
-            y: x * Math.sin(this.#rotation) + y * Math.cos(this.#rotation) + centerY,
+            x: x * Math.cos(this.#rotation) - y * Math.sin(this.#rotation) + this.#center.x,
+            y: x * Math.sin(this.#rotation) + y * Math.cos(this.#rotation) + this.#center.y,
         };
     }
     set(values) {
@@ -8665,10 +8725,10 @@ class HTMLHarmony2dManipulatorElement extends HTMLElement {
             this.#rotation = values.rotation;
         }
         if (values.left !== undefined) {
-            this.#left = values.left;
+            this.#center.x = values.left;
         }
         if (values.top !== undefined) {
-            this.#top = values.top;
+            this.#center.y = values.top;
         }
         if (values.width !== undefined) {
             this.#width = values.width;
@@ -8678,34 +8738,62 @@ class HTMLHarmony2dManipulatorElement extends HTMLElement {
         }
         this.#refresh();
     }
+    setMode(values) {
+        if (values.rotation !== undefined) {
+            this.#canRotate = values.rotation;
+        }
+        if (values.translation !== undefined) {
+            this.#translationMode = values.translation;
+        }
+        if (values.resize !== undefined) {
+            this.#resizeMode = values.resize;
+        }
+        if (values.resizeOrigin !== undefined) {
+            this.#resizeOrigin = values.resizeOrigin;
+        }
+        if (values.scale !== undefined) {
+            this.#scale = values.scale;
+        }
+        this.#refresh();
+    }
+    setMinWidth(minWidth) {
+        this.#minWidth = minWidth;
+    }
+    setMinHeight(minHeight) {
+        this.#minHeight = minHeight;
+    }
     connectedCallback() {
         this.#refresh();
     }
     #refresh() {
         this.style.setProperty('--translate', this.#translationMode);
         this.style.setProperty('--rotate', this.#canRotate ? '1' : '0');
-        this.style.setProperty('--scale', this.#scale);
+        this.style.setProperty('--resize-x', hasX(this.#resizeMode) ? '1' : '0');
+        this.style.setProperty('--resize-y', hasY(this.#resizeMode) ? '1' : '0');
+        this.style.setProperty('--scale', this.#scale == ManipulatorDirection.All ? '1' : '0');
         this.style.setProperty('--skew', this.#skew);
         this.#htmlQuad.style.rotate = `${this.#rotation}rad`;
-        this.#htmlQuad.style.left = `${this.#left}px`;
-        this.#htmlQuad.style.top = `${this.#top}px`;
-        this.#htmlQuad.style.width = `${this.#width}px`;
-        this.#htmlQuad.style.height = `${this.#height}px`;
+        const width = Math.abs(this.#width);
+        const height = Math.abs(this.#height);
+        this.#htmlQuad.style.left = `${this.#center.x - width * 0.5}px`;
+        this.#htmlQuad.style.top = `${this.#center.y - height * 0.5}px`;
+        this.#htmlQuad.style.width = `${width}px`;
+        this.#htmlQuad.style.height = `${height}px`;
         for (let i = 0; i < 4; i++) {
             const c = CORNERS[i];
             const htmlCorner = this.#htmlScaleCorners[i];
-            htmlCorner.style.left = `${(c[0] == -1 ? 0 : 1) * this.#width}px`;
-            htmlCorner.style.top = `${(c[1] == -1 ? 0 : 1) * this.#height}px`;
+            htmlCorner.style.left = `${(c[0] == -1 ? 0 : 1) * width}px`;
+            htmlCorner.style.top = `${(c[1] == -1 ? 0 : 1) * height}px`;
         }
         for (let i = 0; i < 4; i++) {
             const s = SIDES[i];
             const htmlSide = this.#htmlResizeSides[i];
-            htmlSide.style.left = `${s[0] * this.#width}px`;
-            htmlSide.style.top = `${s[1] * this.#height}px`;
+            htmlSide.style.left = `${s[0] * width}px`;
+            htmlSide.style.top = `${s[1] * height}px`;
         }
         if (this.#htmlRotator) {
-            this.#htmlRotator.style.left = `${0.5 * this.#width}px`;
-            this.#htmlRotator.style.top = `${-0.2 * this.#height}px`;
+            this.#htmlRotator.style.left = `${0.5 * width}px`;
+            this.#htmlRotator.style.top = `${-0.2 * height}px`;
         }
     }
     attributeChangedCallback(name, oldValue, newValue) {
@@ -8716,39 +8804,70 @@ class HTMLHarmony2dManipulatorElement extends HTMLElement {
             case 'rotate':
                 this.#canRotate = toBool(newValue);
                 break;
+            case 'resize':
+                this.#resizeMode = getDirection(newValue);
+                break;
+            case 'resize-origin':
+                this.#resizeOrigin = getResizeOrigin(newValue);
+                break;
             case 'scale':
                 this.#scale = getDirection(newValue);
                 break;
             case 'skew':
                 this.#skew = getDirection(newValue);
                 break;
+            case 'width':
+                this.#width = Number(newValue);
+                break;
+            case 'height':
+                this.#height = Number(newValue);
+                break;
+            case 'min-width':
+                this.#minWidth = Number(newValue);
+                break;
+            case 'min-height':
+                this.#minHeight = Number(newValue);
+                break;
         }
         this.#refresh();
     }
     static get observedAttributes() {
-        return ['translate', 'rotate', 'scale', 'skew'];
+        return ['translate', 'rotate', 'resize', 'scale', 'resize-origin', 'skew', 'width', 'height', 'min-width', 'min-height'];
     }
-    #deltaMove(event, top, left) {
+    #deltaMove(event) {
+        const left = this.#translationMode == ManipulatorDirection.All || this.#translationMode == ManipulatorDirection.X;
+        const top = this.#translationMode == ManipulatorDirection.All || this.#translationMode == ManipulatorDirection.Y;
         const delta = this.#getDelta(event);
-        const deltaX = this.convertToUnit(delta.x, 'width');
-        const deltaY = this.convertToUnit(delta.y, 'height');
+        const deltaX = this.convertToUnit(delta.x, 'width') * this.#transformScale;
+        const deltaY = this.convertToUnit(delta.y, 'height') * this.#transformScale;
         if (top) {
-            this.#top = this.#startTop + deltaY;
+            this.#center.y = this.#startTop + deltaY;
         }
         if (left) {
-            this.#left = this.#startLeft + deltaX;
+            this.#center.x = this.#startLeft + deltaX;
         }
-        this.#update();
+        this.#update(ManipulatorUpdatedEventType.Position);
     }
     #deltaResize(event) {
         function dot(a, b) {
             return a.x * b.x + a.y * b.y;
         }
+        if (!((this.#dragCorner > ManipulatorCorner.None && this.#scale == ManipulatorDirection.All) ||
+            (this.#dragSide > ManipulatorSide.None && this.#resizeMode == ManipulatorDirection.All) ||
+            ((this.#dragSide == ManipulatorSide.Left || this.#dragSide == ManipulatorSide.Right) && this.#resizeMode == ManipulatorDirection.X) ||
+            ((this.#dragSide == ManipulatorSide.Top || this.#dragSide == ManipulatorSide.Bottom) && this.#resizeMode == ManipulatorDirection.Y))) {
+            return;
+        }
         const delta = this.#getDelta(event);
         if (!event.shiftKey && this.#dragCorner > ManipulatorCorner.None) {
-            const c = SCALE_CORNERS[this.#dragCorner];
-            const v = { x: c[0] * Math.cos(this.#rotation) - c[1] * Math.sin(this.#rotation), y: c[0] * Math.sin(this.#rotation) + c[1] * Math.cos(this.#rotation) };
-            const d = dot(delta, v) * 0.5;
+            const tl = this.#startCorners[ManipulatorCorner.TopLeft];
+            const br = this.#startCorners[ManipulatorCorner.BottomRight];
+            const startCenter = { x: (tl.x + br.x) * 0.5, y: (tl.y + br.y) * 0.5 };
+            const v = { x: this.#startCorners[this.#dragCorner].x - startCenter.x, y: this.#startCorners[this.#dragCorner].y - startCenter.y };
+            const norm = Math.sqrt(v.x * v.x + v.y * v.y);
+            v.x = v.x / norm * (this.#startWidth < 0 ? -1 : 1);
+            v.y = v.y / norm * (this.#startHeight < 0 ? -1 : 1);
+            const d = dot(delta, v);
             delta.x = v.x * d;
             delta.y = v.y * d;
         }
@@ -8759,10 +8878,21 @@ class HTMLHarmony2dManipulatorElement extends HTMLElement {
             delta.x = v.x * d;
             delta.y = v.y * d;
         }
+        delta.x *= this.#transformScale;
+        delta.y *= this.#transformScale;
         const qp_x = this.#qp0_x + delta.x;
         const qp_y = this.#qp0_y + delta.y;
-        const cp_x = event.altKey ? this.#c0_x : (qp_x + this.#pp_x) * 0.5;
-        const cp_y = event.altKey ? this.#c0_y : (qp_y + this.#pp_y) * 0.5;
+        let resizeOrigin = this.#resizeOrigin;
+        if (event.altKey) {
+            if (resizeOrigin == ManipulatorResizeOrigin.Center) {
+                resizeOrigin = ManipulatorResizeOrigin.OppositeCorner;
+            }
+            else {
+                resizeOrigin = ManipulatorResizeOrigin.Center;
+            }
+        }
+        const cp_x = resizeOrigin == ManipulatorResizeOrigin.Center ? this.#c0_x : (qp_x + this.#pp_x) * 0.5;
+        const cp_y = resizeOrigin == ManipulatorResizeOrigin.Center ? this.#c0_y : (qp_y + this.#pp_y) * 0.5;
         const mtheta = -this.#rotation;
         const cos_mt = Math.cos(mtheta);
         const sin_mt = Math.sin(mtheta);
@@ -8798,49 +8928,65 @@ class HTMLHarmony2dManipulatorElement extends HTMLElement {
             w = wtmp;
             h = htmp;
         }
-        let l = matrix.c * q_x + matrix.a * p_x;
-        let t = matrix.d * q_y + matrix.b * p_y;
-        if (event.altKey) {
-            const deltaWidth = w - this.#startWidth;
-            const deltaHeight = h - this.#startHeight;
+        let deltaCenterX = 0;
+        let deltaCenterY = 0;
+        let deltaWidth = (w - this.#startWidth);
+        let deltaHeight = h - this.#startHeight;
+        const dx = (deltaWidth * Math.cos(this.#rotation) + deltaHeight * Math.sin(this.#rotation)) * 0.5;
+        const dy = (deltaHeight * Math.cos(this.#rotation) + deltaWidth * Math.sin(this.#rotation)) * 0.5;
+        if (resizeOrigin != ManipulatorResizeOrigin.Center) {
             switch (this.#dragSide) {
                 case ManipulatorSide.Left:
-                    w += deltaWidth;
+                    deltaCenterX = -dx;
+                    deltaCenterY = -dy;
                     break;
                 case ManipulatorSide.Right:
-                    w += deltaWidth;
-                    l -= deltaWidth;
+                    deltaCenterX = dx;
+                    deltaCenterY = dy;
                     break;
                 case ManipulatorSide.Top:
-                    h += deltaHeight;
+                    deltaCenterX = dx;
+                    deltaCenterY = -dy;
                     break;
                 case ManipulatorSide.Bottom:
-                    h += deltaHeight;
-                    t -= deltaHeight;
+                    deltaCenterX = -dx;
+                    deltaCenterY = dy;
                     break;
             }
-            if (this.#dragCorner > ManipulatorCorner.None) {
-                w += deltaWidth;
-                h += deltaHeight;
-            }
+            this.#center.x = this.#startCenter.x + deltaCenterX;
+            this.#center.y = this.#startCenter.y + deltaCenterY;
+            let oppositeCorner = ManipulatorCorner.None;
             switch (this.#dragCorner) {
+                case ManipulatorCorner.TopLeft:
+                    oppositeCorner = ManipulatorCorner.BottomRight;
+                    break;
                 case ManipulatorCorner.TopRight:
-                    l -= deltaWidth;
+                    oppositeCorner = ManipulatorCorner.BottomLeft;
                     break;
                 case ManipulatorCorner.BottomLeft:
-                    t -= deltaHeight;
+                    oppositeCorner = ManipulatorCorner.TopRight;
                     break;
                 case ManipulatorCorner.BottomRight:
-                    l -= deltaWidth;
-                    t -= deltaHeight;
+                    oppositeCorner = ManipulatorCorner.TopLeft;
                     break;
             }
+            if (oppositeCorner != ManipulatorCorner.None) {
+                const startCorner = this.#startCorners[oppositeCorner];
+                const c = CORNERS[this.#dragCorner];
+                const x = c[0] * (this.#startWidth + deltaWidth) * 0.5;
+                const y = c[1] * (this.#startHeight + deltaHeight) * 0.5;
+                this.#center.x = startCorner.x + x * Math.cos(this.#rotation) - y * Math.sin(this.#rotation);
+                this.#center.y = startCorner.y + x * Math.sin(this.#rotation) + y * Math.cos(this.#rotation);
+            }
         }
-        this.#left = this.convertToUnit(l, 'width');
-        this.#width = this.convertToUnit(w, 'width');
-        this.#top = this.convertToUnit(t, 'height');
-        this.#height = this.convertToUnit(h, 'height');
-        this.#update();
+        else {
+            deltaWidth = 2 * deltaWidth;
+            deltaHeight = 2 * deltaHeight;
+        }
+        //console.info("deltaWidth", deltaWidth);
+        this.#width = this.#startWidth + deltaWidth * (this.#startWidth < 0 ? -1 : 1);
+        this.#height = this.#startHeight + deltaHeight * (this.#startHeight < 0 ? -1 : 1);
+        this.#update(ManipulatorUpdatedEventType.Size);
     }
     #getDelta(event) {
         let currentX = event.pageX;
@@ -8884,33 +9030,41 @@ class HTMLHarmony2dManipulatorElement extends HTMLElement {
     #initStartPositions(event) {
         this.#startPageX = event.pageX;
         this.#startPageY = event.pageY;
-        //await this.initParentSize();
+        const rect = this.#htmlQuad.getBoundingClientRect();
+        const width = Math.abs(this.#htmlQuad.offsetWidth * Math.cos(this.#rotation)) + Math.abs(this.#htmlQuad.offsetHeight * Math.sin(this.#rotation));
+        if (rect.width != 0) {
+            this.#transformScale = width / rect.width;
+        }
+        else {
+            this.#transformScale = 1;
+        }
         this.#initStartPositionsMove();
         this.#initStartPositionsRotation();
         this.#initStartPositionsResize();
+        this.#initStartCorners();
     }
     #initStartPositionsMove() {
         this.#startWidth = this.#width;
         this.#startHeight = this.#height;
-        this.#startTop = this.#top;
-        this.#startLeft = this.#left;
+        this.#startLeft = this.#center.x;
+        this.#startTop = this.#center.y;
     }
     #initStartPositionsRotation() {
         const rect = this.#htmlQuad.getBoundingClientRect();
-        this.#centerX = rect.left + rect.width * 0.5;
-        this.#centerY = rect.top + rect.height * 0.5;
+        this.#startRotationCenter.x = rect.left + rect.width * 0.5;
+        this.#startRotationCenter.y = rect.top + rect.height * 0.5;
     }
     #initStartPositionsResize() {
         const theta = this.#rotation;
         const cos_t = Math.cos(theta);
         const sin_t = Math.sin(theta);
-        const l = this.#left;
-        const t = this.#top;
+        const l = this.#center.x; // - this.#width * 0.5;
+        const t = this.#center.y; //- this.#height * 0.5;
         const w = this.#width;
         const h = this.#height;
         const matrix = this.#resizeMatrix();
-        this.#c0_x = l + w * 0.5;
-        this.#c0_y = t + h * 0.5;
+        this.#c0_x = this.#center.x;
+        this.#c0_y = this.#center.y;
         const q0_x = l + matrix.a * w;
         const q0_y = t + matrix.b * h;
         const p0_x = l + matrix.c * w;
@@ -8919,26 +9073,33 @@ class HTMLHarmony2dManipulatorElement extends HTMLElement {
         this.#qp0_y = q0_x * sin_t + q0_y * cos_t - this.#c0_x * sin_t - this.#c0_y * cos_t + this.#c0_y;
         this.#pp_x = p0_x * cos_t - p0_y * sin_t - this.#c0_x * cos_t + this.#c0_y * sin_t + this.#c0_x;
         this.#pp_y = p0_x * sin_t + p0_y * cos_t - this.#c0_x * sin_t - this.#c0_y * cos_t + this.#c0_y;
+        this.#startCenter.x = this.#center.x;
+        this.#startCenter.y = this.#center.y;
+    }
+    #initStartCorners() {
+        for (let i = 0; i < 4; i++) {
+            this.#startCorners[i] = this.getCorner(i);
+        }
     }
     #rotateInput(event) {
         const result = prompt('rotation', String(this.#rotation * RAD_TO_DEG$1));
         if (result) {
             this.#rotation = Number(result) * DEG_TO_RAD$1;
-            this.#update();
+            this.#update(ManipulatorUpdatedEventType.Rotation);
             this.#refresh();
-            this.#dispatchEvent('updateend');
+            this.#dispatchEvent('updateend', ManipulatorUpdatedEventType.Rotation);
         }
     }
     #translateInput(event) {
-        const result = prompt('center', `${this.#left + this.#width * 0.5} ${this.#top + this.#height * 0.5}`);
+        const result = prompt('center', `${this.#center.x} ${this.#center.y}`);
         if (result) {
             const a = result.split(' ');
             if (a.length >= 2) {
-                this.#left = Number(a[0]) - this.#width * 0.5;
-                this.#top = Number(a[1]) - this.#height * 0.5;
-                this.#update();
+                this.#center.x = Number(a[0]);
+                this.#center.y = Number(a[1]);
+                this.#update(ManipulatorUpdatedEventType.Position);
                 this.#refresh();
-                this.#dispatchEvent('updateend');
+                this.#dispatchEvent('updateend', ManipulatorUpdatedEventType.Position);
             }
         }
     }
@@ -8956,7 +9117,7 @@ var accordionCSS = ":host {\n\toverflow: hidden;\n\tdisplay: flex;\n\tjustify-co
 
 var itemCSS = "slot[name=\"header\"] {\n\tcursor: pointer;\n}\n";
 
-class HTMLHarmonyItem extends HTMLElement {
+class HTMLHarmonyItemElement extends HTMLElement {
     #shadowRoot;
     #htmlHeader;
     #htmlContent;
@@ -8998,7 +9159,7 @@ class HTMLHarmonyItem extends HTMLElement {
 let definedHarmonyItem = false;
 function defineHarmonyItem() {
     if (window.customElements && !definedHarmonyItem) {
-        customElements.define('harmony-item', HTMLHarmonyItem);
+        customElements.define('harmony-item', HTMLHarmonyItemElement);
         definedHarmonyItem = true;
     }
 }
@@ -9024,15 +9185,11 @@ class HTMLHarmonyAccordionElement extends HTMLElement {
         }
     }
     #processChilds() {
-        //This is a 2 steps process cause we may change DOM
-        const children = this.children;
-        const list = [];
-        for (const child of children) {
-            list.push(child);
+        for (const child of this.children) {
+            this.#addItem(child);
         }
-        list.forEach(element => this.addItem(element));
     }
-    addItem(item) {
+    #addItem(item) {
         if (this.#items.has(item)) {
             return;
         }
@@ -9146,7 +9303,7 @@ class HTMLHarmonyAccordionElement extends HTMLElement {
                 const addedNodes = mutation.addedNodes;
                 for (const addedNode of addedNodes) {
                     if (addedNode.parentNode == this) {
-                        this.addItem(addedNode);
+                        this.#addItem(addedNode);
                     }
                 }
             }
@@ -9393,28 +9550,33 @@ function defineHarmonyColorPicker() {
     }
 }
 
-var contextMenuCSS = ":host {\n\tposition: absolute;\n\tfont-size: 1.5em;\n\tcursor: not-allowed;\n\tbackground-color: green;\n\tbackground-color: var(--theme-context-menu-bg-color);\n\toverflow: auto;\n\tz-index: 100000;\n}\n\n.harmony-context-menu-item {\n\tbackground-color: green;\n\tcursor: pointer;\n\tbackground-color: var(--theme-context-menu-item-bg-color);\n}\n\n.harmony-context-menu-item.disabled {\n\tpointer-events: none;\n}\n\n.harmony-context-menu-item.selected {\n\tbackground-color: blue;\n\tbackground-color: var(--theme-context-menu-item-selected-bg-color);\n}\n\n\n.harmony-context-menu-item.separator {\n\theight: 5px;\n\tbackground-color: black;\n}\n\n.harmony-context-menu-item>.harmony-context-menu-item-title:hover {\n\tbackground-color: var(--theme-context-menu-item-hover-bg-color);\n}\n\n.harmony-context-menu-item.selected>.harmony-context-menu-item-title::after {\n\tcontent: \"✔\";\n\tright: 0px;\n\tposition: absolute;\n}\n\n.harmony-context-menu-item>.harmony-context-menu-item-title::after {\n\ttransition: all 0.2s ease 0s;\n\twidth: 32px;\n\theight: 32px;\n}\n\n.harmony-context-menu-item.closed>.harmony-context-menu-item-title,\n.harmony-context-menu-item.opened>.harmony-context-menu-item-title {\n\tpadding-right: 32px;\n}\n\n.harmony-context-menu-item.closed>.harmony-context-menu-item-title::after {\n\tcontent: \"➤\";\n\tright: 0px;\n\tposition: absolute;\n}\n\n.harmony-context-menu-item.opened>.harmony-context-menu-item-title::after {\n\tcontent: \"➤\";\n\tright: 0px;\n\tposition: absolute;\n\t/*writing-mode: vertical-rl; */\n\ttransform: rotate(90deg);\n}\n\n.harmony-context-menu-item .submenu {\n\tbackground-color: var(--theme-context-menu-submenu-bg-color);\n\tpadding-left: 10px;\n\tmargin-left: 2px;\n\tdisplay: none;\n\toverflow: hidden;\n\tposition: relative;\n\tbackground-color: var(--theme-context-menu-submenu-fg-color);\n}\n\n.harmony-context-menu-item.opened>.submenu {\n\tdisplay: block;\n}\n";
+var menuCSS = ":host {\n\tfont-size: 1.5em;\n\tcursor: not-allowed;\n\tbackground-color: green;\n\tbackground-color: var(--theme-menu-bg-color);\n\toverflow: auto;\n\tz-index: 100000;\n}\n\n:host-context(.contextual) {\n\tposition: absolute;\n}\n\n.harmony-menu-item {\n\tbackground-color: green;\n\tcursor: pointer;\n\tbackground-color: var(--theme-menu-item-bg-color);\n}\n\n.harmony-menu-item.disabled {\n\tpointer-events: none;\n}\n\n.harmony-menu-item.selected {\n\tbackground-color: blue;\n\tbackground-color: var(--theme-menu-item-selected-bg-color);\n}\n\n\n.harmony-menu-item.separator {\n\theight: 5px;\n\tbackground-color: black;\n}\n\n.harmony-menu-item>.harmony-menu-item-title:hover {\n\tbackground-color: var(--theme-menu-item-hover-bg-color);\n}\n\n.harmony-menu-item.selected>.harmony-menu-item-title::after {\n\tcontent: \"✔\";\n\tright: 0px;\n\tposition: absolute;\n}\n\n.harmony-menu-item>.harmony-menu-item-title::after {\n\ttransition: all 0.2s ease 0s;\n\twidth: 32px;\n\theight: 32px;\n}\n\n.harmony-menu-item.closed>.harmony-menu-item-title,\n.harmony-menu-item.opened>.harmony-menu-item-title {\n\tpadding-right: 32px;\n}\n\n.harmony-menu-item.closed>.harmony-menu-item-title::after {\n\tcontent: \"➤\";\n\tright: 0px;\n\tposition: absolute;\n}\n\n.harmony-menu-item.opened>.harmony-menu-item-title::after {\n\tcontent: \"➤\";\n\tright: 0px;\n\tposition: absolute;\n\t/*writing-mode: vertical-rl; */\n\ttransform: rotate(90deg);\n}\n\n.harmony-menu-item .submenu {\n\tbackground-color: var(--theme-menu-submenu-bg-color);\n\tpadding-left: 10px;\n\tmargin-left: 2px;\n\tdisplay: none;\n\toverflow: hidden;\n\tposition: relative;\n\tbackground-color: var(--theme-menu-submenu-fg-color);\n}\n\n.harmony-menu-item.opened>.submenu {\n\tdisplay: block;\n}\n";
 
-class HTMLHarmonyContextMenuElement extends HTMLElement {
+class HTMLHarmonyMenuElement extends HTMLElement {
     #doOnce = true;
     #subMenus = new Map();
     #shadowRoot;
+    #contextual = false;
     constructor() {
         super();
         this.#shadowRoot = this.attachShadow({ mode: 'closed' });
         document.addEventListener('click', (event) => {
-            if (!this.contains(event.target)) {
+            if (this.#contextual && !this.contains(event.target)) {
                 this.close();
             }
         });
     }
-    show(items, clientX, clientY, userData) {
-        document.body.append(this);
+    show(items, userData) {
         this.#setItems(items, userData);
-        this.style.position = 'absolute';
+        this.#checkSize();
+    }
+    showContextual(items, clientX, clientY, userData) {
+        document.body.append(this);
         this.style.left = clientX + 'px';
         this.style.top = clientY + 'px';
-        this.#checkSize();
+        this.classList.add('contextual');
+        this.#contextual = true;
+        this.show(items, userData);
     }
     #checkSize() {
         const bodyRect = document.body.getBoundingClientRect();
@@ -9445,12 +9607,14 @@ class HTMLHarmonyContextMenuElement extends HTMLElement {
         }
     }
     close() {
-        this.remove();
+        if (this.#contextual) {
+            this.remove();
+        }
     }
     connectedCallback() {
         if (this.#doOnce) {
             I18n.observeElement(this.#shadowRoot);
-            shadowRootStyle(this.#shadowRoot, contextMenuCSS);
+            shadowRootStyle(this.#shadowRoot, menuCSS);
             const callback = (entries, observer) => {
                 entries.forEach(() => {
                     this.#checkSize();
@@ -9491,14 +9655,14 @@ class HTMLHarmonyContextMenuElement extends HTMLElement {
     }
     addItem(item, userData) {
         const htmlItem = createElement('div', {
-            class: 'harmony-context-menu-item',
+            class: 'harmony-menu-item',
         });
         if (!item) {
             htmlItem.classList.add('separator');
         }
         else {
             const htmlItemTitle = createElement('div', {
-                class: 'harmony-context-menu-item-title',
+                class: 'harmony-menu-item-title',
             });
             if (item.i18n) {
                 htmlItemTitle.classList.add('i18n');
@@ -9537,19 +9701,32 @@ class HTMLHarmonyContextMenuElement extends HTMLElement {
                 htmlItem.append(htmlSubMenu);
                 //htmlSubMenu.style.display = 'none';
                 htmlItem.classList.add('closed');
-                htmlItem.addEventListener('click', event => { this.#openSubMenu(htmlSubMenu); event.stopPropagation(); });
-                if (subItems == 0) {
-                    hide(htmlItem);
+                if (item.opened) {
+                    this.#openSubMenu(htmlSubMenu);
                 }
-            }
-            else {
-                htmlItem.addEventListener('click', () => {
+                htmlItem.addEventListener('click', event => {
+                    this.#openSubMenu(htmlSubMenu);
                     if (item.cmd) {
                         this.dispatchEvent(new CustomEvent(item.cmd));
                     }
                     if (item.f) {
                         item.f(userData);
                     }
+                    event.stopPropagation();
+                });
+                if (subItems == 0) {
+                    hide(htmlItem);
+                }
+            }
+            else {
+                htmlItem.addEventListener('click', (event) => {
+                    if (item.cmd) {
+                        this.dispatchEvent(new CustomEvent(item.cmd));
+                    }
+                    if (item.f) {
+                        item.f(userData);
+                    }
+                    event.stopPropagation();
                 });
                 htmlItem.addEventListener('click', () => this.close());
             }
@@ -9557,11 +9734,11 @@ class HTMLHarmonyContextMenuElement extends HTMLElement {
         return htmlItem;
     }
 }
-let definedContextMenu = false;
-function defineHarmonyContextMenu() {
-    if (window.customElements && !definedContextMenu) {
-        customElements.define('harmony-context-menu', HTMLHarmonyContextMenuElement);
-        definedContextMenu = true;
+let definedMenu = false;
+function defineHarmonyMenu() {
+    if (window.customElements && !definedMenu) {
+        customElements.define('harmony-menu', HTMLHarmonyMenuElement);
+        definedMenu = true;
         injectGlobalCss();
     }
 }
@@ -10385,23 +10562,24 @@ function defineHarmonyPanel() {
     }
 }
 
-var radioCSS = ":host {\n\t--harmony-radio-shadow-button-border-radius: var(--harmony-radio-button-border-radius, 0.5rem);\n\t--harmony-radio-shadow-button-padding: var(--harmony-radio-button-padding, 0.5rem);\n\t--harmony-radio-shadow-button-font-size: var(--harmony-radio-button-font-size, 1rem);\n\t--harmony-radio-shadow-button-flex: var(--harmony-radio-button-flex, auto);\n\tdisplay: inline-flex;\n\toverflow: hidden;\n\tuser-select: none;\n}\n\n.label {\n\tmargin: auto 0;\n\tfont-weight: bold;\n\tmargin-right: 0.25rem;\n}\n\nbutton {\n\tpadding: var(--harmony-radio-shadow-button-padding);\n\tcolor: var(--harmony-ui-text-primary);\n\tflex: var(--harmony-radio-shadow-button-flex);\n\tcursor: pointer;\n\tappearance: none;\n\tborder-style: solid;\n\tborder-width: 0.0625rem;\n\tborder-color: var(--harmony-ui-border-primary);\n\tborder-right-style: none;\n\tbackground-color: var(--harmony-ui-input-background-primary);\n\ttransition: background-color 0.2s linear;\n\tfont-size: var(--harmony-radio-shadow-button-font-size);\n\toverflow: hidden;\n}\n\nbutton:hover {\n\tbackground-color: var(--harmony-ui-input-background-secondary);\n}\n\nbutton[selected] {\n\tbackground-color: var(--harmony-ui-accent-primary);\n}\n\nbutton[selected]:hover {\n\tbackground-color: var(--harmony-ui-accent-secondary);\n}\n\nbutton:first-of-type {\n\tborder-radius: var(--harmony-radio-shadow-button-border-radius) 0 0 var(--harmony-radio-shadow-button-border-radius);\n}\n\nbutton:last-child {\n\tborder-right-style: solid;\n\tborder-radius: 0 var(--harmony-radio-shadow-button-border-radius) var(--harmony-radio-shadow-button-border-radius) 0;\n}\n";
+var radioCSS = ":host {\n\t--harmony-radio-shadow-button-border-radius: var(--harmony-radio-button-border-radius, 0.5rem);\n\tdisplay: inline-flex;\n\toverflow: hidden;\n\tuser-select: none;\n}\n\n.label {\n\tmargin: auto 0;\n\tfont-weight: bold;\n\tmargin-right: 0.25rem;\n}\n\n::slotted(button) {\n\tpadding: 0.5rem;\n\tcolor: var(--harmony-ui-text-primary);\n\tflex: auto;\n\tcursor: pointer;\n\tappearance: none;\n\tborder-style: solid;\n\tborder-width: 0.0625rem;\n\tborder-color: var(--harmony-ui-border-primary);\n\tborder-right-style: none;\n\tbackground-color: var(--harmony-ui-input-background-primary);\n\ttransition: background-color 0.2s linear;\n\tfont-size: 1rem;\n\toverflow: hidden;\n}\n\n::slotted(button:hover) {\n\tbackground-color: var(--harmony-ui-input-background-secondary);\n}\n\n::slotted(button[selected]) {\n\tbackground-color: var(--harmony-ui-accent-primary);\n}\n\n::slotted(button[selected]:hover) {\n\tbackground-color: var(--harmony-ui-accent-secondary);\n}\n\n::slotted(button:first-of-type) {\n\tborder-radius: var(--harmony-radio-shadow-button-border-radius) 0 0 var(--harmony-radio-shadow-button-border-radius);\n}\n\n::slotted(button:last-child) {\n\tborder-right-style: solid;\n\tborder-radius: 0 var(--harmony-radio-shadow-button-border-radius) var(--harmony-radio-shadow-button-border-radius) 0;\n}\n";
 
 class HTMLHarmonyRadioElement extends HTMLElement {
     #doOnce = true;
     #disabled = false;
     #multiple = false;
     #htmlLabel;
-    #state = false;
     #buttons = new Map();
     #buttons2 = new Set();
+    #slots = new Set();
     #selected = new Set();
     #shadowRoot;
+    #lastSelected;
     constructor() {
         super();
-        this.#shadowRoot = this.attachShadow({ mode: 'closed' });
+        this.#shadowRoot = this.attachShadow({ mode: 'closed', slotAssignment: "manual" });
         this.#htmlLabel = createElement('div', { class: 'label' });
-        this.#initObserver();
+        this.#initMutationObserver();
     }
     connectedCallback() {
         if (this.#doOnce) {
@@ -10414,8 +10592,8 @@ class HTMLHarmonyRadioElement extends HTMLElement {
         }
     }
     #processChilds() {
-        while (this.children.length) {
-            this.#initButton(this.children[0]);
+        for (const child of this.children) {
+            this.#initButton(child);
         }
     }
     #initButton(htmlButton) {
@@ -10423,34 +10601,41 @@ class HTMLHarmonyRadioElement extends HTMLElement {
         if (!this.#buttons2.has(htmlButton)) {
             htmlButton.addEventListener('click', () => this.select(htmlButton.value, !this.#multiple || !htmlButton.hasAttribute('selected')));
             this.#buttons2.add(htmlButton);
+            const htmlSlot = createElement('slot', {
+                parent: this.#shadowRoot,
+            });
+            this.#slots.add(htmlSlot);
+            htmlSlot.assign(htmlButton);
+            I18n.updateElement(htmlButton);
         }
         if (this.#selected.has(htmlButton.value) || htmlButton.hasAttribute('selected')) {
             this.select(htmlButton.value, true);
         }
-        this.#shadowRoot.append(htmlButton);
-        I18n.updateElement(htmlButton);
     }
-    append(...params) {
-        for (const param of params) {
-            this.#initButton(param);
-            //this.#shadowRoot.append(param);
-            //I18n.updateElement(param);
-        }
-    }
-    select(value, select) {
+    select(value, select = true) {
         this.#selected[select ? 'add' : 'delete'](value);
         const htmlButton = this.#buttons.get(value);
         if (htmlButton) {
-            if (select && !this.#multiple) {
-                for (const child of this.#shadowRoot.children) {
-                    if (child.hasAttribute('selected')) {
-                        child.removeAttribute('selected');
-                        this.dispatchEvent(new CustomEvent('change', { detail: { value: child.value, state: false } }));
-                        child.dispatchEvent(new CustomEvent('change', { detail: { value: child.value, state: false } }));
+            if (select) {
+                if (!this.#multiple) {
+                    for (const child of this.children) {
+                        if (child.hasAttribute('selected')) {
+                            child.removeAttribute('selected');
+                            this.dispatchEvent(new CustomEvent('change', { detail: { value: child.value, state: false } }));
+                            child.dispatchEvent(new CustomEvent('change', { detail: { value: child.value, state: false } }));
+                        }
                     }
                 }
+                htmlButton.setAttribute('selected', '');
+                if (this.#lastSelected) {
+                    this.#lastSelected.classList.remove('last-selected');
+                }
+                this.#lastSelected = htmlButton;
+                this.#lastSelected.classList.add('last-selected');
             }
-            select ? htmlButton.setAttribute('selected', '') : htmlButton.removeAttribute('selected');
+            else {
+                htmlButton.removeAttribute('selected');
+            }
             this.dispatchEvent(new CustomEvent('change', { detail: { value: htmlButton.value, state: select } }));
             htmlButton.dispatchEvent(new CustomEvent('change', { detail: { value: htmlButton.value, state: select } }));
         }
@@ -10466,7 +10651,19 @@ class HTMLHarmonyRadioElement extends HTMLElement {
     get disabled() {
         return this.#disabled;
     }
-    #initObserver() {
+    clear() {
+        for (const button of this.#buttons2) {
+            button.remove();
+        }
+        for (const slot of this.#slots) {
+            slot.remove();
+        }
+        this.#buttons.clear();
+        this.#buttons2.clear();
+        this.#selected.clear();
+        this.#slots.clear();
+    }
+    #initMutationObserver() {
         const config = { childList: true, subtree: true };
         const mutationCallback = (mutationsList, observer) => {
             for (const mutation of mutationsList) {
@@ -10995,7 +11192,6 @@ class HTMLHarmonyElement extends HTMLElement {
 }
 
 class HTMLHarmonySliderElement extends HTMLHarmonyElement {
-    #initialized = false;
     #shadowRoot;
     #htmlLabel;
     #htmlSlider;
@@ -11104,8 +11300,8 @@ class HTMLHarmonySliderElement extends HTMLHarmonyElement {
         let step;
         switch (name) {
             case 'label':
-                updateElement(this.#htmlLabel, { i18n: newValue, });
                 this.#htmlLabel.innerHTML = newValue;
+                updateElement(this.#htmlLabel, { i18n: newValue, });
                 show(this.#htmlLabel);
                 break;
             case 'min':
@@ -11305,36 +11501,40 @@ function defineHarmonySplitter() {
     }
 }
 
-var switchCSS = ":host {\n\t--harmony-switch-shadow-width: var(--harmony-switch-width, 4rem);\n\t--harmony-switch-shadow-height: var(--harmony-switch-height, 2rem);\n\t--harmony-switch-shadow-on-background-color: var(--harmony-switch-on-background-color, #1072eb);\n\t--harmony-switch-shadow-on-background-color-hover: var(--harmony-switch-on-background-color-hover, #1040c1);\n\t--harmony-switch-shadow-slider-width: var(--harmony-switch-slider-width, 1.4rem);\n\t--harmony-switch-shadow-slider-height: var(--harmony-switch-slider-height, 1.4rem);\n\t--harmony-switch-shadow-slider-margin: var(--harmony-switch-slider-margin, 0.3rem);\n\t--harmony-switch-shadow-slider-border-width: var(--harmony-switch-slider-border-width, 0rem);\n\n\tdisplay: inline-flex;\n\tuser-select: none;\n\tcursor: pointer;\n\tjustify-content: space-between;\n}\n\n.harmony-switch-label {\n\tmargin: auto 0;\n\tfont-weight: bold;\n}\n\n.harmony-switch-outer {\n\tdisplay: flex;\n\theight: var(--harmony-switch-shadow-height);\n\tborder-radius: calc(var(--harmony-switch-shadow-height) * 0.5);\n\talign-items: center;\n\tmargin-left: 0.25rem;\n\ttransition: background-color 0.25s linear;\n\twidth: var(--harmony-switch-shadow-width);\n}\n\n.harmony-switch-outer {\n\tbackground-color: var(--harmony-ui-input-background-primary);\n}\n\n.harmony-switch-outer:hover {\n\tbackground-color: var(--harmony-ui-input-background-secondary);\n}\n\n.harmony-switch-outer.on {\n\tbackground-color: var(--harmony-ui-accent-primary);\n}\n\n.harmony-switch-outer.on:hover {\n\tbackground-color: var(--harmony-ui-accent-secondary);\n}\n\n.harmony-switch-inner {\n\tdisplay: inline-block;\n\theight: var(--harmony-switch-shadow-slider-height);\n\twidth: var(--harmony-switch-shadow-slider-width);\n\tborder-radius: calc(var(--harmony-switch-shadow-slider-height) * 0.5);\n\ttransition: all 0.25s;\n\tposition: relative;\n\tleft: var(--harmony-switch-shadow-slider-margin);\n\tborder: var(--harmony-switch-shadow-slider-border-width) solid;\n\tbox-sizing: border-box;\n\tborder-color: var(--harmony-ui-input-border-primary);\n\tbackground-color: var(--harmony-ui-input-background-tertiary);\n}\n\n.harmony-switch-outer.ternary .harmony-switch-inner {\n\tleft: calc(50% - var(--harmony-switch-shadow-slider-width) * 0.5);\n}\n\n.harmony-switch-outer.off .harmony-switch-inner {\n\tleft: var(--harmony-switch-shadow-slider-margin);\n}\n\n.harmony-switch-outer.on .harmony-switch-inner {\n\tleft: calc(100% - var(--harmony-switch-shadow-slider-width) - var(--harmony-switch-shadow-slider-margin));\n}\n\n.harmony-switch-outer.ternary.off {\n\tbackground-color: red;\n}\n\n.harmony-switch-outer.ternary.off:hover {\n\tbackground-color: red;\n}\n\n.harmony-switch-outer.ternary.on {\n\tbackground-color: green;\n}\n\n.harmony-switch-outer.ternary.on:hover {\n\tbackground-color: green;\n}\n";
+var switchCSS = ":host {\n\t--harmony-switch-shadow-width: var(--harmony-switch-width, 4rem);\n\t--harmony-switch-shadow-height: var(--harmony-switch-height, 2rem);\n\t--harmony-switch-shadow-on-background-color: var(--harmony-switch-on-background-color, #1072eb);\n\t--harmony-switch-shadow-on-background-color-hover: var(--harmony-switch-on-background-color-hover, #1040c1);\n\t--harmony-switch-shadow-slider-width: var(--harmony-switch-slider-width, 1.4rem);\n\t--harmony-switch-shadow-slider-height: var(--harmony-switch-slider-height, 1.4rem);\n\t--harmony-switch-shadow-slider-margin: var(--harmony-switch-slider-margin, 0.3rem);\n\t--harmony-switch-shadow-slider-border-width: var(--harmony-switch-slider-border-width, 0rem);\n\t--slot-width: var(--harmony-switch-slot-width, auto);\n\t--prepend-width: var(--harmony-switch-prepend-width, var(--slot-width));\n\t--append-width: var(--harmony-switch-append-width, var(--slot-width));\n\n\tdisplay: inline-flex;\n\tuser-select: none;\n\tcursor: pointer;\n\tjustify-content: space-between;\n}\n\n:host>* {\n\tflex-grow: 0;\n}\n\n.label {\n\tmargin: auto 0;\n\tfont-weight: bold;\n\tflex: 1;\n}\n\nslot{\n\tdisplay: inline-block;\n}\n\nslot[name=\"prepend\"] {\n\twidth: var(--prepend-width);\n}\n\nslot[name=\"append\"] {\n\twidth: var(--append-width);\n}\n\n.harmony-switch-outer {\n\tdisplay: flex;\n\theight: var(--harmony-switch-shadow-height);\n\tborder-radius: calc(var(--harmony-switch-shadow-height) * 0.5);\n\talign-items: center;\n\tmargin-left: 0.25rem;\n\ttransition: background-color 0.25s linear;\n\twidth: var(--harmony-switch-shadow-width);\n}\n\n.harmony-switch-outer {\n\tbackground-color: var(--harmony-ui-input-background-primary);\n}\n\n.harmony-switch-outer:hover {\n\tbackground-color: var(--harmony-ui-input-background-secondary);\n}\n\n.harmony-switch-outer.on {\n\tbackground-color: var(--harmony-ui-accent-primary);\n}\n\n.harmony-switch-outer.on:hover {\n\tbackground-color: var(--harmony-ui-accent-secondary);\n}\n\n.harmony-switch-inner {\n\tdisplay: inline-block;\n\theight: var(--harmony-switch-shadow-slider-height);\n\twidth: var(--harmony-switch-shadow-slider-width);\n\tborder-radius: calc(var(--harmony-switch-shadow-slider-height) * 0.5);\n\ttransition: all 0.25s;\n\tposition: relative;\n\tleft: var(--harmony-switch-shadow-slider-margin);\n\tborder: var(--harmony-switch-shadow-slider-border-width) solid;\n\tbox-sizing: border-box;\n\tborder-color: var(--harmony-ui-input-border-primary);\n\tbackground-color: var(--harmony-ui-input-background-tertiary);\n}\n\n.harmony-switch-outer.ternary .harmony-switch-inner {\n\tleft: calc(50% - var(--harmony-switch-shadow-slider-width) * 0.5);\n}\n\n.harmony-switch-outer.off .harmony-switch-inner {\n\tleft: var(--harmony-switch-shadow-slider-margin);\n}\n\n.harmony-switch-outer.on .harmony-switch-inner {\n\tleft: calc(100% - var(--harmony-switch-shadow-slider-width) - var(--harmony-switch-shadow-slider-margin));\n}\n\n.harmony-switch-outer.ternary.off {\n\tbackground-color: red;\n}\n\n.harmony-switch-outer.ternary.off:hover {\n\tbackground-color: red;\n}\n\n.harmony-switch-outer.ternary.on {\n\tbackground-color: green;\n}\n\n.harmony-switch-outer.ternary.on:hover {\n\tbackground-color: green;\n}\n";
 
-class HTMLHarmonySwitchElement extends HTMLElement {
-    #doOnce = true;
+class HTMLHarmonySwitchElement extends HTMLHarmonyElement {
+    #shadowRoot;
     #disabled = false;
     #htmlLabel;
     #htmlSwitchOuter;
-    #htmlSwitchInner;
     #state = false;
     #ternary = false;
-    #shadowRoot;
-    constructor() {
-        super();
+    createElement() {
         this.#shadowRoot = this.attachShadow({ mode: 'closed' });
         shadowRootStyle(this.#shadowRoot, switchCSS);
-        this.#htmlLabel = createElement('div', { class: 'harmony-switch-label' });
-        this.#htmlSwitchOuter = createElement('span', {
-            class: 'harmony-switch-outer',
-            child: this.#htmlSwitchInner = createElement('span', { class: 'harmony-switch-inner' }),
+        I18n.observeElement(this.#shadowRoot);
+        this.#htmlLabel = createElement('div', {
+            parent: this.#shadowRoot,
+            class: 'label',
         });
-        this.addEventListener('click', () => this.toggle());
-    }
-    connectedCallback() {
-        if (this.#doOnce) {
-            I18n.observeElement(this.#shadowRoot);
-            this.#shadowRoot.append(this.#htmlLabel, this.#htmlSwitchOuter);
-            this.#htmlSwitchOuter.append(this.#htmlSwitchInner);
-            this.#refresh();
-            this.#doOnce = false;
-        }
+        createElement('slot', {
+            parent: this.#shadowRoot,
+            name: 'prepend',
+            $click: () => this.state = false,
+        });
+        this.#htmlSwitchOuter = createElement('span', {
+            parent: this.#shadowRoot,
+            class: 'harmony-switch-outer',
+            child: createElement('span', { class: 'harmony-switch-inner' }),
+            $click: () => this.toggle(),
+        });
+        createElement('slot', {
+            parent: this.#shadowRoot,
+            name: 'append',
+            $click: () => this.state = true,
+        });
+        this.#refresh();
     }
     set disabled(disabled) {
         this.#disabled = disabled ? true : false;
@@ -11387,24 +11587,29 @@ class HTMLHarmonySwitchElement extends HTMLElement {
         this.#refresh();
     }
     #refresh() {
-        this.#htmlSwitchOuter.classList.remove('on');
-        this.#htmlSwitchOuter.classList.remove('off');
-        this.#htmlSwitchOuter.classList[this.#ternary ? 'add' : 'remove']('ternary');
+        this.#htmlSwitchOuter?.classList.remove('on', 'off', 'ternary');
+        if (this.#ternary) {
+            this.#htmlSwitchOuter?.classList.add('ternary');
+        }
         if (this.#state === undefined) {
             return;
         }
-        this.#htmlSwitchOuter.classList.add(this.#state ? 'on' : 'off');
+        this.#htmlSwitchOuter?.classList.add(this.#state ? 'on' : 'off');
     }
-    attributeChangedCallback(name, oldValue, newValue) {
+    onAttributeChanged(name, oldValue, newValue) {
         switch (name) {
             case 'data-label':
-                this.#htmlLabel.innerHTML = newValue;
-                this.#htmlLabel.classList.remove('i18n');
+                if (this.#htmlLabel) {
+                    this.#htmlLabel.innerHTML = newValue;
+                }
+                this.#htmlLabel?.classList.remove('i18n');
                 break;
             case 'data-i18n':
-                this.#htmlLabel.setAttribute('data-i18n', newValue);
-                this.#htmlLabel.innerHTML = newValue;
-                this.#htmlLabel.classList.add('i18n');
+                this.#htmlLabel?.setAttribute('data-i18n', newValue);
+                if (this.#htmlLabel) {
+                    this.#htmlLabel.innerHTML = newValue;
+                }
+                this.#htmlLabel?.classList.add('i18n');
                 break;
             case 'disabled':
                 this.disabled = toBool(newValue);
@@ -11631,79 +11836,35 @@ function defineHarmonyTabGroup() {
 var toggleButtonCSS = ":host {\n\tcursor: pointer;\n\tdisplay: inline-block;\n\tposition: relative;\n}\n\non,\noff {\n\theight: 100%;\n\twidth: 100%;\n\tbackground-size: 100% auto;\n\tbox-sizing: border-box;\n}\n";
 
 class HTMLHarmonyToggleButtonElement extends HTMLElement {
-    #buttonOn;
-    #buttonOff;
     #state = false;
     #shadowRoot;
-    #i18nOn;
-    #i18nOff;
+    #htmlSlotOn;
+    #htmlSlotOff;
     constructor() {
         super();
         this.#shadowRoot = this.attachShadow({ mode: 'closed' });
+        this.#htmlSlotOn = createElement('slot', {
+            parent: this.#shadowRoot,
+            name: 'on',
+        });
+        this.#htmlSlotOff = createElement('slot', {
+            parent: this.#shadowRoot,
+            name: 'off',
+        });
         I18n.observeElement(this.#shadowRoot);
         shadowRootStyle(this.#shadowRoot, toggleButtonCSS);
-        this.addEventListener('click', () => this.#click());
+        this.addEventListener('click', (event) => {
+            this.#click();
+            event.stopPropagation();
+        });
         this.#initObserver();
     }
     connectedCallback() {
-        if (this.#buttonOn) {
-            this.#shadowRoot.append(this.#buttonOn);
-        }
-        if (this.#buttonOff) {
-            this.#shadowRoot.append(this.#buttonOff);
-        }
-        this.#processChilds();
-    }
-    #processChilds() {
-        const childs = new Set(this.children);
-        for (const child of childs) {
-            this.#processChild(child);
-        }
-        this.#refresh();
-    }
-    #processChild(htmlChildElement) {
-        switch (htmlChildElement.tagName) {
-            case 'ON':
-                this.#buttonOn = htmlChildElement;
-                this.#shadowRoot.append(this.#buttonOn);
-                if (this.#i18nOn) {
-                    updateElement(this.#buttonOn, { i18n: { title: this.#i18nOn, }, });
-                }
-                break;
-            case 'OFF':
-                this.#buttonOff = htmlChildElement;
-                this.#shadowRoot.append(this.#buttonOff);
-                if (this.#i18nOff) {
-                    updateElement(this.#buttonOff, { i18n: { title: this.#i18nOff, }, });
-                }
-                break;
-        }
         this.#refresh();
     }
     attributeChangedCallback(name, oldValue, newValue) {
-        if (name == 'data-i18n-on') {
-            this.#i18nOn = newValue;
-            this.#buttonOn && updateElement(this.#buttonOn, { i18n: { title: newValue, }, });
-        }
-        if (name == 'data-i18n-off') {
-            this.#i18nOff = newValue;
-            this.#buttonOff && updateElement(this.#buttonOff, { i18n: { title: newValue, }, });
-        }
         if (name == 'state') {
             this.state = toBool(newValue);
-        }
-        if (name == 'src-on') {
-            this.#buttonOn = this.#buttonOn ?? createElement('span', {
-                class: 'toggle-button-on',
-                hidden: true,
-            });
-            this.#buttonOn.style.backgroundImage = `url(${newValue})`;
-        }
-        if (name == 'src-off') {
-            this.#buttonOff = this.#buttonOff ?? createElement('span', {
-                class: 'toggle-button-off',
-            });
-            this.#buttonOff.style.backgroundImage = `url(${newValue})`;
         }
     }
     get state() {
@@ -11718,13 +11879,20 @@ class HTMLHarmonyToggleButtonElement extends HTMLElement {
         }
     }
     #refresh() {
+        this.classList.remove('on', 'off');
         if (this.#state) {
-            show(this.#buttonOn);
-            hide(this.#buttonOff);
+            this.classList.add('on');
+            if (this.#htmlSlotOn.assignedElements().length) {
+                show(this.#htmlSlotOn);
+                hide(this.#htmlSlotOff);
+            }
         }
         else {
-            hide(this.#buttonOn);
-            show(this.#buttonOff);
+            this.classList.add('off');
+            if (this.#htmlSlotOff.assignedElements().length) {
+                hide(this.#htmlSlotOn);
+                show(this.#htmlSlotOff);
+            }
         }
     }
     #click() {
@@ -11736,7 +11904,7 @@ class HTMLHarmonyToggleButtonElement extends HTMLElement {
             for (const mutation of mutationsList) {
                 for (const addedNode of mutation.addedNodes) {
                     if (addedNode.parentNode == this) {
-                        this.#processChild(addedNode);
+                        this.#refresh();
                     }
                 }
             }
@@ -11748,11 +11916,11 @@ class HTMLHarmonyToggleButtonElement extends HTMLElement {
         this.#shadowRoot.adoptedStyleSheets.push(styleSheet);
     }
     static get observedAttributes() {
-        return ['data-i18n-on', 'data-i18n-off', 'state', 'src-on', 'src-off'];
+        return ['state'];
     }
 }
 let definedToggleButton = false;
-function defineToggleButton() {
+function defineHarmonyToggleButton() {
     if (window.customElements && !definedToggleButton) {
         customElements.define('harmony-toggle-button', HTMLHarmonyToggleButtonElement);
         definedToggleButton = true;
@@ -11766,10 +11934,11 @@ var index$1 = /*#__PURE__*/Object.freeze({
   HTMLHarmony2dManipulatorElement: HTMLHarmony2dManipulatorElement,
   HTMLHarmonyAccordionElement: HTMLHarmonyAccordionElement,
   HTMLHarmonyColorPickerElement: HTMLHarmonyColorPickerElement,
-  HTMLHarmonyContextMenuElement: HTMLHarmonyContextMenuElement,
   HTMLHarmonyCopyElement: HTMLHarmonyCopyElement,
   HTMLHarmonyFileInputElement: HTMLHarmonyFileInputElement,
+  HTMLHarmonyItemElement: HTMLHarmonyItemElement,
   HTMLHarmonyLabelPropertyElement: HTMLHarmonyLabelPropertyElement,
+  HTMLHarmonyMenuElement: HTMLHarmonyMenuElement,
   HTMLHarmonyPaletteElement: HTMLHarmonyPaletteElement,
   HTMLHarmonyPanelElement: HTMLHarmonyPanelElement,
   HTMLHarmonyRadioElement: HTMLHarmonyRadioElement,
@@ -11787,7 +11956,9 @@ var index$1 = /*#__PURE__*/Object.freeze({
   get I18nEvents () { return I18nEvents; },
   get ManipulatorCorner () { return ManipulatorCorner; },
   get ManipulatorDirection () { return ManipulatorDirection; },
+  get ManipulatorResizeOrigin () { return ManipulatorResizeOrigin; },
   get ManipulatorSide () { return ManipulatorSide; },
+  get ManipulatorUpdatedEventType () { return ManipulatorUpdatedEventType; },
   cloneEvent: cloneEvent,
   createElement: createElement,
   createElementNS: createElementNS,
@@ -11795,10 +11966,11 @@ var index$1 = /*#__PURE__*/Object.freeze({
   defineHarmony2dManipulator: defineHarmony2dManipulator,
   defineHarmonyAccordion: defineHarmonyAccordion,
   defineHarmonyColorPicker: defineHarmonyColorPicker,
-  defineHarmonyContextMenu: defineHarmonyContextMenu,
   defineHarmonyCopy: defineHarmonyCopy,
   defineHarmonyFileInput: defineHarmonyFileInput,
+  defineHarmonyItem: defineHarmonyItem,
   defineHarmonyLabelProperty: defineHarmonyLabelProperty,
+  defineHarmonyMenu: defineHarmonyMenu,
   defineHarmonyPalette: defineHarmonyPalette,
   defineHarmonyPanel: defineHarmonyPanel,
   defineHarmonyRadio: defineHarmonyRadio,
@@ -11809,8 +11981,8 @@ var index$1 = /*#__PURE__*/Object.freeze({
   defineHarmonySwitch: defineHarmonySwitch,
   defineHarmonyTab: defineHarmonyTab,
   defineHarmonyTabGroup: defineHarmonyTabGroup,
+  defineHarmonyToggleButton: defineHarmonyToggleButton,
   defineHarmonyTooltip: defineHarmonyTooltip,
-  defineToggleButton: defineToggleButton,
   display: display,
   documentStyle: documentStyle,
   documentStyleSync: documentStyleSync,
@@ -11822,14 +11994,746 @@ var index$1 = /*#__PURE__*/Object.freeze({
   styleInject: styleInject,
   toggle: toggle,
   updateElement: updateElement,
-  visible: visible
+  visible: visible$1
 });
 
 function SaveFile(file) {
-    var link = document.createElement('a');
+    const link = document.createElement('a');
     link.setAttribute('href', URL.createObjectURL(file));
     link.setAttribute('download', file.name);
     link.click();
+}
+
+var notificationManagerCSS = ":host, .notification-manager{\r\n\tposition: absolute;\r\n\tz-index: 100;\r\n\tbottom: 0px;\r\n\twidth: 100%;\r\n\tdisplay: flex;\r\n\tflex-direction: column-reverse;\r\n\tmax-height: 50%;\r\n\toverflow-y: auto;\r\n}\r\n.notification-manager-notification{\r\n\tbackground-color: var(--theme-popup-bg-color);\r\n\tcolor: var(--theme-text-color);\r\n\tfont-size: 1.5em;\r\n\tpadding: 4px;\r\n\tdisplay: flex;\r\n\talign-items: center;\r\n}\r\n.notification-manager-notification-content{\r\n\toverflow: auto;\r\n\tflex: 1;\r\n\tmax-width: calc(100% - 20px);\r\n}\r\n.notification-manager-notification-close{\r\n\tfill: currentColor;\r\n\tcursor: pointer;\r\n}\r\n.notification-manager-notification-copy{\r\n\tfill: currentColor;\r\n\tcursor: pointer;\r\n\ttransition: all 0.3s ease-in 0s;\r\n}\r\n.notification-manager-notification-copy-success{\r\n\ttransform: rotate(1turn);\r\n}\r\n.notification-manager-notification-close > svg{\r\n\twidth: 20px;\r\n\tmargin: 5px;\r\n}\r\n.notification-manager-notification-success{\r\n\tbackground-color: #5aa822ff;\r\n}\r\n.notification-manager-notification-warning{\r\n\tbackground-color: #c78a17ff;\r\n}\r\n.notification-manager-notification-error{\r\n\tbackground-color: #c71717ff;\r\n}\r\n.notification-manager-notification-info{\r\n\tbackground-color: #2e88e8ff;\r\n}\r\n";
+
+const NOTIFICATION_CLASSNAME = 'notification-manager-notification';
+class Notification {
+    #htmlElement;
+    timeout = 0;
+    content;
+    type;
+    constructor(content, type, ttl) {
+        this.content = content;
+        this.type = type;
+        this.setTtl(ttl);
+    }
+    setTtl(ttl) {
+        if (ttl) {
+            clearTimeout(this.timeout);
+            this.timeout = setTimeout(() => closeNofication(this), ttl * 1000);
+        }
+    }
+    get view() {
+        if (!this.#htmlElement) {
+            let htmlElementContent;
+            this.#htmlElement = createElement('div', {
+                class: NOTIFICATION_CLASSNAME,
+                childs: [
+                    htmlElementContent = createElement('div', {
+                        class: NOTIFICATION_CLASSNAME + '-content',
+                    }),
+                    createElement('div', {
+                        class: NOTIFICATION_CLASSNAME + '-copy',
+                        innerHTML: contentCopySVG,
+                        events: {
+                            click: async (event) => {
+                                try {
+                                    if (this.#htmlElement) {
+                                        await navigator.clipboard.writeText(this.#htmlElement.innerText);
+                                        event.target.parentElement?.classList.toggle(NOTIFICATION_CLASSNAME + '-copy-success');
+                                    }
+                                }
+                                catch (e) {
+                                    console.error(e);
+                                }
+                            },
+                        }
+                    }),
+                    createElement('div', {
+                        class: NOTIFICATION_CLASSNAME + '-close',
+                        innerHTML: closeSVG,
+                        events: {
+                            click: () => closeNofication(this),
+                        }
+                    }),
+                ]
+            });
+            if (this.type) {
+                this.#htmlElement.classList.add(NOTIFICATION_CLASSNAME + '-' + this.type);
+            }
+            if (this.content instanceof HTMLElement) {
+                htmlElementContent.append(this.content);
+            }
+            else {
+                htmlElementContent.innerHTML = this.content;
+            }
+        }
+        return this.#htmlElement;
+    }
+}
+let htmlParent = document.body;
+const shadowRoot = createShadowRoot('div', {
+    class: 'notification-manager',
+    parent: htmlParent,
+    adoptStyle: notificationManagerCSS,
+});
+I18n.observeElement(shadowRoot);
+const nofifications = new Set();
+function closeNofication(notification) {
+    nofifications.delete(notification);
+    notification.view.remove();
+}
+
+var optionsManagerCSS = ":host{\r\n\tposition: absolute;\r\n\twidth: 100%;\r\n\theight: 100%;\r\n\toverflow: auto;\r\n\tz-index: 10000;\r\n\tdisplay: flex;\r\n\talign-items: center;\r\n\tjustify-content: center;\r\n\ttop:0px;\r\n\tleft: 0px;\r\n}\r\n\r\n#options-manager-inner{\r\n\tposition: relative;\r\n\t/*background-color: rgba(255, 255, 255, 1.0);*/\r\n\tbackground-color: var(--theme-popup-bg-color);\r\n\tcolor: var(--main-text-color-dark2);\r\n\tpadding:10px;\r\n\toverflow: hidden;\r\n\tmax-height: 70%;\r\n\tmax-width: 75%;\r\n\tdisplay: flex;\r\n\tflex-direction: column;\r\n\topacity: 0.9;\r\n}\r\n\r\n#options-manager-inner h1{\r\n\ttext-transform: capitalize;\r\n\ttext-align: center;\r\n}\r\n\r\n#options-manager-inner-filter{\r\n\twidth:100%;\r\n}\r\n\r\n.options-manager-button{\r\n\tcursor:pointer;\r\n\twhite-space: nowrap;\r\n\ttext-transform: capitalize;\r\n}\r\n\r\n#options-manager-inner table{\r\n\ttext-align: left;\r\n\toverflow: hidden auto;\r\n\tdisplay: block;\r\n\theight: 100%;\r\n}\r\n\r\n#options-manager-inner thead{\r\n\tposition: sticky;\r\n\t/*display: block;*/\r\n\ttop: 0px;\r\n\tbackground-color: var(--theme-popup-bg-color);\r\n}\r\n\r\n#options-manager-inner thead th{\r\n\tposition: sticky;\r\n\ttop: 0px;\r\n\tbackground-color: var(--theme-popup-bg-color);\r\n}\r\n\r\n#options-manager-inner th{\r\n\ttext-transform: capitalize;\r\n}\r\n\r\n#options-manager-inner th button, #options-manager-inner td button{\r\n\twidth: 100%;\r\n}\r\n\r\n#options-manager-title{\r\n\tcursor:move;\r\n}\r\n\r\n[draggable=true] {\r\n\tcursor: move;\r\n}\r\n\r\n[draggable=true] *{\r\n\tcursor: initial;\r\n}\r\n\r\n#options-manager-outer kbd{\r\n\tbackground-color: #eee;\r\n\tborder-radius: 0.25rem;\r\n\tborder: 0.1rem solid #b4b4b4;\r\n\tbox-shadow: 0 0.06rem 0.06rem rgba(0, 0, 0, .2), 0 0.1rem 0 0 rgba(255, 255, 255, .7) inset;\r\n\tcolor: #333;\r\n\tdisplay: inline-block;\r\n\tline-height: 1;\r\n\tpadding: 0.15rem;\r\n\twhite-space: nowrap;\r\n\tfont-weight: 1000;\r\n\tfont-size: 1.3rem;\r\n}\r\n";
+
+class OptionsManager extends EventTarget {
+    static #instance;
+    #defaultValues = new Map();
+    #currentValues = new Map();
+    #categories = new Map();
+    #dirtyCategories = true;
+    #initPromiseResolve;
+    #initPromise = new Promise((resolve) => this.#initPromiseResolve = resolve);
+    #currentFilter = '';
+    #optionsManagerRows = new Set();
+    #htmlOptionsTable;
+    #htmlOptionsManagerContentThead;
+    #uniqueId = 0;
+    #shadowRoot;
+    logException = false;
+    constructor() {
+        if (OptionsManager.#instance) {
+            return OptionsManager.#instance;
+        }
+        super();
+        OptionsManager.#instance = this;
+        this.#defaultValues[Symbol.iterator] = function* () {
+            yield* [...this.entries()].sort((a, b) => { return a[0] < b[0] ? -1 : 1; });
+        };
+    }
+    async init(parameters) {
+        if (parameters.url) {
+            await this.#initFromURL(parameters.url);
+        }
+        else if (parameters.json) {
+            this.#initFromJSON(parameters.json);
+        }
+    }
+    async #initFromURL(url) {
+        const response = await fetch(url);
+        this.#initFromJSON(await response.json());
+    }
+    #initFromJSON(json) {
+        if (json) {
+            if (json.categories) {
+                json.categories.forEach((category) => this.#addCategory(category));
+            }
+            this.#addCategory('');
+            if (json.options) {
+                json.options.forEach((option /*TODO:better type*/) => this.addOption(option));
+            }
+            if (this.#initPromiseResolve) {
+                this.#initPromiseResolve();
+            }
+        }
+    }
+    #addCategory(name) {
+        this.#categories.set(name.toLowerCase(), []);
+        this.#dirtyCategories = true;
+    }
+    #refreshCategories() {
+        if (this.#dirtyCategories) {
+            for (const [categoryName, category] of this.#categories) {
+                category.length = 0;
+            }
+            for (const [optionName, option] of this.#defaultValues) {
+                let maxLength = -1;
+                let cat = null;
+                for (const [categoryName, category] of this.#categories) {
+                    if (categoryName.length > maxLength) {
+                        if (optionName.startsWith(categoryName) || categoryName === '') {
+                            maxLength = categoryName.length;
+                            cat = category;
+                        }
+                    }
+                }
+                if (cat !== null) {
+                    cat.push(option);
+                }
+            }
+        }
+        this.#dirtyCategories = false;
+    }
+    addOption(option /*TODO:better type*/) {
+        if (!option) {
+            return;
+        }
+        const name = option.name.toLowerCase();
+        const type = option.type;
+        const defaultValue = option.default;
+        const datalist = option.datalist;
+        const editable = option.editable;
+        const context = option.context;
+        const protec = option.protected;
+        const dv = this.#defaultValues.get(name) || { name: '', editable: true, type: '' };
+        this.#defaultValues.set(name, dv);
+        dv.name = name;
+        if (type !== undefined) {
+            dv.type = type;
+        }
+        if (defaultValue !== undefined) {
+            dv.dv = defaultValue;
+        }
+        if (datalist !== undefined) {
+            dv.datalist = datalist;
+        }
+        if (editable !== undefined) {
+            dv.editable = editable;
+        }
+        if (context !== undefined) {
+            dv.context = context;
+        }
+        if (protec !== undefined) {
+            dv.protected = protec;
+        }
+        try {
+            if (typeof localStorage != 'undefined') {
+                const value = this.getItem(name);
+                if (value === undefined) {
+                    this.setItem(name, defaultValue);
+                }
+                else {
+                    this.setItem(name, value);
+                }
+            }
+        }
+        catch (exception) {
+            if (this.logException) {
+                console.error(exception);
+            }
+        }
+    }
+    setItem(name, value) {
+        try {
+            if (typeof localStorage != 'undefined') {
+                localStorage.setItem(name, JSON.stringify(value));
+                if (this.#currentValues.has(name)) {
+                    if (value == this.#currentValues.get(name)) {
+                        return;
+                    }
+                }
+                this.#currentValues.set(name, value);
+                this.#valueChanged(name, value);
+            }
+        }
+        catch (exception) {
+            if (this.logException) {
+                console.error(exception);
+            }
+        }
+    }
+    async getSubItem(name, subName) {
+        try {
+            const option = await this.getOption(name);
+            if (option && option.type == 'map') {
+                const map = this.#currentValues.get(name) ?? {};
+                if (map && (typeof map == 'object')) {
+                    return map[subName];
+                }
+            }
+        }
+        catch (exception) {
+            if (this.logException) {
+                console.error(exception);
+            }
+        }
+    }
+    async setSubItem(name, subName, value) {
+        try {
+            const option = await this.getOption(name);
+            if (option && option.type == 'map') {
+                const map = this.#currentValues.get(name) ?? {};
+                if (map[subName] == value) {
+                    return;
+                }
+                map[subName] = value;
+                this.#valueChanged(name, map);
+                localStorage.setItem(name, JSON.stringify(map));
+            }
+        }
+        catch (exception) {
+            if (this.logException) {
+                console.error(exception);
+            }
+        }
+    }
+    removeSubItem(name, subName) {
+        try {
+            const map = this.#currentValues.get(name) ?? {};
+            if (map && (typeof map == 'object')) {
+                delete map[subName];
+                this.#valueChanged(name, map);
+                localStorage.setItem(name, JSON.stringify(map));
+            }
+        }
+        catch (exception) {
+            if (this.logException) {
+                console.error(exception);
+            }
+        }
+    }
+    #valueChanged(name, value) {
+        const option = this.#defaultValues.get(name);
+        if (!option) {
+            return;
+        }
+        const context = option.context;
+        this.dispatchEvent(new CustomEvent(name, { detail: { name: name, value: value, context: context } }));
+        let lastIndex = name.lastIndexOf('.');
+        while (lastIndex != -1) {
+            const wildCardName = name.slice(0, lastIndex);
+            this.dispatchEvent(new CustomEvent(wildCardName + '.*', { detail: { name: name, value: value, context: context } }));
+            lastIndex = name.lastIndexOf('.', lastIndex - 1);
+        }
+        this.dispatchEvent(new CustomEvent('*', { detail: { name: name, value: value, context: context } }));
+    }
+    getItem(name) {
+        try {
+            if (typeof localStorage != 'undefined') {
+                const value = localStorage.getItem(name);
+                if (value) {
+                    const parsedValue = JSON.parse(value);
+                    return parsedValue;
+                }
+            }
+        }
+        catch (exception) {
+            if (this.logException) {
+                console.error(exception);
+            }
+        }
+        if (this.#defaultValues.get(name)) {
+            return this.#defaultValues.get(name)?.dv;
+        }
+    }
+    removeItem(name) {
+        this.#defaultValues.delete(name);
+        try {
+            if (typeof localStorage != 'undefined') {
+                localStorage.removeItem(name);
+            }
+            this.#currentValues.delete(name);
+        }
+        catch (exception) {
+            if (this.logException) {
+                console.error(exception);
+            }
+        }
+    }
+    resetItem(name) {
+        const item = this.#defaultValues.get(name);
+        if (item) {
+            const defaultValue = item.dv;
+            this.#currentValues.delete(name);
+            this.setItem(name, defaultValue);
+        }
+    }
+    resetItems(names) {
+        for (const name of names) {
+            this.resetItem(name);
+        }
+    }
+    resetAllItems() {
+        for (const [item, option] of this.#defaultValues) {
+            if (option.protected) {
+                continue;
+            }
+            this.resetItem(item);
+        }
+    }
+    clear() {
+        this.#defaultValues.clear();
+        try {
+            if (typeof localStorage != 'undefined') {
+                localStorage.clear();
+            }
+            this.#currentValues.clear();
+        }
+        catch (exception) {
+            if (this.logException) {
+                console.error(exception);
+            }
+        }
+    }
+    #filter(filter) {
+        this.#currentFilter = String(filter).toLowerCase();
+        this.#applyFilter();
+    }
+    #applyFilter() {
+        for (const row of this.#optionsManagerRows) {
+            //let row = i[0];
+            const optionName = row.getAttribute('user-data-option-name')?.toLowerCase();
+            if (!optionName) {
+                continue;
+            }
+            if (!this.#currentFilter || optionName.indexOf(this.#currentFilter) != -1) {
+                row.style.display = '';
+            }
+            else {
+                row.style.display = 'none';
+            }
+        }
+    }
+    #initPanel() {
+        this.#shadowRoot = createShadowRoot('options-manager', {
+            parent: document.body,
+            adoptStyle: optionsManagerCSS,
+            events: {
+                click: () => hide(this.#shadowRoot?.host)
+            }
+        });
+        I18n.observeElement(this.#shadowRoot);
+        const optionsManagerInner = createElement('div', {
+            id: 'options-manager-inner',
+            draggable: true,
+            'data-left': 0,
+            'data-top': 0,
+            parent: this.#shadowRoot,
+            events: {
+                click: (event) => event.stopPropagation(),
+                dragstart: (event) => handleDragStart(event),
+                dragend: (event) => handleDragEnd(event),
+            }
+        });
+        const handleDragStart = function (event) {
+            const target = event.target;
+            target?.setAttribute('data-drag-start-layerx', String(event.layerX));
+            target?.setAttribute('data-drag-start-layery', String(event.layerY));
+        };
+        const handleDragEnd = function (event) {
+            const target = event.target;
+            const startEventX = Number(target.getAttribute('data-drag-start-layerx'));
+            const startEventY = Number(target.getAttribute('data-drag-start-layery'));
+            target.style.left = (event.layerX - startEventX) + 'px';
+            target.style.top = (event.layerY - startEventY) + 'px';
+            const dataTop = Number(target.getAttribute('data-top')) + (event.layerY - startEventY);
+            const dataLeft = Number(target.getAttribute('data-left')) + (event.layerX - startEventX);
+            target.style.left = dataLeft + 'px';
+            target.style.top = dataTop + 'px';
+            optionsManagerInner.setAttribute('data-left', String(dataLeft));
+            optionsManagerInner.setAttribute('data-top', String(dataTop));
+        };
+        createElement('h1', { id: 'options-manager-title', i18n: '#manage_options', parent: optionsManagerInner });
+        createElement('input', {
+            id: 'options-manager-inner-filter',
+            i18n: { placeholder: '#filter', },
+            parent: optionsManagerInner,
+            events: {
+                input: (event) => this.#filter(event.target.value)
+            }
+        });
+        this.#htmlOptionsTable = createElement('table', { parent: optionsManagerInner });
+        this.#htmlOptionsManagerContentThead = createElement('thead', { parent: this.#htmlOptionsTable });
+    }
+    #populateOptionRow(option) {
+        const htmlRow = createElement('tr');
+        const htmlResetButtonCell = createElement('td');
+        const htmlOptionNameCell = createElement('td', { innerHTML: option.name });
+        const htmlDefaultValueCell = createElement('td');
+        const htmlUserValueCell = createElement('td');
+        const myValue = this.getItem(option.name);
+        this.#fillCell(htmlDefaultValueCell, option.type, option.dv);
+        createElement('button', {
+            class: 'options-manager-button',
+            i18n: '#reset',
+            parent: htmlResetButtonCell,
+            events: {
+                click: () => { this.resetItem(option.name); this.#refreshPanel(); }
+            }
+        });
+        const valueEdit = this.#createInput(option.name, this.#defaultValues.get(option.name), myValue, htmlResetButtonCell);
+        if (valueEdit) {
+            htmlUserValueCell.appendChild(valueEdit);
+            htmlRow.append(htmlResetButtonCell, htmlOptionNameCell, htmlDefaultValueCell, htmlUserValueCell);
+        }
+        return htmlRow;
+    }
+    #populateMapOptionRow(option) {
+        const htmlRow = createElement('tbody', { innerHTML: `<td></td><td colspan="3">${option.name}</td>` });
+        const userValue = this.getItem(option.name);
+        if (userValue && typeof userValue === 'object') {
+            for (const key in userValue) {
+                const htmlSubRow = createElement('tr', { parent: htmlRow });
+                const value = userValue[key];
+                const htmlRemoveButtonCell = createElement('td');
+                const htmlSubNameCell = createElement('td', { innerHTML: key });
+                const htmlSubValueCell = createElement('td');
+                htmlSubRow.append(htmlRemoveButtonCell, htmlSubNameCell, htmlSubValueCell);
+                createElement('input', { value: value, parent: htmlSubValueCell });
+            }
+        }
+        return htmlRow;
+    }
+    #addOptionRow(option) {
+        if (option.editable === false) {
+            return;
+        }
+        let htmlRow;
+        if (option.type == 'map') {
+            htmlRow = this.#populateMapOptionRow(option);
+        }
+        else {
+            htmlRow = this.#populateOptionRow(option);
+        }
+        htmlRow.setAttribute('user-data-option-name', option.name);
+        return htmlRow;
+    }
+    #refreshPanel() {
+        this.#refreshCategories();
+        if (this.#htmlOptionsManagerContentThead) {
+            this.#htmlOptionsManagerContentThead.innerText = '';
+            this.#htmlOptionsManagerContentThead.append(createElement('th', {
+                child: createElement('button', {
+                    class: 'options-manager-button',
+                    i18n: '#reset_all',
+                    events: {
+                        click: () => { this.resetAllItems(); this.#refreshPanel(); }
+                    }
+                })
+            }), createElement('th', { i18n: '#option_name' }), createElement('th', { i18n: '#option_default_value' }), createElement('th', { i18n: '#option_user_value' }));
+        }
+        for (const row of this.#optionsManagerRows) {
+            row.remove();
+        }
+        this.#optionsManagerRows.clear();
+        for (const [categoryName, category] of this.#categories) {
+            for (const option of category) {
+                const htmlRow = this.#addOptionRow(option);
+                if (htmlRow) {
+                    this.#optionsManagerRows.add(htmlRow);
+                    this.#htmlOptionsTable?.append(htmlRow);
+                }
+            }
+        }
+        I18n.i18n();
+        this.#applyFilter();
+    }
+    #fillCell(cell, type, value) {
+        switch (type) {
+            case 'string':
+                if (value) {
+                    cell.innerHTML = value;
+                }
+                break;
+            case 'shortcut':
+                if (value) {
+                    const arr = value.split('+');
+                    for (const key of arr) {
+                        createElement('kbd', {
+                            innerHTML: key,
+                            parent: cell,
+                        });
+                    }
+                    //cell.innerHTML = value;
+                }
+                break;
+            default:
+                if (value) {
+                    cell.innerHTML = value;
+                }
+        }
+    }
+    #getUniqueId() {
+        return 'options-manager-' + (this.#uniqueId++);
+    }
+    #createInput(optionName, option, value, resetButton) {
+        if (!option) {
+            return;
+        }
+        const showHideResetButton = () => {
+            let defaultValue = this.#defaultValues.get(optionName)?.dv;
+            defaultValue = defaultValue === undefined ? undefined : JSON.stringify(defaultValue);
+            let optionValue = this.getItem(optionName);
+            optionValue = optionValue === null ? null : JSON.stringify(optionValue);
+            if ((optionValue) != defaultValue) {
+                resetButton.style.opacity = '';
+            }
+            else {
+                resetButton.style.opacity = '0';
+            }
+        };
+        let htmlElement;
+        switch (option.type) {
+            case 'number':
+            case 'integer':
+                htmlElement = createElement('input', {
+                    value: value,
+                    events: {
+                        change: (event) => {
+                            const value = event.target.value.trim();
+                            this.setItem(optionName, value === '' ? null : Number(value));
+                            showHideResetButton();
+                        }
+                    }
+                });
+                break;
+            case 'object':
+                htmlElement = createElement('input', {
+                    value: JSON.stringify(value),
+                    events: {
+                        change: (event) => { this.setItem(optionName, JSON.parse(event.target.value)); showHideResetButton(); }
+                    }
+                });
+                break;
+            case 'boolean':
+                htmlElement = createElement('input', {
+                    type: 'checkbox',
+                    checked: value,
+                    events: {
+                        change: (event) => { this.setItem(optionName, event.target.checked); showHideResetButton(); }
+                    }
+                });
+                break;
+            case 'ternary':
+                htmlElement = createElement('select', {
+                    events: {
+                        change: (event) => {
+                            let value;
+                            switch (event.target.value) {
+                                case '0':
+                                    value = false;
+                                    break;
+                                case '1':
+                                    value = true;
+                                    break;
+                            }
+                            this.setItem(optionName, value);
+                            showHideResetButton();
+                        }
+                    }
+                });
+                for (const o of ['', 0, 1]) {
+                    createElement('option', { innerHTML: o, parent: htmlElement });
+                }
+                let v = '';
+                switch (value) {
+                    case undefined:
+                        v = '';
+                        break;
+                    case false:
+                        v = '0';
+                        break;
+                    case true:
+                        v = '1';
+                        break;
+                }
+                htmlElement.value = v;
+                break;
+            case 'list':
+                this.#getUniqueId();
+                htmlElement = createElement('select', {
+                    value: value,
+                    events: {
+                        change: (event) => { this.setItem(optionName, event.target.value); showHideResetButton(); }
+                    }
+                });
+                if (option.datalist) {
+                    for (const o of option.datalist) {
+                        createElement('option', { innerHTML: o, parent: htmlElement });
+                    }
+                }
+                htmlElement.value = value;
+                break;
+            case 'vec2':
+                htmlElement = createElement('input', {
+                    value: value,
+                    events: {
+                        change: (event) => { this.setItem(optionName, (readVec2Value(event.target.value))); showHideResetButton(); }
+                    }
+                });
+                break;
+            /*case 'editablelist':
+                let dataListId = OptionsManager.#getUniqueId();
+                htmlElement = createElement('input');
+                let datalist = createElement('datalist');
+                datalist.id = dataListId;
+                htmlElement.setAttribute('list', dataListId);
+                document.body.appendChild(datalist);
+                if (option.datalist) {
+                    for(let o of option.datalist) {
+                        let htmlOption = createElement('option');
+                        datalist.appendChild(htmlOption);
+                        htmlOption.innerHTML = o;
+                    }
+                }
+                htmlElement.addEventListener('change', event => {this.setItem(optionName, event.target.value);showHideResetButton();});
+                break;*/
+            /*			case 'vec4':
+                            htmlElement = createElement('input');
+                            htmlElement.value = value;//value.join(',');
+                            function readValue(value) {
+                                let v = value.split(',');
+                                if (v.length == 4) {
+                                    return quat.fromValues(v[0] * 1, v[1] * 1, v[2] * 1, v[3] * 1);
+                                }
+                                return null;
+                            }
+                            htmlElement.addEventListener('change', event => {this.setItem(optionName, (readValue(event.target.value)));showHideResetButton();});
+                            break;*/
+            case 'string':
+            case 'color':
+            default:
+                htmlElement = createElement('input', {
+                    value: value,
+                    events: {
+                        change: (event) => { this.setItem(optionName, (event.target.value)); showHideResetButton(); }
+                    }
+                });
+                break;
+        }
+        showHideResetButton();
+        return htmlElement;
+    }
+    showOptionsManager() {
+        if (!this.#shadowRoot) {
+            this.#initPanel();
+        }
+        this.#refreshPanel();
+        show(this.#shadowRoot?.host);
+    }
+    async getOptionsPerType(type) {
+        await this.#initPromise;
+        const ret = new Map();
+        for (const option of this.#defaultValues.values()) {
+            if (option.type == type) {
+                const optionName = option.name;
+                ret.set(optionName, this.#currentValues.get(optionName));
+            }
+        }
+        return ret;
+    }
+    async getOption(name) {
+        await this.#initPromise;
+        return this.#defaultValues.get(name);
+    }
+    async getOptionType(name) {
+        await this.#initPromise;
+        return this.#defaultValues.get(name)?.type;
+    }
+    async getList(name) {
+        await this.#initPromise;
+        const option = this.#defaultValues.get(name);
+        if (option && option.type == 'list') {
+            return option.datalist;
+        }
+    }
+}
+function readVec2Value(value) {
+    const v = value.split(',');
+    if (v.length == 2) {
+        return fromValues(Number(v[0]), Number(v[1]));
+    }
+    return null;
 }
 
 class Shortcut {
@@ -11842,7 +12746,7 @@ class Shortcut {
     constructor(context, shortcut) {
         this.#contexts = context.split(',');
         const keys = shortcut.toUpperCase().split('+');
-        for (let key of keys) {
+        for (const key of keys) {
             switch (key) {
                 case 'ALT':
                     this.#alt = true;
@@ -11873,25 +12777,19 @@ class Shortcut {
             (keyBoardEvent.key.toUpperCase() == this.#key);
     }
 }
-class ShortcutHandler extends EventTarget {
-    static #instance;
-    #shortcuts = new Map();
-    #contexts = new Map();
-    constructor() {
-        if (ShortcutHandler.#instance) {
-            return ShortcutHandler.#instance;
-        }
-        super();
-        ShortcutHandler.#instance = this;
+class ShortcutHandler {
+    static #shortcuts = new Map();
+    static #eventTarget = new EventTarget();
+    static {
         this.addContext('window', document);
     }
-    #handleKeyDown(contextName, event) {
+    static #handleKeyDown(contextName, event) {
         const contexts = contextName.split(',');
-        for (let [name, shortcuts] of this.#shortcuts) {
-            for (let shortcut of shortcuts) {
-                for (let context of contexts) {
+        for (const [name, shortcuts] of this.#shortcuts) {
+            for (const shortcut of shortcuts) {
+                for (const context of contexts) {
                     if (shortcut.match(context, event)) {
-                        this.dispatchEvent(new CustomEvent(name, { detail: event }));
+                        this.#eventTarget.dispatchEvent(new CustomEvent(name, { detail: event }));
                         event.preventDefault();
                         event.stopPropagation();
                     }
@@ -11899,86 +12797,40 @@ class ShortcutHandler extends EventTarget {
             }
         }
     }
-    addContext(name, element) {
+    static addContext(name, element) {
         element.addEventListener('keydown', (event) => this.#handleKeyDown(name, event));
     }
-    setShortcuts(contextName, shortcutMap) {
+    static setShortcuts(contextName, shortcutMap) {
         if (!shortcutMap) {
             return;
         }
         this.#shortcuts.clear();
-        for (let [name, shortcut] of shortcutMap) {
+        for (const [name, shortcut] of shortcutMap) {
             this.addShortcut(contextName, name, shortcut);
         }
     }
-    setShortcut(contextName, name, shortcut) {
+    static setShortcut(contextName, name, shortcut) {
         this.#shortcuts.delete(name);
         this.addShortcut(contextName, name, shortcut);
     }
-    addShortcut(contextName, name, shortcut) {
+    static addShortcut(contextName, name, shortcut) {
         if (!shortcut) {
             return;
         }
-        let shortcuts = shortcut.split(';');
+        const shortcuts = shortcut.split(';');
         let shortcutSet = this.#shortcuts.get(name);
         if (!shortcutSet) {
             shortcutSet = new Set();
             this.#shortcuts.set(name, shortcutSet);
         }
-        for (let shortcut of shortcuts) {
+        for (const shortcut of shortcuts) {
             shortcutSet.add(new Shortcut(contextName, shortcut));
         }
     }
+    static addEventListener(type, callback, options) {
+        this.#eventTarget.addEventListener(type, callback, options);
+    }
 }
-
-const FBX_DATA_TYPE_INT_8 = 67;
-const FBX_DATA_TYPE_DOUBLE = 68;
-const FBX_DATA_TYPE_FLOAT = 70;
-const FBX_DATA_TYPE_INT_32 = 73;
-const FBX_DATA_TYPE_INT_64 = 76;
-const FBX_DATA_TYPE_RAW = 82;
-const FBX_DATA_TYPE_STRING = 83;
-const FBX_DATA_TYPE_INT_16 = 89;
-
-const FBX_DATA_TYPE_ARRAY_INT_8 = 98;
-const FBX_DATA_TYPE_ARRAY_DOUBLE = 100;
-const FBX_DATA_TYPE_ARRAY_FLOAT = 102;
-const FBX_DATA_TYPE_ARRAY_INT_32 = 105;
-const FBX_DATA_TYPE_ARRAY_INT_64 = 108;
-
-const FBX_DATA_LEN = {};
-FBX_DATA_LEN[FBX_DATA_TYPE_INT_8] = 1;
-FBX_DATA_LEN[FBX_DATA_TYPE_DOUBLE] = 8;
-FBX_DATA_LEN[FBX_DATA_TYPE_FLOAT] = 4;
-FBX_DATA_LEN[FBX_DATA_TYPE_INT_32] = 4;
-FBX_DATA_LEN[FBX_DATA_TYPE_INT_64] = 8;
-FBX_DATA_LEN[FBX_DATA_TYPE_INT_16] = 2;
-
-FBX_DATA_LEN[FBX_DATA_TYPE_ARRAY_INT_8] = 1;
-FBX_DATA_LEN[FBX_DATA_TYPE_ARRAY_DOUBLE] = 8;
-FBX_DATA_LEN[FBX_DATA_TYPE_ARRAY_FLOAT] = 4;
-FBX_DATA_LEN[FBX_DATA_TYPE_ARRAY_INT_32] = 4;
-FBX_DATA_LEN[FBX_DATA_TYPE_ARRAY_INT_64] = 8;
-
-const FBX_BINARY_MAGIC = 'Kaydara FBX Binary  \0';
-
-const FBX_HEADER_VERSION = 1003;
-const FBX_SCENEINFO_VERSION = 100;
-const FBX_TEMPLATES_VERSION = 100;
-
-const FBX_KTIME = 46186158000n;
-
-const FBX_GEOMETRY_VERSION = 124;
-const FBX_GEOMETRY_UV_VERSION = 101;
-const FBX_GEOMETRY_MATERIAL_VERSION = 101;
-const FBX_GEOMETRY_LAYER_VERSION = 100;
-const FBX_MATERIAL_VERSION = 102;
-const FBX_TEXTURE_VERSION = 202;
-const FBX_DEFORMER_SKIN_VERSION = 101;
-const FBX_DEFORMER_CLUSTER_VERSION = 100;
-const FBX_POSE_BIND_VERSION = 100;
-
-const FBX_MODELS_VERSION = 232;
 
 var _a$4;
 const TWO_POW_10 = 1024;
@@ -12137,36 +12989,31 @@ class BinaryReader {
         this.#byteOffset = byteOffset + 8;
         return this.#dataView.getFloat64(byteOffset, littleEndian);
     }
-    getVector2(byteOffset = this.#byteOffset, littleEndian = this.#littleEndian) {
-        let vec = new Float32Array(2);
+    getVector2(byteOffset = this.#byteOffset, littleEndian = this.#littleEndian, vec = new Float32Array(2)) {
         vec[0] = this.getFloat32(byteOffset, littleEndian);
         vec[1] = this.getFloat32(undefined, littleEndian);
         return vec;
     }
-    getVector3(byteOffset = this.#byteOffset, littleEndian = this.#littleEndian) {
-        let vec = new Float32Array(3);
+    getVector3(byteOffset = this.#byteOffset, littleEndian = this.#littleEndian, vec = new Float32Array(3)) {
         vec[0] = this.getFloat32(byteOffset, littleEndian);
         vec[1] = this.getFloat32(undefined, littleEndian);
         vec[2] = this.getFloat32(undefined, littleEndian);
         return vec;
     }
-    getVector4(byteOffset = this.#byteOffset, littleEndian = this.#littleEndian) {
-        let vec = new Float32Array(4);
+    getVector4(byteOffset = this.#byteOffset, littleEndian = this.#littleEndian, vec = new Float32Array(4)) {
         vec[0] = this.getFloat32(byteOffset, littleEndian);
         vec[1] = this.getFloat32(undefined, littleEndian);
         vec[2] = this.getFloat32(undefined, littleEndian);
         vec[3] = this.getFloat32(undefined, littleEndian);
         return vec;
     }
-    getVector48(byteOffset = this.#byteOffset, littleEndian = this.#littleEndian) {
-        let vec = new Float32Array(3);
+    getVector48(byteOffset = this.#byteOffset, littleEndian = this.#littleEndian, vec = new Float32Array(3)) {
         vec[0] = this.getFloat16(byteOffset, littleEndian);
         vec[1] = this.getFloat16(undefined, littleEndian);
         vec[2] = this.getFloat16(undefined, littleEndian);
         return vec;
     }
-    getQuaternion(byteOffset = this.#byteOffset, littleEndian = this.#littleEndian) {
-        let vec = new Float32Array(4);
+    getQuaternion(byteOffset = this.#byteOffset, littleEndian = this.#littleEndian, vec = new Float32Array(4)) {
         vec[0] = this.getFloat32(byteOffset, littleEndian);
         vec[1] = this.getFloat32(undefined, littleEndian);
         vec[2] = this.getFloat32(undefined, littleEndian);
@@ -12220,478 +13067,6 @@ class BinaryReader {
     }
 }
 _a$4 = BinaryReader;
-
-if (!BigInt.prototype.toJSON) {
-	BigInt.prototype.toJSON = function() { return this.toString() };
-}
-
-class FBXRecordProperty {
-	#type;
-	#value;
-	#srcObjects = new Set();
-	#flags = 0;
-	#parent;
-	constructor(parent, type, value) {
-		if (parent) {
-			if (parent.isFBXProperty) {
-				this.#parent = parent;
-			} else if (parent.isFBXObject) {
-				this.#parent = parent.rootProperty;
-			} else {
-				throw 'Parent must be FBXRecordProperty or FBXObject';
-			}
-		}
-		this.#type = type;
-		this.#value = value;
-		//TODO: check the value type
-	}
-
-	get type() {
-		return this.#type;
-	}
-
-	set value(value) {
-		this.#value = value;
-	}
-
-	get value() {
-		return this.#value;
-	}
-
-	set(value) {
-		this.#value = value;
-	}
-
-	get() {
-		return this.#value;
-	}
-
-	set flags(flags) {
-		this.#flags = flags;
-	}
-
-	get flags() {
-		return this.#flags;
-	}
-
-	get parent() {
-		return this.#parent;
-	}
-
-	connectSrcObject(fbxObject) {
-		//TODO: add connection type ?
-		if (!fbxObject.isFBXObject) {
-			throw 'connectSrcObject: fbxObject must be a FBXObject';
-		}
-		this.#srcObjects.add(fbxObject);
-	}
-
-	get srcObjects() {
-		return this.#srcObjects;
-	}
-
-	createProperty(type, value) {
-		return new FBXRecordProperty(this, type, value);
-	}
-
-	toJSON() {
-		return {
-			type: this.#type,
-			value: this.#value,
-		}
-	}
-}
-FBXRecordProperty.prototype.isFBXProperty = true;
-
-function createInt16Property(value) {
-	return new FBXRecordProperty(null, FBX_DATA_TYPE_INT_16, value);
-}
-function createInt32Property(value) {
-	return new FBXRecordProperty(null, FBX_DATA_TYPE_INT_32, value);
-}
-function createInt64Property(value) {
-	return new FBXRecordProperty(null, FBX_DATA_TYPE_INT_64, BigInt(value));
-}
-function createDoubleProperty(value) {
-	return new FBXRecordProperty(null, FBX_DATA_TYPE_DOUBLE, value);
-}
-function createRawProperty(value) {
-	return new FBXRecordProperty(null, FBX_DATA_TYPE_RAW, value);
-}
-function createStringProperty(value) {
-	return new FBXRecordProperty(null, FBX_DATA_TYPE_STRING, value);
-}
-
-class FBXRecord {
-	#name = '';
-	#childs = new Set();
-	#properties = new Set();
-	constructor(name) {
-		this.name = name;
-	}
-
-	addChild(child) {
-		if (!child.isFBXRecord) {
-			throw 'FBXFile: trying to insert a non FBXRecord child';
-		}
-		this.#childs.add(child);
-		return child;
-	}
-
-	addChilds(childs) {
-		for (let child of childs) {
-			this.addChild(child);
-		}
-	}
-
-	addProperty(property) {
-		this.#properties.add(property);
-	}
-
-	addProperties(properties) {
-		for (let property of properties) {
-			this.addProperty(property);
-		}
-	}
-
-	set name(name) {
-		if (name.length > 255) {
-			throw `Record name above 255 characters ${name}`;
-		}
-		this.#name = name;
-	}
-
-	get name() {
-		return this.#name;
-	}
-
-	get childs() {
-		return this.#childs;
-	}
-
-	get properties() {
-		return this.#properties;
-	}
-
-	getRecordsByName(recordName) {
-		let output = [];
-
-		for (let child of this.#childs) {
-			if (child.name == recordName) {
-				output.push(child);
-			}
-		}
-
-		return output;
-	}
-
-	getRecordByName(recordName) {
-		for (let child of this.#childs) {
-			if (child.name == recordName) {
-				return child;
-			}
-		}
-	}
-
-	getProperty(type) {
-		for (let property of this.#properties) {
-			if (property.type == type) {
-				return property.value;
-			}
-		}
-	}
-
-	getPropertyInt32() {
-		return this.getProperty(FBX_DATA_TYPE_INT_32);
-	}
-
-	getPropertyString() {
-		return this.getProperty(FBX_DATA_TYPE_STRING);
-	}
-
-	toJSON() {
-		return {
-			name: this.#name,
-			childs: this.#childs.size ? [...this.#childs] : undefined,
-			properties: this.#properties.size ? [...this.#properties] : undefined,
-		}
-	}
-}
-FBXRecord.prototype.isFBXRecord = true;
-
-const _TIME_ID = '1970-01-01 10:00:00:000';
-const _FILE_ID = new Uint8Array([0x28, 0xb3, 0x2a, 0xeb, 0xb6, 0x24, 0xcc, 0xc2, 0xbf, 0xc8, 0xb0, 0x2a, 0xa9, 0x2b, 0xfc, 0xf1]);
-const _FOOT_ID = new Uint8Array([0xfa, 0xbc, 0xab, 0x09, 0xd0, 0xc8, 0xd4, 0x66, 0xb1, 0x76, 0xfb, 0x83, 0x1c, 0xf7, 0x26, 0x7e]);
-
-const FBX_FOOTER2 = '\xf8\x5a\x8c\x6a\xde\xf5\xd9\x7e\xec\xe9\x0c\xe3\x75\x8f\x29\x0b';
-
-class FBXExporter {
-	constructor() {
-	}
-
-	exportBinary(fbxFile) {
-		checkFile(fbxFile);
-		let version = fbxFile.version;
-		let size = getFileSize(fbxFile, version);
-		//console.log('File Size: ', size);
-
-		let writer = new BinaryReader(new Uint8Array(size));
-
-		return exportBinaryFile(writer, fbxFile);
-
-	}
-}
-
-function checkFile(fbxFile) {
-	for (let child of fbxFile.childs) {
-		if (child.name == 'CreationTime' || child.name == 'FileId') {
-			fbxFile.childs.delete(child);
-		}
-	}
-
-	formatCreationTimeRecord(fbxFile);
-	formatFileIdRecord(fbxFile);
-}
-
-function exportBinaryFile(writer, fbxFile) {
-	let version = fbxFile.version;
-	writer.seek(0);
-	writer.setString(FBX_BINARY_MAGIC);
-	writer.setUint8(0x1A);
-	writer.setUint8(0x00);
-	writer.setUint32(version);
-	for (let child of fbxFile.childs) {
-		exportBinaryRecord(writer, child, version);
-	}
-
-	writer.skip((version >= 7500) ? 25 : 13);//Null record
-	writer.setBytes(generateFooterCode(fbxFile.dateCreated));
-	writer.skip(align16(writer.tell()));
-	if (version != 7400) {
-		writer.skip(4);
-	}
-	writer.setUint32(version);
-	writer.skip(120);
-	writer.setString(FBX_FOOTER2);
-
-	return writer.buffer;
-}
-
-function formatFileIdRecord(fbxFile) {
-	let fbxRecord = fbxFile.addChild(new FBXRecord('FileId'));
-	fbxRecord.properties.clear();
-	let fbxProperty = createRawProperty(_FILE_ID);
-	fbxRecord.addProperty(fbxProperty);
-}
-
-function formatCreationTimeRecord(fbxFile) {
-	let fbxRecord = fbxFile.addChild(new FBXRecord('CreationTime'));
-	fbxRecord.properties.clear();
-	let dateCreated = fbxFile.dateCreated;
-	`${dateCreated.getFullYear()}-${padNumber(dateCreated.getMonth() + 1, 2)}-${padNumber(dateCreated.getDate(), 2)} ${padNumber(dateCreated.getHours(), 2)}:${padNumber(dateCreated.getMinutes(), 2)}:${padNumber(dateCreated.getSeconds(), 2)}:${padNumber(dateCreated.getMilliseconds(), 3)}`;
-
-	//console.log(creationTime);
-	//let fbxProperty = createStringProperty(creationTime);
-	let fbxProperty = createStringProperty(_TIME_ID);
-	fbxRecord.addProperty(fbxProperty);
-}
-
-function align16(offset) {
-	let pad = ((offset + 15) & ~15) - offset;
-	if (pad == 0) {
-		pad = 16;
-	}
-	return pad;
-}
-
-function exportBinaryRecord(writer, fbxRecord, version) {
-	let startOffset = writer.tell();
-	let recordLen = getRecordSize(fbxRecord, version);
-	//console.log(startOffset);
-	if (version >= 7500) {
-		writer.setBigUint64(BigInt(startOffset + recordLen));
-		writer.setBigUint64(BigInt(fbxRecord.properties.size));
-		writer.setBigUint64(BigInt(getRecordPropertiesSize(fbxRecord)));
-	} else {
-		writer.setUint32(startOffset + recordLen);
-		writer.setUint32(fbxRecord.properties.size);
-		writer.setUint32(getRecordPropertiesSize(fbxRecord));
-	}
-	writer.setUint8(fbxRecord.name.length);
-	writer.setString(fbxRecord.name);
-	exportProperties(writer, fbxRecord);
-	for (let child of fbxRecord.childs) {
-		exportBinaryRecord(writer, child, version);
-	}
-
-	writer.skip((version >= 7500) ? 25 : 13);//Null record
-}
-
-function exportProperties(writer, fbxRecord) {
-	for (let property of fbxRecord.properties) {
-		exportProperty(writer, property);
-	}
-}
-
-function exportProperty(writer, fbxProperty) {
-	//console.log(fbxProperty);
-
-	writer.setUint8(fbxProperty.type);
-	switch (fbxProperty.type) {
-		case FBX_DATA_TYPE_INT_16:
-			writer.setInt16(fbxProperty.value);
-			break;
-		case FBX_DATA_TYPE_INT_8:
-			writer.setInt8(fbxProperty.value);
-			break;
-		case FBX_DATA_TYPE_INT_32:
-			writer.setInt32(fbxProperty.value);
-			break;
-		case FBX_DATA_TYPE_FLOAT:
-			writer.setFloat32(fbxProperty.value);
-			break;
-		case FBX_DATA_TYPE_DOUBLE:
-			writer.setFloat64(fbxProperty.value);
-			break;
-		case FBX_DATA_TYPE_INT_64:
-			writer.setBigInt64(BigInt(fbxProperty.value));
-			break;
-		case FBX_DATA_TYPE_RAW:
-			writer.setUint32(fbxProperty.value.length);
-			writer.setBytes(fbxProperty.value);
-			break;
-		case FBX_DATA_TYPE_STRING:
-			writer.setUint32(fbxProperty.value.length);
-			writer.setString(fbxProperty.value);
-			break;
-		case FBX_DATA_TYPE_ARRAY_INT_8:
-		case FBX_DATA_TYPE_ARRAY_DOUBLE:
-		case FBX_DATA_TYPE_ARRAY_FLOAT:
-		case FBX_DATA_TYPE_ARRAY_INT_32:
-		case FBX_DATA_TYPE_ARRAY_INT_64:
-			exportPropertyArray(writer, fbxProperty);
-			break;
-		default:
-			throw 'Unknown property type ' + fbxProperty.type;
-	}
-}
-
-function exportPropertyArray(writer, fbxProperty) {
-	writer.setUint32(fbxProperty.value.length);
-	writer.setUint32(0);//Encoding
-	writer.setUint32(FBX_DATA_LEN[fbxProperty.type] * fbxProperty.value.length);
-
-	let functionName;
-	switch (fbxProperty.type) {
-		case FBX_DATA_TYPE_ARRAY_INT_8:
-			functionName = 'setInt8';
-			break;
-		case FBX_DATA_TYPE_ARRAY_DOUBLE:
-			functionName = 'setFloat64';
-			break;
-		case FBX_DATA_TYPE_ARRAY_FLOAT:
-			functionName = 'setFloat32';
-			break;
-		case FBX_DATA_TYPE_ARRAY_INT_32:
-			functionName = 'setInt32';
-			break;
-		case FBX_DATA_TYPE_ARRAY_INT_64:
-			functionName = 'setBigInt64';
-			for (let value of fbxProperty.value) {
-				writer[functionName](BigInt(value));
-			}
-			return;
-		default:
-			throw 'Unknown array property type ' + fbxProperty.type;
-	}
-
-	for (let value of fbxProperty.value) {
-		writer[functionName](value);
-	}
-}
-
-function getFileSize(fbxFile, version) {
-	let size = 27;//header
-	for (let child of fbxFile.childs) {
-		size += getRecordSize(child, version);
-	}
-	size += (version >= 7500) ? 25 : 13;//Null record
-
-	size += 16; // footer1
-	//size += 4 // padding
-	size += align16(size);//alignment
-	if (version != 7400) {
-		size += 4; // padding
-	}
-
-	size += 140;//version + padding + footer2
-
-	return size;
-}
-
-function getRecordSize(fbxRecord, version) {
-	let size;
-	if (version >= 7500) {
-		size = 8 + 8 + 8 + 1;
-	} else {
-		size = 4 + 4 + 4 + 1;
-	}
-
-	size += fbxRecord.name.length;
-
-	size += getRecordPropertiesSize(fbxRecord);
-
-	for (let child of fbxRecord.childs) {
-		size += getRecordSize(child, version);
-	}
-
-	size += (version >= 7500) ? 25 : 13;//Null record
-
-	return size;
-}
-
-function getRecordPropertiesSize(fbxRecord) {
-	let size = 0;
-	for (let property of fbxRecord.properties) {
-		switch (property.type) {
-			case FBX_DATA_TYPE_INT_8:
-			case FBX_DATA_TYPE_DOUBLE:
-			case FBX_DATA_TYPE_FLOAT:
-			case FBX_DATA_TYPE_INT_32:
-			case FBX_DATA_TYPE_INT_64:
-			case FBX_DATA_TYPE_INT_16:
-				++size;//Typecode
-				size += FBX_DATA_LEN[property.type];
-				break;
-			case FBX_DATA_TYPE_RAW:
-			case FBX_DATA_TYPE_STRING:
-				++size;//Typecode
-				size += 4;//string len
-				size += property.value.length;
-				break;
-			case FBX_DATA_TYPE_ARRAY_INT_8:
-			case FBX_DATA_TYPE_ARRAY_DOUBLE:
-			case FBX_DATA_TYPE_ARRAY_FLOAT:
-			case FBX_DATA_TYPE_ARRAY_INT_32:
-			case FBX_DATA_TYPE_ARRAY_INT_64:
-				size += 13;//Typecode + array header
-				size += FBX_DATA_LEN[property.type] * property.value.length;
-				break;
-			default:
-				throw 'Unknown property type ' + property.type;
-		}
-	}
-	return size;
-}
-//const extension = new Uint8Array([0xF8, 0x5A, 0x8C, 0x6A, 0xDE, 0xF5, 0xD9, 0x7E, 0xEC, 0xE9, 0x0C, 0xE3, 0x75, 0x8F, 0x29, 0x0B]);
-
-function padNumber(number, targetLength) {//TODO: move
-	return number.toString().padStart(targetLength, 0);
-}
-
-function generateFooterCode(date) {
-	return _FOOT_ID;
-}
 
 /*! pako 2.1.0 https://github.com/nodeca/pako @license (MIT AND Zlib) */
 // (C) 1995-2013 Jean-loup Gailly and Mark Adler
@@ -19360,1048 +19735,2304 @@ Inflate$1.prototype.onEnd = function (status) {
   this.msg = this.strm.msg;
 };
 
-class FBXFile {
-	#version = 7500;
-	#childs = new Set();
-	#dateCreated = new Date();
-	constructor() {
-	}
-
-	set version(version) {
-		this.#version = version;
-	}
-
-	get version() {
-		return this.#version;
-	}
-
-	addChild(child) {
-		if (!child.isFBXRecord) {
-			throw 'FBXFile: trying to insert a non FBXRecord child';
-		}
-		this.#childs.add(child);
-		return child;
-	}
-
-	get childs() {
-		return this.#childs;
-	}
-
-	getRecordsByName(recordName) {
-		let output = [];
-
-		for (let child of this.#childs) {
-			if (child.name == recordName) {
-				output.push(child);
-			}
-		}
-
-		return output;
-	}
-
-	getRecordByName(recordName) {
-		for (let child of this.#childs) {
-			if (child.name == recordName) {
-				return child;
-			}
-		}
-	}
-
-	set dateCreated(dateCreated) {
-		this.#dateCreated = dateCreated;
-	}
-
-	get dateCreated() {
-		return this.#dateCreated;
-	}
-
-	toJSON() {
-		return {
-			version: this.#version,
-			childs: this.#childs.size ? [...this.#childs] : undefined,
-		}
-	}
+// I'm not sure there is reserved ids, let's start big
+let uniqueId = 1000000n;
+function getUniqueId() {
+    return ++uniqueId;
 }
 
+var FbxPropertyType;
+(function (FbxPropertyType) {
+    FbxPropertyType[FbxPropertyType["Double"] = 50] = "Double";
+    FbxPropertyType[FbxPropertyType["Double3"] = 100] = "Double3";
+    FbxPropertyType[FbxPropertyType["String"] = 200] = "String";
+    FbxPropertyType[FbxPropertyType["Time"] = 300] = "Time";
+    FbxPropertyType[FbxPropertyType["Enum"] = 1000] = "Enum";
+    FbxPropertyType[FbxPropertyType["Compound"] = 2000] = "Compound";
+    FbxPropertyType[FbxPropertyType["Color3"] = 3000] = "Color3";
+    FbxPropertyType[FbxPropertyType["Bool"] = 5000] = "Bool";
+})(FbxPropertyType || (FbxPropertyType = {}));
 const FBX_PROPERTY_TYPE_DOUBLE = 50;
 const FBX_PROPERTY_TYPE_DOUBLE_3 = 100;
 const FBX_PROPERTY_TYPE_STRING = 200;
 const FBX_PROPERTY_TYPE_TIME = 300;
 const FBX_PROPERTY_TYPE_ENUM = 1000;
-const FBX_PROPERTY_TYPE_COMPOUND = 2000;
 const FBX_PROPERTY_TYPE_COLOR_3 = 3000;
 const FBX_PROPERTY_TYPE_BOOL = 5000;
 
 if (!BigInt.prototype.toJSON) {
-	BigInt.prototype.toJSON = function() { return this.toString() };
+    BigInt.prototype.toJSON = function () { return this.toString(); };
 }
-
 const FBX_PROPERTY_HIERARCHICAL_SEPARATOR = '|';
-
 class FBXProperty {
-	#type;
-	#name;
-	#label;
-	#value;
-	#srcObjects = new Set();
-	#flags = 0;
-	#parent;
-	constructor(parent, type = FBX_PROPERTY_TYPE_COMPOUND, name, value, flags = 0) {
-		if (type != FBX_PROPERTY_TYPE_COMPOUND && value === undefined) {
-			throw 'name is null';
-		}
-		if (parent) {
-			if (parent.isFBXProperty) {
-				if (parent.#type === FBX_PROPERTY_TYPE_COMPOUND) {
-					this.#parent = parent;
-					parent.#value.set(name, this);
-				} else {
-					throw 'Parent must be of type compound';
-				}
-			} else if (parent.isFBXObject) {
-				this.#parent = parent;
-			} else {
-				throw 'Parent must be FBXProperty or FBXObject';
-			}
-		}
-		this.#type = type;
-		this.#name = name;
-		if (type === FBX_PROPERTY_TYPE_COMPOUND) {
-			this.#value = new Map();
-		} else {
-			this.#value = value;
-		}
-		this.#flags = flags;
-		//TODO: check the value type
-	}
-
-	get type() {
-		return this.#type;
-	}
-
-	set value(value) {
-		this.#value = value;
-	}
-
-	get value() {
-		return this.#value;
-	}
-
-	set(value) {
-		this.#value = value;
-	}
-
-	get() {
-		return this.#value;
-	}
-
-	set flags(flags) {
-		this.#flags = flags;
-	}
-
-	get flags() {
-		return this.#flags;
-	}
-
-	set name(name) {
-		this.#name = name;
-	}
-
-	get name() {
-		return this.#name;
-	}
-
-	get hierarchicalName() {
-		//TODO: remove recursion
-		if (this.#parent?.isFBXProperty) {
-			const parentHierarchicalName = this.#parent.hierarchicalName;
-			if (parentHierarchicalName) {
-				return parentHierarchicalName + FBX_PROPERTY_HIERARCHICAL_SEPARATOR + this.#name;
-			} else {
-				return this.#name;
-			}
-		} else {
-			return this.#name;
-		}
-	}
-
-	set label(label) {
-		this.#label = label;
-	}
-
-	get label() {
-		return this.#label;
-	}
-
-	get parent() {
-		return this.#parent;
-	}
-
-	isCompound() {
-		return this.#type === FBX_PROPERTY_TYPE_COMPOUND;
-	}
-
-	isRootProperty() {
-		return this.#parent.isFBXObject;
-	}
-
-	connectSrcObject(fbxObject) {
-		//TODO: add connection type ?
-		if (!fbxObject.isFBXObject) {
-			throw 'connectSrcObject: fbxObject must be a FBXObject';
-		}
-		this.#srcObjects.add(fbxObject);
-	}
-
-	get srcObjects() {
-		return this.#srcObjects;
-	}
-
-	createProperty(type, name, value, flags) {
-		if (this.#type === FBX_PROPERTY_TYPE_COMPOUND) {
-			if (this.#value.has(name)) {
-				return false;
-			}
-			const newProperty = new FBXProperty(this, type, name, value, flags);
-			this.#value.set(name, newProperty);
-			return newProperty;
-		} else {
-			throw 'Trying to create a child property on a non coumpound property';
-		}
-	}
-
-	getAllProperties(includeSelf = true) {
-		return this.#getAllProperties(new Set(), includeSelf);
-	}
-
-	#getAllProperties(childs = new Set(), includeSelf = true) {
-		if (includeSelf) {
-			childs.add(this);
-		}
-		if (this.#type === FBX_PROPERTY_TYPE_COMPOUND) {
-			for (let [childName, child] of this.#value) {
-				child.#getAllProperties(childs);
-			}
-		}
-
-		return childs;
-	}
-
-	getParentObject() {
-		const parent = this.#parent;
-		if (parent.isFBXObject) {
-			return parent;
-		}
-		if (parent.isFBXProperty) {
-			// TODO: remove recursion
-			return parent.getParentObject();
-		}
-	}
-
-	findProperty(propertyName) {
-		if (this.#name === propertyName) {
-			return this;
-		}
-
-		if (this.isCompound()) {
-			for (const [key, subProperty] of this.#value) {
-				const found = subProperty.findProperty(propertyName);
-				if (found) {
-					return found;
-				}
-			}
-		}
-	}
-
-	toJSON() {
-		return {
-			type: this.#type,
-			value: this.#value,
-		}
-	}
-}
-FBXProperty.prototype.isFBXProperty = true;
-
-function createFBXRecord(name, options) {
-	let fbxRecord = new FBXRecord(name);
-	if (options) {
-		for (let optionName in options) {
-			let optionValue = options[optionName];
-			switch (optionName) {
-				case 'parent':
-					optionValue.addChild(fbxRecord);
-					break;
-				case 'child':
-					fbxRecord.addChild(optionValue);
-					break;
-				case 'childs':
-					fbxRecord.addChilds(optionValue);
-					break;
-				case 'property':
-					fbxRecord.addProperty(optionValue);
-					break;
-				case 'properties':
-					fbxRecord.addProperties(optionValue);
-					break;
-				default:
-					console.log(`Unknown property: ${optionName}`);
-			}
-		}
-	}
-	return fbxRecord;
+    #type;
+    #name;
+    #value;
+    #srcObjects = new Set();
+    #flags = 0;
+    #parent = null;
+    isFBXProperty = true;
+    constructor(parent, type = FbxPropertyType.Compound, name = '', value = undefined, flags = 0) {
+        if (type != FbxPropertyType.Compound && value === undefined) {
+            throw 'name is null';
+        }
+        if (parent) {
+            if (parent.isFBXProperty) {
+                if (parent.#type === FbxPropertyType.Compound) {
+                    this.#parent = parent;
+                    parent.#value.set(name, this);
+                }
+                else {
+                    throw 'Parent must be of type compound';
+                }
+            }
+            else if (parent.isFBXObject) {
+                this.#parent = parent;
+            }
+            else {
+                throw 'Parent must be FBXProperty or FBXObject';
+            }
+        }
+        this.#type = type;
+        this.#name = name;
+        if (type === FbxPropertyType.Compound) {
+            this.#value = new Map();
+        }
+        else {
+            this.#value = value;
+        }
+        this.#flags = flags;
+        //TODO: check the value type
+    }
+    get type() {
+        return this.#type;
+    }
+    set value(value) {
+        this.#value = value;
+    }
+    get value() {
+        return this.#value;
+    }
+    set(value) {
+        this.#value = value;
+    }
+    get() {
+        return this.#value;
+    }
+    set flags(flags) {
+        this.#flags = flags;
+    }
+    get flags() {
+        return this.#flags;
+    }
+    set name(name) {
+        this.#name = name;
+    }
+    get name() {
+        return this.#name;
+    }
+    get hierarchicalName() {
+        //TODO: remove recursion
+        if (this.#parent?.isFBXProperty) {
+            const parentHierarchicalName = this.#parent.hierarchicalName;
+            if (parentHierarchicalName) {
+                return parentHierarchicalName + FBX_PROPERTY_HIERARCHICAL_SEPARATOR + this.#name;
+            }
+            else {
+                return this.#name;
+            }
+        }
+        else {
+            return this.#name;
+        }
+    }
+    get parent() {
+        return this.#parent;
+    }
+    isCompound() {
+        return this.#type === FbxPropertyType.Compound;
+    }
+    isRootProperty() {
+        return this.#parent?.isFBXObject;
+    }
+    connectSrcObject(object) {
+        //TODO: add connection type ?
+        this.#srcObjects.add(object);
+    }
+    get srcObjects() {
+        return this.#srcObjects;
+    }
+    createProperty(type, name, value, flags) {
+        if (this.#type === FbxPropertyType.Compound) {
+            if (this.#value.has(name)) {
+                return false;
+            }
+            const newProperty = new FBXProperty(this, type, name, value, flags);
+            this.#value.set(name, newProperty);
+            return newProperty;
+        }
+        else {
+            throw 'Trying to create a child property on a non coumpound property';
+        }
+    }
+    getAllProperties(includeSelf = true) {
+        return this.#getAllProperties(new Set(), includeSelf);
+    }
+    #getAllProperties(childs = new Set(), includeSelf = true) {
+        if (includeSelf) {
+            childs.add(this);
+        }
+        if (this.#type === FbxPropertyType.Compound) {
+            for (let [childName, child] of this.#value) {
+                child.#getAllProperties(childs);
+            }
+        }
+        return childs;
+    }
+    getParentObject() {
+        const parent = this.#parent;
+        if (parent.isFBXObject) {
+            return parent;
+        }
+        if (parent.isFBXProperty) {
+            // TODO: remove recursion
+            return parent.getParentObject();
+        }
+        return null;
+    }
+    findProperty(propertyName) {
+        if (this.#name === propertyName) {
+            return this;
+        }
+        if (this.isCompound()) {
+            for (const [key, subProperty] of this.#value) {
+                const found = subProperty.findProperty(propertyName);
+                if (found) {
+                    return found;
+                }
+            }
+        }
+        return null;
+    }
+    toJSON() {
+        return {
+            type: this.#type,
+            value: this.#value,
+        };
+    }
 }
 
+class FBXObject {
+    #id = getUniqueId();
+    #name = '';
+    #srcObjects = new Set();
+    #rootProperty;
+    #manager;
+    isFBXObject = true;
+    constructor(manager, name = '', ...args) {
+        if (!manager.isFBXManager) {
+            console.trace('Missing manager in FBXObject');
+            throw 'Missing manager in FBXObject';
+        }
+        this.#manager = manager;
+        this.name = name;
+        this.#rootProperty = new FBXProperty(this);
+    }
+    set id(id) {
+        this.#id = id;
+    }
+    get id() {
+        return this.#id;
+    }
+    set name(name) {
+        this.#name = name;
+    }
+    get name() {
+        return this.#name;
+    }
+    get rootProperty() {
+        return this.#rootProperty;
+    }
+    get manager() {
+        return this.#manager;
+    }
+    connectSrcObject(object) {
+        //TODO: add connection type ?
+        this.#srcObjects.add(object);
+    }
+    get srcObjects() {
+        return this.#srcObjects;
+    }
+    createProperty(type, name, value, flags) {
+        return new FBXProperty(this.#rootProperty, type, name, value, flags);
+    }
+    getAllProperties() {
+        return this.#rootProperty.getAllProperties(false);
+    }
+    findProperty(propertyName) {
+        return this.#rootProperty.findProperty(propertyName);
+    }
+}
+
+class FBXCollection extends FBXObject {
+    #members = new Set();
+    isFBXCollection = true;
+    add(member) {
+        this.#members.add(member);
+    }
+    remove(member) {
+        this.#members.delete(member);
+    }
+    get count() {
+        return this.#members.size;
+    }
+    get members() {
+        return this.#members;
+    }
+}
+
+class FBXManager {
+    #objects = new Set();
+    #documents = new Set();
+    isFBXManager = true;
+    static #registry = new Map();
+    destroy() {
+        this.#objects.clear();
+        this.#documents.clear();
+    }
+    static registerClass(className, classConstructor) {
+        FBXManager.#registry.set(className, classConstructor);
+    }
+    createObject(className, objectName, ...args) {
+        const classConstructor = FBXManager.#registry.get(className);
+        if (!classConstructor) {
+            throw 'Unknown constructor in FBXManager.createObject(): ' + className;
+        }
+        const createdObject = new classConstructor(this, objectName, args);
+        if (createdObject) {
+            if (createdObject.isFBXDocument) {
+                this.#documents.add(createdObject);
+            }
+            else {
+                this.#objects.add(createdObject);
+            }
+        }
+        return createdObject;
+    }
+}
+
+class FBXAnimLayer extends FBXCollection {
+    //TODO: add Properties
+    /*P: "Weight", "Number", "", "A",100
+    P: "Mute", "bool", "", "",0
+    P: "Solo", "bool", "", "",0
+    P: "Lock", "bool", "", "",0
+    P: "Color", "ColorRGB", "Color", "",0.8,0.8,0.8
+    P: "BlendMode", "enum", "", "",0
+    P: "RotationAccumulationMode", "enum", "", "",0
+    P: "ScaleAccumulationMode", "enum", "", "",0
+    P: "BlendModeBypass", "ULongLong", "", "",0*/
+    isFBXAnimLayer = true;
+}
+FBXManager.registerClass('FBXAnimLayer', FBXAnimLayer);
+const FBX_PROPERTY_FLAG_STATIC = 1 << 0;
+
+class FBXAnimStack extends FBXCollection {
+    #description;
+    #localStart;
+    #localStop;
+    #referenceStart;
+    #referenceStop;
+    isFBXAnimStack = true;
+    constructor(manager, name) {
+        super(manager, name);
+        this.#description = this.createProperty(FBX_PROPERTY_TYPE_STRING, 'Description', '', FBX_PROPERTY_FLAG_STATIC);
+        this.#localStart = this.createProperty(FBX_PROPERTY_TYPE_TIME, 'LocalStart', 0, FBX_PROPERTY_FLAG_STATIC);
+        this.#localStop = this.createProperty(FBX_PROPERTY_TYPE_TIME, 'LocalStop', 0, FBX_PROPERTY_FLAG_STATIC);
+        this.#referenceStart = this.createProperty(FBX_PROPERTY_TYPE_TIME, 'ReferenceStart', 0, FBX_PROPERTY_FLAG_STATIC);
+        this.#referenceStop = this.createProperty(FBX_PROPERTY_TYPE_TIME, 'ReferenceStop', 0, FBX_PROPERTY_FLAG_STATIC);
+    }
+}
+FBXManager.registerClass('FBXAnimStack', FBXAnimStack);
+
+const FBX_NODE_ATTRIBUTE_TYPE_UNKNOWN = 0;
+const FBX_NODE_ATTRIBUTE_TYPE_SKELETON = 3;
+const FBX_NODE_ATTRIBUTE_TYPE_CAMERA = 7;
+
+class FBXNodeAttribute extends FBXObject {
+    isFBXNodeAttribute = true;
+    getAttributeType() {
+        return FBX_NODE_ATTRIBUTE_TYPE_UNKNOWN;
+    }
+}
+
+class FBXCamera extends FBXNodeAttribute {
+    #position;
+    #upVector;
+    #interestPosition;
+    #roll;
+    //#opticalCenterX;
+    //#opticalCenterY;
+    #nearPlane;
+    #farPlane;
+    #projectionType;
+    #orthoZoom;
+    isFBXCamera = true;
+    constructor(manager, name) {
+        super(manager, name);
+        this.#position = this.createProperty(FBX_PROPERTY_TYPE_DOUBLE_3, 'Position', [0, 0, 0], FBX_PROPERTY_FLAG_STATIC);
+        this.#upVector = this.createProperty(FBX_PROPERTY_TYPE_DOUBLE_3, 'UpVector', [0, 0, 0], FBX_PROPERTY_FLAG_STATIC);
+        this.#interestPosition = this.createProperty(FBX_PROPERTY_TYPE_DOUBLE_3, 'InterestPosition', [0, 0, 0], FBX_PROPERTY_FLAG_STATIC);
+        this.#roll = this.createProperty(FBX_PROPERTY_TYPE_DOUBLE, 'Roll', 0, FBX_PROPERTY_FLAG_STATIC);
+        //this.#opticalCenterX = this.createProperty(FBX_PROPERTY_TYPE_DOUBLE, 'OpticalCenterX', 0, FBX_PROPERTY_FLAG_STATIC);
+        //this.#opticalCenterY = this.createProperty(FBX_PROPERTY_TYPE_DOUBLE, 'OpticalCenterY', 0, FBX_PROPERTY_FLAG_STATIC);
+        this.#nearPlane = this.createProperty(FBX_PROPERTY_TYPE_DOUBLE, 'NearPlane', 0, FBX_PROPERTY_FLAG_STATIC);
+        this.#farPlane = this.createProperty(FBX_PROPERTY_TYPE_DOUBLE, 'FarPlane', 0, FBX_PROPERTY_FLAG_STATIC);
+        this.#projectionType = this.createProperty(FBX_PROPERTY_TYPE_ENUM, 'CameraProjectionType', 0, FBX_PROPERTY_FLAG_STATIC);
+        this.#orthoZoom = this.createProperty(FBX_PROPERTY_TYPE_DOUBLE, 'OrthoZoom', 1, FBX_PROPERTY_FLAG_STATIC);
+    }
+    set position(position) {
+        this.#position = position;
+    }
+    get position() {
+        return this.#position;
+    }
+    set upVector(upVector) {
+        this.#upVector = upVector;
+    }
+    get upVector() {
+        return this.#upVector;
+    }
+    set interestPosition(interestPosition) {
+        this.#interestPosition = interestPosition;
+    }
+    get interestPosition() {
+        return this.#interestPosition;
+    }
+    set roll(roll) {
+        this.#roll = roll;
+    }
+    get roll() {
+        return this.#roll;
+    }
+    set nearPlane(nearPlane) {
+        this.#nearPlane = nearPlane;
+    }
+    get nearPlane() {
+        return this.#nearPlane;
+    }
+    set farPlane(farPlane) {
+        this.#farPlane = farPlane;
+    }
+    get farPlane() {
+        return this.#farPlane;
+    }
+    set projectionType(projectionType) {
+        this.#projectionType = projectionType;
+    }
+    get projectionType() {
+        return this.#projectionType;
+    }
+    set orthoZoom(orthoZoom) {
+        this.#orthoZoom = orthoZoom;
+    }
+    get orthoZoom() {
+        return this.#orthoZoom;
+    }
+    getAttributeType() {
+        return FBX_NODE_ATTRIBUTE_TYPE_CAMERA;
+    }
+}
+FBXManager.registerClass('FBXCamera', FBXCamera);
+
+const FBX_SUB_DEFORMER_TYPE_UNKNOWN = 0;
+const FBX_SUB_DEFORMER_TYPE_CLUSTER = 1;
+
+class FBXSubDeformer extends FBXObject {
+    isFBXSubDeformer = true;
+    get subDeformerType() {
+        return FBX_SUB_DEFORMER_TYPE_UNKNOWN;
+    }
+}
+
+const FBX_LINK_MODE_NORMALIZE = 0;
+
+class FBXCluster extends FBXSubDeformer {
+    #linkMode = FBX_LINK_MODE_NORMALIZE;
+    #link;
+    #indexes = [];
+    #weights = [];
+    #transformMatrix = create$5();
+    #transformLinkMatrix = create$5();
+    //#transformParentMatrix;
+    isFBXCluster = true;
+    set linkMode(linkMode) {
+        this.#linkMode = linkMode;
+    }
+    get linkMode() {
+        return this.#linkMode;
+    }
+    set link(link) {
+        this.#link = link;
+    }
+    get link() {
+        return this.#link;
+    }
+    addVertexIndex(index, weight) {
+        this.#indexes.push(index);
+        this.#weights.push(weight);
+    }
+    get indexes() {
+        return this.#indexes;
+    }
+    get weights() {
+        return this.#weights;
+    }
+    get subDeformerType() {
+        return FBX_SUB_DEFORMER_TYPE_CLUSTER;
+    }
+    set transformMatrix(transformMatrix) {
+        copy$5(this.#transformMatrix, transformMatrix);
+    }
+    get transformMatrix() {
+        return clone$5(this.#transformMatrix);
+    }
+    set transformLinkMatrix(transformLinkMatrix) {
+        copy$5(this.#transformLinkMatrix, transformLinkMatrix);
+    }
+    get transformLinkMatrix() {
+        return clone$5(this.#transformLinkMatrix);
+    }
+}
+FBXManager.registerClass('FBXCluster', FBXCluster);
+
+class FBXColor {
+    #red;
+    #green;
+    #blue;
+    #alpha;
+    isFBXColor = true;
+    constructor(red = 0.0, green = 0.0, blue = 0.0, alpha = 1.0) {
+        this.#red = red;
+        this.#green = green;
+        this.#blue = blue;
+        this.#alpha = alpha;
+    }
+    set red(red) {
+        this.#red = red;
+    }
+    get red() {
+        return this.#red;
+    }
+    set green(green) {
+        this.#green = green;
+    }
+    get green() {
+        return this.#green;
+    }
+    set blue(blue) {
+        this.#blue = blue;
+    }
+    get blue() {
+        return this.#blue;
+    }
+    set alpha(alpha) {
+        this.#alpha = alpha;
+    }
+    get alpha() {
+        return this.#alpha;
+    }
+}
+
+class FBXAxisSystem {
+    isFBXAxisSystem = true;
+    #upAxis;
+    #frontAxis;
+    constructor(upAxis, frontAxis) {
+        this.#upAxis = upAxis;
+        this.#frontAxis = frontAxis;
+    }
+    set upAxis(upAxis) {
+        this.#upAxis = upAxis;
+    }
+    get upAxis() {
+        return this.#upAxis;
+    }
+    set frontAxis(frontAxis) {
+        this.#frontAxis = frontAxis;
+    }
+    get frontAxis() {
+        return this.#frontAxis;
+    }
+    get coordAxis() {
+        return this.#frontAxis;
+    }
+}
+
+class FBXGlobalSettings extends FBXObject {
+    #ambientColor = new FBXColor();
+    #defaultCamera = '';
+    #axisSystem = new FBXAxisSystem(2, 1);
+    isFBXGlobalSettings = true;
+    set ambientColor(ambientColor) {
+        this.#ambientColor = ambientColor;
+    }
+    get ambientColor() {
+        return this.#ambientColor;
+    }
+    set defaultCamera(defaultCamera) {
+        this.#defaultCamera = defaultCamera;
+    }
+    get defaultCamera() {
+        return this.#defaultCamera;
+    }
+}
+FBXManager.registerClass('FBXGlobalSettings', FBXGlobalSettings);
+
+class FBXLayerContainer extends FBXNodeAttribute {
+    isFBXLayerContainer = true;
+}
+
+class FBXGeometryBase extends FBXLayerContainer {
+    isFBXGeometryBase = true;
+}
+
+class FBXGeometry extends FBXGeometryBase {
+    #deformers = new Set();
+    isFBXGeometry = true;
+    addDeformer(deformer) {
+        this.#deformers.add(deformer);
+    }
+    removeDeformer(deformer) {
+        this.#deformers.delete(deformer);
+    }
+    get deformers() {
+        return this.#deformers;
+    }
+}
+
+class FBXMesh extends FBXGeometry {
+    #vertices = [];
+    #normals = [];
+    #polygons = [];
+    #edges = [];
+    #uv = [];
+    #uvIndex = [];
+    isFBXMesh = true;
+    set vertices(vertices) {
+        this.#vertices = vertices;
+    }
+    get vertices() {
+        return this.#vertices;
+    }
+    set normals(normals) {
+        this.#normals = normals;
+    }
+    get normals() {
+        return this.#normals;
+    }
+    set polygons(polygons) {
+        this.#polygons = polygons;
+    }
+    get polygons() {
+        return this.#polygons;
+    }
+    set edges(edges) {
+        this.#edges = edges;
+    }
+    get edges() {
+        return this.#edges;
+    }
+    set uv(uv) {
+        this.#uv = uv;
+    }
+    get uv() {
+        return this.#uv;
+    }
+    set uvIndex(uvIndex) {
+        this.#uvIndex = uvIndex;
+    }
+    get uvIndex() {
+        return this.#uvIndex;
+    }
+}
+FBXManager.registerClass('FBXMesh', FBXMesh);
+//Scaling of parent is applied before rotation of child
+const FBX_INHERIT_TYPE_PARENT_SCALING_FIRST = 1;
+
+class FBXNode extends FBXObject {
+    #parent = null;
+    #childs = new Set();
+    #materials = [];
+    #nodeAttribute;
+    #inheritType = FBX_INHERIT_TYPE_PARENT_SCALING_FIRST;
+    #show;
+    #localTranslation;
+    #localRotation;
+    #localScaling;
+    isFBXNode = true;
+    constructor(manager, name) {
+        super(manager, name);
+        this.#show = this.createProperty(FBX_PROPERTY_TYPE_BOOL, 'Show', 1.0, FBX_PROPERTY_FLAG_STATIC);
+        this.#localTranslation = this.createProperty(FBX_PROPERTY_TYPE_DOUBLE_3, 'Lcl Translation', [0, 0, 0], FBX_PROPERTY_FLAG_STATIC);
+        this.#localRotation = this.createProperty(FBX_PROPERTY_TYPE_DOUBLE_3, 'Lcl Rotation', [0, 0, 0], FBX_PROPERTY_FLAG_STATIC);
+        this.#localScaling = this.createProperty(FBX_PROPERTY_TYPE_DOUBLE_3, 'Lcl Scaling', [1, 1, 1], FBX_PROPERTY_FLAG_STATIC);
+    }
+    set parent(parent) {
+        if (this.#checkParent(parent)) {
+            if (this.#parent) {
+                this.#parent.#childs.delete(this);
+            }
+            this.#parent = parent;
+            if (parent) {
+                parent.#childs.add(this);
+            }
+        }
+        else {
+            console.log(this, parent);
+            throw 'Invalid parent';
+        }
+    }
+    addChild(child) {
+        child.parent = this;
+    }
+    removeChild(child) {
+        child.parent = null;
+    }
+    get childs() {
+        return this.#childs;
+    }
+    get parent() {
+        return this.#parent;
+    }
+    #checkParent(parent) {
+        if (parent === null) {
+            return true;
+        }
+        if (!parent.isFBXNode) {
+            console.log('Parent is not FBXNode');
+            return false;
+        }
+        let current = parent;
+        for (;;) {
+            if (current == this) {
+                console.log('Parent hierarchy contains self');
+                return false;
+            }
+            if (!(current = current.parent)) {
+                break;
+            }
+        }
+        return true;
+    }
+    set nodeAttribute(nodeAttribute) {
+        this.#nodeAttribute = nodeAttribute;
+    }
+    get nodeAttribute() {
+        return this.#nodeAttribute;
+    }
+    set inheritType(inheritType) {
+        this.#inheritType = inheritType;
+    }
+    get inheritType() {
+        return this.#inheritType;
+    }
+    set show(show) {
+        this.#show.value = show;
+    }
+    get show() {
+        return this.#show.value;
+    }
+    set localTranslation(localTranslation) {
+        this.#localTranslation = localTranslation;
+    }
+    get localTranslation() {
+        return this.#localTranslation;
+    }
+    set localRotation(localRotation) {
+        this.#localRotation = localRotation;
+    }
+    get localRotation() {
+        return this.#localRotation;
+    }
+    set localScaling(localScaling) {
+        this.#localScaling = localScaling;
+    }
+    get localScaling() {
+        return this.#localScaling;
+    }
+    addMaterial(surfaceMaterial) {
+        this.#materials.push(surfaceMaterial);
+    }
+    get materials() {
+        return this.#materials;
+    }
+    toJSON() {
+        return {};
+    }
+}
+FBXManager.registerClass('FBXNode', FBXNode);
+
+class FBXPoseInfo {
+    #matrix = create$5();
+    #matrixIsLocal = false;
+    #node;
+    constructor(node, matrix, matrixIsLocal) {
+        this.#node = node;
+        copy$5(this.#matrix, matrix);
+        this.#matrixIsLocal = matrixIsLocal;
+    }
+    set matrix(matrix) {
+        this.#matrix = matrix;
+    }
+    get matrix() {
+        return this.#matrix;
+    }
+    set matrixIsLocal(matrixIsLocal) {
+        this.#matrixIsLocal = matrixIsLocal;
+    }
+    get matrixIsLocal() {
+        return this.#matrixIsLocal;
+    }
+    set node(node) {
+        this.#node = node;
+    }
+    get node() {
+        return this.#node;
+    }
+}
+
+class FBXPose extends FBXObject {
+    #isBindPose = true;
+    #poseInfos = [];
+    isFBXPose = true;
+    set isBindPose(isBindPose) {
+        this.#isBindPose = isBindPose;
+    }
+    get isBindPose() {
+        return this.#isBindPose;
+    }
+    get isRestPose() {
+        return !this.#isBindPose;
+    }
+    add(node, matrix, matrixIsLocal) {
+        this.#poseInfos.push(new FBXPoseInfo(node, matrix, matrixIsLocal));
+    }
+    get poseInfos() {
+        return this.#poseInfos;
+    }
+}
+FBXManager.registerClass('FBXPose', FBXPose);
+
+class FBXDocument extends FBXCollection {
+    #documentInfo;
+    isFBXDocument = true;
+    constructor(manager, name) {
+        super(manager, name);
+    }
+    set documentInfo(documentInfo) {
+        this.#documentInfo = documentInfo;
+    }
+    get documentInfo() {
+        return this.#documentInfo;
+    }
+}
+
+class FBXScene extends FBXDocument {
+    #rootNode;
+    #globalSettings;
+    #sceneInfo;
+    #objects = new Set();
+    isFBXScene = true;
+    constructor(manager, name) {
+        super(manager, name);
+        this.#rootNode = manager.createObject('FBXNode', 'Root node. This node is not saved');
+        this.#globalSettings = manager.createObject('FBXGlobalSettings', 'TODO: name me FBXScene / #globalSettings');
+        this.#rootNode.id = 0n;
+    }
+    set sceneInfo(sceneInfo) {
+        this.#sceneInfo = sceneInfo;
+    }
+    get sceneInfo() {
+        return this.#sceneInfo;
+    }
+    get rootNode() {
+        return this.#rootNode;
+    }
+    get globalSettings() {
+        return this.#globalSettings;
+    }
+    addObject(object) {
+        this.#objects.add(object);
+    }
+    get objects() {
+        return this.#objects;
+    }
+}
+FBXManager.registerClass('FBXScene', FBXScene);
+
+class FBXSkeleton extends FBXNodeAttribute {
+    skeletonType;
+    isFBXSkeleton = true;
+    constructor(manager, name, skeletonType) {
+        super(manager, name);
+        this.skeletonType = skeletonType;
+    }
+    getAttributeType() {
+        return FBX_NODE_ATTRIBUTE_TYPE_SKELETON;
+    }
+}
+FBXManager.registerClass('FBXSkeleton', FBXSkeleton);
+
+const FBX_DEFORMER_TYPE_UNKNOWN = 0;
+const FBX_DEFORMER_TYPE_SKIN = 1;
+
+class FBXDeformer extends FBXObject {
+    isFBXDeformer = true;
+    get deformerType() {
+        return FBX_DEFORMER_TYPE_UNKNOWN;
+    }
+}
+const FBX_SKINNING_TYPE_LINEAR = 1;
+
+class FBXSkin extends FBXDeformer {
+    #geometry;
+    #skinningType = FBX_SKINNING_TYPE_LINEAR;
+    #clusters = new Set();
+    isFBXSkin = true;
+    set geometry(geometry) {
+        if (geometry && !geometry.isFBXGeometry) {
+            throw 'geometry must be of type FBXGeometry';
+        }
+        if (this.#geometry) {
+            this.#geometry.removeDeformer(this);
+        }
+        if (geometry) {
+            geometry.addDeformer(this);
+        }
+        this.#geometry = geometry;
+    }
+    get geometry() {
+        return this.#geometry;
+    }
+    set skinningType(skinningType) {
+        this.#skinningType = skinningType;
+    }
+    get skinningType() {
+        return this.#skinningType;
+    }
+    addCluster(fbxCluster) {
+        this.#clusters.add(fbxCluster);
+    }
+    removeCluster(fbxCluster) {
+        this.#clusters.delete(fbxCluster);
+    }
+    get clusters() {
+        return this.#clusters;
+    }
+    get deformerType() {
+        return FBX_DEFORMER_TYPE_SKIN;
+    }
+}
+FBXManager.registerClass('FBXSkin', FBXSkin);
+
+class FBXSurfaceMaterial extends FBXObject {
+    #shadingModel;
+    #multiLayer;
+    isFBXSurfaceMaterial = true;
+    constructor(manager, name) {
+        super(manager, name);
+        this.#shadingModel = this.createProperty(FBX_PROPERTY_TYPE_STRING, 'ShadingModel', 'Unknown', FBX_PROPERTY_FLAG_STATIC);
+        this.#multiLayer = this.createProperty(FBX_PROPERTY_TYPE_BOOL, 'MultiLayer', false, FBX_PROPERTY_FLAG_STATIC);
+    }
+    set shadingModel(shadingModel) {
+        this.#shadingModel.value = shadingModel;
+    }
+    get shadingModel() {
+        return this.#shadingModel.value;
+    }
+    set multiLayer(multiLayer) {
+        this.#multiLayer.value = multiLayer;
+    }
+    get multiLayer() {
+        return this.#multiLayer.value;
+    }
+}
+FBXManager.registerClass('FBXSurfaceMaterial', FBXSurfaceMaterial);
+
+class FBXSurfaceLambert extends FBXSurfaceMaterial {
+    #diffuse;
+    isFBXSurfaceLambert = true;
+    constructor(manager, name) {
+        super(manager, name);
+        this.shadingModel = 'Lambert';
+        this.#diffuse = this.createProperty(FBX_PROPERTY_TYPE_COLOR_3, 'DiffuseColor', [0.2, 0.2, 0.2], FBX_PROPERTY_FLAG_STATIC);
+    }
+    set diffuse(diffuse) {
+        console.assert(diffuse.isFBXProperty && diffuse.type == FBX_PROPERTY_TYPE_COLOR_3, "diffuse is not an FBXProperty");
+        this.#diffuse = diffuse;
+    }
+    get diffuse() {
+        return this.#diffuse;
+    }
+}
+FBXManager.registerClass('FBXSurfaceLambert', FBXSurfaceLambert);
+
+class FBXSurfacePhong extends FBXSurfaceLambert {
+    isFBXSurfacePhong = true;
+    constructor(manager, name) {
+        super(manager, name);
+        this.shadingModel = 'Phong';
+    }
+}
+FBXManager.registerClass('FBXSurfacePhong', FBXSurfacePhong);
+
+class FBXTexture extends FBXObject {
+    #media;
+    #type = 'TextureVideoClip';
+    isFBXTexture = true;
+    set type(type) {
+        throw 'We might want to check the exporter if we change the type';
+    }
+    get type() {
+        return this.#type;
+    }
+    set media(media) {
+        this.#media = media;
+    }
+    get media() {
+        return this.#media;
+    }
+}
+FBXManager.registerClass('FBXTexture', FBXTexture);
+
+class FBXVideo extends FBXObject {
+    #content;
+    #type = 'Clip';
+    isFBXVideo = true;
+    set content(content) {
+        this.#content = content;
+    }
+    get content() {
+        return this.#content;
+    }
+    set type(type) {
+        throw 'We might want to check the exporter if we change the type';
+    }
+    get type() {
+        return this.#type;
+    }
+}
+FBXManager.registerClass('FBXVideo', FBXVideo);
+
+var FbxType;
+(function (FbxType) {
+    FbxType[FbxType["Int8"] = 67] = "Int8";
+    FbxType[FbxType["Double"] = 68] = "Double";
+    FbxType[FbxType["Float"] = 70] = "Float";
+    FbxType[FbxType["Int32"] = 73] = "Int32";
+    FbxType[FbxType["Int64"] = 76] = "Int64";
+    FbxType[FbxType["Raw"] = 82] = "Raw";
+    FbxType[FbxType["String"] = 83] = "String";
+    FbxType[FbxType["Int16"] = 89] = "Int16";
+    FbxType[FbxType["Int8Array"] = 98] = "Int8Array";
+    FbxType[FbxType["DoubleArray"] = 100] = "DoubleArray";
+    FbxType[FbxType["FloatArray"] = 102] = "FloatArray";
+    FbxType[FbxType["Int32Array"] = 105] = "Int32Array";
+    FbxType[FbxType["Int64Array"] = 108] = "Int64Array";
+})(FbxType || (FbxType = {}));
+const FBX_DATA_TYPE_INT_8 = 67;
+const FBX_DATA_TYPE_DOUBLE = 68;
+const FBX_DATA_TYPE_FLOAT = 70;
+const FBX_DATA_TYPE_INT_32 = 73;
+const FBX_DATA_TYPE_INT_64 = 76;
+const FBX_DATA_TYPE_RAW = 82;
+const FBX_DATA_TYPE_STRING = 83;
+const FBX_DATA_TYPE_INT_16 = 89;
+const FBX_DATA_TYPE_ARRAY_INT_8 = 98;
+const FBX_DATA_TYPE_ARRAY_DOUBLE = 100;
+const FBX_DATA_TYPE_ARRAY_FLOAT = 102;
+const FBX_DATA_TYPE_ARRAY_INT_32 = 105;
+const FBX_DATA_TYPE_ARRAY_INT_64 = 108;
+const FBX_DATA_LEN = new Map([
+    [FBX_DATA_TYPE_INT_8, 1],
+    [FBX_DATA_TYPE_DOUBLE, 8],
+    [FBX_DATA_TYPE_FLOAT, 4],
+    [FBX_DATA_TYPE_INT_32, 4],
+    [FBX_DATA_TYPE_INT_64, 8],
+    [FBX_DATA_TYPE_INT_16, 2],
+    [FBX_DATA_TYPE_ARRAY_INT_8, 1],
+    [FBX_DATA_TYPE_ARRAY_DOUBLE, 8],
+    [FBX_DATA_TYPE_ARRAY_FLOAT, 4],
+    [FBX_DATA_TYPE_ARRAY_INT_32, 4],
+    [FBX_DATA_TYPE_ARRAY_INT_64, 8],
+]);
+const FBX_BINARY_MAGIC = 'Kaydara FBX Binary  \0';
+const FBX_HEADER_VERSION = 1003;
+const FBX_SCENEINFO_VERSION = 100;
+const FBX_TEMPLATES_VERSION = 100;
+const FBX_KTIME = 46186158000n;
+const FBX_GEOMETRY_VERSION = 124;
+const FBX_GEOMETRY_UV_VERSION = 101;
+const FBX_GEOMETRY_MATERIAL_VERSION = 101;
+const FBX_GEOMETRY_LAYER_VERSION = 100;
+const FBX_MATERIAL_VERSION = 102;
+const FBX_TEXTURE_VERSION = 202;
+const FBX_DEFORMER_SKIN_VERSION = 101;
+const FBX_DEFORMER_CLUSTER_VERSION = 100;
+const FBX_POSE_BIND_VERSION = 100;
+const FBX_MODELS_VERSION = 232;
+
+if (!BigInt.prototype.toJSON) {
+    BigInt.prototype.toJSON = function () { return this.toString(); };
+}
+class FBXRecordProperty {
+    #type;
+    #value;
+    #srcObjects = new Set();
+    #flags = 0;
+    #parent = null;
+    isFBXProperty = true;
+    constructor(parent, type, value) {
+        if (parent) {
+            if (parent.isFBXProperty) {
+                this.#parent = parent;
+            }
+            else if (parent.isFBXObject) {
+                this.#parent = parent.rootProperty;
+            }
+            else {
+                throw 'Parent must be FBXRecordProperty or FBXObject';
+            }
+        }
+        this.#type = type;
+        this.#value = value;
+        //TODO: check the value type
+    }
+    get type() {
+        return this.#type;
+    }
+    set value(value) {
+        this.#value = value;
+    }
+    get value() {
+        return this.#value;
+    }
+    set(value) {
+        this.#value = value;
+    }
+    get() {
+        return this.#value;
+    }
+    set flags(flags) {
+        this.#flags = flags;
+    }
+    get flags() {
+        return this.#flags;
+    }
+    get parent() {
+        return this.#parent;
+    }
+    connectSrcObject(fbxObject) {
+        //TODO: add connection type ?
+        this.#srcObjects.add(fbxObject);
+    }
+    get srcObjects() {
+        return this.#srcObjects;
+    }
+    createProperty(type, value) {
+        return new FBXRecordProperty(this, type, value);
+    }
+    toJSON() {
+        return {
+            type: this.#type,
+            value: this.#value,
+        };
+    }
+}
+
+function createInt16Property(value) {
+    return new FBXRecordProperty(null, FBX_DATA_TYPE_INT_16, value);
+}
+function createInt32Property(value) {
+    return new FBXRecordProperty(null, FBX_DATA_TYPE_INT_32, value);
+}
+function createInt64Property(value) {
+    return new FBXRecordProperty(null, FBX_DATA_TYPE_INT_64, value);
+}
+function createDoubleProperty(value) {
+    return new FBXRecordProperty(null, FBX_DATA_TYPE_DOUBLE, value);
+}
+function createRawProperty(value /*TODO: better type*/) {
+    return new FBXRecordProperty(null, FBX_DATA_TYPE_RAW, value);
+}
+function createStringProperty(value) {
+    return new FBXRecordProperty(null, FBX_DATA_TYPE_STRING, value);
+}
+
+class FBXRecord {
+    #name = '';
+    #childs = new Set();
+    #properties = new Set();
+    isFBXRecord = true;
+    constructor(name) {
+        this.name = name;
+    }
+    addChild(child) {
+        if (!child.isFBXRecord) {
+            throw 'FBXFile: trying to insert a non FBXRecord child';
+        }
+        this.#childs.add(child);
+        return child;
+    }
+    addChilds(childs) {
+        for (let child of childs) {
+            this.addChild(child);
+        }
+    }
+    addProperty(property) {
+        this.#properties.add(property);
+    }
+    addProperties(properties) {
+        for (let property of properties) {
+            this.addProperty(property);
+        }
+    }
+    set name(name) {
+        if (name.length > 255) {
+            throw `Record name above 255 characters ${name}`;
+        }
+        this.#name = name;
+    }
+    get name() {
+        return this.#name;
+    }
+    get childs() {
+        return this.#childs;
+    }
+    get properties() {
+        return this.#properties;
+    }
+    getRecordsByName(recordName) {
+        let output = [];
+        for (let child of this.#childs) {
+            if (child.name == recordName) {
+                output.push(child);
+            }
+        }
+        return output;
+    }
+    getRecordByName(recordName) {
+        for (let child of this.#childs) {
+            if (child.name == recordName) {
+                return child;
+            }
+        }
+    }
+    getProperty(type) {
+        for (let property of this.#properties) {
+            if (property.type == type) {
+                return property.value;
+            }
+        }
+    }
+    getPropertyInt32() {
+        return this.getProperty(FBX_DATA_TYPE_INT_32);
+    }
+    getPropertyString() {
+        return this.getProperty(FBX_DATA_TYPE_STRING);
+    }
+    toJSON() {
+        return {
+            name: this.#name,
+            childs: this.#childs.size ? [...this.#childs] : undefined,
+            properties: this.#properties.size ? [...this.#properties] : undefined,
+        };
+    }
+}
+
+const _TIME_ID = '1970-01-01 10:00:00:000';
+const _FILE_ID = new Uint8Array([0x28, 0xb3, 0x2a, 0xeb, 0xb6, 0x24, 0xcc, 0xc2, 0xbf, 0xc8, 0xb0, 0x2a, 0xa9, 0x2b, 0xfc, 0xf1]);
+const _FOOT_ID = new Uint8Array([0xfa, 0xbc, 0xab, 0x09, 0xd0, 0xc8, 0xd4, 0x66, 0xb1, 0x76, 0xfb, 0x83, 0x1c, 0xf7, 0x26, 0x7e]);
+const FBX_FOOTER2 = '\xf8\x5a\x8c\x6a\xde\xf5\xd9\x7e\xec\xe9\x0c\xe3\x75\x8f\x29\x0b';
+class FBXExporter {
+    exportBinary(fbxFile) {
+        checkFile(fbxFile);
+        let version = fbxFile.version;
+        let size = getFileSize(fbxFile, version);
+        //console.log('File Size: ', size);
+        let writer = new BinaryReader(new Uint8Array(size));
+        return exportBinaryFile(writer, fbxFile);
+    }
+}
+function checkFile(fbxFile) {
+    for (let child of fbxFile.childs) {
+        if (child.name == 'CreationTime' || child.name == 'FileId') {
+            fbxFile.childs.delete(child);
+        }
+    }
+    formatCreationTimeRecord(fbxFile);
+    formatFileIdRecord(fbxFile);
+}
+function exportBinaryFile(writer, fbxFile) {
+    let version = fbxFile.version;
+    writer.seek(0);
+    writer.setString(FBX_BINARY_MAGIC);
+    writer.setUint8(0x1A);
+    writer.setUint8(0x00);
+    writer.setUint32(version);
+    for (let child of fbxFile.childs) {
+        exportBinaryRecord(writer, child, version);
+    }
+    writer.skip((version >= 7500) ? 25 : 13); //Null record
+    writer.setBytes(generateFooterCode(fbxFile.dateCreated));
+    writer.skip(align16(writer.tell()));
+    if (version != 7400) {
+        writer.skip(4);
+    }
+    writer.setUint32(version);
+    writer.skip(120);
+    writer.setString(FBX_FOOTER2);
+    return writer.buffer;
+}
+function formatFileIdRecord(fbxFile) {
+    let fbxRecord = fbxFile.addChild(new FBXRecord('FileId'));
+    fbxRecord.properties.clear();
+    let fbxProperty = createRawProperty(_FILE_ID);
+    fbxRecord.addProperty(fbxProperty);
+}
+function formatCreationTimeRecord(fbxFile) {
+    let fbxRecord = fbxFile.addChild(new FBXRecord('CreationTime'));
+    fbxRecord.properties.clear();
+    let dateCreated = fbxFile.dateCreated;
+    `${dateCreated.getFullYear()}-${padNumber(dateCreated.getMonth() + 1, 2)}-${padNumber(dateCreated.getDate(), 2)} ${padNumber(dateCreated.getHours(), 2)}:${padNumber(dateCreated.getMinutes(), 2)}:${padNumber(dateCreated.getSeconds(), 2)}:${padNumber(dateCreated.getMilliseconds(), 3)}`;
+    //console.log(creationTime);
+    //let fbxProperty = createStringProperty(creationTime);
+    let fbxProperty = createStringProperty(_TIME_ID);
+    fbxRecord.addProperty(fbxProperty);
+}
+function align16(offset) {
+    let pad = ((offset + 15) & ~15) - offset;
+    if (pad == 0) {
+        pad = 16;
+    }
+    return pad;
+}
+function exportBinaryRecord(writer, fbxRecord, version) {
+    let startOffset = writer.tell();
+    let recordLen = getRecordSize(fbxRecord, version);
+    //console.log(startOffset);
+    if (version >= 7500) {
+        writer.setBigUint64(BigInt(startOffset + recordLen));
+        writer.setBigUint64(BigInt(fbxRecord.properties.size));
+        writer.setBigUint64(BigInt(getRecordPropertiesSize(fbxRecord)));
+    }
+    else {
+        writer.setUint32(startOffset + recordLen);
+        writer.setUint32(fbxRecord.properties.size);
+        writer.setUint32(getRecordPropertiesSize(fbxRecord));
+    }
+    writer.setUint8(fbxRecord.name.length);
+    writer.setString(fbxRecord.name);
+    exportProperties(writer, fbxRecord);
+    for (let child of fbxRecord.childs) {
+        exportBinaryRecord(writer, child, version);
+    }
+    writer.skip((version >= 7500) ? 25 : 13); //Null record
+}
+function exportProperties(writer, fbxRecord) {
+    for (let property of fbxRecord.properties) {
+        exportRecordProperty(writer, property);
+    }
+}
+function exportRecordProperty(writer, fbxProperty) {
+    //console.log(fbxProperty);
+    writer.setUint8(fbxProperty.type);
+    switch (fbxProperty.type) {
+        case FBX_DATA_TYPE_INT_16:
+            writer.setInt16(fbxProperty.value);
+            break;
+        case FBX_DATA_TYPE_INT_8:
+            writer.setInt8(fbxProperty.value);
+            break;
+        case FBX_DATA_TYPE_INT_32:
+            writer.setInt32(fbxProperty.value);
+            break;
+        case FBX_DATA_TYPE_FLOAT:
+            writer.setFloat32(fbxProperty.value);
+            break;
+        case FBX_DATA_TYPE_DOUBLE:
+            writer.setFloat64(fbxProperty.value);
+            break;
+        case FBX_DATA_TYPE_INT_64:
+            writer.setBigInt64(BigInt(fbxProperty.value));
+            break;
+        case FBX_DATA_TYPE_RAW:
+            writer.setUint32(fbxProperty.value.length);
+            writer.setBytes(fbxProperty.value);
+            break;
+        case FBX_DATA_TYPE_STRING:
+            writer.setUint32(fbxProperty.value.length);
+            writer.setString(fbxProperty.value);
+            break;
+        case FBX_DATA_TYPE_ARRAY_INT_8:
+        case FBX_DATA_TYPE_ARRAY_DOUBLE:
+        case FBX_DATA_TYPE_ARRAY_FLOAT:
+        case FBX_DATA_TYPE_ARRAY_INT_32:
+        case FBX_DATA_TYPE_ARRAY_INT_64:
+            exportRecordPropertyArray(writer, fbxProperty);
+            break;
+        default:
+            throw 'Unknown property type ' + fbxProperty.type;
+    }
+}
+function exportRecordPropertyArray(writer, fbxProperty) {
+    writer.setUint32(fbxProperty.value.length);
+    writer.setUint32(0); //Encoding
+    writer.setUint32(FBX_DATA_LEN.get(fbxProperty.type) * fbxProperty.value.length);
+    let functionName;
+    switch (fbxProperty.type) {
+        case FBX_DATA_TYPE_ARRAY_INT_8:
+            functionName = 'setInt8';
+            break;
+        case FBX_DATA_TYPE_ARRAY_DOUBLE:
+            functionName = 'setFloat64';
+            break;
+        case FBX_DATA_TYPE_ARRAY_FLOAT:
+            functionName = 'setFloat32';
+            break;
+        case FBX_DATA_TYPE_ARRAY_INT_32:
+            functionName = 'setInt32';
+            break;
+        case FBX_DATA_TYPE_ARRAY_INT_64:
+            functionName = 'setBigInt64';
+            for (let value of fbxProperty.value) {
+                writer.setBigInt64(value);
+            }
+            return;
+        default:
+            throw 'Unknown array property type ' + fbxProperty.type;
+    }
+    for (let value of fbxProperty.value) {
+        writer[functionName](value);
+    }
+}
+function getFileSize(fbxFile, version) {
+    let size = 27; //header
+    for (let child of fbxFile.childs) {
+        size += getRecordSize(child, version);
+    }
+    size += (version >= 7500) ? 25 : 13; //Null record
+    size += 16; // footer1
+    //size += 4 // padding
+    size += align16(size); //alignment
+    if (version != 7400) {
+        size += 4; // padding
+    }
+    size += 140; //version + padding + footer2
+    return size;
+}
+function getRecordSize(fbxRecord, version) {
+    let size;
+    if (version >= 7500) {
+        size = 8 + 8 + 8 + 1;
+    }
+    else {
+        size = 4 + 4 + 4 + 1;
+    }
+    size += fbxRecord.name.length;
+    size += getRecordPropertiesSize(fbxRecord);
+    for (let child of fbxRecord.childs) {
+        size += getRecordSize(child, version);
+    }
+    size += (version >= 7500) ? 25 : 13; //Null record
+    return size;
+}
+function getRecordPropertiesSize(fbxRecord) {
+    let size = 0;
+    for (let property of fbxRecord.properties) {
+        switch (property.type) {
+            case FBX_DATA_TYPE_INT_8:
+            case FBX_DATA_TYPE_DOUBLE:
+            case FBX_DATA_TYPE_FLOAT:
+            case FBX_DATA_TYPE_INT_32:
+            case FBX_DATA_TYPE_INT_64:
+            case FBX_DATA_TYPE_INT_16:
+                ++size; //Typecode
+                size += FBX_DATA_LEN.get(property.type);
+                break;
+            case FBX_DATA_TYPE_RAW:
+            case FBX_DATA_TYPE_STRING:
+                ++size; //Typecode
+                size += 4; //string len
+                size += property.value.length;
+                break;
+            case FBX_DATA_TYPE_ARRAY_INT_8:
+            case FBX_DATA_TYPE_ARRAY_DOUBLE:
+            case FBX_DATA_TYPE_ARRAY_FLOAT:
+            case FBX_DATA_TYPE_ARRAY_INT_32:
+            case FBX_DATA_TYPE_ARRAY_INT_64:
+                size += 13; //Typecode + array header
+                size += FBX_DATA_LEN.get(property.type) * property.value.length;
+                break;
+            default:
+                throw 'Unknown property type ' + property.type;
+        }
+    }
+    return size;
+}
+//const extension = new Uint8Array([0xF8, 0x5A, 0x8C, 0x6A, 0xDE, 0xF5, 0xD9, 0x7E, 0xEC, 0xE9, 0x0C, 0xE3, 0x75, 0x8F, 0x29, 0x0B]);
+function padNumber(number, targetLength) {
+    return number.toString().padStart(targetLength, '0');
+}
+function generateFooterCode(date) {
+    return _FOOT_ID;
+}
+
+class FBXFile {
+    #version = 7500;
+    #childs = new Set();
+    #dateCreated = new Date();
+    set version(version) {
+        this.#version = version;
+    }
+    get version() {
+        return this.#version;
+    }
+    addChild(child) {
+        this.#childs.add(child);
+        return child;
+    }
+    get childs() {
+        return this.#childs;
+    }
+    getRecordsByName(recordName) {
+        let output = [];
+        for (let child of this.#childs) {
+            if (child.name == recordName) {
+                output.push(child);
+            }
+        }
+        return output;
+    }
+    getRecordByName(recordName) {
+        for (let child of this.#childs) {
+            if (child.name == recordName) {
+                return child;
+            }
+        }
+    }
+    set dateCreated(dateCreated) {
+        this.#dateCreated = dateCreated;
+    }
+    get dateCreated() {
+        return this.#dateCreated;
+    }
+    toJSON() {
+        return {
+            version: this.#version,
+            childs: this.#childs.size ? [...this.#childs] : undefined,
+        };
+    }
+}
+
+function createFBXRecord(name, options /*TODO: improve type*/) {
+    let fbxRecord = new FBXRecord(name);
+    if (options) {
+        for (let optionName in options) {
+            let optionValue = options[optionName];
+            switch (optionName) {
+                case 'parent':
+                    optionValue.addChild(fbxRecord);
+                    break;
+                case 'child':
+                    fbxRecord.addChild(optionValue);
+                    break;
+                case 'childs':
+                    fbxRecord.addChilds(optionValue);
+                    break;
+                case 'property':
+                    fbxRecord.addProperty(optionValue);
+                    break;
+                case 'properties':
+                    fbxRecord.addProperties(optionValue);
+                    break;
+                default:
+                    console.log(`Unknown property: ${optionName}`);
+            }
+        }
+    }
+    return fbxRecord;
+}
 function fbxNameClass(name, className) {
-	return name + '\x00\x01' + className;
+    return name + '\x00\x01' + className;
 }
-
 function createFBXRecordSingle(name, type, value) {
-	let fbxRecord = new FBXRecord(name);
-	fbxRecord.addProperty(new FBXRecordProperty(null, type, value));
-	return fbxRecord;
+    let fbxRecord = new FBXRecord(name);
+    fbxRecord.addProperty(new FBXRecordProperty(null, type, value));
+    return fbxRecord;
 }
 function createFBXRecordMultiple(name, type, values) {
-	let fbxRecord = new FBXRecord(name);
-	for (let value of values) {
-		fbxRecord.addProperty(new FBXRecordProperty(null, type, value));
-	}
-	return fbxRecord;
+    let fbxRecord = new FBXRecord(name);
+    for (let value of values) {
+        fbxRecord.addProperty(new FBXRecordProperty(null, type, value));
+    }
+    return fbxRecord;
 }
 function createFBXRecordSingleInt8(name, value) {
-	return createFBXRecordSingle(name, FBX_DATA_TYPE_INT_8, value);
+    return createFBXRecordSingle(name, FBX_DATA_TYPE_INT_8, value);
 }
 function createFBXRecordSingleInt32(name, value) {
-	return createFBXRecordSingle(name, FBX_DATA_TYPE_INT_32, value);
+    return createFBXRecordSingle(name, FBX_DATA_TYPE_INT_32, value);
 }
 function createFBXRecordSingleInt64(name, value) {
-	return createFBXRecordSingle(name, FBX_DATA_TYPE_INT_64, value);
+    return createFBXRecordSingle(name, FBX_DATA_TYPE_INT_64, value);
 }
-
 function createFBXRecordSingleDouble(name, value) {
-	return createFBXRecordSingle(name, FBX_DATA_TYPE_DOUBLE, value);
+    return createFBXRecordSingle(name, FBX_DATA_TYPE_DOUBLE, value);
 }
-
 function createFBXRecordSingleString(name, value) {
-	return createFBXRecordSingle(name, FBX_DATA_TYPE_STRING, value);
+    return createFBXRecordSingle(name, FBX_DATA_TYPE_STRING, value);
 }
 function createFBXRecordMultipleStrings(name, values) {
-	return createFBXRecordMultiple(name, FBX_DATA_TYPE_STRING, values);
+    return createFBXRecordMultiple(name, FBX_DATA_TYPE_STRING, values);
 }
-
 function createFBXRecordSingleBytes(name, value) {
-	return createFBXRecordSingle(name, FBX_DATA_TYPE_RAW, value);
+    return createFBXRecordSingle(name, FBX_DATA_TYPE_RAW, value);
 }
-
-
-
 function createFBXRecordFloatArray(name, value) {
-	return createFBXRecordSingle(name, FBX_DATA_TYPE_ARRAY_FLOAT, value);
+    return createFBXRecordSingle(name, FBX_DATA_TYPE_ARRAY_FLOAT, value);
 }
 function createFBXRecordDoubleArray(name, value) {
-	return createFBXRecordSingle(name, FBX_DATA_TYPE_ARRAY_DOUBLE, value);
+    return createFBXRecordSingle(name, FBX_DATA_TYPE_ARRAY_DOUBLE, value);
 }
 function createFBXRecordInt32Array(name, value) {
-	return createFBXRecordSingle(name, FBX_DATA_TYPE_ARRAY_INT_32, value);
+    return createFBXRecordSingle(name, FBX_DATA_TYPE_ARRAY_INT_32, value);
 }
 function createFBXRecordInt64Array(name, value) {
-	return createFBXRecordSingle(name, FBX_DATA_TYPE_ARRAY_INT_64, value);
+    return createFBXRecordSingle(name, FBX_DATA_TYPE_ARRAY_INT_64, value);
 }
 
 function createPString(name, value) {
-	return createFBXRecordMultipleStrings('P', [name, 'KString', '', '', value]);
+    return createFBXRecordMultipleStrings('P', [name, 'KString', '', '', value]);
 }
 function createPInteger(name, value) {
-	return createFBXRecord('P', {
-		properties: [
-			createStringProperty(name),
-			createStringProperty('int'),
-			createStringProperty('Integer'),
-			createStringProperty(''),
-			createInt32Property(value),
-		],
-	});
+    return createFBXRecord('P', {
+        properties: [
+            createStringProperty(name),
+            createStringProperty('int'),
+            createStringProperty('Integer'),
+            createStringProperty(''),
+            createInt32Property(value),
+        ],
+    });
 }
 function createPDouble(name, value) {
-	return createFBXRecord('P', {
-		properties: [
-			createStringProperty(name),
-			createStringProperty('double'),
-			createStringProperty('Number'),
-			createStringProperty(''),
-			createDoubleProperty(value),
-		],
-	});
+    return createFBXRecord('P', {
+        properties: [
+            createStringProperty(name),
+            createStringProperty('double'),
+            createStringProperty('Number'),
+            createStringProperty(''),
+            createDoubleProperty(value),
+        ],
+    });
 }
 function createPColorRGB(name, value) {
-	return createFBXRecord('P', {
-		properties: [
-			createStringProperty(name),
-			createStringProperty('ColorRGB'),
-			createStringProperty('Color'),
-			createStringProperty(''),
-			createDoubleProperty(value[0]),
-			createDoubleProperty(value[1]),
-			createDoubleProperty(value[2]),
-		],
-	});
+    return createFBXRecord('P', {
+        properties: [
+            createStringProperty(name),
+            createStringProperty('ColorRGB'),
+            createStringProperty('Color'),
+            createStringProperty(''),
+            createDoubleProperty(value[0]),
+            createDoubleProperty(value[1]),
+            createDoubleProperty(value[2]),
+        ],
+    });
 }
 function createPEnum(name, value) {
-	return createFBXRecord('P', {
-		properties: [
-			createStringProperty(name),
-			createStringProperty('enum'),
-			createStringProperty(''),
-			createStringProperty(''),
-			createInt32Property(value),
-		],
-	});
+    return createFBXRecord('P', {
+        properties: [
+            createStringProperty(name),
+            createStringProperty('enum'),
+            createStringProperty(''),
+            createStringProperty(''),
+            createInt32Property(value),
+        ],
+    });
 }
 function createPTime(name, value) {
-	return createFBXRecord('P', {
-		properties: [
-			createStringProperty(name),
-			createStringProperty('KTime'),
-			createStringProperty('Time'),
-			createStringProperty(''),
-			createInt64Property(value),
-		],
-	});
+    return createFBXRecord('P', {
+        properties: [
+            createStringProperty(name),
+            createStringProperty('KTime'),
+            createStringProperty('Time'),
+            createStringProperty(''),
+            createInt64Property(value),
+        ],
+    });
 }
 function createPObject(name) {
-	return createFBXRecord('P', {
-		properties: [
-			createStringProperty(name),
-			createStringProperty('object'),
-			createStringProperty(''),
-			createStringProperty(''),
-		],
-	});
+    return createFBXRecord('P', {
+        properties: [
+            createStringProperty(name),
+            createStringProperty('object'),
+            createStringProperty(''),
+            createStringProperty(''),
+        ],
+    });
 }
 function createPBool(name, value) {
-	return createFBXRecord('P', {
-		properties: [
-			createStringProperty(name),
-			createStringProperty('bool'),
-			createStringProperty(''),
-			createStringProperty(''),
-			createInt32Property(value),
-		],
-	});
+    return createFBXRecord('P', {
+        properties: [
+            createStringProperty(name),
+            createStringProperty('bool'),
+            createStringProperty(''),
+            createStringProperty(''),
+            createInt32Property(value ? 1 : 0),
+        ],
+    });
 }
 function createPVector3D(name, value) {
-	return createFBXRecord('P', {
-		properties: [
-			createStringProperty(name),
-			createStringProperty('Vector3D'),
-			createStringProperty('Vector'),
-			createStringProperty(''),
-			createDoubleProperty(value[0]),
-			createDoubleProperty(value[1]),
-			createDoubleProperty(value[2]),
-		],
-	});
+    return createFBXRecord('P', {
+        properties: [
+            createStringProperty(name),
+            createStringProperty('Vector3D'),
+            createStringProperty('Vector'),
+            createStringProperty(''),
+            createDoubleProperty(value[0]),
+            createDoubleProperty(value[1]),
+            createDoubleProperty(value[2]),
+        ],
+    });
 }
 
 function exportFBXGlobalSettings(fbxGlobalSettings) {
-	let globalSettings = createFBXRecord('GlobalSettings', {
-		childs: [
-			createFBXRecordSingleInt32('Version', 1000),
-			createFBXRecord('Properties70', {
-				childs: [
-					createPInteger('UpAxis', 1),//TODO
-					createPInteger('UpAxisSign', 1),//TODO
-					createPInteger('FrontAxis', 2),//TODO
-					createPInteger('FrontAxisSign', 1),//TODO
-					createPInteger('CoordAxis', 0),//TODO
-					createPInteger('CoordAxisSign', 1),//TODO
-					createPInteger('OriginalUpAxis', 1),//TODO
-					createPInteger('OriginalUpAxisSign', 1),//TODO
-					createPDouble('UnitScaleFactor', 1),//TODO
-					createPDouble('OriginalUnitScaleFactor', 1),//TODO
-					createPColorRGB('AmbientColor', [0, 0, 0]),//TODO
-					createPString('DefaultCamera', 'Producer Perspective'),//TODO
-					createPEnum('TimeMode', 17),//TODO
-					createPTime('TimeSpanStart', 0n),//TODO
-					createPTime('TimeSpanStop', FBX_KTIME),//TODO
-					createPDouble('CustomFrameRate', -1),//TODO
-					createPEnum('TimeProtocol', 2),//TODO
-					createPEnum('SnapOnFrameMode', 0),//TODO
-					createFBXRecordMultipleStrings('P', ['TimeMarker', 'Compound', '', '']),
-					createPInteger('CurrentTimeMarker', -1),//TODO
-				]
-			}),
-		]
-	});
-	return globalSettings;
+    let globalSettings = createFBXRecord('GlobalSettings', {
+        childs: [
+            createFBXRecordSingleInt32('Version', 1000),
+            createFBXRecord('Properties70', {
+                childs: [
+                    createPInteger('UpAxis', 1), //TODO
+                    createPInteger('UpAxisSign', 1), //TODO
+                    createPInteger('FrontAxis', 2), //TODO
+                    createPInteger('FrontAxisSign', 1), //TODO
+                    createPInteger('CoordAxis', 0), //TODO
+                    createPInteger('CoordAxisSign', 1), //TODO
+                    createPInteger('OriginalUpAxis', 1), //TODO
+                    createPInteger('OriginalUpAxisSign', 1), //TODO
+                    createPDouble('UnitScaleFactor', 1), //TODO
+                    createPDouble('OriginalUnitScaleFactor', 1), //TODO
+                    createPColorRGB('AmbientColor', [0, 0, 0]), //TODO
+                    createPString('DefaultCamera', 'Producer Perspective'), //TODO
+                    createPEnum('TimeMode', 17), //TODO
+                    createPTime('TimeSpanStart', 0n), //TODO
+                    createPTime('TimeSpanStop', FBX_KTIME), //TODO
+                    createPDouble('CustomFrameRate', -1), //TODO
+                    createPEnum('TimeProtocol', 2), //TODO
+                    createPEnum('SnapOnFrameMode', 0), //TODO
+                    createFBXRecordMultipleStrings('P', ['TimeMarker', 'Compound', '', '']),
+                    createPInteger('CurrentTimeMarker', -1), //TODO
+                ]
+            }),
+        ]
+    });
+    return globalSettings;
+}
+/*
+export function exportFBXGlobalSettings(fbxGlobalSettings) {
+    let upVector = fbxGlobalSettings.axisSystem.upVector;
+    let frontVector = fbxGlobalSettings.axisSystem.frontVector;
+    let coordVector = fbxGlobalSettings.axisSystem.coordVector;
+
+    let globalSettings = createFBXRecord('GlobalSettings', {
+        childs: [
+            createFBXRecordSingleInt32('Version', 1000),
+            createFBXRecord('Properties70', {
+                childs: [
+                    createPInteger('UpAxis', upVector),//TODO
+                    createPInteger('UpAxisSign', Math.sign(upVector)),//TODO
+                    createPInteger('FrontAxis', frontVector),//TODO
+                    createPInteger('FrontAxisSign', Math.sign(frontVector)),//TODO
+                    createPInteger('CoordAxis', coordVector),//TODO
+                    createPInteger('CoordAxisSign', Math.sign(coordVector)),//TODO
+                    createPInteger('OriginalUpAxis', 1),//TODO
+                    createPInteger('OriginalUpAxisSign', 1),//TODO
+                    createPDouble('UnitScaleFactor', 1),//TODO
+                    createPDouble('OriginalUnitScaleFactor', 1),//TODO
+                    createPColorRGB('AmbientColor', [0, 0, 0]),//TODO
+                    createPString('DefaultCamera', 'Producer Perspective'),//TODO
+                    createPEnum('TimeMode', 17),//TODO
+                    createPTime('TimeSpanStart', 0n),//TODO
+                    createPTime('TimeSpanStop', FBX_KTIME),//TODO
+                    createPDouble('CustomFrameRate', -1),//TODO
+                    createPEnum('TimeProtocol', 2),//TODO
+                    createPEnum('SnapOnFrameMode', 0),//TODO
+                    createFBXRecordMultipleStrings('P', ['TimeMarker', 'Compound', '', '']),
+                    createPInteger('CurrentTimeMarker', -1),//TODO
+                ]
+            }),
+        ]
+    });
+    return globalSettings;
 }
 
+*/
+
 function exportFBXScene(fbxScene) {
-	let documents = createFBXRecord('Documents', {
-		childs: [
-			createFBXRecordSingleInt32('Count', 1),
-			createFBXRecord('Document', {
-				childs: [
-					createFBXRecord('Properties70', {
-						childs: [
-							createPObject('SourceObject'),
-							createPString('ActiveAnimStackName', ''),//TODO
-						]
-					}),
-					createFBXRecordSingleInt64('RootNode', 0n),
-				],
-				properties: [
-					createInt64Property(fbxScene.id),
-					createStringProperty(''),
-					createStringProperty('Scene'),
-				]
-			}),
-		],
-	});
-	return documents;
+    let documents = createFBXRecord('Documents', {
+        childs: [
+            createFBXRecordSingleInt32('Count', 1),
+            createFBXRecord('Document', {
+                childs: [
+                    createFBXRecord('Properties70', {
+                        childs: [
+                            createPObject('SourceObject'),
+                            createPString('ActiveAnimStackName', ''), //TODO
+                        ]
+                    }),
+                    createFBXRecordSingleInt64('RootNode', 0n),
+                ],
+                properties: [
+                    createInt64Property(fbxScene.id),
+                    createStringProperty(''),
+                    createStringProperty('Scene'),
+                ]
+            }),
+        ],
+    });
+    return documents;
 }
 
 function createPropertiesRecord(fbxObject) {
-	const fbxRecord = new FBXRecord('Properties70');
-	const objectProperties = fbxObject.getAllProperties();
-
-	for (let property of objectProperties) {
-		if (!property.isCompound()) {
-			const propertyRecord = createPropertyRecord(property);
-			if (propertyRecord) {
-				fbxRecord.addChild(propertyRecord);
-			}
-		}
-	}
-	return fbxRecord;
+    const fbxRecord = new FBXRecord('Properties70');
+    const objectProperties = fbxObject.getAllProperties();
+    for (let property of objectProperties) {
+        if (!property.isCompound()) {
+            const propertyRecord = createPropertyRecord(property);
+            if (propertyRecord) {
+                fbxRecord.addChild(propertyRecord);
+            }
+        }
+    }
+    return fbxRecord;
 }
-
 function createPropertyRecord(fbxProperty) {
-	let fn = TYPE_PROPERTY.get(fbxProperty.type);
-	if (!fn) {
-		throw 'Unsupported property type';
-	}
-
-	return fn(fbxProperty.hierarchicalName, fbxProperty.value);
+    let fn = TYPE_PROPERTY.get(fbxProperty.type);
+    if (!fn) {
+        throw 'Unsupported property type';
+    }
+    return fn(fbxProperty.hierarchicalName, fbxProperty.value);
 }
-
 const TYPE_PROPERTY = new Map();
 TYPE_PROPERTY.set(FBX_PROPERTY_TYPE_DOUBLE, createPDouble);
 
 function fbxAnimCurveNodeToRecord(fbxAnimCurveNode) {
-	return createFBXRecord('AnimationCurveNode', {
-		childs: [
-			createPropertiesRecord(fbxAnimCurveNode),
-		],
-		properties: [
-			createInt64Property(fbxAnimCurveNode.id),
-			createStringProperty(fbxAnimCurveNode.name + '\x00\x01AnimCurveNode'),
-			createStringProperty(''),
-		],
-	})
+    return createFBXRecord('AnimationCurveNode', {
+        childs: [
+            createPropertiesRecord(fbxAnimCurveNode),
+        ],
+        properties: [
+            createInt64Property(fbxAnimCurveNode.id),
+            createStringProperty(fbxAnimCurveNode.name + '\x00\x01AnimCurveNode'),
+            createStringProperty(''),
+        ],
+    });
 }
 
 function fbxAnimCurveToRecord(fbxAnimCurve) {
-	return createFBXRecord('AnimationCurve', {
-		childs: [
-			createFBXRecordSingleDouble('Default', 0.0),//TODO: const
-			createFBXRecordSingleInt32('KeyVer', 4008),//TODO: const
-			createFBXRecordInt64Array('KeyTime', [100000, 200000, 300000, 400000]),
-			createFBXRecordFloatArray('KeyValueFloat', [1, 2, 3, 4]),
-			createFBXRecordInt32Array('KeyAttrFlags', [8456]),
-			createFBXRecordFloatArray('KeyAttrDataFloat', [0, 0, 218434821, 0]),
-			createFBXRecordInt32Array('KeyAttrRefCount', [4]),
-		],
-		properties: [
-			createInt64Property(fbxAnimCurve.id),
-			createStringProperty(fbxAnimCurve.name + '\x00\x01AnimCurve'),
-			createStringProperty(''),
-		],
-	})
+    return createFBXRecord('AnimationCurve', {
+        childs: [
+            createFBXRecordSingleDouble('Default', 0.0), //TODO: const
+            createFBXRecordSingleInt32('KeyVer', 4008), //TODO: const
+            createFBXRecordInt64Array('KeyTime', [100000n, 200000n, 300000n, 400000n]),
+            createFBXRecordFloatArray('KeyValueFloat', [1, 2, 3, 4]),
+            createFBXRecordInt32Array('KeyAttrFlags', [8456]),
+            createFBXRecordFloatArray('KeyAttrDataFloat', [0, 0, 218434821, 0]),
+            createFBXRecordInt32Array('KeyAttrRefCount', [4]),
+        ],
+        properties: [
+            createInt64Property(fbxAnimCurve.id),
+            createStringProperty(fbxAnimCurve.name + '\x00\x01AnimCurve'),
+            createStringProperty(''),
+        ],
+    });
 }
 
 function fbxAnimLayerToRecord(fbxAnimLayer) {
-	return createFBXRecord('AnimationLayer', {
-		properties: [
-			createInt64Property(fbxAnimLayer.id),
-			createStringProperty(fbxAnimLayer.name + '\x00\x01AnimLayer'),
-			createStringProperty(''),
-		],
-	})
+    return createFBXRecord('AnimationLayer', {
+        properties: [
+            createInt64Property(fbxAnimLayer.id),
+            createStringProperty(fbxAnimLayer.name + '\x00\x01AnimLayer'),
+            createStringProperty(''),
+        ],
+    });
 }
 
 function fbxAnimStackToRecord(fbxAnimStack) {
-	return createFBXRecord('AnimationStack', {
-		childs: [
-			createFBXRecord('Properties70', {
-				childs: [
-					createPTime('LocalStart', 0n),
-					createPTime('LocalStop', 12345678900n),
-					createPTime('ReferenceStart', 0n),
-					createPTime('ReferenceStop', 12345678900n),
-				]
-			}),
-		],
-		properties: [
-			createInt64Property(fbxAnimStack.id),
-			createStringProperty(fbxAnimStack.name + '\x00\x01AnimStack'),
-			createStringProperty('AnimationStack'),
-		],
-	})
+    return createFBXRecord('AnimationStack', {
+        childs: [
+            createFBXRecord('Properties70', {
+                childs: [
+                    createPTime('LocalStart', 0n),
+                    createPTime('LocalStop', 12345678900n),
+                    createPTime('ReferenceStart', 0n),
+                    createPTime('ReferenceStop', 12345678900n),
+                ]
+            }),
+        ],
+        properties: [
+            createInt64Property(fbxAnimStack.id),
+            createStringProperty(fbxAnimStack.name + '\x00\x01AnimStack'),
+            createStringProperty('AnimationStack'),
+        ],
+    });
 }
 
 function fbxPropertyToRecord(fbxProperty, name = '') {
-	switch (fbxProperty.type) {
-		case FBX_PROPERTY_TYPE_DOUBLE_3:
-			return fbxPropertyDouble3ToRecord(fbxProperty, name);
-		default:
-			throw 'unknown property type';
-	}
+    switch (fbxProperty.type) {
+        case FBX_PROPERTY_TYPE_DOUBLE_3:
+            return fbxPropertyDouble3ToRecord(fbxProperty, name);
+        default:
+            throw 'unknown property type';
+    }
 }
-
 function fbxPropertyDouble3ToRecord(fbxProperty, name) {
-	let value = fbxProperty.value;
-	return createFBXRecord('P', {
-		properties: [
-			createStringProperty(name),
-			createStringProperty('Vector'),
-			createStringProperty(''),
-			createStringProperty('A'),//TODO: property flag
-			createDoubleProperty(value[0]),
-			createDoubleProperty(value[1]),
-			createDoubleProperty(value[2]),
-		],
-	});
+    let value = fbxProperty.value;
+    return createFBXRecord('P', {
+        properties: [
+            createStringProperty(name),
+            createStringProperty('Vector'),
+            createStringProperty(''),
+            createStringProperty('A'), //TODO: property flag
+            createDoubleProperty(value[0]),
+            createDoubleProperty(value[1]),
+            createDoubleProperty(value[2]),
+        ],
+    });
 }
 
 function fbxCameraToRecord(fbxCamera) {
-	return createFBXRecord('NodeAttribute', {
-		childs: [
-			createFBXRecordSingleString('TypeFlags', 'Camera'),
-			createFBXRecordSingleInt32('GeometryVersion', FBX_GEOMETRY_VERSION),
-			createFBXRecord('Properties70', {
-				childs: [
-					fbxPropertyToRecord(fbxCamera.position, 'Position'),
-					fbxPropertyToRecord(fbxCamera.upVector, 'UpVector'),
-				],
-			}),
-		],
-		properties: [
-			createInt64Property(fbxCamera.id),
-			createStringProperty(fbxCamera.name + '\x00\x01NodeAttribute'),
-			createStringProperty('Camera'),
-		],
-	});
+    return createFBXRecord('NodeAttribute', {
+        childs: [
+            createFBXRecordSingleString('TypeFlags', 'Camera'),
+            createFBXRecordSingleInt32('GeometryVersion', FBX_GEOMETRY_VERSION),
+            createFBXRecord('Properties70', {
+                childs: [
+                    fbxPropertyToRecord(fbxCamera.position, 'Position'),
+                    fbxPropertyToRecord(fbxCamera.upVector, 'UpVector'),
+                ],
+            }),
+        ],
+        properties: [
+            createInt64Property(fbxCamera.id),
+            createStringProperty(fbxCamera.name + '\x00\x01NodeAttribute'),
+            createStringProperty('Camera'),
+        ],
+    });
 }
 
 function fbxClusterToRecord(fbxCluster) {
-	return createFBXRecord('Deformer', {
-		childs: [
-			createFBXRecordSingleInt32('Version', FBX_DEFORMER_CLUSTER_VERSION),
-			createFBXRecordMultipleStrings('UserData', ['', '']),
-			createFBXRecordInt32Array('Indexes', fbxCluster.indexes),
-			createFBXRecordDoubleArray('Weights', fbxCluster.weights),
-			createFBXRecordDoubleArray('Transform', fbxCluster.transformMatrix),
-			createFBXRecordDoubleArray('TransformLink', fbxCluster.transformLinkMatrix),
-
-		],
-		properties: [
-			createInt64Property(fbxCluster.id),
-			createStringProperty(fbxCluster.name + '\x00\x01SubDeformer'),
-			createStringProperty('Cluster'),
-		],
-	});
+    return createFBXRecord('Deformer', {
+        childs: [
+            createFBXRecordSingleInt32('Version', FBX_DEFORMER_CLUSTER_VERSION),
+            createFBXRecordMultipleStrings('UserData', ['', '']),
+            createFBXRecordInt32Array('Indexes', fbxCluster.indexes),
+            createFBXRecordDoubleArray('Weights', fbxCluster.weights),
+            createFBXRecordDoubleArray('Transform', fbxCluster.transformMatrix),
+            createFBXRecordDoubleArray('TransformLink', fbxCluster.transformLinkMatrix),
+        ],
+        properties: [
+            createInt64Property(fbxCluster.id),
+            createStringProperty(fbxCluster.name + '\x00\x01SubDeformer'),
+            createStringProperty('Cluster'),
+        ],
+    });
 }
 
 function fbxMeshToRecord(fbxMesh) {
-	return createFBXRecord('Geometry', {
-		childs: [
-			createFBXRecord('Properties70'),
-			createFBXRecordSingleInt32('GeometryVersion', FBX_GEOMETRY_VERSION),
-			createFBXRecordDoubleArray('Vertices', fbxMesh.vertices),
-			createFBXRecordInt32Array('PolygonVertexIndex', fbxMesh.polygons),
-			createFBXRecordInt32Array('Edges', fbxMesh.edges),
-			/*createFBXRecord('LayerElementNormal', {
-				childs: [
-					createFBXRecordSingleInt32('Version', FBX_GEOMETRY_NORMAL_VERSION),
-					createFBXRecordSingleString('Name', ''),
-					createFBXRecordSingleString('MappingInformationType', 'ByPolygonVertex'),
-					createFBXRecordSingleString('ReferenceInformationType', 'Direct'),
-					createFBXRecordDoubleArray('Normals', fbxMesh.normals),//[0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0, -1, 0, -1, 0, 0, -1, 0, 0, -1, 0,  0, -1, 0, 0, 0, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0, -1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0]),//TODO
-				],
-				properties: [
-					createInt32Property(0),//What is this ?
-				],
-			}),*/
-			createFBXRecord('LayerElementUV', {
-				childs: [
-					createFBXRecordSingleInt32('Version', FBX_GEOMETRY_UV_VERSION),
-					createFBXRecordSingleString('Name', 'UVMap'),//TODO: change name
-					createFBXRecordSingleString('MappingInformationType', 'ByPolygonVertex'),
-					createFBXRecordSingleString('ReferenceInformationType', 'IndexToDirect'),
-					createFBXRecordDoubleArray('UV', fbxMesh.uv),//[0.625, 1, 0.625, 0.25, 0.375, 0.5, 0.875, 0.5, 0.625, 0.75, 0.375, 1, 0.375, 0.75, 0.625, 0, 0.375, 0, 0.375, 0.25, 0.125, 0.5, 0.875, 0.75, 0.125, 0.75, 0.625, 0.5]),//TODO
-					createFBXRecordInt32Array('UVIndex', fbxMesh.uvIndex),//[13, 3, 11, 4, 6, 4, 0, 5, 8, 7, 1, 9, 10, 2, 6, 12, 2, 13, 4, 6, 9, 1, 13, 2]),//TODO
-				],
-				properties: [
-					createInt32Property(0),//What is this ?
-				],
-			}),
-			createFBXRecord('LayerElementMaterial', {
-				childs: [
-					createFBXRecordSingleInt32('Version', FBX_GEOMETRY_MATERIAL_VERSION),
-					createFBXRecordSingleString('Name', ''),
-					createFBXRecordSingleString('MappingInformationType', 'AllSame'),
-					createFBXRecordSingleString('ReferenceInformationType', 'IndexToDirect'),
-					createFBXRecordInt32Array('Materials', [0]),//TODO
-				],
-				properties: [
-					createInt32Property(0),//What is this ?
-				],
-			}),
-			createFBXRecord('Layer', {
-				childs: [
-					createFBXRecordSingleInt32('Version', FBX_GEOMETRY_LAYER_VERSION),
-					createFBXRecord('LayerElement', {
-						childs: [
-							createFBXRecordSingleString('Type', 'LayerElementNormal'),
-							createFBXRecordSingleInt32('TypedIndex', 0),
-						],
-					}),
-					createFBXRecord('LayerElement', {
-						childs: [
-							createFBXRecordSingleString('Type', 'LayerElementUV'),
-							createFBXRecordSingleInt32('TypedIndex', 0),
-						],
-					}),
-					createFBXRecord('LayerElement', {
-						childs: [
-							createFBXRecordSingleString('Type', 'LayerElementMaterial'),
-							createFBXRecordSingleInt32('TypedIndex', 0),
-						],
-					}),
-
-
-				],
-				properties: [
-					createInt32Property(0),//What is this ?
-				],
-			}),
-		],
-		properties: [
-			createInt64Property(fbxMesh.id),
-			createStringProperty(fbxMesh.name + '\x00\x01Geometry'),
-			createStringProperty('Mesh'),
-		],
-	});
+    return createFBXRecord('Geometry', {
+        childs: [
+            createFBXRecord('Properties70'),
+            createFBXRecordSingleInt32('GeometryVersion', FBX_GEOMETRY_VERSION),
+            createFBXRecordDoubleArray('Vertices', fbxMesh.vertices),
+            createFBXRecordInt32Array('PolygonVertexIndex', fbxMesh.polygons),
+            createFBXRecordInt32Array('Edges', fbxMesh.edges),
+            /*createFBXRecord('LayerElementNormal', {
+                childs: [
+                    createFBXRecordSingleInt32('Version', FBX_GEOMETRY_NORMAL_VERSION),
+                    createFBXRecordSingleString('Name', ''),
+                    createFBXRecordSingleString('MappingInformationType', 'ByPolygonVertex'),
+                    createFBXRecordSingleString('ReferenceInformationType', 'Direct'),
+                    createFBXRecordDoubleArray('Normals', fbxMesh.normals),//[0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0, -1, 0, -1, 0, 0, -1, 0, 0, -1, 0,  0, -1, 0, 0, 0, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0, -1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0]),//TODO
+                ],
+                properties: [
+                    createInt32Property(0),//What is this ?
+                ],
+            }),*/
+            createFBXRecord('LayerElementUV', {
+                childs: [
+                    createFBXRecordSingleInt32('Version', FBX_GEOMETRY_UV_VERSION),
+                    createFBXRecordSingleString('Name', 'UVMap'), //TODO: change name
+                    createFBXRecordSingleString('MappingInformationType', 'ByPolygonVertex'),
+                    createFBXRecordSingleString('ReferenceInformationType', 'IndexToDirect'),
+                    createFBXRecordDoubleArray('UV', fbxMesh.uv), //[0.625, 1, 0.625, 0.25, 0.375, 0.5, 0.875, 0.5, 0.625, 0.75, 0.375, 1, 0.375, 0.75, 0.625, 0, 0.375, 0, 0.375, 0.25, 0.125, 0.5, 0.875, 0.75, 0.125, 0.75, 0.625, 0.5]),//TODO
+                    createFBXRecordInt32Array('UVIndex', fbxMesh.uvIndex), //[13, 3, 11, 4, 6, 4, 0, 5, 8, 7, 1, 9, 10, 2, 6, 12, 2, 13, 4, 6, 9, 1, 13, 2]),//TODO
+                ],
+                properties: [
+                    createInt32Property(0), //What is this ?
+                ],
+            }),
+            createFBXRecord('LayerElementMaterial', {
+                childs: [
+                    createFBXRecordSingleInt32('Version', FBX_GEOMETRY_MATERIAL_VERSION),
+                    createFBXRecordSingleString('Name', ''),
+                    createFBXRecordSingleString('MappingInformationType', 'AllSame'),
+                    createFBXRecordSingleString('ReferenceInformationType', 'IndexToDirect'),
+                    createFBXRecordInt32Array('Materials', [0]), //TODO
+                ],
+                properties: [
+                    createInt32Property(0), //What is this ?
+                ],
+            }),
+            createFBXRecord('Layer', {
+                childs: [
+                    createFBXRecordSingleInt32('Version', FBX_GEOMETRY_LAYER_VERSION),
+                    createFBXRecord('LayerElement', {
+                        childs: [
+                            createFBXRecordSingleString('Type', 'LayerElementNormal'),
+                            createFBXRecordSingleInt32('TypedIndex', 0),
+                        ],
+                    }),
+                    createFBXRecord('LayerElement', {
+                        childs: [
+                            createFBXRecordSingleString('Type', 'LayerElementUV'),
+                            createFBXRecordSingleInt32('TypedIndex', 0),
+                        ],
+                    }),
+                    createFBXRecord('LayerElement', {
+                        childs: [
+                            createFBXRecordSingleString('Type', 'LayerElementMaterial'),
+                            createFBXRecordSingleInt32('TypedIndex', 0),
+                        ],
+                    }),
+                ],
+                properties: [
+                    createInt32Property(0), //What is this ?
+                ],
+            }),
+        ],
+        properties: [
+            createInt64Property(fbxMesh.id),
+            createStringProperty(fbxMesh.name + '\x00\x01Geometry'),
+            createStringProperty('Mesh'),
+        ],
+    });
 }
 
 function fbxNodeToRecord(fbxNode, type = '') {
-	return createFBXRecord('Model', {
-		childs: [
-			createFBXRecordSingleInt32('Version', FBX_MODELS_VERSION),
-			createFBXRecord('Properties70', {
-				childs: [
-					fbxPropertyToRecord(fbxNode.localTranslation, 'Lcl Translation'),
-					/*createFBXRecord('P', {
-						properties: [
-							createStringProperty('Lcl Translation'),
-							createStringProperty('Lcl Translation'),
-							createStringProperty(''),
-							createStringProperty('A+'),
-							createDoubleProperty(0),
-							createDoubleProperty(0),
-							createDoubleProperty(0),
-						],
-					}),*/
-					fbxPropertyToRecord(fbxNode.localRotation, 'Lcl Rotation'),
-					/*createFBXRecord('P', {
-						properties: [
-							createStringProperty('Lcl Rotation'),
-							createStringProperty('Lcl Rotation'),
-							createStringProperty(''),
-							createStringProperty('A'),
-							createDoubleProperty(0),
-							createDoubleProperty(0),
-							createDoubleProperty(0),
-						],
-					}),*/
-					fbxPropertyToRecord(fbxNode.localScaling, 'Lcl Scaling'),
-					/*createFBXRecord('P', {
-						properties: [
-							createStringProperty('Lcl Scaling'),
-							createStringProperty('Lcl Scaling'),
-							createStringProperty(''),
-							createStringProperty('A'),
-							createDoubleProperty(1),
-							createDoubleProperty(1),
-							createDoubleProperty(1),
-						],
-					}),*/
-					createPInteger('DefaultAttributeIndex', 0),
-					createPEnum('InheritType', fbxNode.inheritType),
-
-					createPBool('RotationActive', 1),
-					createPVector3D('ScalingMax', [0, 0, 0]),
-					createPDouble('PreferedAngleX', 0),
-					createPDouble('PreferedAngleY', 0),
-					createPDouble('PreferedAngleZ', 0),
-					createPBool('lockInfluenceWeights', 0),
-					createFBXRecord('P', {
-						properties: [
-							createStringProperty('filmboxTypeID'),
-							createStringProperty('Short'),
-							createStringProperty(''),
-							createStringProperty('A+UH'),
-							createInt16Property(5),
-							createInt16Property(5),
-							createInt16Property(5),
-						],
-					}),
-				],
-
-			}),
-			createFBXRecordSingleInt32('MultiLayer', 0),//What is this ?
-			createFBXRecordSingleInt32('MultiTake', 0),//What is this ?
-			createFBXRecordSingleInt8('Shading', 89),//89 = Y
-			createFBXRecordSingleString('Culling', 'CullingOff'),
-		],
-		properties: [
-			createInt64Property(fbxNode.id),//TODO
-			createStringProperty(fbxNode.name + '\x00\x01Model'),
-			createStringProperty(type),
-		],
-	});
+    return createFBXRecord('Model', {
+        childs: [
+            createFBXRecordSingleInt32('Version', FBX_MODELS_VERSION),
+            createFBXRecord('Properties70', {
+                childs: [
+                    fbxPropertyToRecord(fbxNode.localTranslation, 'Lcl Translation'),
+                    /*createFBXRecord('P', {
+                        properties: [
+                            createStringProperty('Lcl Translation'),
+                            createStringProperty('Lcl Translation'),
+                            createStringProperty(''),
+                            createStringProperty('A+'),
+                            createDoubleProperty(0),
+                            createDoubleProperty(0),
+                            createDoubleProperty(0),
+                        ],
+                    }),*/
+                    fbxPropertyToRecord(fbxNode.localRotation, 'Lcl Rotation'),
+                    /*createFBXRecord('P', {
+                        properties: [
+                            createStringProperty('Lcl Rotation'),
+                            createStringProperty('Lcl Rotation'),
+                            createStringProperty(''),
+                            createStringProperty('A'),
+                            createDoubleProperty(0),
+                            createDoubleProperty(0),
+                            createDoubleProperty(0),
+                        ],
+                    }),*/
+                    fbxPropertyToRecord(fbxNode.localScaling, 'Lcl Scaling'),
+                    /*createFBXRecord('P', {
+                        properties: [
+                            createStringProperty('Lcl Scaling'),
+                            createStringProperty('Lcl Scaling'),
+                            createStringProperty(''),
+                            createStringProperty('A'),
+                            createDoubleProperty(1),
+                            createDoubleProperty(1),
+                            createDoubleProperty(1),
+                        ],
+                    }),*/
+                    createPInteger('DefaultAttributeIndex', 0),
+                    createPEnum('InheritType', fbxNode.inheritType),
+                    createPBool('RotationActive', true),
+                    createPVector3D('ScalingMax', [0, 0, 0]),
+                    createPDouble('PreferedAngleX', 0),
+                    createPDouble('PreferedAngleY', 0),
+                    createPDouble('PreferedAngleZ', 0),
+                    createPBool('lockInfluenceWeights', false),
+                    createFBXRecord('P', {
+                        properties: [
+                            createStringProperty('filmboxTypeID'),
+                            createStringProperty('Short'),
+                            createStringProperty(''),
+                            createStringProperty('A+UH'),
+                            createInt16Property(5),
+                            createInt16Property(5),
+                            createInt16Property(5),
+                        ],
+                    }),
+                ],
+            }),
+            createFBXRecordSingleInt32('MultiLayer', 0), //What is this ?
+            createFBXRecordSingleInt32('MultiTake', 0), //What is this ?
+            createFBXRecordSingleInt8('Shading', 89), //89 = Y
+            createFBXRecordSingleString('Culling', 'CullingOff'),
+        ],
+        properties: [
+            createInt64Property(fbxNode.id), //TODO
+            createStringProperty(fbxNode.name + '\x00\x01Model'),
+            createStringProperty(type),
+        ],
+    });
 }
 
 function fbxPoseToRecord(fbxPose) {
-	let poseType = fbxPose.isBindPose ? 'BindPose' : 'RestPose';//TODO: not sure about this
-	let poseNodes = [];
-	for (let poseInfo of fbxPose.poseInfos) {
-		poseNodes.push(
-			createFBXRecord('PoseNode', {
-				childs: [
-					createFBXRecordSingleInt64('Node', poseInfo.node.id),
-					createFBXRecordDoubleArray('Matrix', poseInfo.matrix),
-				],
-			}),
-		);
-	}
-
-	return createFBXRecord('Pose', {
-		childs: [
-			createFBXRecordSingleString('Type', poseType),
-			createFBXRecordSingleInt32('Version', FBX_POSE_BIND_VERSION),
-			createFBXRecordSingleInt32('NbPoseNodes', poseNodes.length),
-			...poseNodes,
-		],
-		properties: [
-			createInt64Property(fbxPose.id),
-			createStringProperty(fbxPose.name + '\x00\x01Pose'),
-			createStringProperty(poseType),
-		],
-	});
+    let poseType = fbxPose.isBindPose ? 'BindPose' : 'RestPose'; //TODO: not sure about this
+    let poseNodes = [];
+    for (let poseInfo of fbxPose.poseInfos) {
+        poseNodes.push(createFBXRecord('PoseNode', {
+            childs: [
+                createFBXRecordSingleInt64('Node', poseInfo.node.id),
+                createFBXRecordDoubleArray('Matrix', poseInfo.matrix),
+            ],
+        }));
+    }
+    return createFBXRecord('Pose', {
+        childs: [
+            createFBXRecordSingleString('Type', poseType),
+            createFBXRecordSingleInt32('Version', FBX_POSE_BIND_VERSION),
+            createFBXRecordSingleInt32('NbPoseNodes', poseNodes.length),
+            ...poseNodes,
+        ],
+        properties: [
+            createInt64Property(fbxPose.id),
+            createStringProperty(fbxPose.name + '\x00\x01Pose'),
+            createStringProperty(poseType),
+        ],
+    });
 }
 
 function fbxSkeletonToRecord(fbxSkeleton) {
-	return createFBXRecord('NodeAttribute', {
-		childs: [
-			createFBXRecordSingleString('TypeFlags', 'Skeleton'),
-		],
-		properties: [
-			createInt64Property(fbxSkeleton.id),
-			createStringProperty(fbxSkeleton.name + '\x00\x01NodeAttribute'),
-			createStringProperty('LimbNode'),
-		],
-	});
+    return createFBXRecord('NodeAttribute', {
+        childs: [
+            createFBXRecordSingleString('TypeFlags', 'Skeleton'),
+        ],
+        properties: [
+            createInt64Property(fbxSkeleton.id),
+            createStringProperty(fbxSkeleton.name + '\x00\x01NodeAttribute'),
+            createStringProperty('LimbNode'),
+        ],
+    });
 }
 
 function fbxSkinToRecord(fbxSkin) {
-	return createFBXRecord('Deformer', {
-		childs: [
-			createFBXRecordSingleInt32('Version', FBX_DEFORMER_SKIN_VERSION),
-			createFBXRecordSingleDouble('Link_DeformAcuracy', 50.),//TODO
-		],
-		properties: [
-			createInt64Property(fbxSkin.id),
-			createStringProperty(fbxSkin.name + '\x00\x01Deformer'),
-			createStringProperty('Skin'),
-		],
-	});
+    return createFBXRecord('Deformer', {
+        childs: [
+            createFBXRecordSingleInt32('Version', FBX_DEFORMER_SKIN_VERSION),
+            createFBXRecordSingleDouble('Link_DeformAcuracy', 50.), //TODO
+        ],
+        properties: [
+            createInt64Property(fbxSkin.id),
+            createStringProperty(fbxSkin.name + '\x00\x01Deformer'),
+            createStringProperty('Skin'),
+        ],
+    });
 }
 
 function fbxSurfaceMaterialToRecord(fbxSurfaceMaterial) {
-	return createFBXRecord('Material', {
-		childs: [
-			createFBXRecordSingleInt32('Version', FBX_MATERIAL_VERSION),
-			createFBXRecordSingleString('ShadingModel', 'Phong'),
-			createFBXRecordSingleInt32('MultiLayer', 0),//What is this ?
-			createFBXRecord('Properties70', {
-				childs: [
-					createFBXRecord('P', {
-						properties: [
-							createStringProperty('DiffuseColor'),
-							createStringProperty('Color'),
-							createStringProperty(''),
-							createStringProperty('A'),
-							createDoubleProperty(0.8),
-							createDoubleProperty(0.8),
-							createDoubleProperty(0.8),
-						],
-					}),
-					createFBXRecord('P', {
-						properties: [
-							createStringProperty('AmbientColor'),
-							createStringProperty('Color'),
-							createStringProperty(''),
-							createStringProperty('A'),
-							createDoubleProperty(0.05),
-							createDoubleProperty(0.05),
-							createDoubleProperty(0.05),
-						],
-					}),
-					createFBXRecord('P', {
-						properties: [
-							createStringProperty('AmbientFactor'),
-							createStringProperty('Number'),
-							createStringProperty(''),
-							createStringProperty('A'),
-							createDoubleProperty(0),
-						],
-					}),
-					createFBXRecord('P', {
-						properties: [
-							createStringProperty('BumpFactor'),
-							createStringProperty('double'),
-							createStringProperty('Number'),
-							createStringProperty(''),
-							createDoubleProperty(0),
-						],
-					}),
-					createFBXRecord('P', {
-						properties: [
-							createStringProperty('SpecularColor'),
-							createStringProperty('Color'),
-							createStringProperty(''),
-							createStringProperty('A'),
-							createDoubleProperty(0.8),
-							createDoubleProperty(0.8),
-							createDoubleProperty(0.8),
-						],
-					}),
-					createFBXRecord('P', {
-						properties: [
-							createStringProperty('SpecularFactor'),
-							createStringProperty('Number'),
-							createStringProperty(''),
-							createStringProperty('A'),
-							createDoubleProperty(0.25),
-						],
-					}),
-					createFBXRecord('P', {
-						properties: [
-							createStringProperty('Shininess'),
-							createStringProperty('Number'),
-							createStringProperty(''),
-							createStringProperty('A'),
-							createDoubleProperty(25),
-						],
-					}),
-					createFBXRecord('P', {
-						properties: [
-							createStringProperty('ShininessExponent'),
-							createStringProperty('Number'),
-							createStringProperty(''),
-							createStringProperty('A'),
-							createDoubleProperty(25),
-						],
-					}),
-					createFBXRecord('P', {
-						properties: [
-							createStringProperty('ReflectionColor'),
-							createStringProperty('Color'),
-							createStringProperty(''),
-							createStringProperty('A'),
-							createDoubleProperty(0.8),
-							createDoubleProperty(0.8),
-							createDoubleProperty(0.8),
-						],
-					}),
-					createFBXRecord('P', {
-						properties: [
-							createStringProperty('ReflectionFactor'),
-							createStringProperty('Number'),
-							createStringProperty(''),
-							createStringProperty('A'),
-							createDoubleProperty(0),
-						],
-					}),
-					createFBXRecord('P', {
-						properties: [
-							createStringProperty('TransparencyFactor'),
-							createStringProperty('double'),
-							createStringProperty('Number'),
-							createStringProperty(''),
-							createDoubleProperty(0.0),
-						],
-					}),
-				],
-			}),
-		],
-		properties: [
-			createInt64Property(fbxSurfaceMaterial.id),
-			createStringProperty(fbxSurfaceMaterial.name + '\x00\x01Material'),
-			createStringProperty(''),
-		],
-	});
+    return createFBXRecord('Material', {
+        childs: [
+            createFBXRecordSingleInt32('Version', FBX_MATERIAL_VERSION),
+            createFBXRecordSingleString('ShadingModel', 'Phong'),
+            createFBXRecordSingleInt32('MultiLayer', 0), //What is this ?
+            createFBXRecord('Properties70', {
+                childs: [
+                    createFBXRecord('P', {
+                        properties: [
+                            createStringProperty('DiffuseColor'),
+                            createStringProperty('Color'),
+                            createStringProperty(''),
+                            createStringProperty('A'),
+                            createDoubleProperty(0.8),
+                            createDoubleProperty(0.8),
+                            createDoubleProperty(0.8),
+                        ],
+                    }),
+                    createFBXRecord('P', {
+                        properties: [
+                            createStringProperty('AmbientColor'),
+                            createStringProperty('Color'),
+                            createStringProperty(''),
+                            createStringProperty('A'),
+                            createDoubleProperty(0.05),
+                            createDoubleProperty(0.05),
+                            createDoubleProperty(0.05),
+                        ],
+                    }),
+                    createFBXRecord('P', {
+                        properties: [
+                            createStringProperty('AmbientFactor'),
+                            createStringProperty('Number'),
+                            createStringProperty(''),
+                            createStringProperty('A'),
+                            createDoubleProperty(0),
+                        ],
+                    }),
+                    createFBXRecord('P', {
+                        properties: [
+                            createStringProperty('BumpFactor'),
+                            createStringProperty('double'),
+                            createStringProperty('Number'),
+                            createStringProperty(''),
+                            createDoubleProperty(0),
+                        ],
+                    }),
+                    createFBXRecord('P', {
+                        properties: [
+                            createStringProperty('SpecularColor'),
+                            createStringProperty('Color'),
+                            createStringProperty(''),
+                            createStringProperty('A'),
+                            createDoubleProperty(0.8),
+                            createDoubleProperty(0.8),
+                            createDoubleProperty(0.8),
+                        ],
+                    }),
+                    createFBXRecord('P', {
+                        properties: [
+                            createStringProperty('SpecularFactor'),
+                            createStringProperty('Number'),
+                            createStringProperty(''),
+                            createStringProperty('A'),
+                            createDoubleProperty(0.25),
+                        ],
+                    }),
+                    createFBXRecord('P', {
+                        properties: [
+                            createStringProperty('Shininess'),
+                            createStringProperty('Number'),
+                            createStringProperty(''),
+                            createStringProperty('A'),
+                            createDoubleProperty(25),
+                        ],
+                    }),
+                    createFBXRecord('P', {
+                        properties: [
+                            createStringProperty('ShininessExponent'),
+                            createStringProperty('Number'),
+                            createStringProperty(''),
+                            createStringProperty('A'),
+                            createDoubleProperty(25),
+                        ],
+                    }),
+                    createFBXRecord('P', {
+                        properties: [
+                            createStringProperty('ReflectionColor'),
+                            createStringProperty('Color'),
+                            createStringProperty(''),
+                            createStringProperty('A'),
+                            createDoubleProperty(0.8),
+                            createDoubleProperty(0.8),
+                            createDoubleProperty(0.8),
+                        ],
+                    }),
+                    createFBXRecord('P', {
+                        properties: [
+                            createStringProperty('ReflectionFactor'),
+                            createStringProperty('Number'),
+                            createStringProperty(''),
+                            createStringProperty('A'),
+                            createDoubleProperty(0),
+                        ],
+                    }),
+                    createFBXRecord('P', {
+                        properties: [
+                            createStringProperty('TransparencyFactor'),
+                            createStringProperty('double'),
+                            createStringProperty('Number'),
+                            createStringProperty(''),
+                            createDoubleProperty(0.0),
+                        ],
+                    }),
+                ],
+            }),
+        ],
+        properties: [
+            createInt64Property(fbxSurfaceMaterial.id),
+            createStringProperty(fbxSurfaceMaterial.name + '\x00\x01Material'),
+            createStringProperty(''),
+        ],
+    });
 }
 
 function fbxTextureToRecord(fbxTexture) {
-	let mediaRecord;
-	let filenameRecord;
-	let relativeFilenameRecord;
-	let textureMedia = fbxTexture.media;
-	if (textureMedia) {
-		mediaRecord = createFBXRecordSingleString('Media', textureMedia.name + '\x00\x01' + 'Video');
-		filenameRecord = createFBXRecordSingleString('FileName', textureMedia.name);
-		relativeFilenameRecord = createFBXRecordSingleString('RelativeFilename', textureMedia.name);
-	}
-
-	return createFBXRecord('Texture', {
-		childs: [
-			createFBXRecordSingleString('Type', fbxTexture.type),
-			createFBXRecordSingleInt32('Version', FBX_TEXTURE_VERSION),
-			createFBXRecordSingleString('TextureName', fbxTexture.name + '\x00\x01' + 'Texture'),
-			mediaRecord,
-			filenameRecord,
-			relativeFilenameRecord,
-			createFBXRecord('Properties70', {
-				childs: [
-					createFBXRecord('P', {
-						properties: [
-							createStringProperty('UseMaterial'),
-							createStringProperty('bool'),
-							createStringProperty(''),
-							createStringProperty(''),
-							createInt32Property(1),
-						],
-					}),
-					/*createFBXRecord('P', {
-						properties: [
-							createStringProperty('AlphaSource'),
-							createStringProperty('enum'),
-							createStringProperty(''),
-							createStringProperty(''),
-							createDoubleProperty(2),
-						],
-					}),*/
-				],
-			}),
-		],
-		properties: [
-			createInt64Property(fbxTexture.id),
-			createStringProperty(fbxTexture.name + '\x00\x01' + 'Texture'),
-			createStringProperty(''),
-		],
-	});
+    let mediaRecord;
+    let filenameRecord;
+    let relativeFilenameRecord;
+    let textureMedia = fbxTexture.media;
+    if (textureMedia) {
+        mediaRecord = createFBXRecordSingleString('Media', textureMedia.name + '\x00\x01' + 'Video');
+        filenameRecord = createFBXRecordSingleString('FileName', textureMedia.name);
+        relativeFilenameRecord = createFBXRecordSingleString('RelativeFilename', textureMedia.name);
+    }
+    return createFBXRecord('Texture', {
+        childs: [
+            createFBXRecordSingleString('Type', fbxTexture.type),
+            createFBXRecordSingleInt32('Version', FBX_TEXTURE_VERSION),
+            createFBXRecordSingleString('TextureName', fbxTexture.name + '\x00\x01' + 'Texture'),
+            mediaRecord,
+            filenameRecord,
+            relativeFilenameRecord,
+            createFBXRecord('Properties70', {
+                childs: [
+                    createFBXRecord('P', {
+                        properties: [
+                            createStringProperty('UseMaterial'),
+                            createStringProperty('bool'),
+                            createStringProperty(''),
+                            createStringProperty(''),
+                            createInt32Property(1),
+                        ],
+                    }),
+                    /*createFBXRecord('P', {
+                        properties: [
+                            createStringProperty('AlphaSource'),
+                            createStringProperty('enum'),
+                            createStringProperty(''),
+                            createStringProperty(''),
+                            createDoubleProperty(2),
+                        ],
+                    }),*/
+                ],
+            }),
+        ],
+        properties: [
+            createInt64Property(fbxTexture.id),
+            createStringProperty(fbxTexture.name + '\x00\x01' + 'Texture'),
+            createStringProperty(''),
+        ],
+    });
 }
 
 const FBX_RECORD_NAME_CONNECTIONS = 'Connections';
@@ -20411,1699 +22042,774 @@ const FBX_RECORD_NAME_REFERENCES = 'References';
 const FBX_RECORD_NAME_TAKES = 'Takes';
 
 function createConnectionRecord(id, parentId, target) {
-	let fbxRecord = new FBXRecord('C');
-	fbxRecord.addProperty(createStringProperty(target ? 'OP' : 'OO'));
-	fbxRecord.addProperty(createInt64Property(id));
-	fbxRecord.addProperty(createInt64Property(parentId));
-	if (target != undefined) {
-		fbxRecord.addProperty(createStringProperty(target));
-	}
-	return fbxRecord;
+    let fbxRecord = new FBXRecord('C');
+    fbxRecord.addProperty(createStringProperty(target ? 'OP' : 'OO'));
+    fbxRecord.addProperty(createInt64Property(id));
+    fbxRecord.addProperty(createInt64Property(parentId));
+    if (target != undefined) {
+        fbxRecord.addProperty(createStringProperty(target));
+    }
+    return fbxRecord;
 }
-
 function createHeaderExtensionRecord(fbxFile, creator, appVendor, appName, appVersion) {
-	let date = new Date();
-	let fbxHeaderExtension = createFBXRecord('FBXHeaderExtension', {
-		childs: [
-			createFBXRecordSingleInt32('FBXHeaderVersion', FBX_HEADER_VERSION),
-			createFBXRecordSingleInt32('FBXVersion', fbxFile.version),
-			createFBXRecordSingleInt32('EncryptionType', 0),
-			createFBXRecord('CreationTimeStamp', {
-				childs: [
-					createFBXRecordSingleInt32('Version', 1000),
-					createFBXRecordSingleInt32('Year', date.getFullYear()),
-					createFBXRecordSingleInt32('Month', date.getMonth() + 1),
-					createFBXRecordSingleInt32('Day', date.getDate()),
-					createFBXRecordSingleInt32('Hour', date.getHours()),
-					createFBXRecordSingleInt32('Minute', date.getMinutes()),
-					createFBXRecordSingleInt32('Second', date.getSeconds()),
-					createFBXRecordSingleInt32('Millisecond', date.getMilliseconds()),
-
-				]
-			}),
-			createFBXRecordSingleString('Creator', creator),
-			createFBXRecord('SceneInfo', {
-				properties: [
-					createStringProperty(fbxNameClass('GlobalInfo', 'SceneInfo')),
-					createStringProperty('UserData'),
-				],
-				childs: [
-					createFBXRecordSingleString('Type', 'UserData'),
-					createFBXRecordSingleInt32('Version', FBX_SCENEINFO_VERSION),
-					createFBXRecord('MetaData', {
-						childs: [
-							createFBXRecordSingleInt32('Version', FBX_SCENEINFO_VERSION),
-							createFBXRecordSingleString('Title', ''),//TODO
-							createFBXRecordSingleString('Subject', ''),//TODO
-							createFBXRecordSingleString('Author', ''),//TODO
-							createFBXRecordSingleString('Keywords', ''),//TODO
-							createFBXRecordSingleString('Revision', ''),//TODO
-							createFBXRecordSingleString('Comment', ''),//TODO
-						]
-					}),
-					createFBXRecord('Properties70', {
-						childs: [
-							createFBXRecordMultipleStrings('P', ['DocumentUrl', 'KString', 'Url', '', './test.fbx']),//TODO
-							createFBXRecordMultipleStrings('P', ['SrcDocumentUrl', 'KString', 'Url', '', './test.fbx']),//TODO
-							createFBXRecordMultipleStrings('P', ['Original', 'Compound', '', '']),
-							createFBXRecordMultipleStrings('P', ['Original|ApplicationVendor', 'KString', '', '', appVendor]),
-							createFBXRecordMultipleStrings('P', ['Original|ApplicationName', 'KString', '', '', appName]),
-							createFBXRecordMultipleStrings('P', ['Original|ApplicationVersion', 'KString', '', '', appVersion]),
-							createFBXRecordMultipleStrings('P', ['Original|DateTime_GMT', 'DateTime', '', '', '01/01/1970 00:00:00.000']),
-							createFBXRecordMultipleStrings('P', ['Original|FileName', 'KString', '', '', './test.fbx']),//TODO
-							createFBXRecordMultipleStrings('P', ['LastSaved', 'Compound', '', '']),
-							createFBXRecordMultipleStrings('P', ['LastSaved|ApplicationVendor', 'KString', '', '', appVersion]),
-							createFBXRecordMultipleStrings('P', ['LastSaved|ApplicationName', 'KString', '', '', appName]),
-							createFBXRecordMultipleStrings('P', ['LastSaved|ApplicationVersion', 'KString', '', '', appVersion]),
-							createFBXRecordMultipleStrings('P', ['LastSaved|DateTime_GMT', 'DateTime', '', '', '01/01/1970 00:00:00.000']),
-							createFBXRecordMultipleStrings('P', ['LastSaved|ApplicationActiveProject', 'KString', '', '', './test.fbx']),//TODO
-						]
-					}),
-
-				]
-			}),
-		]
-	});
-
-	return fbxHeaderExtension;
+    let date = new Date();
+    let fbxHeaderExtension = createFBXRecord('FBXHeaderExtension', {
+        childs: [
+            createFBXRecordSingleInt32('FBXHeaderVersion', FBX_HEADER_VERSION),
+            createFBXRecordSingleInt32('FBXVersion', fbxFile.version),
+            createFBXRecordSingleInt32('EncryptionType', 0),
+            createFBXRecord('CreationTimeStamp', {
+                childs: [
+                    createFBXRecordSingleInt32('Version', 1000),
+                    createFBXRecordSingleInt32('Year', date.getFullYear()),
+                    createFBXRecordSingleInt32('Month', date.getMonth() + 1),
+                    createFBXRecordSingleInt32('Day', date.getDate()),
+                    createFBXRecordSingleInt32('Hour', date.getHours()),
+                    createFBXRecordSingleInt32('Minute', date.getMinutes()),
+                    createFBXRecordSingleInt32('Second', date.getSeconds()),
+                    createFBXRecordSingleInt32('Millisecond', date.getMilliseconds()),
+                ]
+            }),
+            createFBXRecordSingleString('Creator', creator),
+            createFBXRecord('SceneInfo', {
+                properties: [
+                    createStringProperty(fbxNameClass('GlobalInfo', 'SceneInfo')),
+                    createStringProperty('UserData'),
+                ],
+                childs: [
+                    createFBXRecordSingleString('Type', 'UserData'),
+                    createFBXRecordSingleInt32('Version', FBX_SCENEINFO_VERSION),
+                    createFBXRecord('MetaData', {
+                        childs: [
+                            createFBXRecordSingleInt32('Version', FBX_SCENEINFO_VERSION),
+                            createFBXRecordSingleString('Title', ''), //TODO
+                            createFBXRecordSingleString('Subject', ''), //TODO
+                            createFBXRecordSingleString('Author', ''), //TODO
+                            createFBXRecordSingleString('Keywords', ''), //TODO
+                            createFBXRecordSingleString('Revision', ''), //TODO
+                            createFBXRecordSingleString('Comment', ''), //TODO
+                        ]
+                    }),
+                    createFBXRecord('Properties70', {
+                        childs: [
+                            createFBXRecordMultipleStrings('P', ['DocumentUrl', 'KString', 'Url', '', './test.fbx']), //TODO
+                            createFBXRecordMultipleStrings('P', ['SrcDocumentUrl', 'KString', 'Url', '', './test.fbx']), //TODO
+                            createFBXRecordMultipleStrings('P', ['Original', 'Compound', '', '']),
+                            createFBXRecordMultipleStrings('P', ['Original|ApplicationVendor', 'KString', '', '', appVendor]),
+                            createFBXRecordMultipleStrings('P', ['Original|ApplicationName', 'KString', '', '', appName]),
+                            createFBXRecordMultipleStrings('P', ['Original|ApplicationVersion', 'KString', '', '', appVersion]),
+                            createFBXRecordMultipleStrings('P', ['Original|DateTime_GMT', 'DateTime', '', '', '01/01/1970 00:00:00.000']),
+                            createFBXRecordMultipleStrings('P', ['Original|FileName', 'KString', '', '', './test.fbx']), //TODO
+                            createFBXRecordMultipleStrings('P', ['LastSaved', 'Compound', '', '']),
+                            createFBXRecordMultipleStrings('P', ['LastSaved|ApplicationVendor', 'KString', '', '', appVersion]),
+                            createFBXRecordMultipleStrings('P', ['LastSaved|ApplicationName', 'KString', '', '', appName]),
+                            createFBXRecordMultipleStrings('P', ['LastSaved|ApplicationVersion', 'KString', '', '', appVersion]),
+                            createFBXRecordMultipleStrings('P', ['LastSaved|DateTime_GMT', 'DateTime', '', '', '01/01/1970 00:00:00.000']),
+                            createFBXRecordMultipleStrings('P', ['LastSaved|ApplicationActiveProject', 'KString', '', '', './test.fbx']), //TODO
+                        ]
+                    }),
+                ]
+            }),
+        ]
+    });
+    return fbxHeaderExtension;
 }
-
 function createDefinitionsRecord() {
-	let definitions = createFBXRecord('Definitions', {
-		childs: [
-			createFBXRecordSingleInt32('Version', FBX_TEMPLATES_VERSION),
-			createFBXRecordSingleInt32('Count', 4),//TODO: Sum of every template below
-			createFBXRecord('ObjectType', {
-				childs: [
-					createFBXRecordSingleInt32('Count', 1),
-				],
-				properties: [
-					createStringProperty('GlobalSettings'),
-				],
-			}),
-			createFBXRecord('ObjectType', {
-				childs: [
-					createFBXRecordSingleInt32('Count', 1),
-					createFBXRecord('PropertyTemplate', {
-						properties: [
-							createStringProperty('FbxMesh'),
-						],
-					}),
-				],
-				properties: [
-					createStringProperty('Geometry'),
-				],
-			}),
-			createFBXRecord('ObjectType', {
-				childs: [
-					createFBXRecordSingleInt32('Count', 1),
-					createFBXRecord('PropertyTemplate', {
-						childs: [
-
-						],
-						properties: [
-							createStringProperty('FbxNode'),
-						],
-					}),
-				],
-				properties: [
-					createStringProperty('Model'),
-				],
-			}),
-			createFBXRecord('ObjectType', {
-				childs: [
-					createFBXRecordSingleInt32('Count', 1),
-					createFBXRecord('PropertyTemplate', {
-						childs: [
-
-						],
-						properties: [
-							createStringProperty('FbxSurfacePhong'),
-						],
-					}),
-				],
-				properties: [
-					createStringProperty('Material'),
-				],
-			}),
-			createFBXRecord('ObjectType', {
-				childs: [
-					createFBXRecordSingleInt32('Count', 1),
-					createFBXRecord('PropertyTemplate', {
-						childs: [
-						],
-						properties: [
-							createStringProperty('FbxFileTexture'),
-						],
-					}),
-				],
-				properties: [
-					createStringProperty('Texture'),
-				],
-			}),
-			createFBXRecord('ObjectType', {
-				childs: [
-					createFBXRecordSingleInt32('Count', 1),
-					createFBXRecord('PropertyTemplate', {
-						childs: [
-						],
-						properties: [
-							createStringProperty('FbxVideo'),
-						],
-					}),
-				],
-				properties: [
-					createStringProperty('Video'),
-				],
-			}),
-			createFBXRecord('ObjectType', {
-				childs: [
-					createFBXRecordSingleInt32('Count', 1),
-				],
-				properties: [
-					createStringProperty('Deformer'),
-				],
-			}),
-			createFBXRecord('ObjectType', {
-				childs: [
-					createFBXRecordSingleInt32('Count', 1),
-					createFBXRecord('PropertyTemplate', {
-						childs: [
-							createFBXRecord('Properties70', {
-								childs: [
-									createPColorRGB('Color', [0.8, 0.8, 0.8]),
-									createPDouble('Size', 100),
-									createPDouble('LimbLength', 1),//TODO: P: "LimbLength", "double", "Number", "H",1
-								]
-							}),
-						],
-						properties: [
-							createStringProperty('FbxSkeleton'),
-						]
-					}),
-				],
-				properties: [
-					createStringProperty('NodeAttribute'),
-				],
-			}),
-			createFBXRecord('ObjectType', {
-				childs: [
-					createFBXRecordSingleInt32('Count', 1),
-				],
-				properties: [
-					createStringProperty('Pose'),
-				],
-			}),
-			createFBXRecord('ObjectType', {
-				childs: [
-					createFBXRecordSingleInt32('Count', 1),
-				],
-				properties: [
-					createStringProperty('AnimationStack'),
-				],
-			}),
-			createFBXRecord('ObjectType', {
-				childs: [
-					createFBXRecordSingleInt32('Count', 1),
-				],
-				properties: [
-					createStringProperty('AnimationLayer'),
-				],
-			}),
-			createFBXRecord('ObjectType', {
-				childs: [
-					createFBXRecordSingleInt32('Count', 1),
-				],
-				properties: [
-					createStringProperty('AnimationCurveNode'),
-				],
-			}),
-			createFBXRecord('ObjectType', {
-				childs: [
-					createFBXRecordSingleInt32('Count', 1),
-				],
-				properties: [
-					createStringProperty('AnimationCurve'),
-				],
-			}),
-		],
-	});
-	return definitions;
+    let definitions = createFBXRecord('Definitions', {
+        childs: [
+            createFBXRecordSingleInt32('Version', FBX_TEMPLATES_VERSION),
+            createFBXRecordSingleInt32('Count', 4), //TODO: Sum of every template below
+            createFBXRecord('ObjectType', {
+                childs: [
+                    createFBXRecordSingleInt32('Count', 1),
+                ],
+                properties: [
+                    createStringProperty('GlobalSettings'),
+                ],
+            }),
+            createFBXRecord('ObjectType', {
+                childs: [
+                    createFBXRecordSingleInt32('Count', 1),
+                    createFBXRecord('PropertyTemplate', {
+                        properties: [
+                            createStringProperty('FbxMesh'),
+                        ],
+                    }),
+                ],
+                properties: [
+                    createStringProperty('Geometry'),
+                ],
+            }),
+            createFBXRecord('ObjectType', {
+                childs: [
+                    createFBXRecordSingleInt32('Count', 1),
+                    createFBXRecord('PropertyTemplate', {
+                        childs: [],
+                        properties: [
+                            createStringProperty('FbxNode'),
+                        ],
+                    }),
+                ],
+                properties: [
+                    createStringProperty('Model'),
+                ],
+            }),
+            createFBXRecord('ObjectType', {
+                childs: [
+                    createFBXRecordSingleInt32('Count', 1),
+                    createFBXRecord('PropertyTemplate', {
+                        childs: [],
+                        properties: [
+                            createStringProperty('FbxSurfacePhong'),
+                        ],
+                    }),
+                ],
+                properties: [
+                    createStringProperty('Material'),
+                ],
+            }),
+            createFBXRecord('ObjectType', {
+                childs: [
+                    createFBXRecordSingleInt32('Count', 1),
+                    createFBXRecord('PropertyTemplate', {
+                        childs: [],
+                        properties: [
+                            createStringProperty('FbxFileTexture'),
+                        ],
+                    }),
+                ],
+                properties: [
+                    createStringProperty('Texture'),
+                ],
+            }),
+            createFBXRecord('ObjectType', {
+                childs: [
+                    createFBXRecordSingleInt32('Count', 1),
+                    createFBXRecord('PropertyTemplate', {
+                        childs: [],
+                        properties: [
+                            createStringProperty('FbxVideo'),
+                        ],
+                    }),
+                ],
+                properties: [
+                    createStringProperty('Video'),
+                ],
+            }),
+            createFBXRecord('ObjectType', {
+                childs: [
+                    createFBXRecordSingleInt32('Count', 1),
+                ],
+                properties: [
+                    createStringProperty('Deformer'),
+                ],
+            }),
+            createFBXRecord('ObjectType', {
+                childs: [
+                    createFBXRecordSingleInt32('Count', 1),
+                    createFBXRecord('PropertyTemplate', {
+                        childs: [
+                            createFBXRecord('Properties70', {
+                                childs: [
+                                    createPColorRGB('Color', [0.8, 0.8, 0.8]),
+                                    createPDouble('Size', 100),
+                                    createPDouble('LimbLength', 1), //TODO: P: "LimbLength", "double", "Number", "H",1
+                                ]
+                            }),
+                        ],
+                        properties: [
+                            createStringProperty('FbxSkeleton'),
+                        ]
+                    }),
+                ],
+                properties: [
+                    createStringProperty('NodeAttribute'),
+                ],
+            }),
+            createFBXRecord('ObjectType', {
+                childs: [
+                    createFBXRecordSingleInt32('Count', 1),
+                ],
+                properties: [
+                    createStringProperty('Pose'),
+                ],
+            }),
+            createFBXRecord('ObjectType', {
+                childs: [
+                    createFBXRecordSingleInt32('Count', 1),
+                ],
+                properties: [
+                    createStringProperty('AnimationStack'),
+                ],
+            }),
+            createFBXRecord('ObjectType', {
+                childs: [
+                    createFBXRecordSingleInt32('Count', 1),
+                ],
+                properties: [
+                    createStringProperty('AnimationLayer'),
+                ],
+            }),
+            createFBXRecord('ObjectType', {
+                childs: [
+                    createFBXRecordSingleInt32('Count', 1),
+                ],
+                properties: [
+                    createStringProperty('AnimationCurveNode'),
+                ],
+            }),
+            createFBXRecord('ObjectType', {
+                childs: [
+                    createFBXRecordSingleInt32('Count', 1),
+                ],
+                properties: [
+                    createStringProperty('AnimationCurve'),
+                ],
+            }),
+        ],
+    });
+    return definitions;
 }
-
 function createTakesRecord() {
-	let takes = createFBXRecord(FBX_RECORD_NAME_TAKES, {
-		childs: [
-			createFBXRecordSingleString('Current', ''),
-		],
-	});
-	return takes;
+    let takes = createFBXRecord(FBX_RECORD_NAME_TAKES, {
+        childs: [
+            createFBXRecordSingleString('Current', ''),
+        ],
+    });
+    return takes;
 }
 
 function createVideoRecord(fbxVideo) {
-	return createFBXRecord('Video', {
-		childs: [
-			createFBXRecordSingleString('Type', fbxVideo.type),
-			createFBXRecordSingleString('RelativeFilename', `mat_${fbxVideo.id}.png`),
-			/*createFBXRecordSingleString('Filename', `C:\\Users\\Guillaume\\Desktop\\fbx\\untitled.fbm\\mat_${fbxVideo.id}.png`),*/
-			createFBXRecordSingleBytes('Content', fbxVideo.content),
-			createFBXRecord('Properties70', {
-				childs: [
-					createFBXRecordMultipleStrings('P', ['Path', 'KString', 'XRefUrl', '', `C:\\fbx\\untitled.fbm\\mat_${fbxVideo.id}.png`]),
-				],
-			}),
-		],
-		properties: [
-			createInt64Property(fbxVideo.id),
-			createStringProperty(fbxVideo.name + '\x00\x01' + 'Video'),
-			createStringProperty('Clip'),
-		],
-	});
+    return createFBXRecord('Video', {
+        childs: [
+            createFBXRecordSingleString('Type', fbxVideo.type),
+            createFBXRecordSingleString('RelativeFilename', `mat_${fbxVideo.id}.png`),
+            /*createFBXRecordSingleString('Filename', `C:\\Users\\Guillaume\\Desktop\\fbx\\untitled.fbm\\mat_${fbxVideo.id}.png`),*/
+            createFBXRecordSingleBytes('Content', fbxVideo.content),
+            createFBXRecord('Properties70', {
+                childs: [
+                    createFBXRecordMultipleStrings('P', ['Path', 'KString', 'XRefUrl', '', `C:\\fbx\\untitled.fbm\\mat_${fbxVideo.id}.png`]),
+                ],
+            }),
+        ],
+        properties: [
+            createInt64Property(fbxVideo.id),
+            createStringProperty(fbxVideo.name + '\x00\x01' + 'Video'),
+            createStringProperty('Clip'),
+        ],
+    });
 }
 
 const FBX_RECORD_TYPE_MESH = 'Mesh';
 const FBX_RECORD_TYPE_LIMB_NODE = 'LimbNode';
 const FBX_RECORD_TYPE_CAMERA = 'Camera';
-
 function fbxSceneToFBXFile(scene, creator = 'harmony-fbx', appVendor = 'harmony-fbx', appName = 'harmony-fbx', appVersion = '1') {
-	let fbxFile = new FBXFile();
-	fbxFile.version = 7400;
-
-	fbxFile.addChild(createHeaderExtensionRecord(fbxFile, creator, appVendor, appName, appVersion));
-	fbxFile.addChild(createFBXRecordSingleString(FBX_RECORD_NAME_CREATOR, creator));
-	fbxFile.addChild(exportFBXGlobalSettings(scene.globalSettings));
-	fbxFile.addChild(exportFBXScene(scene));
-	fbxFile.addChild(createFBXRecord(FBX_RECORD_NAME_REFERENCES));//TODO ?
-	fbxFile.addChild(createDefinitionsRecord());
-	fbxFile.addChild(createFBXRecord(FBX_RECORD_NAME_OBJECTS));
-	fbxFile.addChild(createFBXRecord(FBX_RECORD_NAME_CONNECTIONS));
-	fbxFile.addChild(createTakesRecord());
-
-	exportObjects(fbxFile, scene);
-	exportTakes(fbxFile, scene);
-
-	return fbxFile;
+    let fbxFile = new FBXFile();
+    fbxFile.version = 7400;
+    fbxFile.addChild(createHeaderExtensionRecord(fbxFile, creator, appVendor, appName, appVersion));
+    fbxFile.addChild(createFBXRecordSingleString(FBX_RECORD_NAME_CREATOR, creator));
+    fbxFile.addChild(exportFBXGlobalSettings(scene.globalSettings));
+    fbxFile.addChild(exportFBXScene(scene));
+    fbxFile.addChild(createFBXRecord(FBX_RECORD_NAME_REFERENCES)); //TODO ?
+    fbxFile.addChild(createDefinitionsRecord());
+    fbxFile.addChild(createFBXRecord(FBX_RECORD_NAME_OBJECTS));
+    fbxFile.addChild(createFBXRecord(FBX_RECORD_NAME_CONNECTIONS));
+    fbxFile.addChild(createTakesRecord());
+    exportObjects(fbxFile, scene);
+    exportTakes(fbxFile, scene);
+    return fbxFile;
 }
-
 function exportObjects(fbxFile, scene) {
-	let nodesReferences = new Set();
-	let nodesConnections = new Set();
-	let alreadyExported = new Set();
-	for (let child of scene.rootNode.childs) {
-		exportObject(fbxFile, child, nodesReferences, nodesConnections, alreadyExported);
-	}
-	for (let object of scene.objects) {
-		exportObject(fbxFile, object, nodesReferences, nodesConnections, alreadyExported);
-	}
-	for (;;) {
-		let nodesReferences2 = new Set();
-		for (let child of nodesReferences) {
-			exportObject(fbxFile, child, nodesReferences2, nodesConnections, alreadyExported);
-		}
-		if (nodesReferences2.size == 0) {
-			break;
-		}
-		nodesReferences = nodesReferences2;
-	}
-
-	createConnections(fbxFile, nodesConnections);
+    /*
+    let nodesReferences = new Set();
+    let nodesConnections = new Set();
+    let alreadyExported = new Set<FBXObject>();
+    */
+    const context = {
+        nodesReferences: new Set(),
+        nodesConnections: new Set(),
+        alreadyExported: new Set(),
+    };
+    for (let child of scene.rootNode.childs) {
+        exportObject(fbxFile, child, context /*nodesReferences, nodesConnections, alreadyExported*/);
+    }
+    for (let object of scene.objects) {
+        exportObject(fbxFile, object, context /*nodesReferences, nodesConnections, alreadyExported*/);
+    }
+    for (;;) {
+        //let nodesReferences2 = new Set();
+        const context2 = {
+            nodesReferences: new Set(),
+            nodesConnections: context.nodesConnections,
+            alreadyExported: context.alreadyExported,
+        };
+        for (let child of context.nodesReferences) {
+            exportObject(fbxFile, child, context2 /*nodesReferences2, nodesConnections, alreadyExported*/);
+        }
+        if (context2.nodesReferences.size == 0) {
+            break;
+        }
+        context.nodesReferences = context2.nodesReferences;
+    }
+    createConnections(fbxFile, context.nodesConnections);
 }
-
-function exportObject(fbxFile, object, nodesReferences, nodesConnections, alreadyExported) {
-	if (alreadyExported.has(object)) {
-		return;
-	}
-	switch (true) {
-		case object.isFBXNode:
-			exportNode(fbxFile, object, nodesReferences, nodesConnections, alreadyExported);
-			break;
-		case object.isFBXObject:
-			exportObject2(fbxFile, object, nodesReferences, nodesConnections);
-			break;
-		default:
-			console.log(object);
-			throw 'Trying to export an unknown object';
-	}
-	alreadyExported.add(object);
+function exportObject(fbxFile, object, context /*nodesReferences, nodesConnections, alreadyExported*/) {
+    if (context.alreadyExported.has(object)) {
+        return;
+    }
+    switch (true) {
+        case object.isFBXNode:
+            exportNode(fbxFile, object, context /*nodesReferences, nodesConnections, alreadyExported*/);
+            break;
+        case object.isFBXObject:
+            exportObject2(fbxFile, object, context /*nodesReferences, nodesConnections*/);
+            break;
+        default:
+            console.log(object);
+            throw 'Trying to export an unknown object';
+    }
+    context.alreadyExported.add(object);
 }
-
-function exportObject2(fbxFile, object, nodesReferences, nodesConnections) {
-	exportObjectPropertiesConnections(fbxFile, object, nodesReferences, nodesConnections);
-
-
-	switch (true) {
-		case object.isFBXSurfacePhong:
-			exportSurfacePhongObject(fbxFile, object, nodesReferences, nodesConnections);
-			break;
-		case object.isFBXTexture:
-			exportFBXTexture(fbxFile, object, nodesReferences, nodesConnections);
-			break;
-		case object.isFBXVideo:
-			exportFBXVideo(fbxFile, object);
-			break;
-		case object.isFBXSkin:
-			exportFBXSkin(fbxFile, object, nodesReferences, nodesConnections);
-			break;
-		case object.isFBXCluster:
-			exportFBXCluster(fbxFile, object, nodesReferences, nodesConnections);
-			break;
-		case object.isFBXPose:
-			exportFBXPose(fbxFile, object);
-			break;
-		case object.isFBXAnimStack:
-			exportFBXAnimStack(fbxFile, object, nodesReferences, nodesConnections);
-			break;
-		case object.isFBXAnimLayer:
-			exportFBXAnimLayer(fbxFile, object, nodesReferences, nodesConnections);
-			break;
-		case object.isFBXAnimCurveNode:
-			exportFBXAnimCurveNode(fbxFile, object);
-			break;
-		case object.isFBXAnimCurve:
-			exportFBXAnimCurve(fbxFile, object);
-			break;
-		default:
-			console.log(object);
-			throw 'Export of this object is missing';
-	}
+function exportObject2(fbxFile, object, context) {
+    exportObjectPropertiesConnections(fbxFile, object, context);
+    switch (true) {
+        case object.isFBXSurfacePhong:
+            exportSurfacePhongObject(fbxFile, object, context);
+            break;
+        case object.isFBXTexture:
+            exportFBXTexture(fbxFile, object, context);
+            break;
+        case object.isFBXVideo:
+            exportFBXVideo(fbxFile, object);
+            break;
+        case object.isFBXSkin:
+            exportFBXSkin(fbxFile, object, context);
+            break;
+        case object.isFBXCluster:
+            exportFBXCluster(fbxFile, object, context);
+            break;
+        case object.isFBXPose:
+            exportFBXPose(fbxFile, object);
+            break;
+        case object.isFBXAnimStack:
+            exportFBXAnimStack(fbxFile, object, context);
+            break;
+        case object.isFBXAnimLayer:
+            exportFBXAnimLayer(fbxFile, object, context);
+            break;
+        case object.isFBXAnimCurveNode:
+            exportFBXAnimCurveNode(fbxFile, object);
+            break;
+        case object.isFBXAnimCurve:
+            exportFBXAnimCurve(fbxFile, object);
+            break;
+        default:
+            console.log(object);
+            throw 'Export of this object is missing';
+    }
 }
-
-function exportObjectPropertiesConnections(fbxFile, fbxObject, nodesReferences, nodesConnections) {
-	exportPropertiesConnections(fbxFile, fbxObject.rootProperty, nodesReferences, nodesConnections);
+function exportObjectPropertiesConnections(fbxFile, fbxObject, context) {
+    exportPropertiesConnections(fbxFile, fbxObject.rootProperty, context);
 }
-
-function exportPropertiesConnections(fbxFile, fbxProperty, nodesReferences, nodesConnections) {
-	fbxProperty.srcObjects.forEach(object => {
-		const parentObject = fbxProperty.getParentObject();
-		// Ensure the parent object is exported
-		nodesReferences.add(parentObject);
-		nodesReferences.add(object);
-		nodesConnections.add(createConnection(object, parentObject, fbxProperty.hierarchicalName));
-		console.log(fbxProperty);
-	});
-
-
-	if (fbxProperty.isCompound()) {
-		for (const [key, value] of fbxProperty.value) {
-			//console.log(key, value);
-			exportPropertiesConnections(fbxFile, value, nodesReferences, nodesConnections);
-		}
-	}
+function exportPropertiesConnections(fbxFile, fbxProperty, context /*nodesReferences, nodesConnections*/) {
+    fbxProperty.srcObjects.forEach(object => {
+        const parentObject = fbxProperty.getParentObject();
+        if (!parentObject) {
+            return;
+        }
+        // Ensure the parent object is exported
+        context.nodesReferences.add(parentObject);
+        context.nodesReferences.add(object);
+        context.nodesConnections.add(createConnection(object, parentObject, fbxProperty.hierarchicalName));
+        console.log(fbxProperty);
+    });
+    if (fbxProperty.isCompound()) {
+        for (const [key, value] of fbxProperty.value) {
+            //console.log(key, value);
+            exportPropertiesConnections(fbxFile, value, context /*nodesReferences, nodesConnections*/);
+        }
+    }
 }
-
-function exportNode(fbxFile, node, nodesReferences, nodesConnections, alreadyExported) {
-	if (alreadyExported.has(node)) {
-		return;
-	}
-
-	exportObjectPropertiesConnections(fbxFile, node, nodesReferences, nodesConnections);
-
-	if (node.nodeAttribute) {
-		let nodeAttribute = node.nodeAttribute;
-		switch (true) {
-			case nodeAttribute.isFBXMesh:
-				exportMeshNode(fbxFile, node, nodesReferences, nodesConnections);
-				break;
-			case nodeAttribute.isFBXSkeleton:
-				exportSkeletonNode(fbxFile, node, nodesReferences, nodesConnections);
-				break;
-			case nodeAttribute.isFBXCamera:
-				exportCameraNode(fbxFile, node, nodesReferences, nodesConnections);
-				break;
-			default:
-				console.log(nodeAttribute);
-				throw 'Error in exportNode: export of this nodeAttribute is missing';
-		}
-	} else {
-		throw 'nodeAttribute is null ' + node.id;
-	}
-
-	for (let child of node.childs) {
-		exportNode(fbxFile, child, nodesReferences, nodesConnections, alreadyExported);
-	}
+function exportNode(fbxFile, node, context /*nodesReferences, nodesConnections, alreadyExported*/) {
+    if (context.alreadyExported.has(node)) {
+        return;
+    }
+    exportObjectPropertiesConnections(fbxFile, node, context /*nodesReferences, nodesConnections*/);
+    if (node.nodeAttribute) {
+        let nodeAttribute = node.nodeAttribute;
+        switch (true) {
+            case nodeAttribute.isFBXMesh:
+                exportMeshNode(fbxFile, node, context);
+                break;
+            case nodeAttribute.isFBXSkeleton:
+                exportSkeletonNode(fbxFile, node, context);
+                break;
+            case nodeAttribute.isFBXCamera:
+                exportCameraNode(fbxFile, node, context);
+                break;
+            default:
+                console.log(nodeAttribute);
+                throw 'Error in exportNode: export of this nodeAttribute is missing';
+        }
+    }
+    else {
+        throw 'nodeAttribute is null ' + node.id;
+    }
+    for (let child of node.childs) {
+        exportNode(fbxFile, child, context /*nodesReferences, nodesConnections, alreadyExported*/);
+    }
 }
-
-function exportMeshNode(fbxFile, node, nodesReferences, nodesConnections) {
-	// Add the materials for writing
-	let objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
-
-	node.materials.forEach(material => {
-		nodesReferences.add(material);
-		nodesConnections.add(createConnection(material, node));
-	});
-	node.nodeAttribute.deformers.forEach(deformer => {
-		nodesReferences.add(deformer);
-		nodesConnections.add(createConnection(deformer, node.nodeAttribute));
-	});
-
-	objectsRecord.addChild(fbxNodeToRecord(node, FBX_RECORD_TYPE_MESH));
-	objectsRecord.addChild(fbxMeshToRecord(node.nodeAttribute));
-
-	nodesConnections.add(createConnection(node, node.parent));
-	nodesConnections.add(createConnection(node.nodeAttribute, node));
+function exportMeshNode(fbxFile, node, context) {
+    // Add the materials for writing
+    let objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
+    node.materials.forEach(material => {
+        context.nodesReferences.add(material);
+        context.nodesConnections.add(createConnection(material, node));
+    });
+    node.nodeAttribute.deformers.forEach(deformer => {
+        context.nodesReferences.add(deformer);
+        context.nodesConnections.add(createConnection(deformer, node.nodeAttribute));
+    });
+    objectsRecord.addChild(fbxNodeToRecord(node, FBX_RECORD_TYPE_MESH));
+    objectsRecord.addChild(fbxMeshToRecord(node.nodeAttribute));
+    context.nodesConnections.add(createConnection(node, node.parent));
+    context.nodesConnections.add(createConnection(node.nodeAttribute, node));
 }
-
-function exportSkeletonNode(fbxFile, node, nodesReferences, nodesConnections) {
-	let objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
-
-
-	objectsRecord.addChild(fbxNodeToRecord(node, FBX_RECORD_TYPE_LIMB_NODE));
-	objectsRecord.addChild(fbxSkeletonToRecord(node.nodeAttribute));
-
-	nodesConnections.add(createConnection(node, node.parent));
-	nodesConnections.add(createConnection(node.nodeAttribute, node));
+function exportSkeletonNode(fbxFile, node, context) {
+    const objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
+    objectsRecord.addChild(fbxNodeToRecord(node, FBX_RECORD_TYPE_LIMB_NODE));
+    objectsRecord.addChild(fbxSkeletonToRecord(node.nodeAttribute));
+    context.nodesConnections.add(createConnection(node, node.parent));
+    context.nodesConnections.add(createConnection(node.nodeAttribute, node));
 }
-
-function exportCameraNode(fbxFile, node, nodesReferences, nodesConnections) {
-	let objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
-
-	objectsRecord.addChild(fbxNodeToRecord(node, FBX_RECORD_TYPE_CAMERA));
-	objectsRecord.addChild(fbxCameraToRecord(node.nodeAttribute));
-
-	nodesConnections.add(createConnection(node, node.parent));
-	nodesConnections.add(createConnection(node.nodeAttribute, node));
+function exportCameraNode(fbxFile, node, context) {
+    let objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
+    objectsRecord.addChild(fbxNodeToRecord(node, FBX_RECORD_TYPE_CAMERA));
+    objectsRecord.addChild(fbxCameraToRecord(node.nodeAttribute));
+    context.nodesConnections.add(createConnection(node, node.parent));
+    context.nodesConnections.add(createConnection(node.nodeAttribute, node));
 }
-
 function createConnection(src, dst, target) {
-	return {s: src.id, d: dst.id, t: target};
+    return { source: src.id, destination: dst.id, target: target };
 }
-
-function exportSurfacePhongObject(fbxFile, fbxSurfacePhong, nodesReferences, nodesConnections) {
-	let objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
-
-	let propertyNames = ['diffuse'];
-	for (let propertyName of propertyNames) {
-		let fbxProperty = fbxSurfacePhong[propertyName];
-		fbxProperty.srcObjects.forEach(object => {
-			nodesReferences.add(object);
-			nodesConnections.add(createConnection(object, fbxSurfacePhong, 'DiffuseColor'));
-		});
-	}
-	objectsRecord.addChild(fbxSurfaceMaterialToRecord(fbxSurfacePhong));
+function exportSurfacePhongObject(fbxFile, fbxSurfacePhong, context /*, nodesReferences, nodesConnections*/) {
+    let objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
+    let propertyNames = ['diffuse'];
+    for (let propertyName of propertyNames) {
+        const fbxProperty = fbxSurfacePhong.findProperty(propertyName);
+        if (!fbxProperty) {
+            continue;
+        }
+        fbxProperty.srcObjects.forEach(object => {
+            context.nodesReferences.add(object);
+            context.nodesConnections.add(createConnection(object, fbxSurfacePhong, 'DiffuseColor'));
+        });
+    }
+    objectsRecord.addChild(fbxSurfaceMaterialToRecord(fbxSurfacePhong));
 }
-
-function exportFBXTexture(fbxFile, fbxTexture, nodesReferences, nodesConnections) {
-	let objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
-
-	let textureMedia = fbxTexture.media;
-	if (textureMedia) {
-		nodesReferences.add(textureMedia);
-		nodesConnections.add(createConnection(textureMedia, fbxTexture));
-	}
-
-	objectsRecord.addChild(fbxTextureToRecord(fbxTexture));
+function exportFBXTexture(fbxFile, fbxTexture, context /*, nodesReferences, nodesConnections*/) {
+    let objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
+    let textureMedia = fbxTexture.media;
+    if (textureMedia) {
+        context.nodesReferences.add(textureMedia);
+        context.nodesConnections.add(createConnection(textureMedia, fbxTexture));
+    }
+    objectsRecord.addChild(fbxTextureToRecord(fbxTexture));
 }
-
-function exportFBXVideo(fbxFile, fbxVideo, nodesReferences, nodesConnections) {
-	let objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
-	objectsRecord.addChild(createVideoRecord(fbxVideo));
+function exportFBXVideo(fbxFile, fbxVideo) {
+    let objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
+    objectsRecord.addChild(createVideoRecord(fbxVideo));
 }
-
-function exportFBXSkin(fbxFile, fbxSkin, nodesReferences, nodesConnections) {
-	let objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
-
-	fbxSkin.clusters.forEach(cluster => {
-		nodesReferences.add(cluster);
-		nodesConnections.add(createConnection(cluster, fbxSkin));
-	});
-
-	objectsRecord.addChild(fbxSkinToRecord(fbxSkin));
+function exportFBXSkin(fbxFile, fbxSkin, context /*, nodesReferences, nodesConnections*/) {
+    let objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
+    fbxSkin.clusters.forEach(cluster => {
+        context.nodesReferences.add(cluster);
+        context.nodesConnections.add(createConnection(cluster, fbxSkin));
+    });
+    objectsRecord.addChild(fbxSkinToRecord(fbxSkin));
 }
-
-function exportFBXCluster(fbxFile, fbxCluster, nodesReferences, nodesConnections) {
-	if (fbxCluster.indexes.length == 0) {
-		return;
-	}
-	let objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
-	if (fbxCluster.link) {
-		nodesReferences.add(fbxCluster.link);
-		nodesConnections.add(createConnection(fbxCluster.link, fbxCluster));
-	}
-	objectsRecord.addChild(fbxClusterToRecord(fbxCluster));
+function exportFBXCluster(fbxFile, fbxCluster, context /*, nodesReferences, nodesConnections*/) {
+    if (fbxCluster.indexes.length == 0) {
+        return;
+    }
+    let objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
+    if (fbxCluster.link) {
+        context.nodesReferences.add(fbxCluster.link);
+        context.nodesConnections.add(createConnection(fbxCluster.link, fbxCluster));
+    }
+    objectsRecord.addChild(fbxClusterToRecord(fbxCluster));
 }
-
-function exportFBXAnimStack(fbxFile, fbxAnimStack, nodesReferences, nodesConnections) {
-	let objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
-	/*if (fbxAnimStack.link) {
-		nodesReferences.add(fbxAnimStack.link);
-		nodesConnections.add(createConnection(fbxAnimStack.link, fbxAnimStack));
-	}*/
-
-	fbxAnimStack.members.forEach(member => {
-		nodesReferences.add(member);
-		nodesConnections.add(createConnection(member, fbxAnimStack));
-	});
-
-	objectsRecord.addChild(fbxAnimStackToRecord(fbxAnimStack));
+function exportFBXAnimStack(fbxFile, fbxAnimStack, context) {
+    let objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
+    /*if (fbxAnimStack.link) {
+        nodesReferences.add(fbxAnimStack.link);
+        nodesConnections.add(createConnection(fbxAnimStack.link, fbxAnimStack));
+    }*/
+    fbxAnimStack.members.forEach(member => {
+        context.nodesReferences.add(member);
+        context.nodesConnections.add(createConnection(member, fbxAnimStack));
+    });
+    objectsRecord.addChild(fbxAnimStackToRecord(fbxAnimStack));
 }
-
-function exportFBXAnimLayer(fbxFile, fbxAnimLayer, nodesReferences, nodesConnections) {
-	let objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
-
-	fbxAnimLayer.members.forEach(member => {
-		nodesReferences.add(member);
-		nodesConnections.add(createConnection(member, fbxAnimLayer));
-	});
-
-	objectsRecord.addChild(fbxAnimLayerToRecord(fbxAnimLayer));
+function exportFBXAnimLayer(fbxFile, fbxAnimLayer, context) {
+    let objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
+    fbxAnimLayer.members.forEach(member => {
+        context.nodesReferences.add(member);
+        context.nodesConnections.add(createConnection(member, fbxAnimLayer));
+    });
+    objectsRecord.addChild(fbxAnimLayerToRecord(fbxAnimLayer));
 }
-
-function exportFBXAnimCurveNode(fbxFile, fbxAnimCurveNode, nodesReferences, nodesConnections) {
-	const objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
-	objectsRecord.addChild(fbxAnimCurveNodeToRecord(fbxAnimCurveNode));
+function exportFBXAnimCurveNode(fbxFile, fbxAnimCurveNode) {
+    const objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
+    objectsRecord.addChild(fbxAnimCurveNodeToRecord(fbxAnimCurveNode));
 }
-
-function exportFBXAnimCurve(fbxFile, fbxAnimCurveNode, nodesReferences, nodesConnections) {
-	const objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
-	objectsRecord.addChild(fbxAnimCurveToRecord(fbxAnimCurveNode));
+function exportFBXAnimCurve(fbxFile, fbxAnimCurve) {
+    const objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
+    objectsRecord.addChild(fbxAnimCurveToRecord(fbxAnimCurve));
 }
-
 function createConnections(fbxFile, connections) {
-	let connectionsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_CONNECTIONS);
-	for (let connection of connections) {
-		connectionsRecord.addChild(createConnectionRecord(connection.s, connection.d, connection.t));
-	}
+    let connectionsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_CONNECTIONS);
+    for (let connection of connections) {
+        connectionsRecord.addChild(createConnectionRecord(connection.source, connection.destination, connection.target));
+    }
 }
-
 function exportTakes(fbxFile, fbxScene) {
-	fbxFile.getRecordByName(FBX_RECORD_NAME_TAKES);
-	let srcObjects = fbxScene.srcObjects;
-	for (let srcObject of srcObjects) {
-		if (srcObject.isFBXAnimStack) ;
-	}
+    fbxFile.getRecordByName(FBX_RECORD_NAME_TAKES);
+    let srcObjects = fbxScene.srcObjects;
+    for (let srcObject of srcObjects) {
+        if (srcObject.isFBXAnimStack) ;
+    }
 }
-
-function exportFBXPose(fbxFile, fbxPose, nodesReferences, nodesConnections) {
-	let objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
-	objectsRecord.addChild(fbxPoseToRecord(fbxPose));
+function exportFBXPose(fbxFile, fbxPose) {
+    let objectsRecord = fbxFile.getRecordByName(FBX_RECORD_NAME_OBJECTS);
+    objectsRecord.addChild(fbxPoseToRecord(fbxPose));
 }
+const FBX_TC_MILLISECOND = 141120n;
+const FBX_TC_SECOND = FBX_TC_MILLISECOND * 1000n;
+const FBX_TC_MINUTE = FBX_TC_SECOND * 60n;
+const FBX_TC_HOUR = FBX_TC_MINUTE * 60n;
 
-//Rotation of child is applied before parent's scaling
-//Scaling of parent is applied before rotation of child
-const FBX_INHERIT_TYPE_PARENT_SCALING_FIRST = 1;
+var MappingMode;
+(function (MappingMode) {
+    MappingMode[MappingMode["None"] = 0] = "None";
+    MappingMode[MappingMode["ControlPoint"] = 1] = "ControlPoint";
+    MappingMode[MappingMode["PolygonVertex"] = 2] = "PolygonVertex";
+    MappingMode[MappingMode["Polygon"] = 3] = "Polygon";
+    MappingMode[MappingMode["Edge"] = 4] = "Edge";
+    MappingMode[MappingMode["AllSame"] = 5] = "AllSame";
+})(MappingMode || (MappingMode = {}));
 
-const FBX_NODE_ATTRIBUTE_TYPE_UNKNOWN = 0;
-const FBX_NODE_ATTRIBUTE_TYPE_SKELETON = 3;
-const FBX_NODE_ATTRIBUTE_TYPE_CAMERA = 7;
+var ReferenceMode;
+(function (ReferenceMode) {
+    ReferenceMode[ReferenceMode["Direct"] = 0] = "Direct";
+    ReferenceMode[ReferenceMode["Index"] = 1] = "Index";
+    ReferenceMode[ReferenceMode["IndexToDirect"] = 2] = "IndexToDirect";
+})(ReferenceMode || (ReferenceMode = {}));
 
-const FBX_PROPERTY_FLAG_STATIC = 1 << 0;
-
+var SkeletonType;
+(function (SkeletonType) {
+    SkeletonType[SkeletonType["Root"] = 0] = "Root";
+    SkeletonType[SkeletonType["Limb"] = 1] = "Limb";
+    SkeletonType[SkeletonType["LimbNode"] = 2] = "LimbNode";
+    SkeletonType[SkeletonType["Effector"] = 3] = "Effector";
+})(SkeletonType || (SkeletonType = {}));
 const FBX_SKELETON_TYPE_LIMB = 1;
 
-const FBX_SKINNING_TYPE_LINEAR = 1;
+var TimeMode;
+(function (TimeMode) {
+    TimeMode[TimeMode["Default"] = 0] = "Default";
+    TimeMode[TimeMode["Frames120"] = 1] = "Frames120";
+    TimeMode[TimeMode["Frames100"] = 2] = "Frames100";
+    TimeMode[TimeMode["Frames60"] = 3] = "Frames60";
+    TimeMode[TimeMode["Frames50"] = 4] = "Frames50";
+    TimeMode[TimeMode["Frames48"] = 5] = "Frames48";
+    TimeMode[TimeMode["Frames30"] = 6] = "Frames30";
+    TimeMode[TimeMode["Frames30Drop"] = 7] = "Frames30Drop";
+    TimeMode[TimeMode["NtscDropFrame"] = 8] = "NtscDropFrame";
+    TimeMode[TimeMode["NtscFullFrame"] = 9] = "NtscFullFrame";
+    TimeMode[TimeMode["Pal"] = 10] = "Pal";
+    TimeMode[TimeMode["Frames24"] = 11] = "Frames24";
+    TimeMode[TimeMode["Frames1000"] = 12] = "Frames1000";
+    TimeMode[TimeMode["FilmFullFrame"] = 13] = "FilmFullFrame";
+    TimeMode[TimeMode["Custom"] = 14] = "Custom";
+    TimeMode[TimeMode["Frames96"] = 15] = "Frames96";
+    TimeMode[TimeMode["Frames72"] = 16] = "Frames72";
+    TimeMode[TimeMode["Frames59_94"] = 17] = "Frames59_94";
+    TimeMode[TimeMode["Frames119_88"] = 18] = "Frames119_88";
+})(TimeMode || (TimeMode = {}));
+// TODO: remove those
+const FBX_TIME_MODE_DEFAULT = 0;
+const FBX_TIME_MODE_FRAMES = [
+    30,
+    120,
+    100,
+    60,
+    50,
+    48,
+    30,
+    30,
+    29.97,
+    29.97,
+    25,
+    24,
+    1000,
+    23.976,
+    -1,
+    96,
+    72,
+    59.94,
+    119.88,
+];
 
-class FBXManager {
-	#objects = new Set();
-	#documents = new Set();
-	static #registry = new Map();
+var TimeProtocol;
+(function (TimeProtocol) {
+    TimeProtocol[TimeProtocol["Smpte"] = 0] = "Smpte";
+    TimeProtocol[TimeProtocol["FrameCount"] = 1] = "FrameCount";
+    TimeProtocol[TimeProtocol["Default"] = 2] = "Default";
+})(TimeProtocol || (TimeProtocol = {}));
 
-	constructor() {
-		this.isFBXManager = true;
-	}
-
-	destroy() {
-		this.#objects.clear();
-		this.#documents.clear();
-	}
-
-	static registerClass(className, classConstructor) {
-		FBXManager.#registry.set(className, classConstructor);
-	}
-
-	createObject(className, objectName, ...args) {
-		const classConstructor = FBXManager.#registry.get(className);
-		if (!classConstructor) {
-			throw 'Unknown constructor in FBXManager.createObject(): ' + className;
-		}
-
-		const createdObject = new classConstructor(this, objectName, ...args);
-		if (createdObject) {
-			if (createdObject.isFBXDocument) {
-				this.#documents.add(createdObject);
-			} else {
-				this.#objects.add(createdObject);
-			}
-		}
-		return createdObject;
-	}
-
+class FBXTime {
+    static #globalTimeMode = TimeMode.Frames30;
+    static #globalTimeProtocol = TimeProtocol.FrameCount;
+    #time = 0n;
+    constructor(time = 0n) {
+        this.time = time;
+    }
+    set time(time) {
+        this.#time = time;
+    }
+    get time() {
+        return this.#time;
+    }
+    copy(other) {
+        this.#time = other.#time;
+    }
+    static setGlobalTimeMode(timeMode, frameRate = 0) {
+        FBXTime.#globalTimeMode = timeMode;
+    }
+    static getGlobalTimeMode() {
+        return FBXTime.#globalTimeMode;
+    }
+    static setGlobalTimeProtocol(timeProtocol) {
+        FBXTime.#globalTimeProtocol = timeProtocol;
+    }
+    static getGlobalTimeProtocol() {
+        return FBXTime.#globalTimeProtocol;
+    }
+    static getFrameRate(timeMode) {
+        const frameRate = FBX_TIME_MODE_FRAMES[timeMode];
+        if (frameRate === -1) {
+            throw 'return global frame rate';
+        }
+        else {
+            return frameRate;
+        }
+    }
+    static convertFrameRateToTimeMode(frameRate, precision = 1e-8) {
+        const lowRate = frameRate - precision;
+        const highRate = frameRate + precision;
+        for (let i = 1, l = FBX_TIME_MODE_FRAMES.length; i < l; ++i) {
+            const targetFrameRate = FBX_TIME_MODE_FRAMES[i];
+            if ((targetFrameRate >= lowRate) && (targetFrameRate <= highRate)) {
+                return i;
+            }
+        }
+        return FBX_TIME_MODE_DEFAULT;
+    }
+    static getOneFrameValue(timeMode) {
+        const frameRate = FBXTime.getFrameRate(timeMode);
+        return BigInt(Math.round(Number(FBX_TC_SECOND) / frameRate));
+    }
+    setMilliSeconds(milliSeconds) {
+        this.#time = BigInt(milliSeconds) * FBX_TC_MILLISECOND;
+    }
+    getMilliSeconds() {
+        return this.#time / FBX_TC_MILLISECOND;
+    }
+    setSecondDouble(seconds) {
+        this.#time = BigInt(Math.round(Number(FBX_TC_SECOND) * seconds));
+    }
+    getSecondDouble() {
+        return Number(this.#time) / Number(FBX_TC_SECOND);
+    }
+    setTime(hour, minute, second, frame = 0, field = 0, timeMode = FBX_TIME_MODE_DEFAULT) {
+        this.#time = BigInt(hour) * FBX_TC_HOUR +
+            BigInt(minute) * FBX_TC_MINUTE +
+            BigInt(second) * FBX_TC_SECOND +
+            BigInt(frame) * FBXTime.getOneFrameValue(timeMode);
+    }
 }
 
-// I'm not sure there is reserved ids, let's start big
-let uniqueId = 1000000n;
-
-function getUniqueId() {
-	return ++uniqueId;
+class FBXAnimCurveKey {
+    #time = new FBXTime();
+    #value = 0;
+    isFBXAnimCurveKey = true;
+    constructor(time, value) {
+        this.#set(time, value);
+    }
+    set(time, value) {
+        this.#set(time, value);
+    }
+    #set(time, value) {
+        if (time) {
+            this.#time.copy(time);
+        }
+        if (value !== undefined) {
+            this.#value = value;
+        }
+    }
+    get time() {
+        return this.#time;
+    }
 }
 
-class FBXObject {
-	#id = getUniqueId();
-	#name = '';
-	#srcObjects = new Set();
-	#rootProperty;
-	#manager;
-	constructor(manager, name = '') {
-		if (!manager.isFBXManager) {
-			console.trace('Missing manager in FBXObject');
-			throw 'Missing manager in FBXObject';
-		}
-		this.#manager = manager;
-		this.name = name;
-		this.#rootProperty = new FBXProperty(this);
-	}
-
-	set id(id) {
-		this.#id = id;
-	}
-
-	get id() {
-		return this.#id;
-	}
-
-	set name(name) {
-		this.#name = name;
-	}
-
-	get name() {
-		return this.#name;
-	}
-
-	get rootProperty() {
-		return this.#rootProperty;
-	}
-
-	get manager() {
-		return this.#manager;
-	}
-
-	connectSrcObject(fbxObject) {
-		//TODO: add connection type ?
-		if (!fbxObject.isFBXObject) {
-			throw 'connectSrcObject: fbxObject must be a FBXObject';
-		}
-		this.#srcObjects.add(fbxObject);
-	}
-
-	get srcObjects() {
-		return this.#srcObjects;
-	}
-
-	createProperty(type, name, value, flags) {
-		return new FBXProperty(this.#rootProperty, type, name, value, flags);
-	}
-
-	getAllProperties() {
-		return this.#rootProperty.getAllProperties(false);
-	}
-
-	findProperty(propertyName) {
-		return this.#rootProperty.findProperty(propertyName);
-	}
-}
-FBXObject.prototype.isFBXObject = true;
-
-class FBXAnimCurve extends FBXObject {
-	#keys = new Map();
-	constructor(manager, name) {
-		super(manager, name);
-		this.isFBXAnimCurve = true;
-	}
-
-	addKey(animCurveKey) {
-		this.#keys.set(animCurveKey.time.time, animCurveKey);
-	}
-}
-FBXManager.registerClass('FBXAnimCurve', FBXAnimCurve);
-
-class FBXAnimCurveNode extends FBXObject {
-	#channels;
-	constructor(manager, name) {
-		super(manager, name);
-		this.isFBXAnimCurveNode = true;
-		this.#channels = this.createProperty(FBX_PROPERTY_TYPE_COMPOUND, 'd', null, FBX_PROPERTY_FLAG_STATIC);
-	}
-
-	isAnimated(recurse = false) {
-		throw 'Code me';
-	}
-
-	createTypedCurveNode(property, scene) {
-		throw 'Code me';
-	}
-
-	addChannel(type, name, value, flags) {
-		return this.#channels.createProperty(type, name, value, flags);
-	}
-}
-FBXManager.registerClass('FBXAnimCurveNode', FBXAnimCurveNode);
-
-class FBXCollection extends FBXObject {
-	#members = new Set();
-	constructor(manager, name) {
-		super(manager, name);
-		this.isFBXCollection = true;
-	}
-
-	add(member) {
-		if (!member.isFBXObject) {
-			throw 'member must be an FBXObject';
-		}
-		this.#members.add(member);
-	}
-
-	remove(member) {
-		this.#members.delete(member);
-	}
-
-	get count() {
-		return this.#members.size;
-	}
-
-	get members() {
-		return this.#members;
-	}
+class FBXLayer {
+    isFBXLayer = true;
 }
 
-class FBXAnimLayer extends FBXCollection {
-	//TODO: add Properties
-
-				/*P: "Weight", "Number", "", "A",100
-				P: "Mute", "bool", "", "",0
-				P: "Solo", "bool", "", "",0
-				P: "Lock", "bool", "", "",0
-				P: "Color", "ColorRGB", "Color", "",0.8,0.8,0.8
-				P: "BlendMode", "enum", "", "",0
-				P: "RotationAccumulationMode", "enum", "", "",0
-				P: "ScaleAccumulationMode", "enum", "", "",0
-				P: "BlendModeBypass", "ULongLong", "", "",0*/
-	constructor(manager, name) {
-		super(manager, name);
-		this.isFBXAnimLayer = true;
-	}
-}
-FBXManager.registerClass('FBXAnimLayer', FBXAnimLayer);
-
-class FBXAnimStack extends FBXCollection {
-	#description;
-	#localStart;
-	#localStop;
-	#referenceStart;
-	#referenceStop;
-
-	constructor(manager, name) {
-		super(manager, name);
-		this.isFBXAnimStack = true;
-		this.#description = this.createProperty(FBX_PROPERTY_TYPE_STRING, 'Description', '', FBX_PROPERTY_FLAG_STATIC);
-		this.#localStart = this.createProperty(FBX_PROPERTY_TYPE_TIME, 'LocalStart', 0, FBX_PROPERTY_FLAG_STATIC);
-		this.#localStop = this.createProperty(FBX_PROPERTY_TYPE_TIME, 'LocalStop', 0, FBX_PROPERTY_FLAG_STATIC);
-		this.#referenceStart = this.createProperty(FBX_PROPERTY_TYPE_TIME, 'ReferenceStart', 0, FBX_PROPERTY_FLAG_STATIC);
-		this.#referenceStop = this.createProperty(FBX_PROPERTY_TYPE_TIME, 'ReferenceStop', 0, FBX_PROPERTY_FLAG_STATIC);
-	}
-}
-FBXManager.registerClass('FBXAnimStack', FBXAnimStack);
-
-class FBXAxisSystem {
-	#upAxis;
-	#frontAxis;
-	constructor(upAxis, frontAxis) {
-		this.#upAxis = upAxis;
-		this.#frontAxis = frontAxis;
-	}
-
-	set upAxis(upAxis) {
-		this.#upAxis = upAxis;
-	}
-
-	get upAxis() {
-		return this.#upAxis;
-	}
-
-	set frontAxis(frontAxis) {
-		this.#frontAxis = frontAxis;
-	}
-
-	get frontAxis() {
-		return this.#frontAxis;
-	}
-
-	get coordAxis() {
-		return this.#frontAxis;
-	}
-}
-FBXAxisSystem.prototype.isFBXAxisSystem = true;
-
-class FBXNodeAttribute extends FBXObject {
-	constructor(manager, name) {
-		super(manager, name);
-		this.isFBXNodeAttribute = true;
-	}
-
-	getAttributeType() {
-		return FBX_NODE_ATTRIBUTE_TYPE_UNKNOWN;
-	}
+class FBXLayerElement {
+    #mappingMode = MappingMode.AllSame;
+    #referenceMode = ReferenceMode.Direct;
+    #name = '';
+    isFBXLayerElement = true;
+    constructor(name = '') {
+        this.name = name;
+    }
+    set mappingMode(mappingMode) {
+        this.#mappingMode = mappingMode;
+    }
+    get mappingMode() {
+        return this.#mappingMode;
+    }
+    set referenceMode(referenceMode) {
+        this.#referenceMode = referenceMode;
+    }
+    get referenceMode() {
+        return this.#referenceMode;
+    }
+    set name(name) {
+        this.#name = name;
+    }
+    get name() {
+        return this.#name;
+    }
 }
 
-class FBXCamera extends FBXNodeAttribute {
-	#position;
-	#upVector;
-	#interestPosition;
-	#roll;
-	//#opticalCenterX;
-	//#opticalCenterY;
-	#nearPlane;
-	#farPlane;
-	#projectionType;
-	#orthoZoom;
-	constructor(manager, name) {
-		super(manager, name);
-		this.isFBXCamera = true;
-
-		this.#position = this.createProperty(FBX_PROPERTY_TYPE_DOUBLE_3, 'Position', [0, 0, 0], FBX_PROPERTY_FLAG_STATIC);
-		this.#upVector = this.createProperty(FBX_PROPERTY_TYPE_DOUBLE_3, 'UpVector', [0, 0, 0], FBX_PROPERTY_FLAG_STATIC);
-		this.#interestPosition = this.createProperty(FBX_PROPERTY_TYPE_DOUBLE_3, 'InterestPosition', [0, 0, 0], FBX_PROPERTY_FLAG_STATIC);
-		this.#roll = this.createProperty(FBX_PROPERTY_TYPE_DOUBLE, 'Roll', 0, FBX_PROPERTY_FLAG_STATIC);
-		//this.#opticalCenterX = this.createProperty(FBX_PROPERTY_TYPE_DOUBLE, 'OpticalCenterX', 0, FBX_PROPERTY_FLAG_STATIC);
-		//this.#opticalCenterY = this.createProperty(FBX_PROPERTY_TYPE_DOUBLE, 'OpticalCenterY', 0, FBX_PROPERTY_FLAG_STATIC);
-		this.#nearPlane = this.createProperty(FBX_PROPERTY_TYPE_DOUBLE, 'NearPlane', 0, FBX_PROPERTY_FLAG_STATIC);
-		this.#farPlane = this.createProperty(FBX_PROPERTY_TYPE_DOUBLE, 'FarPlane', 0, FBX_PROPERTY_FLAG_STATIC);
-		this.#projectionType = this.createProperty(FBX_PROPERTY_TYPE_ENUM, 'CameraProjectionType', 0, FBX_PROPERTY_FLAG_STATIC);
-		this.#orthoZoom = this.createProperty(FBX_PROPERTY_TYPE_DOUBLE, 'OrthoZoom', 1, FBX_PROPERTY_FLAG_STATIC);
-	}
-
-	set position(position) {
-		this.#position = position;
-	}
-
-	get position() {
-		return this.#position;
-	}
-
-	set upVector(upVector) {
-		this.#upVector = upVector;
-	}
-
-	get upVector() {
-		return this.#upVector;
-	}
-
-	set interestPosition(interestPosition) {
-		this.#interestPosition = interestPosition;
-	}
-
-	get interestPosition() {
-		return this.#interestPosition;
-	}
-
-	set roll(roll) {
-		this.#roll = roll;
-	}
-
-	get roll() {
-		return this.#roll;
-	}
-
-	set nearPlane(nearPlane) {
-		this.#nearPlane = nearPlane;
-	}
-
-	get nearPlane() {
-		return this.#nearPlane;
-	}
-
-	set farPlane(farPlane) {
-		this.#farPlane = farPlane;
-	}
-
-	get farPlane() {
-		return this.#farPlane;
-	}
-
-	set projectionType(projectionType) {
-		this.#projectionType = projectionType;
-	}
-
-	get projectionType() {
-		return this.#projectionType;
-	}
-
-	set orthoZoom(orthoZoom) {
-		this.#orthoZoom = orthoZoom;
-	}
-
-	get orthoZoom() {
-		return this.#orthoZoom;
-	}
-
-	getAttributeType() {
-		return FBX_NODE_ATTRIBUTE_TYPE_CAMERA;
-	}
-}
-FBXManager.registerClass('FBXCamera', FBXCamera);
-
-const FBX_SUB_DEFORMER_TYPE_UNKNOWN = 0;
-const FBX_SUB_DEFORMER_TYPE_CLUSTER = 1;
-
-class FBXSubDeformer extends FBXObject {
-	constructor(manager, name) {
-		super(manager, name);
-		this.isFBXSubDeformer = true;
-	}
-
-	get subDeformerType() {
-		return FBX_SUB_DEFORMER_TYPE_UNKNOWN;
-	}
+class FBXLayerElementTemplate extends FBXLayerElement {
+    #directArray = [];
+    #indexArray = [];
+    isFBXLayerElementTemplate = true;
+    get directArray() {
+        return this.#directArray;
+    }
+    get indexArray() {
+        return this.#indexArray;
+    }
 }
 
-const FBX_LINK_MODE_NORMALIZE = 0;
-
-class FBXCluster extends FBXSubDeformer {
-	#linkMode = FBX_LINK_MODE_NORMALIZE;
-	#link;
-	#indexes = [];
-	#weights = [];
-	#transformMatrix = create$5();
-	#transformLinkMatrix = create$5();
-	#transformParentMatrix;
-	constructor(manager, name) {
-		super(manager, name);
-		this.isFBXCluster = true;
-	}
-
-	set linkMode(linkMode) {
-		this.#linkMode = linkMode;
-	}
-
-	get linkMode() {
-		return this.#linkMode;
-	}
-
-	set link(link) {
-		this.#link = link;
-	}
-
-	get link() {
-		return this.#link;
-	}
-
-	addVertexIndex(index, weight) {
-		this.#indexes.push(index);
-		this.#weights.push(weight);
-	}
-
-	get indexes() {
-		return this.#indexes;
-	}
-
-	get weights() {
-		return this.#weights;
-	}
-
-	get subDeformerType() {
-		return FBX_SUB_DEFORMER_TYPE_CLUSTER;
-	}
-
-	set transformMatrix(transformMatrix) {
-		copy$5(this.#transformMatrix, transformMatrix);
-	}
-
-	get transformMatrix() {
-		return clone$5(this.#transformMatrix);
-	}
-
-	set transformLinkMatrix(transformLinkMatrix) {
-		copy$5(this.#transformLinkMatrix, transformLinkMatrix);
-	}
-
-	get transformLinkMatrix() {
-		return clone$5(this.#transformLinkMatrix);
-	}
-
-	set transformParentMatrix(transformParentMatrix) {
-		this.#transformParentMatrix = transformParentMatrix;
-	}
-
-	get transformParentMatrix() {
-		return this.#transformParentMatrix;
-	}
+class FBXLayerElementMaterial extends FBXLayerElementTemplate {
+    isFBXLayerElementMaterial = true;
 }
-FBXManager.registerClass('FBXCluster', FBXCluster);
-
-class FBXColor {
-	#red;
-	#green;
-	#blue;
-	#alpha;
-	constructor(red = 0.0, green = 0.0, blue = 0.0, alpha = 1.0) {
-		this.#red = red;
-		this.#green = green;
-		this.#blue = blue;
-		this.#alpha = alpha;
-	}
-
-	set red(red) {
-		this.#red = red;
-	}
-
-	get red() {
-		return this.#red;
-	}
-
-	set green(green) {
-		this.#green = green;
-	}
-
-	get green() {
-		return this.#green;
-	}
-
-	set blue(blue) {
-		this.#blue = blue;
-	}
-
-	get blue() {
-		return this.#blue;
-	}
-
-	set alpha(alpha) {
-		this.#alpha = alpha;
-	}
-
-	get alpha() {
-		return this.#alpha;
-	}
-}
-FBXColor.prototype.isFBXColor = true;
-
-class FBXGlobalSettings extends FBXObject {
-	#ambientColor = new FBXColor();
-	#defaultCamera = '';
-	#axisSystem = new FBXAxisSystem(2, 1);
-	constructor(manager, name) {
-		super(manager, name);
-		this.isFBXGlobalSettings = true;
-	}
-
-	set ambientColor(ambientColor) {
-		if (!ambientColor.isFBXColor) {
-			throw 'ambientColor must be a FBXColor';
-		}
-		this.#ambientColor = ambientColor;
-	}
-
-	get ambientColor() {
-		return this.#ambientColor;
-	}
-
-	set defaultCamera(defaultCamera) {
-		this.#defaultCamera = defaultCamera;
-	}
-
-	get defaultCamera() {
-		return this.#defaultCamera;
-	}
-}
-FBXManager.registerClass('FBXGlobalSettings', FBXGlobalSettings);
-
-class FBXLayerContainer extends FBXNodeAttribute {
-	constructor(manager, name) {
-		super(manager, name);
-		this.isFBXLayerContainer = true;
-	}
-}
-
-class FBXGeometryBase extends FBXLayerContainer {
-	constructor(manager, name) {
-		super(manager, name);
-		this.isFBXGeometryBase = true;
-	}
-}
-
-class FBXGeometry extends FBXGeometryBase {
-	#deformers = new Set();
-	constructor(manager, name) {
-		super(manager, name);
-		this.isFBXGeometry = true;
-	}
-
-	addDeformer(deformer) {
-		if (!deformer.isFBXDeformer) {
-			throw 'deformer must be of type FBXDeformer';
-		}
-
-		this.#deformers.add(deformer);
-	}
-
-	removeDeformer(deformer) {
-		if (!deformer.isFBXDeformer) {
-			throw 'deformer must be of type FBXDeformer';
-		}
-
-		this.#deformers.delete(deformer);
-	}
-
-	get deformers() {
-		return this.#deformers;
-	}
-}
-
-class FBXMesh extends FBXGeometry {
-	#vertices = [];
-	#normals = [];
-	#polygons = [];
-	#edges = [];
-	#uv = [];
-	#uvIndex = [];
-	constructor(manager, name) {
-		super(manager, name);
-		this.isFBXMesh = true;
-	}
-
-	set vertices(vertices) {
-		this.#vertices = vertices;
-	}
-
-	get vertices() {
-		return this.#vertices;
-	}
-
-	set normals(normals) {
-		this.#normals = normals;
-	}
-
-	get normals() {
-		return this.#normals;
-	}
-
-	set polygons(polygons) {
-		this.#polygons = polygons;
-	}
-
-	get polygons() {
-		return this.#polygons;
-	}
-
-	set edges(edges) {
-		this.#edges = edges;
-	}
-
-	get edges() {
-		return this.#edges;
-	}
-
-	set uv(uv) {
-		this.#uv = uv;
-	}
-
-	get uv() {
-		return this.#uv;
-	}
-
-	set uvIndex(uvIndex) {
-		this.#uvIndex = uvIndex;
-	}
-
-	get uvIndex() {
-		return this.#uvIndex;
-	}
-}
-FBXManager.registerClass('FBXMesh', FBXMesh);
-
-class FBXNode extends FBXObject {
-	#parent;
-	#childs = new Set();
-	#materials = [];
-	#nodeAttribute;
-	#inheritType = FBX_INHERIT_TYPE_PARENT_SCALING_FIRST;
-
-	#show;
-	#localTranslation;
-	#localRotation;
-	#localScaling;
-
-	constructor(manager, name) {
-		super(manager, name);
-		this.isFBXNode = true;
-		this.#show = this.createProperty(FBX_PROPERTY_TYPE_BOOL, 'Show', 1.0, FBX_PROPERTY_FLAG_STATIC);
-		this.#localTranslation = this.createProperty(FBX_PROPERTY_TYPE_DOUBLE_3, 'Lcl Translation', [0, 0, 0], FBX_PROPERTY_FLAG_STATIC);
-		this.#localRotation = this.createProperty(FBX_PROPERTY_TYPE_DOUBLE_3, 'Lcl Rotation', [0, 0, 0], FBX_PROPERTY_FLAG_STATIC);
-		this.#localScaling = this.createProperty(FBX_PROPERTY_TYPE_DOUBLE_3, 'Lcl Scaling', [1, 1, 1], FBX_PROPERTY_FLAG_STATIC);
-	}
-
-	set parent(parent) {
-		if (this.#checkParent(parent)) {
-			if (this.#parent) {
-				this.#parent.#childs.delete(this);
-			}
-			this.#parent = parent;
-			if (parent) {
-				parent.#childs.add(this);
-			}
-		} else {
-			console.log(this, parent);
-			throw 'Invalid parent';
-		}
-	}
-
-	addChild(child) {
-		if (!child.isFBXNode) {
-			throw 'Child is not FBXNode';
-		}
-		child.parent = this;
-	}
-
-	removeChild(child) {
-		if (!child.isFBXNode) {
-			throw 'Child is not FBXNode';
-		}
-		child.parent = null;
-	}
-
-	get childs() {
-		return this.#childs;
-	}
-
-	get parent() {
-		return this.#parent;
-	}
-
-	#checkParent(parent) {
-		if (parent === null) {
-			return true;
-		}
-		if (!parent.isFBXNode) {
-			console.log('Parent is not FBXNode');
-			return false;
-		}
-
-		let current = parent;
-		for (;;) {
-			if (current == this) {
-				console.log('Parent hierarchy contains self');
-				return false;
-			}
-			if (!(current = current.parent)) {
-				break;
-			}
-		}
-		return true;
-	}
-
-	set nodeAttribute(nodeAttribute) {
-		if (!nodeAttribute.isFBXNodeAttribute) {
-			throw 'nodeAttribute must be of type FBXNodeAttribute';
-		}
-		this.#nodeAttribute = nodeAttribute;
-	}
-
-	get nodeAttribute() {
-		return this.#nodeAttribute;
-	}
-
-	set inheritType(inheritType) {
-		this.#inheritType = inheritType;
-	}
-
-	get inheritType() {
-		return this.#inheritType;
-	}
-
-	set show(show) {
-		this.#show.value = show;
-	}
-
-	get show() {
-		return this.#show.value;
-	}
-
-	set localTranslation(localTranslation) {
-		this.#localTranslation = localTranslation;
-	}
-
-	get localTranslation() {
-		return this.#localTranslation;
-	}
-
-	set localRotation(localRotation) {
-		this.#localRotation = localRotation;
-	}
-
-	get localRotation() {
-		return this.#localRotation;
-	}
-
-	set localScaling(localScaling) {
-		this.#localScaling = localScaling;
-	}
-
-	get localScaling() {
-		return this.#localScaling;
-	}
-
-	addMaterial(surfaceMaterial) {
-		if (!surfaceMaterial.isFBXSurfaceMaterial ) {
-			throw 'surfaceMaterial must be of type FBXSurfaceMaterial';
-		}
-		this.#materials.push(surfaceMaterial);
-	}
-
-	get materials() {
-		return this.#materials;
-	}
-
-	toJSON() {
-		return {
-		}
-	}
-}
-FBXManager.registerClass('FBXNode', FBXNode);
-
-class FBXPoseInfo {
-	#matrix;
-	#matrixIsLocal = false;
-	#node;
-	constructor(node, matrix, matrixIsLocal) {
-		this.node = node;
-		this.matrix = matrix;
-		this.matrixIsLocal = matrixIsLocal;
-	}
-
-	set matrix(matrix) {
-		this.#matrix = matrix;
-	}
-
-	get matrix() {
-		return this.#matrix;
-	}
-
-	set matrixIsLocal(matrixIsLocal) {
-		this.#matrixIsLocal = matrixIsLocal;
-	}
-
-	get matrixIsLocal() {
-		return this.#matrixIsLocal;
-	}
-
-	set node(node) {
-		this.#node = node;
-	}
-
-	get node() {
-		return this.#node;
-	}
-}
-
-class FBXPose extends FBXObject {
-	#isBindPose = true;
-	#poseInfos = [];
-	constructor(manager, name) {
-		super(manager, name);
-		this.isFBXPose = true;
-	}
-
-	set isBindPose(isBindPose) {
-		this.#isBindPose = isBindPose;
-	}
-
-	get isBindPose() {
-		return this.#isBindPose;
-	}
-
-	get isRestPose() {
-		return !this.#isBindPose;
-	}
-
-	add(node, matrix, matrixIsLocal) {
-		this.#poseInfos.push(new FBXPoseInfo(node, matrix, matrixIsLocal));
-	}
-
-	get poseInfos() {
-		return this.#poseInfos;
-	}
-}
-FBXManager.registerClass('FBXPose', FBXPose);
-
-class FBXDocument extends FBXCollection {
-	#documentInfo;
-	constructor(manager, name) {
-		super(manager, name);
-		this.isFBXDocument = true;
-	}
-
-	set documentInfo(documentInfo) {
-		if (!documentInfo.isFBXDocumentInfo) {
-			throw 'documentInfo must be of type FBXDocumentInfo';
-		}
-		this.#documentInfo = documentInfo;
-	}
-
-	get documentInfo() {
-		return this.#documentInfo;
-	}
-}
-
-class FBXScene extends FBXDocument {
-	#rootNode;
-	#globalSettings;
-	#sceneInfo;
-	#objects = new Set();
-	constructor(manager, name) {
-		super(manager, name);
-		this.isFBXScene = true;
-		this.#rootNode = manager.createObject('FBXNode', 'Root node. This node is not saved');
-		this.#globalSettings = manager.createObject('FBXGlobalSettings', 'TODO: name me FBXScene / #globalSettings');
-		this.#rootNode.id = 0;
-	}
-
-	set sceneInfo(sceneInfo) {
-		if (!sceneInfo.isFBXDocumentInfo) {
-			throw 'sceneInfo must be of type FBXDocumentInfo';
-		}
-		this.#sceneInfo = sceneInfo;
-	}
-
-	get sceneInfo() {
-		return this.#sceneInfo;
-	}
-
-	get rootNode() {
-		return this.#rootNode;
-	}
-
-	get globalSettings() {
-		return this.#globalSettings;
-	}
-
-	addObject(object) {
-		if (!object.isFBXObject) {
-			throw 'object must be of type FBXObject';
-		}
-		this.#objects.add(object);
-	}
-
-	get objects() {
-		return this.#objects;
-	}
-}
-FBXManager.registerClass('FBXScene', FBXScene);
-
-class FBXSkeleton extends FBXNodeAttribute {
-	#skeletonType;
-	constructor(manager, name, skeletonType) {
-		super(manager, name);
-		this.isFBXSkeleton = true;
-		this.skeletonType = skeletonType;
-	}
-
-	set skeletonType(skeletonType) {
-		this.#skeletonType = skeletonType;
-	}
-
-	get skeletonType() {
-		return this.#skeletonType;
-	}
-
-	getAttributeType() {
-		return FBX_NODE_ATTRIBUTE_TYPE_SKELETON;
-	}
-}
-FBXManager.registerClass('FBXSkeleton', FBXSkeleton);
-
-const FBX_DEFORMER_TYPE_UNKNOWN = 0;
-const FBX_DEFORMER_TYPE_SKIN = 1;
-
-class FBXDeformer extends FBXObject {
-	constructor(manager, name) {
-		super(manager, name);
-		this.isFBXDeformer = true;
-	}
-
-	get deformerType() {
-		return FBX_DEFORMER_TYPE_UNKNOWN;
-	}
-}
-
-class FBXSkin extends FBXDeformer {
-	#geometry;
-	#skinningType = FBX_SKINNING_TYPE_LINEAR;
-	#clusters = new Set();
-	constructor(manager, name) {
-		super(manager, name);
-		this.isFBXSkin = true;
-	}
-
-	set geometry(geometry) {
-		if (geometry && !geometry.isFBXGeometry) {
-			throw 'geometry must be of type FBXGeometry';
-		}
-		if (this.#geometry) {
-			this.#geometry.removeDeformer(this);
-		}
-		if (geometry) {
-			geometry.addDeformer(this);
-		}
-		this.#geometry = geometry;
-	}
-
-	get geometry() {
-		return this.#geometry;
-	}
-
-	set skinningType(skinningType) {
-		this.#skinningType = skinningType;
-	}
-
-	get skinningType() {
-		return this.#skinningType;
-	}
-
-	addCluster(fbxCluster) {
-		this.#clusters.add(fbxCluster);
-	}
-
-	removeCluster(fbxCluster) {
-		this.#clusters.delete(fbxCluster);
-	}
-
-	get clusters() {
-		return this.#clusters;
-	}
-
-	get deformerType() {
-		return FBX_DEFORMER_TYPE_SKIN;
-	}
-}
-FBXManager.registerClass('FBXSkin', FBXSkin);
-
-class FBXSurfaceMaterial extends FBXObject {
-	#shadingModel;
-	#multiLayer;
-	constructor(manager, name) {
-		super(manager, name);
-		this.isFBXSurfaceMaterial = true;
-
-		this.#shadingModel = this.createProperty(FBX_PROPERTY_TYPE_STRING, 'ShadingModel', 'Unknown', FBX_PROPERTY_FLAG_STATIC);
-		this.#multiLayer = this.createProperty(FBX_PROPERTY_TYPE_BOOL, 'MultiLayer', false, FBX_PROPERTY_FLAG_STATIC);
-	}
-
-	set shadingModel(shadingModel) {
-		this.#shadingModel.value = shadingModel;
-	}
-
-	get shadingModel() {
-		return this.#shadingModel.value;
-	}
-
-	set multiLayer(multiLayer) {
-		this.#multiLayer.value = multiLayer;
-	}
-
-	get multiLayer() {
-		return this.#multiLayer.value;
-	}
-}
-FBXManager.registerClass('FBXSurfaceMaterial', FBXSurfaceMaterial);
-
-class FBXSurfaceLambert extends FBXSurfaceMaterial {
-	#diffuse;
-	constructor(manager, name) {
-		super(manager, name);
-		this.isFBXSurfaceLambert = true;
-		this.shadingModel = 'Lambert';
-		this.#diffuse = this.createProperty(FBX_PROPERTY_TYPE_COLOR_3, 'DiffuseColor', [0.2, 0.2, 0.2], FBX_PROPERTY_FLAG_STATIC);
-	}
-
-	set diffuse(diffuse) {
-		console.assert(diffuse.isFBXProperty && diffuse.type == FBX_PROPERTY_TYPE_COLOR_3, "diffuse is not an FBXProperty");
-		this.#diffuse = diffuse;
-	}
-
-	get diffuse() {
-		return this.#diffuse;
-	}
-}
-FBXManager.registerClass('FBXSurfaceLambert', FBXSurfaceLambert);
-
-class FBXSurfacePhong extends FBXSurfaceLambert {
-	constructor(manager, name) {
-		super(manager, name);
-		this.isFBXSurfacePhong = true;
-		this.shadingModel = 'Phong';
-	}
-}
-FBXManager.registerClass('FBXSurfacePhong', FBXSurfacePhong);
-
-class FBXTexture extends FBXObject {
-	#media;
-	#type = 'TextureVideoClip';
-	constructor(manager, name) {
-		super(manager, name);
-		this.isFBXTexture = true;
-	}
-
-	set type(type) {
-		throw 'We might want to check the exporter if we change the type';
-	}
-
-	get type() {
-		return this.#type;
-	}
-
-	set media(media) {
-		this.#media = media;
-	}
-
-	get media() {
-		return this.#media;
-	}
-
-}
-FBXManager.registerClass('FBXTexture', FBXTexture);
-
-class FBXVideo extends FBXObject {
-	#content;
-	#type = 'Clip';
-	constructor(manager, name) {
-		super(manager, name);
-		this.isFBXVideo = true;
-	}
-
-	set content(content) {
-		this.#content = content;
-	}
-
-	get content() {
-		return this.#content;
-	}
-
-	set type(type) {
-		throw 'We might want to check the exporter if we change the type';
-	}
-
-	get type() {
-		return this.#type;
-	}
-}
-FBXManager.registerClass('FBXVideo', FBXVideo);
 
 /**
  * HDRImageData contains all decompressed image data.
@@ -22211,7 +22917,7 @@ function parseData(stream, header) {
         if (header.flipX)
             flipX(data, header);
         if (header.flipY)
-            flipY(data, header);
+            flipY$1(data, header);
     }
     else {
         throw new Error("Obsolete HDR file version!");
@@ -22298,7 +23004,7 @@ function flipX(data, header) {
 /**
  * @ignore
  */
-function flipY(data, header) {
+function flipY$1(data, header) {
     var width = header.width, height = header.height;
     var hh = height >> 1;
     for (var y = 0; y < hh; ++y) {
@@ -26823,6 +27529,7 @@ const FUNCTION_TYPE = "function";
  EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+
 class StreamAdapter {
 
 	constructor(Codec) {
@@ -26872,6 +27579,7 @@ class StreamAdapter {
  NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
  EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+
 
 const MINIMUM_CHUNK_SIZE = 64;
 let maxWorkers = 2;
@@ -26986,6 +27694,7 @@ function setIfDefined(propertyName, propertyValue) {
  NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
  EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+
 
 const table$1 = {
 	"application": {
@@ -28674,6 +29383,7 @@ class Crc32 {
  EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+
 class Crc32Stream extends TransformStream {
 
 	constructor() {
@@ -28723,6 +29433,7 @@ class Crc32Stream extends TransformStream {
  NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
  EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+
 
 function encodeText(value) {
 	// deno-lint-ignore valid-typeof
@@ -29586,6 +30297,7 @@ misc.hmacSha1 = class {
  EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+
 const GET_RANDOM_VALUES_SUPPORTED = typeof crypto != UNDEFINED_TYPE && typeof crypto.getRandomValues == FUNCTION_TYPE;
 
 const ERR_INVALID_PASSWORD = "Invalid password";
@@ -29627,6 +30339,7 @@ function getRandomValues(array) {
  NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
  EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+
 
 const BLOCK_LENGTH = 16;
 const RAW_FORMAT = "raw";
@@ -29931,6 +30644,7 @@ function toBits(codecBytes, chunk) {
  EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+
 const HEADER_LENGTH = 12;
 
 class ZipCryptoDecryptionStream extends TransformStream {
@@ -30078,6 +30792,7 @@ function getInt32(number) {
  EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+
 const COMPRESSION_FORMAT = "deflate-raw";
 
 class DeflateStream extends TransformStream {
@@ -30218,6 +30933,7 @@ function pipeThrough(readable, transformStream) {
  EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+
 const MESSAGE_EVENT_TYPE = "message";
 const MESSAGE_START = "start";
 const MESSAGE_PULL = "pull";
@@ -30338,6 +31054,7 @@ class ChunkStream extends TransformStream {
  NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
  EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+
 
 // deno-lint-ignore valid-typeof
 let WEB_WORKERS_SUPPORTED = typeof Worker != UNDEFINED_TYPE;
@@ -30667,6 +31384,7 @@ async function onMessage({ data }, workerData) {
  EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+
 let pool = [];
 const pendingRequests = [];
 
@@ -30768,6 +31486,7 @@ function e(e,t={}){const n='const{Array:e,Object:t,Number:n,Math:r,Error:s,Uint8
  NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
  EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+
 const ERR_ITERATOR_COMPLETED_TOO_SOON = "Writer iterator completed too soon";
 const HTTP_HEADER_CONTENT_TYPE = "Content-Type";
 const DEFAULT_CHUNK_SIZE = 64 * 1024;
@@ -31097,6 +31816,7 @@ function decodeCP437(stringValue) {
  EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+
 function decodeText(value, encoding) {
 	if (encoding && encoding.trim().toLowerCase() == "cp437") {
 		return decodeCP437(value);
@@ -31200,6 +31920,7 @@ class Entry {
  NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
  EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+
 
 const ERR_BAD_FORMAT = "File format is not recognized";
 const ERR_EOCDR_NOT_FOUND = "End of central directory not found";
@@ -31847,11 +32568,13 @@ function getDataView(array) {
  EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+
 let baseURL;
 configure({ baseURL });
 e(configure);
 
 /// <reference types="./index.d.ts" />
+
 
 configure({ Deflate: ZipDeflate, Inflate: ZipInflate });
 
@@ -33927,6 +34650,33 @@ var BlendingMode;
     BlendingMode[BlendingMode["Multiply"] = 4] = "Multiply";
 })(BlendingMode || (BlendingMode = {}));
 
+var BlendingFactor;
+(function (BlendingFactor) {
+    BlendingFactor[BlendingFactor["Zero"] = 0] = "Zero";
+    BlendingFactor[BlendingFactor["One"] = 1] = "One";
+    BlendingFactor[BlendingFactor["SrcColor"] = 768] = "SrcColor";
+    BlendingFactor[BlendingFactor["OneMinusSrcColor"] = 769] = "OneMinusSrcColor";
+    BlendingFactor[BlendingFactor["DstColor"] = 774] = "DstColor";
+    BlendingFactor[BlendingFactor["OneMinusDstColor"] = 775] = "OneMinusDstColor";
+    BlendingFactor[BlendingFactor["SrcAlpha"] = 770] = "SrcAlpha";
+    BlendingFactor[BlendingFactor["OneMinusSrcAlpha"] = 771] = "OneMinusSrcAlpha";
+    BlendingFactor[BlendingFactor["DstAlpha"] = 772] = "DstAlpha";
+    BlendingFactor[BlendingFactor["OneMinusDstAlpha"] = 773] = "OneMinusDstAlpha";
+    BlendingFactor[BlendingFactor["ConstantColor"] = 32769] = "ConstantColor";
+    BlendingFactor[BlendingFactor["OneMinusConstantColor"] = 32770] = "OneMinusConstantColor";
+    BlendingFactor[BlendingFactor["ConstantAlpha"] = 32771] = "ConstantAlpha";
+    BlendingFactor[BlendingFactor["OneMinusConstantAlpha"] = 32772] = "OneMinusConstantAlpha";
+    BlendingFactor[BlendingFactor["SrcAlphaSaturate"] = 776] = "SrcAlphaSaturate";
+})(BlendingFactor || (BlendingFactor = {}));
+var BlendingEquation;
+(function (BlendingEquation) {
+    BlendingEquation[BlendingEquation["Add"] = 32774] = "Add";
+    BlendingEquation[BlendingEquation["Subtract"] = 32778] = "Subtract";
+    BlendingEquation[BlendingEquation["ReverseSubtract"] = 32779] = "ReverseSubtract";
+    BlendingEquation[BlendingEquation["Min"] = 32775] = "Min";
+    BlendingEquation[BlendingEquation["Max"] = 32776] = "Max";
+})(BlendingEquation || (BlendingEquation = {}));
+
 const MATERIAL_BLENDING_NONE = 0;
 const MATERIAL_BLENDING_NORMAL = 1;
 const MATERIAL_BLENDING_ADDITIVE = 2;
@@ -33934,63 +34684,58 @@ const MATERIAL_CULLING_NONE = 0;
 const MATERIAL_CULLING_FRONT = GL_FRONT;
 const MATERIAL_CULLING_BACK = GL_BACK;
 const MATERIAL_CULLING_FRONT_AND_BACK = GL_FRONT_AND_BACK;
-const MATERIAL_COLOR_NONE = 0;
-const MATERIAL_COLOR_PER_VERTEX = 1;
-const MATERIAL_COLOR_PER_MESH = 2;
+var MaterialColorMode;
+(function (MaterialColorMode) {
+    MaterialColorMode[MaterialColorMode["None"] = 0] = "None";
+    MaterialColorMode[MaterialColorMode["PerVertex"] = 1] = "PerVertex";
+    MaterialColorMode[MaterialColorMode["PerMesh"] = 2] = "PerMesh";
+})(MaterialColorMode || (MaterialColorMode = {}));
 const DEFAULT_COLOR = fromValues$3(1.0, 1.0, 1.0, 1.0);
+//export type BlendFuncSeparateFactor = typeof GL_ZERO | typeof GL_ONE | typeof GL_SRC_COLOR | typeof GL_ONE_MINUS_SRC_COLOR | typeof GL_DST_COLOR | typeof GL_ONE_MINUS_DST_COLOR | typeof GL_SRC_ALPHA | typeof GL_ONE_MINUS_SRC_ALPHA | typeof GL_DST_ALPHA | typeof GL_ONE_MINUS_DST_ALPHA | typeof GL_CONSTANT_COLOR | typeof GL_ONE_MINUS_CONSTANT_COLOR | typeof GL_CONSTANT_ALPHA | typeof GL_ONE_MINUS_CONSTANT_ALPHA | typeof GL_SRC_ALPHA_SATURATE;
 class Material {
-    id;
-    name;
+    id = '';
+    name = '';
     #renderFace = RenderFace.Front;
     #renderLights = true;
     #color = create$3();
-    #alphaTest;
-    #alphaTestReference;
-    #cullingMode;
+    #alphaTest = false;
+    #alphaTestReference = 0;
     #users = new Set();
     #parameters = new Map();
-    uniforms = {};
-    defines;
+    uniforms = {}; // TODO: transform to map ?
+    defines = {}; //TODOv3: put defines in meshes too ?
     parameters;
     depthTest;
     depthFunc;
     depthMask;
     colorMask;
     blend = false;
-    srcRGB;
-    dstRGB;
-    srcAlpha;
-    dstAlpha;
-    modeRGB;
+    srcRGB = BlendingFactor.One;
+    dstRGB = BlendingFactor.Zero;
+    srcAlpha = BlendingFactor.One;
+    dstAlpha = BlendingFactor.Zero;
+    modeRGB; //TODO: create type like above
     modeAlpha;
     polygonOffset;
     polygonOffsetFactor;
     polygonOffsetUnits;
     _dirtyProgram;
-    disableCulling;
-    cullMode;
-    #colorMode;
+    #colorMode = MaterialColorMode.None;
     colorMap;
     properties = new Map();
     static materialList = {};
     constructor(params = {}) {
-        this.defines = {}; //TODOv3: put defines in meshes too ?
         this.parameters = params;
         this.depthTest = params.depthTest ?? true;
         this.depthFunc = GL_LESS;
         this.depthMask = true;
         this.colorMask = fromValues$3(1.0, 1.0, 1.0, 1.0);
-        this.srcRGB = GL_ONE;
-        this.dstRGB = GL_ZERO;
-        this.srcAlpha = GL_ONE;
-        this.dstAlpha = GL_ZERO;
         this.modeRGB = GL_FUNC_ADD;
         this.modeAlpha = GL_FUNC_ADD;
         //this.culling = parameters.culling ?? DEFAULT_CULLING_MODE;
         if (params.culling) {
             throw 'handle me';
         }
-        this.colorMode = MATERIAL_COLOR_NONE;
         this.color = DEFAULT_COLOR;
         this.polygonOffset = params.polygonOffset ?? false;
         this.polygonOffsetFactor = params.polygonpolygonOffsetFactorOffset ?? -5;
@@ -34083,6 +34828,19 @@ class Material {
      */
     set culling(mode) {
         throw 'deprecated';
+        /*
+        this.#cullingMode = mode;
+        if (mode === MATERIAL_CULLING_NONE) {
+            this.setDefine('CULLING_DISABLED');
+            this.removeDefine('REVERSE_CULLING');
+            this.disableCulling = true;
+        } else {
+            this.disableCulling = false;
+            this.cullMode = mode;
+            this.removeDefine('CULLING_DISABLED');
+            mode === MATERIAL_CULLING_BACK ? this.removeDefine('REVERSE_CULLING') : this.setDefine('REVERSE_CULLING');
+        }
+        */
     }
     renderFace(renderFace) {
         this.#renderFace = renderFace;
@@ -34106,25 +34864,34 @@ class Material {
     setColorMode(colorMode) {
         this.#colorMode = colorMode;
         switch (colorMode) {
-            case MATERIAL_COLOR_NONE:
+            case MaterialColorMode.None:
                 this.removeDefine('USE_VERTEX_COLOR');
                 this.removeDefine('USE_MESH_COLOR');
                 break;
-            case MATERIAL_COLOR_PER_VERTEX:
+            case MaterialColorMode.PerVertex:
                 this.setDefine('USE_VERTEX_COLOR');
                 this.removeDefine('USE_MESH_COLOR');
                 break;
-            case MATERIAL_COLOR_PER_MESH:
+            case MaterialColorMode.PerMesh:
                 this.removeDefine('USE_VERTEX_COLOR');
                 this.setDefine('USE_MESH_COLOR');
                 break;
         }
     }
+    getColorMode() {
+        return this.#colorMode;
+    }
+    /**
+     * @deprecated Please use `setColorMode` instead.
+     */
     set colorMode(colorMode) {
         this.setColorMode(colorMode);
     }
+    /**
+     * @deprecated Please use `getColorMode` instead.
+     */
     get colorMode() {
-        return this.#colorMode;
+        return this.getColorMode();
     }
     setColor(color) {
         copy$3(this.#color, color);
@@ -34137,7 +34904,7 @@ class Material {
         return clone$3(this.#color);
     }
     setMeshColor(color = DEFAULT_COLOR) {
-        this.colorMode = MATERIAL_COLOR_PER_MESH;
+        this.setColorMode(MaterialColorMode.PerMesh);
         this.color = color;
     }
     setTexture(uniformName, texture, shaderDefine) {
@@ -34200,13 +34967,25 @@ class Material {
     setCubeMap(texture) {
         this.setTexture('cubeMap', texture, 'USE_CUBE_MAP');
     }
-    set alphaTest(alphaTest) {
+    setAlphaTest(alphaTest) {
         this.#alphaTest = alphaTest;
         this.#setAlphaTest();
     }
-    set alphaTestReference(alphaTestReference) {
+    /**
+     * @deprecated Please use `setAlphaTest` instead.
+     */
+    set alphaTest(alphaTest) {
+        this.setAlphaTest(alphaTest);
+    }
+    setAlphaTestReference(alphaTestReference) {
         this.#alphaTestReference = alphaTestReference;
         this.#setAlphaTest();
+    }
+    /**
+     * @deprecated Please use `setAlphaTestReference` instead.
+     */
+    set alphaTestReference(alphaTestReference) {
+        this.setAlphaTestReference(alphaTestReference);
     }
     #setAlphaTest() {
         if (this.#alphaTest) {
@@ -34234,7 +35013,7 @@ class Material {
         this.#parameters.delete(name);
     }
     getParameter(name) {
-        this.#parameters.get(name);
+        return this.#parameters.get(name);
     }
     setParameterValue(name, value) {
         const parameter = this.#parameters.get(name);
@@ -34265,9 +35044,9 @@ class Material {
     }
     fromJSON(json) {
         this.color = json.color;
-        this.colorMode = json.colormode;
-        this.alphaTest = json.alphatest;
-        this.alphaTestReference = json.alphaTestReference;
+        this.setColorMode(json.colormode);
+        this.setAlphaTest(json.alphatest);
+        this.setAlphaTestReference(json.alphaTestReference);
         this.renderFace(json.render_face ?? RenderFace.Front);
     }
     addUser(user) {
@@ -34284,8 +35063,8 @@ class Material {
         if (Array.isArray(uniform)) {
             uniform.forEach((subValue) => this.#disposeUniform(subValue));
         }
-        else if (uniform && uniform.isTexture) {
-            uniform.removeUser(this);
+        else {
+            uniform?.removeUser?.(this);
         }
     }
     dispose() {
@@ -34389,7 +35168,7 @@ const EntityObserver = new EntityObserverClass();
 
 const pickList = new Map();
 
-const tempVec3$y = create$4();
+const tempVec3$x = create$4();
 const tempMin = create$4();
 const tempMax = create$4();
 class BoundingBox {
@@ -34401,14 +35180,14 @@ class BoundingBox {
         this.addPoints(points);
     }
     addPoints(pointArray) {
-        set$4(tempMin, +Infinity, +Infinity, +Infinity);
-        set$4(tempMax, -Infinity, -Infinity, -Infinity);
+        set$5(tempMin, +Infinity, +Infinity, +Infinity);
+        set$5(tempMax, -Infinity, -Infinity, -Infinity);
         for (let i = 0; i < pointArray.length; i += 3) {
-            tempVec3$y[0] = pointArray[i + 0];
-            tempVec3$y[1] = pointArray[i + 1];
-            tempVec3$y[2] = pointArray[i + 2];
-            min$3(tempMin, tempMin, tempVec3$y);
-            max$3(tempMax, tempMax, tempVec3$y);
+            tempVec3$x[0] = pointArray[i + 0];
+            tempVec3$x[1] = pointArray[i + 1];
+            tempVec3$x[2] = pointArray[i + 2];
+            min$3(tempMin, tempMin, tempVec3$x);
+            max$3(tempMax, tempMax, tempVec3$x);
         }
         if (pointArray.length) {
             if (!this.empty) {
@@ -34641,14 +35420,14 @@ function FileNameFromPath(path) {
 function stringToVec3(s, v = create$4()) {
     let arr = s.split(' ');
     if (arr.length == 3) {
-        return set$4(v, Number(arr[0]), Number(arr[1]), Number(arr[2]));
+        return set$5(v, Number(arr[0]), Number(arr[1]), Number(arr[2]));
     }
     return v;
 }
 function stringToQuat(s, q = create$2()) {
     let arr = s.split(' ');
     if (arr.length == 4) {
-        return set$2(q, Number(arr[0]), Number(arr[1]), Number(arr[2]), Number(arr[3]));
+        return set$3(q, Number(arr[0]), Number(arr[1]), Number(arr[2]), Number(arr[3]));
     }
     return q;
 }
@@ -34669,6 +35448,11 @@ let incrementalPickingId = 0;
 const IDENTITY_QUAT$1 = create$2();
 const IDENTITY_VEC3 = create$4();
 const UNITY_VEC3 = fromValues$4(1, 1, 1);
+const LAYER_MAX = 50;
+var EngineEntityAttributes;
+(function (EngineEntityAttributes) {
+    EngineEntityAttributes["IsTool"] = "is tool";
+})(EngineEntityAttributes || (EngineEntityAttributes = {}));
 class Entity {
     static addSubMenu;
     id = generateRandomUUID();
@@ -34697,12 +35481,16 @@ class Entity {
     isRenderable = false;
     lockPos = false;
     lockRot = false;
-    lockScale = false;
+    //lockScale = false;
     drawOutline = false;
-    locked = false;
+    locked = false; // Prevents updates from animation system
+    lockPosition = false;
+    lockRotation = false;
+    lockScale = false;
     static editMaterial;
     properties = new Map();
     loadedPromise;
+    #layer = undefined;
     constructor(params) {
         this.setParameters(params);
     }
@@ -34749,6 +35537,9 @@ class Entity {
         return this.#name;
     }
     setPosition(position) {
+        if (this.lockPosition) {
+            return;
+        }
         const oldValue = copy$4(tempVec3_4$1, this._position);
         copy$4(this._position, position);
         if (!exactEquals$4(oldValue, position)) {
@@ -34789,7 +35580,7 @@ class Entity {
             this._parent.getWorldPosition(tempVec3_1$3);
             this._parent.getWorldQuaternion(tempQuat$d);
             sub$2(tempVec3_1$3, position, tempVec3_1$3);
-            invert$1(tempQuat$d, tempQuat$d);
+            invert$2(tempQuat$d, tempQuat$d);
             transformQuat$1(tempVec3_1$3, tempVec3_1$3, tempQuat$d);
             this.position = tempVec3_1$3;
         }
@@ -34810,7 +35601,7 @@ class Entity {
     setWorldQuaternion(quaternion) {
         if (this._parent) {
             this._parent.getWorldQuaternion(tempQuat$d);
-            invert$1(tempQuat$d, tempQuat$d);
+            invert$2(tempQuat$d, tempQuat$d);
             mul$2(this._quaternion, tempQuat$d, quaternion);
         }
         else {
@@ -34831,6 +35622,9 @@ class Entity {
         return `${this._position[0].toFixed(2)} ${this._position[1].toFixed(2)} ${this._position[2].toFixed(2)}`;
     }
     setQuaternion(quaternion) {
+        if (this.lockRotation) {
+            return;
+        }
         const oldValue = copy$2(tempQuat3, this._quaternion);
         normalize$3(this._quaternion, quaternion);
         if (!exactEquals$2(oldValue, this._quaternion)) {
@@ -34852,6 +35646,9 @@ class Entity {
         return `${this._quaternion[0].toFixed(2)} ${this._quaternion[1].toFixed(2)} ${this._quaternion[2].toFixed(2)} ${this._quaternion[3].toFixed(2)}`;
     }
     set scale(scale) {
+        if (this.lockScale) {
+            return;
+        }
         copy$4(this._scale, scale);
     }
     get scale() {
@@ -35155,7 +35952,7 @@ class Entity {
         let parent = this._parent;
         lookAt(tempMat4$4, this._position, target, upVector ?? _upVector);
         getRotation(tempQuat$d, tempMat4$4);
-        invert$1(tempQuat$d, tempQuat$d);
+        invert$2(tempQuat$d, tempQuat$d);
         if (parent) {
             conjugate$1(tempQuat2$1, parent._quaternion);
             mul$2(tempQuat$d, tempQuat2$1, tempQuat$d);
@@ -35453,10 +36250,10 @@ class Entity {
                     if (s !== null) {
                         let arr = s.split(' ');
                         if (arr.length == 3) {
-                            this.scale = set$4(tempVec3_1$3, Number(arr[0]), Number(arr[1]), Number(arr[2]));
+                            this.scale = set$5(tempVec3_1$3, Number(arr[0]), Number(arr[1]), Number(arr[2]));
                         }
                         else if (arr.length == 1) {
-                            this.scale = set$4(tempVec3_1$3, Number(arr[0]), Number(arr[0]), Number(arr[0]));
+                            this.scale = set$5(tempVec3_1$3, Number(arr[0]), Number(arr[0]), Number(arr[0]));
                         }
                     }
                 }
@@ -35580,6 +36377,22 @@ class Entity {
     setProperty(name, value) {
         return this.properties.set(name, value);
     }
+    setLayer(layer) {
+        if (Number.isNaN(Number(layer))) {
+            this.#layer = undefined;
+        }
+        else {
+            this.#layer = clamp(layer, 0, LAYER_MAX);
+        }
+    }
+    getLayer() {
+        if (this.#layer === undefined) {
+            return this._parent?.getLayer() ?? undefined;
+        }
+        else {
+            return this.#layer;
+        }
+    }
     toJSON() {
         let children = [];
         for (let child of this.#children) {
@@ -35622,6 +36435,9 @@ class Entity {
         if (this.wireframe !== undefined) {
             json.wireframe = this.wireframe;
         }
+        if (this.#layer !== undefined) {
+            json.layer = this.#layer;
+        }
         return json;
     }
     static async constructFromJSON(json, entities, loadedPromise) {
@@ -35657,6 +36473,7 @@ class Entity {
         this.materialsParams = json.materialsparams;
         this.#hideInExplorer = json.hideinexplorer ?? false;
         this.wireframe = json.wireframe;
+        this.#layer = json.layer;
     }
     static getEntityName() {
         return 'Entity';
@@ -35707,7 +36524,7 @@ function getBarycentricCoordinates(out, position, a, b, c) {
     let u = (dot11 * dot02 - dot01 * dot12) * invDenom;
     let v = (dot00 * dot12 - dot01 * dot02) * invDenom;
     // barycentric coordinates must always sum to 1
-    return set$4(out, 1 - u - v, v, u);
+    return set$5(out, 1 - u - v, v, u);
 }
 function getUV(out, position, a, b, c, uv1, uv2, uv3) {
     getBarycentricCoordinates(v3$2, position, a, b, c);
@@ -35775,7 +36592,7 @@ class Ray {
         copy$4(this.direction, other.direction);
     }
     copyTransform(other, worldMatrix) {
-        invert$2(m, worldMatrix);
+        invert$3(m, worldMatrix);
         transformMat4$2(this.origin, other.origin, m);
         let x = other.direction[0];
         let y = other.direction[1];
@@ -35939,7 +36756,7 @@ class Ray {
         return sqrDist;
     }
     createIntersection(position, normal, uv, entity, distanceFromRay) {
-        return new Intersection(position, normal, uv, distance$2(this.origin, position), entity, distanceFromRay);
+        return new Intersection(position, normal, uv, distance$3(this.origin, position), entity, distanceFromRay);
     }
 }
 
@@ -36612,7 +37429,7 @@ class Interaction {
     }
 }
 
-const tempVec3$x = create$4();
+const tempVec3$w = create$4();
 let v1$2 = create$4();
 let v2$1 = create$4();
 let v3$1 = create$4();
@@ -36725,11 +37542,11 @@ class Mesh extends Entity {
         max[2] = -Infinity;
         let vertexPosition = this.geometry.getAttribute('aVertexPosition')._array;
         for (let i = 0, l = vertexPosition.length; i < l; i += 3) {
-            tempVec3$x[0] = vertexPosition[i + 0];
-            tempVec3$x[1] = vertexPosition[i + 1];
-            tempVec3$x[2] = vertexPosition[i + 2];
-            min$3(min, min, tempVec3$x);
-            max$3(max, max, tempVec3$x);
+            tempVec3$w[0] = vertexPosition[i + 0];
+            tempVec3$w[1] = vertexPosition[i + 1];
+            tempVec3$w[2] = vertexPosition[i + 2];
+            min$3(min, min, tempVec3$w);
+            max$3(max, max, tempVec3$w);
         }
         //console.error(min, max);
     }
@@ -36780,19 +37597,19 @@ class Mesh extends Entity {
                 let i1 = 3 * indices[i];
                 let i2 = 3 * indices[i + 1];
                 let i3 = 3 * indices[i + 2];
-                set$4(v1$2, vertices[i1], vertices[i1 + 1], vertices[i1 + 2]);
-                set$4(v2$1, vertices[i2], vertices[i2 + 1], vertices[i2 + 2]);
-                set$4(v3$1, vertices[i3], vertices[i3 + 1], vertices[i3 + 2]);
+                set$5(v1$2, vertices[i1], vertices[i1 + 1], vertices[i1 + 2]);
+                set$5(v2$1, vertices[i2], vertices[i2 + 1], vertices[i2 + 2]);
+                set$5(v3$1, vertices[i3], vertices[i3 + 1], vertices[i3 + 2]);
                 if (ray$1.intersectTriangle(v1$2, v2$1, v3$1, intersectionPoint$1)) {
-                    set$4(n1$1, normals[i1], normals[i1 + 1], normals[i1 + 2]);
-                    set$4(n2$1, normals[i2], normals[i2 + 1], normals[i2 + 2]);
-                    set$4(n3$1, normals[i3], normals[i3 + 1], normals[i3 + 2]);
+                    set$5(n1$1, normals[i1], normals[i1 + 1], normals[i1 + 2]);
+                    set$5(n2$1, normals[i2], normals[i2 + 1], normals[i2 + 2]);
+                    set$5(n3$1, normals[i3], normals[i3 + 1], normals[i3 + 2]);
                     i1 = 2 * indices[i];
                     i2 = 2 * indices[i + 1];
                     i3 = 2 * indices[i + 2];
-                    set(uv1$1, textureCoords[i1], textureCoords[i1 + 1]);
-                    set(uv2$1, textureCoords[i2], textureCoords[i2 + 1]);
-                    set(uv3$1, textureCoords[i3], textureCoords[i3 + 1]);
+                    set$1(uv1$1, textureCoords[i1], textureCoords[i1 + 1]);
+                    set$1(uv2$1, textureCoords[i2], textureCoords[i2 + 1]);
+                    set$1(uv3$1, textureCoords[i3], textureCoords[i3 + 1]);
                     getUV(uv$1, intersectionPoint$1, v1$2, v2$1, v3$1, uv1$1, uv2$1, uv3$1);
                     getNormal(intersectionNormal$2, intersectionPoint$1, v1$2, v2$1, v3$1, n1$1, n2$1, n3$1);
                     let x = intersectionNormal$2[0];
@@ -36813,19 +37630,19 @@ class Mesh extends Entity {
                 let i1 = 3 * indices[i];
                 let i2 = 3 * indices[i + 1];
                 let i3 = 3 * indices[i + 2];
-                set$4(v1$2, vertices[i1], vertices[i1 + 1], vertices[i1 + 2]);
-                set$4(v2$1, vertices[i2], vertices[i2 + 1], vertices[i2 + 2]);
-                set$4(v3$1, vertices[i3], vertices[i3 + 1], vertices[i3 + 2]);
+                set$5(v1$2, vertices[i1], vertices[i1 + 1], vertices[i1 + 2]);
+                set$5(v2$1, vertices[i2], vertices[i2 + 1], vertices[i2 + 2]);
+                set$5(v3$1, vertices[i3], vertices[i3 + 1], vertices[i3 + 2]);
                 if (ray$1.intersectTriangle(v1$2, v2$1, v3$1, intersectionPoint$1)) {
-                    set$4(n1$1, normals[0], normals[1], normals[2]);
-                    set$4(n2$1, normals[0], normals[1], normals[2]);
-                    set$4(n3$1, normals[0], normals[1], normals[2]);
+                    set$5(n1$1, normals[0], normals[1], normals[2]);
+                    set$5(n2$1, normals[0], normals[1], normals[2]);
+                    set$5(n3$1, normals[0], normals[1], normals[2]);
                     i1 = 2 * indices[i];
                     i2 = 2 * indices[i + 1];
                     i3 = 2 * indices[i + 2];
-                    set(uv1$1, textureCoords[i1], textureCoords[i1 + 1]);
-                    set(uv2$1, textureCoords[i2], textureCoords[i2 + 1]);
-                    set(uv3$1, textureCoords[i3], textureCoords[i3 + 1]);
+                    set$1(uv1$1, textureCoords[i1], textureCoords[i1 + 1]);
+                    set$1(uv2$1, textureCoords[i2], textureCoords[i2 + 1]);
+                    set$1(uv3$1, textureCoords[i3], textureCoords[i3 + 1]);
                     getUV(uv$1, intersectionPoint$1, v1$2, v2$1, v3$1, uv1$1, uv2$1, uv3$1);
                     getNormal(intersectionNormal$2, intersectionPoint$1, v1$2, v2$1, v3$1, n1$1, n2$1, n3$1);
                     let x = intersectionNormal$2[0];
@@ -37161,11 +37978,12 @@ class WebGLShaderSource {
                         }
                         if (loopSnippet) {
                             const loopVariableRegexp = new RegExp('\\[\\s*' + loopVariable + '\\s*\\]', 'g');
+                            const loopVariableRegexp2 = new RegExp('\\{\\s*' + loopVariable + '\\s*\\}', 'g');
                             const startLoopIndex = Number.parseInt(getDefineValue(startLoopName, includeCode));
                             const endLoopIndex = Number.parseInt(getDefineValue(endLoopName, includeCode));
                             let unrolled = '';
                             for (let i = startLoopIndex; i < endLoopIndex; i++) {
-                                unrolled += loopSnippet.replace(loopVariableRegexp, `[${i}]`);
+                                unrolled += loopSnippet.replace(loopVariableRegexp, `[${i}]`).replace(loopVariableRegexp2, `${i}`);
                             }
                             source = source.substring(0, nextUnroll - 1) + unrolled + source.substring(nextUnroll + startIndex);
                         }
@@ -37559,7 +38377,7 @@ class Scene extends Entity {
 }
 registerEntity(Scene);
 
-const tempVec3$w = create$4();
+const tempVec3$v = create$4();
 class CubeBackground extends BackGround {
     #box = new Box();
     #scene = new Scene();
@@ -37577,8 +38395,8 @@ class CubeBackground extends BackGround {
         }
     }
     render(renderer, camera) {
-        this.#box.setPosition(camera.getPosition(tempVec3$w));
-        renderer.render(this.#scene, camera, 0);
+        this.#box.setPosition(camera.getPosition(tempVec3$v));
+        renderer.render(this.#scene, camera, 0, { DisableToolRendering: true });
     }
     setTexture(texture) {
         this.#material.setTexture('uCubeTexture', texture);
@@ -37619,8 +38437,7 @@ var CameraProjection;
     CameraProjection[CameraProjection["Mixed"] = 2] = "Mixed";
 })(CameraProjection || (CameraProjection = {}));
 const tempQuat$c = create$2();
-const tempVec3$v = create$4();
-create$4();
+const tempVec3$u = create$4();
 const proj1 = create$5();
 const proj2 = create$5();
 const DEFAULT_NEAR_PLANE = 1;
@@ -37635,6 +38452,7 @@ const DEFAULT_LEFT = -1;
 const DEFAULT_RIGHT = 1;
 const DEFAULT_TOP = 1;
 const DEFAULT_BOTTOM = -1;
+const FrontVector = fromValues$4(0, 0, -1);
 const LAMBDA = 10;
 const LAMBDA_DIVIDOR = 1 - Math.exp(-LAMBDA);
 class Camera extends Entity {
@@ -37659,7 +38477,7 @@ class Camera extends Entity {
     isPerspective;
     isOrthographic;
     #tanHalfVerticalFov;
-    constructor(params = {}) {
+    constructor(params = {} /*TODO: create type*/) {
         super();
         super.setParameters(params);
         this.nearPlane = params.nearPlane ?? params.near ?? DEFAULT_NEAR_PLANE;
@@ -37678,8 +38496,8 @@ class Camera extends Entity {
         //this._renderMode = 2;
     }
     computeCameraMatrix() {
-        fromRotationTranslation$1(this.#cameraMatrix, this.getWorldQuaternion(tempQuat$c), this.getWorldPosition(tempVec3$v));
-        invert$2(this.#cameraMatrix, this.#cameraMatrix);
+        fromRotationTranslation$1(this.#cameraMatrix, this.getWorldQuaternion(tempQuat$c), this.getWorldPosition(tempVec3$u));
+        invert$3(this.#cameraMatrix, this.#cameraMatrix);
     }
     #computeProjectionMatrix() {
         if (this.#projection == CameraProjection.Perspective) {
@@ -37858,7 +38676,7 @@ class Camera extends Entity {
     get projectionMatrix() {
         if (this.#dirtyProjectionMatrix) {
             this.#computeProjectionMatrix();
-            invert$2(this.#projectionMatrixInverse, this.#projectionMatrix);
+            invert$3(this.#projectionMatrixInverse, this.#projectionMatrix);
             this.#dirtyProjectionMatrix = false;
         }
         return this.#projectionMatrix;
@@ -37866,18 +38684,18 @@ class Camera extends Entity {
     get projectionMatrixInverse() {
         if (this.#dirtyProjectionMatrix) {
             this.#computeProjectionMatrix();
-            invert$2(this.#projectionMatrixInverse, this.#projectionMatrix);
+            invert$3(this.#projectionMatrixInverse, this.#projectionMatrix);
             this.#dirtyProjectionMatrix = false;
         }
         return this.#projectionMatrixInverse;
     }
     get worldMatrixInverse() {
         //TODO: optimize
-        invert$2(this.#worldMatrixInverse, this.worldMatrix);
+        invert$3(this.#worldMatrixInverse, this.worldMatrix);
         return this.#worldMatrixInverse;
     }
     distanceFrom(point) {
-        return distance$2(this._position, point);
+        return distance$3(this._position, point);
     }
     set position(position) {
         super.position = position;
@@ -37934,6 +38752,9 @@ class Camera extends Entity {
     }
     invertProjection(v3) {
         transformMat4$2(v3, v3, this.projectionMatrixInverse);
+    }
+    getViewDirection(v = create$4()) {
+        return transformQuat$1(v, FrontVector, this.getWorldQuaternion(tempQuat$c));
     }
     copy(source) {
         super.copy(source);
@@ -38011,12 +38832,13 @@ registerEntity(Camera);
 class Pass {
     camera;
     quad;
+    scene;
     enabled = true;
     swapBuffers = true;
     renderToScreen = false;
     setSize(width, height) {
     }
-    render(renderer, readBuffer, writeBuffer, renderToScreen, delta) {
+    render(renderer, readBuffer, writeBuffer, renderToScreen, delta, context) {
         throw 'Can\'t render default pass';
     }
 }
@@ -38024,8 +38846,8 @@ class Pass {
 class ClearPass extends Pass {
     swapBuffers = false;
     #clearColor = create$3();
-    #clearDepth = false;
-    #clearStencil = false;
+    #clearDepth = 0;
+    #clearStencil = 0;
     constructor(clearColor, clearDepth, clearStencil) {
         super();
         this.clearColor = clearColor;
@@ -38041,7 +38863,7 @@ class ClearPass extends Pass {
     set clearStencil(clearStencil) {
         this.#clearStencil = clearStencil ?? null;
     }
-    render(renderer, readBuffer, writeBuffer, renderToScreen) {
+    render(renderer, readBuffer, writeBuffer, renderToScreen, delta, context) {
         let clearColor = this.#clearColor != null;
         let clearDepth = this.#clearDepth != null;
         let clearStencil = this.#clearStencil != null;
@@ -38087,13 +38909,14 @@ class CopyPass extends Pass {
         super();
         let material = new ShaderMaterial({ shaderSource: 'copy', depthTest: false });
         material.addUser(this);
-        this.quad = new FullScreenQuad({ material: material });
+        this.scene = new Scene();
+        this.quad = new FullScreenQuad({ material: material, parent: this.scene });
         this.camera = camera;
     }
-    render(renderer, readBuffer, writeBuffer, renderToScreen) {
+    render(renderer, readBuffer, writeBuffer, renderToScreen, delta, context) {
         this.quad.material.uniforms['colorMap'] = readBuffer.getTexture();
         renderer.pushRenderTarget(renderToScreen ? null : writeBuffer);
-        renderer.render(this.quad, this.camera);
+        renderer.render(this.scene, this.camera, 0, context);
         renderer.popRenderTarget();
     }
 }
@@ -38104,13 +38927,14 @@ class CrosshatchPass extends Pass {
         let material = new ShaderMaterial({ shaderSource: 'crosshatch' });
         material.addUser(this);
         material.depthTest = false;
-        this.quad = new FullScreenQuad({ material: material });
+        this.scene = new Scene();
+        this.quad = new FullScreenQuad({ material: material, parent: this.scene });
         this.camera = camera;
     }
-    render(renderer, readBuffer, writeBuffer, renderToScreen) {
+    render(renderer, readBuffer, writeBuffer, renderToScreen, delta, context) {
         this.quad.material.uniforms['colorMap'] = readBuffer.getTexture();
         renderer.pushRenderTarget(renderToScreen ? null : writeBuffer);
-        renderer.render(this.quad, this.camera);
+        renderer.render(this.scene, this.camera, 0, context);
         renderer.popRenderTarget();
     }
 }
@@ -38125,7 +38949,8 @@ class GrainPass extends Pass {
         material.addUser(this);
         material.uniforms['uGrainParams'] = create$3();
         material.depthTest = false;
-        this.quad = new FullScreenQuad({ material: material });
+        this.scene = new Scene();
+        this.quad = new FullScreenQuad({ material: material, parent: this.scene });
         this.camera = camera;
         this.intensity = 0.2;
         //this.density = 0.2;
@@ -38144,10 +38969,10 @@ class GrainPass extends Pass {
         this.#size = size;
         this.quad.material.uniforms['uGrainParams'][2] = this.#size;
     }*/
-    render(renderer, readBuffer, writeBuffer, renderToScreen) {
+    render(renderer, readBuffer, writeBuffer, renderToScreen, delta, context) {
         this.quad.material.uniforms['colorMap'] = readBuffer.getTexture();
         renderer.pushRenderTarget(renderToScreen ? null : writeBuffer);
-        renderer.render(this.quad, this.camera);
+        renderer.render(this.scene, this.camera, 0, context);
         renderer.popRenderTarget();
     }
 }
@@ -38158,13 +38983,14 @@ class OldMoviePass extends Pass {
         let material = new ShaderMaterial({ shaderSource: 'oldmovie' });
         material.addUser(this);
         material.depthTest = false;
-        this.quad = new FullScreenQuad({ material: material });
+        this.scene = new Scene();
+        this.quad = new FullScreenQuad({ material: material, parent: this.scene });
         this.camera = camera;
     }
-    render(renderer, readBuffer, writeBuffer, renderToScreen) {
+    render(renderer, readBuffer, writeBuffer, renderToScreen, delta, context) {
         this.quad.material.uniforms['colorMap'] = readBuffer.getTexture();
         renderer.pushRenderTarget(renderToScreen ? null : writeBuffer);
-        renderer.render(this.quad, this.camera);
+        renderer.render(this.scene, this.camera, 0, context);
         renderer.popRenderTarget();
     }
 }
@@ -38505,8 +39331,8 @@ const GraphicsEvents = new (function () {
             super();
             GraphicsEvents.#instance = this;
         }
-        tick(delta, time) {
-            this.dispatchEvent(new CustomEvent(GraphicsEvent.Tick, { detail: { delta: delta, time: time } }));
+        tick(delta, time, speed) {
+            this.dispatchEvent(new CustomEvent(GraphicsEvent.Tick, { detail: { delta: delta, time: time, speed: speed } }));
         }
         resize(width, height) {
             this.dispatchEvent(new CustomEvent(GraphicsEvent.Resize, { detail: { width: width, height: height } }));
@@ -38548,6 +39374,7 @@ const RECORDER_DEFAULT_FILENAME = 'Harmony3D recording.webm';
 const ACE_EDITOR_URI = 'https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js';
 const MAX_HARDWARE_BONES = 256;
 const TEXTURE_CLEANUP_DELAY = 100000;
+const SMD_HEADER = '// Created by harmony-3d';
 
 class WebGLRenderingState {
     static #viewport = create$3();
@@ -39427,13 +40254,17 @@ class Renderer {
             }
         }
     }
-    _prepareRenderList(renderList, scene, camera, delta) {
+    _prepareRenderList(renderList, scene, camera, delta, context) {
         renderList.reset();
         let currentObject = scene;
         let objectStack = [];
         //scene.pointLights = scene.getChildList(PointLight);
         //scene.ambientLights = scene.getChildList(AmbientLight);
         while (currentObject) {
+            if (currentObject.getAttribute(EngineEntityAttributes.IsTool, false) && context.DisableToolRendering) {
+                currentObject = objectStack.shift();
+                continue;
+            }
             //objectStack.push(currentObject);
             for (let child of currentObject.children) {
                 {
@@ -39450,7 +40281,7 @@ class Renderer {
         }
         renderList.finish();
     }
-    _renderRenderList(renderList, camera, renderLights, lightPos) {
+    _renderRenderList(renderList, camera, renderLights, context, lightPos) {
         for (let child of renderList.opaqueList) {
             this.renderObject(renderList, child, camera, child.geometry, child.material, renderLights, lightPos);
         }
@@ -39460,7 +40291,7 @@ class Renderer {
             }
         }
     }
-    render(scene, camera, delta) {
+    render(scene, camera, delta, context) {
     }
     clear(color, depth, stencil) {
         WebGLRenderingState.clear(color, depth, stencil);
@@ -39515,7 +40346,7 @@ class ShadowMap {
         this.#graphics = graphics;
         this.#glContext = this.#graphics.glContext;
     }
-    render(renderer, renderList, camera) {
+    render(renderer, renderList, camera, context) {
         let lights = renderList.lights;
         let blendCapability = WebGLRenderingState.isEnabled(GL_BLEND);
         let scissorCapability = WebGLRenderingState.isEnabled(GL_SCISSOR_TEST);
@@ -39541,10 +40372,10 @@ class ShadowMap {
                     this.#graphics.setIncludeCode('IS_POINT_LIGHT', light.isPointLight ? '#define IS_POINT_LIGHT' : '');
                     for (let viewPortIndex = 0; viewPortIndex < shadow.viewPortsLength; ++viewPortIndex) {
                         shadowViewport = shadow.viewPorts[viewPortIndex];
-                        set$3(viewPort, mapSize[0] * shadowViewport[0], mapSize[1] * shadowViewport[1], mapSize[0] * shadowViewport[2], mapSize[1] * shadowViewport[3]);
+                        set$4(viewPort, mapSize[0] * shadowViewport[0], mapSize[1] * shadowViewport[1], mapSize[0] * shadowViewport[2], mapSize[1] * shadowViewport[3]);
                         shadow.computeShadowMatrix(viewPortIndex);
                         this.#graphics.viewport = viewPort;
-                        renderer._renderRenderList(renderList, shadow.camera, false, lightPos);
+                        renderer._renderRenderList(renderList, shadow.camera, false, context, lightPos);
                     }
                     this.#graphics.popRenderTarget();
                 }
@@ -39678,15 +40509,15 @@ class ForwardRenderer extends Renderer {
             program.setUniformValue(uniform, material.uniforms[uniform]);
         }
     }
-    render(scene, camera, delta) {
+    render(scene, camera, delta, context) {
         const renderList = new RenderList(); //TODO: optimize
         camera.dirty(); //Force matrices to recompute
-        this._prepareRenderList(renderList, scene, camera, delta);
-        this.#shadowMap.render(this, renderList, camera);
+        this._prepareRenderList(renderList, scene, camera, delta, context);
+        this.#shadowMap.render(this, renderList, camera, context);
         if (scene.background) {
             scene.background.render(this, camera);
         }
-        this._renderRenderList(renderList, camera, true);
+        this._renderRenderList(renderList, camera, true, context);
         WebGLRenderingState.depthMask(true); //TODOv3 check why we have to do this
         ++this.#frame;
     }
@@ -39717,6 +40548,13 @@ var ShaderDebugMode;
 (function (ShaderDebugMode) {
     ShaderDebugMode[ShaderDebugMode["None"] = 0] = "None";
 })(ShaderDebugMode || (ShaderDebugMode = {}));
+let graphics$1 = null;
+function getGraphics() {
+    if (!graphics$1) {
+        graphics$1 = new Graphics();
+    }
+    return graphics$1;
+}
 class Graphics {
     static #instance;
     #pixelRatio = /*window.devicePixelRatio ?? */ 1.0;
@@ -39766,7 +40604,10 @@ class Graphics {
         this.setIncludeCode('MAX_HARDWARE_BONES', '#define MAX_HARDWARE_BONES ' + MAX_HARDWARE_BONES);
     }
     initCanvas(contextAttributes = {}) {
-        this.#canvas = contextAttributes.canvas ?? createElement('canvas', { tabindex: 1 });
+        this.#canvas = contextAttributes.canvas ?? createElement('canvas');
+        if (!this.#canvas.hasAttribute('tabindex')) {
+            this.#canvas.setAttribute('tabindex', "1");
+        }
         ShortcutHandler.addContext('3dview', this.#canvas);
         this.#width = this.#canvas.width;
         this.#height = this.#canvas.height;
@@ -39799,7 +40640,7 @@ class Graphics {
             return null;
         }
         this.setIncludeCode('pickingMode', '#define PICKING_MODE');
-        GraphicsEvents.tick(0, performance.now());
+        GraphicsEvents.tick(0, performance.now(), 0);
         this.setIncludeCode('pickingMode', '#undef PICKING_MODE');
         this.glContext;
         let pixels = new Uint8Array(4);
@@ -39843,9 +40684,9 @@ class Graphics {
         }
         return defines.join('\n') + '\n';
     }
-    render(scene, camera, delta) {
+    render(scene, camera, delta, context) {
         this.renderBackground(); //TODOv3 put in rendering pipeline
-        this.#forwardRenderer.render(scene, camera, delta);
+        this.#forwardRenderer.render(scene, camera, delta, context);
     }
     renderBackground() {
         if (this.autoClear) {
@@ -39876,7 +40717,7 @@ class Graphics {
         let delta = (tick - this.#lastTick) * this.speed * 0.001;
         if (this.#running) {
             ++this.currentTick;
-            GraphicsEvents.tick(delta, tick);
+            GraphicsEvents.tick(delta, tick, this.speed);
         }
         this.#lastTick = tick;
     }
@@ -39998,6 +40839,9 @@ class Graphics {
     }
     clearStencil(clearStencil) {
         WebGLRenderingState.clearStencil(clearStencil);
+    }
+    setColorMask(mask) {
+        WebGLRenderingState.colorMask(mask);
     }
     set autoResize(autoResize) {
         this.#autoResize = autoResize;
@@ -40161,7 +41005,7 @@ class Graphics {
         try {
             this.autoResize = false;
             this.setSize(width, height);
-            this.render(scene, camera, 0);
+            this.render(scene, camera, 0, { DisableToolRendering: true });
             this._savePicture(filename);
         }
         finally {
@@ -40332,35 +41176,35 @@ class Framebuffer {
     }
 }
 
-function renderbufferStorage(glContext, renderbuffer, internalFormat, width, height) {
+const graphics = getGraphics();
+function renderbufferStorage(renderbuffer, internalFormat, width, height, samples) {
+    const glContext = graphics.glContext;
     glContext.bindRenderbuffer(GL_RENDERBUFFER, renderbuffer);
-    glContext.renderbufferStorage(GL_RENDERBUFFER, internalFormat, width, height);
+    if (graphics.isWebGL2 && samples > 0) {
+        glContext.renderbufferStorageMultisample(GL_RENDERBUFFER, samples, internalFormat, width, height);
+    }
+    else {
+        glContext.renderbufferStorage(GL_RENDERBUFFER, internalFormat, width, height);
+    }
     glContext.bindRenderbuffer(GL_RENDERBUFFER, null);
 }
 class Renderbuffer {
     #renderbuffer;
     #internalFormat;
-    constructor(internalFormat, width, height) {
-        this.#renderbuffer = new Graphics().createRenderbuffer();
+    #samples;
+    constructor(internalFormat, width, height, samples) {
+        this.#renderbuffer = graphics.createRenderbuffer();
         this.#internalFormat = internalFormat;
-        //this._renderbufferStorage(width, height);
-        renderbufferStorage(new Graphics().glContext, this.#renderbuffer, this.#internalFormat, width, height);
+        renderbufferStorage(this.#renderbuffer, this.#internalFormat, width, height, this.#samples ?? 0);
     }
     resize(width, height) {
-        //this._renderbufferStorage(width, height);
-        renderbufferStorage(new Graphics().glContext, this.#renderbuffer, this.#internalFormat, width, height);
+        renderbufferStorage(this.#renderbuffer, this.#internalFormat, width, height, this.#samples ?? 0);
     }
     getRenderbuffer() {
         return this.#renderbuffer;
     }
-    /*TODOv3 removeme
-        _renderbufferStorage(width, height) {
-            glContext.bindRenderbuffer(GL_RENDERBUFFER, this.renderbuffer);
-            glContext.renderbufferStorage(GL_RENDERBUFFER, this.internalFormat, width, height);
-            glContext.bindRenderbuffer(GL_RENDERBUFFER, null);
-        }*/
     dispose() {
-        new Graphics().deleteRenderbuffer(this.#renderbuffer);
+        graphics.deleteRenderbuffer(this.#renderbuffer);
     }
 }
 
@@ -40449,8 +41293,8 @@ class RenderTarget {
         this.setViewport(0, 0, width, height);
     }
     setViewport(x, y, width, height) {
-        set$3(this.#viewport, x, y, width, height);
-        set$3(this.#scissor, x, y, width, height);
+        set$4(this.#viewport, x, y, width, height);
+        set$4(this.#scissor, x, y, width, height);
     }
     clone() {
         let dest = new RenderTarget({ width: this.#width, height: this.#height, depthBuffer: this.#depthBuffer, stencilBuffer: this.#stencilBuffer });
@@ -40468,7 +41312,7 @@ let tempVec2$4 = create();
 class OutlinePass extends Pass {
     #edgedetectionMaterial;
     #copyMaterial;
-    scene;
+    outlineScene;
     #renderTargetDepthBuffer;
     #renderTargetMaskDownSampleBuffer;
     #renderTargetBlurBuffer1;
@@ -40477,9 +41321,9 @@ class OutlinePass extends Pass {
     #renderTargetEdgeBuffer2;
     width = 1;
     height = 1;
-    constructor(scene, camera) {
+    constructor(outlineScene, camera) {
         super();
-        this.scene = scene;
+        this.outlineScene = outlineScene;
         this.camera = camera;
         this.#initRenderTargets();
         this.#copyMaterial = new ShaderMaterial({ shaderSource: 'copy' });
@@ -40488,7 +41332,8 @@ class OutlinePass extends Pass {
         this.#copyMaterial.setBlending(MATERIAL_BLENDING_ADDITIVE);
         this.#edgedetectionMaterial = new ShaderMaterial({ shaderSource: 'edgedetection' });
         this.#edgedetectionMaterial.addUser(this);
-        this.quad = new FullScreenQuad();
+        this.scene = new Scene();
+        this.quad = new FullScreenQuad({ parent: this.scene });
         //this.quad.material = material;
         this.camera = camera;
     }
@@ -40511,7 +41356,7 @@ class OutlinePass extends Pass {
         this.#renderTargetEdgeBuffer2.resize(width, height);
     }
     changeVisibilityOfSelectedObjects(visible) {
-        this.scene.forEach((entity) => {
+        this.outlineScene.forEach((entity) => {
             if (entity.properties.get('selected') && entity.isRenderable) {
                 if (visible) {
                     entity.setVisible(entity.properties.get('oldVisible'));
@@ -40525,7 +41370,7 @@ class OutlinePass extends Pass {
         });
     }
     changeVisibilityOfNonSelectedObjects(visible) {
-        this.scene.forEach((entity) => {
+        this.outlineScene.forEach((entity) => {
             if (!entity.properties.get('selected') && entity.isRenderable) {
                 if (visible) {
                     entity.setVisible(entity.properties.get('oldVisible'));
@@ -40538,7 +41383,7 @@ class OutlinePass extends Pass {
             }
         });
     }
-    render(renderer, readBuffer, writeBuffer, renderToScreen) {
+    render(renderer, readBuffer, writeBuffer, renderToScreen, delta, context) {
         renderer.getSize(tempVec2$4);
         tempVec2$4[0];
         tempVec2$4[1];
@@ -40547,15 +41392,15 @@ class OutlinePass extends Pass {
         renderer.clear(true, true, false);
         //renderer.setIncludeCode('WRITE_DEPTH_TO_COLOR', '#define WRITE_DEPTH_TO_COLOR');
         this.changeVisibilityOfSelectedObjects(false);
-        renderer.colorMask = [0, 0, 0, 0];
-        renderer.render(this.scene, this.camera, 0);
-        renderer.colorMask = undefined;
+        renderer.setColorMask([0, 0, 0, 0]);
+        renderer.render(this.outlineScene, this.camera, 0, context);
+        renderer.setColorMask([1, 1, 1, 1]);
         this.changeVisibilityOfSelectedObjects(true);
         //renderer.setIncludeCode('WRITE_DEPTH_TO_COLOR', '');
         this.changeVisibilityOfNonSelectedObjects(false);
         renderer.setIncludeCode('outline_pass_silhouette_mode', '#define SILHOUETTE_MODE');
         renderer.setIncludeCode('silhouetteColor', '#define SILHOUETTE_COLOR vec4(1.0)');
-        renderer.render(this.scene, this.camera, 0);
+        renderer.render(this.outlineScene, this.camera, 0, context);
         renderer.setIncludeCode('outline_pass_silhouette_mode', '#undef SILHOUETTE_MODE');
         this.changeVisibilityOfNonSelectedObjects(true);
         renderer.popRenderTarget();
@@ -40567,20 +41412,20 @@ class OutlinePass extends Pass {
         this.quad.setMaterial(this.#edgedetectionMaterial);
         renderer.pushRenderTarget(this.#renderTargetEdgeBuffer1);
         renderer.clear(true, true, false);
-        renderer.render(this.quad, this.camera, 0);
+        renderer.render(this.scene, this.camera, 0, context);
         renderer.popRenderTarget();
         /**************/
         this.#copyMaterial.uniforms['colorMap'] = readBuffer.getTexture();
         this.quad.setMaterial(this.#copyMaterial);
         renderer.pushRenderTarget(renderToScreen ? null : writeBuffer);
         renderer.clear(true, true, false);
-        renderer.render(this.quad, this.camera, 0);
+        renderer.render(this.scene, this.camera, 0, context);
         renderer.popRenderTarget();
         /***************/
         this.#copyMaterial.uniforms['colorMap'] = this.#renderTargetEdgeBuffer1.getTexture();
         this.quad.setMaterial(this.#copyMaterial);
         renderer.pushRenderTarget(renderToScreen ? null : writeBuffer);
-        renderer.render(this.quad, this.camera, 0);
+        renderer.render(this.scene, this.camera, 0, context);
         renderer.popRenderTarget();
     }
 }
@@ -40591,13 +41436,14 @@ class PalettePass extends Pass {
         let material = new ShaderMaterial({ shaderSource: 'palette' });
         material.addUser(this);
         material.depthTest = false;
-        this.quad = new FullScreenQuad({ material: material });
+        this.scene = new Scene();
+        this.quad = new FullScreenQuad({ material: material, parent: this.scene });
         this.camera = camera;
     }
-    render(renderer, readBuffer, writeBuffer, renderToScreen) {
+    render(renderer, readBuffer, writeBuffer, renderToScreen, delta, context) {
         this.quad.material.uniforms['colorMap'] = readBuffer.getTexture();
         renderer.pushRenderTarget(renderToScreen ? null : writeBuffer);
-        renderer.render(this.quad, this.camera);
+        renderer.render(this.scene, this.camera, 0, context);
         renderer.popRenderTarget();
     }
 }
@@ -40611,7 +41457,8 @@ class PixelatePass extends Pass {
         this.#material = new ShaderMaterial({ shaderSource: 'pixelate' });
         this.#material.addUser(this);
         this.#material.depthTest = false;
-        this.quad = new FullScreenQuad({ material: this.#material });
+        this.scene = new Scene();
+        this.quad = new FullScreenQuad({ material: this.#material, parent: this.scene });
         this.camera = camera;
         this.horizontalTiles = 10;
     }
@@ -40623,25 +41470,24 @@ class PixelatePass extends Pass {
         this.#pixelStyle = pixelStyle;
         this.#material.setDefine('PIXEL_STYLE', pixelStyle);
     }
-    render(renderer, readBuffer, writeBuffer, renderToScreen) {
+    render(renderer, readBuffer, writeBuffer, renderToScreen, delta, context) {
         this.#material.uniforms['colorMap'] = readBuffer.getTexture();
         renderer.pushRenderTarget(renderToScreen ? null : writeBuffer);
-        renderer.render(this.quad, this.camera);
+        renderer.render(this.scene, this.camera, 0, context);
         renderer.popRenderTarget();
     }
 }
 
 class RenderPass extends Pass {
-    scene;
     constructor(scene, camera) {
         super();
         this.swapBuffers = false;
         this.scene = scene;
         this.camera = camera;
     }
-    render(renderer, readBuffer, writeBuffer, renderToScreen, delta) {
+    render(renderer, readBuffer, writeBuffer, renderToScreen, delta, context) {
         renderer.pushRenderTarget(renderToScreen ? null : writeBuffer);
-        renderer.render(this.scene, this.camera, delta);
+        renderer.render(this.scene, this.camera, delta, context);
         renderer.popRenderTarget();
     }
 }
@@ -40653,7 +41499,8 @@ class SaturatePass extends Pass {
         let material = new ShaderMaterial({ shaderSource: 'saturate' });
         material.addUser(this);
         material.depthTest = false;
-        this.quad = new FullScreenQuad({ material: material });
+        this.scene = new Scene();
+        this.quad = new FullScreenQuad({ material: material, parent: this.scene });
         this.camera = camera;
         this.saturation = 1.0;
     }
@@ -40661,10 +41508,10 @@ class SaturatePass extends Pass {
         this.#saturation = saturation;
         this.quad.material.uniforms['uSaturation'] = this.#saturation;
     }
-    render(renderer, readBuffer, writeBuffer, renderToScreen) {
+    render(renderer, readBuffer, writeBuffer, renderToScreen, delta, context) {
         this.quad.material.uniforms['colorMap'] = readBuffer.getTexture();
         renderer.pushRenderTarget(renderToScreen ? null : writeBuffer);
-        renderer.render(this.quad, this.camera);
+        renderer.render(this.scene, this.camera, 0, context);
         renderer.popRenderTarget();
     }
 }
@@ -40675,13 +41522,14 @@ class SketchPass extends Pass {
         let material = new ShaderMaterial({ shaderSource: 'sketch' });
         material.addUser(this);
         material.depthTest = false;
-        this.quad = new FullScreenQuad({ material: material });
+        this.scene = new Scene();
+        this.quad = new FullScreenQuad({ material: material, parent: this.scene });
         this.camera = camera;
     }
-    render(renderer, readBuffer, writeBuffer, renderToScreen) {
+    render(renderer, readBuffer, writeBuffer, renderToScreen, delta, context) {
         this.quad.material.uniforms['colorMap'] = readBuffer.getTexture();
         renderer.pushRenderTarget(renderToScreen ? null : writeBuffer);
-        renderer.render(this.quad, this.camera);
+        renderer.render(this.scene, this.camera, 0, context);
         renderer.popRenderTarget();
     }
 }
@@ -40703,7 +41551,7 @@ class Composer {
         }
         this.#setRenderTarget(renderTarget);
     }
-    render(delta) {
+    render(delta, context) {
         let pass;
         let swapBuffer;
         new Graphics().getSize(tempVec2$3);
@@ -40725,12 +41573,12 @@ class Composer {
                 this.readBuffer = this.writeBuffer;
                 this.writeBuffer = swapBuffer;
             }
-            pass.render(new Graphics(), this.readBuffer, this.writeBuffer, i == lastPass, delta);
+            pass.render(new Graphics(), this.readBuffer, this.writeBuffer, i == lastPass, delta, context);
         }
     }
     savePicture(filename, width, height) {
         this.setSize(width, height);
-        this.render(0);
+        this.render(0, { DisableToolRendering: true });
         new Graphics()._savePicture(filename);
     }
     addPass(pass) {
@@ -40835,7 +41683,7 @@ const xUnitVec3$1 = fromValues$4(1, 0, 0);
 fromValues$4(0, 1, 0);
 const zUnitVec3$2 = fromValues$4(0, 0, 1);
 const minusZUnitVec3 = fromValues$4(0, 0, -1);
-const tempVec3$u = create$4();
+const tempVec3$t = create$4();
 const spherical$1 = new Spherical();
 class FirstPersonControl extends CameraControl {
     #enableDamping = false;
@@ -40887,7 +41735,7 @@ class FirstPersonControl extends CameraControl {
         this.#setupEventsListeners();
         this.#handleResize();
         //this.update();
-        invert$1(this.#quatInverse, this.#q);
+        invert$2(this.#quatInverse, this.#q);
         this.#setOrientation();
     }
     #handleResize() {
@@ -41096,12 +41944,12 @@ class FirstPersonControl extends CameraControl {
             phi = mapLinear(phi, 0, Math.PI, this.verticalMin, this.verticalMax);
         }
         var position = this.camera.position;
-        spherical$1.toCartesian(tempVec3$u);
+        spherical$1.toCartesian(tempVec3$t);
         // rotate offset back to 'camera-up-vector-is-up' space
         //offset.applyQuaternion(quatInverse);
         //vec3.transformQuat(tempVec3, tempVec3, this.#quatInverse);
         //position.copy(this.target).add(offset);
-        add$5(position, position, tempVec3$u);
+        add$5(position, position, tempVec3$t);
         this.camera.lookAt(position); //TODO: optimize
         if (this.#enableDamping === true) {
             this.#sphericalDelta.theta *= (1 - this.#dampingFactor);
@@ -41188,9 +42036,9 @@ class FirstPersonControl extends CameraControl {
         // angle from z-axis around y-axis
         spherical.setFromVector3(tempVec3);
         */
-        copy$4(tempVec3$u, xUnitVec3$1 /*minusZUnitVec3*/);
-        transformQuat$1(tempVec3$u, tempVec3$u, this.camera._quaternion);
-        spherical$1.setFromVector3(tempVec3$u);
+        copy$4(tempVec3$t, xUnitVec3$1 /*minusZUnitVec3*/);
+        transformQuat$1(tempVec3$t, tempVec3$t, this.camera._quaternion);
+        spherical$1.setFromVector3(tempVec3$t);
         this.#lat = -(90 - RAD_TO_DEG * (spherical$1.phi));
         this.#lon = -RAD_TO_DEG * (spherical$1.theta);
         this.#startLat = this.#lat;
@@ -41218,9 +42066,9 @@ class FirstPersonControl extends CameraControl {
     setupCamera() {
         if (this.camera) {
             rotationTo(this.#q, this.camera.upVector, zUnitVec3$2);
-            this.#quatInverse = invert$1(this.#quatInverse, this.#q);
-            transformQuat$1(tempVec3$u, minusZUnitVec3, this.camera.quaternion);
-            spherical$1.setFromVector3(tempVec3$u);
+            this.#quatInverse = invert$2(this.#quatInverse, this.#q);
+            transformQuat$1(tempVec3$t, minusZUnitVec3, this.camera.quaternion);
+            spherical$1.setFromVector3(tempVec3$t);
         }
     }
     handleEnabled() {
@@ -41254,7 +42102,7 @@ registerEntity(Target);
 // Zoom - middle mouse, or mousewheel / touch: two-finger spread or squish
 // Pan - right mouse, or left mouse + ctrl/meta/shiftKey, or arrow keys / touch: two-finger move
 const zUnitVec3$1 = fromValues$4(0, 0, 1);
-const tempVec3$t = create$4();
+const tempVec3$s = create$4();
 const tempVec3_2$9 = create$4();
 const spherical = new Spherical();
 // Mouse buttons
@@ -41368,7 +42216,7 @@ class OrbitControl extends CameraControl {
     setupCamera() {
         if (this.camera) {
             rotationTo(this.#q, this.#upVector, zUnitVec3$1);
-            this.#quatInverse = invert$1(this.#quatInverse, this.#q);
+            this.#quatInverse = invert$2(this.#quatInverse, this.#q);
         }
     }
     update(delta = 1) {
@@ -41377,12 +42225,12 @@ class OrbitControl extends CameraControl {
         }
         var position = this.camera._position;
         //offset.copy(position).sub(this.target);
-        sub$2(tempVec3$t, position, this.#target.getWorldPosition()); //TODO: optimise
+        sub$2(tempVec3$s, position, this.#target.getWorldPosition()); //TODO: optimise
         // rotate offset to 'y-axis-is-up' space
         //offset.applyQuaternion(q);
-        transformQuat$1(tempVec3$t, tempVec3$t, this.#q);
+        transformQuat$1(tempVec3$s, tempVec3$s, this.#q);
         // angle from z-axis around y-axis
-        spherical.setFromVector3(tempVec3$t);
+        spherical.setFromVector3(tempVec3$s);
         if (this.#autoRotate && this.#state === STATE.NONE) {
             this.#rotateLeft(this.#autoRotateSpeed);
         }
@@ -41418,13 +42266,13 @@ class OrbitControl extends CameraControl {
             add$5(tempVec3_2$9, this.#target._position, this.#panOffset);
             this.#target.setPosition(tempVec3_2$9);
         }
-        spherical.toCartesian(tempVec3$t);
+        spherical.toCartesian(tempVec3$s);
         // rotate offset back to 'camera-up-vector-is-up' space
         //offset.applyQuaternion(quatInverse);
-        transformQuat$1(tempVec3$t, tempVec3$t, this.#quatInverse);
+        transformQuat$1(tempVec3$s, tempVec3$s, this.#quatInverse);
         //position.copy(this.target).add(offset);
-        add$5(tempVec3$t, this.#target.getWorldPosition(), tempVec3$t);
-        this.camera.setPosition(tempVec3$t);
+        add$5(tempVec3$s, this.#target.getWorldPosition(), tempVec3$s);
+        this.camera.setPosition(tempVec3$s);
         this.camera.lookAt(this.#target.getWorldPosition(), this.#upVector); //TODO: optimize
         if (this.#enableDamping === true) {
             this.#sphericalDelta.theta *= (1 - this.#dampingFactor);
@@ -41433,7 +42281,7 @@ class OrbitControl extends CameraControl {
         }
         else {
             this.#sphericalDelta.set(0, 0, 0);
-            set$4(this.#panOffset, 0, 0, 0);
+            set$5(this.#panOffset, 0, 0, 0);
         }
         this.#scale = 1;
         // update condition is:
@@ -41464,22 +42312,22 @@ class OrbitControl extends CameraControl {
         this.#sphericalDelta.phi -= angle;
     }
     #panLeft(distance, rotation) {
-        transformQuat$1(tempVec3$t, [1, 0, 0], rotation);
-        scale$5(tempVec3$t, tempVec3$t, -distance);
-        add$5(this.#panOffset, this.#panOffset, tempVec3$t);
+        transformQuat$1(tempVec3$s, [1, 0, 0], rotation);
+        scale$5(tempVec3$s, tempVec3$s, -distance);
+        add$5(this.#panOffset, this.#panOffset, tempVec3$s);
     }
     #panUp(distance, rotation) {
-        transformQuat$1(tempVec3$t, [0, 1, 0], rotation);
-        scale$5(tempVec3$t, tempVec3$t, distance);
-        add$5(this.#panOffset, this.#panOffset, tempVec3$t);
+        transformQuat$1(tempVec3$s, [0, 1, 0], rotation);
+        scale$5(tempVec3$s, tempVec3$s, distance);
+        add$5(this.#panOffset, this.#panOffset, tempVec3$s);
     }
     #pan(deltaX, deltaY, element) {
         if (this.camera.isPerspective) {
             // perspective
             var position = this.camera.position;
             //offset.copy(position).sub(this.target);
-            sub$2(tempVec3$t, position, this.#target.getWorldPosition()); //todo // OPTIMIZE:
-            var targetDistance = len$4(tempVec3$t);
+            sub$2(tempVec3$s, position, this.#target.getWorldPosition()); //todo // OPTIMIZE:
+            var targetDistance = len$4(tempVec3$s);
             // half of the fov is center to top of screen
             targetDistance *= this.camera.getTanHalfVerticalFov(); //Math.tan((this.camera.fov / 2)* Math.PI / 180.0);
             // we use only clientHeight here so aspect ratio does not distort speed
@@ -41520,17 +42368,17 @@ class OrbitControl extends CameraControl {
         }
     }
     #handleMouseDownRotate(event) {
-        set(this.#rotateStart, event.clientX, event.clientY);
+        set$1(this.#rotateStart, event.clientX, event.clientY);
     }
     #handleMouseDownDolly(event) {
-        set(this.#dollyStart, event.clientX, event.clientY);
+        set$1(this.#dollyStart, event.clientX, event.clientY);
     }
     #handleMouseDownPan(event) {
-        set(this.#panStart, event.clientX, event.clientY);
+        set$1(this.#panStart, event.clientX, event.clientY);
     }
     #handleMouseMoveRotate(event) {
         const mouseEvent = event.detail.mouseEvent;
-        set(this.#rotateEnd, mouseEvent.clientX, mouseEvent.clientY);
+        set$1(this.#rotateEnd, mouseEvent.clientX, mouseEvent.clientY);
         this.#rotateDelta[0] = mouseEvent.movementX * this.#rotateSpeed;
         this.#rotateDelta[1] = mouseEvent.movementY * this.#rotateSpeed;
         //console.error(event.movementX, event.movementY, ...this.#rotateDelta);
@@ -41543,7 +42391,7 @@ class OrbitControl extends CameraControl {
     #handleMouseMoveDolly(event) {
         //console.error(event.movementX, event.movementY, ...this.#dollyDelta);
         //dollyEnd.set(event.clientX, event.clientY);
-        set(this.#dollyEnd, event.movementX, event.movementY);
+        set$1(this.#dollyEnd, event.movementX, event.movementY);
         //dollyDelta.subVectors(dollyEnd, dollyStart);
         //vec2.sub(this.#dollyDelta, this.#dollyEnd, this.#dollyStart);
         sub(this.#dollyDelta, this.#dollyDelta, this.#dollyEnd);
@@ -41672,29 +42520,29 @@ class OrbitControl extends CameraControl {
     }
     #handleTouchStartRotate(event) {
         if (event.touches.length == 1) {
-            set(this.#rotateStart, event.touches[0].pageX, event.touches[0].pageY);
+            set$1(this.#rotateStart, event.touches[0].pageX, event.touches[0].pageY);
         }
         else {
             var x = 0.5 * (event.touches[0].pageX + event.touches[1].pageX);
             var y = 0.5 * (event.touches[0].pageY + event.touches[1].pageY);
-            set(this.#rotateStart, x, y);
+            set$1(this.#rotateStart, x, y);
         }
     }
     #handleTouchStartPan(event) {
         if (event.touches.length == 1) {
-            set(this.#panStart, event.touches[0].pageX, event.touches[0].pageY);
+            set$1(this.#panStart, event.touches[0].pageX, event.touches[0].pageY);
         }
         else {
             var x = 0.5 * (event.touches[0].pageX + event.touches[1].pageX);
             var y = 0.5 * (event.touches[0].pageY + event.touches[1].pageY);
-            set(this.#panStart, x, y);
+            set$1(this.#panStart, x, y);
         }
     }
     #handleTouchStartDolly(event) {
         var dx = event.touches[0].pageX - event.touches[1].pageX;
         var dy = event.touches[0].pageY - event.touches[1].pageY;
         var distance = Math.sqrt(dx * dx + dy * dy);
-        set(this.#dollyStart, 0, distance);
+        set$1(this.#dollyStart, 0, distance);
     }
     #handleTouchStartDollyPan(event) {
         if (this.#enableDolly)
@@ -41710,12 +42558,12 @@ class OrbitControl extends CameraControl {
     }
     #handleTouchMoveRotate(event) {
         if (event.touches.length == 1) {
-            set(this.#rotateEnd, event.touches[0].pageX, event.touches[0].pageY);
+            set$1(this.#rotateEnd, event.touches[0].pageX, event.touches[0].pageY);
         }
         else {
             var x = 0.5 * (event.touches[0].pageX + event.touches[1].pageX);
             var y = 0.5 * (event.touches[0].pageY + event.touches[1].pageY);
-            set(this.#rotateEnd, x, y);
+            set$1(this.#rotateEnd, x, y);
         }
         sub(this.#rotateDelta, this.#rotateEnd, this.#rotateStart);
         scale$1(this.#rotateDelta, this.#rotateDelta, this.#rotateSpeed);
@@ -41727,13 +42575,13 @@ class OrbitControl extends CameraControl {
     #handleTouchMovePan(event) {
         if (event.touches.length == 1) {
             //panEnd.set(event.touches[ 0 ].pageX, event.touches[ 0 ].pageY);
-            set(this.#panEnd, event.touches[0].pageX, event.touches[0].pageY);
+            set$1(this.#panEnd, event.touches[0].pageX, event.touches[0].pageY);
         }
         else {
             var x = 0.5 * (event.touches[0].pageX + event.touches[1].pageX);
             var y = 0.5 * (event.touches[0].pageY + event.touches[1].pageY);
             //panEnd.set(x, y);
-            set(this.#panEnd, x, y);
+            set$1(this.#panEnd, x, y);
         }
         //panDelta.subVectors(panEnd, panStart).multiplyScalar(this.#panSpeed);
         scale$1(this.#panDelta, sub(this.#panDelta, this.#panEnd, this.#panStart), this.#panSpeed);
@@ -41745,8 +42593,8 @@ class OrbitControl extends CameraControl {
         var dy = event.touches[0].pageY - event.touches[1].pageY;
         var distance = Math.sqrt(dx * dx + dy * dy);
         //dollyEnd.set(0, distance);
-        set(this.#dollyEnd, 0, distance);
-        set(this.#dollyDelta, 0, Math.pow(this.#dollyEnd[1] / this.#dollyStart[1], this.#dollySpeed));
+        set$1(this.#dollyEnd, 0, distance);
+        set$1(this.#dollyDelta, 0, Math.pow(this.#dollyEnd[1] / this.#dollyStart[1], this.#dollySpeed));
         this.#dollyIn(this.#dollyDelta[1]);
         //dollyStart.copy(this.#dollyEnd);
         copy(this.#dollyStart, this.#dollyEnd);
@@ -41765,6 +42613,9 @@ class OrbitControl extends CameraControl {
     }
     #onMouseDown(event) {
         if (this.enabled === false) {
+            return;
+        }
+        if (event.detail.entity?.getLayer() > 0) {
             return;
         }
         // Prevent the browser from scrolling.
@@ -42036,7 +42887,7 @@ class TranslationControl extends Entity {
     #update(delta) {
         switch (this.#mode) {
             case TranslationMode.Bounce:
-                let distance = distance$2(this.#startPoint, this.#endPoint);
+                let distance = distance$3(this.#startPoint, this.#endPoint);
                 let deltaL = distance ? this.#speed * delta / distance : 1;
                 let percent = this.#percent + deltaL * this.#bounceDirection;
                 if (percent >= 1) {
@@ -42663,7 +43514,7 @@ class SphereBufferGeometry extends BufferGeometry {
 let intersectionPoint1 = create$4();
 let intersectionPoint2 = create$4();
 let intersectionNormal$1 = create$4();
-const tempVec3$s = create$4();
+const tempVec3$r = create$4();
 let v$f = create$4();
 class Sphere extends Mesh {
     radius;
@@ -42685,6 +43536,10 @@ class Sphere extends Mesh {
         this.thetaLength = params.thetaLength ?? PI;
         this.updateGeometry();
         super.setParameters(arguments[0]);
+    }
+    setRadius(radius) {
+        this.radius = radius;
+        this.updateGeometry();
     }
     updateGeometry() {
         this.geometry.updateGeometry(this.radius, this.segments, this.rings, this.phiStart, this.phiLength, this.thetaStart, this.thetaLength);
@@ -42710,7 +43565,7 @@ class Sphere extends Mesh {
         let ray = raycaster.ray;
         let worldPosition = this.getWorldPosition(v$f);
         let inverseRadius = 1 / this.radius;
-        if (ray.intersectSphere(worldPosition, this.radius, this.getWorldScale(tempVec3$s), intersectionPoint1, intersectionPoint2)) {
+        if (ray.intersectSphere(worldPosition, this.radius, this.getWorldScale(tempVec3$r), intersectionPoint1, intersectionPoint2)) {
             //return super.raycast(raycaster, intersections);//TODO: improve
             //TODO: case when the ray spawn from inside the sphere
             sub$2(intersectionNormal$1, intersectionPoint1, worldPosition);
@@ -42765,7 +43620,7 @@ const zUnitVec3 = fromValues$4(0, 0, 1);
 const xyUnitVec3 = fromValues$4(1, 1, 0);
 const xzUnitVec3 = fromValues$4(1, 0, 1);
 const yzUnitVec3 = fromValues$4(0, 1, 1);
-const tempVec3$r = create$4();
+const tempVec3$q = create$4();
 const tempVec3_b = create$4();
 const translationManipulatorTempQuat = create$2();
 const tempQuat$a = create$2();
@@ -42784,6 +43639,18 @@ var ManipulatorMode;
     ManipulatorMode[ManipulatorMode["Rotation"] = 1] = "Rotation";
     ManipulatorMode[ManipulatorMode["Scale"] = 2] = "Scale";
 })(ManipulatorMode || (ManipulatorMode = {}));
+var ManipulatorAxis;
+(function (ManipulatorAxis) {
+    ManipulatorAxis[ManipulatorAxis["None"] = 0] = "None";
+    ManipulatorAxis[ManipulatorAxis["X"] = 1] = "X";
+    ManipulatorAxis[ManipulatorAxis["Y"] = 2] = "Y";
+    ManipulatorAxis[ManipulatorAxis["Z"] = 3] = "Z";
+    ManipulatorAxis[ManipulatorAxis["XY"] = 4] = "XY";
+    ManipulatorAxis[ManipulatorAxis["XZ"] = 5] = "XZ";
+    ManipulatorAxis[ManipulatorAxis["YZ"] = 6] = "YZ";
+    ManipulatorAxis[ManipulatorAxis["XYZ"] = 7] = "XYZ";
+    ManipulatorAxis[ManipulatorAxis["View"] = 8] = "View";
+})(ManipulatorAxis || (ManipulatorAxis = {}));
 class Manipulator extends Entity {
     #entityAxis = new Map();
     #xMaterial = new MeshBasicMaterial();
@@ -42824,11 +43691,11 @@ class Manipulator extends Entity {
     enumerable = false;
     camera;
     size = 1;
-    #axis = 0;
+    #axis = ManipulatorAxis.None;
     #startPosition = create$4();
     #startQuaternion = create$2();
     #startLocalQuaternion = create$2();
-    #startDragVector = create$4();
+    #startDragVector = 0; //vec3 = vec3.create();
     #translationManipulator = new Entity({ name: 'Translation manipulator' });
     #rotationManipulator = new Entity({ name: 'Rotation manipulator' });
     #scaleManipulator = new Entity({ name: 'Scale manipulator' });
@@ -42838,6 +43705,7 @@ class Manipulator extends Entity {
     constructor(params) {
         super(params);
         this.wireframe = 0;
+        this.setLayer(LAYER_MAX);
         this.hideInExplorer = true;
         this.castShadow = false;
         this.serializable = false;
@@ -42845,43 +43713,48 @@ class Manipulator extends Entity {
         this.#initTranslationManipulator();
         this.#initRotationManipulator();
         this.#initScaleManipulator();
-        this.setMode(0);
+        this.setMode(ManipulatorMode.Translation);
+        this.setAttribute(EngineEntityAttributes.IsTool, true);
         this.enableX = true;
         this.enableY = true;
         this.enableZ = true;
         this.forEach((entity) => entity.setupPickingId());
         GraphicsEvents.addEventListener(GraphicsEvent.Tick, () => this.resize(this.root?.activeCamera));
         GraphicsEvents.addEventListener(GraphicsEvent.MouseDown, (event) => {
-            let detail = event.detail;
+            const detail = event.detail;
             if (this.#entityAxis.has(detail.entity)) {
                 this.#axis = this.#entityAxis.get(detail.entity);
-                if (this.#axis < 10) {
-                    this.startTranslate(detail.x, detail.y);
-                }
-                else if (this.#axis < 20) {
-                    this.startRotate(detail.x, detail.y);
-                }
-                else {
-                    this.startScale(detail.x, detail.y);
+                switch (this.#mode) {
+                    case ManipulatorMode.Translation:
+                        this.startTranslate(detail.x, detail.y);
+                        break;
+                    case ManipulatorMode.Rotation:
+                        this.startRotate(detail.x, detail.y);
+                        break;
+                    case ManipulatorMode.Scale:
+                        this.startScale(detail.x, detail.y);
+                        break;
                 }
                 new Graphics().dragging = true;
                 this.#setAxisSelected(true);
             }
         });
         GraphicsEvents.addEventListener(GraphicsEvent.MouseMove, (event) => {
-            let detail = event.detail;
+            const detail = event.detail;
             if (!detail.entity?.isVisible()) {
                 return;
             }
             if (this.#entityAxis.has(detail.entity)) {
-                if (this.#axis < 10) {
-                    this.#translationMoveHandler(detail.x, detail.y);
-                }
-                else if (this.#axis < 20) {
-                    this.#rotationMoveHandler(detail.x, detail.y);
-                }
-                else {
-                    this.#scaleMoveHandler(detail.x, detail.y);
+                switch (this.#mode) {
+                    case ManipulatorMode.Translation:
+                        this.#translationMoveHandler(detail.x, detail.y);
+                        break;
+                    case ManipulatorMode.Rotation:
+                        this.#rotationMoveHandler(detail.x, detail.y);
+                        break;
+                    case ManipulatorMode.Scale:
+                        this.#scaleMoveHandler(detail.x, detail.y);
+                        break;
                 }
             }
         });
@@ -42891,15 +43764,15 @@ class Manipulator extends Entity {
                 this.#setAxisSelected(false);
             }
         });
-        ShortcutHandler.addEventListener(MANIPULATOR_SHORTCUT_INCREASE, event => this.size *= 1.1);
-        ShortcutHandler.addEventListener(MANIPULATOR_SHORTCUT_DECREASE, event => this.size *= 0.9);
-        ShortcutHandler.addEventListener(MANIPULATOR_SHORTCUT_TRANSLATION, event => this.mode = 0);
-        ShortcutHandler.addEventListener(MANIPULATOR_SHORTCUT_ROTATION, event => this.mode = 1);
-        ShortcutHandler.addEventListener(MANIPULATOR_SHORTCUT_SCALE, event => this.mode = 2);
-        ShortcutHandler.addEventListener(MANIPULATOR_SHORTCUT_AXIS_ORIENTATION, event => this.#axisOrientation = (++this.#axisOrientation) % 2);
-        ShortcutHandler.addEventListener(MANIPULATOR_SHORTCUT_TOGGLE_X, event => this.enableX = !this.enableX);
-        ShortcutHandler.addEventListener(MANIPULATOR_SHORTCUT_TOGGLE_Y, event => this.enableY = !this.enableY);
-        ShortcutHandler.addEventListener(MANIPULATOR_SHORTCUT_TOGGLE_Z, event => this.enableZ = !this.enableZ);
+        ShortcutHandler.addEventListener(MANIPULATOR_SHORTCUT_INCREASE, () => this.size *= 1.1);
+        ShortcutHandler.addEventListener(MANIPULATOR_SHORTCUT_DECREASE, () => this.size *= 0.9);
+        ShortcutHandler.addEventListener(MANIPULATOR_SHORTCUT_TRANSLATION, () => this.setMode(ManipulatorMode.Translation));
+        ShortcutHandler.addEventListener(MANIPULATOR_SHORTCUT_ROTATION, () => this.setMode(ManipulatorMode.Rotation));
+        ShortcutHandler.addEventListener(MANIPULATOR_SHORTCUT_SCALE, () => this.setMode(ManipulatorMode.Scale));
+        ShortcutHandler.addEventListener(MANIPULATOR_SHORTCUT_AXIS_ORIENTATION, () => this.#axisOrientation = (++this.#axisOrientation) % 2);
+        ShortcutHandler.addEventListener(MANIPULATOR_SHORTCUT_TOGGLE_X, () => this.enableX = !this.enableX);
+        ShortcutHandler.addEventListener(MANIPULATOR_SHORTCUT_TOGGLE_Y, () => this.enableY = !this.enableY);
+        ShortcutHandler.addEventListener(MANIPULATOR_SHORTCUT_TOGGLE_Z, () => this.enableZ = !this.enableZ);
     }
     resize(camera) {
         if (!this.isVisible()) {
@@ -42909,9 +43782,9 @@ class Manipulator extends Entity {
         if (camera) {
             this.camera = camera;
             if (camera.isPerspective) {
-                this.getWorldPosition(tempVec3$r);
+                this.getWorldPosition(tempVec3$q);
                 camera.getWorldPosition(tempVec3_b);
-                scaleFactor = distance$2(tempVec3$r, tempVec3_b) * Math.min(1.9 * Math.tan(camera.verticalFov * DEG_TO_RAD), 7);
+                scaleFactor = distance$3(tempVec3$q, tempVec3_b) * Math.min(1.9 * Math.tan(camera.verticalFov * DEG_TO_RAD), 7);
                 scaleFactor *= 0.02;
             }
             else if (camera.isOrthographic) {
@@ -42919,7 +43792,7 @@ class Manipulator extends Entity {
                 scaleFactor *= 0.02;
             }
             scaleFactor *= this.size;
-            this.scale = set$4(tempVec3$r, scaleFactor, scaleFactor, scaleFactor);
+            this.scale = set$5(tempVec3$q, scaleFactor, scaleFactor, scaleFactor);
             this.#setupAxis();
         }
     }
@@ -43011,16 +43884,16 @@ class Manipulator extends Entity {
         this.#translationManipulator.addChild(this.#xyPlane);
         this.#translationManipulator.addChild(this.#xzPlane);
         this.#translationManipulator.addChild(this.#yzPlane);
-        this.#entityAxis.set(this.#xyzSphere, 0);
-        this.#entityAxis.set(this.#xArrow, 1);
-        this.#entityAxis.set(xTip, 1);
-        this.#entityAxis.set(this.#yArrow, 2);
-        this.#entityAxis.set(yTip, 2);
-        this.#entityAxis.set(this.#zArrow, 3);
-        this.#entityAxis.set(zTip, 3);
-        this.#entityAxis.set(this.#xyPlane, 4);
-        this.#entityAxis.set(this.#xzPlane, 5);
-        this.#entityAxis.set(this.#yzPlane, 6);
+        this.#entityAxis.set(this.#xyzSphere, ManipulatorAxis.XYZ);
+        this.#entityAxis.set(this.#xArrow, ManipulatorAxis.X);
+        this.#entityAxis.set(xTip, ManipulatorAxis.X);
+        this.#entityAxis.set(this.#yArrow, ManipulatorAxis.Y);
+        this.#entityAxis.set(yTip, ManipulatorAxis.Y);
+        this.#entityAxis.set(this.#zArrow, ManipulatorAxis.Z);
+        this.#entityAxis.set(zTip, ManipulatorAxis.Z);
+        this.#entityAxis.set(this.#xyPlane, ManipulatorAxis.XY);
+        this.#entityAxis.set(this.#xzPlane, ManipulatorAxis.XZ);
+        this.#entityAxis.set(this.#yzPlane, ManipulatorAxis.YZ);
     }
     #initRotationManipulator() {
         this.addChild(this.#rotationManipulator);
@@ -43029,10 +43902,10 @@ class Manipulator extends Entity {
         this.#rotationManipulator.addChild(this.#zCircle);
         this.#rotationManipulator.addChild(this.#viewCircle);
         this.#rotationManipulator.addChild(this.#circle);
-        this.#entityAxis.set(this.#xCircle, 11);
-        this.#entityAxis.set(this.#yCircle, 12);
-        this.#entityAxis.set(this.#zCircle, 13);
-        this.#entityAxis.set(this.#viewCircle, 17);
+        this.#entityAxis.set(this.#xCircle, ManipulatorAxis.X);
+        this.#entityAxis.set(this.#yCircle, ManipulatorAxis.Y);
+        this.#entityAxis.set(this.#zCircle, ManipulatorAxis.Z);
+        this.#entityAxis.set(this.#viewCircle, ManipulatorAxis.View);
     }
     #initScaleManipulator() {
         this.addChild(this.#scaleManipulator);
@@ -43067,12 +43940,12 @@ class Manipulator extends Entity {
         this.addChild(this.#xzPlane);
         this.addChild(this.#yzPlane);*/
         //this.#entityAxis.set(_xyzSphere, 20);
-        this.#entityAxis.set(this.#xScale, 21);
-        this.#entityAxis.set(xScaleTip, 21);
-        this.#entityAxis.set(this.#yScale, 22);
-        this.#entityAxis.set(yScaleTip, 22);
-        this.#entityAxis.set(this.#zScale, 23);
-        this.#entityAxis.set(zScaleTip, 23);
+        this.#entityAxis.set(this.#xScale, ManipulatorAxis.X);
+        this.#entityAxis.set(xScaleTip, ManipulatorAxis.X);
+        this.#entityAxis.set(this.#yScale, ManipulatorAxis.Y);
+        this.#entityAxis.set(yScaleTip, ManipulatorAxis.Y);
+        this.#entityAxis.set(this.#zScale, ManipulatorAxis.Z);
+        this.#entityAxis.set(zScaleTip, ManipulatorAxis.Z);
     }
     startTranslate(x, y) {
         if (this._parent) {
@@ -43110,51 +43983,71 @@ class Manipulator extends Entity {
         }
     }
     #translationMoveHandler(x, y) {
-        this.#computeTranslationPosition(tempVec3$r, x, y);
-        sub$2(tempVec3$r, tempVec3$r, this.#startDragPosition);
+        this.#computeTranslationPosition(tempVec3$q, x, y);
+        sub$2(tempVec3$q, tempVec3$q, this.#startDragPosition);
         switch (this.#axis) {
-            case 0:
+            case ManipulatorAxis.None:
                 break;
-            case 1:
-                tempVec3$r[1] = 0;
-                tempVec3$r[2] = 0;
+            case ManipulatorAxis.X:
+                tempVec3$q[1] = 0;
+                tempVec3$q[2] = 0;
                 break;
-            case 2:
-                tempVec3$r[0] = 0;
-                tempVec3$r[2] = 0;
+            case ManipulatorAxis.Y:
+                tempVec3$q[0] = 0;
+                tempVec3$q[2] = 0;
                 break;
-            case 3:
-                tempVec3$r[0] = 0;
-                tempVec3$r[1] = 0;
+            case ManipulatorAxis.Z:
+                tempVec3$q[0] = 0;
+                tempVec3$q[1] = 0;
                 break;
-            case 4:
-                tempVec3$r[2] = 0;
+            case ManipulatorAxis.XY:
+                tempVec3$q[2] = 0;
                 break;
-            case 5:
-                tempVec3$r[1] = 0;
+            case ManipulatorAxis.XZ:
+                tempVec3$q[1] = 0;
                 break;
-            case 6:
-                tempVec3$r[0] = 0;
+            case ManipulatorAxis.YZ:
+                tempVec3$q[0] = 0;
                 break;
             default:
-                tempVec3$r[0] = 0;
-                tempVec3$r[1] = 0;
-                tempVec3$r[2] = 0;
+                tempVec3$q[0] = 0;
+                tempVec3$q[1] = 0;
+                tempVec3$q[2] = 0;
         }
-        transformQuat$1(tempVec3$r, tempVec3$r, this.getWorldQuaternion());
-        add$5(tempVec3$r, this.#startPosition, tempVec3$r);
+        transformQuat$1(tempVec3$q, tempVec3$q, this.getWorldQuaternion());
+        add$5(tempVec3$q, this.#startPosition, tempVec3$q);
         if (this._parent) {
-            this._parent.setWorldPosition(tempVec3$r);
+            this._parent.setWorldPosition(tempVec3$q);
             this._parent.locked = true;
         }
         else {
-            this.setWorldPosition(tempVec3$r);
+            this.setWorldPosition(tempVec3$q);
         }
     }
     #rotationMoveHandler(x, y) {
-        let v3 = this.#computeQuaternion(x, y);
+        const v3 = this.#computeQuaternion(x, y);
         rotationTo(translationManipulatorTempQuat, this.#startDragVector, v3);
         mul$2(translationManipulatorTempQuat, this.#startLocalQuaternion, translationManipulatorTempQuat);
+        const viewDirection = this.camera.getViewDirection(create$4() /*TODO: optimize*/);
+        let rotateAxis = xUnitVec3;
+        switch (this.#axis) {
+            case ManipulatorAxis.Y:
+                rotateAxis = yUnitVec3;
+                break;
+            case ManipulatorAxis.Z:
+                rotateAxis = zUnitVec3;
+                break;
+            case ManipulatorAxis.View:
+                rotateAxis = viewDirection;
+                break;
+        }
+        let invert = Math.sign(dot$4(rotateAxis, viewDirection));
+        if (invert == 0) {
+            invert = 1;
+        }
+        const angleDelta = this.#startDragVector - v3;
+        setAxisAngle(translationManipulatorTempQuat, rotateAxis, angleDelta * invert);
+        mul$2(translationManipulatorTempQuat, translationManipulatorTempQuat, this.#startLocalQuaternion);
         if (this._parent) {
             this._parent.quaternion = translationManipulatorTempQuat;
             this._parent.locked = true;
@@ -43164,7 +44057,7 @@ class Manipulator extends Entity {
         }
     }
     #scaleMoveHandler(x, y) {
-        let v3 = this.#computeTranslationPosition(tempVec3$r, x, y);
+        let v3 = this.#computeTranslationPosition(tempVec3$q, x, y);
         if (!v3) {
             return;
         }
@@ -43173,17 +44066,17 @@ class Manipulator extends Entity {
         div$2(v3, v3, this.#startScalePosition);
         scale$5(v3, v3, 2 / ARROW_LENGTH);
         switch (this.#axis) {
-            case 20:
+            case ManipulatorAxis.None:
                 break;
-            case 21:
+            case ManipulatorAxis.X:
                 v3[1] = 1;
                 v3[2] = 1;
                 break;
-            case 22:
+            case ManipulatorAxis.Y:
                 v3[0] = 1;
                 v3[2] = 1;
                 break;
-            case 23:
+            case ManipulatorAxis.Z:
                 v3[0] = 1;
                 v3[1] = 1;
                 break;
@@ -43205,8 +44098,8 @@ class Manipulator extends Entity {
             camera.nearPlane;
             camera.farPlane;
             camera.aspectRatio;
-            let invProjectionMatrix = invert$2(create$5(), projectionMatrix);
-            let invViewMatrix = invert$2(create$5(), viewMatrix);
+            let invProjectionMatrix = invert$3(create$5(), projectionMatrix);
+            let invViewMatrix = invert$3(create$5(), viewMatrix);
             // transform the screen coordinates to normalized coordinates
             this.#cursorPos[0] = (x / new Graphics().getWidth()) * 2.0 - 1.0;
             this.#cursorPos[1] = 1.0 - (y / new Graphics().getHeight()) * 2.0;
@@ -43259,17 +44152,30 @@ class Manipulator extends Entity {
             let projPoint = add$5(create$4(), A, scale$5(AB, AB, dot$4(AP, AB) / dot$4(AB, AB)));
             planeNormal = sub$2(create$4(), projPoint, camera.position);
             normalize$5(planeNormal, planeNormal);
-            if (this.#axis == 0 || this.#axis == 20) {
+            if (this.#axis == ManipulatorAxis.XYZ) {
                 transformQuat$1(planeNormal, fromValues$4(0, 0, 1), camera.quaternion);
             }
             /********************/
             lineIntersection(out, worldPos, planeNormal, this.#near, sub$2(create$4(), this.#far, this.#near));
-            invert$1(translationManipulatorTempQuat, this.getWorldQuaternion());
+            invert$2(translationManipulatorTempQuat, this.getWorldQuaternion());
             transformQuat$1(out, out, translationManipulatorTempQuat);
             return out;
         }
     }
     #computeQuaternion(x, y) {
+        const camera = this.camera;
+        if (!camera) {
+            return 0;
+        }
+        // transform the screen coordinates to normalized coordinates
+        const normalizedX = (x / new Graphics().getWidth()) * 2.0 - 1.0;
+        const normalizedY = 1.0 - (y / new Graphics().getHeight()) * 2.0;
+        this.getWorldPosition(tempVec3$q);
+        transformMat4$2(tempVec3$q, tempVec3$q, camera.cameraMatrix);
+        transformMat4$2(tempVec3$q, tempVec3$q, camera.projectionMatrix);
+        return Math.atan2(normalizedY - tempVec3$q[1], normalizedX - tempVec3$q[0]);
+    }
+    #computeQuaternion_removeme(x, y) {
         let camera = this.camera;
         if (camera) {
             let projectionMatrix = camera.projectionMatrix;
@@ -43277,8 +44183,8 @@ class Manipulator extends Entity {
             camera.nearPlane;
             camera.farPlane;
             camera.aspectRatio;
-            let invProjectionMatrix = invert$2(create$5(), projectionMatrix);
-            let invViewMatrix = invert$2(create$5(), viewMatrix);
+            let invProjectionMatrix = invert$3(create$5(), projectionMatrix);
+            let invViewMatrix = invert$3(create$5(), viewMatrix);
             this.#cursorPos[0] = (x / new Graphics().getWidth()) * 2.0 - 1.0;
             this.#cursorPos[1] = 1.0 - (y / new Graphics().getHeight()) * 2.0;
             this.#near[0] = this.#far[0] = this.#cursorPos[0];
@@ -43300,13 +44206,13 @@ class Manipulator extends Entity {
             let planeNormal = create$4();
             if (this.#axisOrientation == ORIENTATION_WORLD) {
                 switch (this.#axis) {
-                    case 11:
+                    case ManipulatorAxis.X:
                         planeNormal = copy$4(planeNormal, xUnitVec3);
                         break;
-                    case 12:
+                    case ManipulatorAxis.Y:
                         planeNormal = copy$4(planeNormal, yUnitVec3);
                         break;
-                    case 13:
+                    case ManipulatorAxis.Z:
                         planeNormal = copy$4(planeNormal, zUnitVec3);
                         break;
                     default:
@@ -43317,13 +44223,13 @@ class Manipulator extends Entity {
             }
             else {
                 switch (this.#axis) {
-                    case 11:
+                    case ManipulatorAxis.X:
                         planeNormal = transformQuat$1(planeNormal, xUnitVec3, this.#startQuaternion);
                         break;
-                    case 12:
+                    case ManipulatorAxis.Y:
                         planeNormal = transformQuat$1(planeNormal, yUnitVec3, this.#startQuaternion);
                         break;
-                    case 13:
+                    case ManipulatorAxis.Z:
                         planeNormal = transformQuat$1(planeNormal, zUnitVec3, this.#startQuaternion);
                         break;
                     default:
@@ -43337,7 +44243,7 @@ class Manipulator extends Entity {
                 return create$4(); //TODO: optimize
             }
             sub$2(v4, v4, worldPos);
-            invert$1(translationManipulatorTempQuat, this.#startQuaternion);
+            invert$2(translationManipulatorTempQuat, this.#startQuaternion);
             transformQuat$1(v4, v4, translationManipulatorTempQuat);
             normalize$5(v4, v4);
             return v4;
@@ -43361,13 +44267,13 @@ class Manipulator extends Entity {
         new Graphics().dragging = false;
         this.#mode = mode;
         switch (mode) {
-            case 0:
+            case ManipulatorMode.Translation:
                 this.#translationManipulator.setVisible(undefined);
                 break;
-            case 1:
+            case ManipulatorMode.Rotation:
                 this.#rotationManipulator.setVisible(undefined);
                 break;
-            case 2:
+            case ManipulatorMode.Scale:
                 this.#scaleManipulator.setVisible(undefined);
                 break;
         }
@@ -43377,7 +44283,7 @@ class Manipulator extends Entity {
         this.#axisOrientation = axisOrientation;
     }
     getWorldQuaternion(q = create$2()) {
-        if (this.#mode < 2) {
+        if (this.#mode < ManipulatorMode.Scale) {
             switch (this.#axisOrientation) {
                 case ORIENTATION_WORLD:
                     identity$1(q);
@@ -43436,15 +44342,15 @@ class Manipulator extends Entity {
             return;
         }
         this.getWorldQuaternion(translationManipulatorTempQuat);
-        invert$1(translationManipulatorTempQuat, translationManipulatorTempQuat);
-        this.getPositionFrom(camera, tempVec3$r);
-        normalize$5(tempVec3$r, tempVec3$r);
-        transformQuat$1(tempVec3$r, tempVec3$r, translationManipulatorTempQuat);
-        this.#circle.quaternion = rotationTo(tempQuat$a, zUnitVec3, tempVec3$r);
+        invert$2(translationManipulatorTempQuat, translationManipulatorTempQuat);
+        this.getPositionFrom(camera, tempVec3$q);
+        normalize$5(tempVec3$q, tempVec3$q);
+        transformQuat$1(tempVec3$q, tempVec3$q, translationManipulatorTempQuat);
+        this.#circle.quaternion = rotationTo(tempQuat$a, zUnitVec3, tempVec3$q);
         this.#viewCircle.quaternion = tempQuat$a;
-        this.#xCircle.quaternion = setAxisAngle(tempQuat$a, xUnitVec3, Math.atan2(tempVec3$r[1], -tempVec3$r[2]));
-        this.#yCircle.quaternion = setAxisAngle(tempQuat$a, yUnitVec3, Math.atan2(tempVec3$r[0], tempVec3$r[2]));
-        this.#zCircle.quaternion = setAxisAngle(tempQuat$a, zUnitVec3, Math.atan2(tempVec3$r[1], tempVec3$r[0]));
+        this.#xCircle.quaternion = setAxisAngle(tempQuat$a, xUnitVec3, Math.atan2(tempVec3$q[1], -tempVec3$q[2]));
+        this.#yCircle.quaternion = setAxisAngle(tempQuat$a, yUnitVec3, Math.atan2(tempVec3$q[0], tempVec3$q[2]));
+        this.#zCircle.quaternion = setAxisAngle(tempQuat$a, zUnitVec3, Math.atan2(tempVec3$q[1], tempVec3$q[0]));
         this.#xCircle.rotateY(HALF_PI);
         this.#yCircle.rotateX(-HALF_PI);
     }
@@ -43474,33 +44380,6 @@ class KeepOnlyLastChild extends Entity {
     }
 }
 registerEntity(KeepOnlyLastChild);
-
-var BlendingFactors;
-(function (BlendingFactors) {
-    BlendingFactors[BlendingFactors["Zero"] = 0] = "Zero";
-    BlendingFactors[BlendingFactors["One"] = 1] = "One";
-    BlendingFactors[BlendingFactors["SrcColor"] = 768] = "SrcColor";
-    BlendingFactors[BlendingFactors["OneMinusSrcColor"] = 769] = "OneMinusSrcColor";
-    BlendingFactors[BlendingFactors["DstColor"] = 774] = "DstColor";
-    BlendingFactors[BlendingFactors["OneMinusDstColor"] = 775] = "OneMinusDstColor";
-    BlendingFactors[BlendingFactors["SrcAlpha"] = 770] = "SrcAlpha";
-    BlendingFactors[BlendingFactors["OneMinusSrcAlpha"] = 771] = "OneMinusSrcAlpha";
-    BlendingFactors[BlendingFactors["DstAlpha"] = 772] = "DstAlpha";
-    BlendingFactors[BlendingFactors["OneMinusDstAlpha"] = 773] = "OneMinusDstAlpha";
-    BlendingFactors[BlendingFactors["ConstantColor"] = 32769] = "ConstantColor";
-    BlendingFactors[BlendingFactors["OneMinusConstantColor"] = 32770] = "OneMinusConstantColor";
-    BlendingFactors[BlendingFactors["ConstantAlpha"] = 32771] = "ConstantAlpha";
-    BlendingFactors[BlendingFactors["OneMinusConstantAlpha"] = 32772] = "OneMinusConstantAlpha";
-    BlendingFactors[BlendingFactors["SrcAlphaSaturate"] = 776] = "SrcAlphaSaturate";
-})(BlendingFactors || (BlendingFactors = {}));
-var BlendingEquation;
-(function (BlendingEquation) {
-    BlendingEquation[BlendingEquation["Add"] = 32774] = "Add";
-    BlendingEquation[BlendingEquation["Subtract"] = 32778] = "Subtract";
-    BlendingEquation[BlendingEquation["ReverseSubtract"] = 32779] = "ReverseSubtract";
-    BlendingEquation[BlendingEquation["Min"] = 32775] = "Min";
-    BlendingEquation[BlendingEquation["Max"] = 32776] = "Max";
-})(BlendingEquation || (BlendingEquation = {}));
 
 function quatToEuler(out, q) {
     const test = q[0] * q[3] - q[1] * q[2];
@@ -43823,7 +44702,7 @@ function exportBone(fbxScene, bone, context, exportedClusters, fbxSkin, boneData
     if (!exportedClusters.has(bone)) {
         let fbxCluster = fbxManager.createObject('FBXCluster', bone.name);
         fbxCluster.transformMatrix = bone.poseToBone;
-        fbxCluster.transformLinkMatrix = invert$2(tempMat4$3, bone.poseToBone);
+        fbxCluster.transformLinkMatrix = invert$3(tempMat4$3, bone.poseToBone);
         fbxCluster.link = fbxBone;
         if (boneDatas.bi.has(bone.boneId)) {
             for (let i = 0; i < boneDatas.bi.get(bone.boneId).length; ++i) {
@@ -43953,7 +44832,7 @@ async function renderMaterial(material, materialsParams) {
     new Graphics().setIncludeCode('SKIP_LIGHTING', '#define SKIP_LIGHTING');
     fullScreenQuadMesh.material = material;
     fullScreenQuadMesh.materialsParams = materialsParams;
-    new Graphics().render(scene, camera, 0);
+    new Graphics().render(scene, camera, 0, { DisableToolRendering: true });
     let imgContent = await new Graphics().toBlob();
     new Graphics().setIncludeCode('EXPORT_TEXTURES', '');
     new Graphics().setIncludeCode('SKIP_PROJECTION', '');
@@ -44274,7 +45153,7 @@ class PointLightHelper extends Mesh {
         super(new BufferGeometry(), new LineBasicMaterial());
         this.renderMode = GL_LINES;
         this.#createVertices();
-        this.material.colorMode = MATERIAL_COLOR_PER_MESH;
+        this.material.setColorMode(MaterialColorMode.PerMesh);
         this.material.setDefine('ALWAYS_ON_TOP');
         let sphere = new Sphere({ radius: SPHERE_RADIUS, segments: 12, rings: 12 });
         sphere.material.setDefine('ALWAYS_ON_TOP');
@@ -44405,7 +45284,7 @@ class LightShadow {
         light.addChild(camera);
         this.light = light;
         this.camera = camera;
-        this.#textureSize = set(this.#textureSize, light.shadowTextureSize, light.shadowTextureSize);
+        this.#textureSize = set$1(this.#textureSize, light.shadowTextureSize, light.shadowTextureSize);
         this.shadowMatrix = create$5();
         this.viewPorts = [fromValues$3(0, 0, 1, 1)];
         this.viewPortsLength = 1;
@@ -44415,7 +45294,7 @@ class LightShadow {
     set range(range) {
     }
     set textureSize(textureSize) {
-        set(this.#textureSize, textureSize, textureSize);
+        set$1(this.#textureSize, textureSize, textureSize);
         this.renderTarget.resize(this.#textureSize[0], this.#textureSize[1]);
     }
     get textureSize() {
@@ -44424,7 +45303,7 @@ class LightShadow {
     computeShadowMatrix(mapIndex) {
         let shadowCamera = this.camera;
         let shadowMatrix = this.shadowMatrix;
-        set$5(shadowMatrix, 0.5, 0.0, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.0, 0.5, 0.0, 0.5, 0.5, 0.5, 1.0);
+        set$6(shadowMatrix, 0.5, 0.0, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.0, 0.5, 0.0, 0.5, 0.5, 0.5, 1.0);
         shadowCamera.dirty();
         mul$5(shadowMatrix, shadowMatrix, shadowCamera.projectionMatrix);
         mul$5(shadowMatrix, shadowMatrix, shadowCamera.worldMatrixInverse);
@@ -44516,7 +45395,7 @@ class SpotLight extends Light {
 registerEntity(SpotLight);
 
 const DIVISIONS = 32;
-const tempVec4 = create$3();
+const tempVec4$1 = create$3();
 class SpotLightHelper extends Mesh {
     #color = create$4();
     #angle;
@@ -44557,8 +45436,8 @@ class SpotLightHelper extends Mesh {
         let spotLight = this.#spotLight;
         if (spotLight && ((this.#range != spotLight.range) || (this.#angle != spotLight.angle) || (!exactEquals$4(spotLight.color, this.#color)))) {
             copy$4(this.#color, spotLight.color);
-            set$3(tempVec4, this.#color[0], this.#color[1], this.#color[2], 1.);
-            this.material.setMeshColor(tempVec4);
+            set$4(tempVec4$1, this.#color[0], this.#color[1], this.#color[2], 1.);
+            this.material.setMeshColor(tempVec4$1);
             let range = spotLight.range || 1000.0;
             let radius = Math.sin(spotLight.angle) * range;
             this.#range = spotLight.range;
@@ -44722,7 +45601,7 @@ class Curve {
         let length = 0;
         for (let i = 1; i <= divisions; i++) {
             this.getPosition(i / divisions, current);
-            length += distance$2(last, current);
+            length += distance$3(last, current);
             temp = last;
             last = current;
             current = temp;
@@ -44790,7 +45669,7 @@ class LinearBezierCurve extends Curve {
         return out;
     }
     getArcLength() {
-        return distance$2(this.p0, this.p1);
+        return distance$3(this.p0, this.p1);
     }
     getAppropriateDivision() {
         return 1;
@@ -44903,22 +45782,22 @@ class Path extends Curve {
         for (let i = 0, l = path.length; i < l;) {
             switch (path[i++]) {
                 case 'm':
-                    set$4(p0, path[i++], path[i++], 0);
+                    set$5(p0, path[i++], path[i++], 0);
                     this.moveTo(p0);
                     break;
                 case 'l':
-                    set$4(p1, path[i++], path[i++], 0);
+                    set$5(p1, path[i++], path[i++], 0);
                     this.lineTo(p1);
                     break;
                 case 'q':
-                    set$4(p2, path[i++], path[i++], 0);
-                    set$4(p1, path[i++], path[i++], 0);
+                    set$5(p2, path[i++], path[i++], 0);
+                    set$5(p1, path[i++], path[i++], 0);
                     this.quadraticCurveTo(p1, p2);
                     break;
                 case 'c':
-                    set$4(p3, path[i++], path[i++], 0);
-                    set$4(p1, path[i++], path[i++], 0);
-                    set$4(p2, path[i++], path[i++], 0);
+                    set$5(p3, path[i++], path[i++], 0);
+                    set$5(p1, path[i++], path[i++], 0);
+                    set$5(p2, path[i++], path[i++], 0);
                     this.cubicCurveTo(p1, p2, p3);
                     break;
             }
@@ -46729,6 +47608,10 @@ class Node extends EventTarget {
             this.#redrawState = DrawState.Valid;
         }
     }
+    async revalidate() {
+        this.invalidate();
+        await this.validate();
+    }
     async redraw(context = {}) {
         await this.operate(context);
         this.#redrawState = DrawState.Valid;
@@ -46942,9 +47825,9 @@ class ApplySticker extends Node {
         this.addParam(new NodeParam('adjust black', NodeParamType.Float, 0.0));
         this.addParam(new NodeParam('adjust white', NodeParamType.Float, 1.0));
         this.addParam(new NodeParam('adjust gamma', NodeParamType.Float, 1.0));
-        this.addParam(new NodeParam('bottom left', NodeParamType.Vec2, create()));
         this.addParam(new NodeParam('top left', NodeParamType.Vec2, create()));
         this.addParam(new NodeParam('top right', NodeParamType.Vec2, create()));
+        this.addParam(new NodeParam('bottom left', NodeParamType.Vec2, create()));
         this.addParam(new NodeParam('path', NodeParamType.String, ''));
         this.addParam(new NodeParam('sticker', NodeParamType.StickerAdjust, create()));
     }
@@ -47031,8 +47914,8 @@ function ComputeTextureMatrixFromRectangle(out, bl, tl, tr) {
     let texTransform = create$6();
     translate$2(texTransform, texTransform, tl);
     rotate$2(texTransform, texTransform, rotationD);
-    scale$7(texTransform, texTransform, set(tempVec2, xScalar * magTopEdge, magLeftEdge));
-    invert$3(out, texTransform);
+    scale$7(texTransform, texTransform, set$1(tempVec2, xScalar * magTopEdge, magLeftEdge));
+    invert$4(out, texTransform);
 }
 
 const tempVec2$2 = create();
@@ -47071,8 +47954,8 @@ class TextureLookup extends Node {
         this.material.uniforms['uAdjustLevels'] = fromValues$3(this.getValue('adjust black'), this.getValue('adjust white'), this.getValue('adjust gamma'), 0.0);
         let texTransform = create$6();
         rotate$2(texTransform, texTransform, this.getValue('rotation'));
-        scale$7(texTransform, texTransform, set(tempVec2$2, this.getValue('scale u'), this.getValue('scale v')));
-        translate$2(texTransform, texTransform, set(tempVec2$2, this.getValue('translate u'), this.getValue('translate v')));
+        scale$7(texTransform, texTransform, set$1(tempVec2$2, this.getValue('scale u'), this.getValue('scale v')));
+        translate$2(texTransform, texTransform, set$1(tempVec2$2, this.getValue('translate u'), this.getValue('translate v')));
         this.material.uniforms['uTransformTexCoord0'] = texTransform;
         //console.error(this.params, this.testing);
         if (!this.#renderTarget) {
@@ -47177,13 +48060,22 @@ function dropFilesSpecular(evt, node) {
         reader.readAsDataURL(f);
     }
 }
+var FlipDirection;
+(function (FlipDirection) {
+    FlipDirection[FlipDirection["FlipUp"] = 0] = "FlipUp";
+    FlipDirection[FlipDirection["FlipDown"] = 1] = "FlipDown";
+    FlipDirection[FlipDirection["FlipLeft"] = 2] = "FlipLeft";
+    FlipDirection[FlipDirection["FlipRight"] = 3] = "FlipRight";
+    FlipDirection[FlipDirection["FlipX"] = 4] = "FlipX";
+    FlipDirection[FlipDirection["FlipY"] = 5] = "FlipY";
+})(FlipDirection || (FlipDirection = {}));
 class NodeGui {
     #expanded = true;
     #html;
     #htmlPreview;
     #htmlRectSelector;
     #drag;
-    #htmlParams;
+    #htmlParamsContainer;
     _ioGui = new Map();
     #refreshTimeout;
     #nodeChanged;
@@ -47191,6 +48083,8 @@ class NodeGui {
     #nodeImageEditorGui;
     #dragStartClientX;
     #dragStartClientY;
+    #htmlParams = new Map();
+    #htmlParamsValue = new Map();
     constructor(nodeImageEditorGui, node) {
         this.#nodeChanged = () => {
             clearTimeout(this.#refreshTimeout);
@@ -47274,7 +48168,7 @@ class NodeGui {
                     class: 'node-image-editor-node-content',
                     childs: [
                         htmlInputs = createElement('div', { class: 'node-image-editor-node-ios' }),
-                        this.#htmlParams = createElement('div', { class: 'node-image-editor-node-params' }),
+                        this.#htmlParamsContainer = createElement('div', { class: 'node-image-editor-node-params' }),
                         htmlOutputs = createElement('div', { class: 'node-image-editor-node-ios' }),
                     ],
                 }),
@@ -47291,10 +48185,10 @@ class NodeGui {
             this.#html.append(this.#htmlPreview);
         }
         for (let input of this.#node.inputs.values()) {
-            htmlInputs.append(this._createIo(input));
+            htmlInputs.append(this.#createIo(input));
         }
         for (let output of this.#node.outputs.values()) {
-            htmlOutputs.append(this._createIo(output));
+            htmlOutputs.append(this.#createIo(output));
         }
         if (this.#node.hasPreview) {
             let htmlSavePicture = createElement('button', { i18n: '#save_picture' });
@@ -47331,41 +48225,29 @@ class NodeGui {
         resizeObserver.observe(this.#htmlPreview);
     }
     #refreshHtml() {
-        this.#htmlParams.innerText = '';
+        this.#htmlParamsContainer.innerText = '';
         for (let [_, param] of this.#node.params) {
             if (param.length && param.length > 1) {
                 for (let i = 0; i < param.length; ++i) {
-                    this.#htmlParams.append(this.#createParamHtml(param, i));
+                    this.#htmlParamsContainer.append(this.#getParamHTML(param, i));
                 }
             }
             else {
-                this.#htmlParams.append(this.#createParamHtml(param));
+                this.#htmlParamsContainer.append(this.#getParamHTML(param));
             }
         }
     }
-    #createParamHtml(param, index) {
-        let paramHtml = createElement('div', { class: 'node-image-editor-node-param' });
-        let nameHtml = createElement('div', { parent: paramHtml });
-        let valueHtml = createElement('input', {
-            parent: paramHtml,
-            events: {
-                change: (event) => this.#setParamValue(param, event.target.value, index)
-            }
-        });
-        createElement('span', {
-            class: 'copy-button',
-            parent: paramHtml,
-            innerHTML: contentCopySVG,
-            events: {
-                click: async () => {
-                    await navigator.clipboard.writeText(valueHtml.value);
-                    valueHtml.classList.add('flash');
-                    await setTimeoutPromise(1500);
-                    valueHtml.classList.remove('flash');
-                },
-            }
-        });
-        nameHtml.innerHTML = param.name;
+    #getParamHTML(param, index) {
+        let paramHtml;
+        if (index === undefined) {
+            paramHtml = this.#htmlParams.get(param.name) ?? this.#createParamHTML(param, index);
+        }
+        else {
+            paramHtml = this.#htmlParams.get(param.name)?.[index] ?? this.#createParamHTML(param, index);
+        }
+        if (Array.isArray(paramHtml)) {
+            paramHtml = paramHtml[index];
+        }
         let value;
         if (index != undefined) {
             value = param.value[index];
@@ -47373,6 +48255,7 @@ class NodeGui {
         else {
             value = param.value;
         }
+        const valueHtml = this.#htmlParamsValue.get(paramHtml);
         switch (param.type) {
             case NodeParamType.Float:
             case NodeParamType.Degree:
@@ -47385,30 +48268,172 @@ class NodeGui {
                 value = `${Number(value[0]).toFixed(FLOAT_VALUE_DECIMALS)} ${Number(value[1]).toFixed(FLOAT_VALUE_DECIMALS)}`;
                 break;
             case NodeParamType.StickerAdjust:
-                defineHarmony2dManipulator();
-                hide(valueHtml);
-                this.#htmlRectSelector = this.#htmlRectSelector ?? createElement('harmony-2d-manipulator', {
-                    class: 'node-image-editor-sticker-selector',
-                    parent: this.#htmlPreview,
-                    events: {
-                        updateend: (event) => {
-                            const parameters = { 'top left': 0, 'bottom left': 2, 'top right': 1 };
-                            const manipulator = event.target;
-                            for (let name in parameters) {
-                                const param = this.#node.getParam(name);
-                                if (param) {
-                                    const rect = this.#htmlPreview.getBoundingClientRect();
-                                    const corner = manipulator.getCorner(parameters[name]);
-                                    this.#setParamValue(param, `${corner.x / rect.width} ${corner.y / rect.width}`, undefined, false);
-                                }
-                            }
-                        },
-                    }
-                });
                 this.#updateManipulator();
                 break;
         }
-        valueHtml.value = value;
+        if (valueHtml) {
+            valueHtml.value = value;
+        }
+        return paramHtml;
+    }
+    #createParamHTML(param, index) {
+        let paramHtml = createElement('div', { class: 'node-image-editor-node-param' });
+        let nameHtml = createElement('div', { parent: paramHtml, class: 'name' });
+        let valueHtml;
+        if (param.type != NodeParamType.StickerAdjust) {
+            valueHtml = createElement('input', {
+                parent: paramHtml,
+                events: {
+                    change: (event) => this.#setParamValue(param, event.target.value, index)
+                }
+            });
+            createElement('span', {
+                class: 'copy-button',
+                parent: paramHtml,
+                innerHTML: contentCopySVG,
+                events: {
+                    click: async () => {
+                        await navigator.clipboard.writeText(valueHtml.value);
+                        valueHtml.classList.add('flash');
+                        await setTimeoutPromise(1500);
+                        valueHtml.classList.remove('flash');
+                    },
+                }
+            });
+        }
+        nameHtml.innerText = param.name;
+        this.#htmlParamsValue.set(paramHtml, valueHtml);
+        if (param.type == NodeParamType.StickerAdjust) {
+            defineHarmony2dManipulator();
+            defineHarmonyToggleButton();
+            createElement('div', {
+                parent: paramHtml,
+                childs: [
+                    createElement('div', {
+                        childs: [
+                            createElement('div', {
+                                childs: [
+                                    createElement('button', {
+                                        i18n: '#flip_up',
+                                        class: 'sticker',
+                                        $click: () => this.#flipSticker(FlipDirection.FlipUp),
+                                    }),
+                                    createElement('button', {
+                                        i18n: '#flip_down',
+                                        class: 'sticker',
+                                        $click: () => this.#flipSticker(FlipDirection.FlipDown),
+                                    }),
+                                ],
+                            }),
+                            createElement('div', {
+                                childs: [
+                                    createElement('button', {
+                                        i18n: '#flip_left',
+                                        class: 'sticker',
+                                        $click: () => this.#flipSticker(FlipDirection.FlipLeft),
+                                    }),
+                                    createElement('button', {
+                                        i18n: '#flip_right',
+                                        class: 'sticker',
+                                        $click: () => this.#flipSticker(FlipDirection.FlipRight),
+                                    }),
+                                ]
+                            }),
+                        ],
+                    }),
+                    createElement('div', {
+                        childs: [
+                            createElement('harmony-toggle-button', {
+                                class: 'sticker',
+                                parent: paramHtml,
+                                state: true,
+                                childs: [
+                                    createElement('div', {
+                                        slot: 'off',
+                                        innerHTML: dragPanSVG,
+                                    }),
+                                    createElement('div', {
+                                        slot: 'on',
+                                        innerHTML: dragPanSVG,
+                                    }),
+                                ],
+                                events: {
+                                    change: (event) => this.#htmlRectSelector.setMode({ translation: event.target.state ? ManipulatorDirection.All : ManipulatorDirection.None }),
+                                }
+                            }),
+                            createElement('harmony-toggle-button', {
+                                class: 'sticker',
+                                parent: paramHtml,
+                                state: true,
+                                childs: [
+                                    createElement('div', {
+                                        slot: 'off',
+                                        innerHTML: panZoomSVG,
+                                    }),
+                                    createElement('div', {
+                                        slot: 'on',
+                                        innerHTML: panZoomSVG,
+                                    }),
+                                ],
+                                events: {
+                                    change: (event) => this.#htmlRectSelector.setMode({ resize: event.target.state ? ManipulatorDirection.All : ManipulatorDirection.None, scale: event.target.state ? ManipulatorDirection.All : ManipulatorDirection.None }),
+                                }
+                            }),
+                            createElement('harmony-toggle-button', {
+                                class: 'sticker',
+                                parent: paramHtml,
+                                state: true,
+                                childs: [
+                                    createElement('div', {
+                                        slot: 'off',
+                                        innerHTML: rotateSVG,
+                                    }),
+                                    createElement('div', {
+                                        slot: 'on',
+                                        innerHTML: rotateSVG,
+                                    }),
+                                ],
+                                events: {
+                                    change: (event) => this.#htmlRectSelector.setMode({ rotation: event.target.state }),
+                                }
+                            }),
+                        ],
+                    }),
+                ],
+            });
+            this.#htmlRectSelector = this.#htmlRectSelector ?? createElement('harmony-2d-manipulator', {
+                class: 'node-image-editor-sticker-selector',
+                parent: this.#htmlPreview,
+                events: {
+                    updateend: (event) => {
+                        const parameters = { 'top left': 0, 'bottom left': 2, 'top right': 1 };
+                        const manipulator = event.target;
+                        for (let name in parameters) {
+                            const param = this.#node.getParam(name);
+                            if (param) {
+                                const rect = this.#htmlPreview.getBoundingClientRect();
+                                const corner = manipulator.getCorner(parameters[name]);
+                                this.#setParamValue(param, `${corner.x / rect.width} ${corner.y / rect.width}`, undefined, false);
+                            }
+                        }
+                    },
+                },
+                attributes: {
+                    'min-width': "-Infinity",
+                    'min-height': "-Infinity",
+                }
+            });
+            this.#updateManipulator();
+        }
+        if (index === undefined) {
+            this.#htmlParams.set(param.name, paramHtml);
+        }
+        else {
+            if (!this.#htmlParams.has(param.name)) {
+                this.#htmlParams.set(param.name, []);
+            }
+            this.#htmlParams.get(param.name)[index] = paramHtml;
+        }
         return paramHtml;
     }
     #updateManipulator() {
@@ -47427,16 +48452,18 @@ class NodeGui {
         const c1 = D[0] - C[0];
         const c2 = D[1] - C[1];
         const t = (a2 * C[0] - a2 * A[0] - a1 * C[1] + a1 * A[1]) / (-a2 * c1 + a1 * c2);
+        const cross$1 = cross(create$4(), AD, AC);
+        const flip = cross$1[2] > 0;
         const center = fromValues((C[0] + c1 * t) * rect.width, (C[1] + c2 * t) * rect.height);
-        const width = len(AC) * rect.width;
+        const width = len(AC) * rect.width * (flip ? -1 : 1);
         const height = len(AD) * rect.height;
-        const angle = Math.atan2(AC[1], AC[0]);
+        const angle = Math.atan2(AC[1], AC[0]) + (flip ? Math.PI : 0);
         this.#htmlRectSelector.set({
             rotation: angle,
-            left: center[0] - width * 0.5,
-            top: center[1] - height * 0.5,
+            left: center[0],
+            top: center[1],
             width: width,
-            height: height,
+            height: height
         });
     }
     #setParamValue(param, stringValue, index, updateManipulator = true) {
@@ -47461,17 +48488,82 @@ class NodeGui {
             this.#updateManipulator();
         }
         node.setParam(param.name, value, index);
-        node.invalidate();
-        node.validate();
+        node.revalidate();
     }
-    _createIo(io) {
+    #createIo(io) {
         let html = createElement('div', { class: 'node-image-editor-node-io' });
         this._ioGui.set(io, html);
         return html;
     }
+    #flipSticker(flip) {
+        const topLeft = copy(create(), this.#node.getValue('top left'));
+        const bottomLeft = copy(create(), this.#node.getValue('bottom left'));
+        const topRight = copy(create(), this.#node.getValue('top right'));
+        const newTopLeft = copy(create(), topLeft);
+        const newBottomLeft = copy(create(), bottomLeft);
+        const newTopRight = copy(create(), topRight);
+        const top = sub(create(), topRight, topLeft);
+        const left = sub(create(), bottomLeft, topLeft);
+        const bottomRight = add$1(create(), top, bottomLeft);
+        const topN = normalize$1(create(), top);
+        const leftN = normalize$1(create(), left);
+        switch (flip) {
+            case FlipDirection.FlipUp:
+                //delta = bottomLeft[1] - topLeft[1];
+                //newBottomLeft[1] = topLeft[1] - delta;
+                const DA = sub(create(), topLeft, bottomLeft);
+                //const n1 = vec2.multiply(vec2.create(), vec2.dot(DA, topN));
+                const v = scaleAndAdd(create(), DA, topN, -2 * dot(DA, topN));
+                add$1(newBottomLeft, topLeft, v);
+                //newBottomLeft[1] = topLeft[1] - delta;
+                break;
+            case FlipDirection.FlipDown:
+                const AD = sub(create(), bottomLeft, topLeft);
+                const v1 = scaleAndAdd(create(), AD, topN, -2 * dot(AD, topN));
+                add$1(newTopLeft, bottomLeft, v1);
+                add$1(newTopRight, bottomRight, v1);
+                /*
+                delta = bottomLeft[1] - topLeft[1];
+                newTopLeft[1] = bottomLeft[1] + delta;
+                newTopRight[1] = bottomLeft[1] + delta;
+                */
+                break;
+            case FlipDirection.FlipLeft:
+                const CA = sub(create(), topLeft, topRight);
+                const v2 = scaleAndAdd(create(), CA, leftN, -2 * dot(CA, leftN));
+                add$1(newTopRight, topLeft, v2);
+                //vec2.add(newTopRight, bottomRight, v1);
+                break;
+            case FlipDirection.FlipRight:
+                const AC = sub(create(), topRight, topLeft);
+                const v3 = scaleAndAdd(create(), AC, leftN, -2 * dot(AC, leftN));
+                add$1(newTopLeft, topRight, v3);
+                add$1(newBottomLeft, bottomRight, v3);
+                break;
+        }
+        /*
+
+                newTopLeft[1] = bottomLeft[1];
+                newBottomLeft[1] = topLeft[1];
+                newTopRight[1] = bottomLeft[1];
+                */
+        //this.#setParamValue(param, `${corner.x / rect.width} ${corner.y / rect.width}`, undefined, false);
+        const node = this.#node;
+        node.setParam('top left', newTopLeft);
+        node.setParam('bottom left', newBottomLeft);
+        node.setParam('top right', newTopRight);
+        this.#updateManipulator();
+        node.revalidate();
+        /*
+
+        this.#htmlRectSelector.set({
+            width: -0.06,
+        });
+        */
+    }
 }
 
-var nodeImageEditorCSS = ":host {\n\tbackground-color: #000000FF;\n\twidth: 100%;\n\theight: 100%;\n\tdisplay: flex;\n\tflex-direction: column;\n\tuser-select: none;\n}\n\n.node-image-editor-nodes {\n\toverflow: auto;\n\tposition: relative;\n\tdisplay: flex;\n\toverflow: auto;\n\tflex: 1;\n}\n\n.node-image-editor-nodes-column {\n\tdisplay: flex;\n\tflex-direction: column;\n\tmargin-left: 50px;\n\tmargin-right: 50px;\n}\n\n.node-image-editor-canvas {\n\tpointer-events: none;\n}\n\n.node-image-editor-node {\n\tbackground-color: var(--main-bg-color-bright);\n\tdisplay: flex;\n\tflex-direction: column;\n\tmargin-top: 50px;\n\tmargin-bottom: 50px;\n\tpadding: 5px;\n}\n\n.node-image-editor-node.collapsed {\n\twidth: auto;\n\tmargin-top: 1rem;\n\tmargin-bottom: 1rem;\n}\n\n.node-image-editor-node.collapsed .node-image-editor-node-content {\n\tdisplay: none;\n}\n\n.node-image-editor-node.collapsed .node-image-editor-node-preview {\n\tdisplay: none;\n}\n\n.node-image-editor-node.collapsed button {\n\tdisplay: none;\n}\n\n.node-image-editor-node-header {\n\tdisplay: flex;\n}\n\n.node-image-editor-node-title {\n\tflex: 1;\n}\n\n.node-image-editor-node-buttons {\n\tdisplay: flex;\n}\n\n.node-image-editor-node-buttons>div {\n\tcursor: pointer;\n}\n\n.node-image-editor-node-preview {\n\tposition: relative;\n\t/*height: 32px;\n\twidth: 32px;*/\n\tbackground-color: #000000FF;\n\tdisplay: inline-block;\n\twidth: min-content;\n\tdisplay: flex;\n}\n\n.node-image-editor-sticker-selector {\n\tposition: absolute;\n\tpointer-events: none;\n\ttop: 0;\n\twidth: 100%;\n\theight: 100%;\n\t--harmony-2d-manipulator-bg-color: rgba(0, 0, 0, 0);\n\t--harmony-2d-manipulator-border: 1px dashed white;\n}\n\n.node-image-editor-sticker-selector>div {\n\tposition: absolute;\n\twidth: 0.4rem;\n\theight: 0.4rem;\n\tbackground-color: black;\n\tpointer-events: all;\n}\n\n.node-image-editor-sticker-selector>.handle-move {\n\tcursor: move;\n\ttop: calc(50% - 0.2rem);\n\tleft: calc(50% - 0.2rem);\n}\n\n.node-image-editor-sticker-selector>.handle-resize {\n\tcursor: nesw-resize;\n\ttop: -0.2rem;\n\tright: 0.2rem;\n}\n\n.node-image-editor-sticker-selector>.handle-rotate {\n\tcursor: grab;\n\ttop: -0.2rem;\n\tleft: -0.2rem;\n}\n\n.node-image-editor-node-content {\n\tdisplay: flex;\n}\n\n.node-image-editor-node-ios {\n\theight: 100%;\n\tflex: 0;\n}\n\n.node-image-editor-node-io {\n\twidth: 10px;\n\theight: 10px;\n\tbackground-color: green;\n}\n\n.node-image-editor-node-params {\n\tflex: 1;\n\toverflow: hidden;\n\tpadding: 5px;\n}\n\n.node-image-editor-node-param {\n\tdisplay: flex;\n}\n\n.node-image-editor-node-param>div {\n\tflex: 1;\n\t/*overflow: auto;*/\n}\n\n.node-image-editor-node-param>input {\n\theight: 1.5rem;\n\tbox-sizing: border-box;\n\tvertical-align: middle;\n}\n\n.node-image-editor-node-change-image {\n\topacity: 0%;\n\tposition: absolute;\n\ttop: 0px;\n\tleft: 0px;\n\theight: 100%;\n\twidth: 100%;\n\t/*background-image: url('./img/icons/image_search.svg');*/\n\toverflow: hidden;\n\tbackground-size: 100%;\n\tbackground-repeat: no-repeat;\n\tbackground-position: center;\n\tbackground-color: white;\n\tborder-radius: 4px;\n\tcursor: pointer;\n}\n\n.node-image-editor-node input[type=\"file\"] {\n\topacity: 0;\n\twidth: 100%;\n\theight: 100%;\n}\n\n.copy-button {\n\twidth: 2rem;\n\theight: 2rem;\n\tdisplay: inline-block;\n\tcursor: pointer;\n}\n\ninput {\n\t/*transition: background-color 1s;*/\n\tbackground-color: #FFF;\n\n\t/* only animation-duration here is required, rest are optional (also animation-name but it will be set on hover)*/\n\tanimation-duration: 1.5s;\n\t/* same as transition duration */\n\tanimation-timing-function: linear;\n\t/* kind of same as transition timing */\n\tanimation-delay: 0ms;\n\t/* same as transition delay */\n\tanimation-iteration-count: 1;\n\t/* set to 2 to make it run twice, or Infinite to run forever!*/\n\tanimation-direction: normal;\n\t/* can be set to \"alternate\" to run animation, then run it backwards.*/\n\tanimation-fill-mode: none;\n\t/* can be used to retain keyframe styling after animation, with \"forwards\" */\n\tanimation-play-state: running;\n\t/* can be set dynamically to pause mid animation*/\n\n}\n\n.flash {\n\tanimation-name: copyAnimation;\n}\n\n@keyframes copyAnimation {\n\t0% {\n\t\tbackground-color: #ffdf5d;\n\t}\n\t100% {\n\t\tbackground-color: #FFF;\n\t}\n}\n";
+var nodeImageEditorCSS = ":host {\n\tbackground-color: #000000FF;\n\twidth: 100%;\n\theight: 100%;\n\tdisplay: flex;\n\tflex-direction: column;\n\tuser-select: none;\n}\n\n.node-image-editor-nodes {\n\toverflow: auto;\n\tposition: relative;\n\tdisplay: flex;\n\toverflow: auto;\n\tflex: 1;\n}\n\n.node-image-editor-nodes-column {\n\tdisplay: flex;\n\tflex-direction: column;\n\tmargin-left: 50px;\n\tmargin-right: 50px;\n}\n\n.node-image-editor-canvas {\n\tpointer-events: none;\n}\n\n.node-image-editor-node {\n\tbackground-color: var(--main-bg-color-bright);\n\tdisplay: flex;\n\tflex-direction: column;\n\tmargin-top: 50px;\n\tmargin-bottom: 50px;\n\tpadding: 5px;\n}\n\n.node-image-editor-node.collapsed {\n\twidth: auto;\n\tmargin-top: 1rem;\n\tmargin-bottom: 1rem;\n}\n\n.node-image-editor-node.collapsed .node-image-editor-node-content {\n\tdisplay: none;\n}\n\n.node-image-editor-node.collapsed .node-image-editor-node-preview {\n\tdisplay: none;\n}\n\n.node-image-editor-node.collapsed button {\n\tdisplay: none;\n}\n\n.node-image-editor-node-header {\n\tdisplay: flex;\n}\n\n.node-image-editor-node-title {\n\tflex: 1;\n}\n\n.node-image-editor-node-buttons {\n\tdisplay: flex;\n}\n\n.node-image-editor-node-buttons>div {\n\tcursor: pointer;\n}\n\n.node-image-editor-node-preview {\n\tposition: relative;\n\t/*height: 32px;\n\twidth: 32px;*/\n\tbackground-color: #000000FF;\n\tdisplay: inline-block;\n\twidth: min-content;\n\tdisplay: flex;\n}\n\n.node-image-editor-sticker-selector {\n\tposition: absolute;\n\tpointer-events: none;\n\ttop: 0;\n\twidth: 100%;\n\theight: 100%;\n\t--harmony-2d-manipulator-bg-color: rgba(0, 0, 0, 0);\n\t--harmony-2d-manipulator-border: 1px dashed white;\n}\n\n.node-image-editor-sticker-selector>div {\n\tposition: absolute;\n\twidth: 0.4rem;\n\theight: 0.4rem;\n\tbackground-color: black;\n\tpointer-events: all;\n}\n\n.node-image-editor-sticker-selector>.handle-move {\n\tcursor: move;\n\ttop: calc(50% - 0.2rem);\n\tleft: calc(50% - 0.2rem);\n}\n\n.node-image-editor-sticker-selector>.handle-resize {\n\tcursor: nesw-resize;\n\ttop: -0.2rem;\n\tright: 0.2rem;\n}\n\n.node-image-editor-sticker-selector>.handle-rotate {\n\tcursor: grab;\n\ttop: -0.2rem;\n\tleft: -0.2rem;\n}\n\n.node-image-editor-node-content {\n\tdisplay: flex;\n}\n\n.node-image-editor-node-ios {\n\theight: 100%;\n\tflex: 0;\n}\n\n.node-image-editor-node-io {\n\twidth: 10px;\n\theight: 10px;\n\tbackground-color: green;\n}\n\n.node-image-editor-node-params {\n\tflex: 1;\n\toverflow: hidden;\n\tpadding: 5px;\n}\n\n.node-image-editor-node-param {\n\tdisplay: flex;\n\ttext-wrap: nowrap;\n}\n\n.node-image-editor-node-param>div {\n\tflex: 1;\n\t/*overflow: auto;*/\n}\n\n.node-image-editor-node-param>input {\n\theight: 1.5rem;\n\tbox-sizing: border-box;\n\tvertical-align: middle;\n}\n\n.node-image-editor-node-change-image {\n\topacity: 0%;\n\tposition: absolute;\n\ttop: 0px;\n\tleft: 0px;\n\theight: 100%;\n\twidth: 100%;\n\t/*background-image: url('./img/icons/image_search.svg');*/\n\toverflow: hidden;\n\tbackground-size: 100%;\n\tbackground-repeat: no-repeat;\n\tbackground-position: center;\n\tbackground-color: white;\n\tborder-radius: 4px;\n\tcursor: pointer;\n}\n\n.node-image-editor-node input[type=\"file\"] {\n\topacity: 0;\n\twidth: 100%;\n\theight: 100%;\n}\n\n.copy-button {\n\twidth: 2rem;\n\theight: 2rem;\n\tdisplay: inline-block;\n\tcursor: pointer;\n}\n\ninput {\n\t/*transition: background-color 1s;*/\n\tbackground-color: #FFF;\n\n\t/* only animation-duration here is required, rest are optional (also animation-name but it will be set on hover)*/\n\tanimation-duration: 1.5s;\n\t/* same as transition duration */\n\tanimation-timing-function: linear;\n\t/* kind of same as transition timing */\n\tanimation-delay: 0ms;\n\t/* same as transition delay */\n\tanimation-iteration-count: 1;\n\t/* set to 2 to make it run twice, or Infinite to run forever!*/\n\tanimation-direction: normal;\n\t/* can be set to \"alternate\" to run animation, then run it backwards.*/\n\tanimation-fill-mode: none;\n\t/* can be used to retain keyframe styling after animation, with \"forwards\" */\n\tanimation-play-state: running;\n\t/* can be set dynamically to pause mid animation*/\n\n}\n\n.flash {\n\tanimation-name: copyAnimation;\n}\n\n@keyframes copyAnimation {\n\t0% {\n\t\tbackground-color: #ffdf5d;\n\t}\n\n\t100% {\n\t\tbackground-color: #FFF;\n\t}\n}\n\nharmony-toggle-button.sticker {\n\tmargin: 0.5rem;\n\tpadding: 0.2rem;\n\tborder-radius: 0.5rem;\n}\n\nharmony-toggle-button.sticker.on {\n\tbackground-color: green;\n}\n\nharmony-toggle-button.sticker.off {\n\tbackground-color: red;\n}\n";
 
 class NodeImageEditorGui {
     #filter = {};
@@ -48428,7 +49520,7 @@ class NodeImageEditor extends EventTarget {
     }
     render(material) {
         this.#fullScreenQuadMesh.setMaterial(material);
-        new Graphics().render(this.#scene, this.#camera, 0);
+        new Graphics().render(this.#scene, this.#camera, 0, { DisableToolRendering: true });
     }
     addNode(operationName, params = {}) {
         params.textureSize = params.textureSize ?? this.textureSize;
@@ -48488,7 +49580,7 @@ class NodeImageEditor extends EventTarget {
     }
 }
 
-const tempVec3$q = create$4();
+const tempVec3$p = create$4();
 class BoundingBoxHelper extends Box {
     boundingBox = new BoundingBox();
     constructor(params = {}) {
@@ -48499,8 +49591,8 @@ class BoundingBoxHelper extends Box {
         if (this._parent) {
             this._parent.getBoundingBox(this.boundingBox);
             this.boundingBox.getCenter(this._position);
-            this.boundingBox.getSize(tempVec3$q);
-            this.setSize(tempVec3$q[0], tempVec3$q[1], tempVec3$q[2]);
+            this.boundingBox.getSize(tempVec3$p);
+            this.setSize(tempVec3$p[0], tempVec3$p[1], tempVec3$p[2]);
         }
     }
     getWorldPosition(vec = create$4()) {
@@ -48518,7 +49610,7 @@ class BoundingBoxHelper extends Box {
 const BASE_COLOR = [1, 1, 1, 1];
 const FRUSTRUM_COLOR = [1, 0, 0, 1];
 const AXIS_COLOR = [1, 1, 0, 1];
-const tempVec3$p = create$4();
+const tempVec3$o = create$4();
 const Points = [
     //Base Points
     { p: fromValues$4(0, 0, 0), c: BASE_COLOR },
@@ -48591,7 +49683,7 @@ class CameraFrustum extends Mesh {
         super(new BufferGeometry(), new LineBasicMaterial());
         this.renderMode = GL_LINES;
         this.#createVertices();
-        this.material.colorMode = MATERIAL_COLOR_PER_VERTEX;
+        this.material.setColorMode(MaterialColorMode.PerVertex);
         this.castShadow = false;
         GraphicsEvents.addEventListener(GraphicsEvent.Tick, () => this.update());
     }
@@ -48616,9 +49708,9 @@ class CameraFrustum extends Mesh {
             let verticesArray = this.#vertexPositionAttribute._array;
             for (let point of Points) {
                 if (index > 3) { //Skip the base point
-                    copy$4(tempVec3$p, point.p);
-                    this.#camera.invertProjection(tempVec3$p);
-                    verticesArray.set(tempVec3$p, index);
+                    copy$4(tempVec3$o, point.p);
+                    this.#camera.invertProjection(tempVec3$o);
+                    verticesArray.set(tempVec3$o, index);
                 }
                 index += 3;
             }
@@ -48679,7 +49771,7 @@ function getHelper(type) {
     }
 }
 
-const tempVec3$o = create$4();
+const tempVec3$n = create$4();
 let boxMaterial;
 class HitboxHelper extends Entity {
     #hitboxes = [];
@@ -48696,11 +49788,11 @@ class HitboxHelper extends Entity {
         if (parent && parent.getHitboxes) {
             let hitboxes = parent.getHitboxes();
             for (let hitbox of hitboxes) {
-                sub$2(tempVec3$o, hitbox.boundingBoxMax, hitbox.boundingBoxMin);
-                let box = new Box({ width: tempVec3$o[0], height: tempVec3$o[1], depth: tempVec3$o[2], material: boxMaterial });
+                sub$2(tempVec3$n, hitbox.boundingBoxMax, hitbox.boundingBoxMin);
+                let box = new Box({ width: tempVec3$n[0], height: tempVec3$n[1], depth: tempVec3$n[2], material: boxMaterial });
                 box.serializable = false;
-                lerp$5(tempVec3$o, hitbox.boundingBoxMin, hitbox.boundingBoxMax, 0.5);
-                box.position = tempVec3$o;
+                lerp$5(tempVec3$n, hitbox.boundingBoxMin, hitbox.boundingBoxMax, 0.5);
+                box.position = tempVec3$n;
                 if (hitbox.parent) {
                     hitbox.parent.addChild(box);
                 }
@@ -48803,8 +49895,8 @@ class Raycaster {
     }
     castCameraRay(camera, normalizedX, normalizedY, entities, recursive) {
         let projectionMatrixInverse = camera.projectionMatrixInverse;
-        let nearP = set$4(a$9, normalizedX, normalizedY, -1);
-        let farP = set$4(b$3, normalizedX, normalizedY, 1);
+        let nearP = set$5(a$9, normalizedX, normalizedY, -1);
+        let farP = set$5(b$3, normalizedX, normalizedY, 1);
         transformMat4$2(nearP, nearP, projectionMatrixInverse);
         transformMat4$2(farP, farP, projectionMatrixInverse);
         transformQuat$1(nearP, nearP, camera.quaternion);
@@ -48828,7 +49920,7 @@ class Raycaster {
 
 const SceneExplorerEvents = new EventTarget();
 
-const tempVec3$n = create$4();
+const tempVec3$m = create$4();
 class SkeletonHelper extends Entity {
     #skeleton;
     #lines = new Map();
@@ -48840,6 +49932,7 @@ class SkeletonHelper extends Entity {
     #boneStart;
     #boneEnd;
     enumerable = false;
+    #displayJoints = true;
     constructor(parameters) {
         super(parameters);
         this.#lineMaterial = new LineMaterial();
@@ -48951,6 +50044,15 @@ class SkeletonHelper extends Entity {
             SceneExplorerEvents.dispatchEvent(new CustomEvent('bonepicked', { detail: { bone: bone } }));
         }
     }
+    displayBoneJoints(display) {
+        this.#boneStart.setVisible(this.#highlitLine && display);
+        this.#boneEnd.setVisible(this.#highlitLine && display);
+        this.#displayJoints = display;
+    }
+    setJointsRadius(radius) {
+        this.#boneStart.setRadius(radius);
+        this.#boneEnd.setRadius(radius);
+    }
     #pickBone(event) {
         if (!this.isVisible()) {
             return;
@@ -48994,10 +50096,10 @@ class SkeletonHelper extends Entity {
         }
         if (line) {
             line.material = this.#highlitLineMaterial;
-            this.#boneStart.position = line.getStart(tempVec3$n);
-            this.#boneEnd.position = line.getEnd(tempVec3$n);
-            this.#boneStart.setVisible(true);
-            this.#boneEnd.setVisible(true);
+            this.#boneStart.position = line.getStart(tempVec3$m);
+            this.#boneEnd.position = line.getEnd(tempVec3$m);
+            this.#boneStart.setVisible(this.#displayJoints);
+            this.#boneEnd.setVisible(this.#displayJoints);
             this.#boneStart.properties.set('bone', line.properties.get('boneParent'));
             this.#boneEnd.properties.set('bone', line.properties.get('bone'));
         }
@@ -49019,6 +50121,7 @@ const tempQuat1 = create$2();
 const tempVec1 = create$4();
 class Bone extends Entity {
     isBone = true;
+    isLockable = true;
     #boneId;
     #poseToBone = create$5();
     #boneMat = create$5();
@@ -49246,6 +50349,14 @@ class Bone extends Entity {
         return false;
         //return (this.flags & BONE_ALWAYS_PROCEDURAL) == BONE_ALWAYS_PROCEDURAL;
     }
+    setLocked(locked) {
+        this.lockPosition = locked;
+        this.lockRotation = locked;
+        this.lockScale = locked;
+    }
+    isLocked() {
+        return this.lockPosition && this.lockRotation && this.lockScale;
+    }
     reset() {
         zero$4(this._position);
         identity$1(this._quaternion);
@@ -49343,7 +50454,7 @@ class DecalGeometry extends BufferGeometry {
     }
     #generate(mesh, projectorMatrix, size, indices, vertices, normals, uvs) {
         let decalVertices = [];
-        const projectorMatrixInverse = invert$2(create$5(), projectorMatrix);
+        const projectorMatrixInverse = invert$3(create$5(), projectorMatrix);
         let vertex = create$4();
         let normal = create$4();
         const geometry = mesh.geometry;
@@ -49931,19 +51042,19 @@ class SkeletalMesh extends Mesh {
             let i1 = 3 * indices[i];
             let i2 = 3 * indices[i + 1];
             let i3 = 3 * indices[i + 2];
-            set$4(v1$1, skinnedVertexPosition[i1], skinnedVertexPosition[i1 + 1], skinnedVertexPosition[i1 + 2]);
-            set$4(v2, skinnedVertexPosition[i2], skinnedVertexPosition[i2 + 1], skinnedVertexPosition[i2 + 2]);
-            set$4(v3, skinnedVertexPosition[i3], skinnedVertexPosition[i3 + 1], skinnedVertexPosition[i3 + 2]);
+            set$5(v1$1, skinnedVertexPosition[i1], skinnedVertexPosition[i1 + 1], skinnedVertexPosition[i1 + 2]);
+            set$5(v2, skinnedVertexPosition[i2], skinnedVertexPosition[i2 + 1], skinnedVertexPosition[i2 + 2]);
+            set$5(v3, skinnedVertexPosition[i3], skinnedVertexPosition[i3 + 1], skinnedVertexPosition[i3 + 2]);
             if (ray.intersectTriangle(v1$1, v2, v3, intersectionPoint)) {
-                set$4(n1, skinnedVertexNormal[i1], skinnedVertexNormal[i1 + 1], skinnedVertexNormal[i1 + 2]);
-                set$4(n2, skinnedVertexNormal[i2], skinnedVertexNormal[i2 + 1], skinnedVertexNormal[i2 + 2]);
-                set$4(n3, skinnedVertexNormal[i3], skinnedVertexNormal[i3 + 1], skinnedVertexNormal[i3 + 2]);
+                set$5(n1, skinnedVertexNormal[i1], skinnedVertexNormal[i1 + 1], skinnedVertexNormal[i1 + 2]);
+                set$5(n2, skinnedVertexNormal[i2], skinnedVertexNormal[i2 + 1], skinnedVertexNormal[i2 + 2]);
+                set$5(n3, skinnedVertexNormal[i3], skinnedVertexNormal[i3 + 1], skinnedVertexNormal[i3 + 2]);
                 i1 = 2 * indices[i];
                 i2 = 2 * indices[i + 1];
                 i3 = 2 * indices[i + 2];
-                set(uv1, textureCoords[i1], textureCoords[i1 + 1]);
-                set(uv2, textureCoords[i2], textureCoords[i2 + 1]);
-                set(uv3, textureCoords[i3], textureCoords[i3 + 1]);
+                set$1(uv1, textureCoords[i1], textureCoords[i1 + 1]);
+                set$1(uv2, textureCoords[i2], textureCoords[i2 + 1]);
+                set$1(uv3, textureCoords[i3], textureCoords[i3 + 1]);
                 getUV(uv, intersectionPoint, v1$1, v2, v3, uv1, uv2, uv3);
                 getNormal(intersectionNormal, intersectionPoint, v1$1, v2, v3, n1, n2, n3);
                 let x = intersectionNormal[0];
@@ -50082,7 +51193,7 @@ class Skeleton extends Entity {
         }
         let bones = this.#bonesByName;
         for (let [boneName, bone] of bones) {
-            bone.parentSkeletonBone = skeleton ? skeleton.getBoneByName(boneName) : null;
+            bone.parentSkeletonBone = skeleton?.getBoneByName(boneName) ?? null;
         }
     }
     getBoneByName(boneName) {
@@ -50700,7 +51811,7 @@ class Wireframe extends Entity {
         super(params);
         //const material = new LineMaterial({ polygonOffset: true, lineWidth: 3 });
         //this.#material = material;
-        this.#material.colorMode = MATERIAL_COLOR_PER_MESH;
+        this.#material.setColorMode(MaterialColorMode.PerMesh);
         this.#material.color = fromValues$3(0.0, 0.0, 0.0, 1.0);
         this.#material.addUser(this);
         //this.setParameters(params);
@@ -50788,7 +51899,7 @@ class World extends Entity {
 registerEntity(World);
 
 const DEFAULT_SEGMENT_COLOR = fromValues$3(1.0, 1.0, 1.0, 1.0);
-const tempVec3$m = create$4();
+const tempVec3$l = create$4();
 const tempQuat$8 = create$2();
 const tempQuat2 = create$2();
 const UNIT_VEC3_X$1 = fromValues$4(1, 0, 0);
@@ -50807,7 +51918,7 @@ class BeamSegment {
         this.width = width;
     }
     distanceTo(other) {
-        return distance$2(this.pos, other.pos);
+        return distance$3(this.pos, other.pos);
     }
 }
 class BeamBufferGeometry extends BufferGeometry {
@@ -50827,31 +51938,31 @@ class BeamBufferGeometry extends BufferGeometry {
         for (let segment of segments) {
             if (previousSegment) {
                 indices.push(indiceBase, indiceBase + 2, indiceBase + 1, indiceBase + 2, indiceBase + 3, indiceBase + 1);
-                sub$2(tempVec3$m, segment.pos, previousSegment.pos);
-                normalize$5(tempVec3$m, tempVec3$m);
-                rotationTo(tempQuat$8, UNIT_VEC3_X$1, tempVec3$m);
+                sub$2(tempVec3$l, segment.pos, previousSegment.pos);
+                normalize$5(tempVec3$l, tempVec3$l);
+                rotationTo(tempQuat$8, UNIT_VEC3_X$1, tempVec3$l);
                 rotationTo(tempQuat2, UNIT_VEC3_MINUS_Y, previousSegment.normal);
-                set$4(tempVec3$m, 0, 0, -previousSegment.width / 2.0);
-                transformQuat$1(tempVec3$m, tempVec3$m, tempQuat$8);
-                transformQuat$1(tempVec3$m, tempVec3$m, tempQuat2);
-                add$5(tempVec3$m, tempVec3$m, previousSegment.pos);
-                vertices.push(...tempVec3$m);
-                set$4(tempVec3$m, 0, 0, previousSegment.width / 2.0);
-                transformQuat$1(tempVec3$m, tempVec3$m, tempQuat$8);
-                transformQuat$1(tempVec3$m, tempVec3$m, tempQuat2);
-                add$5(tempVec3$m, tempVec3$m, previousSegment.pos);
-                vertices.push(...tempVec3$m);
+                set$5(tempVec3$l, 0, 0, -previousSegment.width / 2.0);
+                transformQuat$1(tempVec3$l, tempVec3$l, tempQuat$8);
+                transformQuat$1(tempVec3$l, tempVec3$l, tempQuat2);
+                add$5(tempVec3$l, tempVec3$l, previousSegment.pos);
+                vertices.push(...tempVec3$l);
+                set$5(tempVec3$l, 0, 0, previousSegment.width / 2.0);
+                transformQuat$1(tempVec3$l, tempVec3$l, tempQuat$8);
+                transformQuat$1(tempVec3$l, tempVec3$l, tempQuat2);
+                add$5(tempVec3$l, tempVec3$l, previousSegment.pos);
+                vertices.push(...tempVec3$l);
                 rotationTo(tempQuat2, UNIT_VEC3_MINUS_Y, segment.normal);
-                set$4(tempVec3$m, 0, 0, -segment.width / 2.0);
-                transformQuat$1(tempVec3$m, tempVec3$m, tempQuat$8);
-                transformQuat$1(tempVec3$m, tempVec3$m, tempQuat2);
-                add$5(tempVec3$m, tempVec3$m, segment.pos);
-                vertices.push(...tempVec3$m);
-                set$4(tempVec3$m, 0, 0, segment.width / 2.0);
-                transformQuat$1(tempVec3$m, tempVec3$m, tempQuat$8);
-                transformQuat$1(tempVec3$m, tempVec3$m, tempQuat2);
-                add$5(tempVec3$m, tempVec3$m, segment.pos);
-                vertices.push(...tempVec3$m);
+                set$5(tempVec3$l, 0, 0, -segment.width / 2.0);
+                transformQuat$1(tempVec3$l, tempVec3$l, tempQuat$8);
+                transformQuat$1(tempVec3$l, tempVec3$l, tempQuat2);
+                add$5(tempVec3$l, tempVec3$l, segment.pos);
+                vertices.push(...tempVec3$l);
+                set$5(tempVec3$l, 0, 0, segment.width / 2.0);
+                transformQuat$1(tempVec3$l, tempVec3$l, tempQuat$8);
+                transformQuat$1(tempVec3$l, tempVec3$l, tempQuat2);
+                add$5(tempVec3$l, tempVec3$l, segment.pos);
+                vertices.push(...tempVec3$l);
                 uvs.push(0, previousSegment.texCoordY, 1, previousSegment.texCoordY, 0, segment.texCoordY, 1, segment.texCoordY);
                 colors.push(...previousSegment.color, ...previousSegment.color, ...segment.color, ...segment.color);
                 indiceBase += 4;
@@ -50930,7 +52041,7 @@ class MetaballsBufferGeometry extends BufferGeometry {
         let min = fromValues$4(+Infinity, +Infinity, +Infinity);
         let max = fromValues$4(-Infinity, -Infinity, -Infinity);
         for (let ball of balls) {
-            set$4(b$2, ball.radius, ball.radius, ball.radius);
+            set$5(b$2, ball.radius, ball.radius, ball.radius);
             min$3(min, min, sub$2(a$8, ball.currentWorldPosition, b$2));
             max$3(max, max, add$5(a$8, ball.currentWorldPosition, b$2));
         }
@@ -51259,7 +52370,7 @@ class RepositoryEntry {
         do {
             current = stack.pop();
             if (current && !childs.has(current)) {
-                if (filter && current.#matchFilter(filter)) {
+                if ((filter === undefined) || current.#matchFilter(filter)) {
                     childs.add(current);
                 }
                 for (const [_, child] of current.#childs) {
@@ -51337,7 +52448,11 @@ class MergeRepository {
     #repositories = [];
     constructor(name, ...repositories) {
         this.#name = name;
-        this.#repositories = [...repositories];
+        for (const repo of repositories) {
+            if (repo) {
+                this.#repositories.push(repo);
+            }
+        }
     }
     get name() {
         return this.#name;
@@ -51689,6 +52804,7 @@ class SceneExplorerEntity extends HTMLElement {
     #htmlPlaying;
     #htmlAnimationsButton;
     #htmlLoopedButton;
+    #htmlLockedButton;
     #htmlReset;
     static #entitiesHTML = new Map();
     static #selectedEntity;
@@ -51703,7 +52819,7 @@ class SceneExplorerEntity extends HTMLElement {
     constructor() {
         super();
         this.#doOnce = true;
-        defineToggleButton();
+        defineHarmonyToggleButton();
         this.#htmlHeader = createElement('div', {
             class: 'scene-explorer-entity-header',
             childs: [
@@ -51735,12 +52851,13 @@ class SceneExplorerEntity extends HTMLElement {
                         }),
                         this.#htmlAnimationsButton = createElement('harmony-toggle-button', {
                             hidden: true,
-                            class: 'scene-explorer-entity-button-animations',
                             childs: [
-                                createElement('off', {
+                                createElement('div', {
+                                    slot: 'off',
                                     innerHTML: runSVG,
                                 }),
-                                createElement('on', {
+                                createElement('div', {
+                                    slot: 'on',
                                     innerHTML: walkSVG,
                                 }),
                             ],
@@ -51750,17 +52867,34 @@ class SceneExplorerEntity extends HTMLElement {
                         }),
                         this.#htmlLoopedButton = createElement('harmony-toggle-button', {
                             hidden: true,
-                            class: 'scene-explorer-entity-button-animations',
                             childs: [
-                                createElement('off', {
+                                createElement('div', {
+                                    slot: 'off',
                                     innerHTML: repeatSVG,
                                 }),
-                                createElement('on', {
+                                createElement('div', {
+                                    slot: 'on',
                                     innerHTML: repeatOnSVG,
                                 }),
                             ],
                             events: {
-                                change: (event) => this.#entity?.setlooping(event.target.state),
+                                change: (event) => this.#entity?.setLooping(event.target.state),
+                            }
+                        }),
+                        this.#htmlLockedButton = createElement('harmony-toggle-button', {
+                            hidden: true,
+                            childs: [
+                                createElement('div', {
+                                    slot: 'off',
+                                    innerHTML: lockOpenRightSVG,
+                                }),
+                                createElement('div', {
+                                    slot: 'on',
+                                    innerHTML: lockSVG,
+                                }),
+                            ],
+                            events: {
+                                change: (event) => this.#entity?.setLocked(event.target.state),
                             }
                         }),
                         this.#htmlReset = createElement('div', {
@@ -51839,6 +52973,7 @@ class SceneExplorerEntity extends HTMLElement {
         display(this.#htmlAnimationsButton, entity?.hasAnimations);
         display(this.#htmlReset, entity?.resetable);
         display(this.#htmlLoopedButton, entity?.isLoopable);
+        display(this.#htmlLockedButton, entity?.isLockable);
     }
     static setExplorer(explorer) {
         _a$2.#explorer = explorer;
@@ -51853,9 +52988,22 @@ class SceneExplorerEntity extends HTMLElement {
         const selectedEntity = _a$2.#selectedEntity;
         if (selectedEntity != this) {
             selectedEntity?.unselect();
-            _a$2.#explorer?.selectEntity(this.#entity);
         }
         _a$2.#selectedEntity = this;
+    }
+    display() {
+        this.#display();
+        this.scrollIntoView();
+    }
+    #display() {
+        const parentEntity = this.#entity.parent;
+        if (parentEntity) {
+            const htmlParent = _a$2.getEntityElement(parentEntity);
+            if (htmlParent) {
+                htmlParent.#display();
+                htmlParent.expand();
+            }
+        }
     }
     unselect() {
         this.classList.remove('selected');
@@ -51964,7 +53112,7 @@ class SceneExplorerEntity extends HTMLElement {
             show(this.#htmlChilds);
         }
         this.#expandChilds();
-        this.select();
+        _a$2.#explorer?.selectEntity(this.#entity);
     }
     #contextMenuHandler(event) {
         if (!event.shiftKey && this.#entity) {
@@ -52123,8 +53271,8 @@ class MaterialEditor {
                 ],
             });
             if (i < 4) {
-                for (let suite in BlendingFactors) {
-                    const value = BlendingFactors[suite];
+                for (let suite in BlendingFactor) {
+                    const value = BlendingFactor[suite];
                     if (typeof value === 'string') {
                         createElement('option', {
                             parent: this.#htmlBlendSelects[i],
@@ -52170,10 +53318,10 @@ class MaterialEditor {
             this.#htmlParams.append(addHtmlParameter('filename', fileName));
         }
         this.#htmlShader.append(addHtmlParameter('shader', material.getShaderSource()));
-        this.#htmlBlendSelects[0].value = BlendingFactors[this.#material.srcRGB];
-        this.#htmlBlendSelects[1].value = BlendingFactors[this.#material.srcAlpha];
-        this.#htmlBlendSelects[2].value = BlendingFactors[this.#material.dstRGB];
-        this.#htmlBlendSelects[3].value = BlendingFactors[this.#material.dstAlpha];
+        this.#htmlBlendSelects[0].value = BlendingFactor[this.#material.srcRGB];
+        this.#htmlBlendSelects[1].value = BlendingFactor[this.#material.srcAlpha];
+        this.#htmlBlendSelects[2].value = BlendingFactor[this.#material.dstRGB];
+        this.#htmlBlendSelects[3].value = BlendingFactor[this.#material.dstAlpha];
         this.#htmlHasBlending.checked = this.#material.blend;
         if (material.blend) {
             show(this.#htmlBlendFactors);
@@ -52200,7 +53348,7 @@ class MaterialEditor {
         }
         let value;
         if (i < 4) {
-            value = BlendingFactors[blending];
+            value = BlendingFactor[blending];
         }
         else {
             value = BlendingEquation[blending];
@@ -52445,6 +53593,10 @@ class Source2File {
     // some blocks (MBUF, MDAT) may have multiple occurences that can be accessed via blocksArray
     blocks = {};
     blocksArray = [];
+    fileLength = 0;
+    versionMaj = 0;
+    versionMin = 0;
+    maxBlockOffset = 0;
     constructor(repository, fileName) {
         this.repository = repository;
         this.fileName = fileName;
@@ -54755,6 +55907,9 @@ function getImage(reader, mipmapWidth, mipmapHeight, imageFormat, compressedLeng
         imageDatas = new Uint8Array(buf);
         decodeLz4(reader, imageDatas, compressedLength, entrySize);
         reader.seek(start + compressedLength); // decoder may overread, place the reader at the start of the next image block
+        if ((start + compressedLength) != reader.tell()) {
+            console.error('error decoding texture: wrong decompressed size: ', start, compressedLength, entrySize);
+        }
     }
     if (imageDatas && imageFormat == VTEX_FORMAT_BGRA8888) {
         for (let i = 0, l = imageDatas.length; i < l; i += 4) {
@@ -55036,7 +56191,7 @@ function loadVtexCubemapRadiance(reader, block, offset, size) {
 
 class Source2FileLoader extends SourceBinaryLoader {
     vtex;
-    constructor(vtex) {
+    constructor(vtex = false) {
         super();
         this.vtex = vtex;
     }
@@ -55310,7 +56465,7 @@ class Source2ModelInstance extends Entity {
     #initDefaultBodyGroups() {
         this.#bodyGroups.set('autodefault', undefined);
         for (const bodyGroup of this.sourceModel.bodyGroups) {
-            this.#bodyGroups.set(bodyGroup, undefined);
+            this.#bodyGroups.set(bodyGroup, 0);
         }
         this.#refreshMeshesVisibility();
     }
@@ -55402,17 +56557,14 @@ class Source2ModelInstance extends Entity {
         this.poseParameters[paramName] = paramValue;
     }
     playSequence(activity, activityModifiers = []) {
-        this.activityModifiers.clear();
         this.activity = activity;
-        for (let modifier of activityModifiers) {
-            this.activityModifiers.add(modifier);
-        }
+        this.setActivityModifiers(activityModifiers);
     }
     playAnimation(name) {
         this.#animName = name;
     }
     async setAnimation(id, name, weight) {
-        throw 'code me';
+        this.#animName = name;
     }
     setActivityModifiers(activityModifiers = []) {
         this.activityModifiers.clear();
@@ -55562,14 +56714,14 @@ class Source2ModelInstance extends Entity {
                             bone.getTotalRefQuaternion(initSkeletonTempQuat);
                             normalize$3(initSkeletonTempQuat, initSkeletonTempQuat);
                             const poseToBone = fromRotationTranslation$1(create$5(), initSkeletonTempQuat, bone.getTotalRefPosition(initSkeletonTempVec3));
-                            invert$2(poseToBone, poseToBone);
+                            invert$3(poseToBone, poseToBone);
                             bone.poseToBone = poseToBone;
                         }
                     }
                     else {
                         this.#skeleton.addChild(bone);
                         const poseToBone = fromRotationTranslation$1(create$5(), bone.refQuaternion, bone.refPosition); //TODO: optimize
-                        invert$2(poseToBone, poseToBone);
+                        invert$3(poseToBone, poseToBone);
                         bone.poseToBone = poseToBone;
                     }
                 }
@@ -55707,22 +56859,23 @@ class Source2AnimationDesc {
         var decodeKey = this.animationResource.getDecodeKey();
         var decodeArray = this.animationResource.getDecoderArray();
         var boneArray = [];
-        /*		let fetch = this.data?.m_fetch;
-                if (fetch) {
-                    let localReferenceArray = fetch.m_localReferenceArray;
-                    //TODO: mix multiple anims
-                    if (localReferenceArray[0] !== undefined) {
-                        let animName = this.animationResource.localSequenceNameArray[localReferenceArray[0]];
-                        if (animName) {
-                            //console.log(localReference);
-                            let animDesc = this.#source2Model.getAnimationByName(animName);
-                            if (animDesc) {
-                                return animDesc.getFrame(frameIndex);
-                            }
-                        }
-                        return [];
+        /*
+        let fetch = this.data?.m_fetch;
+        if (fetch) {
+            let localReferenceArray = fetch.m_localReferenceArray;
+            //TODO: mix multiple anims
+            if (localReferenceArray[0] !== undefined) {
+                let animName = this.animationResource.localSequenceNameArray[localReferenceArray[0]];
+                if (animName) {
+                    //console.log(localReference);
+                    let animDesc = this.#source2Model.getAnimationByName(animName);
+                    if (animDesc) {
+                        return animDesc.getFrame(frameIndex);
                     }
-                }*/
+                }
+                return [];
+            }
+        }*/
         let actualAnimDesc = this.#getActualAnimDesc();
         if (actualAnimDesc) {
             return actualAnimDesc.getFrame(frameIndex);
@@ -56009,7 +57162,7 @@ class Source2Animation {
     }
     setAnimDatas(data) {
         if (data) {
-            this.#animArray = data.m_animArray;
+            this.#animArray = data.m_animArray ?? [];
             //console.error('data.m_animArray', data.m_animArray);
             this.decoderArray = data.m_decoderArray;
             this.segmentArray = data.m_segmentArray;
@@ -56039,7 +57192,7 @@ class Source2Animation {
         for (let i = 0; i < this.#animArray.length; i++) {
             let anim = this.#animArray[i];
             animations.add(anim.m_name);
-            for (let activity of anim.m_activityArray) {
+            for (let activity of anim.m_activityArray ?? []) {
                 animations.add(activity.m_name);
             }
         }
@@ -56057,7 +57210,7 @@ class Source2Animation {
             }
             let matchingActivity = false;
             let unmatchingModifiers = 0;
-            for (let activity of anim.m_activityArray) {
+            for (let activity of anim.m_activityArray ?? []) {
                 if (activity.m_name == activityName) {
                     matchingActivity = true;
                 }
@@ -56075,7 +57228,7 @@ class Source2Animation {
             if (matchingActivity) {
                 for (let activityModifier of activityModifiers) {
                     let modifierMatching = false;
-                    for (let activity of anim.m_activityArray) {
+                    for (let activity of anim.m_activityArray ?? []) {
                         if (activity.m_name == activityModifier) {
                             modifierMatching = true;
                             break;
@@ -56086,7 +57239,7 @@ class Source2Animation {
                     }
                 }
                 if (unmatchingModifiers < bestScore) {
-                    let animDesc = this.#animNames[anim.m_name];
+                    let animDesc = this.#animNames.get(anim.m_name);
                     if (animDesc) {
                         bestMatch = animDesc;
                         bestScore = unmatchingModifiers;
@@ -56117,213 +57270,6 @@ class Source2Animation {
                 return anim;
             }
         }*/
-    }
-}
-
-const AnimManager = new (function () {
-    let animGroupList = Object.create(null);
-    let seqGroupList = {};
-    let animList = Object.create(null);
-    class AnimManager {
-        getAnimGroup(source2Model, repository, animGroupName) {
-            var animGroup = animGroupList[animGroupName];
-            if (!animGroup) {
-                animGroup = getLoader('Source2AnimLoader').loadAnimGroup(source2Model, repository, animGroupName);
-            }
-            if (animGroup) {
-                animGroupList[animGroupName] = animGroup;
-            }
-            else {
-                //TODO; create dummy
-                console.error('No anim group loaded');
-            }
-            return animGroup;
-        }
-        removeAnimGroup(animGroupName) {
-            animGroupList[animGroupName] = null;
-        }
-        /*async getAnim(repository, animName, animGroup) {
-            var anim = animList[animName];
-            if (!anim/* || anim.isInitialized()* /) {
-                anim = await getLoader('Source2AnimLoader').loadAnim(repository, animName, animGroup);
-            }
-            if (anim) {
-                animList[animName] = anim;
-                return anim;//.isLoaded() ? anim : null;
-            } else {
-                //TODO; create dummy
-                console.error("No anim loaded");
-                return null;
-            }
-        }*/
-        getAnim(repository, animName, animGroup) {
-            var anim = animList[animName];
-            if (anim === undefined) {
-                getLoader('Source2AnimLoader').loadAnim(repository, animName, animGroup).then((anim) => animList[animName] = anim);
-                return null;
-            }
-            else {
-                return anim;
-            }
-        }
-        removeAnim(animName) {
-            animList[animName] = null;
-        }
-        getSequenceGroup(repository, seqGroupName, animGroup) {
-            var seqGroup = seqGroupList[seqGroupName];
-            if (!seqGroup) {
-                seqGroup = getLoader('Source2AnimLoader').loadSequenceGroup(repository, seqGroupName, animGroup);
-            }
-            if (seqGroup) {
-                seqGroupList[seqGroupName] = seqGroup;
-            }
-            else {
-                //TODO; create dummy
-                console.error('No anim group loaded');
-            }
-            return seqGroup;
-        }
-    }
-    return AnimManager;
-}());
-
-class Source2AnimGroup {
-    #source2Model;
-    #_changemyname = [];
-    repository;
-    file;
-    decoderArray;
-    localAnimArray;
-    decodeKey;
-    directHSeqGroup;
-    loaded = false;
-    constructor(source2Model, repository) {
-        //TODO: remove repository param. redundant with model
-        this.#source2Model = source2Model;
-        this.repository = repository;
-    }
-    setFile(sourceFile) {
-        this.file = sourceFile;
-        let localAnimArray;
-        let decodeKey;
-        let animationGroupData = sourceFile.getBlockStruct('DATA.structs.AnimationGroupResourceData_t');
-        let directHSeqGroup;
-        if (animationGroupData) {
-            localAnimArray = animationGroupData.m_localHAnimArray;
-            decodeKey = animationGroupData.m_decodeKey;
-            directHSeqGroup = animationGroupData.m_directHSeqGroup;
-        }
-        else {
-            localAnimArray = sourceFile.getBlockStruct('DATA.keyValue.root.m_localHAnimArray');
-            decodeKey = sourceFile.getBlockStruct('DATA.keyValue.root.m_decodeKey');
-            directHSeqGroup = sourceFile.getBlockStruct('DATA.keyValue.root.m_directHSeqGroup');
-        }
-        this.decoderArray = sourceFile.getBlockStruct('ANIM.keyValue.root.m_decoderArray');
-        if (directHSeqGroup) {
-            (async () => {
-                this.directHSeqGroup = await AnimManager.getSequenceGroup(this.repository, directHSeqGroup, this);
-            })();
-        }
-        this.setAnimationGroupResourceData(localAnimArray, decodeKey);
-        let anims = sourceFile.getBlockStruct('ANIM.keyValue.root');
-        if (anims) {
-            let loadedAnim = new Source2Animation(this, '');
-            loadedAnim.setAnimDatas(anims);
-            this._changemyname = this._changemyname || [];
-            this._changemyname.push(loadedAnim);
-            /*let m_animArray = anims.m_animArray;
-            for (let i = 0; i < m_animArray.length; i++) {
-            }*/
-        }
-        this.loaded = true;
-    }
-    setAnimationGroupResourceData(localAnimArray, decodeKey) {
-        this.localAnimArray = localAnimArray;
-        this.decodeKey = decodeKey;
-        this.getAnim(0);
-    }
-    getAnim(animIndex) {
-        if (this.localAnimArray && this.localAnimArray[animIndex]) {
-            return AnimManager.getAnim(this.repository, this.localAnimArray[animIndex], this);
-        }
-        return null;
-    }
-    getAnimDesc(name) {
-        let animation;
-        for (const a of this.#_changemyname) {
-            animation = a.getAnimDesc(name);
-            if (animation) {
-                return animation;
-            }
-        }
-    }
-    matchActivity(activity, modifiers) {
-        if (this.directHSeqGroup) {
-            return this.directHSeqGroup.matchActivity(activity, modifiers);
-        }
-    }
-    getAnims() {
-        let anims = new Set();
-        for (let anim of this._changemyname) {
-            if (anim) {
-                anims.add(anim);
-            }
-        }
-        if (this.localAnimArray) {
-            for (let animName of this.localAnimArray) {
-                if (animName) {
-                    let anim = AnimManager.getAnim(this.repository, animName, this);
-                    if (anim) {
-                        anims.add(anim);
-                    }
-                }
-            }
-        }
-        return anims;
-    }
-    getAnimationsByActivity(activityName) {
-        let anims = [];
-        for (let anim of this._changemyname) {
-            if (anim) {
-                anims.push(...anim.getAnimationsByActivity(activityName));
-            }
-        }
-        if (this.localAnimArray) {
-            for (let animName of this.localAnimArray) {
-                if (animName) {
-                    let anim = AnimManager.getAnim(this.repository, animName, this);
-                    if (anim) {
-                        anims.push(...anim.getAnimationsByActivity(activityName));
-                    }
-                }
-            }
-        }
-        if (this.directHSeqGroup) {
-            anims.push(...this.directHSeqGroup.getAnimationsByActivity(activityName));
-        }
-        return anims;
-    }
-    getDecodeKey() {
-        return this.decodeKey;
-    }
-    get source2Model() {
-        return this.#source2Model;
-    }
-    getAnimationByName(animName) {
-        //return this.#internalAnimGroup?.getAnimationByName(animName);
-        for (let source2Animation of this.getAnims()) {
-            let anim = source2Animation.getAnimationByName(animName);
-            if (anim) {
-                return anim;
-            }
-        }
-    }
-    //TODO: remove setter and getter
-    set _changemyname(_changemyname) {
-        this.#_changemyname = _changemyname;
-    }
-    get _changemyname() {
-        return this.#_changemyname;
     }
 }
 
@@ -56427,11 +57373,13 @@ class Source2SeqGroup {
         if (anims) {
             let loadedAnim = new Source2Animation(this, '');
             loadedAnim.setAnimDatas(anims);
+            this.#animGroup._changemyname = this.#animGroup._changemyname || [];
+            this.#animGroup._changemyname.push(loadedAnim);
         }
         this.loaded = true;
     }
     getAnimDesc(name) {
-        return this.#animNames[name];
+        return this.#animNames.get(name);
     }
     #processSeqDesc(m_localS1SeqDescArray, localSequenceNameArray) {
         if (m_localS1SeqDescArray) {
@@ -56485,6 +57433,332 @@ class Source2SeqGroup {
         return this.#localSequenceNameArray;
     }
 }
+
+class Source2AnimGroup {
+    #source2Model;
+    #_changemyname = [];
+    repository;
+    file;
+    decoderArray;
+    localAnimArray;
+    decodeKey;
+    directHSeqGroup;
+    loaded = false;
+    constructor(source2Model, repository) {
+        //TODO: remove repository param. redundant with model
+        this.#source2Model = source2Model;
+        this.repository = repository;
+    }
+    setFile(sourceFile) {
+        this.file = sourceFile;
+        let localAnimArray;
+        let decodeKey;
+        let animationGroupData = sourceFile.getBlockStruct('DATA.structs.AnimationGroupResourceData_t');
+        let directHSeqGroup;
+        if (animationGroupData) {
+            localAnimArray = animationGroupData.m_localHAnimArray;
+            decodeKey = animationGroupData.m_decodeKey;
+            directHSeqGroup = animationGroupData.m_directHSeqGroup;
+        }
+        else {
+            localAnimArray = sourceFile.getBlockStruct('DATA.keyValue.root.m_localHAnimArray');
+            decodeKey = sourceFile.getBlockStruct('DATA.keyValue.root.m_decodeKey');
+            directHSeqGroup = sourceFile.getBlockStruct('DATA.keyValue.root.m_directHSeqGroup');
+        }
+        this.decoderArray = sourceFile.getBlockStruct('ANIM.keyValue.root.m_decoderArray');
+        if (directHSeqGroup) {
+            (async () => {
+                this.directHSeqGroup = await getSequenceGroup(this.repository, directHSeqGroup, this);
+            })();
+        }
+        this.setAnimationGroupResourceData(localAnimArray, decodeKey);
+        let anims = sourceFile.getBlockStruct('ANIM.keyValue.root');
+        if (anims) {
+            let loadedAnim = new Source2Animation(this, '');
+            loadedAnim.setAnimDatas(anims);
+            this._changemyname = this._changemyname || [];
+            this._changemyname.push(loadedAnim);
+            /*let m_animArray = anims.m_animArray;
+            for (let i = 0; i < m_animArray.length; i++) {
+            }*/
+        }
+        this.loaded = true;
+    }
+    setAnimationGroupResourceData(localAnimArray, decodeKey) {
+        this.localAnimArray = localAnimArray;
+        this.decodeKey = decodeKey;
+        //this.getAnim(0);
+        if (localAnimArray) {
+            for (const localAnim of localAnimArray) {
+                getAnim(this.repository, localAnim, this);
+                //console.info(anim);
+            }
+        }
+    }
+    getAnim(animIndex) {
+        if (this.localAnimArray && this.localAnimArray[animIndex]) {
+            return getAnim(this.repository, this.localAnimArray[animIndex], this);
+        }
+        return null;
+    }
+    getAnimDesc(name) {
+        let animation;
+        for (const a of this.#_changemyname) {
+            animation = a.getAnimDesc(name);
+            if (animation) {
+                return animation;
+            }
+        }
+    }
+    matchActivity(activity, modifiers) {
+        if (this.directHSeqGroup) {
+            return this.directHSeqGroup.matchActivity(activity, modifiers);
+        }
+    }
+    getAnims() {
+        let anims = new Set();
+        for (let anim of this._changemyname) {
+            if (anim) {
+                anims.add(anim);
+            }
+        }
+        if (this.localAnimArray) {
+            for (let animName of this.localAnimArray) {
+                if (animName) {
+                    let anim = getAnim(this.repository, animName, this);
+                    if (anim) {
+                        anims.add(anim);
+                    }
+                }
+            }
+        }
+        return anims;
+    }
+    getAnimationsByActivity(activityName) {
+        let anims = [];
+        for (let anim of this._changemyname) {
+            if (anim) {
+                anims.push(...anim.getAnimationsByActivity(activityName));
+            }
+        }
+        if (this.localAnimArray) {
+            for (let animName of this.localAnimArray) {
+                if (animName) {
+                    let anim = getAnim(this.repository, animName, this);
+                    if (anim) {
+                        anims.push(...anim.getAnimationsByActivity(activityName));
+                    }
+                }
+            }
+        }
+        if (this.directHSeqGroup) {
+            anims.push(...this.directHSeqGroup.getAnimationsByActivity(activityName));
+        }
+        return anims;
+    }
+    getDecodeKey() {
+        return this.decodeKey;
+    }
+    get source2Model() {
+        return this.#source2Model;
+    }
+    getAnimationByName(animName) {
+        //return this.#internalAnimGroup?.getAnimationByName(animName);
+        for (let source2Animation of this.getAnims()) {
+            let anim = source2Animation.getAnimationByName(animName);
+            if (anim) {
+                return anim;
+            }
+        }
+    }
+    //TODO: remove setter and getter
+    set _changemyname(_changemyname) {
+        this.#_changemyname = _changemyname;
+    }
+    get _changemyname() {
+        return this.#_changemyname;
+    }
+}
+let seqGroupList = {};
+function getSequenceGroup(repository, seqGroupName, animGroup) {
+    var seqGroup = seqGroupList[seqGroupName];
+    if (!seqGroup) {
+        seqGroup = loadSequenceGroup(repository, seqGroupName, animGroup);
+    }
+    if (seqGroup) {
+        seqGroupList[seqGroupName] = seqGroup;
+    }
+    else {
+        //TODO; create dummy
+        console.error('No anim group loaded');
+    }
+    return seqGroup;
+}
+async function loadSequenceGroup(repository, seqGroupName, animGroup) {
+    repository = repository.toLowerCase();
+    seqGroupName = seqGroupName.replace(/\.(vseq_c$|vseq)/, '');
+    //seqGroupName = repository + seqGroupName;
+    let seqGroup = new Source2SeqGroup(animGroup);
+    await getVseq(repository, seqGroupName, seqGroup);
+    return seqGroup;
+}
+const pending$1 = {};
+async function getVseq(repository, seqGroupName, seqGroup) {
+    var seqFile = seqGroupName + '.vseq_c';
+    if (pending$1[seqFile]) {
+        return true;
+    }
+    pending$1[seqFile] = true;
+    await loadVseq(repository, seqFile, seqGroup);
+    /*
+    let promise = new Promise((resolve, reject) => {
+        fetch(new Request(seqFile)).then((response) => {
+            response.arrayBuffer().then(async (arrayBuffer) => {
+                await this.loadVseq(repository, seqFile, arrayBuffer, seqGroup);
+                pending[seqFile] = null;
+                resolve(true);
+            })
+        });
+    });
+    */
+    return true;
+}
+async function loadVseq(repository, fileName, seqGroup) {
+    let vseq = await new Source2FileLoader().load(repository, fileName);
+    if (vseq) {
+        seqGroup.setFile(vseq);
+    }
+}
+let animList = {};
+function getAnim(repository, animName, animGroup) {
+    if (!animName) {
+        return "";
+    }
+    let anim = animList[animName];
+    if (anim === undefined) {
+        loadAnim(repository, animName, animGroup).then(anim => {
+            animList[animName] = anim;
+            animGroup._changemyname.push(anim);
+        });
+        return null;
+    }
+    else {
+        return anim;
+    }
+}
+async function loadAnim(repository, animName, animGroup) {
+    animName = animName.toLowerCase();
+    animName = animName.replace(/\.(vanim_c$|vanim$)/, '');
+    //this.fileName = animName;
+    //animName = repository + animName;
+    //this.animName = animName;
+    let anim = new Source2Animation(animGroup, animName);
+    await getVanim(repository, animName, anim);
+    return anim;
+}
+async function getVanim(repository, animName, anim) {
+    var animFile = animName + '.vanim_c';
+    if (pending$1[animFile]) {
+        return true;
+    }
+    pending$1[animFile] = true;
+    /*
+                fetch(new Request(animFile)).then((response) => {
+                    response.arrayBuffer().then((arrayBuffer) => {
+                        this.loadVanim(repository, animFile, arrayBuffer, anim);
+                    })
+                });
+                */
+    loadVanim(repository, animFile, anim);
+    /*
+    let promise = new Promise((resolve, reject) => {
+        fetch(new Request(animFile)).then((response) => {
+            response.arrayBuffer().then(async (arrayBuffer) => {
+                this.loadVanim(repository, animFile, arrayBuffer, anim);
+                pending[animFile] = null;
+                resolve(true);
+            })
+        });
+    });
+    */
+    return true;
+}
+async function loadVanim(repository, fileName, anim) {
+    let vanim = await new Source2FileLoader().load(repository, fileName);
+    if (vanim) {
+        anim.setFile(vanim);
+        let dataBlock = vanim.blocks.DATA;
+        if (dataBlock) {
+            anim.setAnimDatas(vanim.getBlockStruct('DATA.structs.AnimationResourceData_t') || vanim.getBlockStruct('DATA.keyValue.root'));
+        }
+    }
+    //this.fileLoaded(model);TODOv3
+}
+
+const pending = {};
+async function loadAnimGroup(source2Model, repository, animGroupName) {
+    animGroupName = animGroupName.toLowerCase();
+    animGroupName = animGroupName.replace(/\.(vagrp_c$|vagrp$)/, '');
+    let animGroup = new Source2AnimGroup(source2Model, repository);
+    await getVagrp(repository, animGroupName, animGroup);
+    return animGroup;
+}
+async function getVagrp(repository, animGroupName, animGroup) {
+    var agrpFile = animGroupName + '.vagrp_c';
+    if (pending[agrpFile]) {
+        return true;
+    }
+    pending[agrpFile] = true;
+    await loadVagrp(repository, agrpFile, animGroup);
+    /*
+    let promise = new Promise((resolve, reject) => {
+        fetch(new Request(agrpFile)).then((response) => {
+            response.arrayBuffer().then(async (arrayBuffer) => {
+                await this.#loadVagrp(repository, agrpFile, arrayBuffer, animGroup);
+                pending[agrpFile] = null;
+                resolve(true);
+            })
+        });
+    });
+    0*/
+    return true;
+}
+async function loadVagrp(repository, fileName, animGroup) {
+    let vagrp = await new Source2FileLoader().load(repository, fileName);
+    if (vagrp) {
+        animGroup.setFile(vagrp);
+        var dataBlock = vagrp.blocks.DATA;
+        if (dataBlock) {
+            //animGroup.meshesNames = vagrp.getPermModelData('m_meshGroups');
+            vagrp.getPermModelData('m_refMeshes');
+        }
+    }
+    //this.fileLoaded(model);TODOv3
+}
+
+const AnimManager = new (function () {
+    let animGroupList = {};
+    class AnimManager {
+        async getAnimGroup(source2Model, repository, animGroupName) {
+            let animGroup = animGroupList[animGroupName];
+            if (!animGroup) {
+                animGroup = await loadAnimGroup(source2Model, repository, animGroupName);
+            }
+            if (animGroup) {
+                animGroupList[animGroupName] = animGroup;
+            }
+            else {
+                //TODO; create dummy
+                console.error('No anim group loaded');
+            }
+            return animGroup;
+        }
+        removeAnimGroup(animGroupName) {
+            animGroupList[animGroupName] = null;
+        }
+    }
+    return AnimManager;
+}());
 
 const EMPTY_MODIFIERS = new Set();
 class Source2Animations {
@@ -56541,7 +57815,7 @@ class Source2Model {
     geometries = new Set();
     bodyParts = new Map();
     attachements = new Map();
-    seqGroup;
+    #seqGroup;
     bodyGroups = new Set();
     bodyGroupsChoices = new Set();
     constructor(repository, vmdl) {
@@ -56554,8 +57828,8 @@ class Source2Model {
     #createAnimGroup() {
         let aseq = this.vmdl.getBlockByType('ASEQ');
         if (aseq) {
-            this.seqGroup = new Source2SeqGroup(this.#internalAnimGroup);
-            this.seqGroup.setFile(this.vmdl);
+            this.#seqGroup = new Source2SeqGroup(this.#internalAnimGroup);
+            this.#seqGroup.setFile(this.vmdl);
         }
     }
     #createBodyGroups() {
@@ -56580,8 +57854,8 @@ class Source2Model {
         }
     }
     matchActivity(activity, modifiers) {
-        if (this.seqGroup) {
-            return this.seqGroup.matchActivity(activity, modifiers);
+        if (this.#seqGroup) {
+            return this.#seqGroup.matchActivity(activity, modifiers);
         }
         return null;
     }
@@ -56757,7 +58031,7 @@ class Source2Model {
     }
     getAnimation(name) {
         let animation;
-        animation = this.seqGroup?.getAnimDesc(name);
+        animation = this.#seqGroup?.getAnimDesc(name);
         if (animation) {
             return animation;
         }
@@ -56770,8 +58044,8 @@ class Source2Model {
     }
     getAnimationsByActivity(activityName, animations = new Source2Animations()) {
         let anims = [];
-        if (this.seqGroup) {
-            anims.push(...this.seqGroup.getAnimationsByActivity(activityName));
+        if (this.#seqGroup) {
+            anims.push(...this.#seqGroup.getAnimationsByActivity(activityName));
         }
         for (let animGroup of this.animGroups) {
             anims.push(...animGroup.getAnimationsByActivity(activityName));
@@ -56784,7 +58058,7 @@ class Source2Model {
         for (let animGroup of this.animGroups) {
             if (animGroup.localAnimArray) {
                 for (var localAnimIndex = 0; localAnimIndex < animGroup.localAnimArray.length; localAnimIndex++) {
-                    var animRemoveMe = animGroup.getAnim(localAnimIndex);
+                    const animRemoveMe = await animGroup.getAnim(localAnimIndex);
                     if (animRemoveMe) {
                         animRemoveMe.getAnimations(animations);
                     }
@@ -56792,7 +58066,7 @@ class Source2Model {
             }
             if (animGroup._changemyname) {
                 for (var animResIndex = 0; animResIndex < animGroup._changemyname.length; animResIndex++) {
-                    var animRemoveMe = animGroup._changemyname[animResIndex];
+                    const animRemoveMe = animGroup._changemyname[animResIndex];
                     if (animRemoveMe) {
                         animRemoveMe.getAnimations(animations);
                     }
@@ -57084,7 +58358,7 @@ class Source1ParticleControler {
     static fixedTime;
     static {
         GraphicsEvents.addEventListener(GraphicsEvent.Tick, (event) => {
-            this.stepSystems(this.fixedTime ?? event.detail.delta); //TODOv3: imporve this
+            this.stepSystems(this.fixedTime ? (this.fixedTime * event.detail.speed) : event.detail.delta); //TODOv3: imporve this
         });
     }
     static setParticleConstructor(ps) {
@@ -57312,13 +58586,12 @@ class Source1ParticleControler {
 }
 
 class Source2ParticleManagerClass {
-    #vpcfs = {};
-    #fileList = {};
+    #vpcfs = {}; //TODO: turn to map
+    #fileList = {}; //TODO: turn to map and improve type
     speed = 1.0;
     activeSystemList = new Set();
-    visible = true;
+    visible;
     constructor() {
-        this.renderSystems = true;
         GraphicsEvents.addEventListener(GraphicsEvent.Tick, (event) => {
             this.stepSystems(event.detail.delta); //TODOv3: improve this
         });
@@ -57357,8 +58630,8 @@ class Source2ParticleManagerClass {
     setInactive(system) {
         this.activeSystemList.delete(system);
     }
-    set renderSystems(renderSystems) {
-        this.visible = renderSystems ? undefined : false;
+    renderSystems(render) {
+        this.visible = render ? undefined : false;
     }
     async getSystemList() {
         const repoList = [];
@@ -57374,7 +58647,7 @@ class Source2ParticleManagerClass {
     }
     async loadManifests(...repositories) {
         for (const repository of repositories) {
-            this.#fileList[repository] = null;
+            this.#fileList[repository] = undefined;
         }
     }
     async #loadManifest(repositoryName) {
@@ -57429,7 +58702,7 @@ class SceneExplorer {
     #scene;
     #selectedEntity;
     #manipulator;
-    #skeletonHelper;
+    #skeletonHelper = new SkeletonHelper({ visible: false });
     #htmlProperties;
     #htmlFileExplorer;
     #htmlMaterialEditor;
@@ -57439,6 +58712,7 @@ class SceneExplorer {
     #htmlNameFilter;
     #htmlContextMenu;
     #htmlTypeFilter;
+    #htmlDisplayBoneJoints;
     #shadowRoot;
     #htmlName;
     #htmlId;
@@ -57463,7 +58737,6 @@ class SceneExplorer {
         initEntitySubmenu();
         SceneExplorerEntity.setExplorer(this);
         this.#manipulator = new Manipulator({ visible: false });
-        this.#skeletonHelper = new SkeletonHelper({ visible: false });
         new IntersectionObserver((entries, observer) => {
             let isVisible = this.#isVisible;
             for (let e of entries) {
@@ -57477,7 +58750,7 @@ class SceneExplorer {
             }
         }).observe(this.#shadowRoot.host);
         EntityObserver.addEventListener(PROPERTY_CHANGED$1, (event) => this.#handlePropertyChanged(event.detail));
-        SceneExplorerEvents.addEventListener('bonepicked', (event) => this.selectEntity(event.detail.bone));
+        SceneExplorerEvents.addEventListener('bonepicked', (event) => this.selectEntity(event.detail.bone, true));
     }
     /**
      * @deprecated Please use `setScene` instead.
@@ -57488,7 +58761,7 @@ class SceneExplorer {
     }
     setScene(scene) {
         this.#scene = scene;
-        this.selectEntity(scene);
+        this.selectEntity(scene, true);
         this.applyFilter();
     }
     get scene() {
@@ -57574,8 +58847,8 @@ class SceneExplorer {
             ],
         });
         I18n.observeElement(this.#shadowRoot);
-        defineHarmonyContextMenu();
-        this.#htmlContextMenu = createElement('harmony-context-menu');
+        defineHarmonyMenu();
+        this.#htmlContextMenu = createElement('harmony-menu');
         this.#initHtmlHeader();
         this.#initHtmlProperties();
         this.applyFilter();
@@ -57590,7 +58863,6 @@ class SceneExplorer {
         this.#htmlTypeFilter = createElement('select', {
             parent: this.#htmlHeader,
         });
-        const skeletonId = 'display_skeleton';
         let htmlManipulator;
         createElement('span', {
             class: 'manipulator',
@@ -57642,19 +58914,37 @@ class SceneExplorer {
                 }),
             ],
         });
-        createElement('span', {
+        createElement('label', {
             parent: this.#htmlHeader,
             childs: [
                 createElement('input', {
                     type: 'checkbox',
-                    id: skeletonId,
                     events: {
-                        change: (event) => this.#skeletonHelper.setVisible(event.target.checked)
+                        change: (event) => {
+                            const checked = event.target.checked;
+                            this.#skeletonHelper.setVisible(checked);
+                            display(this.#htmlDisplayBoneJoints, checked);
+                        }
                     }
                 }),
-                createElement('label', {
+                createElement('span', {
                     i18n: '#display_skeleton',
-                    htmlFor: skeletonId,
+                }),
+            ]
+        });
+        this.#htmlDisplayBoneJoints = createElement('label', {
+            parent: this.#htmlHeader,
+            hidden: true,
+            childs: [
+                createElement('input', {
+                    type: 'checkbox',
+                    checked: true,
+                    events: {
+                        change: (event) => this.#skeletonHelper.displayBoneJoints(event.target.checked)
+                    }
+                }),
+                createElement('span', {
+                    i18n: '#display_bone_joints',
                 }),
             ]
         });
@@ -57743,7 +59033,7 @@ class SceneExplorer {
         }
         return htmlEntityElement;
     }
-    selectEntity(entity) {
+    selectEntity(entity, scrollIntoView = false) {
         if (this.#selectedEntity == entity) {
             return;
         }
@@ -57753,6 +59043,9 @@ class SceneExplorer {
         if (this.#isVisible) {
             this.#updateEntityElement(entity);
             SceneExplorerEntity.getEntityElement(entity)?.select();
+            if (scrollIntoView) {
+                SceneExplorerEntity.getEntityElement(entity)?.display();
+            }
         }
     }
     getSelectedEntity() {
@@ -57796,13 +59089,16 @@ class SceneExplorer {
         }*/
     }
     showContextMenu(contextMenu, x, y, entity) {
-        this.#htmlContextMenu.show(contextMenu, x, y, entity);
+        this.#htmlContextMenu.showContextual(contextMenu, x, y, entity);
     }
     editMaterial(material) {
         const materialEditor = getMaterialEditor();
         materialEditor.editMaterial(material);
         this.#htmlMaterialEditor.append(materialEditor.getHTML());
         this.#htmlExtra.expand('material');
+    }
+    setJointsRadius(radius) {
+        this.#skeletonHelper.setJointsRadius(radius);
     }
 }
 function initEntitySubmenu() {
@@ -61451,7 +62747,7 @@ function loadScripts(array, callback) {
 
 create$4(); //TODO: use IDENTITY_VEC3
 create$2();
-const tempVec3$l = create$4();
+const tempVec3$k = create$4();
 const tempQuat$6 = create$2();
 let mat$2 = create$5();
 class ControlPoint extends Entity {
@@ -61472,12 +62768,14 @@ class ControlPoint extends Entity {
     uVector = create$4();
     // Right vector
     rVector = create$4();
-    parentModel = null;
+    parentModel;
     lastComputed = -1;
+    snapshot;
+    model;
     getWorldTransformation(mat = create$5()) {
         this.getWorldQuaternion(tempQuat$6);
-        this.getWorldPosition(tempVec3$l);
-        return fromRotationTranslation$1(mat, tempQuat$6, tempVec3$l);
+        this.getWorldPosition(tempVec3$k);
+        return fromRotationTranslation$1(mat, tempQuat$6, tempVec3$k);
     }
     getWorldQuaternion(q = create$2()) {
         if (this.#parentControlPoint) {
@@ -61524,7 +62822,7 @@ class ControlPoint extends Entity {
         // compute delta world position
         sub$2(this.deltaWorldPosition, this.currentWorldPosition, this.prevWorldPosition);
         // compute delta world transformation
-        invert$2(mat$2, this.prevWorldTransformation);
+        invert$3(mat$2, this.prevWorldTransformation);
         mul$5(this.deltaWorldTransformation, this.currentWorldTransformation, mat$2);
     }
     deltaPosFrom(other, out = create$4()) {
@@ -61557,7 +62855,7 @@ function ParticleRandomVec3(vec, id, offset1, offset2, offset3) {
     if (!randomFloats) {
         initRandomFloats();
     }
-    set$4(vec, randomFloats[(id + offset1) % MAX_FLOATS], randomFloats[(id + offset2) % MAX_FLOATS], randomFloats[(id + offset3) % MAX_FLOATS]);
+    set$5(vec, randomFloats[(id + offset1) % MAX_FLOATS], randomFloats[(id + offset2) % MAX_FLOATS], randomFloats[(id + offset3) % MAX_FLOATS]);
     return vec;
 }
 
@@ -62660,7 +63958,7 @@ class TimelineClip extends TimelineElement {
     }
 }
 
-class Event$1 {
+let Event$1 = class Event {
     #repository;
     type;
     name;
@@ -62922,7 +64220,7 @@ class Event$1 {
         const clip = new TimelineClip(this.name, this.startTime, this.endTime);
         return clip;
     }
-}
+};
 var EventType;
 (function (EventType) {
     EventType[EventType["Unspecified"] = 0] = "Unspecified";
@@ -63569,7 +64867,8 @@ class Choreographies {
     scenesCount;
     stringsCount;
     scenesOffset;
-    sceneEntries;
+    #sceneEntries = new Map();
+    #initialized = false;
     async loadFile(repositoryName, fileName) {
         //const repository = new Repositories().getRepository(repositoryName);
         this.#repository = repositoryName;
@@ -63597,22 +64896,23 @@ class Choreographies {
         await this.#parseHeader();
     }
     async #parseHeader() {
-        this.fileId = await this.#reader.getUint32(0);
-        this.fileVersion = await this.#reader.getUint32();
-        this.scenesCount = await this.#reader.getUint32();
-        this.stringsCount = await this.#reader.getUint32();
-        this.scenesOffset = await this.#reader.getUint32();
+        this.fileId = this.#reader.getUint32(0);
+        this.fileVersion = this.#reader.getUint32();
+        this.scenesCount = this.#reader.getUint32();
+        this.stringsCount = this.#reader.getUint32();
+        this.scenesOffset = this.#reader.getUint32();
     }
     async getChoreography(fileName) {
         const choreoCRC = crc32(fileName.replace(/\//g, '\\').toLowerCase());
-        if (!this.sceneEntries) {
+        if (!this.#initialized) {
             await this.#parseSceneEntries();
-            if (!this.sceneEntries) {
+            this.#initialized = true;
+            if (!this.#initialized) {
                 return null;
             }
         }
         if (this.choreographies[choreoCRC]) ;
-        if (this.sceneEntries[choreoCRC]) {
+        if (this.#sceneEntries.get(choreoCRC)) {
             const choreo = await this.#parseSceneData(this.#repository, choreoCRC);
             if (choreo) {
                 this.choreographies[choreoCRC] = choreo;
@@ -63629,15 +64929,16 @@ class Choreographies {
             // Ensure we have enough data
             //if (this.hasChunk(this.scenesOffset, size))
             {
-                this.sceneEntries = {};
+                this.#sceneEntries.clear();
+                this.#initialized = true;
                 this.#reader.seek(this.scenesOffset);
                 for (let i = 0; i < this.scenesCount; i++) {
-                    const sceneCRC = await this.#reader.getUint32();
-                    let doo = await this.#reader.getUint32();
-                    let dl = await this.#reader.getUint32();
-                    let sso = await this.#reader.getUint32();
+                    const sceneCRC = this.#reader.getUint32();
+                    let doo = this.#reader.getUint32();
+                    let dl = this.#reader.getUint32();
+                    let sso = this.#reader.getUint32();
                     const sceneEntry = { 'do': doo, 'dl': dl, 'sso': sso };
-                    this.sceneEntries[sceneCRC] = sceneEntry;
+                    this.#sceneEntries.set(sceneCRC, sceneEntry);
                 }
             }
         }
@@ -63646,26 +64947,27 @@ class Choreographies {
     async #parseSceneData(repository, sceneCRC) {
         //await this.#reader.getLock();
         let choreography = null;
-        const sceneEntry = this.sceneEntries[sceneCRC];
+        const sceneEntry = this.#sceneEntries.get(sceneCRC);
         if (sceneEntry) {
             //if (this.hasChunk(sceneEntry['do'], sceneEntry['dl']) && this.hasChunk(sceneEntry['sso'], 8))
             {
                 //this.#reader.seek(sceneEntry['do']);
                 //reader.skip(4);//LZMA
-                const format = await this.#reader.getString(4, sceneEntry['do']);
+                const format = this.#reader.getString(4, sceneEntry['do']);
                 let decompressedDatas;
-                if (format == 'LZMA') {
-                    const uncompressedSize = await this.#reader.getUint32();
-                    await this.#reader.getUint32();
-                    const properties = await this.#reader.getBytes(5);
-                    const compressedDatas = await this.#reader.getBytes(sceneEntry['dl'] - 17);
-                    //decompressedDatas = _decompress(properties, compressedDatas, uncompressedSize);
-                    decompressedDatas = DecompressLZMA(properties, compressedDatas, uncompressedSize);
-                }
-                else {
-                    decompressedDatas = await this.#reader.getString(sceneEntry['dl'], sceneEntry['do']);
-                }
                 try {
+                    if (format == 'LZMA') {
+                        const HEADER_SIZE = 17; // 4 + 4 + 4 + 5
+                        const uncompressedSize = this.#reader.getUint32();
+                        const compressedSize = this.#reader.getUint32();
+                        const properties = this.#reader.getBytes(5);
+                        const compressedDatas = this.#reader.getBytes(sceneEntry['dl'] - HEADER_SIZE);
+                        //decompressedDatas = _decompress(properties, compressedDatas, uncompressedSize);
+                        decompressedDatas = DecompressLZMA(properties, compressedDatas, uncompressedSize);
+                    }
+                    else {
+                        decompressedDatas = this.#reader.getString(sceneEntry['dl'], sceneEntry['do']);
+                    }
                     choreography = await this.#loadChoreography(repository, decompressedDatas);
                 }
                 catch (e) {
@@ -63674,7 +64976,7 @@ class Choreographies {
                 }
                 if (choreography) {
                     //this.#reader.seek(sceneEntry['sso']);
-                    choreography.sceneLength = (await this.#reader.getUint32(sceneEntry['sso'])) * 0.001;
+                    choreography.sceneLength = (this.#reader.getUint32(sceneEntry['sso'])) * 0.001;
                 }
             }
         }
@@ -63864,8 +65166,8 @@ class Choreographies {
         const s = this.stringPool[stringIndex];
         if (s === undefined) {
             const stringOffsetOffset = 20 + stringIndex * 4;
-            const stringOffset = await this.#reader.getUint32(stringOffsetOffset, 4);
-            return await this.#reader.getNullString(stringOffset);
+            const stringOffset = this.#reader.getUint32(stringOffsetOffset);
+            return this.#reader.getNullString(stringOffset);
         }
         throw new Error(`String not found ${stringIndex}`);
     }
@@ -63921,7 +65223,11 @@ class ChoreographiesManager {
                 this.#choreographies.add(choreography);
                 choreography.setActors(actors);
                 choreography.onStop = onStop;
-            } /* else {
+            }
+            else {
+                onStop && onStop();
+            }
+            /* else {
                 setTimeout(function() {playChoreo(choreoName, actors, onStop)}, 100);
             }*/
         }
@@ -64822,7 +66128,7 @@ class MdlBone {
     }
     set poseToBone(poseToBone) {
         copy$5(this._poseToBone, poseToBone);
-        invert$2(this._invPoseToBone, poseToBone);
+        invert$3(this._invPoseToBone, poseToBone);
         this.dirty = true;
     }
     get poseToBone() {
@@ -67311,7 +68617,7 @@ class Source1ModelInstance extends Entity {
                 localMat3[2] = attachement.local[8];
                 localMat3[5] = attachement.local[9];
                 localMat3[8] = attachement.local[10];
-                set$4(attachementBone._position, attachement.local[3], attachement.local[7], attachement.local[11]);
+                set$5(attachementBone._position, attachement.local[3], attachement.local[7], attachement.local[11]);
                 fromMat3(attachementBone._quaternion, localMat3);
                 let bone = this.#skeleton.getBoneById(attachement.localbone);
                 bone.addChild(attachementBone);
@@ -68965,6 +70271,37 @@ class Animation {
         id = Math.round(id) % Math.max(this.#frameCount, 1);
         return this.#frames[id];
     }
+    toSMD(header = SMD_HEADER) {
+        const lines = [];
+        lines.push(header);
+        lines.push('version 1');
+        // Start bones declaration
+        lines.push('nodes');
+        for (const bone of this.#bones) { // TODO: sort bones ?
+            lines.push(`  ${bone.id} "${bone.name}" ${bone.getParentId()}`);
+        }
+        lines.push('end');
+        // Start frames
+        lines.push('skeleton');
+        for (const frame of this.#frames) {
+            lines.push(`  time ${frame.getFrameId()}`);
+            const positions = frame.getData('position');
+            const rotations = frame.getData('rotation');
+            if (!positions || !rotations) {
+                continue;
+            }
+            for (const bone of this.#bones) {
+                const bonePos = positions.datas[bone.id] ?? create$4();
+                const boneRot = quatToEuler(create$4(), rotations.datas[bone.id] ?? create$2());
+                if (!bonePos || !boneRot) {
+                    continue;
+                }
+                lines.push(`  ${bone.id} ${bonePos[0].toFixed(5)} ${bonePos[1].toFixed(5)} ${bonePos[2].toFixed(5)} ${boneRot[0].toFixed(5)} ${boneRot[1].toFixed(5)} ${boneRot[2].toFixed(5)}`);
+            }
+        }
+        lines.push('end');
+        return lines.join('\n');
+    }
 }
 
 var AnimationFrameDataType;
@@ -69016,21 +70353,29 @@ class AnimationFrame {
     getData(name) {
         return this.#datas.get(name);
     }
+    getFrameId() {
+        return this.#frameId;
+    }
 }
 
 class AnimationBone {
     #id;
+    #parentId;
     #name;
     refPosition;
     refQuaternion;
-    constructor(id, name, position, quaternion) {
+    constructor(id, parentId, name, position, quaternion) {
         this.#id = id;
+        this.#parentId = parentId;
         this.#name = name.toLowerCase();
         this.refPosition = clone$4(position);
         this.refQuaternion = clone$2(quaternion);
     }
     get id() {
         return this.#id;
+    }
+    getParentId() {
+        return this.#parentId;
     }
     get name() {
         return this.#name;
@@ -69153,7 +70498,7 @@ class SourceModel {
         const seq = await this.mdl.getSequence(animationName);
         const bones = this.mdl.getBones();
         for (const mdlBone of bones) {
-            animation.addBone(new AnimationBone(mdlBone.boneId, mdlBone.name, mdlBone.position, mdlBone.quaternion));
+            animation.addBone(new AnimationBone(mdlBone.boneId, mdlBone.parentBone, mdlBone.name, mdlBone.position, mdlBone.quaternion));
         }
         if (seq) {
             //const t = Studio_Duration(seq.mdl, seq.id, []);
@@ -70373,7 +71718,7 @@ function ParseVector2(out, str) {
     const regex = / *(-?\d*(\.\d*)?) *(-?\d*(\.\d*)?) *(-?\d*(\.\d*)?) */i;
     const result = regex.exec(str);
     if (result) {
-        return set$4(out, Number.parseFloat(result[1]), Number.parseFloat(result[3]), Number.parseFloat(result[5]));
+        return set$5(out, Number.parseFloat(result[1]), Number.parseFloat(result[3]), Number.parseFloat(result[5]));
     }
     return null;
 }
@@ -73349,9 +74694,9 @@ class SourceEngineParticleSystem extends Entity {
             this.addChild(controlPoint);
         }
         this.controlPoints[controlPointId] = controlPoint;
-        set$4(controlPoint.fVector, 0, 1, 0);
-        set$4(controlPoint.uVector, 0, 0, 1);
-        set$4(controlPoint.rVector, 1, 0, 0);
+        set$5(controlPoint.fVector, 0, 1, 0);
+        set$5(controlPoint.uVector, 0, 0, 1);
+        set$5(controlPoint.rVector, 1, 0, 0);
         let parentSystem = this.parentSystem;
         if (parentSystem !== undefined) {
             let parentControlPoint = parentSystem.getControlPoint(controlPointId);
@@ -73470,10 +74815,10 @@ class SourceEngineParticleSystem extends Entity {
     get autoKill() {
         return this.#autoKill;
     }
-    setlooping(looping) {
+    setLooping(looping) {
         this.#looping = looping;
     }
-    getlooping() {
+    getLooping() {
         return this.#looping;
     }
     dispose() {
@@ -73490,12 +74835,12 @@ class SourceEngineParticleSystem extends Entity {
     }
     getBounds(min = create$4(), max = create$4()) {
         if (!this.livingParticles.length) {
-            set$4(min, -1, -1, -1);
-            set$4(max, 1, 1, 1);
+            set$5(min, -1, -1, -1);
+            set$5(max, 1, 1, 1);
         }
         else {
-            set$4(min, Infinity, Infinity, Infinity);
-            set$4(max, -Infinity, -Infinity, -Infinity);
+            set$5(min, Infinity, Infinity, Infinity);
+            set$5(max, -Infinity, -Infinity, -Infinity);
             for (let particle of this.livingParticles) {
                 min$3(min, min, particle.position);
                 max$3(max, max, particle.position);
@@ -74759,7 +76104,7 @@ class FuncDoor extends MapEntity {
             this.setMoveDoneTime(-1);
             //vec3.copy(this.origin, this.finalDest);
             this.position = this.finalDest;
-            set$4(this.m_vecVelocity, 0, 0, 0);
+            set$5(this.m_vecVelocity, 0, 0, 0);
             this.moveDone();
         }
     }
@@ -74970,7 +76315,7 @@ MapEntities.registerEntity('prop_scalable', PropDynamic);
 MapEntities.registerEntity('prop_physics_override', PropDynamic);
 
 const tempQuaternion = create$2();
-const tempVec3$k = create$4();
+const tempVec3$j = create$4();
 const SPOTLIGHT_DEFAULT_QUATERNION = fromValues$2(0, -1, 0, 1);
 class PropLightSpot extends MapEntity {
     spotLight = new SpotLight();
@@ -75008,9 +76353,9 @@ class PropLightSpot extends MapEntity {
                 this.setAngles();
                 break;
             case 'angles':
-                ParseAngles2(tempVec3$k, value);
-                this._angles[1] = tempVec3$k[1];
-                this._angles[2] = tempVec3$k[1];
+                ParseAngles2(tempVec3$j, value);
+                this._angles[1] = tempVec3$j[1];
+                this._angles[2] = tempVec3$j[1];
                 this.setAngles();
                 break;
             case '_quadratic_attn':
@@ -76104,6 +77449,18 @@ function detex(imports){return _loadWasmModule(0, null, 'AGFzbQEAAAABiAEWYAN/f38
 class Detex {
     static #webAssembly;
     static #HEAPU8;
+    static async decode(format, width, height, input, output) {
+        switch (format) {
+            case TEXTURE_FORMAT_COMPRESSED_RGBA_DXT1:
+                return this.decodeBC1(width, height, input, output);
+            case TEXTURE_FORMAT_COMPRESSED_RGBA_DXT3:
+                return this.decodeBC2(width, height, input, output);
+            case TEXTURE_FORMAT_COMPRESSED_RGBA_DXT5:
+                return this.decodeBC3(width, height, input, output);
+            default:
+                console.error('bad texture format in Detex.decode: ' + format);
+        }
+    }
     static async decodeBC1(width, height, input, output) {
         const wa = await this.getWebAssembly();
         const api = wa.instance.exports;
@@ -76843,7 +78200,7 @@ class SourceEngineVTFLoader extends SourceBinaryLoader {
             for (let nIdx = 0; nIdx < nTimeSamples; ++nIdx) {
                 //float flIdxA, flIdxB, flInterp;
                 let result = GetInterpolationData(InterpKnot, InterpValue, group.frameCount, SEQUENCE_SAMPLE_COUNT, nIdx, !group.clamp /*,
-                &flIdxA, &flIdxB, &flInterp */);
+                                &flIdxA, &flIdxB, &flInterp */);
                 let sA = Samples[result.pValueA];
                 let sB = Samples[result.pValueB];
                 let oseq = group.m_pSamples[nIdx];
@@ -77018,9 +78375,9 @@ function str2abABGR(reader, start, length) {
     let arr = new Uint8Array(reader.buffer.slice(start, start + length));
     for (let i = 0; i < length; i += 4) {
         let a = arr[i];
-        arr[i] = arr[i + 1];
+        arr[i] = arr[i + 3];
         arr[i + 1] = arr[i + 2];
-        arr[i + 2] = arr[i + 2];
+        arr[i + 2] = arr[i + 1];
         arr[i + 3] = a;
     }
     return arr;
@@ -77182,7 +78539,7 @@ function GetTextureTransform(str, mat = create$5()) {
     const rotateResult = /rotate *(\d*(?:\.\d)?)/.exec(str);
     const translateResult = /translate *(\d*(?:\.\d)?) *(\d*(?:\.\d)?)/.exec(str);
     if (centerResult) {
-        set(center, Number(centerResult[1]), Number(centerResult[2]));
+        set$1(center, Number(centerResult[1]), Number(centerResult[2]));
         MatrixBuildTranslation(mat, -center[0], -center[1], 0.0);
     }
     if (scaleResult) {
@@ -77223,6 +78580,7 @@ const VMT_PARAMETERS = {
     $selfillumtint: [SHADER_PARAM_TYPE_COLOR, [1, 1, 1]],
     $detailscale: [SHADER_PARAM_TYPE_VEC2, [1, 1]],
     $detailblendmode: [SHADER_PARAM_TYPE_INTEGER, 0],
+    $no_draw: [SHADER_PARAM_TYPE_BOOL, false],
 };
 function initDefaultParameters(defaultParameters, parameters, variables) {
     if (defaultParameters) {
@@ -77297,11 +78655,11 @@ class SourceEngineMaterial extends Material {
                                 this.variables.set(parameterName, v2);
                             }
                             else {
-                                if (isNaN(value)) {
+                                if (isNaN(Number(value))) {
                                     this.variables.set(parameterName, value);
                                 }
                                 else {
-                                    this.variables.set(parameterName, value * 1);
+                                    this.variables.set(parameterName, Number(value));
                                 }
                             }
                         }
@@ -77375,6 +78733,9 @@ class SourceEngineMaterial extends Material {
         }
         if (variables.get('$normalmapalphaenvmapmask') == 1) {
             this.setDefine('USE_NORMAL_ALPHA_AS_ENVMAP_MASK');
+        }
+        if (variables.get('$no_draw')) {
+            this.setDefine('NO_DRAW');
         }
         this.uniforms['uTextureTransform'] = IDENTITY_MAT4$3;
         if (params['$basetexturetransform']) {
@@ -77715,27 +79076,27 @@ function readColor(value, color) {
     let regex = /\{ *(\d*) *(\d*) *(\d*) *(\d*)* *\}/i;
     let result = regex.exec(value);
     if (result) {
-        set$4(color, Number(result[1]) / 255.0, Number(result[2]) / 255.0, Number(result[3]) / 255.0);
+        set$5(color, Number(result[1]) / 255.0, Number(result[2]) / 255.0, Number(result[3]) / 255.0);
         return color;
     }
     // With [] : color values in 0.0-1.0 range
     regex = /\[ *(\d*(\.\d*)?) *(\d*(\.\d*)?) *(\d*(\.\d*)?) *\]/i;
     result = regex.exec(value);
     if (result) {
-        set$4(color, Number(result[1]), Number(result[3]), Number(result[5]));
+        set$5(color, Number(result[1]), Number(result[3]), Number(result[5]));
         return color;
     }
     // With nothing : color values in 0.0-1.0 range
     regex = /^ *(\d*(\.\d*)?) *(\d*(\.\d*)?) *(\d*(\.\d*)?) *$/i;
     result = regex.exec(value);
     if (result) {
-        set$4(color, Number(result[1]), Number(result[3]), Number(result[5]));
+        set$5(color, Number(result[1]), Number(result[3]), Number(result[5]));
         return color;
     }
     //try a single number
     let n = Number(value);
     if (!Number.isNaN(n)) {
-        set$4(color, n, n, n);
+        set$5(color, n, n, n);
         return color;
     }
     return null;
@@ -77745,13 +79106,13 @@ function readVec2(value, vec) {
     let regex = /\[ *(-?\d*(\.\d*)?) *(-?\d*(\.\d*)?) *\]/i;
     let result = regex.exec(value);
     if (result) {
-        return set(vec, Number(result[1]), Number(result[3]));
+        return set$1(vec, Number(result[1]), Number(result[3]));
     }
     const f = Number.parseFloat(value);
     if (Number.isNaN(f)) {
         return;
     }
-    return set(vec, f, f);
+    return set$1(vec, f, f);
 }
 /*
 
@@ -79342,7 +80703,7 @@ class EmitNoise extends SourceEngineParticleOperator {
 }
 SourceEngineParticleOperators.registerOperator(EmitNoise);
 
-let tempVec3$j = create$4();
+let tempVec3$i = create$4();
 class PullTowardsControlPoint extends SourceEngineParticleOperator {
     static functionName = 'Pull towards control point';
     constructor() {
@@ -79365,7 +80726,7 @@ class PullTowardsControlPoint extends SourceEngineParticleOperator {
             return;
         }
         const ofs = clone$4(particle.position);
-        subtract$3(ofs, ofs, cp.getWorldPosition(tempVec3$j)); //TODO: add particle base cp
+        subtract$3(ofs, ofs, cp.getWorldPosition(tempVec3$i)); //TODO: add particle base cp
         let len = length$5(ofs);
         if (len === 0) {
             len = FLT_EPSILON;
@@ -79399,7 +80760,7 @@ class RandomForce$1 extends SourceEngineParticleOperator {
 }
 SourceEngineParticleOperators.registerOperator(RandomForce$1);
 
-const tempVec3$i = create$4();
+const tempVec3$h = create$4();
 const tempVec3_2$6 = create$4();
 create$4();
 create$2();
@@ -79416,7 +80777,7 @@ class TwistAroundAxis extends SourceEngineParticleOperator {
         const amountOfForce = this.getParameter('amount of force');
         this.getParameter('object local space axis 0/1');
         const cp = particle.system.getControlPoint(0);
-        const offsetToAxis = sub$2(tempVec3$i, particle.position, cp.getWorldPosition(tempVec3$i));
+        const offsetToAxis = sub$2(tempVec3$h, particle.position, cp.getWorldPosition(tempVec3$h));
         /*
                 if (!localSpace) {
                     cp.getWorldQuaternion(tempQuat);
@@ -79619,7 +80980,7 @@ class PositionFromParentParticles extends SourceEngineParticleOperator {
 }
 SourceEngineParticleOperators.registerOperator(PositionFromParentParticles);
 
-const tempVec3$h = create$4();
+const tempVec3$g = create$4();
 class PositionModifyOffsetRandom extends SourceEngineParticleOperator {
     static functionName = 'Position Modify Offset Random';
     constructor() {
@@ -79641,7 +81002,7 @@ class PositionModifyOffsetRandom extends SourceEngineParticleOperator {
         const offsetMax = this.getParameter('offset max');
         random$2(create(), 1.0);
         const controlPointNumber = this.getParameter('control_point_number');
-        const offset = vec3RandomBox(tempVec3$h, offsetMin, offsetMax);
+        const offset = vec3RandomBox(tempVec3$g, offsetMin, offsetMax);
         if (localSpace == 1) {
             const cp = particle.system.getControlPoint(controlPointNumber);
             if (cp) {
@@ -79716,7 +81077,7 @@ class PositionOnModelRandom extends SourceEngineParticleOperator {
 }
 SourceEngineParticleOperators.registerOperator(PositionOnModelRandom);
 
-let tempVec3$g = create$4();
+let tempVec3$f = create$4();
 class PositionWithinBoxRandom extends SourceEngineParticleOperator {
     static functionName = 'Position Within Box Random';
     constructor() {
@@ -79736,15 +81097,15 @@ class PositionWithinBoxRandom extends SourceEngineParticleOperator {
         copy$4(particle.prevPosition, particle.position);
         const controlPoint = particle.system.getControlPoint(controlPointNumber);
         if (controlPoint) {
-            controlPoint.getWorldPosition(tempVec3$g);
-            add$5(particle.position, particle.position, tempVec3$g);
-            add$5(particle.prevPosition, particle.prevPosition, tempVec3$g);
+            controlPoint.getWorldPosition(tempVec3$f);
+            add$5(particle.position, particle.position, tempVec3$f);
+            add$5(particle.prevPosition, particle.prevPosition, tempVec3$f);
         }
     }
 }
 SourceEngineParticleOperators.registerOperator(PositionWithinBoxRandom);
 
-let tempVec3$f = create$4();
+let tempVec3$e = create$4();
 class PositionWithinSphereRandom extends SourceEngineParticleOperator {
     static functionName = 'Position Within Sphere Random';
     constructor() {
@@ -79817,8 +81178,8 @@ class PositionWithinSphereRandom extends SourceEngineParticleOperator {
                 randpos += vecControlPoint;*/
                 cp = particle.system.getControlPoint(controlPointNumber);
                 if (cp) {
-                    cp.getWorldPosition(tempVec3$f);
-                    add$5(randpos, randpos, tempVec3$f);
+                    cp.getWorldPosition(tempVec3$e);
+                    add$5(randpos, randpos, tempVec3$e);
                 }
             }
             else {
@@ -79830,8 +81191,8 @@ class PositionWithinSphereRandom extends SourceEngineParticleOperator {
                 cp = particle.system.getControlPoint(controlPointNumber);
                 if (cp) {
                     transformQuat$1(randpos, randpos, cp.getWorldQuaternion());
-                    cp.getWorldPosition(tempVec3$f);
-                    add$5(randpos, randpos, tempVec3$f);
+                    cp.getWorldPosition(tempVec3$e);
+                    add$5(randpos, randpos, tempVec3$e);
                 }
             }
         }
@@ -79853,7 +81214,7 @@ class PositionWithinSphereRandom extends SourceEngineParticleOperator {
             add$5(particle.velocity, particle.velocity, v);
             //vec3.add(randpos, randpos, v);
         }
-        invert$1(particle.cpOrientationInvert, particle.cpOrientation);
+        invert$2(particle.cpOrientationInvert, particle.cpOrientation);
         //vec3.transformQuat(particle.velocity, particle.velocity, particle.cpOrientation);
         const vGrav = clone$4(particle.velocity);
         particle.velocity[0] = vGrav[2];
@@ -80103,7 +81464,7 @@ SourceEngineParticleOperators.registerOperator(RemapNoiseToScalar);
 */
 
 const tempQuat$4 = create$2();
-const tempVec3$e = create$4();
+const tempVec3$d = create$4();
 const tempVec3_2$3 = create$4();
 class RemapScalarToVector extends SourceEngineParticleOperator {
     static functionName = 'Remap Scalar to Vector';
@@ -80136,22 +81497,22 @@ class RemapScalarToVector extends SourceEngineParticleOperator {
             return;
         }
         const input = particle.getField(m_nFieldInput);
-        tempVec3$e[0] = RemapValClamped(input, m_flInputMin, m_flInputMax, m_vecOutputMin[0], m_vecOutputMax[0]);
-        tempVec3$e[1] = RemapValClamped(input, m_flInputMin, m_flInputMax, m_vecOutputMin[1], m_vecOutputMax[1]);
-        tempVec3$e[2] = RemapValClamped(input, m_flInputMin, m_flInputMax, m_vecOutputMin[2], m_vecOutputMax[2]);
+        tempVec3$d[0] = RemapValClamped(input, m_flInputMin, m_flInputMax, m_vecOutputMin[0], m_vecOutputMax[0]);
+        tempVec3$d[1] = RemapValClamped(input, m_flInputMin, m_flInputMax, m_vecOutputMin[1], m_vecOutputMax[1]);
+        tempVec3$d[2] = RemapValClamped(input, m_flInputMin, m_flInputMax, m_vecOutputMin[2], m_vecOutputMax[2]);
         const cp = this.particleSystem.getControlPoint(m_nControlPointNumber);
         if (m_nFieldOutput == 0) { // Position
             if (!m_bLocalCoords) {
-                add$5(tempVec3$e, cp.getWorldPosition(tempVec3_2$3), tempVec3$e);
+                add$5(tempVec3$d, cp.getWorldPosition(tempVec3_2$3), tempVec3$d);
             }
             else {
                 if (cp) {
                     cp.getWorldQuaternion(tempQuat$4);
-                    transformQuat$1(tempVec3$e, tempVec3$e, tempQuat$4);
-                    add$5(tempVec3$e, cp.getWorldPosition(tempVec3_2$3), tempVec3$e);
+                    transformQuat$1(tempVec3$d, tempVec3$d, tempQuat$4);
+                    add$5(tempVec3$d, cp.getWorldPosition(tempVec3_2$3), tempVec3$d);
                 }
-                particle.setField(0, tempVec3$e); //position
-                particle.setField(2, tempVec3$e); //previous position
+                particle.setField(0, tempVec3$d); //position
+                particle.setField(2, tempVec3$d); //previous position
             }
         }
         else {
@@ -80717,7 +82078,7 @@ class VelocityNoise extends SourceEngineParticleOperator {
 SourceEngineParticleOperators.registerOperator(VelocityNoise);
 
 let identityVec3 = create$4();
-const tempVec3$d = create$4();
+const tempVec3$c = create$4();
 class VelocityRandom$1 extends SourceEngineParticleOperator {
     static functionName = 'Velocity Random';
     constructor() {
@@ -80749,8 +82110,8 @@ class VelocityRandom$1 extends SourceEngineParticleOperator {
             vec3RandomBox(randomVector, speed_in_local_coordinate_system_min, speed_in_local_coordinate_system_max); //randomVector.randomize(speed_in_local_coordinate_system_min, speed_in_local_coordinate_system_max);
         }
         if (randomSpeed != 0) {
-            random$5(tempVec3$d, randomSpeed);
-            add$5(randomVector, randomVector, tempVec3$d);
+            random$5(tempVec3$c, randomSpeed);
+            add$5(randomVector, randomVector, tempVec3$c);
         }
         const cp = particle.system.getControlPoint(m_nControlPointNumber);
         if (cp) {
@@ -80964,7 +82325,7 @@ class LifespanDecay$1 extends SourceEngineParticleOperator {
 }
 SourceEngineParticleOperators.registerOperator(LifespanDecay$1);
 
-const tempVec3$c = create$4();
+const tempVec3$b = create$4();
 const tempMat4 = create$5();
 const IDENTITY_MAT4$2 = create$5();
 class LockToBone$1 extends SourceEngineParticleOperator {
@@ -80994,7 +82355,7 @@ class LockToBone$1 extends SourceEngineParticleOperator {
                     tempMat4[12] = 0;
                     tempMat4[13] = 0;
                     tempMat4[14] = 0;
-                    copy$4(tempVec3$c, initialVec);
+                    copy$4(tempVec3$b, initialVec);
                     for (let [bone, boneWeight] of bones) {
                         let boneMat;
                         if (bone) {
@@ -81018,12 +82379,12 @@ class LockToBone$1 extends SourceEngineParticleOperator {
                             tempMat4[14] += boneWeight * boneMat[14];
                         }
                     }
-                    transformMat4$2(tempVec3$c, tempVec3$c, tempMat4);
+                    transformMat4$2(tempVec3$b, tempVec3$b, tempMat4);
                     if (particle.initialVecOffset) {
-                        add$5(tempVec3$c, tempVec3$c, particle.initialVecOffset);
+                        add$5(tempVec3$b, tempVec3$b, particle.initialVecOffset);
                     }
                     copy$4(particle.prevPosition, particle.position);
-                    copy$4(particle.position, tempVec3$c);
+                    copy$4(particle.position, tempVec3$b);
                 }
             }
         }
@@ -81031,7 +82392,7 @@ class LockToBone$1 extends SourceEngineParticleOperator {
 }
 SourceEngineParticleOperators.registerOperator(LockToBone$1);
 
-const tempVec3$b = create$4();
+const tempVec3$a = create$4();
 const tempVec3_2$2 = create$4();
 const tempVec3_3 = create$4();
 class MovementBasic extends SourceEngineParticleOperator {
@@ -81053,7 +82414,7 @@ class MovementBasic extends SourceEngineParticleOperator {
             adj_dt *= (elapsedTime / particle.previousElapsedTime);
         }
         particle.previousElapsedTime = elapsedTime;*/
-        const accumulatedForces = copy$4(tempVec3$b, gravity);
+        const accumulatedForces = copy$4(tempVec3$a, gravity);
         //vec3.scale(accumulatedForces, accumulatedForces, 0.5);
         /*if (elapsedTime) {
             vec3.scale(accumulatedForces, accumulatedForces, 1/elapsedTime);
@@ -81133,7 +82494,7 @@ class MovementLocktoControlPoint extends SourceEngineParticleOperator {
             }
             particle.cpPosition = cp.getWorldPosition();
             particle.cpOrientation = cp.getWorldQuaternion();
-            let invertQuat = invert$1(create$2(), particle.initialCPQuaternion); //TODO: optimize
+            let invertQuat = invert$2(create$2(), particle.initialCPQuaternion); //TODO: optimize
             const delta = subtract$3(create$4(), particle.cpPosition, particle.initialCPPosition); //TODO: optimize
             const deltaQuaternion = mul$2(create$2(), particle.cpOrientation, invertQuat);
             normalize$3(deltaQuaternion, deltaQuaternion);
@@ -81191,7 +82552,7 @@ lock rotation
 This will update a particle relative to a Control Point's rotation as well as position.
 */
 
-const tempVec3$a = create$4();
+const tempVec3$9 = create$4();
 class MovementMaxVelocity extends SourceEngineParticleOperator {
     static functionName = 'Movement Max Velocity';
     constructor() {
@@ -81200,7 +82561,7 @@ class MovementMaxVelocity extends SourceEngineParticleOperator {
     }
     doOperate(particle, elapsedTime) {
         const maxVelocity = this.getParameter('Maximum Velocity');
-        const velocity = sub$2(tempVec3$a, particle.position, particle.prevPosition);
+        const velocity = sub$2(tempVec3$9, particle.position, particle.prevPosition);
         let speed = length$5(velocity);
         normalize$5(velocity, velocity);
         const maxVelocityNormalized = maxVelocity * elapsedTime;
@@ -81210,7 +82571,7 @@ class MovementMaxVelocity extends SourceEngineParticleOperator {
 }
 SourceEngineParticleOperators.registerOperator(MovementMaxVelocity);
 
-let tempVec3$9 = create$4();
+let tempVec3$8 = create$4();
 class MovementRotateParticleAroundAxis$1 extends SourceEngineParticleOperator {
     static functionName = 'Movement Rotate Particle Around Axis';
     once = true;
@@ -81239,9 +82600,9 @@ class MovementRotateParticleAroundAxis$1 extends SourceEngineParticleOperator {
             if (useLocalSpace == 1) {
                 copy$2(q, cp.getWorldQuaternion());
             }
-            cp.getWorldPosition(tempVec3$9);
-            sub$2(particle.position, particle.position, tempVec3$9);
-            sub$2(particle.prevPosition, particle.prevPosition, tempVec3$9);
+            cp.getWorldPosition(tempVec3$8);
+            sub$2(particle.position, particle.position, tempVec3$8);
+            sub$2(particle.prevPosition, particle.prevPosition, tempVec3$8);
             const axis2 = clone$4(axis); //TODO: memory
             //axis2[1] = -axis2[1];
             //const tempQuat = quat.fromEuler(quat.create(), vec3.scale(vec3.create(), vec3.normalize(vec3.create(), axis), Math.HALF_PI));
@@ -81250,9 +82611,9 @@ class MovementRotateParticleAroundAxis$1 extends SourceEngineParticleOperator {
             transformQuat$1(axis2, axis2, q);
             rotate$1(modelView, modelView, DEG_TO_RAD * (rate * elapsedTime), axis2);
             transformMat4$2(particle.position, particle.position, modelView);
-            add$5(particle.position, particle.position, tempVec3$9);
+            add$5(particle.position, particle.position, tempVec3$8);
             transformMat4$2(particle.prevPosition, particle.prevPosition, modelView);
-            add$5(particle.prevPosition, particle.prevPosition, tempVec3$9);
+            add$5(particle.prevPosition, particle.prevPosition, tempVec3$8);
         }
         else {
             rotate$1(modelView, modelView, DEG_TO_RAD * (rate * elapsedTime), axis);
@@ -81580,7 +82941,7 @@ class RemapCPSpeedToCP extends SourceEngineParticleOperator {
 }
 SourceEngineParticleOperators.registerOperator(RemapCPSpeedToCP);
 
-const tempVec3$8 = create$4();
+const tempVec3$7 = create$4();
 class RemapDistanceToControlPointToScalar extends SourceEngineParticleOperator {
     static functionName = 'Remap Distance to Control Point to Scalar';
     constructor() {
@@ -81606,7 +82967,7 @@ class RemapDistanceToControlPointToScalar extends SourceEngineParticleOperator {
         const active = this.getParameter('only active within specified distance');
         const cp = this.particleSystem.getControlPoint(cpNumber);
         if (cp) {
-            const delta = subtract$3(tempVec3$8, cp.getWorldPosition(tempVec3$8), particle.position);
+            const delta = subtract$3(tempVec3$7, cp.getWorldPosition(tempVec3$7), particle.position);
             const deltaL = length$5(delta);
             if (active && ((deltaL < dMin) || (deltaL > dMax))) {
                 return;
@@ -81647,7 +83008,7 @@ SourceEngineParticleOperators.registerOperator(RemapDistanceToControlPointToScal
                     'only active within specified distance' 'bool' '0'
                     */
 
-const tempVec3$7 = create$4();
+const tempVec3$6 = create$4();
 class RemapDistanceToControlPointToVector extends SourceEngineParticleOperator {
     static functionName = 'Remap Distance to Control Point to Vector';
     constructor() {
@@ -81675,14 +83036,14 @@ class RemapDistanceToControlPointToVector extends SourceEngineParticleOperator {
         if (cp == undefined) {
             return;
         }
-        subtract$3(tempVec3$7, particle.cpPosition, particle.position);
-        const deltaL = length$5(tempVec3$7);
+        subtract$3(tempVec3$6, particle.cpPosition, particle.position);
+        const deltaL = length$5(tempVec3$6);
         if (activeDistance && (deltaL < distanceMin || deltaL > distanceMax)) {
             // Outside distance window
             return;
         }
-        lerp$5(tempVec3$7, outputMin, outputMax, (deltaL - distanceMin) / deltaDistance);
-        particle.setField(field, tempVec3$7);
+        lerp$5(tempVec3$6, outputMin, outputMax, (deltaL - distanceMin) / deltaDistance);
+        particle.setField(field, tempVec3$6);
     }
 }
 SourceEngineParticleOperators.registerOperator(RemapDistanceToControlPointToVector);
@@ -81860,7 +83221,7 @@ class SetChildControlPointsFromParticlePositions extends SourceEngineParticleOpe
 }
 SourceEngineParticleOperators.registerOperator(SetChildControlPointsFromParticlePositions);
 
-const tempVec3$6 = create$4();
+const tempVec3$5 = create$4();
 class SetControlPointPositions$1 extends SourceEngineParticleOperator {
     static functionName = 'set control point positions';
     constructor() {
@@ -81897,7 +83258,7 @@ class SetControlPointPositions$1 extends SourceEngineParticleOperator {
             const cpParent = this.getParameter(name + ' Control Point Parent');
             const cpLocation = this.getParameter(name + ' Control Point Location');
             if (!useWorldLocation) {
-                const a = add$5(tempVec3$6, cpLocation, vecControlPoint);
+                const a = add$5(tempVec3$5, cpLocation, vecControlPoint);
                 this.particleSystem.setControlPointPosition(cpNumber, a);
             }
             else {
@@ -84869,6 +86230,10 @@ uniform float uDetailBlendFactor;
 
 #define uBaseMapAlphaPhongMask 0//TODO: set proper uniform
 void main(void) {
+	#ifdef NO_DRAW
+		discard;
+	#endif
+
 	vec4 diffuseColor = vec4(1.0);
 	#include compute_fragment_color_map
 	#include compute_fragment_detail_map
@@ -85792,133 +87157,6 @@ Shaders['source1_weapondecal.vs'] = source1_weapondecal_vs;
 Shaders['source1_worldvertextransition.fs'] = source1_worldvertextransition_fs;
 Shaders['source1_worldvertextransition.vs'] = source1_worldvertextransition_vs;
 
-const Source2AnimLoader = new (function () {
-    class Source2AnimLoader {
-        loadingSlot = 100; //TODO
-        pending = {};
-        fileName;
-        animGroupName;
-        animName;
-        async loadAnimGroup(source2Model, repository, animGroupName) {
-            animGroupName = animGroupName.toLowerCase();
-            animGroupName = animGroupName.replace(/\.(vagrp_c$|vagrp$)/, '');
-            this.fileName = animGroupName;
-            animGroupName = repository + animGroupName;
-            this.animGroupName = animGroupName;
-            let animGroup = new Source2AnimGroup(source2Model, repository);
-            await this.getVagrp(repository, animGroupName, animGroup);
-            return animGroup;
-        }
-        async getVagrp(repository, animGroupName, animGroup) {
-            var agrpFile = animGroupName + '.vagrp_c';
-            if (this.pending[agrpFile]) {
-                return true;
-            }
-            this.pending[agrpFile] = true;
-            let promise = new Promise((resolve, reject) => {
-                fetch(new Request(agrpFile)).then((response) => {
-                    response.arrayBuffer().then(async (arrayBuffer) => {
-                        await this.loadVagrp(repository, agrpFile, arrayBuffer, animGroup);
-                        this.pending[agrpFile] = null;
-                        resolve(true);
-                    });
-                });
-            });
-            return promise;
-        }
-        async loadAnim(repository, animName, animGroup) {
-            animName = animName.toLowerCase();
-            animName = animName.replace(/\.(vanim_c$|vanim$)/, '');
-            this.fileName = animName;
-            animName = repository + animName;
-            this.animName = animName;
-            let anim = new Source2Animation(animGroup, animName);
-            await this.getVanim(repository, animName, anim);
-            return anim;
-        }
-        async getVanim(repository, animName, anim) {
-            var animFile = animName + '.vanim_c';
-            if (this.pending[animFile]) {
-                return true;
-            }
-            this.pending[animFile] = true;
-            /*
-                        fetch(new Request(animFile)).then((response) => {
-                            response.arrayBuffer().then((arrayBuffer) => {
-                                this.loadVanim(repository, animFile, arrayBuffer, anim);
-                            })
-                        });
-                        */
-            let promise = new Promise((resolve, reject) => {
-                fetch(new Request(animFile)).then((response) => {
-                    response.arrayBuffer().then(async (arrayBuffer) => {
-                        this.loadVanim(repository, animFile, arrayBuffer, anim);
-                        this.pending[animFile] = null;
-                        resolve(true);
-                    });
-                });
-            });
-            return promise;
-        }
-        async loadVagrp(repository, fileName, fileContent, animGroup) {
-            let vagrp = await new Source2FileLoader().parse(repository, fileName, fileContent);
-            if (vagrp) {
-                animGroup.setFile(vagrp);
-                var dataBlock = vagrp.blocks.DATA;
-                if (dataBlock) {
-                    animGroup.meshesNames = vagrp.getPermModelData('m_meshGroups');
-                    vagrp.getPermModelData('m_refMeshes');
-                }
-            }
-            //this.fileLoaded(model);TODOv3
-        }
-        async loadVanim(repository, fileName, fileContent, anim) {
-            let vanim = await new Source2FileLoader().parse(repository, fileName, fileContent);
-            if (vanim) {
-                anim.setFile(vanim);
-                let dataBlock = vanim.blocks.DATA;
-                if (dataBlock) {
-                    anim.setAnimDatas(vanim.getBlockStruct('DATA.structs.AnimationResourceData_t') || vanim.getBlockStruct('DATA.keyValue.root'));
-                }
-            }
-            //this.fileLoaded(model);TODOv3
-        }
-        async loadSequenceGroup(repository, seqGroupName, animGroup) {
-            repository = repository.toLowerCase();
-            seqGroupName = seqGroupName.replace(/\.(vseq_c$|vseq)/, '');
-            seqGroupName = repository + seqGroupName;
-            let seqGroup = new Source2SeqGroup(animGroup);
-            await this.getVseq(repository, seqGroupName, seqGroup);
-            return seqGroup;
-        }
-        async getVseq(repository, seqGroupName, seqGroup) {
-            var seqFile = seqGroupName + '.vseq_c';
-            if (this.pending[seqFile]) {
-                return true;
-            }
-            this.pending[seqFile] = true;
-            let promise = new Promise((resolve, reject) => {
-                fetch(new Request(seqFile)).then((response) => {
-                    response.arrayBuffer().then(async (arrayBuffer) => {
-                        await this.loadVseq(repository, seqFile, arrayBuffer, seqGroup);
-                        this.pending[seqFile] = null;
-                        resolve(true);
-                    });
-                });
-            });
-            return promise;
-        }
-        async loadVseq(repository, fileName, fileContent, seqGroup) {
-            let vseq = await new Source2FileLoader().parse(repository, fileName, fileContent);
-            if (vseq) {
-                seqGroup.setFile(vseq);
-            }
-        }
-    }
-    return Source2AnimLoader;
-}());
-registerLoader('Source2AnimLoader', Source2AnimLoader);
-
 const PARTICLE_FIELD_POSITION = 0;
 const PARTICLE_FIELD_POSITION_PREVIOUS = 2;
 const PARTICLE_FIELD_RADIUS = 3;
@@ -85960,34 +87198,34 @@ class Source2Particle {
     cTime = 0;
     context = new Map();
     system;
-    currentTime;
-    timeToLive;
-    initialTimeToLive;
-    proportionOfLife;
-    trail;
-    modelName;
-    u;
-    v;
-    radius;
-    initialRadius;
-    rotationRoll;
-    initialRoll;
-    rotationSpeedRoll;
-    rotationYaw;
-    startAlpha;
-    alpha;
-    glowAlpha;
-    sequence;
-    initialSequence;
-    sequence2;
-    frame;
-    PositionFromParentParticles;
-    posLockedToCP;
-    rotLockedToCP;
-    trailLength;
-    MovementRigidAttachToCP;
-    static consoleAlphaAlternate;
-    static consolePitch;
+    currentTime = 0;
+    timeToLive = 0;
+    initialTimeToLive = 0;
+    proportionOfLife = 0;
+    trail = []; //TODO: remove ?
+    modelName = '';
+    u = 0; //TODO: remove ?
+    v = 0; //TODO: remove ?
+    radius = 0;
+    initialRadius = 0;
+    rotationRoll = 0;
+    initialRoll = 0;
+    rotationSpeedRoll = 0;
+    rotationYaw = 0;
+    startAlpha = 0;
+    alpha = 0;
+    glowAlpha = 0;
+    sequence = 0;
+    initialSequence = 0;
+    sequence2 = 0;
+    frame = 0;
+    PositionFromParentParticles = false;
+    posLockedToCP = false;
+    rotLockedToCP = false;
+    trailLength = 0.1;
+    MovementRigidAttachToCP = false;
+    static consoleAlphaAlternate = false;
+    static consolePitch = false;
     constructor(id, system) {
         //this.name = 'Particle ' + id;
         //this.id = id;
@@ -86044,8 +87282,8 @@ class Source2Particle {
         //vec4.zero(this.cpOrientation);
         //vec3.zero(this.offsetPosition);
         zero$4(this.velocity);
-        set$3(this.color, 1, 1, 1, 1);
-        set$3(this.initialColor, 1, 1, 1, 1);
+        set$4(this.color, 1, 1, 1, 1);
+        set$4(this.initialColor, 1, 1, 1, 1);
         copy$4(this.normal, DEFAULT_PARTICLE_NORMAL);
         zero$4(this.scratchVec);
         this.scratch = 0;
@@ -86074,7 +87312,7 @@ class Source2Particle {
         //this.initialCPQuaternion = null;
         //mat4.identity(this.cpPreviousTransform);
     }
-    setInitialField(field, value, mulInitial) {
+    setInitialField(field /*TODO: create a field enum*/, value, mulInitial = false) {
         this.setField(field, value, mulInitial, true);
     }
     setField(field = 0, value, mulInitial = false, setInitial = false, additive = false) {
@@ -86349,8 +87587,7 @@ class Source2Particle {
     * @param {vec3|null} The receiving vector. Created if null.
     * @return {vec3} The world position.
     */
-    getWorldPos(worldPos) {
-        worldPos = worldPos || create$4();
+    getWorldPos(worldPos = create$4()) {
         //vec3.transformQuat(worldPos, this.position, this.cpOrientation);
         //vec3.transformQuat(worldPos, this.position, quat.create());
         //vec3.transformQuat(worldPos, this.position, this.system.currentOrientation);
@@ -86366,8 +87603,8 @@ class Source2Particle {
     * @param {vec3|null} The receiving vector. Created if null.
     * @return {vec3} The world position.
     */
-    getLocalPos(worldPos) {
-        worldPos = worldPos || create$4();
+    getLocalPos(worldPos = create$4()) {
+        //worldPos = worldPos || vec3.create();
         //vec3.transformQuat(worldPos, this.position, this.cpOrientation);
         transformQuat$1(worldPos, this.position, create$2());
         //vec3.add(worldPos, worldPos, this.cpPosition);
@@ -86457,9 +87694,9 @@ class Source2Snapshot {
 
 const Source2SnapshotLoader = new (function () {
     class Source2SnapshotLoader {
-        async load(repository, fileName) {
-            fileName = fileName.replace(/.vsnap_c/, '').replace(/.vsnap/, '');
-            let snapFile = await new Source2FileLoader(true).load(repository, fileName + '.vsnap_c');
+        async load(repository, filename) {
+            filename = filename.replace(/.vsnap_c/, '').replace(/.vsnap/, '');
+            let snapFile = await new Source2FileLoader(true).load(repository, filename + '.vsnap_c');
             if (snapFile) {
                 return this.loadSnapshot(snapFile);
             }
@@ -86565,12 +87802,12 @@ class Source2ParticleSystem extends Entity {
     disabled = false;
     baseProperties;
     firstStep = false;
-    currentTime;
-    elapsedTime;
-    previousElapsedTime;
-    maxParticles;
-    currentParticles;
-    resetDelay;
+    currentTime = 0;
+    elapsedTime = 0;
+    previousElapsedTime = 0;
+    maxParticles = 0;
+    currentParticles = 0;
+    resetDelay = 0;
     parentSystem;
     isBounded = false;
     constructor(repository, fileName, name) {
@@ -86594,8 +87831,8 @@ class Source2ParticleSystem extends Entity {
     async #initSnapshot(snapshotModifiers) {
         //TODO : we should add a snapshotmanager to avoid loading the same file multiple time
         let snapshotFile = this.baseProperties.snapshot;
-        if (snapshotModifiers && snapshotModifiers[snapshotFile]) {
-            snapshotFile = snapshotModifiers[snapshotFile];
+        if (snapshotModifiers && snapshotModifiers.has(snapshotFile)) {
+            snapshotFile = snapshotModifiers.get(snapshotFile);
         }
         if (snapshotFile) {
             let snapshot = await Source2SnapshotLoader.load(this.repository, snapshotFile);
@@ -86855,9 +88092,9 @@ class Source2ParticleSystem extends Entity {
         controlPoint.name = controlPointId;
         this.addChild(controlPoint);
         this.controlPoints[controlPointId] = controlPoint;
-        set$4(controlPoint.fVector, 0, 1, 0);
-        set$4(controlPoint.uVector, 0, 0, 1);
-        set$4(controlPoint.rVector, 1, 0, 0);
+        set$5(controlPoint.fVector, 0, 1, 0);
+        set$5(controlPoint.uVector, 0, 0, 1);
+        set$5(controlPoint.rVector, 1, 0, 0);
         return controlPoint;
     }
     getControlPointPosition(cpId) {
@@ -86886,8 +88123,8 @@ class Source2ParticleSystem extends Entity {
     #recomputeBounds() {
         let minBounds = this.minBounds;
         let maxBounds = this.maxBounds;
-        set$4(minBounds, Infinity, Infinity, Infinity);
-        set$4(maxBounds, -Infinity, -Infinity, -Infinity);
+        set$5(minBounds, Infinity, Infinity, Infinity);
+        set$5(maxBounds, -Infinity, -Infinity, -Infinity);
         this.isBounded = false;
         for (let particle of this.livingParticles) {
             min$3(minBounds, minBounds, particle.position);
@@ -87007,7 +88244,7 @@ function _initProperties(system, systemDefinition) {
                 system.setMaxParticles(Number(value));
                 break;
             case 'm_ConstantColor':
-                set$3(system.baseProperties.color, Number(value[0]) / 255.0, Number(value[1]) / 255.0, Number(value[2]) / 255.0, Number(value[3]) / 255.0);
+                set$4(system.baseProperties.color, Number(value[0]) / 255.0, Number(value[1]) / 255.0, Number(value[2]) / 255.0, Number(value[3]) / 255.0);
                 break;
             case 'm_flConstantLifespan':
                 system.baseProperties.lifespan = value;
@@ -87098,8 +88335,6 @@ async function _initChildren(repository, systemArray, kv3Array, snapshotModifier
 }
 const Source2ParticleLoader = new (function () {
     class Source2ParticleLoader {
-        constructor() {
-        }
         load(repository, fileName) {
             let promise = new Promise((resolve, reject) => {
                 fileName = fileName.replace(/.vpcf_c/, '');
@@ -87908,7 +89143,7 @@ class Source2TextureManagerClass extends EventTarget {
     setTexture(path, texture) {
         this.#texturesList.set(path, texture);
     }
-    #initTexture(texture, vtexFile) {
+    #initTexture(texture, vtexFile /*TODO: improve type*/) {
         if (!texture || !vtexFile) {
             return;
         }
@@ -87934,12 +89169,12 @@ class Source2TextureManagerClass extends EventTarget {
         glContext.bindTexture(GL_TEXTURE_CUBE_MAP, texture);
         switch (true) {
             case (imageFormat & TEXTURE_FORMAT_UNCOMPRESSED) == TEXTURE_FORMAT_UNCOMPRESSED:
-                this.fillTexture(texture, imageFormat, width, height, imageData[0], GL_TEXTURE_CUBE_MAP_POSITIVE_X);
-                this.fillTexture(texture, imageFormat, width, height, imageData[1], GL_TEXTURE_CUBE_MAP_NEGATIVE_X);
-                this.fillTexture(texture, imageFormat, width, height, imageData[2], GL_TEXTURE_CUBE_MAP_POSITIVE_Y);
-                this.fillTexture(texture, imageFormat, width, height, imageData[3], GL_TEXTURE_CUBE_MAP_NEGATIVE_Y);
-                this.fillTexture(texture, imageFormat, width, height, imageData[4], GL_TEXTURE_CUBE_MAP_POSITIVE_Z);
-                this.fillTexture(texture, imageFormat, width, height, imageData[5], GL_TEXTURE_CUBE_MAP_NEGATIVE_Z);
+                this.fillTexture(imageFormat, width, height, imageData[0], GL_TEXTURE_CUBE_MAP_POSITIVE_X);
+                this.fillTexture(imageFormat, width, height, imageData[1], GL_TEXTURE_CUBE_MAP_NEGATIVE_X);
+                this.fillTexture(imageFormat, width, height, imageData[2], GL_TEXTURE_CUBE_MAP_POSITIVE_Y);
+                this.fillTexture(imageFormat, width, height, imageData[3], GL_TEXTURE_CUBE_MAP_NEGATIVE_Y);
+                this.fillTexture(imageFormat, width, height, imageData[4], GL_TEXTURE_CUBE_MAP_POSITIVE_Z);
+                this.fillTexture(imageFormat, width, height, imageData[5], GL_TEXTURE_CUBE_MAP_NEGATIVE_Z);
                 break;
             case (imageFormat & TEXTURE_FORMAT_COMPRESSED_S3TC) == TEXTURE_FORMAT_COMPRESSED_S3TC:
                 this.fillTextureDxt(texture, imageFormat, width, height, imageData[0], GL_TEXTURE_CUBE_MAP_POSITIVE_X);
@@ -87960,21 +89195,21 @@ class Source2TextureManagerClass extends EventTarget {
         //glContext.texParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, clampT ? GL_CLAMP_TO_EDGE : GL_REPEAT);
         glContext.bindTexture(GL_TEXTURE_CUBE_MAP, null);
     }
-    #initFlatTexture(texture, imageFormat, width, height, imageData) {
+    #initFlatTexture(texture, imageFormat /*TODO create an imageformat enum*/, width, height, imageData) {
         const glContext = new Graphics().glContext;
         glContext.bindTexture(GL_TEXTURE_2D, texture);
         switch (true) {
             case (imageFormat & TEXTURE_FORMAT_UNCOMPRESSED) == TEXTURE_FORMAT_UNCOMPRESSED:
-                this.fillTexture(texture, imageFormat, width, height, imageData[0], GL_TEXTURE_2D);
+                this.fillTexture(imageFormat, width, height, imageData[0], GL_TEXTURE_2D);
                 break;
             case (imageFormat & TEXTURE_FORMAT_COMPRESSED_S3TC) == TEXTURE_FORMAT_COMPRESSED_S3TC:
                 this.fillTextureDxt(texture, imageFormat, width, height, imageData[0], GL_TEXTURE_2D);
                 break;
             case (imageFormat & TEXTURE_FORMAT_COMPRESSED_BPTC) == TEXTURE_FORMAT_COMPRESSED_BPTC:
-                this.#fillTextureBptc(texture, width, height, imageFormat, imageData[0]);
+                this.#fillTextureBptc(texture, width, height, imageData[0]);
                 break;
             case (imageFormat & TEXTURE_FORMAT_COMPRESSED_RGTC) == TEXTURE_FORMAT_COMPRESSED_RGTC:
-                this.#fillTextureRgtc(texture, width, height, imageFormat, imageData[0]);
+                this.#fillTextureRgtc(texture, width, height, imageData[0]);
                 break;
         }
         //glContext.bindTexture(GL_TEXTURE_2D, texture);
@@ -87982,7 +89217,7 @@ class Source2TextureManagerClass extends EventTarget {
         glContext.texParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         glContext.bindTexture(GL_TEXTURE_2D, null);
     }
-    fillTexture(texture, imageFormat, width, height, datas, target) {
+    fillTexture(imageFormat, width, height, datas, target) {
         const gl = new Graphics().glContext;
         gl.pixelStorei(GL_UNPACK_FLIP_Y_WEBGL, false);
         switch (imageFormat) {
@@ -88024,30 +89259,16 @@ class Source2TextureManagerClass extends EventTarget {
             gl.texImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, uncompressedData);//TODO: params*/
             gl.pixelStorei(GL_UNPACK_FLIP_Y_WEBGL, false);
             let uncompressedData = new Uint8Array(width * height * 4);
-            let decompressFunc = null;
-            switch (imageFormat) {
-                case TEXTURE_FORMAT_COMPRESSED_RGBA_DXT1:
-                    decompressFunc = 'decodeBC1';
-                    break;
-                case TEXTURE_FORMAT_COMPRESSED_RGBA_DXT3:
-                    decompressFunc = 'decodeBC2';
-                    break;
-                case TEXTURE_FORMAT_COMPRESSED_RGBA_DXT5:
-                    decompressFunc = 'decodeBC3';
-                    break;
-            }
-            if (decompressFunc) {
-                Detex[decompressFunc](width, height, datas, uncompressedData).then(() => {
-                    // TODO: fix target in the 3 lines below
-                    gl.bindTexture(GL_TEXTURE_2D, texture);
-                    gl.texImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, uncompressedData); //TODO: params
-                    gl.bindTexture(GL_TEXTURE_2D, null);
-                });
-            }
+            Detex.decode(imageFormat, width, height, datas, uncompressedData).then(() => {
+                // TODO: fix target in the 3 lines below
+                gl.bindTexture(GL_TEXTURE_2D, texture);
+                gl.texImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, uncompressedData); //TODO: params
+                gl.bindTexture(GL_TEXTURE_2D, null);
+            });
         }
         gl.pixelStorei(GL_UNPACK_FLIP_Y_WEBGL, false);
     }
-    #fillTextureBptc(texture, width, height, imageFormat, datas) {
+    #fillTextureBptc(texture, width, height, datas) {
         var gl = new Graphics().glContext;
         var bptc = this.EXT_texture_compression_bptc;
         gl.pixelStorei(GL_UNPACK_PREMULTIPLY_ALPHA_WEBGL, false);
@@ -88075,7 +89296,7 @@ class Source2TextureManagerClass extends EventTarget {
         //gl.bindTexture(GL_TEXTURE_2D, null);
         gl.pixelStorei(GL_UNPACK_FLIP_Y_WEBGL, false);
     }
-    #fillTextureRgtc(texture, width, height, imageFormat, datas) {
+    #fillTextureRgtc(texture, width, height, datas) {
         var gl = new Graphics().glContext;
         var rgtc = this.EXT_texture_compression_rgtc;
         gl.pixelStorei(GL_UNPACK_PREMULTIPLY_ALPHA_WEBGL, false);
@@ -88128,34 +89349,35 @@ const UNIFORMS = new Map([
     ['g_flDetailBlendFactor', 'g_flDetailBlendFactor'],
     ['g_flMaterialCloakFactor', 'g_flMaterialCloakFactor'],
 ]);
-const TEXTURE_UNIFORMS = new Set([
-    ['g_tColor', 'colorMap', 'USE_COLOR_MAP'],
-    ['TextureColor', 'colorMap', 'USE_COLOR_MAP'],
-    ['g_tNormal', 'normalMap', 'USE_NORMAL_MAP'],
-    ['g_tAmbientOcclusion', 'aoMap', 'USE_AO_MAP'],
-    ['g_tTintColor', 'tintColorMap', 'USE_TINT_COLOR_MAP'],
-    ['g_tSelfIllumFlowWaveform', 'selfIllumFlowWaveformMap', 'USE_SIFW_MAP'],
-    ['g_tMaskParameters', 'maskParametersMap', 'USE_MASK_PARAMETERS_MAP'], //TextureSelfIllumMask
-    ['g_tColorA', 'colorAMap', 'USE_COLOR_A_MAP'],
-    ['g_tColorB', 'colorBMap', 'USE_COLOR_B_MAP'],
-    ['g_tColorC', 'colorCMap', 'USE_COLOR_C_MAP'],
-    ['g_tColor1', 'color1Map', 'USE_COLOR_1_MAP'],
-    ['g_tMask', 'maskMap', 'USE_MASK_MAP'],
-    ['g_tNormalA', 'normalAMap', 'USE_NORMAL_A_MAP'],
-    ['g_tEmissiveB', 'emissiveBMap', 'USE_EMISSIVE_B_MAP'],
-    ['g_tEmissiveC', 'emissiveCMap', 'USE_EMISSIVE_C_MAP'],
-    ['g_tMasks1', 'mask1Map', 'USE_MASK1_MAP'],
-    ['g_tMasks2', 'mask2Map', 'USE_MASK2_MAP'],
-    ['g_tDetail', 'detail1Map', 'USE_DETAIL1_MAP'],
-    ['g_tDetail2', 'detail2Map', 'USE_DETAIL2_MAP'],
-    ['g_tDisplacementMask', 'displacementMaskMap', 'USE_DISPLACEMENT_MASK_MAP'],
-    ['g_tSpecular', 'specularMap', 'USE_SPECULAR_MAP'],
-    ['g_tSpiralNormal', 'spiralNormalMap', 'USE_SPIRAL_NORMAL_MAP'],
-    ['g_tSpiralOverlay', 'spiralOverlayMap', 'USE_SPIRAL_OVERLAY_MAP'],
-    ['g_tCubeMap', 'cubeMap', 'USE_CUBE_MAP'],
-    ['g_tNormalRoughness', 'normalMap', 'USE_NORMAL_MAP'],
-    ['g_tTintMaskEdgeMask', 'tintMaskEdgeMaskMap', 'USE_TINT_MASK_EDGE_MASK_MAP'],
-    ['g_tSelfIllumMask', 'selfIllumMaskMap', 'USE_SELF_ILLUM_MASK_MAP'],
+const TEXTURE_UNIFORMS = new Map([
+    ['g_tColor', ['colorMap', 'USE_COLOR_MAP']],
+    ['TextureColor', ['colorMap', 'USE_COLOR_MAP']],
+    ['g_tNormal', ['normalMap', 'USE_NORMAL_MAP']],
+    ['g_tAmbientOcclusion', ['aoMap', 'USE_AO_MAP']],
+    ['g_tTintColor', ['tintColorMap', 'USE_TINT_COLOR_MAP']],
+    ['g_tSelfIllumFlowWaveform', ['selfIllumFlowWaveformMap', 'USE_SIFW_MAP']],
+    ['g_tMaskParameters', ['maskParametersMap', 'USE_MASK_PARAMETERS_MAP']], //TextureSelfIllumMask
+    ['g_tColorA', ['colorAMap', 'USE_COLOR_A_MAP']],
+    ['g_tColorB', ['colorBMap', 'USE_COLOR_B_MAP']],
+    ['g_tColorC', ['colorCMap', 'USE_COLOR_C_MAP']],
+    ['g_tColor1', ['color1Map', 'USE_COLOR_1_MAP']],
+    ['g_tMask', ['maskMap', 'USE_MASK_MAP']],
+    ['g_tNormalA', ['normalAMap', 'USE_NORMAL_A_MAP']],
+    ['g_tEmissiveB', ['emissiveBMap', 'USE_EMISSIVE_B_MAP']],
+    ['g_tEmissiveC', ['emissiveCMap', 'USE_EMISSIVE_C_MAP']],
+    ['g_tMasks1', ['mask1Map', 'USE_MASK1_MAP']],
+    ['g_tMasks2', ['mask2Map', 'USE_MASK2_MAP']],
+    ['g_tDetail', ['detail1Map', 'USE_DETAIL1_MAP']],
+    ['g_tDetail2', ['detail2Map', 'USE_DETAIL2_MAP']],
+    ['g_tMetalness', ['metalnessMap', 'USE_METALNESS_MAP']],
+    ['g_tDisplacementMask', ['displacementMaskMap', 'USE_DISPLACEMENT_MASK_MAP']],
+    ['g_tSpecular', ['specularMap', 'USE_SPECULAR_MAP']],
+    ['g_tSpiralNormal', ['spiralNormalMap', 'USE_SPIRAL_NORMAL_MAP']],
+    ['g_tSpiralOverlay', ['spiralOverlayMap', 'USE_SPIRAL_OVERLAY_MAP']],
+    ['g_tCubeMap', ['cubeMap', 'USE_CUBE_MAP']],
+    ['g_tNormalRoughness', ['normalMap', 'USE_NORMAL_MAP']],
+    ['g_tTintMaskEdgeMask', ['tintMaskEdgeMaskMap', 'USE_TINT_MASK_EDGE_MASK_MAP']],
+    ['g_tSelfIllumMask', ['selfIllumMaskMap', 'USE_SELF_ILLUM_MASK_MAP']],
     //g_tAnimationTexture
 ]);
 const DEFAULT_ALPHA_TEST_REFERENCE = 0.7;
@@ -88379,11 +89601,19 @@ class Source2Material extends Material {
             }
         }
     }
+    getUniforms() {
+        return [UNIFORMS];
+    }
+    getTextureUniforms() {
+        return [TEXTURE_UNIFORMS];
+    }
     async initTextureUniforms() {
-        for (let [paramName, uniformName, defineName] of TEXTURE_UNIFORMS) {
-            let paramValue = this.getTextureByName(paramName);
-            if (paramValue) {
-                this.setTexture(uniformName, paramValue ? await Source2TextureManager.getTexture(this.repository, paramValue, 0) : null, defineName);
+        for (const map of this.getTextureUniforms()) {
+            for (let [paramName, [uniformName, defineName]] of map) {
+                let paramValue = this.getTextureByName(paramName);
+                if (paramValue) {
+                    this.setTexture(uniformName, paramValue ? await Source2TextureManager.getTexture(this.repository, paramValue, 0) : null, defineName);
+                }
             }
         }
     }
@@ -88553,12 +89783,495 @@ class Source2CsgoWeaponStattrak extends Source2Material {
 }
 Source2MaterialLoader.registerMaterial('csgo_weapon_stattrak.vfx', Source2CsgoWeaponStattrak);
 
+const STICKER_COUNT = 5;
 class Source2CsgoWeapon extends Source2Material {
+    setupUniformsOnce() {
+        super.setupUniformsOnce();
+        if (this.getIntParam('F_STICKERS')) {
+            this.setDefine('ENABLE_STICKERS');
+        }
+        for (let i = 0; i < STICKER_COUNT; i++) {
+            //if (this.getIntParam(`g_bEnableSticker${i}`)) {
+            this.setDefine(`ENABLE_STICKER${i}`);
+            //}
+        }
+    }
+    getUniforms() {
+        const uniforms = super.getUniforms();
+        const m = new Map();
+        for (let i = 0; i < STICKER_COUNT; i++) {
+            m.set(`g_flSticker${i}Rotation`, `g_flSticker${i}Rotation`);
+            m.set(`g_flSticker${i}Wear`, `g_flSticker${i}Wear`);
+            m.set(`g_fWearScratchesSticker${i}`, `g_fWearScratchesSticker${i}`);
+            m.set(`g_vSticker${i}Offset`, `g_vSticker${i}Offset`);
+            m.set(`g_vSticker${i}Scale`, `g_vSticker${i}Scale`);
+            m.set(`g_vWearBiasSticker${i}`, `g_vWearBiasSticker${i}`);
+        }
+        uniforms.push(m);
+        return uniforms;
+    }
+    getTextureUniforms() {
+        const uniforms = super.getTextureUniforms();
+        const m = new Map();
+        for (let i = 0; i < STICKER_COUNT; i++) {
+            m.set(`g_tHoloSpectrumSticker${i}`, [`holoSpectrumSticker${i}Map`, `USE_HOLO_SPECTRUM_STICKER${i}_MAP`]);
+            m.set(`g_tNormalRoughnessSticker${i}`, [`normalRoughnessSticker${i}Map`, `USE_NORMAL_ROUGHNESS_STICKER${i}_MAP`]);
+            m.set(`g_tSfxMaskSticker${i}`, [`sfxMaskSticker${i}Map`, `USE_SFX_MASK_STICKER${i}_MAP`]);
+            m.set(`g_tSticker${i}`, [`sticker${i}Map`, `USE_STICKER${i}_MAP`]);
+        }
+        m.set('g_tStickerWepInputs', [`stickerWepInputsMap`, `USE_STICKER_WEP_INPUT_MAP`]);
+        uniforms.push(m);
+        return uniforms;
+    }
     get shaderSource() {
-        return 'source2_vr_simple'; //TODO: code proper shader
+        return 'source2_csgo_weapon';
     }
 }
 Source2MaterialLoader.registerMaterial('csgo_weapon.vfx', Source2CsgoWeapon);
+/*
+{
+    "m_materialName": "materials/models/weapons/v_models/rif_ak47/ak47.vmat",
+    "m_shaderName": "csgo_weapon.vfx",
+    "m_intParams": [
+        {
+            "m_name": "F_STICKERS",
+            "m_nValue": 1
+        },
+        {
+            "m_name": "g_bEnableSticker0",
+            "m_nValue": 0
+        },
+        {
+            "m_name": "g_bEnableSticker1",
+            "m_nValue": 0
+        },
+        {
+            "m_name": "g_bEnableSticker2",
+            "m_nValue": 0
+        },
+        {
+            "m_name": "g_bEnableSticker3",
+            "m_nValue": 0
+        },
+        {
+            "m_name": "g_bEnableSticker4",
+            "m_nValue": 0
+        },
+        {
+            "m_name": "g_bFogEnabled",
+            "m_nValue": 1
+        },
+        {
+            "m_name": "g_nScaleTexCoordUByModelScaleAxis",
+            "m_nValue": 0
+        },
+        {
+            "m_name": "g_nScaleTexCoordVByModelScaleAxis",
+            "m_nValue": 0
+        },
+        {
+            "m_name": "g_nTextureAddressModeU",
+            "m_nValue": 0
+        },
+        {
+            "m_name": "g_nTextureAddressModeV",
+            "m_nValue": 0
+        }
+    ],
+    "m_floatParams": [
+        {
+            "m_name": "g_flMetalnessTransitionBias",
+            "m_flValue": 2
+        },
+        {
+            "m_name": "g_flModelTintAmount",
+            "m_flValue": 1
+        },
+        {
+            "m_name": "g_flSticker0Rotation",
+            "m_flValue": 0
+        },
+        {
+            "m_name": "g_flSticker0Wear",
+            "m_flValue": 0
+        },
+        {
+            "m_name": "g_flSticker1Rotation",
+            "m_flValue": 0
+        },
+        {
+            "m_name": "g_flSticker1Wear",
+            "m_flValue": 0
+        },
+        {
+            "m_name": "g_flSticker2Rotation",
+            "m_flValue": 0
+        },
+        {
+            "m_name": "g_flSticker2Wear",
+            "m_flValue": 0
+        },
+        {
+            "m_name": "g_flSticker3Rotation",
+            "m_flValue": 0
+        },
+        {
+            "m_name": "g_flSticker3Wear",
+            "m_flValue": 0
+        },
+        {
+            "m_name": "g_flSticker4Rotation",
+            "m_flValue": 0
+        },
+        {
+            "m_name": "g_flSticker4Wear",
+            "m_flValue": 0
+        },
+        {
+            "m_name": "g_flTexCoordRotation",
+            "m_flValue": 0
+        },
+        {
+            "m_name": "g_fWearScratchesSticker0",
+            "m_flValue": 1
+        },
+        {
+            "m_name": "g_fWearScratchesSticker1",
+            "m_flValue": 1
+        },
+        {
+            "m_name": "g_fWearScratchesSticker2",
+            "m_flValue": 1
+        },
+        {
+            "m_name": "g_fWearScratchesSticker3",
+            "m_flValue": 1
+        },
+        {
+            "m_name": "g_fWearScratchesSticker4",
+            "m_flValue": 1
+        }
+    ],
+    "m_vectorParams": [
+        {
+            "m_name": "g_vColorTint",
+            "m_value": [
+                1,
+                1,
+                1,
+                0
+            ]
+        },
+        {
+            "m_name": "g_vMetalnessRemapRange",
+            "m_value": [
+                0,
+                1,
+                0,
+                0
+            ]
+        },
+        {
+            "m_name": "g_vSticker0Offset",
+            "m_value": [
+                0.15399999916553497,
+                -0.43799999356269836,
+                0,
+                0
+            ]
+        },
+        {
+            "m_name": "g_vSticker0Scale",
+            "m_value": [
+                15.350000381469727,
+                15.350000381469727,
+                0,
+                0
+            ]
+        },
+        {
+            "m_name": "g_vSticker1Offset",
+            "m_value": [
+                0.06499999761581421,
+                -0.4320000112056732,
+                0,
+                0
+            ]
+        },
+        {
+            "m_name": "g_vSticker1Scale",
+            "m_value": [
+                15.350000381469727,
+                15.350000381469727,
+                0,
+                0
+            ]
+        },
+        {
+            "m_name": "g_vSticker2Offset",
+            "m_value": [
+                -0.03200000151991844,
+                -0.43799999356269836,
+                0,
+                0
+            ]
+        },
+        {
+            "m_name": "g_vSticker2Scale",
+            "m_value": [
+                15.350000381469727,
+                15.350000381469727,
+                0,
+                0
+            ]
+        },
+        {
+            "m_name": "g_vSticker3Offset",
+            "m_value": [
+                -0.164000004529953,
+                -0.4440000057220459,
+                0,
+                0
+            ]
+        },
+        {
+            "m_name": "g_vSticker3Scale",
+            "m_value": [
+                15.350000381469727,
+                15.350000381469727,
+                0,
+                0
+            ]
+        },
+        {
+            "m_name": "g_vSticker4Offset",
+            "m_value": [
+                0,
+                0,
+                0,
+                0
+            ]
+        },
+        {
+            "m_name": "g_vSticker4Scale",
+            "m_value": [
+                0,
+                0,
+                0,
+                0
+            ]
+        },
+        {
+            "m_name": "g_vTexCoordCenter",
+            "m_value": [
+                0.5,
+                0.5,
+                0,
+                0
+            ]
+        },
+        {
+            "m_name": "g_vTexCoordOffset",
+            "m_value": [
+                0,
+                0,
+                0,
+                0
+            ]
+        },
+        {
+            "m_name": "g_vTexCoordScale",
+            "m_value": [
+                1,
+                1,
+                0,
+                0
+            ]
+        },
+        {
+            "m_name": "g_vTexCoordScrollSpeed",
+            "m_value": [
+                0,
+                0,
+                0,
+                0
+            ]
+        },
+        {
+            "m_name": "g_vWearBiasSticker0",
+            "m_value": [
+                1,
+                1,
+                0,
+                0
+            ]
+        },
+        {
+            "m_name": "g_vWearBiasSticker1",
+            "m_value": [
+                1,
+                1,
+                0,
+                0
+            ]
+        },
+        {
+            "m_name": "g_vWearBiasSticker2",
+            "m_value": [
+                1,
+                1,
+                0,
+                0
+            ]
+        },
+        {
+            "m_name": "g_vWearBiasSticker3",
+            "m_value": [
+                1,
+                1,
+                0,
+                0
+            ]
+        },
+        {
+            "m_name": "g_vWearBiasSticker4",
+            "m_value": [
+                1,
+                1,
+                0,
+                0
+            ]
+        }
+    ],
+    "m_textureParams": [
+        {
+            "m_name": "g_tAmbientOcclusion",
+            "m_pValue": "materials/models/weapons/v_models/rif_ak47/ak47_ao_psd_286fb1af.vtex"
+        },
+        {
+            "m_name": "g_tColor",
+            "m_pValue": "materials/models/weapons/v_models/rif_ak47/ak47_color_psd_1f318532.vtex"
+        },
+        {
+            "m_name": "g_tHoloSpectrumSticker0",
+            "m_pValue": "materials/default/stickers/default_holospectrum_tga_e12c79bd.vtex"
+        },
+        {
+            "m_name": "g_tHoloSpectrumSticker1",
+            "m_pValue": "materials/default/stickers/default_holospectrum_tga_e12c79bd.vtex"
+        },
+        {
+            "m_name": "g_tHoloSpectrumSticker2",
+            "m_pValue": "materials/default/stickers/default_holospectrum_tga_e12c79bd.vtex"
+        },
+        {
+            "m_name": "g_tHoloSpectrumSticker3",
+            "m_pValue": "materials/default/stickers/default_holospectrum_tga_e12c79bd.vtex"
+        },
+        {
+            "m_name": "g_tHoloSpectrumSticker4",
+            "m_pValue": "materials/default/stickers/default_holospectrum_tga_e12c79bd.vtex"
+        },
+        {
+            "m_name": "g_tMetalness",
+            "m_pValue": "materials/models/weapons/v_models/rif_ak47/ak47_rough_psd_73589151.vtex"
+        },
+        {
+            "m_name": "g_tNormal",
+            "m_pValue": "materials/models/weapons/v_models/rif_ak47/ak47_normal_psd_57f37ac9.vtex"
+        },
+        {
+            "m_name": "g_tNormalRoughnessSticker0",
+            "m_pValue": "materials/default/default_normal_tga_4c6e7391.vtex"
+        },
+        {
+            "m_name": "g_tNormalRoughnessSticker1",
+            "m_pValue": "materials/default/default_normal_tga_4c6e7391.vtex"
+        },
+        {
+            "m_name": "g_tNormalRoughnessSticker2",
+            "m_pValue": "materials/default/default_normal_tga_4c6e7391.vtex"
+        },
+        {
+            "m_name": "g_tNormalRoughnessSticker3",
+            "m_pValue": "materials/default/default_normal_tga_4c6e7391.vtex"
+        },
+        {
+            "m_name": "g_tNormalRoughnessSticker4",
+            "m_pValue": "materials/default/default_normal_tga_4c6e7391.vtex"
+        },
+        {
+            "m_name": "g_tSfxMaskSticker0",
+            "m_pValue": "materials/default/stickers/default_holomask_tga_daef1ed1.vtex"
+        },
+        {
+            "m_name": "g_tSfxMaskSticker1",
+            "m_pValue": "materials/default/stickers/default_holomask_tga_daef1ed1.vtex"
+        },
+        {
+            "m_name": "g_tSfxMaskSticker2",
+            "m_pValue": "materials/default/stickers/default_holomask_tga_daef1ed1.vtex"
+        },
+        {
+            "m_name": "g_tSfxMaskSticker3",
+            "m_pValue": "materials/default/stickers/default_holomask_tga_daef1ed1.vtex"
+        },
+        {
+            "m_name": "g_tSfxMaskSticker4",
+            "m_pValue": "materials/default/stickers/default_holomask_tga_daef1ed1.vtex"
+        },
+        {
+            "m_name": "g_tSticker0",
+            "m_pValue": "materials/default/stickers/sticker_default_psd_7f7731d3.vtex"
+        },
+        {
+            "m_name": "g_tSticker1",
+            "m_pValue": "materials/default/stickers/sticker_default_psd_7f7731d3.vtex"
+        },
+        {
+            "m_name": "g_tSticker2",
+            "m_pValue": "materials/default/stickers/sticker_default_psd_7f7731d3.vtex"
+        },
+        {
+            "m_name": "g_tSticker3",
+            "m_pValue": "materials/default/stickers/sticker_default_psd_7f7731d3.vtex"
+        },
+        {
+            "m_name": "g_tSticker4",
+            "m_pValue": "materials/default/stickers/sticker_default_psd_7f7731d3.vtex"
+        },
+        {
+            "m_name": "g_tStickerGlitterNormal",
+            "m_pValue": "materials/default/stickers/squares_glitter_normal_tga_25145674.vtex"
+        },
+        {
+            "m_name": "g_tStickerScratches",
+            "m_pValue": "materials/default/stickers/sticker_default_scratches_psd_a9ad199b.vtex"
+        },
+        {
+            "m_name": "g_tStickerWepInputs",
+            "m_pValue": "weapons/models/ak47/materials/stickers/weapon_rif_ak47_sticker_mask_legacy_tga_1bdb00a.vtex"
+        }
+    ],
+    "m_dynamicParams": [],
+    "m_dynamicTextureParams": [],
+    "m_intAttributes": [],
+    "m_floatAttributes": [],
+    "m_vectorAttributes": [],
+    "m_textureAttributes": [],
+    "m_stringAttributes": [
+        {
+            "m_name": "composite_inputs",
+            "m_value": "materials/models/weapons/customization/rif_ak47/rif_ak47_composite_inputs.vmat"
+        },
+        {
+            "m_name": "PreviewModel",
+            "m_value": "weapons/models/ak47/weapon_rif_ak47.vmdl"
+        }
+    ],
+    "m_renderAttributesUsed": []
+}
+*/
 
 class Source2VrBlackUnlit extends Source2Material {
     get shaderSource() {
@@ -88716,7 +90429,7 @@ class Source2SpringMeteor extends Source2Material {
 Source2MaterialLoader.registerMaterial('spring_meteor.vfx', Source2SpringMeteor);
 
 class Source2SpriteCard extends Source2Material {
-    #texturePath;
+    #texturePath = '';
     constructor(repository, source2File) {
         super(repository, source2File);
         //TODO: we should adapt transparency depending on particle renderer params ?
@@ -88824,7 +90537,7 @@ class Operator {
     mesh;
     material;
     endCapState;
-    currentTime;
+    currentTime = 0;
     constructor(system) {
         this.system = system;
     }
@@ -88871,26 +90584,26 @@ class Operator {
                     case 'PF_TYPE_PARTICLE_NUMBER_NORMALIZED':
                         if (this.normalizePerLiving) {
                             let max = this.system.livingParticles.length;
-                            inputValue = particle.id % max / max;
+                            inputValue = (particle?.id ?? 0) % max / max;
                         }
                         else {
-                            inputValue = particle.id / this.system.maxParticles;
+                            inputValue = (particle?.id ?? 0) / this.system.maxParticles;
                         }
-                        return this._getParamScalarValue2(parameter, inputValue);
+                        return this.#getParamScalarValue2(parameter, inputValue);
                     case 'PF_TYPE_PARTICLE_NUMBER':
-                        inputValue = particle.id;
-                        return this._getParamScalarValue2(parameter, inputValue);
+                        inputValue = particle?.id ?? 0;
+                        return this.#getParamScalarValue2(parameter, inputValue);
                     case 'PF_TYPE_PARTICLE_AGE_NORMALIZED':
-                        return this._getParamScalarValue2(parameter, particle.proportionOfLife);
+                        return this.#getParamScalarValue2(parameter, particle?.proportionOfLife ?? 0);
                     case 'PF_TYPE_RANDOM_BIASED':
                         //TODO: use parameter.m_nBiasType
                         return RemapValClampedBias(Math.random(), 0, 1, parameter.m_flRandomMin, parameter.m_flRandomMax, 0.5 /*parameter.m_flBiasParameter*/); //TODO: use another bias function bias varies from -1 to 1
                     case 'PF_TYPE_RANDOM_UNIFORM':
                         return RandomFloat(parameter.m_flRandomMin, parameter.m_flRandomMax);
                     case 'PF_TYPE_COLLECTION_AGE':
-                        return this._getParamScalarValue2(parameter, this.system.currentTime);
+                        return this.#getParamScalarValue2(parameter, this.system.currentTime);
                     case 'PF_TYPE_PARTICLE_NOISE':
-                        return this._getParamScalarValue2(parameter, RandomFloat(parameter.m_flNoiseOutputMin, parameter.m_flNoiseOutputMax)); //TODO
+                        return this.#getParamScalarValue2(parameter, RandomFloat(parameter.m_flNoiseOutputMin, parameter.m_flNoiseOutputMax)); //TODO
                     case 'PF_TYPE_CONTROL_POINT_COMPONENT':
                         let cp = this.system.getControlPoint(parameter.m_nControlPoint);
                         if (cp) {
@@ -88898,7 +90611,7 @@ class Operator {
                         }
                         return 0;
                     case 'PF_TYPE_PARTICLE_FLOAT':
-                        return inputValue = RemapValClamped(particle.getField(parameter.m_nScalarAttribute ?? 0), parameter.m_flInput0 ?? 0, parameter.m_flInput1 ?? 1, parameter.m_flOutput0 ?? 0, parameter.m_flOutput1 ?? 1);
+                        return inputValue = RemapValClamped(particle?.getField(parameter.m_nScalarAttribute ?? 0) ?? 0, parameter.m_flInput0 ?? 0, parameter.m_flInput1 ?? 1, parameter.m_flOutput0 ?? 0, parameter.m_flOutput1 ?? 1);
                     default:
                         console.error('#getParamScalarValue unknown type', parameter);
                         throw 'Code me';
@@ -88909,13 +90622,13 @@ class Operator {
             }
         }
     }
-    _getParamScalarValue2(parameter, inputValue) {
+    #getParamScalarValue2(parameter /*TODO: improve type*/, inputValue) {
         let mapType = parameter.m_nMapType;
         switch (mapType) {
             case 'PF_MAP_TYPE_DIRECT':
                 return inputValue;
             case 'PF_MAP_TYPE_CURVE':
-                return this._getParamScalarValueCurve(parameter, inputValue);
+                return this.#getParamScalarValueCurve(parameter, inputValue);
             case 'PF_MAP_TYPE_MULT':
                 return inputValue * parameter.m_flMultFactor;
             case 'PF_MAP_TYPE_REMAP':
@@ -88925,8 +90638,8 @@ class Operator {
                 return 0;
         }
     }
-    _getParamScalarValueCurve(parameter, inputValue) {
-        let curve = parameter.m_Curve;
+    #getParamScalarValueCurve(parameter /*TODO: improve type*/, inputValue) {
+        let curve = parameter.m_Curve /*TODO: improve type*/;
         let inputMin = curve.m_vDomainMins[0];
         let inputMax = curve.m_vDomainMaxs[0];
         curve.m_vDomainMins[1];
@@ -88941,9 +90654,9 @@ class Operator {
             //Note : the loop goes from 0 to inputMax, not inputMin to inputMax
             inputValue = inputMax !== 0 ? inputValue % inputMax : inputMin;
         }
-        return this._getCurveValue(curve, inputValue);
+        return this.#getCurveValue(curve, inputValue);
     }
-    _getCurveValue(curve, x) {
+    #getCurveValue(curve /*TODO: improve type*/, x) {
         //TODO: do a real curve
         let spline = curve.m_spline;
         let previousKey = spline[0];
@@ -88976,7 +90689,7 @@ class Operator {
                         }
                         break;
                     case 'PVEC_TYPE_FLOAT_INTERP_GRADIENT':
-                        return this._getParamVectorValueFloatInterpGradient(parameter, particle, outVec);
+                        return this.#getParamVectorValueFloatInterpGradient(parameter, particle, outVec);
                     case 'PVEC_TYPE_FLOAT_COMPONENTS':
                         outVec[0] = this.#getParamScalarValue(parameter.m_FloatComponentX, particle);
                         outVec[1] = this.#getParamScalarValue(parameter.m_FloatComponentY, particle);
@@ -89007,7 +90720,7 @@ class Operator {
             }
         }
     }
-    _getParamVectorValueFloatInterpGradient(parameter, particle, outVec) {
+    #getParamVectorValueFloatInterpGradient(parameter /*TODO: improve type*/, particle, outVec) {
         let interpInput0 = parameter.m_flInterpInput0;
         let interpInput1 = parameter.m_flInterpInput1;
         let inputValue = this.#getParamScalarValue(parameter.m_FloatInterp, particle);
@@ -89080,7 +90793,7 @@ class Operator {
                 colorScale[0] = Number(value[0]) * COLOR_SCALE;
                 colorScale[1] = Number(value[1]) * COLOR_SCALE;
                 colorScale[2] = Number(value[2]) * COLOR_SCALE;
-                this.material.setUniform('uColorScale', colorScale);
+                this.material?.setUniform('uColorScale', colorScale);
                 break;
             case 'm_flAlphaScale':
                 //handled in operator
@@ -89170,7 +90883,7 @@ class Operator {
     setMaterial(material) {
         this.material = material;
     }
-    setParameter(parameter, type, value) {
+    setParameter(parameter, type /*TODO: improve type*/, value) {
         if (parameter == '' || parameter == undefined) {
             return this;
         }
@@ -89286,32 +90999,32 @@ class Operator {
             case 'PARTICLE_ORIENTATION_SCREEN_ALIGNED':
             case 0n:
             case 0:
-                this.mesh.setDefine('PARTICLE_ORIENTATION', PARTICLE_ORIENTATION_SCREEN_ALIGNED);
+                this.mesh?.setDefine('PARTICLE_ORIENTATION', PARTICLE_ORIENTATION_SCREEN_ALIGNED);
                 break;
             case 'PARTICLE_ORIENTATION_SCREEN_Z_ALIGNED':
             case 1n:
             case 1:
-                this.mesh.setDefine('PARTICLE_ORIENTATION', PARTICLE_ORIENTATION_SCREEN_Z_ALIGNED);
+                this.mesh?.setDefine('PARTICLE_ORIENTATION', PARTICLE_ORIENTATION_SCREEN_Z_ALIGNED);
                 break;
             case 'PARTICLE_ORIENTATION_WORLD_Z_ALIGNED':
             case 2n:
             case 2:
-                this.mesh.setDefine('PARTICLE_ORIENTATION', PARTICLE_ORIENTATION_WORLD_Z_ALIGNED);
+                this.mesh?.setDefine('PARTICLE_ORIENTATION', PARTICLE_ORIENTATION_WORLD_Z_ALIGNED);
                 break;
             case 'PARTICLE_ORIENTATION_ALIGN_TO_PARTICLE_NORMAL':
             case 3n:
             case 3:
-                this.mesh.setDefine('PARTICLE_ORIENTATION', PARTICLE_ORIENTATION_ALIGN_TO_PARTICLE_NORMAL);
+                this.mesh?.setDefine('PARTICLE_ORIENTATION', PARTICLE_ORIENTATION_ALIGN_TO_PARTICLE_NORMAL);
                 break;
             case 'PARTICLE_ORIENTATION_SCREENALIGN_TO_PARTICLE_NORMAL':
             case 4n:
             case 4:
-                this.mesh.setDefine('PARTICLE_ORIENTATION', PARTICLE_ORIENTATION_SCREENALIGN_TO_PARTICLE_NORMAL);
+                this.mesh?.setDefine('PARTICLE_ORIENTATION', PARTICLE_ORIENTATION_SCREENALIGN_TO_PARTICLE_NORMAL);
                 break;
             case 'PARTICLE_ORIENTATION_FULL_3AXIS_ROTATION':
             case 5n:
             case 5:
-                this.mesh.setDefine('PARTICLE_ORIENTATION', PARTICLE_ORIENTATION_FULL_3AXIS_ROTATION);
+                this.mesh?.setDefine('PARTICLE_ORIENTATION', PARTICLE_ORIENTATION_FULL_3AXIS_ROTATION);
                 break;
             default:
                 console.error('Unknonw orientationType ', orientationType);
@@ -89341,7 +91054,7 @@ class Operator {
             default:
                 console.error('Unknonw outputBlendMode ', outputBlendMode);
         }
-        this.material.setOutputBlendMode(blendMode);
+        this.material?.setOutputBlendMode(blendMode);
     }
     init() {
         //This function is called after parameters are set
@@ -89350,9 +91063,11 @@ class Operator {
     }
     doInit(particle, elapsedTime, strength) { }
     doOperate(particle, elapsedTime, strength) { }
-    doForce(particle, elapsedTime, strength) { }
+    doForce(particle, elapsedTime, accumulatedForces, strength) { }
     applyConstraint(particle) { }
     doRender(particle, elapsedTime, material) { }
+    initRenderer(particleSystem) { }
+    updateParticles(particleSystem, particleList, elapsedTime) { }
 }
 
 let vec$7 = create$4();
@@ -89849,7 +91564,7 @@ class CreateOnModel extends Operator {
         let controlPoint = this.system.getControlPoint(this.controlPointNumber);
         if (controlPoint) {
             let controllingModel = controlPoint.parentModel;
-            if (controllingModel) {
+            if (controllingModel?.getRandomPointOnModel) {
                 let bones = [];
                 particle.bones = bones;
                 particle.initialVec = create$4();
@@ -89963,7 +91678,7 @@ RegisterSource2ParticleOperator('C_INIT_CreateSequentialPath', CreateSequentialP
 RegisterSource2ParticleOperator('C_INIT_CreateSequentialPathV2', CreateSequentialPath);
 
 let tempQuat$2 = create$2();
-let tempVec3$5 = create$4();
+let tempVec3$4 = create$4();
 let tempVec3_2$1 = create$4();
 class CreateWithinBox extends Operator {
     vecMin = create$4();
@@ -89989,27 +91704,27 @@ class CreateWithinBox extends Operator {
         }
     }
     doInit(particle, elapsedTime) {
-        vec3RandomBox(tempVec3$5, this.vecMin, this.vecMax);
+        vec3RandomBox(tempVec3$4, this.vecMin, this.vecMax);
         if (this.scaleCP !== -1) {
-            let scaleCp = this.system.getControlPointForScale(this.scaleCP);
+            const scaleCp = this.system.getControlPointForScale(this.scaleCP);
             if (scaleCp) {
                 scaleCp.getWorldPosition(tempVec3_2$1);
-                scale$5(tempVec3$5, tempVec3$5, tempVec3_2$1[0]); //x position of the scale cp is used as scaling
+                scale$5(tempVec3$4, tempVec3$4, tempVec3_2$1[0]); //x position of the scale cp is used as scaling
             }
         }
         let controlPoint = this.system.getControlPoint(this.controlPointNumber);
         if (controlPoint) {
             controlPoint.getWorldPosition(tempVec3_2$1);
             if (this.localSpace) {
-                transformQuat$1(tempVec3$5, tempVec3$5, controlPoint.getWorldQuaternion(tempQuat$2));
-                add$5(tempVec3$5, tempVec3$5, tempVec3_2$1);
+                transformQuat$1(tempVec3$4, tempVec3$4, controlPoint.getWorldQuaternion(tempQuat$2));
+                add$5(tempVec3$4, tempVec3$4, tempVec3_2$1);
             }
             else {
-                add$5(tempVec3$5, tempVec3$5, tempVec3_2$1);
+                add$5(tempVec3$4, tempVec3$4, tempVec3_2$1);
             }
         }
-        copy$4(particle.position, tempVec3$5);
-        copy$4(particle.prevPosition, tempVec3$5);
+        copy$4(particle.position, tempVec3$4);
+        copy$4(particle.prevPosition, tempVec3$4);
     }
 }
 RegisterSource2ParticleOperator('C_INIT_CreateWithinBox', CreateWithinBox);
@@ -90439,10 +92154,10 @@ class InitialVelocityNoise extends Operator {
             case 'm_flNoiseScaleLoc':
                 break;
             case 'm_vecAbsVal':
-                set$4(this.absVal, Number(value[0]) / 255, Number(value[1]) / 255, Number(value[2]) / 255);
+                set$5(this.absVal, Number(value[0]) / 255, Number(value[1]) / 255, Number(value[2]) / 255);
                 break;
             case 'm_vecAbsValInv':
-                set$4(this.absValInv, Number(value[0]) / 255, Number(value[1]) / 255, Number(value[2]) / 255);
+                set$5(this.absValInv, Number(value[0]) / 255, Number(value[1]) / 255, Number(value[2]) / 255);
                 break;
             case 'm_bLocalSpace':
                 this.localSpace = value;
@@ -90944,16 +92659,16 @@ class RandomColor extends Operator {
     _paramChanged(paramName, value) {
         switch (paramName) {
             case 'm_ColorMin':
-                set$4(this.colorMin, Number(value[0]) / 255, Number(value[1]) / 255, Number(value[2]) / 255);
+                set$5(this.colorMin, Number(value[0]) / 255, Number(value[1]) / 255, Number(value[2]) / 255);
                 break;
             case 'm_ColorMax':
-                set$4(this.colorMax, Number(value[0]) / 255, Number(value[1]) / 255, Number(value[2]) / 255);
+                set$5(this.colorMax, Number(value[0]) / 255, Number(value[1]) / 255, Number(value[2]) / 255);
                 break;
             case 'm_TintMin':
-                set$4(this.tintMin, Number(value[0]) / 255, Number(value[1]) / 255, Number(value[2]) / 255);
+                set$5(this.tintMin, Number(value[0]) / 255, Number(value[1]) / 255, Number(value[2]) / 255);
                 break;
             case 'm_TintMax':
-                set$4(this.tintMax, Number(value[0]) / 255, Number(value[1]) / 255, Number(value[2]) / 255);
+                set$5(this.tintMax, Number(value[0]) / 255, Number(value[1]) / 255, Number(value[2]) / 255);
                 break;
             case 'm_flUpdateThreshold':
                 this.updateThreshold = value;
@@ -91205,7 +92920,7 @@ class RandomTrailLength extends Operator {
 }
 RegisterSource2ParticleOperator('C_INIT_RandomTrailLength', RandomTrailLength);
 
-let tempVec3$4 = create$4();
+let tempVec3$3 = create$4();
 class RandomVector extends Operator {
     vecMin = create$4();
     vecMax = create$4();
@@ -91223,8 +92938,8 @@ class RandomVector extends Operator {
         }
     }
     doInit(particle, elapsedTime) {
-        vec3RandomBox(tempVec3$4, this.vecMin, this.vecMax);
-        particle.setField(this.fieldOutput, tempVec3$4);
+        vec3RandomBox(tempVec3$3, this.vecMin, this.vecMax);
+        particle.setField(this.fieldOutput, tempVec3$3);
     }
 }
 RegisterSource2ParticleOperator('C_INIT_RandomVector', RandomVector);
@@ -91552,7 +93267,7 @@ class RingWave extends Operator {
         else {
             theta = Math.random() * TWO_PI;
         }
-        set$4(va$1, initialRadius * Math.cos(theta), initialRadius * Math.sin(theta), 0);
+        set$5(va$1, initialRadius * Math.cos(theta), initialRadius * Math.sin(theta), 0);
         if (roll) {
             rotateX$2(va$1, va$1, o, roll * DEG_TO_RAD);
         }
@@ -91599,7 +93314,7 @@ RegisterSource2ParticleOperator('C_INIT_SetRigidAttachment', SetRigidAttachment)
 
 const DEFAULT_SPEED = create$4();
 const randomVector = create$4();
-const tempVec3$3 = create$4();
+const tempVec3$2 = create$4();
 class VelocityRandom extends Operator {
     ignoreDT = false;
     _paramChanged(paramName, value) {
@@ -91630,8 +93345,8 @@ class VelocityRandom extends Operator {
             vec3RandomBox(randomVector, localCoordinateSystemSpeedMin, localCoordinateSystemSpeedMax);
         }
         if (randomSpeed != 0) {
-            random$5(tempVec3$3, randomSpeed);
-            add$5(randomVector, randomVector, tempVec3$3);
+            random$5(tempVec3$2, randomSpeed);
+            add$5(randomVector, randomVector, tempVec3$2);
         }
         const cp = particle.system.getControlPoint(this.controlPointNumber);
         if (cp) {
@@ -91704,7 +93419,7 @@ class ColorInterpolate extends Operator {
     _paramChanged(paramName, value) {
         switch (paramName) {
             case 'm_ColorFade':
-                set$4(this.colorFade, Number(value[0]) / 255, Number(value[1]) / 255, Number(value[2]) / 255);
+                set$5(this.colorFade, Number(value[0]) / 255, Number(value[1]) / 255, Number(value[2]) / 255);
                 break;
             case 'm_flFadeStartTime':
                 this.fadeStartTime = value;
@@ -91758,7 +93473,7 @@ class DampenToCP extends Operator {
     }
     doOperate(particle, elapsedTime) {
         let cp = this.system.getControlPoint(this.controlPointNumber);
-        let distance = distance$2(particle.position, cp.currentWorldPosition);
+        let distance = distance$3(particle.position, cp.currentWorldPosition);
         if (distance > this.range) {
             return;
         }
@@ -91822,7 +93537,7 @@ class DistanceBetweenCPs extends Operator {
         //TODO: los and other parameters
         let startCpPos = this.system.getControlPoint(this.startCP).currentWorldPosition;
         let endCPPos = this.system.getControlPoint(this.endCP).currentWorldPosition;
-        let value = distance$2(startCpPos, endCPPos);
+        let value = distance$3(startCpPos, endCPPos);
         value = RemapValClamped(value, inputMin, inputMax, outputMin, outputMax);
         particle.setField(this.fieldOutput, value, this.setMethod == 'PARTICLE_SET_SCALE_INITIAL_VALUE');
     }
@@ -91858,12 +93573,12 @@ class DistanceCull extends Operator {
             let origin = cp.getWorldPosition(vec$3);
             add$5(origin, origin, this.pointOffset);
             if (this.cullInside) { //TODO: improve this
-                if (distance$2(particle.position, origin) < this.distance) {
+                if (distance$3(particle.position, origin) < this.distance) {
                     particle.die();
                 }
             }
             else {
-                if (distance$2(particle.position, origin) > this.distance) {
+                if (distance$3(particle.position, origin) > this.distance) {
                     particle.die();
                 }
             }
@@ -92164,39 +93879,39 @@ class FadeInSimple extends Operator {
 RegisterSource2ParticleOperator('C_OP_FadeInSimple', FadeInSimple);
 
 class FadeOut extends Operator {
-    fadeOutTimeMin = 0.25;
-    fadeOutTimeMax = 0.25;
-    fadeOutTimeExp = 1;
-    proportional = true;
-    fadeOutTime;
-    startFadeOutTime;
-    invFadeOutTime;
+    #fadeOutTimeMin = 0.25;
+    #fadeOutTimeMax = 0.25;
+    #fadeOutTimeExp = 1;
+    #proportional = true;
+    #fadeOutTime = 0;
+    #startFadeOutTime = 0;
+    #invFadeOutTime = 0;
     constructor(system) {
         super(system);
         this._update();
     }
     _update() {
         //TODO: this is wrong: must be done per particle
-        this.fadeOutTime = RandomFloatExp(this.fadeOutTimeMin, this.fadeOutTimeMax, this.fadeOutTimeExp);
-        this.startFadeOutTime = 1.0 - this.fadeOutTime;
-        this.invFadeOutTime = 1.0 / this.fadeOutTime;
+        this.#fadeOutTime = RandomFloatExp(this.#fadeOutTimeMin, this.#fadeOutTimeMax, this.#fadeOutTimeExp);
+        this.#startFadeOutTime = 1.0 - this.#fadeOutTime;
+        this.#invFadeOutTime = 1.0 / this.#fadeOutTime;
     }
     _paramChanged(paramName, value) {
         switch (paramName) {
             case 'm_flFadeOutTimeMin':
-                this.fadeOutTimeMin = value;
+                this.#fadeOutTimeMin = value;
                 this._update();
                 break;
             case 'm_flFadeOutTimeMax':
-                this.fadeOutTimeMax = value;
+                this.#fadeOutTimeMax = value;
                 this._update();
                 break;
             case 'm_flFadeOutTimeExp':
-                this.fadeOutTimeExp = value;
+                this.#fadeOutTimeExp = value;
                 this._update();
                 break;
             case 'm_bProportional':
-                this.proportional = value;
+                this.#proportional = value;
                 break;
             default:
                 super._paramChanged(paramName, value);
@@ -92204,7 +93919,7 @@ class FadeOut extends Operator {
     }
     doOperate(particle, elapsedTime) {
         //particle.alpha = SimpleSplineRemapValWithDeltasClamped(this.proportional ? particle.currentTime / particle.timeToLive : particle.currentTime, 0, this.fadeInTime, this.invFadeInTime, 0, particle.startAlpha);
-        particle.alpha = SimpleSplineRemapValWithDeltasClamped(this.proportional ? particle.currentTime / particle.timeToLive : particle.currentTime, this.startFadeOutTime, this.fadeOutTime, this.invFadeOutTime, particle.startAlpha, -particle.startAlpha);
+        particle.alpha = SimpleSplineRemapValWithDeltasClamped(this.#proportional ? particle.currentTime / particle.timeToLive : particle.currentTime, this.#startFadeOutTime, this.#fadeOutTime, this.#invFadeOutTime, particle.startAlpha, -particle.startAlpha);
         //TODO: if not proportional, set start time per particle
     }
 }
@@ -92568,7 +94283,7 @@ RegisterSource2ParticleOperator('C_OP_MovementRigidAttachToCP', MovementRigidAtt
 let m4 = create$5();
 let q$1 = create$2();
 let v$5 = create$4();
-let a = create$4();
+let a = create$3();
 const DEFAULT_AXIS = fromValues$4(0, 0, 1);
 class MovementRotateParticleAroundAxis extends Operator {
     localSpace = false;
@@ -92991,7 +94706,7 @@ class OscillateVector extends Operator {
                 }
                 const fvOscMultiplier = create$4(); //todov3optimize
                 scale$5(fvOscMultiplier, fvRate, fl4ScaleFactor);
-                let fvOutput = create$4(); //TODO: perf//todov3optimize
+                let fvOutput = create$3(); //TODO: perf//todov3optimize
                 this.getInputValueAsVector(m_nField, particle, fvOutput); //*pOscField;
                 fvOscVal[0] = AddSIMD(fvOutput[0], MulSIMD(fvOscMultiplier[0], SinEst01SIMD(fvCos[0])));
                 fvOscVal[1] = AddSIMD(fvOutput[1], MulSIMD(fvOscMultiplier[1], SinEst01SIMD(fvCos[1])));
@@ -93076,9 +94791,9 @@ class PercentageBetweenCPs extends Operator {
         let startCpPos = this.system.getControlPoint(this.startCP).currentWorldPosition;
         let endCPPos = this.system.getControlPoint(this.endCP).currentWorldPosition;
         let percentage;
-        let dist = distance$2(startCpPos, endCPPos);
+        let dist = distance$3(startCpPos, endCPPos);
         if (this.radialCheck) {
-            let dist2 = distance$2(startCpPos, particle.position);
+            let dist2 = distance$3(startCpPos, particle.position);
             percentage = dist2 / dist;
         }
         else {
@@ -93496,7 +95211,7 @@ class RemapCPOrientationToRotations extends Operator {
     _paramChanged(paramName, value) {
         switch (paramName) {
             case 'm_vecRotation':
-                set$4(this.#vecRotation, Number(value[0]), Number(value[1]), Number(value[2])); // pitch yaw roll (Y Z X)
+                set$5(this.#vecRotation, Number(value[0]), Number(value[1]), Number(value[2])); // pitch yaw roll (Y Z X)
                 break;
             default:
                 super._paramChanged(paramName, value);
@@ -94057,7 +95772,7 @@ class SetRandomControlPointPosition extends Operator {
             add$5(v$1, v$1, headLocation.currentWorldPosition);
             cp1.position = v$1;
             if (this.orient) {
-                cp1.orientation = headLocation.currentWorldQuaternion;
+                cp1.setWorldQuaternion(headLocation.currentWorldQuaternion);
             }
         }
     }
@@ -94069,7 +95784,7 @@ RegisterSource2ParticleOperator('C_OP_SetRandomControlPointPosition', SetRandomC
 
 const DEFAULT_POSITION = fromValues$4(128, 0, 0);
 let v = create$4();
-let tempVec3$2 = create$4();
+let tempVec4 = create$3();
 class SetSingleControlPointPosition extends Operator {
     useWorldLocation = false;
     setOnce = false;
@@ -94100,7 +95815,7 @@ class SetSingleControlPointPosition extends Operator {
         this.set = false;
     }
     doOperate(particle, elapsedTime) {
-        const cp1Pos = this.getParamVectorValue('m_vecCP1Pos', particle, tempVec3$2) ?? DEFAULT_POSITION;
+        const cp1Pos = this.getParamVectorValue('m_vecCP1Pos', particle, tempVec4) ?? DEFAULT_POSITION;
         //TODO
         if (!this.setOnce || !this.set) {
             let cp = this.system.getOwnControlPoint(this.cp1);
@@ -94626,7 +96341,7 @@ class RenderModels extends Operator {
         if (model) {
             model.position = particle.position;
             const radius = particle.radius;
-            model.scale = set$4(tempVec3, radius, radius, radius);
+            model.scale = set$5(tempVec3, radius, radius, radius);
             model.quaternion = particle.quaternion;
             model.playSequence(activityName, activityModifiers);
             if (particle.color[3] == 0) { //TODO: add an actual rendering tint / alpha on models
@@ -94653,10 +96368,10 @@ class RenderRopes extends Operator {
     textureVWorldSize = 10;
     textureVScrollRate = 10;
     textureScroll = 0;
-    spriteSheet;
+    #spriteSheet;
     #maxParticles = 1000; //TODO: default value
-    texture; //TODO: set private ?
-    imgData; //TODO: set private ?
+    #texture;
+    #imgData;
     constructor(system) {
         super(system);
         this.material = new Source2SpriteCard(system.repository);
@@ -94698,11 +96413,11 @@ class RenderRopes extends Operator {
         }
     }
     setSequenceCombineMode(sequenceCombineMode) {
-        this.material.removeDefine('USE_TEXTURE_COORD_2');
+        this.material?.removeDefine('USE_TEXTURE_COORD_2');
         switch (sequenceCombineMode) {
             case 'SEQUENCE_COMBINE_MODE_ALPHA_FROM0_RGB_FROM_1':
-                this.material.setDefine('SEQUENCE_COMBINE_MODE', String(SEQUENCE_COMBINE_MODE_ALPHA_FROM0_RGB_FROM_1));
-                this.material.setDefine('USE_TEXTURE_COORD_2');
+                this.material?.setDefine('SEQUENCE_COMBINE_MODE', String(SEQUENCE_COMBINE_MODE_ALPHA_FROM0_RGB_FROM_1));
+                this.material?.setDefine('USE_TEXTURE_COORD_2');
                 break;
             default:
                 console.error('Unknonw sequenceCombineMode ', sequenceCombineMode);
@@ -94710,8 +96425,8 @@ class RenderRopes extends Operator {
     }
     async setTexture(texturePath) {
         delete this.setDefaultTexture;
-        this.material.setTexturePath(texturePath);
-        this.spriteSheet = await Source2TextureManager.getTextureSheet(this.system.repository, texturePath);
+        this.material?.setTexturePath(texturePath);
+        this.#spriteSheet = await Source2TextureManager.getTextureSheet(this.system.repository, texturePath);
     }
     updateParticles(particleSystem, particleList, elapsedTime) {
         this.textureScroll += elapsedTime * this.textureVScrollRate;
@@ -94740,42 +96455,50 @@ class RenderRopes extends Operator {
     }
     set maxParticles(maxParticles) {
         this.#maxParticles = maxParticles;
-        this._createParticlesArray();
+        this.#createParticlesArray();
     }
     initRenderer(particleSystem) {
-        this.mesh.serializable = false;
-        this.mesh.hideInExplorer = true;
-        this.mesh.setDefine('IS_ROPE');
-        this.mesh.setDefine('USE_VERTEX_COLOR');
-        this.createParticlesTexture();
-        this.mesh.setUniform('uParticles', this.texture);
+        if (this.mesh) {
+            this.mesh.serializable = false;
+            this.mesh.hideInExplorer = true;
+            this.mesh.setDefine('IS_ROPE');
+            this.mesh.setDefine('USE_VERTEX_COLOR');
+            this.createParticlesTexture();
+            this.mesh.setUniform('uParticles', this.#texture);
+        }
         this.maxParticles = particleSystem.maxParticles;
         particleSystem.addChild(this.mesh);
     }
-    _createParticlesArray() {
-        this.imgData = new Float32Array(this.#maxParticles * 4 * TEXTURE_WIDTH);
+    #createParticlesArray() {
+        this.#imgData = new Float32Array(this.#maxParticles * 4 * TEXTURE_WIDTH);
     }
     createParticlesTexture() {
-        this.texture = TextureManager.createTexture();
+        this.#texture = TextureManager.createTexture();
         const gl = new Graphics().glContext; //TODO
-        gl.bindTexture(GL_TEXTURE_2D, this.texture.texture);
+        gl.bindTexture(GL_TEXTURE_2D, this.#texture.texture);
         gl.texParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
         gl.texParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
         gl.bindTexture(GL_TEXTURE_2D, null);
     }
     updateParticlesTexture() {
         const gl = new Graphics().glContext;
-        gl.bindTexture(GL_TEXTURE_2D, this.texture.texture);
+        if (!this.#imgData || !this.#texture) {
+            return;
+        }
+        gl.bindTexture(GL_TEXTURE_2D, this.#texture.texture);
         if (new Graphics().isWebGL2) {
-            gl.texImage2D(GL_TEXTURE_2D, 0, GL_RGBA32F, TEXTURE_WIDTH, this.#maxParticles, 0, GL_RGBA, GL_FLOAT, this.imgData);
+            gl.texImage2D(GL_TEXTURE_2D, 0, GL_RGBA32F, TEXTURE_WIDTH, this.#maxParticles, 0, GL_RGBA, GL_FLOAT, this.#imgData);
         }
         else {
-            gl.texImage2D(GL_TEXTURE_2D, 0, GL_RGBA, TEXTURE_WIDTH, this.#maxParticles, 0, GL_RGBA, GL_FLOAT, this.imgData);
+            gl.texImage2D(GL_TEXTURE_2D, 0, GL_RGBA, TEXTURE_WIDTH, this.#maxParticles, 0, GL_RGBA, GL_FLOAT, this.#imgData);
         }
         gl.bindTexture(GL_TEXTURE_2D, null);
     }
     setupParticlesTexture(particleList, maxParticles) {
-        const a = this.imgData;
+        const a = this.#imgData;
+        if (!a) {
+            return;
+        }
         let index = 0;
         for (let particle of particleList) { //TODOv3
             /*let pose = bone.boneMat;
@@ -94951,7 +96674,7 @@ class RenderSprites extends RenderBase {
     }
     set maxParticles(maxParticles) {
         this.#maxParticles = new Graphics().isWebGL2 ? maxParticles : ceilPowerOfTwo(maxParticles);
-        this._createParticlesArray();
+        this.#createParticlesArray();
         this._initBuffers();
     }
     _initBuffers() {
@@ -94986,7 +96709,7 @@ class RenderSprites extends RenderBase {
         this.maxParticles = particleSystem.maxParticles;
         particleSystem.addChild(this.mesh);
     }
-    _createParticlesArray() {
+    #createParticlesArray() {
         this.imgData = new Float32Array(this.#maxParticles * 4 * TEXTURE_WIDTH);
     }
     createParticlesTexture() {
@@ -95136,7 +96859,7 @@ class RenderTrails extends Operator {
         this.setupParticlesTexture(particleList, maxParticles, elapsedTime);
         this.mesh.setUniform('uMaxParticles', maxParticles); //TODOv3:optimize
         this.mesh.setVisible(Source2ParticleManager.visible);
-        set(tempVec2, this.getParamScalarValue('m_flFinalTextureScaleU') ?? 1, this.getParamScalarValue('m_flFinalTextureScaleV') ?? 1);
+        set$1(tempVec2, this.getParamScalarValue('m_flFinalTextureScaleU') ?? 1, this.getParamScalarValue('m_flFinalTextureScaleV') ?? 1);
         this.material.setUniform('uFinalTextureScale', tempVec2);
         geometry.attributes.get('aTextureCoord')._array;
         geometry.attributes.get('aTextureCoord2')._array;
@@ -95160,7 +96883,7 @@ class RenderTrails extends Operator {
     }
     set maxParticles(maxParticles) {
         this.#maxParticles = new Graphics().isWebGL2 ? maxParticles : ceilPowerOfTwo(maxParticles);
-        this._createParticlesArray();
+        this.#createParticlesArray();
         this._initBuffers();
     }
     _initBuffers() {
@@ -95195,7 +96918,7 @@ class RenderTrails extends Operator {
         this.maxParticles = particleSystem.maxParticles;
         particleSystem.addChild(this.mesh);
     }
-    _createParticlesArray() {
+    #createParticlesArray() {
         this.imgData = new Float32Array(this.#maxParticles * 4 * TEXTURE_WIDTH);
     }
     createParticlesTexture() {
@@ -95283,11 +97006,48 @@ class RenderTrails extends Operator {
 }
 RegisterSource2ParticleOperator('C_OP_RenderTrails', RenderTrails);
 
+var source2_fragment_compute_cs2_stickers = `
+	#pragma unroll
+	for ( int i = 0; i < 5; i ++ ) {
+
+#ifdef ENABLE_STICKER{i}
+#endif
+	}
+`;
+
+var source2_fragment_declare_cs2_stickers = `
+#pragma unroll
+for ( int i = 0; i < 5; i ++ ) {
+#ifdef ENABLE_STICKER{i}
+	uniform float g_vSticker{i}Rotation;
+	uniform float g_vSticker{i}Wear;
+	uniform float g_fWearScratchesSticker{i};
+	uniform vec4 g_vSticker{i}Offset;
+	uniform vec4 g_vSticker{i}Scale;
+	uniform vec4 g_vWearBiasSticker{i};
+
+	uniform sampler2D sticker{i}Map;
+	uniform sampler2D normalRoughnessSticker{i}Map;
+	uniform sampler2D holoSpectrumSticker{i}Map;
+	uniform sampler2D sfxMaskSticker{i}Map;
+#endif
+}
+
+uniform sampler2D stickerWepInputsMap;
+`;
+
 var source2_varying_csgo_weapon_stattrak = `
 #include varying_standard
 `;
 
+var source2_varying_csgo_weapon = `
+#include varying_standard
+`;
+
+Includes['source2_fragment_compute_cs2_stickers'] = source2_fragment_compute_cs2_stickers;
+Includes['source2_fragment_declare_cs2_stickers'] = source2_fragment_declare_cs2_stickers;
 Includes['source2_varying_csgo_weapon_stattrak'] = source2_varying_csgo_weapon_stattrak;
+Includes['source2_varying_csgo_weapon'] = source2_varying_csgo_weapon;
 
 var source2_varying_hero_fluid = `
 #include varying_standard
@@ -95648,10 +97408,194 @@ void main(void) {
 }
 `;
 
+var source2_csgo_weapon_fs = `
+#include declare_camera_position
+#include declare_fragment_color_map
+#include declare_fragment_normal_map
+#include declare_fragment_alpha_test
+#include declare_fragment_mask_map
+#include declare_fragment_specular_map
+#include source2_fragment_declare_detail_map
+#include declare_fragment_cube_map
+#include source2_fragment_declare_cs2_stickers
+//#include source1_declare_phong
+
+#include declare_lights
+#include declare_shadow_mapping
+
+uniform sampler2D g_tAmbientOcclusion;
+uniform vec4 g_vColorTint;
+
+#include source2_fragment_declare_separate_alpha_transform
+
+uniform float g_flDetailBlendFactor;
+uniform float g_flMaterialCloakFactor;
+
+#include source2_varying_csgo_weapon
+
+void main(void) {
+	vec4 diffuseColor = vec4(1.0);
+	#include compute_fragment_color_map
+	#include compute_fragment_cube_map
+	#include source2_fragment_compute_separate_alpha_transform
+	#include compute_fragment_normal_map
+	#include compute_fragment_specular_map
+	#include source2_fragment_compute_mask
+	#include source2_fragment_compute_detail
+	diffuseColor *= texelColor;
+
+#define DETAIL_MASK texelMask1.r
+//#define FRESNEL_WARP texelMask1.g
+#define METALNESS_MASK texelMask1.b
+#define SELFILLUM_MASK texelMask1.a
+
+#define SPECULAR_INTENSITY texelMask2.r
+#define RIMLIGHT_INTENSITY texelMask2.g
+#define TINT_MASK texelMask2.b
+#define SPECULAR_EXPONENT texelMask2.a
+
+#ifdef ENABLE_CLOAK
+	// TODO: fully code cloak, for now it's just a fix for io
+	if (g_flMaterialCloakFactor == 1.0) {
+		discard;
+	}
+#endif
+
+	vec3 albedo = texelColor.rgb;
+
+	#include compute_fragment_normal
+
+	float phongMask = 1.0;
+	float alpha = 1.0;
+		float uPhongBoost = 1.0;
+		float uPhongExponent = 1.0;
+
+	#ifdef USE_NORMAL_MAP
+		vec3 normal = normalize(vec3(texelNormal.ga * 2.0 - 1.0, 1.0));
+		fragmentNormalCameraSpace = normalize(TBNMatrixCameraSpace * vec3(normal));
+	#endif
+
+	#include compute_fragment_alpha_test
+
+	#include source2_detail_blend
+	gl_FragColor.rgb = diffuseColor.rgb;
+	gl_FragColor.a = diffuseColor.a;
+	if (length(mod(gl_FragCoord.xy, vec2(2.0))) < 1.0) {
+		//discard;
+	}
+
+#ifdef TESTING
+#ifdef USE_SEPARATE_ALPHA_TRANSFORM
+	/*gl_FragColor = vec4(vec3(g_vAlphaTexCoordOffset.y), 1.0);
+	if (length(g_vAlphaTexCoordOffset.xy) < 0.5) {
+		discard;
+	}*/
+#endif
+#endif
+
+/*
+mask1.r: detail mask
+mask1.g: diffuse warp
+mask1.b: metalness
+mask1.a: self illum
+mask2.r: specular mask
+mask2.g: rimlight
+mask2.b: Base Tint Mask
+mask2.a: Specular Exponent
+
+*/
+
+
+/* TEST SHADING BEGIN*/
+	#include compute_lights_setup_vars
+
+
+
+	BlinnPhongMaterial material;
+	material.diffuseColor = diffuseColor.rgb;
+#ifdef USE_PHONG_EXPONENT_MAP
+	material.specularColor = mix(vec3(1.0), texelColor.rgb, texelPhongExponent.g) * phongMask;
+	material.specularShininess = texelPhongExponent.r;
+#else
+	material.specularColor = vec3(phongMask);
+	material.specularShininess = 5.0;//uPhongExponent;
+#endif
+	material.specularStrength = 1.0;//uPhongBoost;
+
+#include compute_fragment_lights
+
+/* TEST SHADING END*/
+
+
+
+
+
+#include compute_fragment_render_mode
+#ifdef SKIP_LIGHTING
+	gl_FragColor.rgb = diffuseColor.rgb;
+#else
+	gl_FragColor.rgb = (reflectedLight.directSpecular + reflectedLight.directDiffuse + reflectedLight.indirectDiffuse);
+#endif
+gl_FragColor.a = texelColor.a;
+//gl_FragColor.rgb = abs(normalize(fragmentNormalCameraSpace.rgb));
+
+#ifdef USE_CUBE_MAP
+	gl_FragColor += cubeMapColor * METALNESS_MASK;//METALNESS_MASK;
+#endif
+
+	#include source2_fragment_compute_cs2_stickers
+
+	if (length (vVertexPositionModelSpace.xy - g_vSticker0Offset.xy*15.) < 15.) {
+		gl_FragColor = vec4(1., 0., 0., 0.);
+	}
+
+	if (length (vVertexPositionModelSpace.xz - g_vSticker0Offset.xy * 15.) < 5.) {
+		gl_FragColor = vec4(1., 0., 0., 0.);
+	}
+
+	gl_FragColor.a = 1.0;
+	gl_FragColor = texture2D(stickerWepInputsMap, vTextureCoord.xy);
+
+	gl_FragColor = vec4(vTextureCoord.xy, 0.0, 1.0);
+
+//	gl_FragColor = texture2D(stickerWepInputsMap, vTextureCoord.xy);
+//gl_FragColor = texture2D(colorMap, vTextureCoord.xy);
+
+
+
+	#include compute_fragment_standard
+}
+`;
+
+var source2_csgo_weapon_vs = `
+#include declare_attributes
+#include declare_matrix_uniforms
+#include declare_vertex_uv
+#include declare_vertex_skinning
+#include declare_shadow_mapping
+#include declare_log_depth
+
+#include source2_varying_csgo_weapon
+
+void main(void) {
+	#include compute_vertex_uv
+	#include compute_vertex
+	#include compute_vertex_skinning
+	#include compute_vertex_projection
+	#include compute_vertex_shadow_mapping
+	#include compute_vertex_standard
+
+	vVertexPositionModelSpace = vertexPositionModelSpace;
+	#include compute_vertex_log_depth
+}
+`;
+
 Shaders['source2_csgo_environment.fs'] = source2_csgo_environment_fs;
 Shaders['source2_csgo_environment.vs'] = source2_csgo_environment_vs;
 Shaders['source2_csgo_weapon_stattrak.fs'] = source2_csgo_weapon_stattrak_fs;
 Shaders['source2_csgo_weapon_stattrak.vs'] = source2_csgo_weapon_stattrak_vs;
+Shaders['source2_csgo_weapon.fs'] = source2_csgo_weapon_fs;
+Shaders['source2_csgo_weapon.vs'] = source2_csgo_weapon_vs;
 
 var source2_hero_fluid_fs = `
 
@@ -97579,7 +99523,7 @@ class RemGenerator {
             const size = this.#cubeSize;
             cubeUVRenderTarget.setViewport(col * size, i > 2 ? size : 0, size, size);
             new Graphics().pushRenderTarget(cubeUVRenderTarget);
-            renderer.render(scene, cubeCamera, 0);
+            renderer.render(scene, cubeCamera, 0, { DisableToolRendering: true });
             new Graphics().popRenderTarget();
         }
         backgroundBox.dispose();
@@ -97613,7 +99557,7 @@ class RemGenerator {
         const size = this.#cubeSize;
         cubeUVRenderTarget.setViewport(0, 0, 3 * size, 2 * size);
         new Graphics().pushRenderTarget(cubeUVRenderTarget);
-        renderer.render(scene, flatCamera, 0);
+        renderer.render(scene, flatCamera, 0, { DisableToolRendering: true });
         new Graphics().popRenderTarget();
     }
     #applyPMREM(cubeUVRenderTarget) {
@@ -97692,7 +99636,7 @@ class RemGenerator {
         const y = 4 * (this.#cubeSize - outputSize);
         targetOut.setViewport(x, y, 3 * outputSize, 2 * outputSize);
         new Graphics().pushRenderTarget(targetOut);
-        renderer.render(scene, flatCamera, 0);
+        renderer.render(scene, flatCamera, 0, { DisableToolRendering: true });
         new Graphics().popRenderTarget();
     }
 }
@@ -98135,7 +100079,7 @@ class ObjExporter {
             }
             this.#fullScreenQuadMesh.material = mesh.material;
             this.#fullScreenQuadMesh.materialsParams = mesh.materialsParams;
-            new Graphics().render(this.scene, this.camera, 0);
+            new Graphics().render(this.scene, this.camera, 0, { DisableToolRendering: true });
             //let file = await new Graphics().savePictureAsFile(`mat_${meshId}.png`);
             /*				let file = await new Graphics().savePictureAsFile(`mat_${meshId}.png`);
                         files.add(file);*/
@@ -98298,19 +100242,19 @@ class RenderTargetViewer {
         throw 'deprecated';
     }
     setPosition(x, y) {
-        set(this.#position, x, y);
+        set$1(this.#position, x, y);
         this.refreshPlane();
     }
     setSize(x, y) {
-        set(this.#size, x, y);
+        set$1(this.#size, x, y);
         this.refreshPlane();
     }
     refreshPlane() {
-        set$4(this.#plane._position, (this.#size[0] - new Graphics().getWidth()) * 0.5 + this.#position[0], (new Graphics().getHeight() - this.#size[1]) * 0.5 - this.#position[1], 0);
+        set$5(this.#plane._position, (this.#size[0] - new Graphics().getWidth()) * 0.5 + this.#position[0], (new Graphics().getHeight() - this.#size[1]) * 0.5 - this.#position[1], 0);
         this.#plane.setSize(this.#size[0], this.#size[1]);
     }
     render(renderer) {
-        renderer.render(this.#scene, this.#camera, 0);
+        renderer.render(this.#scene, this.#camera, 0, { DisableToolRendering: true });
     }
     is(s) {
         return s == 'RenderTargetViewer';
@@ -98340,7 +100284,7 @@ var index = /*#__PURE__*/Object.freeze({
   BenefactorLevel: BenefactorLevel,
   Bias: Bias,
   get BlendingEquation () { return BlendingEquation; },
-  get BlendingFactors () { return BlendingFactors; },
+  get BlendingFactor () { return BlendingFactor; },
   get BlendingMode () { return BlendingMode; },
   Bone: Bone,
   BoundingBox: BoundingBox,
@@ -98755,9 +100699,6 @@ var index = /*#__PURE__*/Object.freeze({
   LoopSubdivision: LoopSubdivision,
   MATERIAL_BLENDING_NONE: MATERIAL_BLENDING_NONE,
   MATERIAL_BLENDING_NORMAL: MATERIAL_BLENDING_NORMAL,
-  MATERIAL_COLOR_NONE: MATERIAL_COLOR_NONE,
-  MATERIAL_COLOR_PER_MESH: MATERIAL_COLOR_PER_MESH,
-  MATERIAL_COLOR_PER_VERTEX: MATERIAL_COLOR_PER_VERTEX,
   MATERIAL_CULLING_BACK: MATERIAL_CULLING_BACK,
   MATERIAL_CULLING_FRONT: MATERIAL_CULLING_FRONT,
   MATERIAL_CULLING_FRONT_AND_BACK: MATERIAL_CULLING_FRONT_AND_BACK,
@@ -98958,7 +100899,6 @@ var index = /*#__PURE__*/Object.freeze({
   Source1ParticleControler: Source1ParticleControler,
   Source1SoundManager: Source1SoundManager,
   Source1TextureManager: Source1TextureManager,
-  Source2AnimLoader: Source2AnimLoader,
   Source2Crystal: Source2Crystal,
   Source2CsgoCharacter: Source2CsgoCharacter,
   Source2CsgoComplex: Source2CsgoComplex,
@@ -99125,10 +101065,12 @@ var index = /*#__PURE__*/Object.freeze({
   getIncludeList: getIncludeList,
   getIncludeSource: getIncludeSource,
   getRandomInt: getRandomInt,
+  getSceneExplorer: getSceneExplorer,
   imageDataToImage: imageDataToImage,
   initRandomFloats: initRandomFloats,
   isNumeric: isNumeric,
   lerp: lerp,
+  loadAnimGroup: loadAnimGroup,
   pow2: pow2,
   quatFromEulerRad: quatFromEulerRad,
   quatToEuler: quatToEuler,
