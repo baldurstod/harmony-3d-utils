@@ -95,7 +95,7 @@ export declare const WeaponManagerEventTarget: EventTarget;
 
 declare interface WeaponManagerItem {
     id: string;
-    paintKitId: number;
+    paintKitId?: number;
     paintKitWear: number;
     paintKitSeed: bigint;
     sourceModel?: Source1ModelInstance | null;

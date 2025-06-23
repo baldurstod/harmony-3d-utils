@@ -14,7 +14,7 @@ const definitionsPerType = {
 
 export interface WeaponManagerItem {
 	id: string;
-	paintKitId: number;
+	paintKitId?: number;
 	paintKitWear: number;
 	paintKitSeed: bigint;
 	sourceModel?: Source1ModelInstance | null;
@@ -254,7 +254,7 @@ export class WeaponManager {
 
 			let { name: textureName, texture } = Source1TextureManager.addInternalTexture(ci.sourceModel?.sourceModel.repository ?? '');
 			texture.setAlphaBits(8);
-			if (ci.paintKitId !== null) {
+			if (ci.paintKitId !== undefined) {
 				let promise = new TextureCombiner().combinePaint(ci.paintKitId, ci.paintKitWear, ci.id.replace(/\~\d+/, ''), textureName, texture, ci.paintKitSeed);
 				ci.sourceModel?.setMaterialParam('WeaponSkin', textureName);
 				//this._textureCombiner.nodeImageEditor.setOutputTextureName(textureName);
