@@ -98,7 +98,7 @@ declare interface WeaponManagerItem {
     paintKitId: number;
     paintKitWear: number;
     paintKitSeed: bigint;
-    sourceModel?: Source1ModelInstance;
+    sourceModel?: Source1ModelInstance | null;
 }
 
 export { }
