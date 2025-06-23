@@ -1016,25 +1016,24 @@ class WeaponManager {
         if (!this.currentItem && this.#itemQueue.length) {
             this.currentItem = this.#itemQueue.shift();
             let ci = this.currentItem;
-            let { name: textureName, texture } = Source1TextureManager.addInternalTexture();
+            let { name: textureName, texture } = Source1TextureManager.addInternalTexture(ci.repository);
             texture.setAlphaBits(8);
             if (ci.paintKitId !== null) {
                 let promise = new TextureCombiner().combinePaint(ci.paintKitId, ci.paintKitWear, ci.id.replace(/\~\d+/, ''), textureName, texture, ci.paintKitSeed);
                 ci.sourceModel.materialsParams['WeaponSkin'] = textureName;
                 //this._textureCombiner.nodeImageEditor.setOutputTextureName(textureName);
                 promise.then((e) => {
-                    //console.error('Promise processNextItemInQueue OK');
-                    this.currentItem = null;
+                    this.currentItem = undefined;
                     this.processNextItemInQueue();
                 });
                 promise.catch((e) => {
                     console.error('Promise processNextItemInQueue KO');
-                    this.currentItem = null;
+                    this.currentItem = undefined;
                     this.processNextItemInQueue();
                 });
             }
             else {
-                this.currentItem = null;
+                this.currentItem = undefined;
                 this.processNextItemInQueue();
             }
         }

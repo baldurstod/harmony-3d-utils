@@ -3,6 +3,7 @@ import { NodeImageEditorGui } from 'harmony-3d';
 import { Repository } from 'harmony-3d';
 import { RepositoryEntry } from 'harmony-3d';
 import { RepositoryFilter } from 'harmony-3d';
+import { Source1ModelInstance } from 'harmony-3d';
 import { Texture } from 'harmony-3d';
 import { Timeline } from 'harmony-3d';
 
@@ -78,7 +79,7 @@ export declare class WeaponManager {
     itemsDef: null;
     itemsReady: boolean;
     containerPerWeapon: any;
-    currentItem: any;
+    currentItem?: WeaponManagerItem;
     weaponId: number;
     constructor();
     initPaintKitDefinitions(url: string): Promise<void>;
@@ -86,10 +87,19 @@ export declare class WeaponManager {
     initView(container?: HTMLElement): void;
     getItemList(cMsgPaintKit_Definition: any): any;
     refreshPaint(item: any): void;
-    refreshItem(item: any, clearQueue?: boolean): void;
+    refreshItem(item: WeaponManagerItem, clearQueue?: boolean): void;
     processNextItemInQueue(): void;
 }
 
 export declare const WeaponManagerEventTarget: EventTarget;
+
+declare interface WeaponManagerItem {
+    repository: string;
+    id: string;
+    paintKitId: number;
+    paintKitWear: number;
+    paintKitSeed: bigint;
+    sourceModel: Source1ModelInstance;
+}
 
 export { }

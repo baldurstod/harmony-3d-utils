@@ -1,6 +1,6 @@
-import { Source1TextureManager } from 'harmony-3d';
-import { TextureCombiner } from './texturecombiner';
+import { Source1ModelInstance, Source1TextureManager } from 'harmony-3d';
 import { PaintKitDefinitions } from 'harmony-tf2-utils';
+import { TextureCombiner } from './texturecombiner';
 
 export const WeaponManagerEventTarget = new EventTarget();
 
@@ -11,6 +11,15 @@ const definitionsPerType = {
 	9: { s: 'CMsgPaintKit_Definition', d: null },
 	10: { s: 'CMsgHeaderOnly', d: null },
 };
+
+export interface WeaponManagerItem {
+	repository: string;
+	id: string;
+	paintKitId: number;
+	paintKitWear: number;
+	paintKitSeed: bigint;
+	sourceModel: Source1ModelInstance;
+}
 
 export class WeaponManager {
 	static #instance: WeaponManager;
@@ -31,8 +40,8 @@ export class WeaponManager {
 	itemsReady = false;
 
 	containerPerWeapon: any = {};
-	#itemQueue: Array<any> = [];
-	currentItem: any;
+	#itemQueue: Array<WeaponManagerItem> = [];
+	currentItem?: WeaponManagerItem;
 	weaponId = 0;
 
 	constructor() {
@@ -231,7 +240,7 @@ export class WeaponManager {
 			this.refreshPaint();
 		}*/
 
-	refreshItem(item: any, clearQueue = false) {
+	refreshItem(item: WeaponManagerItem, clearQueue = false) {
 		if (clearQueue) {
 			this.#itemQueue = [];
 		}
@@ -242,25 +251,26 @@ export class WeaponManager {
 	processNextItemInQueue() {
 		if (!this.currentItem && this.#itemQueue.length) {
 			this.currentItem = this.#itemQueue.shift();
-			let ci = this.currentItem;
+			let ci = this.currentItem!;
 
-			let { name: textureName, texture } = Source1TextureManager.addInternalTexture();
+			let { name: textureName, texture } = Source1TextureManager.addInternalTexture(ci.repository);
 			texture.setAlphaBits(8);
 			if (ci.paintKitId !== null) {
 				let promise = new TextureCombiner().combinePaint(ci.paintKitId, ci.paintKitWear, ci.id.replace(/\~\d+/, ''), textureName, texture, ci.paintKitSeed);
 				ci.sourceModel.materialsParams['WeaponSkin'] = textureName;
 				//this._textureCombiner.nodeImageEditor.setOutputTextureName(textureName);
 				promise.then((e) => {
-					//console.error('Promise processNextItemInQueue OK');
-					this.currentItem = null; this.processNextItemInQueue();
+					this.currentItem = undefined;
+					this.processNextItemInQueue();
 
 				});
 				promise.catch((e) => {
 					console.error('Promise processNextItemInQueue KO');
-					this.currentItem = null; this.processNextItemInQueue();
+					this.currentItem = undefined;
+					this.processNextItemInQueue();
 				});
 			} else {
-				this.currentItem = null;
+				this.currentItem = undefined;
 				this.processNextItemInQueue();
 			}
 		}
