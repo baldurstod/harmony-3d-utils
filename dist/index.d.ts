@@ -94,12 +94,11 @@ export declare class WeaponManager {
 export declare const WeaponManagerEventTarget: EventTarget;
 
 declare interface WeaponManagerItem {
-    repository: string;
     id: string;
     paintKitId: number;
     paintKitWear: number;
     paintKitSeed: bigint;
-    sourceModel: Source1ModelInstance;
+    sourceModel?: Source1ModelInstance;
 }
 
 export { }

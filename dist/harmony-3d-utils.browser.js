@@ -36044,7 +36044,7 @@ class Entity {
     _mvMatrix = create$5();
     _normalMatrix = create$6();
     _parent = null;
-    materialsParams = {};
+    materialsParams = {}; //TODO: create a map
     isRenderable = false;
     lockPos = false;
     lockRot = false;
@@ -36965,6 +36965,9 @@ class Entity {
         else {
             return this.#layer;
         }
+    }
+    setMaterialParam(name, value) {
+        this.materialsParams[name] = value;
     }
     toJSON() {
         const children = [];
@@ -103170,11 +103173,11 @@ class WeaponManager {
         if (!this.currentItem && this.#itemQueue.length) {
             this.currentItem = this.#itemQueue.shift();
             let ci = this.currentItem;
-            let { name: textureName, texture } = Source1TextureManager.addInternalTexture(ci.repository);
+            let { name: textureName, texture } = Source1TextureManager.addInternalTexture(ci.sourceModel?.sourceModel.repository ?? '');
             texture.setAlphaBits(8);
             if (ci.paintKitId !== null) {
                 let promise = new TextureCombiner().combinePaint(ci.paintKitId, ci.paintKitWear, ci.id.replace(/\~\d+/, ''), textureName, texture, ci.paintKitSeed);
-                ci.sourceModel.materialsParams['WeaponSkin'] = textureName;
+                ci.sourceModel?.setMaterialParam('WeaponSkin', textureName);
                 //this._textureCombiner.nodeImageEditor.setOutputTextureName(textureName);
                 promise.then((e) => {
                     this.currentItem = undefined;
