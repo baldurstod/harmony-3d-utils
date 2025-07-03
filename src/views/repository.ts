@@ -1,5 +1,5 @@
 import { Repository, RepositoryEntry, RepositoryFilter } from 'harmony-3d';
-import { cloneEvent, createElement, createShadowRoot, shadowRootStyle } from 'harmony-ui';
+import { cloneEvent, createElement, createShadowRoot, HTMLHarmonySwitchElement, shadowRootStyle } from 'harmony-ui';
 import { closeSVG } from 'harmony-svg';
 import { defineRepositoryEntry, HTMLRepositoryEntryElement } from './repositoryentry';
 import repositoryCSS from '../css/repository.css';
@@ -12,6 +12,7 @@ export enum RepositoryDisplayMode {
 export class HTMLRepositoryElement extends HTMLElement {
 	#shadowRoot: ShadowRoot;
 	#htmlTitle: HTMLElement;
+	#htmlActive: HTMLHarmonySwitchElement;
 	#htmlEntries: HTMLElement;
 	#repository?: Repository;
 	#displayMode: RepositoryDisplayMode = RepositoryDisplayMode.Flat;
@@ -28,6 +29,15 @@ export class HTMLRepositoryElement extends HTMLElement {
 			class: 'header',
 			childs: [
 				this.#htmlTitle = createElement('div', { class: 'title' }),
+				this.#htmlActive = createElement('harmony-switch', {
+					class: 'active',
+					state: true,
+					$change: (event: Event) => {
+						if (this.#repository) {
+							this.#repository.active = (event.target as HTMLHarmonySwitchElement).state as boolean;
+						}
+					},
+				}) as HTMLHarmonySwitchElement,
 				createElement('div', {
 					class: 'close',
 					parent: this.#shadowRoot,
@@ -49,6 +59,9 @@ export class HTMLRepositoryElement extends HTMLElement {
 
 	setRepository(repository?: Repository) {
 		this.#repository = repository;
+		if (repository) {
+			repository.active = this.#htmlActive.state as boolean;
+		}
 		this.#updateHTML();
 	}
 

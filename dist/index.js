@@ -1459,6 +1459,7 @@ var RepositoryDisplayMode;
 class HTMLRepositoryElement extends HTMLElement {
     #shadowRoot;
     #htmlTitle;
+    #htmlActive;
     #htmlEntries;
     #repository;
     #displayMode = RepositoryDisplayMode.Flat;
@@ -1472,6 +1473,15 @@ class HTMLRepositoryElement extends HTMLElement {
             class: 'header',
             childs: [
                 this.#htmlTitle = createElement('div', { class: 'title' }),
+                this.#htmlActive = createElement('harmony-switch', {
+                    class: 'active',
+                    state: true,
+                    $change: (event) => {
+                        if (this.#repository) {
+                            this.#repository.active = event.target.state;
+                        }
+                    },
+                }),
                 createElement('div', {
                     class: 'close',
                     parent: this.#shadowRoot,
@@ -1491,6 +1501,9 @@ class HTMLRepositoryElement extends HTMLElement {
     }
     setRepository(repository) {
         this.#repository = repository;
+        if (repository) {
+            repository.active = this.#htmlActive.state;
+        }
         this.#updateHTML();
     }
     setFilter(filter) {

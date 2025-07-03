@@ -8,6 +8,7 @@ export class HTMLRepositoryEntryElement extends HTMLElement {
 	#htmlSelf: HTMLElement;
 	#htmlChilds: HTMLElement;
 	#expanded = false;
+
 	constructor() {
 		super();
 		this.#shadowRoot = this.attachShadow({ mode: 'closed' });
