@@ -1,3 +1,4 @@
+import { Node as Node_2 } from 'harmony-3d';
 import { NodeImageEditor } from 'harmony-3d';
 import { NodeImageEditorGui } from 'harmony-3d';
 import { Repository } from 'harmony-3d';
@@ -37,6 +38,16 @@ export declare class HTMLTimelineElement extends HTMLElement {
     setTimeOffset(offset: number): void;
 }
 
+export declare type PaintDoneEvent = {
+    paintKitDefId: number;
+    wearLevel: number;
+    weaponDefIndex: string;
+    outputTextureName: string;
+    outputTexture: Texture;
+    seed: bigint;
+    node: Node_2;
+};
+
 export declare enum RepositoryDisplayMode {
     Flat = "flat",
     Tree = "tree"
@@ -58,6 +69,8 @@ export declare class TextureCombiner {
     _getDefindex(CMsgProtoDefID: any): Promise<any>;
     combinePaint(paintKitDefId: number, wearLevel: number, weaponDefIndex: string, outputTextureName: string, outputTexture: Texture, seed?: bigint): Promise<boolean>;
 }
+
+export declare const TextureCombinerEventTarget: EventTarget;
 
 export declare class WarpaintEditor {
     #private;

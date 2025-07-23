@@ -1598,4 +1598,4 @@ function defineRepository() {
     }
 }
 
-export { HTMLRepositoryElement, HTMLRepositoryEntryElement, HTMLTimelineElement, RepositoryDisplayMode, TextureCombiner, WarpaintEditor, WeaponManager, WeaponManagerEventTarget, defineRepository, defineRepositoryEntry, defineTimelineElement };
+export { HTMLRepositoryElement, HTMLRepositoryEntryElement, HTMLTimelineElement, RepositoryDisplayMode, TextureCombiner, TextureCombinerEventTarget, WarpaintEditor, WeaponManager, WeaponManagerEventTarget, defineRepository, defineRepositoryEntry, defineTimelineElement };
