@@ -297,6 +297,7 @@ class ApplyStickerStage extends Stage {
 }
 
 const texturePathPrefixRemoveMe = '../gamecontent/tf2/materials/'; //TODOv3 : put in constants
+const TextureCombinerEventTarget = new EventTarget();
 class TextureCombiner {
     static #instance;
     #textureSize = DEFAULT_TEXTURE_SIZE;
@@ -338,7 +339,7 @@ class TextureCombiner {
     }
     async combinePaint(paintKitDefId, wearLevel, weaponDefIndex, outputTextureName, outputTexture, seed = 0n) {
         this.lookupNodes = new Map();
-        let combinePaintPromise = new Promise(async (resolve, reject) => {
+        let combinePaintPromise = new Promise(async (resolve) => {
             if (paintKitDefId != undefined && wearLevel != undefined && weaponDefIndex != undefined) {
                 this.nodeImageEditor.removeAllNodes();
                 this.nodeImageEditor.clearVariables();
@@ -413,24 +414,36 @@ class TextureCombiner {
                                                                         resolve(true);
                                                                         return;
                                                                     }
-                                                                    reject(false);
+                                                                    resolve(false);
                                                                 }*/
                                 //let pixelArray = await node.getOutput('output').pixelArray;
                                 //console.error(await node.toString());
                                 //processPixelArray(pixelArray);
-                                finalNode.redraw().then(() => resolve(true), () => reject(false));
+                                await finalNode.redraw();
+                                TextureCombinerEventTarget.dispatchEvent(new CustomEvent('paintdone', {
+                                    detail: {
+                                        paintKitDefId: paintKitDefId,
+                                        wearLevel: wearLevel,
+                                        weaponDefIndex: weaponDefIndex,
+                                        outputTextureName: outputTextureName,
+                                        outputTexture: outputTexture,
+                                        seed: seed,
+                                        node: finalNode,
+                                    }
+                                }));
+                                resolve(true);
                                 return;
                             }
                         }
                     }
-                    reject(false);
+                    resolve(false);
                 }
             }
             else {
-                reject(false);
+                resolve(false);
             }
             /*if (!finalPromise) {
-                reject(false);
+                resolve(false);
             }*/
         });
         return combinePaintPromise;

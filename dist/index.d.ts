@@ -56,7 +56,7 @@ export declare class TextureCombiner {
     set team(t: number);
     get team(): number;
     _getDefindex(CMsgProtoDefID: any): Promise<any>;
-    combinePaint(paintKitDefId: number, wearLevel: number, weaponDefIndex: string, outputTextureName: string, outputTexture: Texture, seed?: bigint): Promise<unknown>;
+    combinePaint(paintKitDefId: number, wearLevel: number, weaponDefIndex: string, outputTextureName: string, outputTexture: Texture, seed?: bigint): Promise<boolean>;
 }
 
 export declare class WarpaintEditor {

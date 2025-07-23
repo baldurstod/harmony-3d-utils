@@ -1,5 +1,5 @@
 import { vec2 } from 'gl-matrix';
-import { NodeImageEditor, DEFAULT_TEXTURE_SIZE, Texture, IntArrayNode } from 'harmony-3d';
+import { NodeImageEditor, DEFAULT_TEXTURE_SIZE, Texture, IntArrayNode, Node } from 'harmony-3d';
 import { Range } from './stages/parameters';
 import { Stage } from './stages/stage';
 import { CombineStage } from './stages/combine';
@@ -9,6 +9,18 @@ import { ApplyStickerStage, Sticker } from './stages/applysticker';
 import { getLegacyPaintKit, PaintKitDefinitions, UniformRandomStream } from 'harmony-tf2-utils';
 
 const texturePathPrefixRemoveMe = '../gamecontent/tf2/materials/';//TODOv3 : put in constants
+
+export const TextureCombinerEventTarget = new EventTarget();
+
+export type PaintDoneEvent = {
+	paintKitDefId: number,
+	wearLevel: number,
+	weaponDefIndex: string,
+	outputTextureName: string,
+	outputTexture: Texture,
+	seed: bigint,
+	node: Node,
+}
 
 export class TextureCombiner {
 	static #instance: TextureCombiner;
@@ -29,6 +41,7 @@ export class TextureCombiner {
 		}
 		TextureCombiner.#instance = this;
 	}
+
 	/*
 		static initNodeImageEditorGui(): NodeImageEditorGui {
 			if (!this.#nodeImageEditorGui) {
@@ -55,9 +68,9 @@ export class TextureCombiner {
 		return PaintKitDefinitions.getDefinition(CMsgProtoDefID);
 	}
 
-	async combinePaint(paintKitDefId: number, wearLevel: number, weaponDefIndex: string, outputTextureName: string, outputTexture: Texture, seed: bigint = 0n) {
+	async combinePaint(paintKitDefId: number, wearLevel: number, weaponDefIndex: string, outputTextureName: string, outputTexture: Texture, seed: bigint = 0n): Promise<boolean> {
 		this.lookupNodes = new Map();
-		let combinePaintPromise = new Promise(async (resolve, reject) => {
+		let combinePaintPromise = new Promise<boolean>(async resolve => {
 			let finalPromise;
 			if (paintKitDefId != undefined && wearLevel != undefined && weaponDefIndex != undefined) {
 				this.nodeImageEditor.removeAllNodes();
@@ -142,23 +155,35 @@ export class TextureCombiner {
 																		resolve(true);
 																		return;
 																	}
-																	reject(false);
+																	resolve(false);
 																}*/
 								//let pixelArray = await node.getOutput('output').pixelArray;
 								//console.error(await node.toString());
 								//processPixelArray(pixelArray);
-								finalNode.redraw().then(() => resolve(true), () => reject(false));
+								await finalNode.redraw()
+								TextureCombinerEventTarget.dispatchEvent(new CustomEvent<PaintDoneEvent>('paintdone', {
+									detail: {
+										paintKitDefId: paintKitDefId,
+										wearLevel: wearLevel,
+										weaponDefIndex: weaponDefIndex,
+										outputTextureName: outputTextureName,
+										outputTexture: outputTexture,
+										seed: seed,
+										node: finalNode,
+									}
+								}));
+								resolve(true);
 								return;
 							}
 						}
 					}
-					reject(false);
+					resolve(false);
 				}
 			} else {
-				reject(false);
+				resolve(false);
 			}
 			/*if (!finalPromise) {
-				reject(false);
+				resolve(false);
 			}*/
 		});
 		return combinePaintPromise;

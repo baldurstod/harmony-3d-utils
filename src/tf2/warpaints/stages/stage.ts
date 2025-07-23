@@ -10,6 +10,7 @@ export class Stage {
 	node: Node;
 	#firstChild?: Stage;
 	#nextSibling?: Stage;
+
 	constructor(node: Node) {
 		this.node = node;
 		if (!blackTexture) {
