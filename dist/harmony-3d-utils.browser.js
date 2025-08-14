@@ -102616,7 +102616,7 @@ class ApplyStickerStage extends Stage {
             if (weight < thisWeight) {
                 this.choice = i;
                 this.texturePath = parameters.possibleStickers[i].fileName;
-                this.specularTexturePath = parameters.possibleStickers[i].fileName.replace(/.vtf$/, '') + '_s';
+                this.specularTexturePath = parameters.possibleStickers[i].fileName.replace(/\.vtf$/, '') + '_s';
                 break;
             }
             else {
