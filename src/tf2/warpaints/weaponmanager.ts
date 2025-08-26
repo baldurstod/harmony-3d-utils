@@ -21,45 +21,33 @@ export interface WeaponManagerItem {
 }
 
 export class WeaponManager {
-	static #instance: WeaponManager;
-	#htmlWeaponsDiv?: HTMLElement;
-	#htmlPaintsDiv?: HTMLElement;
+	static #htmlWeaponsDiv?: HTMLElement;
+	static #htmlPaintsDiv?: HTMLElement;
+	static weapons = {};
+	static collections = {};
+	static weaponName = '';
+	static paintkitName = '';
+	static asyncRequestId = 0;
+	static #protoElements: any = {};
+	static protoDefs = null;
+	static shouldRequestItems = true;
+	static itemsDef = null;
+	static itemsReady = false;
+	static containerPerWeapon: any = {};
+	static #itemQueue: Array<WeaponManagerItem> = [];
+	static currentItem?: WeaponManagerItem;
+	static weaponId = 0;
 
-	weapons = {};
-	collections = {};
-
-	weaponName = '';
-	paintkitName = '';
-	asyncRequestId = 0;
-	_protoElements: any = {};
-	protoDefs = null;
-	shouldRequestItems = true;
-	itemsDef = null;
-
-	itemsReady = false;
-
-	containerPerWeapon: any = {};
-	#itemQueue: Array<WeaponManagerItem> = [];
-	currentItem?: WeaponManagerItem;
-	weaponId = 0;
-
-	constructor() {
-		if (WeaponManager.#instance) {
-			return WeaponManager.#instance;
-		}
-		WeaponManager.#instance = this;
-	}
-
-	async initPaintKitDefinitions(url: string) {
+	static async initPaintKitDefinitions(url: string) {
 		let response = await fetch(url);
 		this.protoDefs = await response.json();
 		await this.refreshPaintKitDefinitions();
 	}
 
-	async refreshPaintKitDefinitions() {
+	static async refreshPaintKitDefinitions() {
 		let definitions = await PaintKitDefinitions.getWarpaintDefinitions();
 		if (definitions) {
-			this._protoElements = definitions;
+			this.#protoElements = definitions;
 			let paintKitDefinitions = definitions[9];
 			for (let paintKitDefId in paintKitDefinitions) {
 				let definition = paintKitDefinitions[paintKitDefId];
@@ -70,7 +58,7 @@ export class WeaponManager {
 		}
 	}
 
-	initView(container?: HTMLElement) {
+	static initView(container?: HTMLElement) {
 		this.#htmlWeaponsDiv = document.createElement('div');
 		this.#htmlWeaponsDiv.className = 'weaponsDiv';
 		this.#htmlPaintsDiv = document.createElement('div');
@@ -82,9 +70,9 @@ export class WeaponManager {
 		}
 	}
 
-	#addPaintKit(paintKit: any, descToken: string) {
-		let cMsgPaintKit_Definition = this._protoElements[9][paintKit.header.defindex];
-		let paintKitItemDefinitions = this._protoElements[8];
+	static #addPaintKit(paintKit: any, descToken: string) {
+		let cMsgPaintKit_Definition = this.#protoElements[9][paintKit.header.defindex];
+		let paintKitItemDefinitions = this.#protoElements[8];
 		if (cMsgPaintKit_Definition) {
 			let itemList = this.getItemList(cMsgPaintKit_Definition);
 			for (let weaponName in itemList) {
@@ -97,7 +85,7 @@ export class WeaponManager {
 		return;
 	}
 
-	#addWeapon(paintKit: any, weaponPaint: number, weapon: string, defindex: number, itemDefinitionIndex: number, descToken: string) {
+	static #addWeapon(paintKit: any, weaponPaint: number, weapon: string, defindex: number, itemDefinitionIndex: number, descToken: string) {
 		//let wep = this.itemsDef?.[itemDefinitionIndex] || this.itemsDef?.[itemDefinitionIndex + '~0'] ;
 		let wep = { name: weapon };
 		if (wep) {
@@ -197,7 +185,7 @@ export class WeaponManager {
 			this.refreshPaint();
 		}
 	*/
-	getItemList(cMsgPaintKit_Definition: any) {//TODOv3: rename parameter
+	static getItemList(cMsgPaintKit_Definition: any) {//TODOv3: rename parameter
 		let itemList: any = {};
 		for (let propertyName in cMsgPaintKit_Definition) {
 			let paintKitDefinitionItem = cMsgPaintKit_Definition[propertyName];
@@ -221,7 +209,7 @@ export class WeaponManager {
 		return itemList;
 	}
 
-	refreshPaint(item: any) {
+	static refreshPaint(item: any) {
 		this.refreshItem(item);
 	}
 	/*
@@ -239,15 +227,15 @@ export class WeaponManager {
 			this.refreshPaint();
 		}*/
 
-	refreshItem(item: WeaponManagerItem, clearQueue = false) {
+	static refreshItem(item: WeaponManagerItem, clearQueue = false) {
 		if (clearQueue) {
 			this.#itemQueue = [];
 		}
 		this.#itemQueue.push(item);
-		this.processNextItemInQueue();
+		this.#processNextItemInQueue();
 	}
 
-	processNextItemInQueue() {
+	static #processNextItemInQueue() {
 		if (!this.currentItem && this.#itemQueue.length) {
 			this.currentItem = this.#itemQueue.shift();
 			let ci = this.currentItem!;
@@ -260,17 +248,17 @@ export class WeaponManager {
 				//this._textureCombiner.nodeImageEditor.setOutputTextureName(textureName);
 				promise.then((e) => {
 					this.currentItem = undefined;
-					this.processNextItemInQueue();
+					this.#processNextItemInQueue();
 
 				});
 				promise.catch((e) => {
 					console.error('Promise processNextItemInQueue KO');
 					this.currentItem = undefined;
-					this.processNextItemInQueue();
+					this.#processNextItemInQueue();
 				});
 			} else {
 				this.currentItem = undefined;
-				this.processNextItemInQueue();
+				this.#processNextItemInQueue();
 			}
 		}
 	}
