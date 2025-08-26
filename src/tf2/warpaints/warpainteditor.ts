@@ -13,7 +13,7 @@ export class WarpaintEditor {
 
 	init(container: HTMLElement | ShadowRoot) {
 		container.append(this.#nodeImageEditorGui.htmlElement);
-		this.#nodeImageEditorGui.setNodeImageEditor(new TextureCombiner().nodeImageEditor);
+		this.#nodeImageEditorGui.setNodeImageEditor(TextureCombiner.nodeImageEditor);
 	}
 
 	getGui(): NodeImageEditorGui {

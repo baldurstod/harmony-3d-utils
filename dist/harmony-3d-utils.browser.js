@@ -7675,89 +7675,6 @@ var index$3 = /*#__PURE__*/Object.freeze({
   vec4: vec4
 });
 
-/**
- * Map2 holds a key-key-value triplet using an underlying Map
- * Any value can be used as either keys or value
- */
-class Map2 {
-    #map = new Map();
-    clear() {
-        this.#map.clear();
-    }
-    delete(key1, key2) {
-        return this.#map.get(key1)?.delete(key2) ?? false;
-    }
-    forEach(callbackfn, thisArg) {
-        this.#map.forEach((value, key1) => {
-            value.forEach((value, key2) => callbackfn.call(thisArg, value, key1, key2, this));
-        });
-    }
-    get(key1, key2) {
-        return this.#map.get(key1)?.get(key2);
-    }
-    has(key1, key2) {
-        return this.#map.get(key1)?.has(key2) ?? false;
-    }
-    set(key1, key2, value) {
-        if (!this.#map.has(key1)) {
-            this.#map.set(key1, new Map());
-        }
-        this.#map.get(key1).set(key2, value);
-        return this;
-    }
-    get size() {
-        let size = 0;
-        for (const [_, m] of this.#map) {
-            size += m.size;
-        }
-        return size;
-    }
-    [Symbol.iterator] = () => {
-        const iterator1 = this.#map.entries();
-        let iterator2 = null;
-        let current1;
-        const next = () => {
-            if (iterator2 == null) {
-                current1 = iterator1.next();
-                if (current1.done) {
-                    return { done: true };
-                }
-                iterator2 = current1.value[1].entries();
-            }
-            let current2 = iterator2.next();
-            if (current2.done) {
-                iterator2 = null;
-                return next();
-            }
-            return { value: [current1.value[0], current2.value[0], current2.value[1]], done: false };
-        };
-        return {
-            next: next,
-            [Symbol.iterator]() {
-                return this;
-            },
-        };
-    };
-}
-
-function setTimeoutPromise(timeout, signal) {
-    return new Promise((resolve, reject) => {
-        const timeoutID = setTimeout(resolve, timeout);
-        if (signal) {
-            if (signal.aborted) {
-                clearTimeout(timeoutID);
-                reject('aborted');
-            }
-            else {
-                signal.addEventListener('abort', () => {
-                    clearTimeout(timeoutID);
-                    reject('aborted');
-                });
-            }
-        }
-    });
-}
-
 function rgbToHsl(r, g, b) {
     const max = Math.max(r, g, b), min = Math.min(r, g, b);
     let h = 0, s, l = (max + min) / 2;
@@ -7893,6 +7810,97 @@ let Color$1 = class Color {
         return 0.2126 * this.#rgba[0] + 0.7152 * this.#rgba[1] + 0.0722 * this.#rgba[2];
     }
 };
+
+/**
+ * Map2 holds a key-key-value triplet using an underlying Map
+ * Any value can be used as either keys or value
+ */
+class Map2 {
+    #map = new Map();
+    clear() {
+        this.#map.clear();
+    }
+    delete(key1, key2) {
+        return this.#map.get(key1)?.delete(key2) ?? false;
+    }
+    forEach(callbackfn, thisArg) {
+        this.#map.forEach((value, key1) => {
+            value.forEach((value, key2) => callbackfn.call(thisArg, value, key1, key2, this));
+        });
+    }
+    get(key1, key2) {
+        return this.#map.get(key1)?.get(key2);
+    }
+    has(key1, key2) {
+        return this.#map.get(key1)?.has(key2) ?? false;
+    }
+    set(key1, key2, value) {
+        if (!this.#map.has(key1)) {
+            this.#map.set(key1, new Map());
+        }
+        this.#map.get(key1).set(key2, value);
+        return this;
+    }
+    get size() {
+        let size = 0;
+        for (const [_, m] of this.#map) {
+            size += m.size;
+        }
+        return size;
+    }
+    [Symbol.iterator] = () => {
+        const iterator1 = this.#map.entries();
+        let iterator2 = null;
+        let current1;
+        const next = () => {
+            if (iterator2 == null) {
+                current1 = iterator1.next();
+                if (current1.done) {
+                    return { done: true };
+                }
+                iterator2 = current1.value[1].entries();
+            }
+            let current2 = iterator2.next();
+            if (current2.done) {
+                iterator2 = null;
+                return next();
+            }
+            return { value: [current1.value[0], current2.value[0], current2.value[1]], done: false };
+        };
+        return {
+            next: next,
+            [Symbol.iterator]() {
+                return this;
+            },
+        };
+    };
+}
+
+class Item {
+    data;
+    next = null;
+    constructor(data) {
+        this.data = data;
+    }
+}
+
+function setTimeoutPromise(timeout, signal) {
+    return new Promise((resolve, reject) => {
+        const timeoutID = setTimeout(resolve, timeout);
+        if (signal) {
+            if (signal.aborted) {
+                clearTimeout(timeoutID);
+                reject('aborted');
+            }
+            else {
+                signal.addEventListener('abort', () => {
+                    clearTimeout(timeoutID);
+                    reject('aborted');
+                });
+            }
+        }
+    });
+}
 
 const checkOutlineSVG = '<svg xmlns="http://www.w3.org/2000/svg"  height="24" viewBox="0 -960 960 960" width="24" fill="currentColor"><path d="m 381,-240 424,-424 -57,-56 -368,367 -169,-170 -57,57 z m 0,113 -339,-339 169,-170 170,170 366,-367 172,168 z"/><path fill="#ffffff" d="m 381,-240 424,-424 -57,-56 -368,367 -169,-170 -57,57 z m 366,-593 c -498,-84.66667 -249,-42.33333 0,0 z"/></svg>';
 
@@ -102356,298 +102364,6 @@ var index$1 = /*#__PURE__*/Object.freeze({
   vec3RandomBox: vec3RandomBox
 });
 
-class Range {
-    low;
-    high;
-    constructor(low = 0, high = 0) {
-        this.low = low;
-        this.high = high;
-    }
-}
-
-let blackTexture;
-class Stage {
-    static #textures = new Map();
-    texturePath = '';
-    specularTexturePath = '';
-    node;
-    #firstChild;
-    #nextSibling;
-    constructor(node) {
-        this.node = node;
-        if (!blackTexture) {
-            new Graphics().ready.then(() => {
-                blackTexture = TextureManager.createFlatTexture([0, 0, 0]);
-                blackTexture.addUser(1);
-            });
-        }
-    }
-    computeRandomValues(currentIndexObject, pRNGs, nRNGCount) {
-        if (this.computeRandomValuesThis(pRNGs[currentIndexObject.currentIndex])) {
-            currentIndexObject.currentIndex = (currentIndexObject.currentIndex + 1) % nRNGCount;
-        }
-        if (this.#firstChild) {
-            this.#firstChild.computeRandomValues(currentIndexObject, pRNGs, nRNGCount);
-        }
-        if (this.#nextSibling) {
-            this.#nextSibling.computeRandomValues(currentIndexObject, pRNGs, nRNGCount);
-        }
-    }
-    computeRandomValuesThis(s) {
-        throw 'subclass me';
-    }
-    set firstChild(stage) {
-        this.#firstChild = stage;
-    }
-    get firstChild() {
-        return this.#firstChild;
-    }
-    set nextSibling(stage) {
-        this.#nextSibling = stage;
-    }
-    get nextSibling() {
-        return this.#nextSibling;
-    }
-    appendChildren(children) {
-        for (let i = children.length - 1; i >= 0; --i) {
-            let childStage = children[i];
-            //console.error(childStage);
-            childStage.nextSibling = this.firstChild;
-            this.firstChild = childStage;
-        }
-    }
-    get displayName() {
-        return this.constructor.name;
-    }
-    toString(tabs = '') {
-        let ret = [];
-        let tabs1 = tabs + '\t';
-        ret.push(tabs + this.displayName);
-        if (this.#firstChild) {
-            ret.push(this.#firstChild.toString(tabs1));
-        }
-        if (this.#nextSibling) {
-            ret.push(this.#nextSibling.toString(tabs));
-        }
-        return ret.join('\n');
-    }
-    linkNodes() {
-        let node = this.node;
-        let inputs = node.inputs.keys();
-        let childStage = this.firstChild;
-        while (childStage) {
-            childStage.linkNodes();
-            let input = inputs.next().value;
-            let subNode = childStage.node;
-            node.setPredecessor(input, subNode, 'output');
-            childStage = childStage.nextSibling;
-        }
-    }
-    async _setupTextures() {
-        let texturePath = this.texturePath;
-        if (texturePath) {
-            this.node.inputTexture = await Stage.getTexture(texturePath);
-            this.node.setParam('path', texturePath);
-            this.node.invalidate();
-        }
-        let specularTexturePath = this.specularTexturePath;
-        if (specularTexturePath) {
-            try {
-                this.node.getInput('specular').value = await Stage.getSpecularTexture(texturePath);
-            }
-            catch (e) {
-                console.log(e);
-            }
-        }
-    }
-    async setupTextures() {
-        const promises = new Set();
-        promises.add(this._setupTextures());
-        let childStage = this.firstChild;
-        while (childStage) {
-            promises.add(childStage.setupTextures());
-            childStage = childStage.nextSibling;
-        }
-        await Promise.all(promises);
-    }
-    static async getTexture(texturePath, def) {
-        if (!Stage.#textures.has(texturePath)) {
-            const promise = Source1TextureManager.getTextureAsync('tf2', texturePath, 0, false, def, false);
-            promise.then(texture => {
-                if (texture) {
-                    texture.addUser(this);
-                }
-                else {
-                    Stage.#textures.delete(texturePath);
-                }
-            });
-            Stage.#textures.set(texturePath, promise);
-        }
-        return await Stage.#textures.get(texturePath);
-    }
-    static async getSpecularTexture(specularTexturePath) {
-        return this.getTexture(specularTexturePath, blackTexture);
-    }
-}
-
-class CombineStageParameters {
-    adjustBlack = new Range();
-    adjustOffset = new Range(1, 1);
-    adjustGamma = new Range(1, 1);
-}
-class CombineStage extends Stage {
-    combineMode;
-    parameters = new CombineStageParameters();
-    constructor(node, combineMode) {
-        super(node);
-        this.combineMode = combineMode;
-    }
-    computeRandomValuesThis(randomStream) {
-        let parameters = this.parameters;
-        let adjustBlack = randomStream.randomFloat(parameters.adjustBlack.low, parameters.adjustBlack.high);
-        let adjustOffset = randomStream.randomFloat(parameters.adjustOffset.low, parameters.adjustOffset.high);
-        let adjustGamma = randomStream.randomFloat(parameters.adjustGamma.low, parameters.adjustGamma.high);
-        let adjustWhite = adjustBlack + adjustOffset;
-        let node = this.node;
-        /*node.params.adjustBlack = adjustBlack;
-        node.params.adjustWhite = adjustWhite;
-        node.params.adjustGamma = adjustGamma;*/
-        node.setParam('adjust black', adjustBlack);
-        node.setParam('adjust white', adjustWhite);
-        node.setParam('adjust gamma', adjustGamma);
-        return true;
-    }
-    get displayName() {
-        return this.combineMode;
-    }
-}
-
-class TextureStageParameters {
-    adjustBlack = new Range();
-    adjustOffset = new Range(1, 1);
-    adjustGamma = new Range(1, 1);
-    rotation = new Range();
-    translateU = new Range();
-    translateV = new Range();
-    scaleUV = new Range(1, 1);
-    allowFlipU = false;
-    allowFlipV = false;
-    texturePath = '';
-}
-class TextureStage extends Stage {
-    texturePath = '';
-    parameters = new TextureStageParameters();
-    computeRandomValuesThis(randomStream) {
-        let parameters = this.parameters;
-        let shouldFlipU = parameters.allowFlipU ? randomStream.randomInt(0, 1) != 0 : false;
-        let shouldFlipV = parameters.allowFlipV ? randomStream.randomInt(0, 1) != 0 : false;
-        let translateU = randomStream.randomFloat(parameters.translateU.low, parameters.translateU.high);
-        let translateV = randomStream.randomFloat(parameters.translateV.low, parameters.translateV.high);
-        let rotation = randomStream.randomFloat(parameters.rotation.low, parameters.rotation.high);
-        let scaleUV = randomStream.randomFloat(parameters.scaleUV.low, parameters.scaleUV.high);
-        let adjustBlack = randomStream.randomFloat(parameters.adjustBlack.low, parameters.adjustBlack.high);
-        let adjustOffset = randomStream.randomFloat(parameters.adjustOffset.low, parameters.adjustOffset.high);
-        let adjustGamma = randomStream.randomFloat(parameters.adjustGamma.low, parameters.adjustGamma.high);
-        let adjustWhite = adjustBlack + adjustOffset;
-        let node = this.node;
-        node.setParam('adjust black', adjustBlack);
-        node.setParam('adjust white', adjustWhite);
-        node.setParam('adjust gamma', adjustGamma);
-        node.setParam('rotation', rotation * DEG_TO_RAD);
-        node.setParam('translate u', translateU);
-        node.setParam('translate v', translateV);
-        node.setParam('scale u', scaleUV * (shouldFlipU ? -1 : 1));
-        node.setParam('scale v', scaleUV * (shouldFlipV ? -1 : 1));
-        node.setParam('path', parameters.texturePath);
-        node.invalidate();
-        return true;
-    }
-}
-
-const TEXTURE_LOOKUP_NODE = 'texture lookup';
-class SelectStageParameters {
-}
-class SelectStage extends Stage {
-    nodeImageEditor;
-    parameters = new SelectStageParameters();
-    constructor(node, nodeImageEditor) {
-        super(node);
-        this.nodeImageEditor = nodeImageEditor;
-    }
-    computeRandomValuesThis(randomStream) {
-        return false;
-    }
-    async _setupTextures() {
-        let texturePath = this.texturePath;
-        if (texturePath) {
-            let lookupNode = this.nodeImageEditor.addNode(TEXTURE_LOOKUP_NODE);
-            this.node.setPredecessor('input', lookupNode, 'output');
-            lookupNode.inputTexture = await Stage.getTexture(texturePath);
-            lookupNode.texturePath = texturePath;
-            lookupNode.invalidate();
-        }
-    }
-}
-
-class ApplyStickerStageParameters {
-    possibleStickers = [];
-    adjustBlack = new Range();
-    adjustOffset = new Range(1, 1);
-    adjustGamma = new Range(1, 1);
-    bl = create();
-    tl = create();
-    tr = create();
-}
-class Sticker {
-    fileName = '';
-    weight = 1.0;
-}
-class ApplyStickerStage extends Stage {
-    parameters = new ApplyStickerStageParameters();
-    choice;
-    computeRandomValuesThis(randomStream) {
-        let parameters = this.parameters;
-        const computeWeight = (accumulator, currentValue) => accumulator + currentValue.weight;
-        let totalWeight = parameters.possibleStickers.reduce(computeWeight, 0);
-        //console.error(totalWeight);
-        let weight = randomStream.randomFloat(0.0, totalWeight);
-        for (let [i, possibleSticker] of parameters.possibleStickers.entries()) {
-            let thisWeight = possibleSticker.weight;
-            if (weight < thisWeight) {
-                this.choice = i;
-                this.texturePath = parameters.possibleStickers[i].fileName;
-                this.specularTexturePath = parameters.possibleStickers[i].fileName.replace(/\.vtf$/, '') + '_s';
-                break;
-            }
-            else {
-                weight -= thisWeight;
-            }
-        }
-        if (this.choice == undefined) {
-            throw 'error';
-        }
-        let adjustBlack = randomStream.randomFloat(parameters.adjustBlack.low, parameters.adjustBlack.high);
-        let adjustOffset = randomStream.randomFloat(parameters.adjustOffset.low, parameters.adjustOffset.high);
-        let adjustGamma = randomStream.randomFloat(parameters.adjustGamma.low, parameters.adjustGamma.high);
-        let adjustWhite = adjustBlack + adjustOffset;
-        let node = this.node;
-        /*node.params.adjustBlack = adjustBlack;
-        node.params.adjustWhite = adjustWhite;
-        node.params.adjustGamma = adjustGamma;*/
-        node.setParam('adjust black', adjustBlack);
-        node.setParam('adjust white', adjustWhite);
-        node.setParam('adjust gamma', adjustGamma);
-        node.setParam('bottom left', parameters.bl);
-        node.setParam('top left', parameters.tl);
-        node.setParam('top right', parameters.tr);
-        //vec2.copy(node.params.bl, parameters.bl);
-        //vec2.copy(node.params.tl, parameters.tl);
-        //vec2.copy(node.params.tr, parameters.tr);
-        node.invalidate();
-        return true;
-    }
-}
-
 const legacyPaintKits = new Map();
 function getLegacyPaintKit(id) {
     return legacyPaintKits.get(id) ?? id;
@@ -102778,49 +102494,324 @@ class UniformRandomStream {
     }
 }
 
+let blackTexture;
+class Stage {
+    static #textures = new Map();
+    texturePath = '';
+    specularTexturePath = '';
+    node;
+    #firstChild;
+    #nextSibling;
+    constructor(node) {
+        this.node = node;
+        if (!blackTexture) {
+            new Graphics().ready.then(() => {
+                blackTexture = TextureManager.createFlatTexture([0, 0, 0]);
+                blackTexture.addUser(1);
+            });
+        }
+    }
+    computeRandomValues(currentIndexObject, pRNGs, nRNGCount) {
+        if (this.computeRandomValuesThis(pRNGs[currentIndexObject.currentIndex])) {
+            currentIndexObject.currentIndex = (currentIndexObject.currentIndex + 1) % nRNGCount;
+        }
+        if (this.#firstChild) {
+            this.#firstChild.computeRandomValues(currentIndexObject, pRNGs, nRNGCount);
+        }
+        if (this.#nextSibling) {
+            this.#nextSibling.computeRandomValues(currentIndexObject, pRNGs, nRNGCount);
+        }
+    }
+    computeRandomValuesThis(s) {
+        throw 'subclass me';
+    }
+    set firstChild(stage) {
+        this.#firstChild = stage;
+    }
+    get firstChild() {
+        return this.#firstChild;
+    }
+    set nextSibling(stage) {
+        this.#nextSibling = stage;
+    }
+    get nextSibling() {
+        return this.#nextSibling;
+    }
+    appendChildren(children) {
+        for (let i = children.length - 1; i >= 0; --i) {
+            let childStage = children[i];
+            //console.error(childStage);
+            childStage.nextSibling = this.firstChild;
+            this.firstChild = childStage;
+        }
+    }
+    get displayName() {
+        return this.constructor.name;
+    }
+    toString(tabs = '') {
+        let ret = [];
+        let tabs1 = tabs + '\t';
+        ret.push(tabs + this.displayName);
+        if (this.#firstChild) {
+            ret.push(this.#firstChild.toString(tabs1));
+        }
+        if (this.#nextSibling) {
+            ret.push(this.#nextSibling.toString(tabs));
+        }
+        return ret.join('\n');
+    }
+    linkNodes() {
+        let node = this.node;
+        let inputs = node.inputs.keys();
+        let childStage = this.firstChild;
+        while (childStage) {
+            childStage.linkNodes();
+            let input = inputs.next().value;
+            let subNode = childStage.node;
+            node.setPredecessor(input, subNode, 'output');
+            childStage = childStage.nextSibling;
+        }
+    }
+    async _setupTextures() {
+        let texturePath = this.texturePath;
+        if (texturePath) {
+            this.node.inputTexture = await Stage.getTexture(texturePath);
+            this.node.setParam('path', texturePath);
+            this.node.invalidate();
+        }
+        let specularTexturePath = this.specularTexturePath;
+        if (specularTexturePath) {
+            try {
+                this.node.getInput('specular').value = await Stage.getSpecularTexture(texturePath);
+            }
+            catch (e) {
+                console.log(e);
+            }
+        }
+    }
+    async setupTextures() {
+        const promises = new Set();
+        promises.add(this._setupTextures());
+        let childStage = this.firstChild;
+        while (childStage) {
+            promises.add(childStage.setupTextures());
+            childStage = childStage.nextSibling;
+        }
+        await Promise.all(promises);
+    }
+    static async getTexture(texturePath, def) {
+        if (!Stage.#textures.has(texturePath)) {
+            const promise = Source1TextureManager.getTextureAsync('tf2', texturePath, 0, false, def, false);
+            promise.then(texture => {
+                if (texture) {
+                    texture.addUser(this);
+                }
+                else {
+                    Stage.#textures.delete(texturePath);
+                }
+            });
+            Stage.#textures.set(texturePath, promise);
+        }
+        return await Stage.#textures.get(texturePath);
+    }
+    static async getSpecularTexture(specularTexturePath) {
+        return this.getTexture(specularTexturePath, blackTexture);
+    }
+}
+
+class Range {
+    low;
+    high;
+    constructor(low = 0, high = 0) {
+        this.low = low;
+        this.high = high;
+    }
+}
+
+class ApplyStickerStageParameters {
+    possibleStickers = [];
+    adjustBlack = new Range();
+    adjustOffset = new Range(1, 1);
+    adjustGamma = new Range(1, 1);
+    bl = create();
+    tl = create();
+    tr = create();
+}
+class Sticker {
+    fileName = '';
+    weight = 1.0;
+}
+class ApplyStickerStage extends Stage {
+    parameters = new ApplyStickerStageParameters();
+    choice;
+    computeRandomValuesThis(randomStream) {
+        let parameters = this.parameters;
+        const computeWeight = (accumulator, currentValue) => accumulator + currentValue.weight;
+        let totalWeight = parameters.possibleStickers.reduce(computeWeight, 0);
+        //console.error(totalWeight);
+        let weight = randomStream.randomFloat(0.0, totalWeight);
+        for (let [i, possibleSticker] of parameters.possibleStickers.entries()) {
+            let thisWeight = possibleSticker.weight;
+            if (weight < thisWeight) {
+                this.choice = i;
+                this.texturePath = parameters.possibleStickers[i].fileName;
+                this.specularTexturePath = parameters.possibleStickers[i].fileName.replace(/\.vtf$/, '') + '_s';
+                break;
+            }
+            else {
+                weight -= thisWeight;
+            }
+        }
+        if (this.choice == undefined) {
+            throw 'error';
+        }
+        let adjustBlack = randomStream.randomFloat(parameters.adjustBlack.low, parameters.adjustBlack.high);
+        let adjustOffset = randomStream.randomFloat(parameters.adjustOffset.low, parameters.adjustOffset.high);
+        let adjustGamma = randomStream.randomFloat(parameters.adjustGamma.low, parameters.adjustGamma.high);
+        let adjustWhite = adjustBlack + adjustOffset;
+        let node = this.node;
+        /*node.params.adjustBlack = adjustBlack;
+        node.params.adjustWhite = adjustWhite;
+        node.params.adjustGamma = adjustGamma;*/
+        node.setParam('adjust black', adjustBlack);
+        node.setParam('adjust white', adjustWhite);
+        node.setParam('adjust gamma', adjustGamma);
+        node.setParam('bottom left', parameters.bl);
+        node.setParam('top left', parameters.tl);
+        node.setParam('top right', parameters.tr);
+        //vec2.copy(node.params.bl, parameters.bl);
+        //vec2.copy(node.params.tl, parameters.tl);
+        //vec2.copy(node.params.tr, parameters.tr);
+        node.invalidate();
+        return true;
+    }
+}
+
+class CombineStageParameters {
+    adjustBlack = new Range();
+    adjustOffset = new Range(1, 1);
+    adjustGamma = new Range(1, 1);
+}
+class CombineStage extends Stage {
+    combineMode;
+    parameters = new CombineStageParameters();
+    constructor(node, combineMode) {
+        super(node);
+        this.combineMode = combineMode;
+    }
+    computeRandomValuesThis(randomStream) {
+        let parameters = this.parameters;
+        let adjustBlack = randomStream.randomFloat(parameters.adjustBlack.low, parameters.adjustBlack.high);
+        let adjustOffset = randomStream.randomFloat(parameters.adjustOffset.low, parameters.adjustOffset.high);
+        let adjustGamma = randomStream.randomFloat(parameters.adjustGamma.low, parameters.adjustGamma.high);
+        let adjustWhite = adjustBlack + adjustOffset;
+        let node = this.node;
+        /*node.params.adjustBlack = adjustBlack;
+        node.params.adjustWhite = adjustWhite;
+        node.params.adjustGamma = adjustGamma;*/
+        node.setParam('adjust black', adjustBlack);
+        node.setParam('adjust white', adjustWhite);
+        node.setParam('adjust gamma', adjustGamma);
+        return true;
+    }
+    get displayName() {
+        return this.combineMode;
+    }
+}
+
+const TEXTURE_LOOKUP_NODE = 'texture lookup';
+class SelectStageParameters {
+}
+class SelectStage extends Stage {
+    nodeImageEditor;
+    parameters = new SelectStageParameters();
+    constructor(node, nodeImageEditor) {
+        super(node);
+        this.nodeImageEditor = nodeImageEditor;
+    }
+    computeRandomValuesThis(randomStream) {
+        return false;
+    }
+    async _setupTextures() {
+        let texturePath = this.texturePath;
+        if (texturePath) {
+            let lookupNode = this.nodeImageEditor.addNode(TEXTURE_LOOKUP_NODE);
+            this.node.setPredecessor('input', lookupNode, 'output');
+            lookupNode.inputTexture = await Stage.getTexture(texturePath);
+            lookupNode.texturePath = texturePath;
+            lookupNode.invalidate();
+        }
+    }
+}
+
+class TextureStageParameters {
+    adjustBlack = new Range();
+    adjustOffset = new Range(1, 1);
+    adjustGamma = new Range(1, 1);
+    rotation = new Range();
+    translateU = new Range();
+    translateV = new Range();
+    scaleUV = new Range(1, 1);
+    allowFlipU = false;
+    allowFlipV = false;
+    texturePath = '';
+}
+class TextureStage extends Stage {
+    texturePath = '';
+    parameters = new TextureStageParameters();
+    computeRandomValuesThis(randomStream) {
+        let parameters = this.parameters;
+        let shouldFlipU = parameters.allowFlipU ? randomStream.randomInt(0, 1) != 0 : false;
+        let shouldFlipV = parameters.allowFlipV ? randomStream.randomInt(0, 1) != 0 : false;
+        let translateU = randomStream.randomFloat(parameters.translateU.low, parameters.translateU.high);
+        let translateV = randomStream.randomFloat(parameters.translateV.low, parameters.translateV.high);
+        let rotation = randomStream.randomFloat(parameters.rotation.low, parameters.rotation.high);
+        let scaleUV = randomStream.randomFloat(parameters.scaleUV.low, parameters.scaleUV.high);
+        let adjustBlack = randomStream.randomFloat(parameters.adjustBlack.low, parameters.adjustBlack.high);
+        let adjustOffset = randomStream.randomFloat(parameters.adjustOffset.low, parameters.adjustOffset.high);
+        let adjustGamma = randomStream.randomFloat(parameters.adjustGamma.low, parameters.adjustGamma.high);
+        let adjustWhite = adjustBlack + adjustOffset;
+        let node = this.node;
+        node.setParam('adjust black', adjustBlack);
+        node.setParam('adjust white', adjustWhite);
+        node.setParam('adjust gamma', adjustGamma);
+        node.setParam('rotation', rotation * DEG_TO_RAD);
+        node.setParam('translate u', translateU);
+        node.setParam('translate v', translateV);
+        node.setParam('scale u', scaleUV * (shouldFlipU ? -1 : 1));
+        node.setParam('scale v', scaleUV * (shouldFlipV ? -1 : 1));
+        node.setParam('path', parameters.texturePath);
+        node.invalidate();
+        return true;
+    }
+}
+
 const texturePathPrefixRemoveMe = '../gamecontent/tf2/materials/'; //TODOv3 : put in constants
 const TextureCombinerEventTarget = new EventTarget();
 class TextureCombiner {
-    static #instance;
-    #textureSize = DEFAULT_TEXTURE_SIZE;
-    #team = 0;
-    paintIds = {};
-    imageExtension = '.vtf';
-    textureApplyStickerNode = 'apply_sticker';
-    pixelArray = null;
-    lookupNodes = new Map();
-    nodeImageEditor = new NodeImageEditor();
-    //static #nodeImageEditorGui?: NodeImageEditorGui;// = new NodeImageEditorGui(this.nodeImageEditor);
-    variables = {};
-    constructor() {
-        if (TextureCombiner.#instance) {
-            return TextureCombiner.#instance;
-        }
-        TextureCombiner.#instance = this;
-    }
-    /*
-        static initNodeImageEditorGui(): NodeImageEditorGui {
-            if (!this.#nodeImageEditorGui) {
-                this.#nodeImageEditorGui = new NodeImageEditorGui(this.nodeImageEditor);
-            }
-            return this.#nodeImageEditorGui;
-        }
-            */
-    setTextureSize(textureSize) {
+    static #textureSize = DEFAULT_TEXTURE_SIZE;
+    static #team = 0;
+    static paintIds = {}; // TODO: turn to map ?
+    static #imageExtension = '.vtf';
+    static #textureApplyStickerNode = 'apply_sticker';
+    static #lookupNodes = new Map();
+    static nodeImageEditor = new NodeImageEditor();
+    static variables = {};
+    static setTextureSize(textureSize) {
         this.#textureSize = textureSize;
         this.nodeImageEditor.textureSize = textureSize;
     }
-    set team(t) {
+    static setTeam(t) {
         this.#team = t;
     }
-    get team() {
+    static getTeam() {
         return this.#team;
     }
-    async _getDefindex(CMsgProtoDefID) {
+    static async _getDefindex(CMsgProtoDefID) {
         return PaintKitDefinitions.getDefinition(CMsgProtoDefID);
     }
-    async combinePaint(paintKitDefId, wearLevel, weaponDefIndex, outputTextureName, outputTexture, seed = 0n) {
-        this.lookupNodes = new Map();
+    static async combinePaint(paintKitDefId, wearLevel, weaponDefIndex, outputTextureName, outputTexture, seed = 0n) {
+        this.#lookupNodes = new Map();
         let combinePaintPromise = new Promise(async (resolve) => {
             if (paintKitDefId != undefined && wearLevel != undefined && weaponDefIndex != undefined) {
                 this.nodeImageEditor.removeAllNodes();
@@ -102930,7 +102921,7 @@ class TextureCombiner {
         });
         return combinePaintPromise;
     }
-    async #setupVariables(paintKitDefinition, wearLevel, item) {
+    static async #setupVariables(paintKitDefinition, wearLevel, item) {
         this.variables = {};
         if (item) {
             if (item.data) {
@@ -102952,7 +102943,7 @@ class TextureCombiner {
             this.#addVariables2(paintKitDefinition.header.variables);
         }
     }
-    #addVariables(variableArray) {
+    static #addVariables(variableArray) {
         if (variableArray) {
             for (let i = 0; i < variableArray.length; i++) {
                 let v = variableArray[i];
@@ -102960,7 +102951,7 @@ class TextureCombiner {
             }
         }
     }
-    #addVariables2(variableArray) {
+    static #addVariables2(variableArray) {
         if (variableArray) {
             for (let i = 0; i < variableArray.length; i++) {
                 let v = variableArray[i];
@@ -102970,7 +102961,7 @@ class TextureCombiner {
             }
         }
     }
-    async #processOperationNodeArray(operationNodeArray /*, parentStage: Stage*/) {
+    static async #processOperationNodeArray(operationNodeArray /*, parentStage: Stage*/) {
         let chidren = [];
         for (var i = 0; i < operationNodeArray.length; i++) {
             let child = await this.#processOperationNode(operationNodeArray[i] /*, parentStage*/);
@@ -102985,7 +102976,7 @@ class TextureCombiner {
         }
         return chidren;
     }
-    #getStageName(stage) {
+    static #getStageName(stage) {
         switch (true) {
             case stage.textureLookup != undefined:
             case stage.texture_lookup != undefined:
@@ -103008,7 +102999,7 @@ class TextureCombiner {
                 throw 'Unsuported stage';
         }
     }
-    async #processOperationNode(operationNode /*, parentStage: Stage/*, parentStage*/ /*, inputs*/) {
+    static async #processOperationNode(operationNode /*, parentStage: Stage/*, parentStage*/ /*, inputs*/) {
         let subStage = null;
         if (operationNode.stage) {
             let stage = operationNode.stage;
@@ -103076,7 +103067,7 @@ console.error('node or subnode is null', node, subNode);
 }*/
         return subStage;
     }
-    #processCombineStage(stage, combineMode) {
+    static #processCombineStage(stage, combineMode) {
         let node = this.nodeImageEditor.addNode(combineMode);
         let combineStage = new CombineStage(node, combineMode);
         return combineStage;
@@ -103117,7 +103108,7 @@ console.error('node or subnode is null', node, subNode);
             }* /
             return node;
         }*/
-    #processTextureStage(stage) {
+    static #processTextureStage(stage) {
         let node = null;
         var texture;
         if (this.#team == 0) {
@@ -103129,14 +103120,14 @@ console.error('node or subnode is null', node, subNode);
         let texturePath = this.#getVarField(texture);
         texturePath = texturePath.replace(/\.tga$/, '');
         if (texturePath) {
-            texturePathPrefixRemoveMe + texturePath + this.imageExtension;
+            texturePathPrefixRemoveMe + texturePath + this.#imageExtension;
             if (!node) {
                 node = this.nodeImageEditor.addNode(TEXTURE_LOOKUP_NODE);
                 node.setParam('path', texturePath);
             }
         }
         if (!node) {
-            return;
+            return null;
         }
         let textureStage = new TextureStage(node);
         textureStage.texturePath = texturePath;
@@ -103169,7 +103160,7 @@ console.error('node or subnode is null', node, subNode);
         }
         return textureStage;
     }
-    #processSelectStage(stage) {
+    static #processSelectStage(stage) {
         let selectParametersNode = this.nodeImageEditor.addNode('int array', { length: 16 });
         let selectNode = this.nodeImageEditor.addNode('select');
         let selectStage = new SelectStage(selectNode, this.nodeImageEditor);
@@ -103189,8 +103180,8 @@ console.error('node or subnode is null', node, subNode);
         selectNode.invalidate();
         return selectStage;
     }
-    #processApplyStickerStage(stage) {
-        let applyStickerNode = this.nodeImageEditor.addNode(this.textureApplyStickerNode);
+    static #processApplyStickerStage(stage) {
+        let applyStickerNode = this.nodeImageEditor.addNode(this.#textureApplyStickerNode);
         let applyStickerStage = new ApplyStickerStage(applyStickerNode);
         if (stage.adjustBlack ?? stage.adjust_black) {
             ParseRangeThenDivideBy(applyStickerStage.parameters.adjustBlack, this.#getVarField(stage.adjustBlack ?? stage.adjust_black));
@@ -103228,7 +103219,7 @@ console.error('node or subnode is null', node, subNode);
         applyStickerNode.invalidate();
         return applyStickerStage;
     }
-    #getVarField(field) {
+    static #getVarField(field) {
         if (!field) {
             return null;
         }
@@ -103292,7 +103283,7 @@ class WarpaintEditor {
     }
     init(container) {
         container.append(this.#nodeImageEditorGui.htmlElement);
-        this.#nodeImageEditorGui.setNodeImageEditor(new TextureCombiner().nodeImageEditor);
+        this.#nodeImageEditorGui.setNodeImageEditor(TextureCombiner.nodeImageEditor);
     }
     getGui() {
         return this.#nodeImageEditorGui;
@@ -103514,7 +103505,7 @@ class WeaponManager {
             let { name: textureName, texture } = Source1TextureManager.addInternalTexture(ci.sourceModel?.sourceModel.repository ?? '');
             texture.setAlphaBits(8);
             if (ci.paintKitId !== undefined) {
-                let promise = new TextureCombiner().combinePaint(ci.paintKitId, ci.paintKitWear, ci.id.replace(/\~\d+/, ''), textureName, texture.getFrame(0), ci.paintKitSeed);
+                let promise = TextureCombiner.combinePaint(ci.paintKitId, ci.paintKitWear, ci.id.replace(/\~\d+/, ''), textureName, texture.getFrame(0), ci.paintKitSeed);
                 ci.sourceModel?.setMaterialParam('WeaponSkin', textureName);
                 //this._textureCombiner.nodeImageEditor.setOutputTextureName(textureName);
                 promise.then((e) => {

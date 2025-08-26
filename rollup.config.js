@@ -31,6 +31,7 @@ export default [
 			'harmony-3d',
 			'harmony-tf2-utils',
 			'harmony-ui',
+			'harmony-utils',
 			'harmony-svg',
 			'gl-matrix',
 		],

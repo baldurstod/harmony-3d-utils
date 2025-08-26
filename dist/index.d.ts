@@ -55,19 +55,14 @@ export declare enum RepositoryDisplayMode {
 
 export declare class TextureCombiner {
     #private;
-    paintIds: {};
-    imageExtension: string;
-    textureApplyStickerNode: string;
-    pixelArray: null;
-    lookupNodes: Map<any, any>;
-    nodeImageEditor: NodeImageEditor;
-    variables: any;
-    constructor();
-    setTextureSize(textureSize: number): void;
-    set team(t: number);
-    get team(): number;
-    _getDefindex(CMsgProtoDefID: any): Promise<any>;
-    combinePaint(paintKitDefId: number, wearLevel: number, weaponDefIndex: string, outputTextureName: string, outputTexture: Texture, seed?: bigint): Promise<boolean>;
+    static paintIds: {};
+    static nodeImageEditor: NodeImageEditor;
+    static variables: any;
+    static setTextureSize(textureSize: number): void;
+    static setTeam(t: number): void;
+    static getTeam(): number;
+    static _getDefindex(CMsgProtoDefID: any): Promise<any>;
+    static combinePaint(paintKitDefId: number, wearLevel: number, weaponDefIndex: string, outputTextureName: string, outputTexture: Texture, seed?: bigint): Promise<boolean>;
 }
 
 export declare const TextureCombinerEventTarget: EventTarget;
