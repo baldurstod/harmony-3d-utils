@@ -1,6 +1,7 @@
 import { Graphics, TextureManager, Source1TextureManager, DEG_TO_RAD, DEFAULT_TEXTURE_SIZE, NodeImageEditor, NodeImageEditorGui, TimelineElementType } from 'harmony-3d';
 import { PaintKitDefinitions, getLegacyPaintKit, UniformRandomStream } from 'harmony-tf2-utils';
 import { vec2 } from 'gl-matrix';
+import { StaticEventTarget } from 'harmony-utils';
 import { shadowRootStyle, createElement, show, hide, I18n, cloneEvent } from 'harmony-ui';
 import { closeSVG } from 'harmony-svg';
 
@@ -800,40 +801,32 @@ class WarpaintEditor {
     }
 }
 
-const WeaponManagerEventTarget = new EventTarget();
-class WeaponManager {
-    static #instance;
-    #htmlWeaponsDiv;
-    #htmlPaintsDiv;
-    weapons = {};
-    collections = {};
-    weaponName = '';
-    paintkitName = '';
-    asyncRequestId = 0;
-    _protoElements = {};
-    protoDefs = null;
-    shouldRequestItems = true;
-    itemsDef = null;
-    itemsReady = false;
-    containerPerWeapon = {};
-    #itemQueue = [];
-    currentItem;
-    weaponId = 0;
-    constructor() {
-        if (WeaponManager.#instance) {
-            return WeaponManager.#instance;
-        }
-        WeaponManager.#instance = this;
-    }
-    async initPaintKitDefinitions(url) {
+class WeaponManager extends StaticEventTarget {
+    static #htmlWeaponsDiv;
+    static #htmlPaintsDiv;
+    static weapons = {};
+    static collections = {};
+    static weaponName = '';
+    static paintkitName = '';
+    static asyncRequestId = 0;
+    static #protoElements = {};
+    static protoDefs = null;
+    static shouldRequestItems = true;
+    static itemsDef = null;
+    static itemsReady = false;
+    static containerPerWeapon = {};
+    static #itemQueue = [];
+    static currentItem;
+    static weaponId = 0;
+    static async initPaintKitDefinitions(url) {
         let response = await fetch(url);
         this.protoDefs = await response.json();
         await this.refreshPaintKitDefinitions();
     }
-    async refreshPaintKitDefinitions() {
+    static async refreshPaintKitDefinitions() {
         let definitions = await PaintKitDefinitions.getWarpaintDefinitions();
         if (definitions) {
-            this._protoElements = definitions;
+            this.#protoElements = definitions;
             let paintKitDefinitions = definitions[9];
             for (let paintKitDefId in paintKitDefinitions) {
                 let definition = paintKitDefinitions[paintKitDefId];
@@ -842,7 +835,7 @@ class WeaponManager {
             }
         }
     }
-    initView(container) {
+    static initView(container) {
         this.#htmlWeaponsDiv = document.createElement('div');
         this.#htmlWeaponsDiv.className = 'weaponsDiv';
         this.#htmlPaintsDiv = document.createElement('div');
@@ -852,9 +845,9 @@ class WeaponManager {
             container.appendChild(this.#htmlPaintsDiv);
         }
     }
-    #addPaintKit(paintKit, descToken) {
-        let cMsgPaintKit_Definition = this._protoElements[9][paintKit.header.defindex];
-        let paintKitItemDefinitions = this._protoElements[8];
+    static #addPaintKit(paintKit, descToken) {
+        let cMsgPaintKit_Definition = this.#protoElements[9][paintKit.header.defindex];
+        let paintKitItemDefinitions = this.#protoElements[8];
         if (cMsgPaintKit_Definition) {
             let itemList = this.getItemList(cMsgPaintKit_Definition);
             for (let weaponName in itemList) {
@@ -866,7 +859,7 @@ class WeaponManager {
         }
         return;
     }
-    #addWeapon(paintKit, weaponPaint, weapon, defindex, itemDefinitionIndex, descToken) {
+    static #addWeapon(paintKit, weaponPaint, weapon, defindex, itemDefinitionIndex, descToken) {
         //let wep = this.itemsDef?.[itemDefinitionIndex] || this.itemsDef?.[itemDefinitionIndex + '~0'] ;
         let wep = { name: weapon };
         if (wep) {
@@ -899,7 +892,7 @@ class WeaponManager {
             weaponDiv.itemDefinitionIndex = itemDefinitionIndex;
             this.#htmlWeaponsDiv?.appendChild(weaponDiv);
             //this.#addPaintKit2(paintKit, subContainer, weapon, itemDefinitionIndex);
-            WeaponManagerEventTarget.dispatchEvent(new CustomEvent('addpaintkit', {
+            this.dispatchEvent(new CustomEvent('addpaintkit', {
                 detail: {
                     p1: itemDefinitionIndex,
                     p2: weaponPaint,
@@ -960,7 +953,7 @@ class WeaponManager {
             this.refreshPaint();
         }
     */
-    getItemList(cMsgPaintKit_Definition) {
+    static getItemList(cMsgPaintKit_Definition) {
         let itemList = {};
         for (let propertyName in cMsgPaintKit_Definition) {
             let paintKitDefinitionItem = cMsgPaintKit_Definition[propertyName];
@@ -984,7 +977,7 @@ class WeaponManager {
         }
         return itemList;
     }
-    refreshPaint(item) {
+    static refreshPaint(item) {
         this.refreshItem(item);
     }
     /*
@@ -1001,14 +994,14 @@ class WeaponManager {
             this.weapon = weapon;
             this.refreshPaint();
         }*/
-    refreshItem(item, clearQueue = false) {
+    static refreshItem(item, clearQueue = false) {
         if (clearQueue) {
             this.#itemQueue = [];
         }
         this.#itemQueue.push(item);
-        this.processNextItemInQueue();
+        this.#processNextItemInQueue();
     }
-    processNextItemInQueue() {
+    static #processNextItemInQueue() {
         if (!this.currentItem && this.#itemQueue.length) {
             this.currentItem = this.#itemQueue.shift();
             let ci = this.currentItem;
@@ -1020,17 +1013,17 @@ class WeaponManager {
                 //this._textureCombiner.nodeImageEditor.setOutputTextureName(textureName);
                 promise.then((e) => {
                     this.currentItem = undefined;
-                    this.processNextItemInQueue();
+                    this.#processNextItemInQueue();
                 });
                 promise.catch((e) => {
                     console.error('Promise processNextItemInQueue KO');
                     this.currentItem = undefined;
-                    this.processNextItemInQueue();
+                    this.#processNextItemInQueue();
                 });
             }
             else {
                 this.currentItem = undefined;
-                this.processNextItemInQueue();
+                this.#processNextItemInQueue();
             }
         }
     }
@@ -1581,4 +1574,4 @@ function defineRepository() {
     }
 }
 
-export { HTMLRepositoryElement, HTMLRepositoryEntryElement, HTMLTimelineElement, RepositoryDisplayMode, TextureCombiner, TextureCombinerEventTarget, WarpaintEditor, WeaponManager, WeaponManagerEventTarget, defineRepository, defineRepositoryEntry, defineTimelineElement };
+export { HTMLRepositoryElement, HTMLRepositoryEntryElement, HTMLTimelineElement, RepositoryDisplayMode, TextureCombiner, TextureCombinerEventTarget, WarpaintEditor, WeaponManager, defineRepository, defineRepositoryEntry, defineTimelineElement };

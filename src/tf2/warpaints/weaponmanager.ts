@@ -1,8 +1,7 @@
 import { Source1ModelInstance, Source1TextureManager } from 'harmony-3d';
 import { PaintKitDefinitions } from 'harmony-tf2-utils';
 import { TextureCombiner } from './texturecombiner';
-
-export const WeaponManagerEventTarget = new EventTarget();
+import { StaticEventTarget } from 'harmony-utils';
 
 const definitionsPerType = {
 	6: { s: 'CMsgVariableDefinition', d: null },
@@ -20,7 +19,7 @@ export interface WeaponManagerItem {
 	sourceModel?: Source1ModelInstance | null;
 }
 
-export class WeaponManager {
+export class WeaponManager extends StaticEventTarget {
 	static #htmlWeaponsDiv?: HTMLElement;
 	static #htmlPaintsDiv?: HTMLElement;
 	static weapons = {};
@@ -122,7 +121,7 @@ export class WeaponManager {
 			weaponDiv.itemDefinitionIndex = itemDefinitionIndex;
 			this.#htmlWeaponsDiv?.appendChild(weaponDiv);
 			//this.#addPaintKit2(paintKit, subContainer, weapon, itemDefinitionIndex);
-			WeaponManagerEventTarget.dispatchEvent(new CustomEvent('addpaintkit', {
+			this.dispatchEvent(new CustomEvent('addpaintkit', {
 				detail: {
 					p1: itemDefinitionIndex,
 					p2: weaponPaint,

@@ -5,6 +5,7 @@ import { Repository } from 'harmony-3d';
 import { RepositoryEntry } from 'harmony-3d';
 import { RepositoryFilter } from 'harmony-3d';
 import { Source1ModelInstance } from 'harmony-3d';
+import { StaticEventTarget } from 'harmony-utils';
 import { Texture } from 'harmony-3d';
 import { Timeline } from 'harmony-3d';
 
@@ -74,32 +75,27 @@ export declare class WarpaintEditor {
     getGui(): NodeImageEditorGui;
 }
 
-export declare class WeaponManager {
+export declare class WeaponManager extends StaticEventTarget {
     #private;
-    weapons: {};
-    collections: {};
-    weaponName: string;
-    paintkitName: string;
-    asyncRequestId: number;
-    _protoElements: any;
-    protoDefs: null;
-    shouldRequestItems: boolean;
-    itemsDef: null;
-    itemsReady: boolean;
-    containerPerWeapon: any;
-    currentItem?: WeaponManagerItem;
-    weaponId: number;
-    constructor();
-    initPaintKitDefinitions(url: string): Promise<void>;
-    refreshPaintKitDefinitions(): Promise<void>;
-    initView(container?: HTMLElement): void;
-    getItemList(cMsgPaintKit_Definition: any): any;
-    refreshPaint(item: any): void;
-    refreshItem(item: WeaponManagerItem, clearQueue?: boolean): void;
-    processNextItemInQueue(): void;
+    static weapons: {};
+    static collections: {};
+    static weaponName: string;
+    static paintkitName: string;
+    static asyncRequestId: number;
+    static protoDefs: null;
+    static shouldRequestItems: boolean;
+    static itemsDef: null;
+    static itemsReady: boolean;
+    static containerPerWeapon: any;
+    static currentItem?: WeaponManagerItem;
+    static weaponId: number;
+    static initPaintKitDefinitions(url: string): Promise<void>;
+    static refreshPaintKitDefinitions(): Promise<void>;
+    static initView(container?: HTMLElement): void;
+    static getItemList(cMsgPaintKit_Definition: any): any;
+    static refreshPaint(item: any): void;
+    static refreshItem(item: WeaponManagerItem, clearQueue?: boolean): void;
 }
-
-export declare const WeaponManagerEventTarget: EventTarget;
 
 declare interface WeaponManagerItem {
     id: string;

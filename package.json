@@ -1,6 +1,6 @@
 {
   "name": "harmony-3d-utils",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -11,6 +11,7 @@
     "harmony-svg": "github:baldurstod/harmony-svg",
     "harmony-tf2-utils": "github:baldurstod/harmony-tf2-utils",
     "harmony-ui": "github:baldurstod/harmony-ui",
+    "harmony-utils": "github:baldurstod/harmony-utils",
     "harmony-vpk": "github:baldurstod/harmony-vpk"
   },
   "devDependencies": {

@@ -7884,6 +7884,22 @@ class Item {
     }
 }
 
+/**
+ * Static version of MyEventTarget
+ */
+class StaticEventTarget {
+    static eventTarget = new EventTarget();
+    static addEventListener(type, callback, options) {
+        this.eventTarget.addEventListener(type, callback, options);
+    }
+    static dispatchEvent(event) {
+        return this.eventTarget.dispatchEvent(event);
+    }
+    static removeEventListener(type, callback, options) {
+        this.eventTarget.removeEventListener(type, callback, options);
+    }
+}
+
 function setTimeoutPromise(timeout, signal) {
     return new Promise((resolve, reject) => {
         const timeoutID = setTimeout(resolve, timeout);
@@ -9300,9 +9316,11 @@ class HTMLHarmonyAccordionElement extends HTMLElement {
         }*/
         if (this.#selected.has(htmlItem)) {
             this.#display(htmlItem, false);
+            htmlItem.dispatchEvent(new CustomEvent('collapsed'));
         }
         else {
             this.#display(htmlItem, true);
+            htmlItem.dispatchEvent(new CustomEvent('expanded'));
         }
     }
     #display(htmlItem, display) {
@@ -10110,10 +10128,13 @@ class HTMLHarmonyPaletteElement extends HTMLElement {
         this.#preSelected.clear();
     }
     #selectColor(hex, element, selected = false) {
-        if (this.#selected.has(hex) && selected !== true) {
-            this.#setSelected(this.#selected.get(hex), false);
-            this.#dispatchSelect(hex, false);
-            this.#selected.delete(hex);
+        const s = this.#selected.get(hex);
+        if (s && selected !== true) {
+            if (this.#multiple) {
+                this.#setSelected(s, false);
+                this.#dispatchSelect(hex, false);
+                this.#selected.delete(hex);
+            }
         }
         else {
             if (!this.#multiple) {
@@ -10124,8 +10145,10 @@ class HTMLHarmonyPaletteElement extends HTMLElement {
                 }
             }
             this.#dispatchSelect(hex, true);
-            this.#selected.set(hex, element);
-            this.#setSelected(element, true);
+            if (element) {
+                this.#selected.set(hex, element);
+                this.#setSelected(element, true);
+            }
         }
     }
     #setSelected(element, selected) {
@@ -10166,8 +10189,10 @@ class HTMLHarmonyPaletteElement extends HTMLElement {
         if (!c) {
             return;
         }
+        /*
         c.selected = false;
         c.tooltip = tooltip;
+        */
         this.#colors.set(c.h, c);
         return c;
     }
@@ -10915,9 +10940,9 @@ function defineHarmonyRadio() {
     }
 }
 
-var slideshowCSS = ":host {\n\toverflow: hidden;\n\tdisplay: flex;\n\talign-items: center;\n\tjustify-content: center;\n\tflex-direction: column;\n\tposition: relative;\n}\n\n.image {\n\tposition: relative;\n\tflex-shrink: 0;\n}\n\n.images {\n\toverflow: hidden;\n\tflex: 1;\n\twidth: 100%;\n}\n\n.images-outer {\n\toverflow: hidden;\n\tmargin: auto;\n}\n\n.images-inner {\n\tdisplay: flex;\n\tposition: relative;\n\twidth: 100%;\n\theight: 100%;\n}\n\n:host(.dynamic) .images-inner {\n\ttransition: all 0.5s ease 0s;\n}\n\n/* Controls */\n.controls {\n\tposition: absolute;\n\tz-index: 1000;\n\topacity: 0;\n\twidth: 100%;\n\theight: 100%;\n\tdisplay: none;\n}\n\n:host(.dynamic) .controls {\n\tdisplay: unset;\n}\n\n.controls>div {\n\tposition: absolute;\n\n\tbackground-size: 100%;\n\tbackground-repeat: no-repeat;\n\tbackground-position: center;\n\tpointer-events: all;\n\tcursor: pointer;\n}\n\n.previous-image,\n.next-image {\n\ttop: calc(50% - 24px);\n\twidth: 48px;\n\theight: 48px;\n\tbackground-image: url(\"data:image/svg+xml,%3C%3Fxml version='1.0'%3F%3E%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath style='fill:%23ffffff;stroke:%23000000;stroke-width:10;' d='M 360,100 300,30 30,256 300,482 360,412 175,256 Z'/%3E%3C/svg%3E%0A\");\n\n}\n\n.previous-image {\n\tleft: 10px;\n}\n\n.next-image {\n\tright: 10px;\n\ttransform: scaleX(-1);\n}\n\n.play,\n.pause {\n\tbottom: 10px;\n\tleft: 10px;\n\twidth: 25px;\n\theight: 25px;\n}\n\n.play {\n\tbackground-image: url(\"data:image/svg+xml,%3C%3Fxml version='1.0'%3F%3E%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath style='fill:%23ffffff;stroke:%23000000;stroke-width:40;' d='M20 20 L470 256 L20 492 Z'/%3E%3C/svg%3E%0A\");\n}\n\n.pause {\n\tright: 0px;\n\tbackground-image: url(\"data:image/svg+xml,%3C%3Fxml version='1.0'%3F%3E%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cg style='fill:%23ffffff;stroke:%23000000;stroke-width:30;'%3E%3Crect width='140' height='452' x='30' y='30' /%3E%3Crect width='140' height='452' x='342' y='30' /%3E%3C/g%3E%3C/svg%3E%0A\");\n}\n\n/* thumbnails */\n.thumbnails {\n\twidth: 100%;\n\t/*background-color: red;*/\n\tflex: 0;\n\tdisplay: flex;\n\tjustify-content: center;\n}\n\n:host(.dynamic) .thumbnails {\n\tdisplay: none;\n}\n\n.thumbnails>img {\n\tobject-fit: contain;\n\theight: 80px;\n\tcursor: pointer;\n\tmargin: 3px;\n}\n\n.zoom {\n\tposition: fixed;\n\tpointer-events: none;\n\t/*transform: scale(3);*/\n\twidth: 100%;\n\theight: 100%;\n}\n\n.zoom>img {\n\t/*transform: scale(3);*/\n\twidth: 100%;\n\tposition: relative;\n\twidth: 1500px;\n}\n";
-
 var slideshowZoomCSS = ":host {\n\tposition: fixed;\n\tpointer-events: none;\n\twidth: 100%;\n\theight: 100%;\n\tz-index: var(--harmony-slideshow-zoom-z-index, 1000000);\n\ttop: 0;\n\tleft: 0;\n\n}\n\nimg {\n\twidth: 100%;\n\tposition: relative;\n\twidth: 1500px;\n}\n";
+
+var slideshowCSS = ":host {\n\toverflow: hidden;\n\tdisplay: flex;\n\talign-items: center;\n\tjustify-content: center;\n\tflex-direction: column;\n\tposition: relative;\n}\n\n.image {\n\tposition: relative;\n\tflex-shrink: 0;\n}\n\n.images {\n\toverflow: hidden;\n\tflex: 1;\n\twidth: 100%;\n}\n\n.images-outer {\n\toverflow: hidden;\n\tmargin: auto;\n}\n\n.images-inner {\n\tdisplay: flex;\n\tposition: relative;\n\twidth: 100%;\n\theight: 100%;\n}\n\n:host(.dynamic) .images-inner {\n\ttransition: all 0.5s ease 0s;\n}\n\n/* Controls */\n.controls {\n\tposition: absolute;\n\tz-index: 1000;\n\topacity: 0;\n\twidth: 100%;\n\theight: 100%;\n\tdisplay: none;\n}\n\n:host(.dynamic) .controls {\n\tdisplay: unset;\n}\n\n.controls>div {\n\tposition: absolute;\n\n\tbackground-size: 100%;\n\tbackground-repeat: no-repeat;\n\tbackground-position: center;\n\tpointer-events: all;\n\tcursor: pointer;\n}\n\n.previous-image,\n.next-image {\n\ttop: calc(50% - 24px);\n\twidth: 48px;\n\theight: 48px;\n\tbackground-image: url(\"data:image/svg+xml,%3C%3Fxml version='1.0'%3F%3E%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath style='fill:%23ffffff;stroke:%23000000;stroke-width:10;' d='M 360,100 300,30 30,256 300,482 360,412 175,256 Z'/%3E%3C/svg%3E%0A\");\n\n}\n\n.previous-image {\n\tleft: 10px;\n}\n\n.next-image {\n\tright: 10px;\n\ttransform: scaleX(-1);\n}\n\n.play,\n.pause {\n\tbottom: 10px;\n\tleft: 10px;\n\twidth: 25px;\n\theight: 25px;\n}\n\n.play {\n\tbackground-image: url(\"data:image/svg+xml,%3C%3Fxml version='1.0'%3F%3E%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath style='fill:%23ffffff;stroke:%23000000;stroke-width:40;' d='M20 20 L470 256 L20 492 Z'/%3E%3C/svg%3E%0A\");\n}\n\n.pause {\n\tright: 0px;\n\tbackground-image: url(\"data:image/svg+xml,%3C%3Fxml version='1.0'%3F%3E%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cg style='fill:%23ffffff;stroke:%23000000;stroke-width:30;'%3E%3Crect width='140' height='452' x='30' y='30' /%3E%3Crect width='140' height='452' x='342' y='30' /%3E%3C/g%3E%3C/svg%3E%0A\");\n}\n\n/* thumbnails */\n.thumbnails {\n\twidth: 100%;\n\t/*background-color: red;*/\n\tflex: 0;\n\tdisplay: flex;\n\tjustify-content: center;\n}\n\n:host(.dynamic) .thumbnails {\n\tdisplay: none;\n}\n\n.thumbnails>img {\n\tobject-fit: contain;\n\theight: 80px;\n\tcursor: pointer;\n\tmargin: 3px;\n}\n\n.zoom {\n\tposition: fixed;\n\tpointer-events: none;\n\t/*transform: scale(3);*/\n\twidth: 100%;\n\theight: 100%;\n}\n\n.zoom>img {\n\t/*transform: scale(3);*/\n\twidth: 100%;\n\tposition: relative;\n\twidth: 1500px;\n}\n";
 
 const resizeCallback = (entries, observer) => {
     entries.forEach(entry => {
@@ -11845,10 +11870,14 @@ class HTMLHarmonyTabElement extends HTMLElement {
                 }),
             ],
             $click: () => this.#click(),
+            $contextmenu: (event) => this.#onContextMenu(event),
         });
     }
     get htmlHeader() {
         return this.#header;
+    }
+    getGroup() {
+        return this.#group;
     }
     connectedCallback() {
         const parentElement = this.parentElement;
@@ -11943,6 +11972,12 @@ class HTMLHarmonyTabElement extends HTMLElement {
             this.activate();
         }
     }
+    #onContextMenu(event) {
+        this.dispatchEvent(new CustomEvent('contextmenu', { detail: { tab: this, originalEvent: event } }));
+    }
+    scrollIntoView() {
+        this.#header.scrollIntoView();
+    }
     static get observedAttributes() {
         return ['data-i18n', 'data-text', 'disabled', 'data-closable'];
     }
@@ -11956,9 +11991,9 @@ function defineHarmonyTab() {
     }
 }
 
-var tabGroupCSS = ":host,\nharmony-tab-group {\n\twidth: 100%;\n\theight: 100%;\n\tdisplay: flex;\n\tflex-direction: column;\n\tposition: relative;\n\t/*overflow: hidden;*/\n}\n\n.harmony-tab-group-header {\n\tbackground-color: var(--main-bg-color-bright);\n\tdisplay: flex;\n\tflex-wrap: wrap;\n\t/*overflow: hidden;*/\n\twidth: 100%;\n}\n\n.harmony-tab-group-content {\n\tflex: 1;\n\tbackground-color: var(--main-bg-color-dark);\n\toverflow: auto;\n\twidth: 100%;\n}\n";
+var tabGroupCSS = ":host,\nharmony-tab-group {\n\twidth: 100%;\n\theight: 100%;\n\tdisplay: flex;\n\tflex-direction: column;\n\tposition: relative;\n}\n\n.harmony-tab-group-header {\n\tbackground-color: var(--main-bg-color-bright);\n\tdisplay: flex;\n\toverflow: auto hidden;\n\twidth: 100%;\n\tscrollbar-width: none;\n}\n\n.harmony-tab-group-content {\n\tflex: 1;\n\tbackground-color: var(--main-bg-color-dark);\n\toverflow: auto;\n\twidth: 100%;\n}\n";
 
-var tabCSS = "harmony-tab {\n\tdisplay: block;\n\theight: 100%;\n\toverflow: auto;\n}\n\nharmony-tab::first-letter {\n\ttext-transform: uppercase;\n}\n\n.tab {\n\tdisplay: inline-block;\n\tbackground-color: var(--main-bg-color-bright);\n\tpadding: 10px;\n\tborder: 1px solid black;\n\tborder-top: 0px;\n\tposition: relative;\n\tcolor: var(--main-text-color-dark2);\n\tcursor: pointer;\n\tuser-select: none;\n\tpointer-events: all;\n\tflex: 0 0;\n\ttext-align: center;\n\twhite-space: nowrap;\n\tdisplay: flex;\n\talign-items: center;\n}\n\n.label.activated {\n\tbackground-color: var(--main-bg-color-dark);\n\tborder-bottom: 1px solid var(--main-bg-color-dark);\n\tborder-left: 1px solid white;\n\tz-index: 2;\n}\n";
+var tabCSS = "harmony-tab {\n\tdisplay: block;\n\theight: 100%;\n\toverflow: auto;\n}\n\nharmony-tab::first-letter {\n\ttext-transform: uppercase;\n}\n\n.tab {\n\tdisplay: inline-block;\n\tbackground-color: var(--main-bg-color-bright);\n\tpadding: 10px;\n\tborder: 1px solid var(--harmony-ui-text-primary);\n\tborder-top: 0px;\n\tposition: relative;\n\tcolor: var(--harmony-ui-text-primary);\n\tcursor: pointer;\n\tuser-select: none;\n\tpointer-events: all;\n\tflex: 0 0;\n\ttext-align: center;\n\twhite-space: nowrap;\n\tdisplay: flex;\n\talign-items: center;\n}\n\n.label.activated {\n\tbackground-color: var(--main-bg-color-dark);\n\tborder-bottom: 1px solid var(--main-bg-color-dark);\n\tborder-left: 1px solid white;\n\tz-index: 2;\n}\n";
 
 class HTMLHarmonyTabGroupElement extends HTMLElement {
     #doOnce = true;
@@ -11972,6 +12007,7 @@ class HTMLHarmonyTabGroupElement extends HTMLElement {
         this.#shadowRoot = this.attachShadow({ mode: 'closed' });
         this.#header = createElement('div', {
             class: 'harmony-tab-group-header',
+            $wheel: (event) => this.#header.scrollLeft += event.deltaY,
         });
         this.#content = createElement('div', {
             class: 'harmony-tab-group-content',
@@ -11996,6 +12032,9 @@ class HTMLHarmonyTabGroupElement extends HTMLElement {
         }
         this.#refresh();
     }
+    getTabs() {
+        return new Set(this.#tabs);
+    }
     #refresh() {
         this.#header.replaceChildren();
         this.#content.replaceChildren();
@@ -12007,6 +12046,9 @@ class HTMLHarmonyTabGroupElement extends HTMLElement {
             }
         }
         this.#activeTab?.setActive(true);
+        setTimeout(() => {
+            this.#activeTab?.scrollIntoView();
+        }, 0);
     }
     /**
      * @deprecated use activateTab() instead
@@ -12027,6 +12069,11 @@ class HTMLHarmonyTabGroupElement extends HTMLElement {
             this.#activeTab = this.#tabs.values().next().value;
         }
         this.#refresh();
+    }
+    closeAllTabs() {
+        for (const tab of this.#tabs) {
+            tab.close();
+        }
     }
     clear() {
         this.#tabs.clear();
@@ -12139,22 +12186,28 @@ function defineHarmonyToggleButton() {
     }
 }
 
-var treeCSS = ":host {\n\t--child-margin: var(--harmony-tree-child-margin, 1rem);\n\t--header-bg-color: var(--harmony-tree-header-bg-color, var(--main-bg-color-dark, black));\n\t--selected-bg-color: var(--harmony-tree-selected-bg-color, var(--accent-primary, rgb(26, 172, 201)));\n\tcolor: var(--main-text-color-dark2, white);\n}\n\n.item {\n\twidth: 100%;\n}\n\n.header {\n\twidth: 100%;\n\theight: 1rem;\n\tbackground-color: var(--header-bg-color);\n\tcursor: pointer;\n\tdisplay: flex;\n\tgap: 0.2rem;\n\talign-items: center;\n}\n\n.childs {\n\tmargin-left: var(--child-margin);\n}\n\n.root>.header {\n\tdisplay: none;\n}\n\n.root>.childs {\n\tmargin-left: unset;\n}\n\n.actions{\n\tdisplay: flex;\n}\n\n.header.selected{\n\tbackground-color: var(--selected-bg-color);\n}\n";
+var treeCSS = ":host {\n\t--child-margin: var(--harmony-tree-child-margin, 1rem);\n\t--header-bg-color: var(--harmony-tree-header-bg-color, var(--main-bg-color-dark, black));\n\t--header-bg-color-hover: var(--harmony-tree-header-bg-color-hover, var(--main-bg-color-bright, #41454d));\n\t--selected-bg-color: var(--harmony-tree-selected-bg-color, var(--accent-primary, rgb(26, 172, 201)));\n\tcolor: var(--main-text-color-dark2, white);\n}\n\n.item {\n\twidth: 100%;\n}\n\n.header {\n\twidth: 100%;\n\theight: 1rem;\n\tbackground-color: var(--header-bg-color);\n\tcursor: pointer;\n\tdisplay: flex;\n\tgap: 0.2rem;\n\talign-items: center;\n}\n\n.header:hover{\n\tbackground-color: var(--header-bg-color-hover);\n}\n\n.title {\n\tflex: 1;\n}\n\n.childs {\n\tmargin-left: var(--child-margin);\n}\n\n.root>.header {\n\tdisplay: var(--harmony-tree-display-root, none);\n}\n\n.root>.childs {\n\tmargin-left: unset;\n}\n\n.actions {\n\tdisplay: flex;\n\tflex: 0;\n\tvisibility: hidden;\n}\n\n.header:hover>.actions {\n\tvisibility: visible;\n}\n\n.header.selected {\n\tbackground-color: var(--selected-bg-color);\n}\n";
 
+var TreeItemKind;
+(function (TreeItemKind) {
+    TreeItemKind["Root"] = "root";
+    TreeItemKind["Directory"] = "directory";
+    TreeItemKind["File"] = "file";
+    TreeItemKind["Item"] = "item";
+})(TreeItemKind || (TreeItemKind = {}));
 class TreeItem {
     name;
-    isRoot;
     icon;
-    type;
+    kind;
     parent;
     childs = new Set;
     actions = new Set();
     userData;
     constructor(name, options = {}) {
         this.name = name;
-        this.isRoot = options.isRoot;
+        //this.isRoot = options.isRoot;
         this.icon = options.icon;
-        this.type = options.type ?? '';
+        this.kind = options.kind ?? TreeItemKind.File;
         this.parent = options.parent;
         this.userData = options.userData;
         if (options.parent) {
@@ -12185,8 +12238,7 @@ class TreeItem {
                 path = parentPath + separator;
             }
         }
-        path += this.name;
-        return path;
+        return path + this.name;
     }
     getLevel() {
         if (this.parent) {
@@ -12213,9 +12265,9 @@ class TreeItem {
                 this.tree = tree;
             }
         }
-        const root = new TreeItem('', { userData: options.userData, type: 'root' });
+        const root = new TreeItem(options.rootName ?? '', { userData: options.rootUserData ?? options.userData, kind: TreeItemKind.Root });
         const top = new element(root);
-        for (const path of paths) {
+        for (const [path, perElementUserData] of paths.entries()) {
             const segments = path.split(options.pathSeparator ?? '/');
             let current = top;
             let parent = root;
@@ -12224,12 +12276,12 @@ class TreeItem {
                 if (s == '') {
                     continue;
                 }
-                let type = 'directory';
+                let kind = TreeItemKind.Directory;
                 if (i == l - 1) {
-                    type = 'file';
+                    kind = TreeItemKind.File;
                 }
                 if (!current.childs.has(s)) {
-                    current.childs.set(s, new element(new TreeItem(s, { parent: parent, type: type, userData: options.userData })));
+                    current.childs.set(s, new element(new TreeItem(s, { parent: parent, kind: kind, userData: perElementUserData != path ? perElementUserData : options.userData })));
                 }
                 parent = current.childs.get(s).tree;
                 current = current.childs.get(s);
@@ -12245,14 +12297,14 @@ class TreeItem {
             if (!this.name.toLowerCase().includes(filter.name.toLowerCase())) {
                 return false;
             }
-            if (this.type != 'file') {
+            if (this.kind != TreeItemKind.File) {
                 return false;
             }
         }
-        if (filter.types) {
+        if (filter.kinds) {
             let match = false;
-            for (const tf of filter.types) {
-                if (tf === this.type) {
+            for (const tf of filter.kinds) {
+                if (tf === this.kind) {
                     match = true;
                     break;
                 }
@@ -12261,8 +12313,8 @@ class TreeItem {
                 return false;
             }
         }
-        if (filter.type !== undefined) {
-            if (filter.type !== this.type) {
+        if (filter.kind !== undefined) {
+            if (filter.kind !== this.kind) {
                 return false;
             }
         }
@@ -12299,12 +12351,19 @@ class HTMLHarmonyTreeElement extends HTMLHarmonyElement {
     #items = new Map<TreeItem, HTMLElement>();
     */
     #itemElements = new Map();
+    #elementItem = new Map();
     #selectedItem = null;
+    #rootLevel;
+    #sticky = new Set();
+    #dynamicSheet = new CSSStyleSheet();
+    #cssLevel = new Set();
     createElement() {
         this.#shadowRoot = this.attachShadow({ mode: 'closed' });
         shadowRootStyle(this.#shadowRoot, treeCSS);
+        this.#shadowRoot.adoptedStyleSheets.push(this.#dynamicSheet);
         I18n.observeElement(this.#shadowRoot);
         this.#refresh();
+        this.addEventListener('scroll', () => this.#handleScroll());
     }
     adoptStyle(css) {
         this.initElement();
@@ -12328,9 +12387,6 @@ class HTMLHarmonyTreeElement extends HTMLHarmonyElement {
     }
     setRoot(root) {
         this.#root = root;
-        if (this.#root) {
-            this.#root.isRoot = true;
-        }
         this.#refresh();
     }
     #buildContextMenu(contextMenu, x, y) {
@@ -12360,16 +12416,20 @@ class HTMLHarmonyTreeElement extends HTMLHarmonyElement {
             parent.append(element);
         }
         else {
-            let childs;
+            const itemLevel = item.getLevel();
             let header;
             let actions;
+            this.#addCssLevel(itemLevel);
             element = createElement('div', {
-                class: `item level${item.getLevel()}`,
+                class: `item level${itemLevel}`,
                 parent: parent,
                 childs: [
                     header = createElement('div', {
                         class: 'header',
                         childs: [
+                            createElement('div', {
+                                class: 'padding',
+                            }),
                             createElement('div', {
                                 class: 'title',
                                 innerText: item.name,
@@ -12390,51 +12450,73 @@ class HTMLHarmonyTreeElement extends HTMLHarmonyElement {
                         },
                         $contextmenu: (event) => this.#contextMenuHandler(event, item),
                     }),
-                    childs = createElement('div', {
-                        class: 'childs',
-                    }),
                 ]
             });
-            this.#itemElements.set(item, { element: element, header: header, childs: childs, actions: actions });
+            this.#itemElements.set(item, { element: element, header: header, actions: actions });
+            this.#elementItem.set(element, item);
         }
-        if (item.isRoot && item.name == '') {
+        if (item.kind == TreeItemKind.Root && item.name == '') {
             element.classList.add('root');
         }
-        if (item.type) {
-            element.classList.add(`type-${item.type}`);
+        if (item.kind) {
+            element.classList.add(`type-${item.kind}`);
         }
         if (createExpanded || this.#isExpanded.get(item)) {
             this.expandItem(item);
         }
-        this.#refreshActions(item);
+        this.refreshActions(item);
         return element;
     }
     expandItem(item) {
         if (item.parent) {
             this.expandItem(item.parent);
         }
-        const childs = this.#itemElements.get(item)?.childs;
-        if (!childs || this.#isExpanded.get(item) === true) {
+        const element = this.#itemElements.get(item)?.element;
+        if (this.#isExpanded.get(item)) {
             return;
         }
         this.#isExpanded.set(item, true);
-        show(childs);
         if (!this.#isInitialized.has(item)) {
+            const childs = [];
             for (const child of item.childs) {
-                this.#createItem(child, childs, false);
+                childs.push(this.#createItem(child, this.#shadowRoot, false));
             }
             this.#isInitialized.add(item);
+            element?.after(...childs);
+        }
+        else {
+            for (const child of item.childs) {
+                this.showItem(child);
+            }
         }
     }
     collapseItem(item) {
-        const childs = this.#itemElements.get(item)?.childs;
-        if (!childs) {
-            return;
-        }
         this.#isExpanded.set(item, false);
-        hide(childs);
+        for (const child of item.childs) {
+            this.hideItem(child);
+        }
     }
-    selectItem(item) {
+    showItem(item) {
+        const element = this.#itemElements.get(item);
+        if (element) {
+            show(element.element);
+        }
+        if (this.#isExpanded.get(item)) {
+            for (const child of item.childs) {
+                this.showItem(child);
+            }
+        }
+    }
+    hideItem(item) {
+        const element = this.#itemElements.get(item);
+        if (element) {
+            hide(element.element);
+        }
+        for (const child of item.childs) {
+            this.hideItem(child);
+        }
+    }
+    selectItem(item, scrollIntoView = true) {
         if (item == this.#selectedItem) {
             return;
         }
@@ -12445,13 +12527,20 @@ class HTMLHarmonyTreeElement extends HTMLHarmonyElement {
             if (item.parent) {
                 this.expandItem(item.parent);
             }
-            this.#itemElements.get(item)?.header?.classList.add('selected');
+            const itemElement = this.#itemElements.get(item)?.header;
+            itemElement?.classList.add('selected');
+            if (scrollIntoView) {
+                setTimeout(() => {
+                    itemElement?.scrollIntoView();
+                }, 0);
+            }
         }
         this.#selectedItem = item;
     }
-    addAction(name, img) {
+    addAction(name, img, tooltip) {
         const action = {
             name: name,
+            tooltip: tooltip,
         };
         if (typeof img == 'string') {
             action.innerHTML = img;
@@ -12461,7 +12550,7 @@ class HTMLHarmonyTreeElement extends HTMLHarmonyElement {
         }
         this.#actions.set(name, action);
     }
-    #refreshActions(item) {
+    refreshActions(item) {
         const htmlActions = this.#itemElements.get(item)?.actions;
         htmlActions?.replaceChildren();
         for (const actionName of item.actions) {
@@ -12471,6 +12560,9 @@ class HTMLHarmonyTreeElement extends HTMLHarmonyElement {
                     child: action.element,
                     innerHTML: action.innerHTML,
                     parent: htmlActions,
+                    i18n: {
+                        title: action.tooltip,
+                    },
                     $click: (event) => this.#actionHandler(event, item, actionName),
                 });
             }
@@ -12512,6 +12604,55 @@ class HTMLHarmonyTreeElement extends HTMLHarmonyElement {
     }
     static get observedAttributes() {
         return ['data-root'];
+    }
+    #handleScroll() {
+        let stickyHeight = 0;
+        for (const sticky of this.#sticky) {
+            const rect = sticky.getBoundingClientRect();
+            stickyHeight += rect.height;
+        }
+        console.info(stickyHeight, this.#sticky);
+        const rect = this.getBoundingClientRect();
+        const elements = this.#shadowRoot.elementsFromPoint(rect.x + 1, rect.y + stickyHeight + 1);
+        if (!elements) {
+            return;
+        }
+        for (const element of elements) {
+            let treeItem = this.#elementItem.get(element);
+            if (!treeItem) {
+                continue;
+            }
+            treeItem = treeItem.parent;
+            if (!treeItem) {
+                continue;
+            }
+            this.#setSticky(treeItem);
+            break;
+        }
+    }
+    #addCssLevel(level) {
+        if (level == 0) {
+            return;
+        }
+        if (!this.#cssLevel.has(level)) {
+            this.#cssLevel.add(level);
+            this.#dynamicSheet.insertRule(`.level${level} .padding{width: ${level}rem}`);
+        }
+    }
+    #setSticky(item) {
+        for (const treeItemElement of this.#sticky) {
+            treeItemElement.style.cssText = '';
+        }
+        this.#sticky.clear();
+        let current = item;
+        while (current) {
+            const treeItemElement = this.#itemElements.get(current);
+            if (treeItemElement) {
+                this.#sticky.add(treeItemElement.element);
+                treeItemElement.element.style.cssText = `position:sticky;top:${current.getLevel()}rem;`;
+            }
+            current = current.parent;
+        }
     }
 }
 let definedTree = false;
@@ -12560,6 +12701,7 @@ var index$2 = /*#__PURE__*/Object.freeze({
   get ManipulatorSide () { return ManipulatorSide; },
   get ManipulatorUpdatedEventType () { return ManipulatorUpdatedEventType; },
   TreeItem: TreeItem,
+  get TreeItemKind () { return TreeItemKind; },
   cloneEvent: cloneEvent,
   createElement: createElement,
   createElementNS: createElementNS,
@@ -103290,40 +103432,32 @@ class WarpaintEditor {
     }
 }
 
-const WeaponManagerEventTarget = new EventTarget();
-class WeaponManager {
-    static #instance;
-    #htmlWeaponsDiv;
-    #htmlPaintsDiv;
-    weapons = {};
-    collections = {};
-    weaponName = '';
-    paintkitName = '';
-    asyncRequestId = 0;
-    _protoElements = {};
-    protoDefs = null;
-    shouldRequestItems = true;
-    itemsDef = null;
-    itemsReady = false;
-    containerPerWeapon = {};
-    #itemQueue = [];
-    currentItem;
-    weaponId = 0;
-    constructor() {
-        if (WeaponManager.#instance) {
-            return WeaponManager.#instance;
-        }
-        WeaponManager.#instance = this;
-    }
-    async initPaintKitDefinitions(url) {
+class WeaponManager extends StaticEventTarget {
+    static #htmlWeaponsDiv;
+    static #htmlPaintsDiv;
+    static weapons = {};
+    static collections = {};
+    static weaponName = '';
+    static paintkitName = '';
+    static asyncRequestId = 0;
+    static #protoElements = {};
+    static protoDefs = null;
+    static shouldRequestItems = true;
+    static itemsDef = null;
+    static itemsReady = false;
+    static containerPerWeapon = {};
+    static #itemQueue = [];
+    static currentItem;
+    static weaponId = 0;
+    static async initPaintKitDefinitions(url) {
         let response = await fetch(url);
         this.protoDefs = await response.json();
         await this.refreshPaintKitDefinitions();
     }
-    async refreshPaintKitDefinitions() {
+    static async refreshPaintKitDefinitions() {
         let definitions = await PaintKitDefinitions.getWarpaintDefinitions();
         if (definitions) {
-            this._protoElements = definitions;
+            this.#protoElements = definitions;
             let paintKitDefinitions = definitions[9];
             for (let paintKitDefId in paintKitDefinitions) {
                 let definition = paintKitDefinitions[paintKitDefId];
@@ -103332,7 +103466,7 @@ class WeaponManager {
             }
         }
     }
-    initView(container) {
+    static initView(container) {
         this.#htmlWeaponsDiv = document.createElement('div');
         this.#htmlWeaponsDiv.className = 'weaponsDiv';
         this.#htmlPaintsDiv = document.createElement('div');
@@ -103342,9 +103476,9 @@ class WeaponManager {
             container.appendChild(this.#htmlPaintsDiv);
         }
     }
-    #addPaintKit(paintKit, descToken) {
-        let cMsgPaintKit_Definition = this._protoElements[9][paintKit.header.defindex];
-        let paintKitItemDefinitions = this._protoElements[8];
+    static #addPaintKit(paintKit, descToken) {
+        let cMsgPaintKit_Definition = this.#protoElements[9][paintKit.header.defindex];
+        let paintKitItemDefinitions = this.#protoElements[8];
         if (cMsgPaintKit_Definition) {
             let itemList = this.getItemList(cMsgPaintKit_Definition);
             for (let weaponName in itemList) {
@@ -103356,7 +103490,7 @@ class WeaponManager {
         }
         return;
     }
-    #addWeapon(paintKit, weaponPaint, weapon, defindex, itemDefinitionIndex, descToken) {
+    static #addWeapon(paintKit, weaponPaint, weapon, defindex, itemDefinitionIndex, descToken) {
         //let wep = this.itemsDef?.[itemDefinitionIndex] || this.itemsDef?.[itemDefinitionIndex + '~0'] ;
         let wep = { name: weapon };
         if (wep) {
@@ -103389,7 +103523,7 @@ class WeaponManager {
             weaponDiv.itemDefinitionIndex = itemDefinitionIndex;
             this.#htmlWeaponsDiv?.appendChild(weaponDiv);
             //this.#addPaintKit2(paintKit, subContainer, weapon, itemDefinitionIndex);
-            WeaponManagerEventTarget.dispatchEvent(new CustomEvent('addpaintkit', {
+            this.dispatchEvent(new CustomEvent('addpaintkit', {
                 detail: {
                     p1: itemDefinitionIndex,
                     p2: weaponPaint,
@@ -103450,7 +103584,7 @@ class WeaponManager {
             this.refreshPaint();
         }
     */
-    getItemList(cMsgPaintKit_Definition) {
+    static getItemList(cMsgPaintKit_Definition) {
         let itemList = {};
         for (let propertyName in cMsgPaintKit_Definition) {
             let paintKitDefinitionItem = cMsgPaintKit_Definition[propertyName];
@@ -103474,7 +103608,7 @@ class WeaponManager {
         }
         return itemList;
     }
-    refreshPaint(item) {
+    static refreshPaint(item) {
         this.refreshItem(item);
     }
     /*
@@ -103491,14 +103625,14 @@ class WeaponManager {
             this.weapon = weapon;
             this.refreshPaint();
         }*/
-    refreshItem(item, clearQueue = false) {
+    static refreshItem(item, clearQueue = false) {
         if (clearQueue) {
             this.#itemQueue = [];
         }
         this.#itemQueue.push(item);
-        this.processNextItemInQueue();
+        this.#processNextItemInQueue();
     }
-    processNextItemInQueue() {
+    static #processNextItemInQueue() {
         if (!this.currentItem && this.#itemQueue.length) {
             this.currentItem = this.#itemQueue.shift();
             let ci = this.currentItem;
@@ -103510,17 +103644,17 @@ class WeaponManager {
                 //this._textureCombiner.nodeImageEditor.setOutputTextureName(textureName);
                 promise.then((e) => {
                     this.currentItem = undefined;
-                    this.processNextItemInQueue();
+                    this.#processNextItemInQueue();
                 });
                 promise.catch((e) => {
                     console.error('Promise processNextItemInQueue KO');
                     this.currentItem = undefined;
-                    this.processNextItemInQueue();
+                    this.#processNextItemInQueue();
                 });
             }
             else {
                 this.currentItem = undefined;
-                this.processNextItemInQueue();
+                this.#processNextItemInQueue();
             }
         }
     }
@@ -104071,4 +104205,4 @@ function defineRepository() {
     }
 }
 
-export { index$3 as GlMatrix, HTMLRepositoryElement, HTMLRepositoryEntryElement, HTMLTimelineElement, index$1 as Harmony3D, index$2 as HarmonyUi, RepositoryDisplayMode, TextureCombiner, TextureCombinerEventTarget, WarpaintEditor, WeaponManager, WeaponManagerEventTarget, defineRepository, defineRepositoryEntry, defineTimelineElement };
+export { index$3 as GlMatrix, HTMLRepositoryElement, HTMLRepositoryEntryElement, HTMLTimelineElement, index$1 as Harmony3D, index$2 as HarmonyUi, RepositoryDisplayMode, TextureCombiner, TextureCombinerEventTarget, WarpaintEditor, WeaponManager, defineRepository, defineRepositoryEntry, defineTimelineElement };
