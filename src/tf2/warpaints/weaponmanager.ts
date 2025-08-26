@@ -19,6 +19,20 @@ export interface WeaponManagerItem {
 	sourceModel?: Source1ModelInstance | null;
 }
 
+export enum WeaponManagerEvents {
+	AddPaintKit = 'addpaintkit',
+	Started = 'started',
+	Success = 'success',
+	Failure = 'failure',
+}
+
+export type AddPaintKitEvent = {
+	p1: number,
+	p2: number,
+	p3: string,
+	p4: string,
+}
+
 export class WeaponManager extends StaticEventTarget {
 	static #htmlWeaponsDiv?: HTMLElement;
 	static #htmlPaintsDiv?: HTMLElement;
@@ -121,7 +135,7 @@ export class WeaponManager extends StaticEventTarget {
 			weaponDiv.itemDefinitionIndex = itemDefinitionIndex;
 			this.#htmlWeaponsDiv?.appendChild(weaponDiv);
 			//this.#addPaintKit2(paintKit, subContainer, weapon, itemDefinitionIndex);
-			this.dispatchEvent(new CustomEvent('addpaintkit', {
+			this.dispatchEvent(new CustomEvent<AddPaintKitEvent>(WeaponManagerEvents.AddPaintKit, {
 				detail: {
 					p1: itemDefinitionIndex,
 					p2: weaponPaint,
@@ -242,15 +256,18 @@ export class WeaponManager extends StaticEventTarget {
 			let { name: textureName, texture } = Source1TextureManager.addInternalTexture(ci.sourceModel?.sourceModel.repository ?? '');
 			texture.setAlphaBits(8);
 			if (ci.paintKitId !== undefined) {
+				this.dispatchEvent(new CustomEvent<WeaponManagerItem>(WeaponManagerEvents.Started, { detail: ci }));
 				let promise = TextureCombiner.combinePaint(ci.paintKitId, ci.paintKitWear, ci.id.replace(/\~\d+/, ''), textureName, texture.getFrame(0), ci.paintKitSeed);
 				ci.sourceModel?.setMaterialParam('WeaponSkin', textureName);
 				//this._textureCombiner.nodeImageEditor.setOutputTextureName(textureName);
 				promise.then((e) => {
+					this.dispatchEvent(new CustomEvent<WeaponManagerItem>(WeaponManagerEvents.Success, { detail: ci }));
 					this.currentItem = undefined;
 					this.#processNextItemInQueue();
 
 				});
 				promise.catch((e) => {
+					this.dispatchEvent(new CustomEvent<WeaponManagerItem>(WeaponManagerEvents.Failure, { detail: ci }));
 					console.error('Promise processNextItemInQueue KO');
 					this.currentItem = undefined;
 					this.#processNextItemInQueue();

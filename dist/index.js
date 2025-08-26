@@ -801,6 +801,13 @@ class WarpaintEditor {
     }
 }
 
+var WeaponManagerEvents;
+(function (WeaponManagerEvents) {
+    WeaponManagerEvents["AddPaintKit"] = "addpaintkit";
+    WeaponManagerEvents["Started"] = "started";
+    WeaponManagerEvents["Success"] = "success";
+    WeaponManagerEvents["Failure"] = "failure";
+})(WeaponManagerEvents || (WeaponManagerEvents = {}));
 class WeaponManager extends StaticEventTarget {
     static #htmlWeaponsDiv;
     static #htmlPaintsDiv;
@@ -892,7 +899,7 @@ class WeaponManager extends StaticEventTarget {
             weaponDiv.itemDefinitionIndex = itemDefinitionIndex;
             this.#htmlWeaponsDiv?.appendChild(weaponDiv);
             //this.#addPaintKit2(paintKit, subContainer, weapon, itemDefinitionIndex);
-            this.dispatchEvent(new CustomEvent('addpaintkit', {
+            this.dispatchEvent(new CustomEvent(WeaponManagerEvents.AddPaintKit, {
                 detail: {
                     p1: itemDefinitionIndex,
                     p2: weaponPaint,
@@ -1008,14 +1015,17 @@ class WeaponManager extends StaticEventTarget {
             let { name: textureName, texture } = Source1TextureManager.addInternalTexture(ci.sourceModel?.sourceModel.repository ?? '');
             texture.setAlphaBits(8);
             if (ci.paintKitId !== undefined) {
+                this.dispatchEvent(new CustomEvent(WeaponManagerEvents.Started, { detail: ci }));
                 let promise = TextureCombiner.combinePaint(ci.paintKitId, ci.paintKitWear, ci.id.replace(/\~\d+/, ''), textureName, texture.getFrame(0), ci.paintKitSeed);
                 ci.sourceModel?.setMaterialParam('WeaponSkin', textureName);
                 //this._textureCombiner.nodeImageEditor.setOutputTextureName(textureName);
                 promise.then((e) => {
+                    this.dispatchEvent(new CustomEvent(WeaponManagerEvents.Success, { detail: ci }));
                     this.currentItem = undefined;
                     this.#processNextItemInQueue();
                 });
                 promise.catch((e) => {
+                    this.dispatchEvent(new CustomEvent(WeaponManagerEvents.Failure, { detail: ci }));
                     console.error('Promise processNextItemInQueue KO');
                     this.currentItem = undefined;
                     this.#processNextItemInQueue();
