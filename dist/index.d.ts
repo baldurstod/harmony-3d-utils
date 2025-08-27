@@ -9,6 +9,13 @@ import { StaticEventTarget } from 'harmony-utils';
 import { Texture } from 'harmony-3d';
 import { Timeline } from 'harmony-3d';
 
+export declare type AddPaintKitEvent = {
+    p1: number;
+    p2: number;
+    p3: string;
+    p4: string;
+};
+
 export declare function defineRepository(): void;
 
 export declare function defineRepositoryEntry(): void;
@@ -97,7 +104,14 @@ export declare class WeaponManager extends StaticEventTarget {
     static refreshItem(item: WeaponManagerItem, clearQueue?: boolean): void;
 }
 
-declare interface WeaponManagerItem {
+export declare enum WeaponManagerEvents {
+    AddPaintKit = "addpaintkit",
+    Started = "started",
+    Success = "success",
+    Failure = "failure"
+}
+
+export declare interface WeaponManagerItem {
     id: string;
     paintKitId?: number;
     paintKitWear: number;

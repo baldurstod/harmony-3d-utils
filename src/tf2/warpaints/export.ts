@@ -1,3 +1,3 @@
 export * from './texturecombiner';
 export { WarpaintEditor } from './warpainteditor';
-export { WeaponManager } from './weaponmanager';
+export * from './weaponmanager';

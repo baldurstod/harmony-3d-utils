@@ -104215,4 +104215,4 @@ function defineRepository() {
     }
 }
 
-export { index$3 as GlMatrix, HTMLRepositoryElement, HTMLRepositoryEntryElement, HTMLTimelineElement, index$1 as Harmony3D, index$2 as HarmonyUi, RepositoryDisplayMode, TextureCombiner, TextureCombinerEventTarget, WarpaintEditor, WeaponManager, defineRepository, defineRepositoryEntry, defineTimelineElement };
+export { index$3 as GlMatrix, HTMLRepositoryElement, HTMLRepositoryEntryElement, HTMLTimelineElement, index$1 as Harmony3D, index$2 as HarmonyUi, RepositoryDisplayMode, TextureCombiner, TextureCombinerEventTarget, WarpaintEditor, WeaponManager, WeaponManagerEvents, defineRepository, defineRepositoryEntry, defineTimelineElement };
