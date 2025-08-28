@@ -118,7 +118,7 @@ export class WeaponManager extends StaticEventTarget {
 
 				let label = document.createElement('label');
 				label.htmlFor = 'weapon-' + this.weaponId;
-				label.innerHTML = wep.name;
+				label.innerText = wep.name;
 
 				let subContainer = document.createElement('div');
 				subContainer.className = 'paintsDiv';
