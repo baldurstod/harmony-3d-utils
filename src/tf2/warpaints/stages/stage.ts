@@ -14,7 +14,7 @@ export class Stage {
 	constructor(node: Node) {
 		this.node = node;
 		if (!blackTexture) {
-			new Graphics().ready.then(() => {
+			Graphics.ready.then(() => {
 				blackTexture = TextureManager.createFlatTexture([0, 0, 0])
 				blackTexture.addUser(1);
 			});
