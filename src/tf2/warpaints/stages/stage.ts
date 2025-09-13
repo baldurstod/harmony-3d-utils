@@ -1,4 +1,4 @@
-import { ApplySticker, Graphics, Node, Source1TextureManager, Texture, TextureLookup, TextureManager } from 'harmony-3d';
+import { ApplySticker, Color, Graphics, Node, Source1TextureManager, Texture, TextureLookup, TextureManager } from 'harmony-3d';
 import { UniformRandomStream } from 'harmony-tf2-utils';
 
 let blackTexture: Texture;
@@ -15,7 +15,7 @@ export class Stage {
 		this.node = node;
 		if (!blackTexture) {
 			Graphics.ready.then(() => {
-				blackTexture = TextureManager.createFlatTexture([0, 0, 0])
+				blackTexture = TextureManager.createFlatTexture(new Color(0, 0, 0))
 				blackTexture.addUser(1);
 			});
 		}
@@ -88,7 +88,9 @@ export class Stage {
 			childStage.linkNodes();
 			let input = inputs.next().value;
 			let subNode = childStage.node;
-			node.setPredecessor(input, subNode, 'output');
+			if (input) {
+				node.setPredecessor(input, subNode, 'output');
+			}
 			childStage = childStage.nextSibling;
 		}
 	}
@@ -103,7 +105,10 @@ export class Stage {
 		let specularTexturePath = this.specularTexturePath;
 		if (specularTexturePath) {
 			try {
-				this.node.getInput('specular').value = await Stage.getSpecularTexture(texturePath);
+				const specular = this.node.getInput('specular');
+				if (specular) {
+					specular.value = await Stage.getSpecularTexture(texturePath);
+				}
 			} catch (e) {
 				console.log(e);
 			}

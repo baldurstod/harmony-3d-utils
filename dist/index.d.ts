@@ -89,9 +89,9 @@ export declare class WeaponManager extends StaticEventTarget {
     static weaponName: string;
     static paintkitName: string;
     static asyncRequestId: number;
-    static protoDefs: null;
+    static protoDefs: any;
     static shouldRequestItems: boolean;
-    static itemsDef: null;
+    static itemsDef: any;
     static itemsReady: boolean;
     static containerPerWeapon: any;
     static currentItem?: WeaponManagerItem;

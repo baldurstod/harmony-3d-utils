@@ -1,4 +1,4 @@
-import { Graphics, TextureManager, Source1TextureManager, DEG_TO_RAD, DEFAULT_TEXTURE_SIZE, NodeImageEditor, NodeImageEditorGui, TimelineElementType } from 'harmony-3d';
+import { Graphics, TextureManager, Color, Source1TextureManager, DEG_TO_RAD, DEFAULT_TEXTURE_SIZE, NodeImageEditor, NodeImageEditorGui, TimelineElementType } from 'harmony-3d';
 import { PaintKitDefinitions, getLegacyPaintKit, UniformRandomStream } from 'harmony-tf2-utils';
 import { vec2 } from 'gl-matrix';
 import { StaticEventTarget } from 'harmony-utils';
@@ -17,7 +17,7 @@ class Stage {
         this.node = node;
         if (!blackTexture) {
             Graphics.ready.then(() => {
-                blackTexture = TextureManager.createFlatTexture([0, 0, 0]);
+                blackTexture = TextureManager.createFlatTexture(new Color(0, 0, 0));
                 blackTexture.addUser(1);
             });
         }
@@ -79,7 +79,9 @@ class Stage {
             childStage.linkNodes();
             let input = inputs.next().value;
             let subNode = childStage.node;
-            node.setPredecessor(input, subNode, 'output');
+            if (input) {
+                node.setPredecessor(input, subNode, 'output');
+            }
             childStage = childStage.nextSibling;
         }
     }
@@ -93,7 +95,10 @@ class Stage {
         let specularTexturePath = this.specularTexturePath;
         if (specularTexturePath) {
             try {
-                this.node.getInput('specular').value = await Stage.getSpecularTexture(texturePath);
+                const specular = this.node.getInput('specular');
+                if (specular) {
+                    specular.value = await Stage.getSpecularTexture(texturePath);
+                }
             }
             catch (e) {
                 console.log(e);
