@@ -1362,7 +1362,7 @@ function defineTimelineElement() {
     }
 }
 
-var repositoryEntryCSS = ":host {\n\t--harmony-2d-manipulator-shadow-hover-bg-color: var(--harmony-2d-manipulator-hover-bg-color, red);\n\tuser-select: none;\n}\n\n.header {\n\tdisplay: flex;\n}\n\n.header:hover {\n\tbackground-color: var(--harmony-2d-manipulator-shadow-hover-bg-color);\n}\n\n.self {\n\tflex: 1;\n}\n\n.custom {\n\tdisplay: block;\n\tflex: 0;\n}\n";
+var repositoryEntryCSS = ":host {\n\t--hover-bg-color: var(--harmony3d-repository-hover-bg-color, red);\n\tuser-select: none;\n}\n\n.header {\n\tdisplay: flex;\n}\n\n.header:hover {\n\tbackground-color: var(--hover-bg-color);\n}\n\n.self {\n\tflex: 1;\n}\n\n.custom {\n\tdisplay: block;\n\tflex: 0;\n}\n";
 
 class HTMLRepositoryEntryElement extends HTMLElement {
     #shadowRoot;
