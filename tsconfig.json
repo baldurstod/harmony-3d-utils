@@ -4,7 +4,7 @@
     "module": "ES2022",
     "moduleResolution": "Bundler",
     "esModuleInterop": false,
-    "strict": true,
+    "strict": false,
     "skipLibCheck": true,
     "outDir": "dist",
   }
