@@ -77,9 +77,8 @@ export declare const TextureCombinerEventTarget: EventTarget;
 
 export declare class WarpaintEditor {
     #private;
-    constructor();
-    init(container: HTMLElement | ShadowRoot): void;
-    getGui(): NodeImageEditorGui;
+    static init(container: HTMLElement | ShadowRoot): void;
+    static getGui(): NodeImageEditorGui;
 }
 
 export declare class WeaponManager extends StaticEventTarget {

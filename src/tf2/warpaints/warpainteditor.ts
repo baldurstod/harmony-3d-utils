@@ -2,21 +2,14 @@ import { NodeImageEditorGui } from 'harmony-3d';
 import { TextureCombiner } from './texturecombiner';
 
 export class WarpaintEditor {
-	static #instance: WarpaintEditor;
-	#nodeImageEditorGui: NodeImageEditorGui = new NodeImageEditorGui();
-	constructor() {
-		if (WarpaintEditor.#instance) {
-			return WarpaintEditor.#instance;
-		}
-		WarpaintEditor.#instance = this;
-	}
+	static #nodeImageEditorGui: NodeImageEditorGui = new NodeImageEditorGui();
 
-	init(container: HTMLElement | ShadowRoot) {
+	static init(container: HTMLElement | ShadowRoot) {
 		container.append(this.#nodeImageEditorGui.htmlElement);
 		this.#nodeImageEditorGui.setNodeImageEditor(TextureCombiner.nodeImageEditor);
 	}
 
-	getGui(): NodeImageEditorGui {
+	static getGui(): NodeImageEditorGui {
 		return this.#nodeImageEditorGui;
 	}
 }

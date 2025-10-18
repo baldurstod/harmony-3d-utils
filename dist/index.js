@@ -789,19 +789,12 @@ function ParseRangeThenDivideBy(output, input, div = 255) {
 }
 
 class WarpaintEditor {
-    static #instance;
-    #nodeImageEditorGui = new NodeImageEditorGui();
-    constructor() {
-        if (WarpaintEditor.#instance) {
-            return WarpaintEditor.#instance;
-        }
-        WarpaintEditor.#instance = this;
-    }
-    init(container) {
+    static #nodeImageEditorGui = new NodeImageEditorGui();
+    static init(container) {
         container.append(this.#nodeImageEditorGui.htmlElement);
         this.#nodeImageEditorGui.setNodeImageEditor(TextureCombiner.nodeImageEditor);
     }
-    getGui() {
+    static getGui() {
         return this.#nodeImageEditorGui;
     }
 }
