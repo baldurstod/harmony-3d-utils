@@ -17,7 +17,7 @@ export interface WeaponManagerItem {
 	paintKitWear: number;
 	paintKitSeed: bigint;
 	model: Source1ModelInstance | null;
-	userData: any;
+	userData?: any;
 }
 
 export enum WeaponManagerEvents {
