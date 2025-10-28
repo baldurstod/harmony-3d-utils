@@ -1,7 +1,7 @@
 import { Source1ModelInstance, Source1TextureManager } from 'harmony-3d';
 import { PaintKitDefinitions } from 'harmony-tf2-utils';
-import { TextureCombiner } from './texturecombiner';
 import { StaticEventTarget } from 'harmony-utils';
+import { TextureCombiner } from './texturecombiner';
 
 const definitionsPerType = {
 	6: { s: 'CMsgVariableDefinition', d: null },
@@ -13,11 +13,11 @@ const definitionsPerType = {
 
 export interface WeaponManagerItem {
 	id: string;
-	paintKitId?: number;
+	paintKitId: number;
 	paintKitWear: number;
 	paintKitSeed: bigint;
-	sourceModel?: Source1ModelInstance | null;
-	userData?: any;
+	model: Source1ModelInstance | null;
+	userData: any;
 }
 
 export enum WeaponManagerEvents {
@@ -254,12 +254,12 @@ export class WeaponManager extends StaticEventTarget {
 			this.currentItem = this.#itemQueue.shift();
 			let ci = this.currentItem!;
 
-			let { name: textureName, texture } = Source1TextureManager.addInternalTexture(ci.sourceModel?.sourceModel.repository ?? '');
+			let { name: textureName, texture } = Source1TextureManager.addInternalTexture(ci.model?.sourceModel.repository ?? '');
 			texture.setAlphaBits(8);
 			if (ci.paintKitId !== undefined) {
 				this.dispatchEvent(new CustomEvent<WeaponManagerItem>(WeaponManagerEvents.Started, { detail: ci }));
 				let promise = TextureCombiner.combinePaint(ci.paintKitId, ci.paintKitWear, ci.id.replace(/\~\d+/, ''), textureName, texture.getFrame(0)!, ci.paintKitSeed);
-				ci.sourceModel?.setMaterialParam('WeaponSkin', textureName);
+				ci.model?.setMaterialParam('WeaponSkin', textureName);
 				//this._textureCombiner.nodeImageEditor.setOutputTextureName(textureName);
 				promise.then((e) => {
 					this.dispatchEvent(new CustomEvent<WeaponManagerItem>(WeaponManagerEvents.Success, { detail: ci }));

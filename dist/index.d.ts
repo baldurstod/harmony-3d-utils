@@ -112,11 +112,11 @@ export declare enum WeaponManagerEvents {
 
 export declare interface WeaponManagerItem {
     id: string;
-    paintKitId?: number;
+    paintKitId: number;
     paintKitWear: number;
     paintKitSeed: bigint;
-    sourceModel?: Source1ModelInstance | null;
-    userData?: any;
+    model: Source1ModelInstance | null;
+    userData: any;
 }
 
 export { }

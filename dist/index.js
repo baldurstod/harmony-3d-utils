@@ -1010,12 +1010,12 @@ class WeaponManager extends StaticEventTarget {
         if (!this.currentItem && this.#itemQueue.length) {
             this.currentItem = this.#itemQueue.shift();
             let ci = this.currentItem;
-            let { name: textureName, texture } = Source1TextureManager.addInternalTexture(ci.sourceModel?.sourceModel.repository ?? '');
+            let { name: textureName, texture } = Source1TextureManager.addInternalTexture(ci.model?.sourceModel.repository ?? '');
             texture.setAlphaBits(8);
             if (ci.paintKitId !== undefined) {
                 this.dispatchEvent(new CustomEvent(WeaponManagerEvents.Started, { detail: ci }));
                 let promise = TextureCombiner.combinePaint(ci.paintKitId, ci.paintKitWear, ci.id.replace(/\~\d+/, ''), textureName, texture.getFrame(0), ci.paintKitSeed);
-                ci.sourceModel?.setMaterialParam('WeaponSkin', textureName);
+                ci.model?.setMaterialParam('WeaponSkin', textureName);
                 //this._textureCombiner.nodeImageEditor.setOutputTextureName(textureName);
                 promise.then((e) => {
                     this.dispatchEvent(new CustomEvent(WeaponManagerEvents.Success, { detail: ci }));
