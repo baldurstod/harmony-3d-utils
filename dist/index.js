@@ -306,7 +306,6 @@ const texturePathPrefixRemoveMe = '../gamecontent/tf2/materials/'; //TODOv3 : pu
 const TextureCombinerEventTarget = new EventTarget();
 class TextureCombiner {
     static #textureSize = DEFAULT_TEXTURE_SIZE;
-    static #team = 0;
     static paintIds = {}; // TODO: turn to map ?
     static #imageExtension = '.vtf';
     static #textureApplyStickerNode = 'apply_sticker';
@@ -317,16 +316,10 @@ class TextureCombiner {
         this.#textureSize = textureSize;
         this.nodeImageEditor.textureSize = textureSize;
     }
-    static setTeam(t) {
-        this.#team = t;
-    }
-    static getTeam() {
-        return this.#team;
-    }
     static async _getDefindex(CMsgProtoDefID) {
         return PaintKitDefinitions.getDefinition(CMsgProtoDefID);
     }
-    static async combinePaint(paintKitDefId, wearLevel, weaponDefIndex, outputTextureName, outputTexture, seed = 0n) {
+    static async combinePaint(paintKitDefId, wearLevel, weaponDefIndex, outputTextureName, outputTexture, team, seed = 0n) {
         this.#lookupNodes = new Map();
         let combinePaintPromise = new Promise(async (resolve) => {
             if (paintKitDefId != undefined && wearLevel != undefined && weaponDefIndex != undefined) {
@@ -372,7 +365,7 @@ class TextureCombiner {
                             //console.error(operationTemplate);//removeme
                             if (operationTemplate && (operationTemplate.operationNode ?? operationTemplate.operation_node)) {
                                 await this.#setupVariables(paintKitDefinition, wearLevel, item);
-                                let stage = await this.#processOperationNode((operationTemplate.operationNode ?? operationTemplate.operation_node)[0]); //top level node has 1 operation
+                                let stage = await this.#processOperationNode((operationTemplate.operationNode ?? operationTemplate.operation_node)[0], { team }); //top level node has 1 operation
                                 //console.error(stage.toString());
                                 stage.linkNodes();
                                 function GetSeed(seed) {
@@ -477,10 +470,10 @@ class TextureCombiner {
             }
         }
     }
-    static async #processOperationNodeArray(operationNodeArray /*, parentStage: Stage*/) {
+    static async #processOperationNodeArray(operationNodeArray, context /*, parentStage: Stage*/) {
         let chidren = [];
         for (var i = 0; i < operationNodeArray.length; i++) {
-            let child = await this.#processOperationNode(operationNodeArray[i] /*, parentStage*/);
+            let child = await this.#processOperationNode(operationNodeArray[i], context /*, parentStage*/);
             if (child instanceof Array) {
                 chidren.push(...child);
             }
@@ -515,7 +508,7 @@ class TextureCombiner {
                 throw 'Unsuported stage';
         }
     }
-    static async #processOperationNode(operationNode /*, parentStage: Stage/*, parentStage*/ /*, inputs*/) {
+    static async #processOperationNode(operationNode, context /*, parentStage: Stage/*, parentStage*/ /*, inputs*/) {
         let subStage = null;
         if (operationNode.stage) {
             let stage = operationNode.stage;
@@ -525,7 +518,7 @@ class TextureCombiner {
                 case stage.textureLookup != undefined:
                 case stage.texture_lookup != undefined:
                     s = stage.textureLookup ?? stage.texture_lookup;
-                    subStage = this.#processTextureStage(s);
+                    subStage = this.#processTextureStage(s, context);
                     stage2 = s;
                     break;
                 case stage.combineAdd != undefined:
@@ -553,7 +546,7 @@ class TextureCombiner {
                     throw 'Unsuported stage';
             }
             if (stage2.operationNode ?? stage2.operation_node) {
-                let chidren = await this.#processOperationNodeArray(stage2.operationNode ?? stage2.operation_node /*, subStage/*, node*/);
+                let chidren = await this.#processOperationNodeArray(stage2.operationNode ?? stage2.operation_node, context /*, subStage/*, node*/);
                 if (subStage) {
                     subStage.appendChildren(chidren);
                 }
@@ -563,7 +556,7 @@ class TextureCombiner {
             let template = await this._getDefindex(operationNode.operationTemplate ?? operationNode.operation_template);
             if (template && (template.operationNode ?? template.operation_node)) {
                 //console.error('template.operationNode', template.operationNode.length, template.operationNode);
-                let chidren = await this.#processOperationNodeArray(template.operationNode ?? template.operation_node /*, parentStage/*, node, inputs*/);
+                let chidren = await this.#processOperationNodeArray(template.operationNode ?? template.operation_node, context /*, parentStage/*, node, inputs*/);
                 return chidren;
             }
             else {
@@ -624,10 +617,10 @@ console.error('node or subnode is null', node, subNode);
             }* /
             return node;
         }*/
-    static #processTextureStage(stage) {
+    static #processTextureStage(stage, context) {
         let node = null;
         var texture;
-        if (this.#team == 0) {
+        if (context.team == 0) {
             texture = (stage.textureRed ?? stage.texture_red) || stage.texture;
         }
         else {
@@ -1014,7 +1007,7 @@ class WeaponManager extends StaticEventTarget {
             texture.setAlphaBits(8);
             if (ci.paintKitId !== undefined) {
                 this.dispatchEvent(new CustomEvent(WeaponManagerEvents.Started, { detail: ci }));
-                let promise = TextureCombiner.combinePaint(ci.paintKitId, ci.paintKitWear, ci.id.replace(/\~\d+/, ''), textureName, texture.getFrame(0), ci.paintKitSeed);
+                let promise = TextureCombiner.combinePaint(ci.paintKitId, ci.paintKitWear, ci.id.replace(/\~\d+/, ''), textureName, texture.getFrame(0), ci.team, ci.paintKitSeed);
                 ci.model?.setMaterialParam('WeaponSkin', textureName);
                 //this._textureCombiner.nodeImageEditor.setOutputTextureName(textureName);
                 promise.then((e) => {

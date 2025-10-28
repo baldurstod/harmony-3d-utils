@@ -67,10 +67,8 @@ export declare class TextureCombiner {
     static nodeImageEditor: NodeImageEditor;
     static variables: any;
     static setTextureSize(textureSize: number): void;
-    static setTeam(t: number): void;
-    static getTeam(): number;
     static _getDefindex(CMsgProtoDefID: any): Promise<any>;
-    static combinePaint(paintKitDefId: number, wearLevel: number, weaponDefIndex: string, outputTextureName: string, outputTexture: Texture, seed?: bigint): Promise<boolean>;
+    static combinePaint(paintKitDefId: number, wearLevel: number, weaponDefIndex: string, outputTextureName: string, outputTexture: Texture, team: number, seed?: bigint): Promise<boolean>;
 }
 
 export declare const TextureCombinerEventTarget: EventTarget;
@@ -117,6 +115,7 @@ export declare interface WeaponManagerItem {
     paintKitSeed: bigint;
     model: Source1ModelInstance | null;
     userData?: any;
+    team: number;
 }
 
 export { }

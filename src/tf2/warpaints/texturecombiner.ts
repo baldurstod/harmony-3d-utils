@@ -22,9 +22,12 @@ export type PaintDoneEvent = {
 	node: Node,
 }
 
+type Context = {
+	team: number,
+}
+
 export class TextureCombiner {
 	static #textureSize = DEFAULT_TEXTURE_SIZE;
-	static #team = 0;
 	static paintIds = {};// TODO: turn to map ?
 	static #imageExtension = '.vtf';
 	static #textureApplyStickerNode = 'apply_sticker';
@@ -37,19 +40,11 @@ export class TextureCombiner {
 		this.nodeImageEditor.textureSize = textureSize;
 	}
 
-	static setTeam(t: number): void {
-		this.#team = t;
-	}
-
-	static getTeam(): number {
-		return this.#team;
-	}
-
 	static async _getDefindex(CMsgProtoDefID: any): Promise<any> {
 		return PaintKitDefinitions.getDefinition(CMsgProtoDefID);
 	}
 
-	static async combinePaint(paintKitDefId: number, wearLevel: number, weaponDefIndex: string, outputTextureName: string, outputTexture: Texture, seed: bigint = 0n): Promise<boolean> {
+	static async combinePaint(paintKitDefId: number, wearLevel: number, weaponDefIndex: string, outputTextureName: string, outputTexture: Texture, team: number, seed: bigint = 0n): Promise<boolean> {
 		this.#lookupNodes = new Map();
 		let combinePaintPromise = new Promise<boolean>(async resolve => {
 			let finalPromise;
@@ -99,7 +94,7 @@ export class TextureCombiner {
 							//console.error(operationTemplate);//removeme
 							if (operationTemplate && (operationTemplate.operationNode ?? operationTemplate.operation_node)) {
 								await this.#setupVariables(paintKitDefinition, wearLevel, item);
-								let stage = await this.#processOperationNode((operationTemplate.operationNode ?? operationTemplate.operation_node)[0]);//top level node has 1 operation
+								let stage = await this.#processOperationNode((operationTemplate.operationNode ?? operationTemplate.operation_node)[0], { team });//top level node has 1 operation
 								//console.error(stage.toString());
 								(stage as Stage).linkNodes();
 
@@ -215,10 +210,10 @@ export class TextureCombiner {
 		}
 	}
 
-	static async #processOperationNodeArray(operationNodeArray: Array<any>/*, parentStage: Stage*/): Promise<Stage[]> {
+	static async #processOperationNodeArray(operationNodeArray: Array<any>, context: Context/*, parentStage: Stage*/): Promise<Stage[]> {
 		let chidren: Array<Stage> = [];
 		for (var i = 0; i < operationNodeArray.length; i++) {
-			let child = await this.#processOperationNode(operationNodeArray[i]/*, parentStage*/);
+			let child = await this.#processOperationNode(operationNodeArray[i], context/*, parentStage*/);
 			if (child instanceof Array) {
 				chidren.push(...child);
 			} else {
@@ -262,7 +257,7 @@ export class TextureCombiner {
 
 	}
 
-	static async #processOperationNode(operationNode: any/*, parentStage: Stage/*, parentStage*//*, inputs*/): Promise<Stage | null | Array<Stage>> {
+	static async #processOperationNode(operationNode: any, context: Context/*, parentStage: Stage/*, parentStage*//*, inputs*/): Promise<Stage | null | Array<Stage>> {
 		let subStage: Stage | null = null;
 		if (operationNode.stage) {
 			let stage = operationNode.stage;
@@ -272,7 +267,7 @@ export class TextureCombiner {
 				case stage.textureLookup != undefined:
 				case stage.texture_lookup != undefined:
 					s = stage.textureLookup ?? stage.texture_lookup;
-					subStage = this.#processTextureStage(s);
+					subStage = this.#processTextureStage(s, context);
 					stage2 = s;
 					break;
 				case stage.combineAdd != undefined:
@@ -300,7 +295,7 @@ export class TextureCombiner {
 					throw 'Unsuported stage';
 			}
 			if (stage2.operationNode ?? stage2.operation_node) {
-				let chidren = await this.#processOperationNodeArray(stage2.operationNode ?? stage2.operation_node/*, subStage/*, node*/);
+				let chidren = await this.#processOperationNodeArray(stage2.operationNode ?? stage2.operation_node, context/*, subStage/*, node*/);
 				if (subStage) {
 					subStage.appendChildren(chidren);
 				}
@@ -310,7 +305,7 @@ export class TextureCombiner {
 			let template = await this._getDefindex(operationNode.operationTemplate ?? operationNode.operation_template);
 			if (template && (template.operationNode ?? template.operation_node)) {
 				//console.error('template.operationNode', template.operationNode.length, template.operationNode);
-				let chidren = await this.#processOperationNodeArray(template.operationNode ?? template.operation_node/*, parentStage/*, node, inputs*/);
+				let chidren = await this.#processOperationNodeArray(template.operationNode ?? template.operation_node, context/*, parentStage/*, node, inputs*/);
 				return chidren;
 			} else {
 				throw 'Invalid template';
@@ -373,11 +368,11 @@ console.error('node or subnode is null', node, subNode);
 			return node;
 		}*/
 
-	static #processTextureStage(stage: any): TextureStage | null {
+	static #processTextureStage(stage: any, context: Context): TextureStage | null {
 		let node = null;
 
 		var texture;
-		if (this.#team == 0) {
+		if (context.team == 0) {
 			texture = (stage.textureRed ?? stage.texture_red) || stage.texture;
 		} else {
 			texture = (stage.textureBlue ?? stage.texture_blue) || stage.texture;
