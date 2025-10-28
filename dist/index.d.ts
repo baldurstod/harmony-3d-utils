@@ -115,7 +115,10 @@ export declare interface WeaponManagerItem {
     paintKitSeed: bigint;
     model: Source1ModelInstance | null;
     userData?: any;
+<<<<<<< HEAD
     team: number;
+=======
+>>>>>>> origin/main
 }
 
 export { }
