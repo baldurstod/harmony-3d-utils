@@ -1000,6 +1000,11 @@ class WeaponManager extends StaticEventTarget {
         this.#processNextItemInQueue();
     }
     static #processNextItemInQueue() {
+        const mc = new MessageChannel();
+        mc.port1.onmessage = () => this.#processNextItemInQueue2();
+        mc.port2.postMessage(null);
+    }
+    static #processNextItemInQueue2() {
         if (!this.currentItem && this.#itemQueue.length) {
             this.currentItem = this.#itemQueue.shift();
             let ci = this.currentItem;
