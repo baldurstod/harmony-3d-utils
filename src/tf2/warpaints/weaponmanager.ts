@@ -19,6 +19,7 @@ export interface WeaponManagerItem {
 	model: Source1ModelInstance | null;
 	userData?: any;
 	team: number;
+	textureSize?: number;
 }
 
 export enum WeaponManagerEvents {
@@ -224,25 +225,7 @@ export class WeaponManager extends StaticEventTarget {
 		return itemList;
 	}
 
-	static refreshPaint(item: any) {
-		this.refreshItem(item);
-	}
-	/*
-		 handleCollectionClick(event) {
-			if (this.collectionBody.style.display == 'none') {
-				this.collectionBody.style.display = null;
-				this.collectionBody.style.display = '';
-			} else {
-				this.collectionBody.style.display = 'none';
-			}
-		}*/
-	/*
-		 setWeapon(weapon) {
-			this.weapon = weapon;
-			this.refreshPaint();
-		}*/
-
-	static refreshItem(item: WeaponManagerItem, clearQueue = false) {
+	static refreshWarpaint(item: WeaponManagerItem, clearQueue = false) {
 		if (clearQueue) {
 			this.#itemQueue = [];
 		}
@@ -265,7 +248,7 @@ export class WeaponManager extends StaticEventTarget {
 			texture.setAlphaBits(8);
 			if (ci.paintKitId !== undefined) {
 				this.dispatchEvent(new CustomEvent<WeaponManagerItem>(WeaponManagerEvents.Started, { detail: ci }));
-				let promise = TextureCombiner.combinePaint(ci.paintKitId, ci.paintKitWear, ci.id.replace(/\~\d+/, ''), textureName, texture.getFrame(0)!, ci.team, ci.paintKitSeed);
+				let promise = TextureCombiner.combinePaint(ci.paintKitId, ci.paintKitWear, ci.id.replace(/\~\d+/, ''), textureName, texture.getFrame(0)!, ci.team, ci.paintKitSeed, ci.textureSize);
 				ci.model?.setMaterialParam('WeaponSkin', textureName);
 				//this._textureCombiner.nodeImageEditor.setOutputTextureName(textureName);
 				promise.then((e) => {

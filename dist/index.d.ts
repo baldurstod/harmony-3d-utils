@@ -68,7 +68,7 @@ export declare class TextureCombiner {
     static variables: any;
     static setTextureSize(textureSize: number): void;
     static _getDefindex(CMsgProtoDefID: any): Promise<any>;
-    static combinePaint(paintKitDefId: number, wearLevel: number, weaponDefIndex: string, outputTextureName: string, outputTexture: Texture, team: number, seed?: bigint): Promise<boolean>;
+    static combinePaint(paintKitDefId: number, wearLevel: number, weaponDefIndex: string, outputTextureName: string, outputTexture: Texture, team: number, seed?: bigint, textureSize?: number): Promise<boolean>;
 }
 
 export declare const TextureCombinerEventTarget: EventTarget;
@@ -97,8 +97,7 @@ export declare class WeaponManager extends StaticEventTarget {
     static refreshPaintKitDefinitions(): Promise<void>;
     static initView(container?: HTMLElement): void;
     static getItemList(cMsgPaintKit_Definition: any): any;
-    static refreshPaint(item: any): void;
-    static refreshItem(item: WeaponManagerItem, clearQueue?: boolean): void;
+    static refreshWarpaint(item: WeaponManagerItem, clearQueue?: boolean): void;
 }
 
 export declare enum WeaponManagerEvents {
@@ -116,6 +115,7 @@ export declare interface WeaponManagerItem {
     model: Source1ModelInstance | null;
     userData?: any;
     team: number;
+    textureSize?: number;
 }
 
 export { }

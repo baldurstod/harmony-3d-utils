@@ -319,7 +319,7 @@ class TextureCombiner {
     static async _getDefindex(CMsgProtoDefID) {
         return PaintKitDefinitions.getDefinition(CMsgProtoDefID);
     }
-    static async combinePaint(paintKitDefId, wearLevel, weaponDefIndex, outputTextureName, outputTexture, team, seed = 0n) {
+    static async combinePaint(paintKitDefId, wearLevel, weaponDefIndex, outputTextureName, outputTexture, team, seed = 0n, textureSize = this.#textureSize) {
         this.#lookupNodes = new Map();
         let combinePaintPromise = new Promise(async (resolve) => {
             if (paintKitDefId != undefined && wearLevel != undefined && weaponDefIndex != undefined) {
@@ -365,7 +365,7 @@ class TextureCombiner {
                             //console.error(operationTemplate);//removeme
                             if (operationTemplate && (operationTemplate.operationNode ?? operationTemplate.operation_node)) {
                                 await this.#setupVariables(paintKitDefinition, wearLevel, item);
-                                let stage = await this.#processOperationNode((operationTemplate.operationNode ?? operationTemplate.operation_node)[0], { team }); //top level node has 1 operation
+                                let stage = await this.#processOperationNode((operationTemplate.operationNode ?? operationTemplate.operation_node)[0], { team, textureSize }); //top level node has 1 operation
                                 //console.error(stage.toString());
                                 stage.linkNodes();
                                 function GetSeed(seed) {
@@ -528,18 +528,18 @@ class TextureCombiner {
                 case stage.combineMultiply != undefined:
                 case stage.combine_multiply != undefined:
                     s = stage.combineAdd || stage.combine_add || stage.combineLerp || stage.combine_lerp || stage.combineMultiply || stage.combine_multiply;
-                    subStage = this.#processCombineStage(s, this.#getStageName(stage));
+                    subStage = this.#processCombineStage(s, this.#getStageName(stage), context);
                     stage2 = s;
                     break;
                 case stage.select != undefined:
                     s = stage.select;
-                    subStage = this.#processSelectStage(s);
+                    subStage = this.#processSelectStage(s, context);
                     stage2 = s;
                     break;
                 case stage.applySticker != undefined:
                 case stage.apply_sticker != undefined:
                     s = stage.applySticker ?? stage.apply_sticker;
-                    subStage = this.#processApplyStickerStage(s);
+                    subStage = this.#processApplyStickerStage(s, context);
                     stage2 = s;
                     break;
                 default:
@@ -576,8 +576,8 @@ console.error('node or subnode is null', node, subNode);
 }*/
         return subStage;
     }
-    static #processCombineStage(stage, combineMode) {
-        let node = this.nodeImageEditor.addNode(combineMode);
+    static #processCombineStage(stage, combineMode, context) {
+        let node = this.nodeImageEditor.addNode(combineMode, { textureSize: context.textureSize });
         let combineStage = new CombineStage(node, combineMode);
         return combineStage;
     }
@@ -631,7 +631,7 @@ console.error('node or subnode is null', node, subNode);
         if (texturePath) {
             texturePathPrefixRemoveMe + texturePath + this.#imageExtension;
             if (!node) {
-                node = this.nodeImageEditor.addNode(TEXTURE_LOOKUP_NODE);
+                node = this.nodeImageEditor.addNode(TEXTURE_LOOKUP_NODE, { textureSize: context.textureSize });
                 node.setParam('path', texturePath);
             }
         }
@@ -669,8 +669,8 @@ console.error('node or subnode is null', node, subNode);
         }
         return textureStage;
     }
-    static #processSelectStage(stage) {
-        let selectParametersNode = this.nodeImageEditor.addNode('int array', { length: 16 });
+    static #processSelectStage(stage, context) {
+        let selectParametersNode = this.nodeImageEditor.addNode('int array', { length: 16, textureSize: context.textureSize });
         let selectNode = this.nodeImageEditor.addNode('select');
         let selectStage = new SelectStage(selectNode, this.nodeImageEditor);
         selectNode.setPredecessor('selectvalues', selectParametersNode, 'output');
@@ -689,8 +689,8 @@ console.error('node or subnode is null', node, subNode);
         selectNode.invalidate();
         return selectStage;
     }
-    static #processApplyStickerStage(stage) {
-        let applyStickerNode = this.nodeImageEditor.addNode(this.#textureApplyStickerNode);
+    static #processApplyStickerStage(stage, context) {
+        let applyStickerNode = this.nodeImageEditor.addNode(this.#textureApplyStickerNode, { textureSize: context.textureSize });
         let applyStickerStage = new ApplyStickerStage(applyStickerNode);
         if (stage.adjustBlack ?? stage.adjust_black) {
             ParseRangeThenDivideBy(applyStickerStage.parameters.adjustBlack, this.#getVarField(stage.adjustBlack ?? stage.adjust_black));
@@ -975,24 +975,7 @@ class WeaponManager extends StaticEventTarget {
         }
         return itemList;
     }
-    static refreshPaint(item) {
-        this.refreshItem(item);
-    }
-    /*
-         handleCollectionClick(event) {
-            if (this.collectionBody.style.display == 'none') {
-                this.collectionBody.style.display = null;
-                this.collectionBody.style.display = '';
-            } else {
-                this.collectionBody.style.display = 'none';
-            }
-        }*/
-    /*
-         setWeapon(weapon) {
-            this.weapon = weapon;
-            this.refreshPaint();
-        }*/
-    static refreshItem(item, clearQueue = false) {
+    static refreshWarpaint(item, clearQueue = false) {
         if (clearQueue) {
             this.#itemQueue = [];
         }
@@ -1012,7 +995,7 @@ class WeaponManager extends StaticEventTarget {
             texture.setAlphaBits(8);
             if (ci.paintKitId !== undefined) {
                 this.dispatchEvent(new CustomEvent(WeaponManagerEvents.Started, { detail: ci }));
-                let promise = TextureCombiner.combinePaint(ci.paintKitId, ci.paintKitWear, ci.id.replace(/\~\d+/, ''), textureName, texture.getFrame(0), ci.team, ci.paintKitSeed);
+                let promise = TextureCombiner.combinePaint(ci.paintKitId, ci.paintKitWear, ci.id.replace(/\~\d+/, ''), textureName, texture.getFrame(0), ci.team, ci.paintKitSeed, ci.textureSize);
                 ci.model?.setMaterialParam('WeaponSkin', textureName);
                 //this._textureCombiner.nodeImageEditor.setOutputTextureName(textureName);
                 promise.then((e) => {
