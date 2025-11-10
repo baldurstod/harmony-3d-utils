@@ -241,9 +241,11 @@ class SelectStageParameters {
 class SelectStage extends Stage {
     nodeImageEditor;
     parameters = new SelectStageParameters();
-    constructor(node, nodeImageEditor) {
+    #textureSize;
+    constructor(node, nodeImageEditor, textureSize) {
         super(node);
         this.nodeImageEditor = nodeImageEditor;
+        this.#textureSize = textureSize;
     }
     computeRandomValuesThis(randomStream) {
         return false;
@@ -251,7 +253,7 @@ class SelectStage extends Stage {
     async _setupTextures() {
         let texturePath = this.texturePath;
         if (texturePath) {
-            let lookupNode = this.nodeImageEditor.addNode(TEXTURE_LOOKUP_NODE);
+            let lookupNode = this.nodeImageEditor.addNode(TEXTURE_LOOKUP_NODE, { textureSize: this.#textureSize });
             this.node.setPredecessor('input', lookupNode, 'output');
             lookupNode.inputTexture = await Stage.getTexture(texturePath);
             lookupNode.texturePath = texturePath;
@@ -671,8 +673,8 @@ console.error('node or subnode is null', node, subNode);
     }
     static #processSelectStage(stage, context) {
         let selectParametersNode = this.nodeImageEditor.addNode('int array', { length: 16, textureSize: context.textureSize });
-        let selectNode = this.nodeImageEditor.addNode('select');
-        let selectStage = new SelectStage(selectNode, this.nodeImageEditor);
+        let selectNode = this.nodeImageEditor.addNode('select', { textureSize: context.textureSize });
+        let selectStage = new SelectStage(selectNode, this.nodeImageEditor, context.textureSize);
         selectNode.setPredecessor('selectvalues', selectParametersNode, 'output');
         if (stage.groups) {
             selectStage.texturePath = this.#getVarField(stage.groups);

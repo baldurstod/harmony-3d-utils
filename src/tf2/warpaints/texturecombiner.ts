@@ -430,8 +430,8 @@ console.error('node or subnode is null', node, subNode);
 	static #processSelectStage(stage: any, context: Context): SelectStage {
 		let selectParametersNode = this.nodeImageEditor.addNode('int array', { length: 16, textureSize: context.textureSize });
 
-		let selectNode = this.nodeImageEditor.addNode('select');
-		let selectStage = new SelectStage(selectNode, this.nodeImageEditor);
+		let selectNode = this.nodeImageEditor.addNode('select', { textureSize: context.textureSize });
+		let selectStage = new SelectStage(selectNode, this.nodeImageEditor, context.textureSize);
 
 		selectNode.setPredecessor('selectvalues', selectParametersNode, 'output');
 

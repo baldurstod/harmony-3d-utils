@@ -9,9 +9,12 @@ class SelectStageParameters { }
 export class SelectStage extends Stage {
 	nodeImageEditor: NodeImageEditor;
 	parameters = new SelectStageParameters();
-	constructor(node: Node, nodeImageEditor: NodeImageEditor) {
+	#textureSize: number;
+
+	constructor(node: Node, nodeImageEditor: NodeImageEditor, textureSize: number) {
 		super(node);
 		this.nodeImageEditor = nodeImageEditor;
+		this.#textureSize = textureSize;
 	}
 
 	computeRandomValuesThis(randomStream: UniformRandomStream): boolean {
@@ -21,7 +24,7 @@ export class SelectStage extends Stage {
 	async _setupTextures() {
 		let texturePath = this.texturePath;
 		if (texturePath) {
-			let lookupNode = (this.nodeImageEditor.addNode(TEXTURE_LOOKUP_NODE) as TextureLookup);
+			let lookupNode = this.nodeImageEditor.addNode(TEXTURE_LOOKUP_NODE, { textureSize: this.#textureSize }) as TextureLookup;
 			this.node.setPredecessor('input', lookupNode, 'output');
 			lookupNode.inputTexture = await Stage.getTexture(texturePath);
 			(lookupNode as any).texturePath = texturePath;
