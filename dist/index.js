@@ -1,5 +1,5 @@
 import { Graphics, TextureManager, Color, Source1TextureManager, DEG_TO_RAD, DEFAULT_TEXTURE_SIZE, NodeImageEditor, NodeImageEditorGui, TimelineElementType } from 'harmony-3d';
-import { PaintKitDefinitions, getLegacyPaintKit, UniformRandomStream } from 'harmony-tf2-utils';
+import { WarpaintDefinitions, getLegacyWarpaint, UniformRandomStream } from 'harmony-tf2-utils';
 import { vec2 } from 'gl-matrix';
 import { StaticEventTarget } from 'harmony-utils';
 import { shadowRootStyle, createElement, show, hide, I18n, cloneEvent } from 'harmony-ui';
@@ -319,19 +319,19 @@ class TextureCombiner {
         this.nodeImageEditor.textureSize = textureSize;
     }
     static async _getDefindex(CMsgProtoDefID) {
-        return PaintKitDefinitions.getDefinition(CMsgProtoDefID);
+        return WarpaintDefinitions.getDefinition(CMsgProtoDefID);
     }
-    static async combinePaint(paintKitDefId, wearLevel, weaponDefIndex, outputTextureName, outputTexture, team, seed = 0n, textureSize = this.#textureSize) {
+    static async combinePaint(warpaintDefId, wearLevel, weaponDefIndex, outputTextureName, outputTexture, team, seed = 0n, textureSize = this.#textureSize) {
         this.#lookupNodes = new Map();
         let combinePaintPromise = new Promise(async (resolve) => {
-            if (paintKitDefId != undefined && wearLevel != undefined && weaponDefIndex != undefined) {
+            if (warpaintDefId != undefined && wearLevel != undefined && weaponDefIndex != undefined) {
                 this.nodeImageEditor.removeAllNodes();
                 this.nodeImageEditor.clearVariables();
-                var paintKitDefinition = await this._getDefindex({ type: 9, defindex: paintKitDefId });
-                if (paintKitDefinition) {
+                var warpaintDefinition = await this._getDefindex({ type: 9, defindex: warpaintDefId });
+                if (warpaintDefinition) {
                     let item = null;
-                    for (let itemDefinitionKey in paintKitDefinition) {
-                        let itemDefinitionPerItem = paintKitDefinition[itemDefinitionKey];
+                    for (let itemDefinitionKey in warpaintDefinition) {
+                        let itemDefinitionPerItem = warpaintDefinition[itemDefinitionKey];
                         let itemDefinitionTemplate = itemDefinitionPerItem.itemDefinitionTemplate ?? itemDefinitionPerItem.item_definition_template;
                         if (itemDefinitionTemplate) {
                             let itemDefinition = await this._getDefindex(itemDefinitionTemplate);
@@ -343,11 +343,11 @@ class TextureCombiner {
                     }
                     if (!item) {
                         //For legacy warpaints
-                        let items = paintKitDefinition['item'];
+                        let items = warpaintDefinition['item'];
                         if (items) {
                             for (let it of items) {
                                 let itemDefinition = await this._getDefindex(it.itemDefinitionTemplate ?? it.item_definition_template);
-                                if (getLegacyPaintKit(itemDefinition?.itemDefinitionIndex ?? itemDefinition?.item_definition_index) == weaponDefIndex) {
+                                if (getLegacyWarpaint(itemDefinition?.itemDefinitionIndex ?? itemDefinition?.item_definition_index) == weaponDefIndex) {
                                     item = it;
                                     break;
                                 }
@@ -355,7 +355,7 @@ class TextureCombiner {
                         }
                     }
                     if (item) {
-                        let template = paintKitDefinition.operationTemplate ?? paintKitDefinition.operation_template; // || item.itemDefinitionTemplate;
+                        let template = warpaintDefinition.operationTemplate ?? warpaintDefinition.operation_template; // || item.itemDefinitionTemplate;
                         if (!template) {
                             let itemDefinitionTemplate = await this._getDefindex(item.itemDefinitionTemplate ?? item.item_definition_template);
                             if (itemDefinitionTemplate && itemDefinitionTemplate.definition && itemDefinitionTemplate.definition[wearLevel]) {
@@ -366,7 +366,7 @@ class TextureCombiner {
                             let operationTemplate = await this._getDefindex(template);
                             //console.error(operationTemplate);//removeme
                             if (operationTemplate && (operationTemplate.operationNode ?? operationTemplate.operation_node)) {
-                                await this.#setupVariables(paintKitDefinition, wearLevel, item);
+                                await this.#setupVariables(warpaintDefinition, wearLevel, item);
                                 let stage = await this.#processOperationNode((operationTemplate.operationNode ?? operationTemplate.operation_node)[0], { team, textureSize }); //top level node has 1 operation
                                 //console.error(stage.toString());
                                 stage.linkNodes();
@@ -406,7 +406,7 @@ class TextureCombiner {
                                 await finalNode.redraw();
                                 TextureCombinerEventTarget.dispatchEvent(new CustomEvent('paintdone', {
                                     detail: {
-                                        paintKitDefId: paintKitDefId,
+                                        warpaintDefId: warpaintDefId,
                                         wearLevel: wearLevel,
                                         weaponDefIndex: weaponDefIndex,
                                         outputTextureName: outputTextureName,
@@ -432,7 +432,7 @@ class TextureCombiner {
         });
         return combinePaintPromise;
     }
-    static async #setupVariables(paintKitDefinition, wearLevel, item) {
+    static async #setupVariables(warpaintDefinition, wearLevel, item) {
         this.variables = {};
         if (item) {
             if (item.data) {
@@ -450,8 +450,8 @@ class TextureCombiner {
                 }
             }
         }
-        if (paintKitDefinition.header) {
-            this.#addVariables2(paintKitDefinition.header.variables);
+        if (warpaintDefinition.header) {
+            this.#addVariables2(warpaintDefinition.header.variables);
         }
     }
     static #addVariables(variableArray) {
@@ -796,7 +796,7 @@ class WarpaintEditor {
 
 var WeaponManagerEvents;
 (function (WeaponManagerEvents) {
-    WeaponManagerEvents["AddPaintKit"] = "addpaintkit";
+    WeaponManagerEvents["AddWarpaint"] = "addwarpaint";
     WeaponManagerEvents["Started"] = "started";
     WeaponManagerEvents["Success"] = "success";
     WeaponManagerEvents["Failure"] = "failure";
@@ -807,7 +807,7 @@ class WeaponManager extends StaticEventTarget {
     static weapons = {};
     static collections = {};
     static weaponName = '';
-    static paintkitName = '';
+    static warpaintName = '';
     static asyncRequestId = 0;
     static #protoElements = {};
     static protoDefs = null;
@@ -818,20 +818,20 @@ class WeaponManager extends StaticEventTarget {
     static #itemQueue = [];
     static currentItem;
     static weaponId = 0;
-    static async initPaintKitDefinitions(url) {
+    static async initWarpaintDefinitions(url) {
         let response = await fetch(url);
         this.protoDefs = await response.json();
-        await this.refreshPaintKitDefinitions();
+        await this.refreshWarpaintDefinitions();
     }
-    static async refreshPaintKitDefinitions() {
-        let definitions = await PaintKitDefinitions.getWarpaintDefinitions();
+    static async refreshWarpaintDefinitions() {
+        let definitions = await WarpaintDefinitions.getWarpaintDefinitions();
         if (definitions) {
             this.#protoElements = definitions;
-            let paintKitDefinitions = definitions[9];
-            for (let paintKitDefId in paintKitDefinitions) {
-                let definition = paintKitDefinitions[paintKitDefId];
+            let warpaintDefinitions = definitions[9];
+            for (let warpaintDefId in warpaintDefinitions) {
+                let definition = warpaintDefinitions[warpaintDefId];
                 let token = this.protoDefs ? this.protoDefs[(definition.locDesctoken ?? definition.loc_desctoken)] || (definition.locDesctoken ?? definition.loc_desctoken) : (definition.locDesctoken ?? definition.loc_desctoken);
-                this.#addPaintKit(definition, token);
+                this.#addWarpaint(definition, token);
             }
         }
     }
@@ -845,21 +845,21 @@ class WeaponManager extends StaticEventTarget {
             container.appendChild(this.#htmlPaintsDiv);
         }
     }
-    static #addPaintKit(paintKit, descToken) {
-        let cMsgPaintKit_Definition = this.#protoElements[9][paintKit.header.defindex];
-        let paintKitItemDefinitions = this.#protoElements[8];
-        if (cMsgPaintKit_Definition) {
-            let itemList = this.getItemList(cMsgPaintKit_Definition);
+    static #addWarpaint(warpaint, descToken) {
+        let cMsgWarpaintDefinition = this.#protoElements[9][warpaint.header.defindex];
+        let warpaintItemDefinitions = this.#protoElements[8];
+        if (cMsgWarpaintDefinition) {
+            let itemList = this.getItemList(cMsgWarpaintDefinition);
             for (let weaponName in itemList) {
-                let itemDefinition = paintKitItemDefinitions[itemList[weaponName]];
+                let itemDefinition = warpaintItemDefinitions[itemList[weaponName]];
                 if (itemDefinition) {
-                    this.#addWeapon(paintKit, paintKit.header.defindex, weaponName, itemList[weaponName], itemDefinition.itemDefinitionIndex ?? itemDefinition.item_definition_index, descToken);
+                    this.#addWeapon(warpaint, warpaint.header.defindex, weaponName, itemList[weaponName], itemDefinition.itemDefinitionIndex ?? itemDefinition.item_definition_index, descToken);
                 }
             }
         }
         return;
     }
-    static #addWeapon(paintKit, weaponPaint, weapon, defindex, itemDefinitionIndex, descToken) {
+    static #addWeapon(warpaint, weaponPaint, weapon, defindex, itemDefinitionIndex, descToken) {
         //let wep = this.itemsDef?.[itemDefinitionIndex] || this.itemsDef?.[itemDefinitionIndex + '~0'] ;
         let wep = { name: weapon };
         if (wep) {
@@ -891,8 +891,7 @@ class WeaponManager extends StaticEventTarget {
             weaponDiv.weapon = weapon;
             weaponDiv.itemDefinitionIndex = itemDefinitionIndex;
             this.#htmlWeaponsDiv?.appendChild(weaponDiv);
-            //this.#addPaintKit2(paintKit, subContainer, weapon, itemDefinitionIndex);
-            this.dispatchEvent(new CustomEvent(WeaponManagerEvents.AddPaintKit, {
+            this.dispatchEvent(new CustomEvent(WeaponManagerEvents.AddWarpaint, {
                 detail: {
                     p1: itemDefinitionIndex,
                     p2: weaponPaint,
@@ -902,75 +901,22 @@ class WeaponManager extends StaticEventTarget {
             }));
         }
     }
-    /*
-         #addPaintKit2(paintKit, parent, weapon, itemDefinitionIndex) {
-            var paintKitDiv = document.createElement('div');
-            parent.appendChild(paintKitDiv);
-            paintKitDiv.className = 'paintDiv';
-            //paintKitDiv.weaponPaint = paintKit.header.defindex;
-            paintKitDiv.setAttribute('data-weapon-paint', paintKit.header.defindex);
-            paintKitDiv.innerText = paintKit.header.name;
-            //paintKitDiv.itemDefinitionIndex = itemDefinitionIndex;
-            paintKitDiv.setAttribute('data-item-definition-index', itemDefinitionIndex);
-            //paintKitDiv.weapon = weapon;
-            paintKitDiv.setAttribute('data-weapon', weapon);
-            /*paintKitDiv.modelplayer = paintKit.modelplayer;
-            paintKitDiv.weaponName = paintKit.name;* /
-            paintKitDiv.addEventListener('click', (event) => handlePaintClick());
-
-        }
-        /*
-    /*
-         handlePaintClick() {
-            let currentModel = '';
-            if (this.itemDefinitionIndex) {
-                let itemDef = this.itemsDef[this.itemDefinitionIndex] || this.itemsDef[this.itemDefinitionIndex + '~0'];
-                if (itemDef && itemDef.model_player) {
-                    currentModel = itemDef.model_player;
-                }
-            }
-            weaponName = this.weaponName;
-            this.paintkitName = this.innerHTML;
-            setupModels();
-            weaponPaint = this.weaponPaint;
-            weapon = this.weapon;
-            this.refreshPaint();
-        }*/
-    /*
-         handleWeaponClick() {
-            currentModel = '';
-            if (this.itemDefinitionIndex) {
-                let itemDef = this.itemsDef[this.itemDefinitionIndex] || this.itemsDef[this.itemDefinitionIndex + '~0'];
-                if (itemDef && itemDef.model_player) {
-                    currentModel = itemDef.model_player;
-                }
-            }
-            weaponName = this.weaponName;
-            this.paintkitName = this.innerHTML;
-            setupModels();
-            weaponPaint = this.weaponPaint;
-            weapon = this.weapon;
-            this.refreshPaint();
-        }
-    */
-    static getItemList(cMsgPaintKit_Definition) {
+    static getItemList(cMsgWarpaintDefinition) {
         let itemList = {};
-        for (let propertyName in cMsgPaintKit_Definition) {
-            let paintKitDefinitionItem = cMsgPaintKit_Definition[propertyName];
-            if (paintKitDefinitionItem) {
+        for (let propertyName in cMsgWarpaintDefinition) {
+            let warpaintDefinitionItem = cMsgWarpaintDefinition[propertyName];
+            if (warpaintDefinitionItem) {
                 if (propertyName == 'item') {
-                    for (let i = 0; i < paintKitDefinitionItem.length; i++) {
-                        let paintKitDefinitionItem2 = paintKitDefinitionItem[i];
-                        if (paintKitDefinitionItem2.itemDefinitionTemplate ?? paintKitDefinitionItem2.item_definition_template) {
-                            //itemList.push(paintKitDefinitionItem2.itemDefinitionTemplate.defindex);
-                            itemList['item' + i] = (paintKitDefinitionItem2.itemDefinitionTemplate ?? paintKitDefinitionItem2.item_definition_template).defindex;
+                    for (let i = 0; i < warpaintDefinitionItem.length; i++) {
+                        let warpaintDefinitionItem2 = warpaintDefinitionItem[i];
+                        if (warpaintDefinitionItem2.itemDefinitionTemplate ?? warpaintDefinitionItem2.item_definition_template) {
+                            itemList['item' + i] = (warpaintDefinitionItem2.itemDefinitionTemplate ?? warpaintDefinitionItem2.item_definition_template).defindex;
                         }
                     }
                 }
                 else {
-                    if (paintKitDefinitionItem.itemDefinitionTemplate ?? paintKitDefinitionItem.item_definition_template) {
-                        //itemList.push(paintKitDefinitionItem.itemDefinitionTemplate.defindex);
-                        itemList[propertyName] = (paintKitDefinitionItem.itemDefinitionTemplate ?? paintKitDefinitionItem.item_definition_template).defindex;
+                    if (warpaintDefinitionItem.itemDefinitionTemplate ?? warpaintDefinitionItem.item_definition_template) {
+                        itemList[propertyName] = (warpaintDefinitionItem.itemDefinitionTemplate ?? warpaintDefinitionItem.item_definition_template).defindex;
                     }
                 }
             }
@@ -995,9 +941,9 @@ class WeaponManager extends StaticEventTarget {
             let ci = this.currentItem;
             let { name: textureName, texture } = Source1TextureManager.addInternalTexture(ci.model?.sourceModel.repository ?? '');
             texture.setAlphaBits(8);
-            if (ci.paintKitId !== undefined) {
+            if (ci.warpaintId !== undefined) {
                 this.dispatchEvent(new CustomEvent(WeaponManagerEvents.Started, { detail: ci }));
-                let promise = TextureCombiner.combinePaint(ci.paintKitId, ci.paintKitWear, ci.id.replace(/\~\d+/, ''), textureName, texture.getFrame(0), ci.team, ci.paintKitSeed, ci.textureSize);
+                let promise = TextureCombiner.combinePaint(ci.warpaintId, ci.warpaintWear, ci.id.replace(/\~\d+/, ''), textureName, texture.getFrame(0), ci.team, ci.warpaintSeed, ci.textureSize);
                 ci.model?.setMaterialParam('WeaponSkin', textureName);
                 //this._textureCombiner.nodeImageEditor.setOutputTextureName(textureName);
                 promise.then((e) => {

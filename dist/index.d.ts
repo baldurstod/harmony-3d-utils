@@ -9,7 +9,7 @@ import { StaticEventTarget } from 'harmony-utils';
 import { Texture } from 'harmony-3d';
 import { Timeline } from 'harmony-3d';
 
-export declare type AddPaintKitEvent = {
+export declare type AddWarpaintEvent = {
     p1: number;
     p2: number;
     p3: string;
@@ -46,16 +46,6 @@ export declare class HTMLTimelineElement extends HTMLElement {
     setTimeOffset(offset: number): void;
 }
 
-export declare type PaintDoneEvent = {
-    paintKitDefId: number;
-    wearLevel: number;
-    weaponDefIndex: string;
-    outputTextureName: string;
-    outputTexture: Texture;
-    seed: bigint;
-    node: Node_2;
-};
-
 export declare enum RepositoryDisplayMode {
     Flat = "flat",
     Tree = "tree"
@@ -68,10 +58,20 @@ export declare class TextureCombiner {
     static variables: any;
     static setTextureSize(textureSize: number): void;
     static _getDefindex(CMsgProtoDefID: any): Promise<any>;
-    static combinePaint(paintKitDefId: number, wearLevel: number, weaponDefIndex: string, outputTextureName: string, outputTexture: Texture, team: number, seed?: bigint, textureSize?: number): Promise<boolean>;
+    static combinePaint(warpaintDefId: number, wearLevel: number, weaponDefIndex: string, outputTextureName: string, outputTexture: Texture, team: number, seed?: bigint, textureSize?: number): Promise<boolean>;
 }
 
 export declare const TextureCombinerEventTarget: EventTarget;
+
+export declare type WarpaintDoneEvent = {
+    warpaintDefId: number;
+    wearLevel: number;
+    weaponDefIndex: string;
+    outputTextureName: string;
+    outputTexture: Texture;
+    seed: bigint;
+    node: Node_2;
+};
 
 export declare class WarpaintEditor {
     #private;
@@ -84,7 +84,7 @@ export declare class WeaponManager extends StaticEventTarget {
     static weapons: {};
     static collections: {};
     static weaponName: string;
-    static paintkitName: string;
+    static warpaintName: string;
     static asyncRequestId: number;
     static protoDefs: any;
     static shouldRequestItems: boolean;
@@ -93,15 +93,15 @@ export declare class WeaponManager extends StaticEventTarget {
     static containerPerWeapon: any;
     static currentItem?: WeaponManagerItem;
     static weaponId: number;
-    static initPaintKitDefinitions(url: string): Promise<void>;
-    static refreshPaintKitDefinitions(): Promise<void>;
+    static initWarpaintDefinitions(url: string): Promise<void>;
+    static refreshWarpaintDefinitions(): Promise<void>;
     static initView(container?: HTMLElement): void;
-    static getItemList(cMsgPaintKit_Definition: any): any;
+    static getItemList(cMsgWarpaintDefinition: any): any;
     static refreshWarpaint(item: WeaponManagerItem, clearQueue?: boolean): void;
 }
 
 export declare enum WeaponManagerEvents {
-    AddPaintKit = "addpaintkit",
+    AddWarpaint = "addwarpaint",
     Started = "started",
     Success = "success",
     Failure = "failure"
@@ -109,9 +109,9 @@ export declare enum WeaponManagerEvents {
 
 export declare interface WeaponManagerItem {
     id: string;
-    paintKitId: number;
-    paintKitWear: number;
-    paintKitSeed: bigint;
+    warpaintId: number;
+    warpaintWear: number;
+    warpaintSeed: bigint;
     model: Source1ModelInstance | null;
     userData?: any;
     team: number;

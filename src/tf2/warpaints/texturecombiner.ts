@@ -1,6 +1,6 @@
 import { vec2 } from 'gl-matrix';
 import { DEFAULT_TEXTURE_SIZE, IntArrayNode, Node, NodeImageEditor, Texture } from 'harmony-3d';
-import { getLegacyPaintKit, PaintKitDefinitions, UniformRandomStream } from 'harmony-tf2-utils';
+import { getLegacyWarpaint, UniformRandomStream, WarpaintDefinitions } from 'harmony-tf2-utils';
 import { ApplyStickerStage, Sticker } from './stages/applysticker';
 import { CombineStage } from './stages/combine';
 import { Range } from './stages/parameters';
@@ -12,8 +12,8 @@ const texturePathPrefixRemoveMe = '../gamecontent/tf2/materials/';//TODOv3 : put
 
 export const TextureCombinerEventTarget = new EventTarget();
 
-export type PaintDoneEvent = {
-	paintKitDefId: number,
+export type WarpaintDoneEvent = {
+	warpaintDefId: number,
 	wearLevel: number,
 	weaponDefIndex: string,
 	outputTextureName: string,
@@ -42,22 +42,22 @@ export class TextureCombiner {
 	}
 
 	static async _getDefindex(CMsgProtoDefID: any): Promise<any> {
-		return PaintKitDefinitions.getDefinition(CMsgProtoDefID);
+		return WarpaintDefinitions.getDefinition(CMsgProtoDefID);
 	}
 
-	static async combinePaint(paintKitDefId: number, wearLevel: number, weaponDefIndex: string, outputTextureName: string, outputTexture: Texture, team: number, seed: bigint = 0n, textureSize = this.#textureSize): Promise<boolean> {
+	static async combinePaint(warpaintDefId: number, wearLevel: number, weaponDefIndex: string, outputTextureName: string, outputTexture: Texture, team: number, seed: bigint = 0n, textureSize = this.#textureSize): Promise<boolean> {
 		this.#lookupNodes = new Map();
 		let combinePaintPromise = new Promise<boolean>(async resolve => {
 			let finalPromise;
-			if (paintKitDefId != undefined && wearLevel != undefined && weaponDefIndex != undefined) {
+			if (warpaintDefId != undefined && wearLevel != undefined && weaponDefIndex != undefined) {
 				this.nodeImageEditor.removeAllNodes();
 				this.nodeImageEditor.clearVariables();
 
-				var paintKitDefinition = await this._getDefindex({ type: 9, defindex: paintKitDefId });
-				if (paintKitDefinition) {
+				var warpaintDefinition = await this._getDefindex({ type: 9, defindex: warpaintDefId });
+				if (warpaintDefinition) {
 					let item = null;
-					for (let itemDefinitionKey in paintKitDefinition) {
-						let itemDefinitionPerItem = paintKitDefinition[itemDefinitionKey];
+					for (let itemDefinitionKey in warpaintDefinition) {
+						let itemDefinitionPerItem = warpaintDefinition[itemDefinitionKey];
 						let itemDefinitionTemplate = itemDefinitionPerItem.itemDefinitionTemplate ?? itemDefinitionPerItem.item_definition_template;
 						if (itemDefinitionTemplate) {
 							let itemDefinition = await this._getDefindex(itemDefinitionTemplate);
@@ -70,11 +70,11 @@ export class TextureCombiner {
 
 					if (!item) {
 						//For legacy warpaints
-						let items = paintKitDefinition['item'];
+						let items = warpaintDefinition['item'];
 						if (items) {
 							for (let it of items) {
 								let itemDefinition = await this._getDefindex(it.itemDefinitionTemplate ?? it.item_definition_template);
-								if (getLegacyPaintKit(itemDefinition?.itemDefinitionIndex ?? itemDefinition?.item_definition_index) == weaponDefIndex) {
+								if (getLegacyWarpaint(itemDefinition?.itemDefinitionIndex ?? itemDefinition?.item_definition_index) == weaponDefIndex) {
 									item = it;
 									break;
 								}
@@ -83,7 +83,7 @@ export class TextureCombiner {
 					}
 
 					if (item) {
-						let template = paintKitDefinition.operationTemplate ?? paintKitDefinition.operation_template;// || item.itemDefinitionTemplate;
+						let template = warpaintDefinition.operationTemplate ?? warpaintDefinition.operation_template;// || item.itemDefinitionTemplate;
 						if (!template) {
 							let itemDefinitionTemplate = await this._getDefindex(item.itemDefinitionTemplate ?? item.item_definition_template);
 							if (itemDefinitionTemplate && itemDefinitionTemplate.definition && itemDefinitionTemplate.definition[wearLevel]) {
@@ -94,7 +94,7 @@ export class TextureCombiner {
 							let operationTemplate = await this._getDefindex(template);
 							//console.error(operationTemplate);//removeme
 							if (operationTemplate && (operationTemplate.operationNode ?? operationTemplate.operation_node)) {
-								await this.#setupVariables(paintKitDefinition, wearLevel, item);
+								await this.#setupVariables(warpaintDefinition, wearLevel, item);
 								let stage = await this.#processOperationNode((operationTemplate.operationNode ?? operationTemplate.operation_node)[0], { team, textureSize });//top level node has 1 operation
 								//console.error(stage.toString());
 								(stage as Stage).linkNodes();
@@ -138,9 +138,9 @@ export class TextureCombiner {
 								//console.error(await node.toString());
 								//processPixelArray(pixelArray);
 								await finalNode.redraw()
-								TextureCombinerEventTarget.dispatchEvent(new CustomEvent<PaintDoneEvent>('paintdone', {
+								TextureCombinerEventTarget.dispatchEvent(new CustomEvent<WarpaintDoneEvent>('paintdone', {
 									detail: {
-										paintKitDefId: paintKitDefId,
+										warpaintDefId: warpaintDefId,
 										wearLevel: wearLevel,
 										weaponDefIndex: weaponDefIndex,
 										outputTextureName: outputTextureName,
@@ -166,7 +166,7 @@ export class TextureCombiner {
 		return combinePaintPromise;
 	}
 
-	static async #setupVariables(paintKitDefinition: any, wearLevel: number, item: any): Promise<void> {
+	static async #setupVariables(warpaintDefinition: any, wearLevel: number, item: any): Promise<void> {
 		this.variables = {};
 
 		if (item) {
@@ -186,8 +186,8 @@ export class TextureCombiner {
 			}
 		}
 
-		if (paintKitDefinition.header) {
-			this.#addVariables2(paintKitDefinition.header.variables);
+		if (warpaintDefinition.header) {
+			this.#addVariables2(warpaintDefinition.header.variables);
 		}
 	}
 
