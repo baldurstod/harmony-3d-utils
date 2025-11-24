@@ -924,6 +924,8 @@ class WeaponManager extends StaticEventTarget {
         return itemList;
     }
     static refreshWarpaint(item, clearQueue = false) {
+        const textureName = `#warpaint_${item.id.replace(/\~\d+/, '')}_${item.warpaintId}_${item.warpaintWear}_${item.warpaintSeed}`;
+        console.info(textureName);
         if (clearQueue) {
             this.#itemQueue = [];
         }
@@ -935,11 +937,19 @@ class WeaponManager extends StaticEventTarget {
         mc.port1.onmessage = () => this.#processNextItemInQueue2();
         mc.port2.postMessage(null);
     }
-    static #processNextItemInQueue2() {
+    static async #processNextItemInQueue2() {
         if (!this.currentItem && this.#itemQueue.length) {
             this.currentItem = this.#itemQueue.shift();
             let ci = this.currentItem;
-            let { name: textureName, texture } = Source1TextureManager.addInternalTexture(ci.model?.sourceModel.repository ?? '');
+            const textureName = `#warpaint_${ci.id.replace(/\~\d+/, '')}_${ci.warpaintId}_${ci.warpaintWear}_${ci.warpaintSeed}`;
+            const existingTexture = await Source1TextureManager.getTextureAsync(ci.model?.sourceModel.repository, textureName, 0, false);
+            if (existingTexture) {
+                ci.model?.setMaterialParam('WeaponSkin', textureName);
+                this.currentItem = undefined;
+                this.#processNextItemInQueue();
+                return;
+            }
+            let { /*name: textureName,*/ texture } = Source1TextureManager.addInternalTexture(ci.model?.sourceModel.repository ?? '', textureName);
             texture.setAlphaBits(8);
             if (ci.warpaintId !== undefined) {
                 this.dispatchEvent(new CustomEvent(WeaponManagerEvents.Started, { detail: ci }));
