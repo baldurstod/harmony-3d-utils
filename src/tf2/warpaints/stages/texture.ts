@@ -14,28 +14,28 @@ class TextureStageParameters {
 	scaleUV = new Range(1, 1);
 	allowFlipU = false;
 	allowFlipV = false;
-	texturePath: string = '';
+	texturePath = '';
 }
 
 export class TextureStage extends Stage {
-	texturePath: string = '';
+	texturePath = '';
 	parameters = new TextureStageParameters();
 
 	computeRandomValuesThis(randomStream: UniformRandomStream): boolean {
-		let parameters = this.parameters;
-		let shouldFlipU = parameters.allowFlipU ? randomStream.randomInt(0, 1) != 0 : false;
-		let shouldFlipV = parameters.allowFlipV ? randomStream.randomInt(0, 1) != 0 : false;
-		let translateU = randomStream.randomFloat(parameters.translateU.low, parameters.translateU.high);
-		let translateV = randomStream.randomFloat(parameters.translateV.low, parameters.translateV.high);
-		let rotation = randomStream.randomFloat(parameters.rotation.low, parameters.rotation.high);
-		let scaleUV = randomStream.randomFloat(parameters.scaleUV.low, parameters.scaleUV.high);
+		const parameters = this.parameters;
+		const shouldFlipU = parameters.allowFlipU ? randomStream.randomInt(0, 1) != 0 : false;
+		const shouldFlipV = parameters.allowFlipV ? randomStream.randomInt(0, 1) != 0 : false;
+		const translateU = randomStream.randomFloat(parameters.translateU.low, parameters.translateU.high);
+		const translateV = randomStream.randomFloat(parameters.translateV.low, parameters.translateV.high);
+		const rotation = randomStream.randomFloat(parameters.rotation.low, parameters.rotation.high);
+		const scaleUV = randomStream.randomFloat(parameters.scaleUV.low, parameters.scaleUV.high);
 
-		let adjustBlack = randomStream.randomFloat(parameters.adjustBlack.low, parameters.adjustBlack.high);
-		let adjustOffset = randomStream.randomFloat(parameters.adjustOffset.low, parameters.adjustOffset.high);
-		let adjustGamma = randomStream.randomFloat(parameters.adjustGamma.low, parameters.adjustGamma.high);
-		let adjustWhite = adjustBlack + adjustOffset;
+		const adjustBlack = randomStream.randomFloat(parameters.adjustBlack.low, parameters.adjustBlack.high);
+		const adjustOffset = randomStream.randomFloat(parameters.adjustOffset.low, parameters.adjustOffset.high);
+		const adjustGamma = randomStream.randomFloat(parameters.adjustGamma.low, parameters.adjustGamma.high);
+		const adjustWhite = adjustBlack + adjustOffset;
 
-		let node = this.node;
+		const node = this.node;
 		node.setParam('adjust black', adjustBlack);
 		node.setParam('adjust white', adjustWhite);
 		node.setParam('adjust gamma', adjustGamma);

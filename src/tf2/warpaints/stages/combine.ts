@@ -1,7 +1,7 @@
 import { Node } from 'harmony-3d';
+import { UniformRandomStream } from 'harmony-tf2-utils';
 import { Range } from './parameters';
 import { Stage } from './stage';
-import { UniformRandomStream } from 'harmony-tf2-utils';
 
 class CombineStageParameters {
 	adjustBlack = new Range();
@@ -17,14 +17,14 @@ export class CombineStage extends Stage {
 		this.combineMode = combineMode;
 	}
 
-	computeRandomValuesThis(randomStream: UniformRandomStream) {
-		let parameters = this.parameters;
-		let adjustBlack = randomStream.randomFloat(parameters.adjustBlack.low, parameters.adjustBlack.high);
-		let adjustOffset = randomStream.randomFloat(parameters.adjustOffset.low, parameters.adjustOffset.high);
-		let adjustGamma = randomStream.randomFloat(parameters.adjustGamma.low, parameters.adjustGamma.high);
-		let adjustWhite = adjustBlack + adjustOffset;
+	override computeRandomValuesThis(randomStream: UniformRandomStream): boolean {
+		const parameters = this.parameters;
+		const adjustBlack = randomStream.randomFloat(parameters.adjustBlack.low, parameters.adjustBlack.high);
+		const adjustOffset = randomStream.randomFloat(parameters.adjustOffset.low, parameters.adjustOffset.high);
+		const adjustGamma = randomStream.randomFloat(parameters.adjustGamma.low, parameters.adjustGamma.high);
+		const adjustWhite = adjustBlack + adjustOffset;
 
-		let node = this.node;
+		const node = this.node;
 		/*node.params.adjustBlack = adjustBlack;
 		node.params.adjustWhite = adjustWhite;
 		node.params.adjustGamma = adjustGamma;*/
@@ -34,7 +34,7 @@ export class CombineStage extends Stage {
 		return true;
 	}
 
-	get displayName() {
+	get displayName(): string {
 		return this.combineMode;
 	}
 }

@@ -1,8 +1,8 @@
 import { Repository, RepositoryEntry, RepositoryFilter } from 'harmony-3d';
-import { cloneEvent, createElement, createShadowRoot, HTMLHarmonySwitchElement, shadowRootStyle } from 'harmony-ui';
 import { closeSVG } from 'harmony-svg';
-import { defineRepositoryEntry, HTMLRepositoryEntryElement } from './repositoryentry';
+import { cloneEvent, createElement, HTMLHarmonySwitchElement, shadowRootStyle } from 'harmony-ui';
 import repositoryCSS from '../css/repository.css';
+import { defineRepositoryEntry, HTMLRepositoryEntryElement } from './repositoryentry';
 
 export enum RepositoryDisplayMode {
 	Flat = 'flat',
@@ -57,7 +57,7 @@ export class HTMLRepositoryElement extends HTMLElement {
 		});
 	}
 
-	setRepository(repository?: Repository) {
+	setRepository(repository?: Repository): void {
 		this.#repository = repository;
 		if (repository) {
 			repository.active = this.#htmlActive.state as boolean;
@@ -65,21 +65,21 @@ export class HTMLRepositoryElement extends HTMLElement {
 		this.#updateHTML();
 	}
 
-	setFilter(filter?: RepositoryFilter) {
+	setFilter(filter?: RepositoryFilter): void {
 		this.#filter = filter;
 		this.#updateHTML();
 	}
 
-	setDisplayMode(mode: RepositoryDisplayMode) {
+	setDisplayMode(mode: RepositoryDisplayMode): void {
 		this.#displayMode = mode;
 		this.#updateHTML();
 	}
 
-	adoptStyleSheet(styleSheet: CSSStyleSheet) {
+	adoptStyleSheet(styleSheet: CSSStyleSheet): void {
 		this.#shadowRoot.adoptedStyleSheets.push(styleSheet);
 	}
 
-	async #updateHTML() {
+	async #updateHTML(): Promise<void> {
 		this.#htmlTitle.innerText = this.#repository?.name ?? '';
 		this.#htmlEntries.innerText = '';
 		if (!this.#repository) {
@@ -106,7 +106,7 @@ export class HTMLRepositoryElement extends HTMLElement {
 		}
 	}
 
-	async #updateFlat(root: RepositoryEntry) {
+	#updateFlat(root: RepositoryEntry): void {
 		defineRepositoryEntry();
 
 		for (const entry of root.getAllChilds(this.#filter)) {
@@ -123,7 +123,7 @@ export class HTMLRepositoryElement extends HTMLElement {
 		}
 	}
 
-	async #updateTree(root: RepositoryEntry) {
+	#updateTree(root: RepositoryEntry): void {
 		defineRepositoryEntry();
 		const entryview: HTMLRepositoryEntryElement = createElement('harmony3d-repository-entry', {
 			parent: this.#htmlEntries,
@@ -137,7 +137,7 @@ export class HTMLRepositoryElement extends HTMLElement {
 		this.dispatchEvent(new CustomEvent('entrycreated', { detail: { entry: root, view: entryview } }));
 	}
 
-	attributeChangedCallback(name: string, oldValue: string, newValue: string) {
+	attributeChangedCallback(name: string, oldValue: string, newValue: string): void {
 		switch (name) {
 			case 'display-mode':
 				this.setDisplayMode(newValue as RepositoryDisplayMode);
@@ -145,12 +145,12 @@ export class HTMLRepositoryElement extends HTMLElement {
 		}
 	}
 
-	static get observedAttributes() {
+	static get observedAttributes(): string[] {
 		return ['display-mode'];
 	}
 }
 let definedRepository = false;
-export function defineRepository() {
+export function defineRepository(): void {
 	if (window.customElements && !definedRepository) {
 		customElements.define('harmony3d-repository', HTMLRepositoryElement);
 		definedRepository = true;

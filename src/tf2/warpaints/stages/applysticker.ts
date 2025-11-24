@@ -1,10 +1,10 @@
 import { vec2 } from 'gl-matrix';
-import { Stage } from './stage';
-import { Range } from './parameters';
 import { UniformRandomStream } from 'harmony-tf2-utils';
+import { Range } from './parameters';
+import { Stage } from './stage';
 
 class ApplyStickerStageParameters {
-	possibleStickers: Array<Sticker> = [];
+	possibleStickers: Sticker[] = [];
 	adjustBlack = new Range();
 	adjustOffset = new Range(1, 1);
 	adjustGamma = new Range(1, 1);
@@ -22,16 +22,16 @@ export class ApplyStickerStage extends Stage {
 	parameters = new ApplyStickerStageParameters();
 	choice?: number;
 
-	computeRandomValuesThis(randomStream: UniformRandomStream) {
-		let parameters = this.parameters;
+	override computeRandomValuesThis(randomStream: UniformRandomStream): boolean {
+		const parameters = this.parameters;
 
-		const computeWeight = (accumulator: number, currentValue: Sticker) => accumulator + currentValue.weight;
-		let totalWeight = parameters.possibleStickers.reduce(computeWeight, 0);
+		const computeWeight = (accumulator: number, currentValue: Sticker): number => accumulator + currentValue.weight;
+		const totalWeight = parameters.possibleStickers.reduce(computeWeight, 0);
 		//console.error(totalWeight);
 
 		let weight = randomStream.randomFloat(0.0, totalWeight);
-		for (let [i, possibleSticker] of parameters.possibleStickers.entries()) {
-			let thisWeight = possibleSticker.weight;
+		for (const [i, possibleSticker] of parameters.possibleStickers.entries()) {
+			const thisWeight = possibleSticker.weight;
 			if (weight < thisWeight) {
 				this.choice = i;
 				this.texturePath = parameters.possibleStickers[i]!.fileName;
@@ -42,15 +42,15 @@ export class ApplyStickerStage extends Stage {
 			}
 		}
 		if (this.choice == undefined) {
-			throw 'error';
+			throw new Error('error');
 		}
 
-		let adjustBlack = randomStream.randomFloat(parameters.adjustBlack.low, parameters.adjustBlack.high);
-		let adjustOffset = randomStream.randomFloat(parameters.adjustOffset.low, parameters.adjustOffset.high);
-		let adjustGamma = randomStream.randomFloat(parameters.adjustGamma.low, parameters.adjustGamma.high);
-		let adjustWhite = adjustBlack + adjustOffset;
+		const adjustBlack = randomStream.randomFloat(parameters.adjustBlack.low, parameters.adjustBlack.high);
+		const adjustOffset = randomStream.randomFloat(parameters.adjustOffset.low, parameters.adjustOffset.high);
+		const adjustGamma = randomStream.randomFloat(parameters.adjustGamma.low, parameters.adjustGamma.high);
+		const adjustWhite = adjustBlack + adjustOffset;
 
-		let node = this.node;
+		const node = this.node;
 		/*node.params.adjustBlack = adjustBlack;
 		node.params.adjustWhite = adjustWhite;
 		node.params.adjustGamma = adjustGamma;*/

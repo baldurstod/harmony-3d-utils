@@ -1,9 +1,18 @@
 import { Graphics, TextureManager, Color, Source1TextureManager, DEG_TO_RAD, DEFAULT_TEXTURE_SIZE, NodeImageEditor, NodeImageEditorGui, TimelineElementType } from 'harmony-3d';
 import { WarpaintDefinitions, getLegacyWarpaint, UniformRandomStream } from 'harmony-tf2-utils';
 import { vec2 } from 'gl-matrix';
+import { createElement, shadowRootStyle, show, hide, I18n, cloneEvent } from 'harmony-ui';
 import { StaticEventTarget } from 'harmony-utils';
-import { shadowRootStyle, createElement, show, hide, I18n, cloneEvent } from 'harmony-ui';
 import { closeSVG } from 'harmony-svg';
+
+class Range {
+    low;
+    high;
+    constructor(low = 0, high = 0) {
+        this.low = low;
+        this.high = high;
+    }
+}
 
 let blackTexture;
 class Stage {
@@ -11,8 +20,8 @@ class Stage {
     texturePath = '';
     specularTexturePath = '';
     node;
-    #firstChild;
-    #nextSibling;
+    #firstChild = null;
+    #nextSibling = null;
     constructor(node) {
         this.node = node;
         if (!blackTexture) {
@@ -34,7 +43,7 @@ class Stage {
         }
     }
     computeRandomValuesThis(s) {
-        throw 'subclass me';
+        throw new Error('subclass me' + s.seed);
     }
     set firstChild(stage) {
         this.#firstChild = stage;
@@ -50,7 +59,7 @@ class Stage {
     }
     appendChildren(children) {
         for (let i = children.length - 1; i >= 0; --i) {
-            let childStage = children[i];
+            const childStage = children[i];
             //console.error(childStage);
             childStage.nextSibling = this.firstChild;
             this.firstChild = childStage;
@@ -60,8 +69,8 @@ class Stage {
         return this.constructor.name;
     }
     toString(tabs = '') {
-        let ret = [];
-        let tabs1 = tabs + '\t';
+        const ret = [];
+        const tabs1 = tabs + '\t';
         ret.push(tabs + this.displayName);
         if (this.#firstChild) {
             ret.push(this.#firstChild.toString(tabs1));
@@ -72,13 +81,13 @@ class Stage {
         return ret.join('\n');
     }
     linkNodes() {
-        let node = this.node;
-        let inputs = node.inputs.keys();
+        const node = this.node;
+        const inputs = node.inputs.keys();
         let childStage = this.firstChild;
         while (childStage) {
             childStage.linkNodes();
-            let input = inputs.next().value;
-            let subNode = childStage.node;
+            const input = inputs.next().value;
+            const subNode = childStage.node;
             if (input) {
                 node.setPredecessor(input, subNode, 'output');
             }
@@ -86,13 +95,13 @@ class Stage {
         }
     }
     async _setupTextures() {
-        let texturePath = this.texturePath;
+        const texturePath = this.texturePath;
         if (texturePath) {
             this.node.inputTexture = await Stage.getTexture(texturePath);
             this.node.setParam('path', texturePath);
             this.node.invalidate();
         }
-        let specularTexturePath = this.specularTexturePath;
+        const specularTexturePath = this.specularTexturePath;
         if (specularTexturePath) {
             try {
                 const specular = this.node.getInput('specular');
@@ -128,19 +137,10 @@ class Stage {
             });
             Stage.#textures.set(texturePath, promise);
         }
-        return await Stage.#textures.get(texturePath);
+        return await Stage.#textures.get(texturePath) ?? null;
     }
-    static async getSpecularTexture(specularTexturePath) {
+    static getSpecularTexture(specularTexturePath) {
         return this.getTexture(specularTexturePath, blackTexture);
-    }
-}
-
-class Range {
-    low;
-    high;
-    constructor(low = 0, high = 0) {
-        this.low = low;
-        this.high = high;
     }
 }
 
@@ -161,13 +161,13 @@ class ApplyStickerStage extends Stage {
     parameters = new ApplyStickerStageParameters();
     choice;
     computeRandomValuesThis(randomStream) {
-        let parameters = this.parameters;
+        const parameters = this.parameters;
         const computeWeight = (accumulator, currentValue) => accumulator + currentValue.weight;
-        let totalWeight = parameters.possibleStickers.reduce(computeWeight, 0);
+        const totalWeight = parameters.possibleStickers.reduce(computeWeight, 0);
         //console.error(totalWeight);
         let weight = randomStream.randomFloat(0.0, totalWeight);
-        for (let [i, possibleSticker] of parameters.possibleStickers.entries()) {
-            let thisWeight = possibleSticker.weight;
+        for (const [i, possibleSticker] of parameters.possibleStickers.entries()) {
+            const thisWeight = possibleSticker.weight;
             if (weight < thisWeight) {
                 this.choice = i;
                 this.texturePath = parameters.possibleStickers[i].fileName;
@@ -179,13 +179,13 @@ class ApplyStickerStage extends Stage {
             }
         }
         if (this.choice == undefined) {
-            throw 'error';
+            throw new Error('error');
         }
-        let adjustBlack = randomStream.randomFloat(parameters.adjustBlack.low, parameters.adjustBlack.high);
-        let adjustOffset = randomStream.randomFloat(parameters.adjustOffset.low, parameters.adjustOffset.high);
-        let adjustGamma = randomStream.randomFloat(parameters.adjustGamma.low, parameters.adjustGamma.high);
-        let adjustWhite = adjustBlack + adjustOffset;
-        let node = this.node;
+        const adjustBlack = randomStream.randomFloat(parameters.adjustBlack.low, parameters.adjustBlack.high);
+        const adjustOffset = randomStream.randomFloat(parameters.adjustOffset.low, parameters.adjustOffset.high);
+        const adjustGamma = randomStream.randomFloat(parameters.adjustGamma.low, parameters.adjustGamma.high);
+        const adjustWhite = adjustBlack + adjustOffset;
+        const node = this.node;
         /*node.params.adjustBlack = adjustBlack;
         node.params.adjustWhite = adjustWhite;
         node.params.adjustGamma = adjustGamma;*/
@@ -216,12 +216,12 @@ class CombineStage extends Stage {
         this.combineMode = combineMode;
     }
     computeRandomValuesThis(randomStream) {
-        let parameters = this.parameters;
-        let adjustBlack = randomStream.randomFloat(parameters.adjustBlack.low, parameters.adjustBlack.high);
-        let adjustOffset = randomStream.randomFloat(parameters.adjustOffset.low, parameters.adjustOffset.high);
-        let adjustGamma = randomStream.randomFloat(parameters.adjustGamma.low, parameters.adjustGamma.high);
-        let adjustWhite = adjustBlack + adjustOffset;
-        let node = this.node;
+        const parameters = this.parameters;
+        const adjustBlack = randomStream.randomFloat(parameters.adjustBlack.low, parameters.adjustBlack.high);
+        const adjustOffset = randomStream.randomFloat(parameters.adjustOffset.low, parameters.adjustOffset.high);
+        const adjustGamma = randomStream.randomFloat(parameters.adjustGamma.low, parameters.adjustGamma.high);
+        const adjustWhite = adjustBlack + adjustOffset;
+        const node = this.node;
         /*node.params.adjustBlack = adjustBlack;
         node.params.adjustWhite = adjustWhite;
         node.params.adjustGamma = adjustGamma;*/
@@ -247,15 +247,18 @@ class SelectStage extends Stage {
         this.nodeImageEditor = nodeImageEditor;
         this.#textureSize = textureSize;
     }
-    computeRandomValuesThis(randomStream) {
+    computeRandomValuesThis() {
         return false;
     }
     async _setupTextures() {
-        let texturePath = this.texturePath;
+        const texturePath = this.texturePath;
         if (texturePath) {
-            let lookupNode = this.nodeImageEditor.addNode(TEXTURE_LOOKUP_NODE, { textureSize: this.#textureSize });
+            const lookupNode = this.nodeImageEditor.addNode(TEXTURE_LOOKUP_NODE, { textureSize: this.#textureSize });
             this.node.setPredecessor('input', lookupNode, 'output');
-            lookupNode.inputTexture = await Stage.getTexture(texturePath);
+            const texture = await Stage.getTexture(texturePath);
+            if (texture) {
+                lookupNode.inputTexture = texture;
+            }
             lookupNode.texturePath = texturePath;
             lookupNode.invalidate();
         }
@@ -278,18 +281,18 @@ class TextureStage extends Stage {
     texturePath = '';
     parameters = new TextureStageParameters();
     computeRandomValuesThis(randomStream) {
-        let parameters = this.parameters;
-        let shouldFlipU = parameters.allowFlipU ? randomStream.randomInt(0, 1) != 0 : false;
-        let shouldFlipV = parameters.allowFlipV ? randomStream.randomInt(0, 1) != 0 : false;
-        let translateU = randomStream.randomFloat(parameters.translateU.low, parameters.translateU.high);
-        let translateV = randomStream.randomFloat(parameters.translateV.low, parameters.translateV.high);
-        let rotation = randomStream.randomFloat(parameters.rotation.low, parameters.rotation.high);
-        let scaleUV = randomStream.randomFloat(parameters.scaleUV.low, parameters.scaleUV.high);
-        let adjustBlack = randomStream.randomFloat(parameters.adjustBlack.low, parameters.adjustBlack.high);
-        let adjustOffset = randomStream.randomFloat(parameters.adjustOffset.low, parameters.adjustOffset.high);
-        let adjustGamma = randomStream.randomFloat(parameters.adjustGamma.low, parameters.adjustGamma.high);
-        let adjustWhite = adjustBlack + adjustOffset;
-        let node = this.node;
+        const parameters = this.parameters;
+        const shouldFlipU = parameters.allowFlipU ? randomStream.randomInt(0, 1) != 0 : false;
+        const shouldFlipV = parameters.allowFlipV ? randomStream.randomInt(0, 1) != 0 : false;
+        const translateU = randomStream.randomFloat(parameters.translateU.low, parameters.translateU.high);
+        const translateV = randomStream.randomFloat(parameters.translateV.low, parameters.translateV.high);
+        const rotation = randomStream.randomFloat(parameters.rotation.low, parameters.rotation.high);
+        const scaleUV = randomStream.randomFloat(parameters.scaleUV.low, parameters.scaleUV.high);
+        const adjustBlack = randomStream.randomFloat(parameters.adjustBlack.low, parameters.adjustBlack.high);
+        const adjustOffset = randomStream.randomFloat(parameters.adjustOffset.low, parameters.adjustOffset.high);
+        const adjustGamma = randomStream.randomFloat(parameters.adjustGamma.low, parameters.adjustGamma.high);
+        const adjustWhite = adjustBlack + adjustOffset;
+        const node = this.node;
         node.setParam('adjust black', adjustBlack);
         node.setParam('adjust white', adjustWhite);
         node.setParam('adjust gamma', adjustGamma);
@@ -304,7 +307,7 @@ class TextureStage extends Stage {
     }
 }
 
-const texturePathPrefixRemoveMe = '../gamecontent/tf2/materials/'; //TODOv3 : put in constants
+//const texturePathPrefixRemoveMe = '../gamecontent/tf2/materials/';//TODOv3 : put in constants
 const TextureCombinerEventTarget = new EventTarget();
 class TextureCombiner {
     static #textureSize = DEFAULT_TEXTURE_SIZE;
@@ -323,18 +326,19 @@ class TextureCombiner {
     }
     static async combinePaint(warpaintDefId, wearLevel, weaponDefIndex, outputTextureName, outputTexture, team, seed = 0n, textureSize = this.#textureSize) {
         this.#lookupNodes = new Map();
-        let combinePaintPromise = new Promise(async (resolve) => {
+        const combinePaintFunction = async (resolve) => {
+            //let finalPromise;
             if (warpaintDefId != undefined && wearLevel != undefined && weaponDefIndex != undefined) {
                 this.nodeImageEditor.removeAllNodes();
                 this.nodeImageEditor.clearVariables();
-                var warpaintDefinition = await this._getDefindex({ type: 9, defindex: warpaintDefId });
+                const warpaintDefinition = await this._getDefindex({ type: 9, defindex: warpaintDefId });
                 if (warpaintDefinition) {
                     let item = null;
-                    for (let itemDefinitionKey in warpaintDefinition) {
-                        let itemDefinitionPerItem = warpaintDefinition[itemDefinitionKey];
-                        let itemDefinitionTemplate = itemDefinitionPerItem.itemDefinitionTemplate ?? itemDefinitionPerItem.item_definition_template;
+                    for (const itemDefinitionKey in warpaintDefinition) {
+                        const itemDefinitionPerItem = warpaintDefinition[itemDefinitionKey];
+                        const itemDefinitionTemplate = itemDefinitionPerItem.itemDefinitionTemplate ?? itemDefinitionPerItem.item_definition_template;
                         if (itemDefinitionTemplate) {
-                            let itemDefinition = await this._getDefindex(itemDefinitionTemplate);
+                            const itemDefinition = await this._getDefindex(itemDefinitionTemplate);
                             if ((itemDefinition?.itemDefinitionIndex ?? itemDefinition?.item_definition_index) == weaponDefIndex) {
                                 item = itemDefinitionPerItem;
                                 break;
@@ -343,10 +347,10 @@ class TextureCombiner {
                     }
                     if (!item) {
                         //For legacy warpaints
-                        let items = warpaintDefinition['item'];
+                        const items = warpaintDefinition['item'];
                         if (items) {
-                            for (let it of items) {
-                                let itemDefinition = await this._getDefindex(it.itemDefinitionTemplate ?? it.item_definition_template);
+                            for (const it of items) {
+                                const itemDefinition = await this._getDefindex(it.itemDefinitionTemplate ?? it.item_definition_template);
                                 if (getLegacyWarpaint(itemDefinition?.itemDefinitionIndex ?? itemDefinition?.item_definition_index) == weaponDefIndex) {
                                     item = it;
                                     break;
@@ -357,35 +361,34 @@ class TextureCombiner {
                     if (item) {
                         let template = warpaintDefinition.operationTemplate ?? warpaintDefinition.operation_template; // || item.itemDefinitionTemplate;
                         if (!template) {
-                            let itemDefinitionTemplate = await this._getDefindex(item.itemDefinitionTemplate ?? item.item_definition_template);
+                            const itemDefinitionTemplate = await this._getDefindex(item.itemDefinitionTemplate ?? item.item_definition_template);
                             if (itemDefinitionTemplate && itemDefinitionTemplate.definition && itemDefinitionTemplate.definition[wearLevel]) {
                                 template = itemDefinitionTemplate.definition[wearLevel].operationTemplate ?? itemDefinitionTemplate.definition[wearLevel].operation_template;
                             }
                         }
                         if (template) {
-                            let operationTemplate = await this._getDefindex(template);
+                            const operationTemplate = await this._getDefindex(template);
                             //console.error(operationTemplate);//removeme
                             if (operationTemplate && (operationTemplate.operationNode ?? operationTemplate.operation_node)) {
                                 await this.#setupVariables(warpaintDefinition, wearLevel, item);
-                                let stage = await this.#processOperationNode((operationTemplate.operationNode ?? operationTemplate.operation_node)[0], { team, textureSize }); //top level node has 1 operation
+                                const stage = await this.#processOperationNode((operationTemplate.operationNode ?? operationTemplate.operation_node)[0], { team, textureSize }); //top level node has 1 operation
                                 //console.error(stage.toString());
                                 stage.linkNodes();
                                 function GetSeed(seed) {
-                                    let hilo = [BigInt(0), BigInt(0)];
+                                    const hilo = [BigInt(0), BigInt(0)];
                                     for (let i = 0n; i < 32n; ++i) {
-                                        let i2 = 2n * i;
+                                        const i2 = 2n * i;
                                         for (let j = 0n; j < 2n; ++j) {
                                             hilo[Number(j)] |= (seed & (1n << (i2 + j))) >> (i + j);
                                         }
                                     }
                                     return hilo;
                                 }
-                                let hi, lo;
-                                [hi, lo] = GetSeed(seed);
-                                let randomStreams = [new UniformRandomStream(Number(hi) << 0), new UniformRandomStream(Number(lo) << 0)];
+                                const [hi, lo] = GetSeed(seed);
+                                const randomStreams = [new UniformRandomStream(Number(hi) << 0), new UniformRandomStream(Number(lo) << 0)];
                                 stage.computeRandomValues({ currentIndex: 0 }, randomStreams, randomStreams.length);
                                 await stage.setupTextures();
-                                let finalNode = stage.node;
+                                const finalNode = stage.node;
                                 finalNode.autoRedraw = true;
                                 finalNode.getOutput('output')._value = outputTexture;
                                 /*
@@ -427,7 +430,8 @@ class TextureCombiner {
             /*if (!finalPromise) {
                 resolve(false);
             }*/
-        });
+        };
+        const combinePaintPromise = new Promise(resolve => { combinePaintFunction(resolve); });
         return combinePaintPromise;
     }
     static async #setupVariables(warpaintDefinition, wearLevel, item) {
@@ -437,7 +441,7 @@ class TextureCombiner {
                 this.#addVariables(item.data.variable);
             }
             if (item.itemDefinitionTemplate ?? item.item_definition_template) {
-                let itemDefinition = await this._getDefindex(item.itemDefinitionTemplate ?? item.item_definition_template);
+                const itemDefinition = await this._getDefindex(item.itemDefinitionTemplate ?? item.item_definition_template);
                 if (itemDefinition) {
                     if (itemDefinition.definition && itemDefinition.definition[wearLevel]) {
                         this.#addVariables(itemDefinition.definition[wearLevel].variable);
@@ -454,16 +458,16 @@ class TextureCombiner {
     }
     static #addVariables(variableArray) {
         if (variableArray) {
-            for (let i = 0; i < variableArray.length; i++) {
-                let v = variableArray[i];
+            for (const v of variableArray) {
+                //const v = variableArray[i];
                 this.variables[v.variable] = v.string;
             }
         }
     }
     static #addVariables2(variableArray) {
         if (variableArray) {
-            for (let i = 0; i < variableArray.length; i++) {
-                let v = variableArray[i];
+            for (const v of variableArray) {
+                //const v = variableArray[i];
                 if ((v.inherit == false) || (this.variables[v.name] === undefined)) {
                     this.variables[v.name] = v.value;
                 }
@@ -471,9 +475,9 @@ class TextureCombiner {
         }
     }
     static async #processOperationNodeArray(operationNodeArray, context /*, parentStage: Stage*/) {
-        let chidren = [];
-        for (var i = 0; i < operationNodeArray.length; i++) {
-            let child = await this.#processOperationNode(operationNodeArray[i], context /*, parentStage*/);
+        const chidren = [];
+        for (const operationNode of operationNodeArray) {
+            const child = await this.#processOperationNode(operationNode, context /*, parentStage*/);
             if (child instanceof Array) {
                 chidren.push(...child);
             }
@@ -505,13 +509,13 @@ class TextureCombiner {
             case stage.apply_sticker != undefined:
                 return 'applySticker';
             default:
-                throw 'Unsuported stage';
+                throw new Error('Unsuported stage');
         }
     }
     static async #processOperationNode(operationNode, context /*, parentStage: Stage/*, parentStage*/ /*, inputs*/) {
         let subStage = null;
         if (operationNode.stage) {
-            let stage = operationNode.stage;
+            const stage = operationNode.stage;
             let stage2 = null;
             let s;
             switch (true) {
@@ -543,28 +547,28 @@ class TextureCombiner {
                     stage2 = s;
                     break;
                 default:
-                    throw 'Unsuported stage';
+                    throw new Error('Unsuported stage');
             }
             if (stage2.operationNode ?? stage2.operation_node) {
-                let chidren = await this.#processOperationNodeArray(stage2.operationNode ?? stage2.operation_node, context /*, subStage/*, node*/);
+                const chidren = await this.#processOperationNodeArray(stage2.operationNode ?? stage2.operation_node, context /*, subStage/*, node*/);
                 if (subStage) {
                     subStage.appendChildren(chidren);
                 }
             }
         }
         else if (operationNode.operationTemplate ?? operationNode.operation_template) {
-            let template = await this._getDefindex(operationNode.operationTemplate ?? operationNode.operation_template);
+            const template = await this._getDefindex(operationNode.operationTemplate ?? operationNode.operation_template);
             if (template && (template.operationNode ?? template.operation_node)) {
                 //console.error('template.operationNode', template.operationNode.length, template.operationNode);
-                let chidren = await this.#processOperationNodeArray(template.operationNode ?? template.operation_node, context /*, parentStage/*, node, inputs*/);
+                const chidren = await this.#processOperationNodeArray(template.operationNode ?? template.operation_node, context /*, parentStage/*, node, inputs*/);
                 return chidren;
             }
             else {
-                throw 'Invalid template';
+                throw new Error('Invalid template');
             }
         }
         else {
-            throw 'Unsuported operationNode.operation_template';
+            throw new Error('Unsuported operationNode.operation_template');
         }
         /*
                 if (false && subStage && node) {
@@ -577,7 +581,7 @@ console.error('node or subnode is null', node, subNode);
         return subStage;
     }
     static #processCombineStage(stage, combineMode, context) {
-        let node = this.nodeImageEditor.addNode(combineMode, { textureSize: context.textureSize });
+        const node = this.nodeImageEditor.addNode(combineMode, { textureSize: context.textureSize });
         if (node) {
             return new CombineStage(node, combineMode);
         }
@@ -621,17 +625,17 @@ console.error('node or subnode is null', node, subNode);
         }*/
     static #processTextureStage(stage, context) {
         let node = null;
-        var texture;
+        let texture;
         if (context.team == 0) {
             texture = (stage.textureRed ?? stage.texture_red) || stage.texture;
         }
         else {
             texture = (stage.textureBlue ?? stage.texture_blue) || stage.texture;
         }
-        let texturePath = this.#getVarField(texture);
+        let texturePath = this.#getVarField(texture) ?? '';
         texturePath = texturePath.replace(/\.tga$/, '');
         if (texturePath) {
-            texturePathPrefixRemoveMe + texturePath + this.#imageExtension;
+            //texturePathPrefixRemoveMe + texturePath + this.#imageExtension;
             if (!node) {
                 node = this.nodeImageEditor.addNode(TEXTURE_LOOKUP_NODE, { textureSize: context.textureSize });
                 node?.setParam('path', texturePath);
@@ -640,7 +644,7 @@ console.error('node or subnode is null', node, subNode);
         if (!node) {
             return null;
         }
-        let textureStage = new TextureStage(node);
+        const textureStage = new TextureStage(node);
         textureStage.texturePath = texturePath;
         if (stage.adjustBlack ?? stage.adjust_black) {
             ParseRangeThenDivideBy(textureStage.parameters.adjustBlack, this.#getVarField(stage.adjustBlack ?? stage.adjust_black));
@@ -664,33 +668,33 @@ console.error('node or subnode is null', node, subNode);
             ParseRange(textureStage.parameters.translateV, this.#getVarField(stage.translateV ?? stage.translate_v));
         }
         if (stage.flipU ?? stage.flip_u) {
-            textureStage.parameters.allowFlipU = this.#getVarField(stage.flipU ?? stage.flip_u) != 0;
+            textureStage.parameters.allowFlipU = Number(this.#getVarField(stage.flipU ?? stage.flip_u) ?? 0) != 0;
         }
         if (stage.flipV ?? stage.flip_v) {
-            textureStage.parameters.allowFlipV = this.#getVarField(stage.flipV ?? stage.flip_v) != 0;
+            textureStage.parameters.allowFlipV = Number(this.#getVarField(stage.flipV ?? stage.flip_v) ?? 0) != 0;
         }
         return textureStage;
     }
     static #processSelectStage(stage, context) {
-        let selectParametersNode = this.nodeImageEditor.addNode('int array', { length: 16, textureSize: context.textureSize });
+        const selectParametersNode = this.nodeImageEditor.addNode('int array', { length: 16, textureSize: context.textureSize });
         if (!selectParametersNode) {
             return null;
         }
-        let selectNode = this.nodeImageEditor.addNode('select', { textureSize: context.textureSize });
+        const selectNode = this.nodeImageEditor.addNode('select', { textureSize: context.textureSize });
         if (!selectNode) {
             return null;
         }
-        let selectStage = new SelectStage(selectNode, this.nodeImageEditor, context.textureSize);
+        const selectStage = new SelectStage(selectNode, this.nodeImageEditor, context.textureSize);
         selectNode.setPredecessor('selectvalues', selectParametersNode, 'output');
         if (stage.groups) {
-            selectStage.texturePath = this.#getVarField(stage.groups);
+            selectStage.texturePath = this.#getVarField(stage.groups) ?? '';
         }
         if (stage.select) {
             //selectNode.params.threshold = [];
-            let arr = stage.select;
+            const arr = stage.select;
             for (let i = 0; i < arr.length; i++) {
-                let varField = arr[i];
-                let level = this.#getVarField(varField);
+                const varField = arr[i];
+                const level = this.#getVarField(varField) ?? '0';
                 selectParametersNode.setValue(i, parseInt(level));
             }
         }
@@ -698,11 +702,11 @@ console.error('node or subnode is null', node, subNode);
         return selectStage;
     }
     static #processApplyStickerStage(stage, context) {
-        let applyStickerNode = this.nodeImageEditor.addNode(this.#textureApplyStickerNode, { textureSize: context.textureSize });
+        const applyStickerNode = this.nodeImageEditor.addNode(this.#textureApplyStickerNode, { textureSize: context.textureSize });
         if (!applyStickerNode) {
             return null;
         }
-        let applyStickerStage = new ApplyStickerStage(applyStickerNode);
+        const applyStickerStage = new ApplyStickerStage(applyStickerNode);
         if (stage.adjustBlack ?? stage.adjust_black) {
             ParseRangeThenDivideBy(applyStickerStage.parameters.adjustBlack, this.#getVarField(stage.adjustBlack ?? stage.adjust_black));
         }
@@ -722,19 +726,19 @@ console.error('node or subnode is null', node, subNode);
             ParseVec2(applyStickerStage.parameters.tr, this.#getVarField(stage.destTr ?? stage.dest_tr));
         }
         if (stage.sticker) {
-            let arr = stage.sticker;
-            for (let i = 0; i < arr.length; i++) {
-                let operationSticker = arr[i];
-                let sticker = new Sticker();
-                sticker.fileName = this.#getVarField(operationSticker.base);
+            const arr = stage.sticker;
+            for (const operationSticker of arr) {
+                //const operationSticker = arr[i];
+                const sticker = new Sticker();
+                sticker.fileName = this.#getVarField(operationSticker.base) ?? '';
                 if (operationSticker.weight) {
-                    sticker.weight = this.#getVarField(operationSticker.weight) * 1.0;
+                    sticker.weight = Number(this.#getVarField(operationSticker.weight) ?? 1);
                 }
                 applyStickerStage.parameters.possibleStickers.push(sticker);
             }
         }
         else {
-            throw 'No sticker defined';
+            throw new Error('No sticker defined');
         }
         applyStickerNode.invalidate();
         return applyStickerStage;
@@ -744,7 +748,7 @@ console.error('node or subnode is null', node, subNode);
             return null;
         }
         if (field.variable) {
-            let v = this.variables[field.variable];
+            const v = this.variables[field.variable];
             if (v) {
                 return v;
             }
@@ -753,8 +757,13 @@ console.error('node or subnode is null', node, subNode);
     }
 }
 function ParseRange(output, input) {
+    if (!input) {
+        output.low = 0;
+        output.high = 0;
+        return;
+    }
     input = input.trim();
-    let range = input.split(/\s+/);
+    const range = input.split(/\s+/);
     switch (range.length) {
         case 1:
             output.low = Number(range[0]);
@@ -770,8 +779,13 @@ function ParseRange(output, input) {
     }
 }
 function ParseVec2(output, input) {
+    if (!input) {
+        output[0] = 0;
+        output[1] = 0;
+        return;
+    }
     input = input.trim();
-    let range = input.split(' ');
+    const range = input.split(' ');
     if (range.length == 2) {
         output[0] = Number(range[0]);
         output[1] = Number(range[1]);
@@ -828,18 +842,18 @@ class WeaponManager extends StaticEventTarget {
     static currentItem;
     static weaponId = 0;
     static async initWarpaintDefinitions(url) {
-        let response = await fetch(url);
+        const response = await fetch(url);
         this.protoDefs = await response.json();
         await this.refreshWarpaintDefinitions();
     }
     static async refreshWarpaintDefinitions() {
-        let definitions = await WarpaintDefinitions.getWarpaintDefinitions();
+        const definitions = await WarpaintDefinitions.getWarpaintDefinitions();
         if (definitions) {
             this.#protoElements = definitions;
-            let warpaintDefinitions = definitions[9];
-            for (let warpaintDefId in warpaintDefinitions) {
-                let definition = warpaintDefinitions[warpaintDefId];
-                let token = this.protoDefs ? this.protoDefs[(definition.locDesctoken ?? definition.loc_desctoken)] || (definition.locDesctoken ?? definition.loc_desctoken) : (definition.locDesctoken ?? definition.loc_desctoken);
+            const warpaintDefinitions = definitions[9];
+            for (const warpaintDefId in warpaintDefinitions) {
+                const definition = warpaintDefinitions[warpaintDefId];
+                const token = this.protoDefs ? this.protoDefs[(definition.locDesctoken ?? definition.loc_desctoken)] || (definition.locDesctoken ?? definition.loc_desctoken) : (definition.locDesctoken ?? definition.loc_desctoken);
                 this.#addWarpaint(definition, token);
             }
         }
@@ -855,12 +869,12 @@ class WeaponManager extends StaticEventTarget {
         }
     }
     static #addWarpaint(warpaint, descToken) {
-        let cMsgWarpaintDefinition = this.#protoElements[9][warpaint.header.defindex];
-        let warpaintItemDefinitions = this.#protoElements[8];
+        const cMsgWarpaintDefinition = this.#protoElements[9][warpaint.header.defindex];
+        const warpaintItemDefinitions = this.#protoElements[8];
         if (cMsgWarpaintDefinition) {
-            let itemList = this.getItemList(cMsgWarpaintDefinition);
-            for (let weaponName in itemList) {
-                let itemDefinition = warpaintItemDefinitions[itemList[weaponName]];
+            const itemList = this.getItemList(cMsgWarpaintDefinition);
+            for (const weaponName in itemList) {
+                const itemDefinition = warpaintItemDefinitions[itemList[weaponName]];
                 if (itemDefinition) {
                     this.#addWeapon(warpaint, warpaint.header.defindex, weaponName, itemList[weaponName], itemDefinition.itemDefinitionIndex ?? itemDefinition.item_definition_index, descToken);
                 }
@@ -870,35 +884,35 @@ class WeaponManager extends StaticEventTarget {
     }
     static #addWeapon(warpaint, weaponPaint, weapon, defindex, itemDefinitionIndex, descToken) {
         //let wep = this.itemsDef?.[itemDefinitionIndex] || this.itemsDef?.[itemDefinitionIndex + '~0'] ;
-        let wep = { name: weapon };
+        const wep = { name: weapon };
         if (wep) {
-            var weaponDiv = this.containerPerWeapon[wep.name];
+            let weaponDiv = this.containerPerWeapon[wep.name];
             if (!weaponDiv) {
-                weaponDiv = document.createElement('div');
+                weaponDiv = createElement('div');
                 weaponDiv.className = 'weaponDiv';
                 this.#htmlPaintsDiv?.appendChild(weaponDiv);
                 this.containerPerWeapon[wep.name] = weaponDiv;
                 //weaponDiv.innerHTML = wep.name;
-                let input = document.createElement('input');
+                const input = document.createElement('input');
                 input.className = 'displayNone';
                 input.id = 'weapon-' + this.weaponId;
                 input.name = 'accordion';
                 input.type = 'radio';
-                let label = document.createElement('label');
+                const label = document.createElement('label');
                 label.htmlFor = 'weapon-' + this.weaponId;
                 label.innerText = wep.name;
-                let subContainer = document.createElement('div');
+                const subContainer = document.createElement('div');
                 subContainer.className = 'paintsDiv';
-                weaponDiv.subContainer = subContainer;
+                weaponDiv /*TODO: create a map*/.subContainer = subContainer;
                 weaponDiv.appendChild(input);
                 weaponDiv.appendChild(label);
                 weaponDiv.appendChild(subContainer);
                 ++this.weaponId;
             }
-            weaponDiv.subContainer;
+            //const subContainer = weaponDiv.subContainer;
             //weaponDiv.weaponPaint = weaponPaint;
-            weaponDiv.weapon = weapon;
-            weaponDiv.itemDefinitionIndex = itemDefinitionIndex;
+            weaponDiv /*TODO: create a map*/.weapon = weapon;
+            weaponDiv /*TODO: create a map*/.itemDefinitionIndex = itemDefinitionIndex;
             this.#htmlWeaponsDiv?.appendChild(weaponDiv);
             this.dispatchEvent(new CustomEvent(WeaponManagerEvents.AddWarpaint, {
                 detail: {
@@ -911,13 +925,13 @@ class WeaponManager extends StaticEventTarget {
         }
     }
     static getItemList(cMsgWarpaintDefinition) {
-        let itemList = {};
-        for (let propertyName in cMsgWarpaintDefinition) {
-            let warpaintDefinitionItem = cMsgWarpaintDefinition[propertyName];
+        const itemList = {};
+        for (const propertyName in cMsgWarpaintDefinition) {
+            const warpaintDefinitionItem = cMsgWarpaintDefinition[propertyName];
             if (warpaintDefinitionItem) {
                 if (propertyName == 'item') {
                     for (let i = 0; i < warpaintDefinitionItem.length; i++) {
-                        let warpaintDefinitionItem2 = warpaintDefinitionItem[i];
+                        const warpaintDefinitionItem2 = warpaintDefinitionItem[i];
                         if (warpaintDefinitionItem2.itemDefinitionTemplate ?? warpaintDefinitionItem2.item_definition_template) {
                             itemList['item' + i] = (warpaintDefinitionItem2.itemDefinitionTemplate ?? warpaintDefinitionItem2.item_definition_template).defindex;
                         }
@@ -943,13 +957,13 @@ class WeaponManager extends StaticEventTarget {
     }
     static #processNextItemInQueue() {
         const mc = new MessageChannel();
-        mc.port1.onmessage = () => this.#processNextItemInQueue2();
+        mc.port1.onmessage = () => { this.#processNextItemInQueue2(); };
         mc.port2.postMessage(null);
     }
     static async #processNextItemInQueue2() {
         if (!this.currentItem && this.#itemQueue.length) {
             this.currentItem = this.#itemQueue.shift();
-            let ci = this.currentItem;
+            const ci = this.currentItem;
             const textureName = `#warpaint_${ci.id.replace(/\~\d+/, '')}_${ci.warpaintId}_${ci.warpaintWear}_${ci.warpaintSeed}`;
             const existingTexture = await Source1TextureManager.getTextureAsync(ci.model?.sourceModel.repository ?? '', textureName, 0, false);
             if (existingTexture) {
@@ -958,21 +972,21 @@ class WeaponManager extends StaticEventTarget {
                 this.#processNextItemInQueue();
                 return;
             }
-            let { /*name: textureName,*/ texture } = Source1TextureManager.addInternalTexture(ci.model?.sourceModel.repository ?? '', textureName);
+            const { /*name: textureName,*/ texture } = Source1TextureManager.addInternalTexture(ci.model?.sourceModel.repository ?? '', textureName);
             texture.setAlphaBits(8);
             if (ci.warpaintId !== undefined) {
                 this.dispatchEvent(new CustomEvent(WeaponManagerEvents.Started, { detail: ci }));
-                let promise = TextureCombiner.combinePaint(ci.warpaintId, ci.warpaintWear, ci.id.replace(/\~\d+/, ''), textureName, texture.getFrame(0), ci.team, ci.warpaintSeed, ci.textureSize);
+                const promise = TextureCombiner.combinePaint(ci.warpaintId, ci.warpaintWear, ci.id.replace(/\~\d+/, ''), textureName, texture.getFrame(0), ci.team, ci.warpaintSeed, ci.textureSize);
                 ci.model?.setMaterialParam('WeaponSkin', textureName);
                 //this._textureCombiner.nodeImageEditor.setOutputTextureName(textureName);
-                promise.then((e) => {
+                promise.then(() => {
                     this.dispatchEvent(new CustomEvent(WeaponManagerEvents.Success, { detail: ci }));
                     this.currentItem = undefined;
                     this.#processNextItemInQueue();
                 });
                 promise.catch((e) => {
                     this.dispatchEvent(new CustomEvent(WeaponManagerEvents.Failure, { detail: ci }));
-                    console.error('Promise processNextItemInQueue KO');
+                    console.error('Promise processNextItemInQueue KO', e);
                     this.currentItem = undefined;
                     this.#processNextItemInQueue();
                 });
@@ -1082,7 +1096,7 @@ class HTMLTimelineElement extends HTMLElement {
             ]
         });
         document.addEventListener('mousemove', (event) => this.#handleMouseMove(event));
-        document.addEventListener('mouseup', (event) => this.#handleMouseUp(event));
+        document.addEventListener('mouseup', () => this.#handleMouseUp());
     }
     setTimeline(timeline) {
         this.#timeline = timeline;
@@ -1284,7 +1298,7 @@ class HTMLTimelineElement extends HTMLElement {
         }
         this.#moveRuler(event.offsetX);
     }
-    #handleMouseUp(event) {
+    #handleMouseUp() {
         if (!this.#dragRuler) {
             return;
         }
@@ -1302,6 +1316,8 @@ function defineTimelineElement() {
         definedTimelineElement = true;
     }
 }
+
+var repositoryCSS = ":host {\n\tuser-select: none;\n\tpadding: 0.5rem;\n\tmargin: 0.5rem;\n\tdisplay: flex;\n\tflex-direction: column;\n\tborder: 0.1rem solid;\n}\n\n.header {\n\tdisplay: flex;\n}\n\n.title {\n\tflex: 1;\n}\n\n.close {\n\tcursor: pointer;\n}\n";
 
 var repositoryEntryCSS = ":host {\n\t--hover-bg-color: var(--harmony3d-repository-hover-bg-color, red);\n\tuser-select: none;\n}\n\n.header {\n\tdisplay: flex;\n}\n\n.header:hover {\n\tbackground-color: var(--hover-bg-color);\n}\n\n.self {\n\tflex: 1;\n}\n\n.custom {\n\tdisplay: block;\n\tflex: 0;\n}\n";
 
@@ -1394,8 +1410,6 @@ function defineRepositoryEntry() {
     }
 }
 
-var repositoryCSS = ":host {\n\tuser-select: none;\n\tpadding: 0.5rem;\n\tmargin: 0.5rem;\n\tdisplay: flex;\n\tflex-direction: column;\n\tborder: 0.1rem solid;\n}\n\n.header {\n\tdisplay: flex;\n}\n\n.title {\n\tflex: 1;\n}\n\n.close {\n\tcursor: pointer;\n}\n";
-
 var RepositoryDisplayMode;
 (function (RepositoryDisplayMode) {
     RepositoryDisplayMode["Flat"] = "flat";
@@ -1485,7 +1499,7 @@ class HTMLRepositoryElement extends HTMLElement {
                 break;
         }
     }
-    async #updateFlat(root) {
+    #updateFlat(root) {
         defineRepositoryEntry();
         for (const entry of root.getAllChilds(this.#filter)) {
             const entryview = createElement('harmony3d-repository-entry', {
@@ -1499,7 +1513,7 @@ class HTMLRepositoryElement extends HTMLElement {
             this.dispatchEvent(new CustomEvent('entrycreated', { detail: { entry: entry, view: entryview } }));
         }
     }
-    async #updateTree(root) {
+    #updateTree(root) {
         defineRepositoryEntry();
         const entryview = createElement('harmony3d-repository-entry', {
             parent: this.#htmlEntries,

@@ -4,7 +4,7 @@ import { TextureCombiner } from './texturecombiner';
 export class WarpaintEditor {
 	static #nodeImageEditorGui: NodeImageEditorGui = new NodeImageEditorGui();
 
-	static init(container: HTMLElement | ShadowRoot) {
+	static init(container: HTMLElement | ShadowRoot): void {
 		container.append(this.#nodeImageEditorGui.htmlElement);
 		this.#nodeImageEditorGui.setNodeImageEditor(TextureCombiner.nodeImageEditor);
 	}

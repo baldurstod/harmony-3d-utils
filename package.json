@@ -5,6 +5,9 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "type": "module",
+  "scripts": {
+    "lint": "clear && npx eslint ./src/"
+  },
   "dependencies": {
     "gl-matrix": "^3.4.3",
     "harmony-3d": "github:baldurstod/harmony-3d",
@@ -15,11 +18,14 @@
     "harmony-vpk": "github:baldurstod/harmony-vpk"
   },
   "devDependencies": {
+    "@eslint/js": "^9.39.1",
     "@rollup/plugin-node-resolve": "^15.3.0",
     "@rollup/plugin-typescript": "^12.1.1",
+    "eslint": "^9.39.1",
     "rollup": "^4.24.2",
     "rollup-plugin-import-css": "^3.5.6",
     "tslib": "^2.8.0",
-    "typescript": "^5.6.3"
+    "typescript": "^5.6.3",
+    "typescript-eslint": "^8.48.0"
   }
 }

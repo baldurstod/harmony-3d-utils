@@ -8,7 +8,7 @@ import { SelectStage, TEXTURE_LOOKUP_NODE } from './stages/select';
 import { Stage } from './stages/stage';
 import { TextureStage } from './stages/texture';
 
-const texturePathPrefixRemoveMe = '../gamecontent/tf2/materials/';//TODOv3 : put in constants
+//const texturePathPrefixRemoveMe = '../gamecontent/tf2/materials/';//TODOv3 : put in constants
 
 export const TextureCombinerEventTarget = new EventTarget();
 
@@ -25,6 +25,11 @@ export type WarpaintDoneEvent = {
 type Context = {
 	team: number;
 	textureSize: number;
+}
+
+type StageField = {
+	variable: string;
+	string: string;
 }
 
 export class TextureCombiner {
@@ -45,22 +50,23 @@ export class TextureCombiner {
 		return WarpaintDefinitions.getDefinition(CMsgProtoDefID);
 	}
 
-	static async combinePaint(warpaintDefId: number, wearLevel: number, weaponDefIndex: string, outputTextureName: string, outputTexture: Texture, team: number, seed: bigint = 0n, textureSize = this.#textureSize): Promise<boolean> {
+	static async combinePaint(warpaintDefId: number, wearLevel: number, weaponDefIndex: string, outputTextureName: string, outputTexture: Texture, team: number, seed = 0n, textureSize = this.#textureSize): Promise<boolean> {
 		this.#lookupNodes = new Map();
-		let combinePaintPromise = new Promise<boolean>(async resolve => {
-			let finalPromise;
+
+		const combinePaintFunction = async (resolve: (value: boolean) => void): Promise<void> => {
+			//let finalPromise;
 			if (warpaintDefId != undefined && wearLevel != undefined && weaponDefIndex != undefined) {
 				this.nodeImageEditor.removeAllNodes();
 				this.nodeImageEditor.clearVariables();
 
-				var warpaintDefinition = await this._getDefindex({ type: 9, defindex: warpaintDefId });
+				const warpaintDefinition = await this._getDefindex({ type: 9, defindex: warpaintDefId });
 				if (warpaintDefinition) {
 					let item = null;
-					for (let itemDefinitionKey in warpaintDefinition) {
-						let itemDefinitionPerItem = warpaintDefinition[itemDefinitionKey];
-						let itemDefinitionTemplate = itemDefinitionPerItem.itemDefinitionTemplate ?? itemDefinitionPerItem.item_definition_template;
+					for (const itemDefinitionKey in warpaintDefinition) {
+						const itemDefinitionPerItem = warpaintDefinition[itemDefinitionKey];
+						const itemDefinitionTemplate = itemDefinitionPerItem.itemDefinitionTemplate ?? itemDefinitionPerItem.item_definition_template;
 						if (itemDefinitionTemplate) {
-							let itemDefinition = await this._getDefindex(itemDefinitionTemplate);
+							const itemDefinition = await this._getDefindex(itemDefinitionTemplate);
 							if ((itemDefinition?.itemDefinitionIndex ?? itemDefinition?.item_definition_index) == weaponDefIndex) {
 								item = itemDefinitionPerItem;
 								break;
@@ -70,10 +76,10 @@ export class TextureCombiner {
 
 					if (!item) {
 						//For legacy warpaints
-						let items = warpaintDefinition['item'];
+						const items = warpaintDefinition['item'];
 						if (items) {
-							for (let it of items) {
-								let itemDefinition = await this._getDefindex(it.itemDefinitionTemplate ?? it.item_definition_template);
+							for (const it of items) {
+								const itemDefinition = await this._getDefindex(it.itemDefinitionTemplate ?? it.item_definition_template);
 								if (getLegacyWarpaint(itemDefinition?.itemDefinitionIndex ?? itemDefinition?.item_definition_index) == weaponDefIndex) {
 									item = it;
 									break;
@@ -85,26 +91,26 @@ export class TextureCombiner {
 					if (item) {
 						let template = warpaintDefinition.operationTemplate ?? warpaintDefinition.operation_template;// || item.itemDefinitionTemplate;
 						if (!template) {
-							let itemDefinitionTemplate = await this._getDefindex(item.itemDefinitionTemplate ?? item.item_definition_template);
+							const itemDefinitionTemplate = await this._getDefindex(item.itemDefinitionTemplate ?? item.item_definition_template);
 							if (itemDefinitionTemplate && itemDefinitionTemplate.definition && itemDefinitionTemplate.definition[wearLevel]) {
 								template = itemDefinitionTemplate.definition[wearLevel].operationTemplate ?? itemDefinitionTemplate.definition[wearLevel].operation_template;
 							}
 						}
 						if (template) {
-							let operationTemplate = await this._getDefindex(template);
+							const operationTemplate = await this._getDefindex(template);
 							//console.error(operationTemplate);//removeme
 							if (operationTemplate && (operationTemplate.operationNode ?? operationTemplate.operation_node)) {
 								await this.#setupVariables(warpaintDefinition, wearLevel, item);
-								let stage = await this.#processOperationNode((operationTemplate.operationNode ?? operationTemplate.operation_node)[0], { team, textureSize });//top level node has 1 operation
+								const stage = await this.#processOperationNode((operationTemplate.operationNode ?? operationTemplate.operation_node)[0], { team, textureSize });//top level node has 1 operation
 								//console.error(stage.toString());
 								(stage as Stage).linkNodes();
 
 
-								function GetSeed(seed: bigint) {
-									let hilo: [bigint, bigint] = [BigInt(0), BigInt(0)];
+								function GetSeed(seed: bigint): [bigint, bigint] {
+									const hilo: [bigint, bigint] = [BigInt(0), BigInt(0)];
 
 									for (let i = 0n; i < 32n; ++i) {
-										let i2 = 2n * i;
+										const i2 = 2n * i;
 										for (let j = 0n; j < 2n; ++j) {
 											hilo[Number(j)]! |= (seed & (1n << (i2 + j))) >> (i + j);
 										}
@@ -112,13 +118,12 @@ export class TextureCombiner {
 									return hilo;
 								}
 
-								let hi, lo
-								[hi, lo] = GetSeed(seed);
-								let randomStreams = [new UniformRandomStream(Number(hi) << 0), new UniformRandomStream(Number(lo) << 0)];
+								const [hi, lo] = GetSeed(seed);
+								const randomStreams = [new UniformRandomStream(Number(hi) << 0), new UniformRandomStream(Number(lo) << 0)];
 
 								(stage as Stage).computeRandomValues({ currentIndex: 0 }, randomStreams, randomStreams.length);
 								await (stage as Stage).setupTextures();
-								let finalNode = (stage as Stage).node;
+								const finalNode = (stage as Stage).node;
 								finalNode.autoRedraw = true;
 								finalNode.getOutput('output')!._value = outputTexture;
 
@@ -160,7 +165,9 @@ export class TextureCombiner {
 			/*if (!finalPromise) {
 				resolve(false);
 			}*/
-		});
+		};
+
+		const combinePaintPromise = new Promise<boolean>(resolve => { combinePaintFunction(resolve) });
 		return combinePaintPromise;
 	}
 
@@ -172,7 +179,7 @@ export class TextureCombiner {
 				this.#addVariables(item.data.variable);
 			}
 			if (item.itemDefinitionTemplate ?? item.item_definition_template) {
-				let itemDefinition = await this._getDefindex(item.itemDefinitionTemplate ?? item.item_definition_template)
+				const itemDefinition = await this._getDefindex(item.itemDefinitionTemplate ?? item.item_definition_template)
 				if (itemDefinition) {
 					if (itemDefinition.definition && itemDefinition.definition[wearLevel]) {
 						this.#addVariables(itemDefinition.definition[wearLevel].variable);
@@ -189,19 +196,19 @@ export class TextureCombiner {
 		}
 	}
 
-	static #addVariables(variableArray: Array<any>): void {
+	static #addVariables(variableArray: any[]): void {
 		if (variableArray) {
-			for (let i = 0; i < variableArray.length; i++) {
-				let v = variableArray[i];
+			for (const v of variableArray) {
+				//const v = variableArray[i];
 				this.variables[v.variable] = v.string;
 			}
 		}
 	}
 
-	static #addVariables2(variableArray: Array<any>): void {
+	static #addVariables2(variableArray: any[]): void {
 		if (variableArray) {
-			for (let i = 0; i < variableArray.length; i++) {
-				let v = variableArray[i];
+			for (const v of variableArray) {
+				//const v = variableArray[i];
 				if ((v.inherit == false) || (this.variables[v.name] === undefined)) {
 					this.variables[v.name] = v.value;
 				}
@@ -209,10 +216,10 @@ export class TextureCombiner {
 		}
 	}
 
-	static async #processOperationNodeArray(operationNodeArray: Array<any>, context: Context/*, parentStage: Stage*/): Promise<Stage[]> {
-		let chidren: Array<Stage> = [];
-		for (var i = 0; i < operationNodeArray.length; i++) {
-			let child = await this.#processOperationNode(operationNodeArray[i], context/*, parentStage*/);
+	static async #processOperationNodeArray(operationNodeArray: any[], context: Context/*, parentStage: Stage*/): Promise<Stage[]> {
+		const chidren: Stage[] = [];
+		for (const operationNode of operationNodeArray) {
+			const child = await this.#processOperationNode(operationNode, context/*, parentStage*/);
 			if (child instanceof Array) {
 				chidren.push(...child);
 			} else {
@@ -251,15 +258,15 @@ export class TextureCombiner {
 				return 'applySticker';
 				break;
 			default:
-				throw 'Unsuported stage';
+				throw new Error('Unsuported stage');
 		}
 
 	}
 
-	static async #processOperationNode(operationNode: any, context: Context/*, parentStage: Stage/*, parentStage*//*, inputs*/): Promise<Stage | null | Array<Stage>> {
+	static async #processOperationNode(operationNode: any, context: Context/*, parentStage: Stage/*, parentStage*//*, inputs*/): Promise<Stage | null | Stage[]> {
 		let subStage: Stage | null = null;
 		if (operationNode.stage) {
-			let stage = operationNode.stage;
+			const stage = operationNode.stage;
 			let stage2 = null;
 			let s;
 			switch (true) {
@@ -291,26 +298,26 @@ export class TextureCombiner {
 					stage2 = s;
 					break;
 				default:
-					throw 'Unsuported stage';
+					throw new Error('Unsuported stage');
 			}
 			if (stage2.operationNode ?? stage2.operation_node) {
-				let chidren = await this.#processOperationNodeArray(stage2.operationNode ?? stage2.operation_node, context/*, subStage/*, node*/);
+				const chidren = await this.#processOperationNodeArray(stage2.operationNode ?? stage2.operation_node, context/*, subStage/*, node*/);
 				if (subStage) {
 					subStage.appendChildren(chidren);
 				}
 			}
 
 		} else if (operationNode.operationTemplate ?? operationNode.operation_template) {
-			let template = await this._getDefindex(operationNode.operationTemplate ?? operationNode.operation_template);
+			const template = await this._getDefindex(operationNode.operationTemplate ?? operationNode.operation_template);
 			if (template && (template.operationNode ?? template.operation_node)) {
 				//console.error('template.operationNode', template.operationNode.length, template.operationNode);
-				let chidren = await this.#processOperationNodeArray(template.operationNode ?? template.operation_node, context/*, parentStage/*, node, inputs*/);
+				const chidren = await this.#processOperationNodeArray(template.operationNode ?? template.operation_node, context/*, parentStage/*, node, inputs*/);
 				return chidren;
 			} else {
-				throw 'Invalid template';
+				throw new Error('Invalid template');
 			}
 		} else {
-			throw 'Unsuported operationNode.operation_template';
+			throw new Error('Unsuported operationNode.operation_template');
 		}
 		/*
 				if (false && subStage && node) {
@@ -324,7 +331,7 @@ console.error('node or subnode is null', node, subNode);
 	}
 
 	static #processCombineStage(stage: any, combineMode: string, context: Context): CombineStage | null {
-		let node = this.nodeImageEditor.addNode(combineMode, { textureSize: context.textureSize });
+		const node = this.nodeImageEditor.addNode(combineMode, { textureSize: context.textureSize });
 
 		if (node) {
 			return new CombineStage(node, combineMode);
@@ -372,17 +379,17 @@ console.error('node or subnode is null', node, subNode);
 	static #processTextureStage(stage: any, context: Context): TextureStage | null {
 		let node = null;
 
-		var texture;
+		let texture;
 		if (context.team == 0) {
 			texture = (stage.textureRed ?? stage.texture_red) || stage.texture;
 		} else {
 			texture = (stage.textureBlue ?? stage.texture_blue) || stage.texture;
 		}
 
-		let texturePath = this.#getVarField(texture);
+		let texturePath = this.#getVarField(texture) ?? '';
 		texturePath = texturePath.replace(/\.tga$/, '');
 		if (texturePath) {
-			let imageSrc = texturePathPrefixRemoveMe + texturePath + this.#imageExtension;
+			//texturePathPrefixRemoveMe + texturePath + this.#imageExtension;
 			if (!node) {
 				node = this.nodeImageEditor.addNode(TEXTURE_LOOKUP_NODE, { textureSize: context.textureSize });
 				node?.setParam('path', texturePath);
@@ -392,7 +399,7 @@ console.error('node or subnode is null', node, subNode);
 			return null;
 		}
 
-		let textureStage = new TextureStage(node);
+		const textureStage = new TextureStage(node);
 		textureStage.texturePath = texturePath;
 
 		if (stage.adjustBlack ?? stage.adjust_black) {
@@ -417,10 +424,10 @@ console.error('node or subnode is null', node, subNode);
 			ParseRange(textureStage.parameters.translateV, this.#getVarField(stage.translateV ?? stage.translate_v));
 		}
 		if (stage.flipU ?? stage.flip_u) {
-			textureStage.parameters.allowFlipU = this.#getVarField(stage.flipU ?? stage.flip_u) != 0;
+			textureStage.parameters.allowFlipU = Number(this.#getVarField(stage.flipU ?? stage.flip_u) ?? 0) != 0;
 		}
 		if (stage.flipV ?? stage.flip_v) {
-			textureStage.parameters.allowFlipV = this.#getVarField(stage.flipV ?? stage.flip_v) != 0
+			textureStage.parameters.allowFlipV = Number(this.#getVarField(stage.flipV ?? stage.flip_v) ?? 0) != 0;
 		}
 
 
@@ -428,29 +435,29 @@ console.error('node or subnode is null', node, subNode);
 	}
 
 	static #processSelectStage(stage: any, context: Context): SelectStage | null {
-		let selectParametersNode = this.nodeImageEditor.addNode('int array', { length: 16, textureSize: context.textureSize });
+		const selectParametersNode = this.nodeImageEditor.addNode('int array', { length: 16, textureSize: context.textureSize });
 		if (!selectParametersNode) {
 			return null;
 		}
 
-		let selectNode = this.nodeImageEditor.addNode('select', { textureSize: context.textureSize });
+		const selectNode = this.nodeImageEditor.addNode('select', { textureSize: context.textureSize });
 		if (!selectNode) {
 			return null;
 		}
-		let selectStage = new SelectStage(selectNode, this.nodeImageEditor, context.textureSize);
+		const selectStage = new SelectStage(selectNode, this.nodeImageEditor, context.textureSize);
 
 		selectNode.setPredecessor('selectvalues', selectParametersNode, 'output');
 
 		if (stage.groups) {
-			selectStage.texturePath = this.#getVarField(stage.groups);
+			selectStage.texturePath = this.#getVarField(stage.groups) ?? '';
 		}
 
 		if (stage.select) {
 			//selectNode.params.threshold = [];
-			let arr = stage.select;
+			const arr = stage.select;
 			for (let i = 0; i < arr.length; i++) {
-				let varField = arr[i];
-				let level = this.#getVarField(varField);
+				const varField = arr[i];
+				const level = this.#getVarField(varField) ?? '0';
 				(selectParametersNode as IntArrayNode).setValue(i, parseInt(level));
 			}
 		}
@@ -460,11 +467,11 @@ console.error('node or subnode is null', node, subNode);
 	}
 
 	static #processApplyStickerStage(stage: any, context: Context): ApplyStickerStage | null {
-		let applyStickerNode = this.nodeImageEditor.addNode(this.#textureApplyStickerNode, { textureSize: context.textureSize });
+		const applyStickerNode = this.nodeImageEditor.addNode(this.#textureApplyStickerNode, { textureSize: context.textureSize });
 		if (!applyStickerNode) {
 			return null;
 		}
-		let applyStickerStage = new ApplyStickerStage(applyStickerNode);
+		const applyStickerStage = new ApplyStickerStage(applyStickerNode);
 
 		if (stage.adjustBlack ?? stage.adjust_black) {
 			ParseRangeThenDivideBy(applyStickerStage.parameters.adjustBlack, this.#getVarField(stage.adjustBlack ?? stage.adjust_black));
@@ -487,27 +494,27 @@ console.error('node or subnode is null', node, subNode);
 		}
 
 		if (stage.sticker) {
-			let arr = stage.sticker;
-			for (let i = 0; i < arr.length; i++) {
-				let operationSticker = arr[i];
-				let sticker = new Sticker();
-				sticker.fileName = this.#getVarField(operationSticker.base);
+			const arr = stage.sticker;
+			for (const operationSticker of arr) {
+				//const operationSticker = arr[i];
+				const sticker = new Sticker();
+				sticker.fileName = this.#getVarField(operationSticker.base) ?? '';
 				if (operationSticker.weight) {
-					sticker.weight = this.#getVarField(operationSticker.weight) * 1.0;
+					sticker.weight = Number(this.#getVarField(operationSticker.weight) ?? 1);
 				}
 				applyStickerStage.parameters.possibleStickers.push(sticker);
 			}
 		} else {
-			throw 'No sticker defined';
+			throw new Error('No sticker defined');
 		}
 		applyStickerNode.invalidate();
 		return applyStickerStage;
 	}
 
-	static #getVarField(field: any) {
+	static #getVarField(field: StageField): string | null {
 		if (!field) { return null; }
 		if (field.variable) {
-			let v = this.variables[field.variable];
+			const v = this.variables[field.variable];
 			if (v) {
 				return v;
 			}
@@ -516,9 +523,14 @@ console.error('node or subnode is null', node, subNode);
 	}
 }
 
-function ParseRange(output: Range, input: string): void {
+function ParseRange(output: Range, input: string | null): void {
+	if (!input) {
+		output.low = 0;
+		output.high = 0;
+		return;
+	}
 	input = input.trim();
-	let range = input.split(/\s+/);
+	const range = input.split(/\s+/);
 
 	switch (range.length) {
 		case 1:
@@ -535,9 +547,14 @@ function ParseRange(output: Range, input: string): void {
 	}
 }
 
-function ParseVec2(output: vec2, input: string): void {
+function ParseVec2(output: vec2, input: string | null): void {
+	if (!input) {
+		output[0] = 0;
+		output[1] = 0;
+		return;
+	}
 	input = input.trim();
-	let range = input.split(' ');
+	const range = input.split(' ');
 
 	if (range.length == 2) {
 		output[0] = Number(range[0]);
@@ -545,7 +562,7 @@ function ParseVec2(output: vec2, input: string): void {
 	}
 }
 
-function ParseInverseRange(output: Range, input: string): void {
+function ParseInverseRange(output: Range, input: string | null): void {
 	ParseRange(output, input);
 	if (output.low) {
 		output.low = 1.0 / output.low;
@@ -555,7 +572,7 @@ function ParseInverseRange(output: Range, input: string): void {
 	}
 }
 
-function ParseRangeThenDivideBy(output: Range, input: string, div = 255): void {
+function ParseRangeThenDivideBy(output: Range, input: string | null, div = 255): void {
 	ParseRange(output, input);
 	output.low /= div;
 	output.high /= div;

@@ -46,15 +46,15 @@ export class HTMLTimelineElement extends HTMLElement {
 		});
 
 		document.addEventListener('mousemove', (event: MouseEvent) => this.#handleMouseMove(event));
-		document.addEventListener('mouseup', (event: MouseEvent) => this.#handleMouseUp(event));
+		document.addEventListener('mouseup', () => this.#handleMouseUp());
 	}
 
-	setTimeline(timeline?: Timeline) {
+	setTimeline(timeline?: Timeline): void {
 		this.#timeline = timeline;
 		this.#updateHTML();
 	}
 
-	#updateElement(element: TimelineElement) {
+	#updateElement(element: TimelineElement): void  {
 		if (element == this.#timeline) {
 			this.#updateHTML();
 		} else {
@@ -76,7 +76,7 @@ export class HTMLTimelineElement extends HTMLElement {
 		}
 	}
 
-	#updateHTML() {
+	#updateHTML(): void {
 		//this.#htmlHeader.innerText = '';
 		this.#htmlContent.innerText = '';
 
@@ -99,7 +99,7 @@ export class HTMLTimelineElement extends HTMLElement {
 		this.#updateElement(root);
 	}
 
-	#updateTime() {
+	#updateTime(): void {
 		//const rect = this.#htmlTimeline.getBoundingClientRect();
 		//const width = rect.width;
 
@@ -107,7 +107,7 @@ export class HTMLTimelineElement extends HTMLElement {
 
 	}
 
-	#updateGroup(group: TimelineGroup) {
+	#updateGroup(group: TimelineGroup): void {
 		const htmlGroup = this.#getChild(group);
 		if (!htmlGroup) {
 			return;
@@ -132,7 +132,7 @@ export class HTMLTimelineElement extends HTMLElement {
 		}
 	}
 
-	#updateChannel(channel: TimelineChannel) {
+	#updateChannel(channel: TimelineChannel): void {
 		const htmlChannel = this.#getChild(channel);
 		if (!htmlChannel) {
 			return;
@@ -168,7 +168,7 @@ export class HTMLTimelineElement extends HTMLElement {
 
 	}
 
-	#updateClip(clip: TimelineClip) {
+	#updateClip(clip: TimelineClip): void {
 		const htmlClip = this.#getChild(clip);
 		if (!htmlClip) {
 			return;
@@ -261,12 +261,12 @@ export class HTMLTimelineElement extends HTMLElement {
 		}
 	}
 
-	setTimeOffset(offset: number) {
+	setTimeOffset(offset: number): void {
 		this.#htmlContainer.style.setProperty('--timeline-offset-x', String(offset));
 		this.#timeOffset = offset;
 	}
 
-	#startDragRuler(event: MouseEvent) {
+	#startDragRuler(event: MouseEvent): void {
 		if (this.#dragRuler) {
 			return;
 		}
@@ -276,7 +276,7 @@ export class HTMLTimelineElement extends HTMLElement {
 		this.#startTimeOffset = this.#timeOffset;
 	}
 
-	#handleMouseMove(event: MouseEvent) {
+	#handleMouseMove(event: MouseEvent): void {
 		if (!this.#dragRuler) {
 			return;
 		}
@@ -284,7 +284,7 @@ export class HTMLTimelineElement extends HTMLElement {
 		this.#moveRuler(event.offsetX);
 	}
 
-	#handleMouseUp(event: MouseEvent) {
+	#handleMouseUp(): void {
 		if (!this.#dragRuler) {
 			return;
 		}
@@ -292,13 +292,13 @@ export class HTMLTimelineElement extends HTMLElement {
 		this.#dragRuler = false;
 	}
 
-	#moveRuler(offsetX: number) {
+	#moveRuler(offsetX: number): void  {
 		this.setTimeOffset(this.#startTimeOffset + offsetX - this.#dragRulerStartOffsetX);
 	}
 }
 
 let definedTimelineElement = false;
-export function defineTimelineElement() {
+export function defineTimelineElement(): void {
 	if (window.customElements && !definedTimelineElement) {
 		customElements.define('harmony3d-timeline', HTMLTimelineElement);
 		definedTimelineElement = true;

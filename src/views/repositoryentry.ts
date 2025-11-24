@@ -41,12 +41,12 @@ export class HTMLRepositoryEntryElement extends HTMLElement {
 		I18n.observeElement(this.#shadowRoot);
 	}
 
-	setRepositoryEntry(repositoryEntry?: RepositoryEntry) {
+	setRepositoryEntry(repositoryEntry?: RepositoryEntry): void {
 		this.#repositoryEntry = repositoryEntry;
 		this.#updateHTML();
 	}
 
-	#updateHTML() {
+	#updateHTML(): void {
 		this.#htmlSelf.innerText = this.#repositoryEntry?.getName() ?? '';
 		this.#htmlChilds.innerText = '';
 
@@ -63,7 +63,7 @@ export class HTMLRepositoryEntryElement extends HTMLElement {
 		}
 	}
 
-	#click() {
+	#click(): void {
 		if (!this.#repositoryEntry) {
 			return;
 		}
@@ -76,7 +76,7 @@ export class HTMLRepositoryEntryElement extends HTMLElement {
 		}
 	}
 
-	#toggle() {
+	#toggle(): void {
 		if (this.#expanded) {
 			this.#collapse();
 		} else {
@@ -84,13 +84,13 @@ export class HTMLRepositoryEntryElement extends HTMLElement {
 		}
 	}
 
-	#collapse() {
+	#collapse(): void {
 		hide(this.#htmlChilds);
 		this.#expanded = false;
 		this.dispatchEvent(new CustomEvent('collapse', { detail: this.#repositoryEntry }));
 	}
 
-	#expand() {
+	#expand(): void {
 		show(this.#htmlChilds);
 		this.#expanded = true;
 		this.dispatchEvent(new CustomEvent('expand', { detail: this.#repositoryEntry }));
@@ -98,7 +98,7 @@ export class HTMLRepositoryEntryElement extends HTMLElement {
 }
 
 let definedRepositoryEntry = false;
-export function defineRepositoryEntry() {
+export function defineRepositoryEntry(): void {
 	if (window.customElements && !definedRepositoryEntry) {
 		customElements.define('harmony3d-repository-entry', HTMLRepositoryEntryElement);
 		definedRepositoryEntry = true;

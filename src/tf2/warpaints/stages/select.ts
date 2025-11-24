@@ -1,6 +1,5 @@
 import { Node, NodeImageEditor, TextureLookup } from 'harmony-3d';
 import { Stage } from './stage';
-import { UniformRandomStream } from 'harmony-tf2-utils';
 
 export const TEXTURE_LOOKUP_NODE = 'texture lookup';
 
@@ -17,16 +16,20 @@ export class SelectStage extends Stage {
 		this.#textureSize = textureSize;
 	}
 
-	computeRandomValuesThis(randomStream: UniformRandomStream): boolean {
+	override computeRandomValuesThis(): boolean {
 		return false;
 	}
 
-	async _setupTextures() {
-		let texturePath = this.texturePath;
+	override async _setupTextures(): Promise<void> {
+		const texturePath = this.texturePath;
 		if (texturePath) {
-			let lookupNode = this.nodeImageEditor.addNode(TEXTURE_LOOKUP_NODE, { textureSize: this.#textureSize }) as TextureLookup;
+			const lookupNode = this.nodeImageEditor.addNode(TEXTURE_LOOKUP_NODE, { textureSize: this.#textureSize }) as TextureLookup;
 			this.node.setPredecessor('input', lookupNode, 'output');
-			lookupNode.inputTexture = await Stage.getTexture(texturePath);
+			const texture  = await Stage.getTexture(texturePath);
+			if (texture) {
+				lookupNode.inputTexture = texture;
+
+			}
 			(lookupNode as any).texturePath = texturePath;
 			lookupNode.invalidate();
 		}

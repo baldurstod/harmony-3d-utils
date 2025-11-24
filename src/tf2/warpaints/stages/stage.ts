@@ -4,12 +4,12 @@ import { UniformRandomStream } from 'harmony-tf2-utils';
 let blackTexture: Texture;
 
 export class Stage {
-	static #textures = new Map();
-	texturePath: string = '';
-	specularTexturePath: string = '';
+	static #textures = new Map<string, Promise<Texture | null>>();
+	texturePath = '';
+	specularTexturePath = '';
 	node: Node;
-	#firstChild?: Stage;
-	#nextSibling?: Stage;
+	#firstChild: Stage | null = null;
+	#nextSibling: Stage | null = null;
 
 	constructor(node: Node) {
 		this.node = node;
@@ -21,7 +21,7 @@ export class Stage {
 		}
 	}
 
-	computeRandomValues(currentIndexObject: { currentIndex: number }, pRNGs: Array<UniformRandomStream>, nRNGCount: number) {
+	computeRandomValues(currentIndexObject: { currentIndex: number }, pRNGs: UniformRandomStream[], nRNGCount: number): void {
 		if (this.computeRandomValuesThis(pRNGs[currentIndexObject.currentIndex]!)) {
 			currentIndexObject.currentIndex = (currentIndexObject.currentIndex + 1) % nRNGCount;
 		}
@@ -36,38 +36,41 @@ export class Stage {
 	}
 
 	computeRandomValuesThis(s: UniformRandomStream): boolean {
-		throw 'subclass me';
+		throw new Error('subclass me' + s.seed);
 	}
 
-	set firstChild(stage) {
+	set firstChild(stage: Stage | null) {
 		this.#firstChild = stage;
 	}
-	get firstChild() {
+
+	get firstChild(): Stage | null {
 		return this.#firstChild;
 	}
-	set nextSibling(stage) {
+
+	set nextSibling(stage: Stage | null) {
 		this.#nextSibling = stage;
 	}
-	get nextSibling() {
+
+	get nextSibling(): Stage | null {
 		return this.#nextSibling;
 	}
 
-	appendChildren(children: Array<Stage>) {
+	appendChildren(children: Stage[]): void {
 		for (let i = children.length - 1; i >= 0; --i) {
-			let childStage = children[i]!;
+			const childStage = children[i]!;
 			//console.error(childStage);
 			childStage.nextSibling = this.firstChild;
 			this.firstChild = childStage;
 		}
 	}
 
-	get displayName() {
+	get displayName(): string {
 		return this.constructor.name;
 	}
 
 	toString(tabs = ''): string {
-		let ret = [];
-		let tabs1 = tabs + '\t';
+		const ret = [];
+		const tabs1 = tabs + '\t';
 		ret.push(tabs + this.displayName);
 		if (this.#firstChild) {
 			ret.push(this.#firstChild.toString(tabs1));
@@ -79,15 +82,15 @@ export class Stage {
 		return ret.join('\n');
 	}
 
-	linkNodes() {
-		let node = this.node;
-		let inputs = node.inputs.keys();
+	linkNodes(): void {
+		const node = this.node;
+		const inputs = node.inputs.keys();
 
 		let childStage = this.firstChild;
 		while (childStage) {
 			childStage.linkNodes();
-			let input = inputs.next().value;
-			let subNode = childStage.node;
+			const input = inputs.next().value;
+			const subNode = childStage.node;
 			if (input) {
 				node.setPredecessor(input, subNode, 'output');
 			}
@@ -95,14 +98,14 @@ export class Stage {
 		}
 	}
 
-	async _setupTextures() {
-		let texturePath = this.texturePath;
+	async _setupTextures(): Promise<void> {
+		const texturePath = this.texturePath;
 		if (texturePath) {
 			(this.node as ApplySticker | TextureLookup).inputTexture = await Stage.getTexture(texturePath);
 			this.node.setParam('path', texturePath);
 			this.node.invalidate();
 		}
-		let specularTexturePath = this.specularTexturePath;
+		const specularTexturePath = this.specularTexturePath;
 		if (specularTexturePath) {
 			try {
 				const specular = this.node.getInput('specular');
@@ -115,7 +118,7 @@ export class Stage {
 		}
 	}
 
-	async setupTextures() {
+	async setupTextures(): Promise<void> {
 		const promises = new Set()
 		promises.add(this._setupTextures());
 		let childStage = this.firstChild;
@@ -127,7 +130,7 @@ export class Stage {
 		await Promise.all(promises);
 	}
 
-	static async getTexture(texturePath: string, def?: Texture) {
+	static async getTexture(texturePath: string, def?: Texture): Promise<Texture | null> {
 		if (!Stage.#textures.has(texturePath)) {
 			const promise = Source1TextureManager.getTextureAsync('tf2', texturePath, 0, false, def, false);
 			promise.then(texture => {
@@ -139,10 +142,10 @@ export class Stage {
 			});
 			Stage.#textures.set(texturePath, promise);
 		}
-		return await Stage.#textures.get(texturePath);
+		return await Stage.#textures.get(texturePath) ?? null;
 	}
 
-	static async getSpecularTexture(specularTexturePath: string) {
+	static getSpecularTexture(specularTexturePath: string): Promise<Texture | null> {
 		return this.getTexture(specularTexturePath, blackTexture);
 	}
 }

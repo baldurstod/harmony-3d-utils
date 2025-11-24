@@ -90,7 +90,7 @@ export declare class WeaponManager extends StaticEventTarget {
     static shouldRequestItems: boolean;
     static itemsDef: null;
     static itemsReady: boolean;
-    static containerPerWeapon: any;
+    static containerPerWeapon: Record<string, HTMLElement>;
     static currentItem?: WeaponManagerItem;
     static weaponId: number;
     static initWarpaintDefinitions(url: string): Promise<void>;
