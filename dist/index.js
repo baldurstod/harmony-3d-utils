@@ -371,9 +371,7 @@ class TextureCombiner {
                                 //console.error(stage.toString());
                                 stage.linkNodes();
                                 function GetSeed(seed) {
-                                    let hilo = [];
-                                    hilo.push(BigInt(0));
-                                    hilo.push(BigInt(0));
+                                    let hilo = [BigInt(0), BigInt(0)];
                                     for (let i = 0n; i < 32n; ++i) {
                                         let i2 = 2n * i;
                                         for (let j = 0n; j < 2n; ++j) {
@@ -580,8 +578,10 @@ console.error('node or subnode is null', node, subNode);
     }
     static #processCombineStage(stage, combineMode, context) {
         let node = this.nodeImageEditor.addNode(combineMode, { textureSize: context.textureSize });
-        let combineStage = new CombineStage(node, combineMode);
-        return combineStage;
+        if (node) {
+            return new CombineStage(node, combineMode);
+        }
+        return null;
     }
     /*
         async processCombineMultiplyStage(stage) {
@@ -634,7 +634,7 @@ console.error('node or subnode is null', node, subNode);
             texturePathPrefixRemoveMe + texturePath + this.#imageExtension;
             if (!node) {
                 node = this.nodeImageEditor.addNode(TEXTURE_LOOKUP_NODE, { textureSize: context.textureSize });
-                node.setParam('path', texturePath);
+                node?.setParam('path', texturePath);
             }
         }
         if (!node) {
@@ -673,7 +673,13 @@ console.error('node or subnode is null', node, subNode);
     }
     static #processSelectStage(stage, context) {
         let selectParametersNode = this.nodeImageEditor.addNode('int array', { length: 16, textureSize: context.textureSize });
+        if (!selectParametersNode) {
+            return null;
+        }
         let selectNode = this.nodeImageEditor.addNode('select', { textureSize: context.textureSize });
+        if (!selectNode) {
+            return null;
+        }
         let selectStage = new SelectStage(selectNode, this.nodeImageEditor, context.textureSize);
         selectNode.setPredecessor('selectvalues', selectParametersNode, 'output');
         if (stage.groups) {
@@ -693,6 +699,9 @@ console.error('node or subnode is null', node, subNode);
     }
     static #processApplyStickerStage(stage, context) {
         let applyStickerNode = this.nodeImageEditor.addNode(this.#textureApplyStickerNode, { textureSize: context.textureSize });
+        if (!applyStickerNode) {
+            return null;
+        }
         let applyStickerStage = new ApplyStickerStage(applyStickerNode);
         if (stage.adjustBlack ?? stage.adjust_black) {
             ParseRangeThenDivideBy(applyStickerStage.parameters.adjustBlack, this.#getVarField(stage.adjustBlack ?? stage.adjust_black));
@@ -942,7 +951,7 @@ class WeaponManager extends StaticEventTarget {
             this.currentItem = this.#itemQueue.shift();
             let ci = this.currentItem;
             const textureName = `#warpaint_${ci.id.replace(/\~\d+/, '')}_${ci.warpaintId}_${ci.warpaintWear}_${ci.warpaintSeed}`;
-            const existingTexture = await Source1TextureManager.getTextureAsync(ci.model?.sourceModel.repository, textureName, 0, false);
+            const existingTexture = await Source1TextureManager.getTextureAsync(ci.model?.sourceModel.repository ?? '', textureName, 0, false);
             if (existingTexture) {
                 ci.model?.setMaterialParam('WeaponSkin', textureName);
                 this.currentItem = undefined;

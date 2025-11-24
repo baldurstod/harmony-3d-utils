@@ -101,14 +101,12 @@ export class TextureCombiner {
 
 
 								function GetSeed(seed: bigint) {
-									let hilo: Array<bigint> = [];
-									hilo.push(BigInt(0));
-									hilo.push(BigInt(0));
+									let hilo: [bigint, bigint] = [BigInt(0), BigInt(0)];
 
 									for (let i = 0n; i < 32n; ++i) {
 										let i2 = 2n * i;
 										for (let j = 0n; j < 2n; ++j) {
-											hilo[Number(j)] |= (seed & (1n << (i2 + j))) >> (i + j);
+											hilo[Number(j)]! |= (seed & (1n << (i2 + j))) >> (i + j);
 										}
 									}
 									return hilo;
@@ -122,7 +120,7 @@ export class TextureCombiner {
 								await (stage as Stage).setupTextures();
 								let finalNode = (stage as Stage).node;
 								finalNode.autoRedraw = true;
-								let finalOutput = finalNode.getOutput('output')._value = outputTexture;
+								finalNode.getOutput('output')!._value = outputTexture;
 
 								/*
 																let processPixelArray = (pixelArray) => {
@@ -325,12 +323,14 @@ console.error('node or subnode is null', node, subNode);
 		return subStage;
 	}
 
-	static #processCombineStage(stage: any, combineMode: string, context: Context): CombineStage {
+	static #processCombineStage(stage: any, combineMode: string, context: Context): CombineStage | null {
 		let node = this.nodeImageEditor.addNode(combineMode, { textureSize: context.textureSize });
 
-		let combineStage = new CombineStage(node, combineMode);
+		if (node) {
+			return new CombineStage(node, combineMode);
+		}
 
-		return combineStage;
+		return null;
 	}
 	/*
 		async processCombineMultiplyStage(stage) {
@@ -385,7 +385,7 @@ console.error('node or subnode is null', node, subNode);
 			let imageSrc = texturePathPrefixRemoveMe + texturePath + this.#imageExtension;
 			if (!node) {
 				node = this.nodeImageEditor.addNode(TEXTURE_LOOKUP_NODE, { textureSize: context.textureSize });
-				node.setParam('path', texturePath);
+				node?.setParam('path', texturePath);
 			}
 		}
 		if (!node) {
@@ -427,10 +427,16 @@ console.error('node or subnode is null', node, subNode);
 		return textureStage;
 	}
 
-	static #processSelectStage(stage: any, context: Context): SelectStage {
+	static #processSelectStage(stage: any, context: Context): SelectStage | null {
 		let selectParametersNode = this.nodeImageEditor.addNode('int array', { length: 16, textureSize: context.textureSize });
+		if (!selectParametersNode) {
+			return null;
+		}
 
 		let selectNode = this.nodeImageEditor.addNode('select', { textureSize: context.textureSize });
+		if (!selectNode) {
+			return null;
+		}
 		let selectStage = new SelectStage(selectNode, this.nodeImageEditor, context.textureSize);
 
 		selectNode.setPredecessor('selectvalues', selectParametersNode, 'output');
@@ -453,8 +459,11 @@ console.error('node or subnode is null', node, subNode);
 		return selectStage;
 	}
 
-	static #processApplyStickerStage(stage: any, context: Context): ApplyStickerStage {
+	static #processApplyStickerStage(stage: any, context: Context): ApplyStickerStage | null {
 		let applyStickerNode = this.nodeImageEditor.addNode(this.#textureApplyStickerNode, { textureSize: context.textureSize });
+		if (!applyStickerNode) {
+			return null;
+		}
 		let applyStickerStage = new ApplyStickerStage(applyStickerNode);
 
 		if (stage.adjustBlack ?? stage.adjust_black) {

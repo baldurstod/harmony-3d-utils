@@ -22,7 +22,7 @@ export class Stage {
 	}
 
 	computeRandomValues(currentIndexObject: { currentIndex: number }, pRNGs: Array<UniformRandomStream>, nRNGCount: number) {
-		if (this.computeRandomValuesThis(pRNGs[currentIndexObject.currentIndex])) {
+		if (this.computeRandomValuesThis(pRNGs[currentIndexObject.currentIndex]!)) {
 			currentIndexObject.currentIndex = (currentIndexObject.currentIndex + 1) % nRNGCount;
 		}
 
@@ -54,7 +54,7 @@ export class Stage {
 
 	appendChildren(children: Array<Stage>) {
 		for (let i = children.length - 1; i >= 0; --i) {
-			let childStage = children[i];
+			let childStage = children[i]!;
 			//console.error(childStage);
 			childStage.nextSibling = this.firstChild;
 			this.firstChild = childStage;

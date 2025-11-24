@@ -2,6 +2,12 @@ import { Timeline, TimelineChannel, TimelineClip, TimelineElement, TimelineEleme
 import { createElement, hide, shadowRootStyle, show } from 'harmony-ui';
 import timelineCSS from '../../css/timeline.css';
 
+type TimelineChild = {
+	html: HTMLElement;
+	htmlHeader: HTMLElement;
+	htmlContent: HTMLElement;
+}
+
 export class HTMLTimelineElement extends HTMLElement {
 	#shadowRoot: ShadowRoot;
 	#htmlContainer: HTMLElement;
@@ -9,7 +15,7 @@ export class HTMLTimelineElement extends HTMLElement {
 	#htmlContent: HTMLElement;
 	#htmlCursor: HTMLElement;
 
-	#childs = new Map<TimelineElement, any/*TODO: proper type*/>();
+	#childs = new Map<TimelineElement, TimelineChild>();
 
 	#timeline?: Timeline;
 	#timescale = 30;
@@ -186,7 +192,7 @@ export class HTMLTimelineElement extends HTMLElement {
 
 	}
 
-	#getChild(element: TimelineElement): { [key: string]: HTMLElement, html: HTMLElement } | undefined {
+	#getChild(element: TimelineElement): TimelineChild | undefined {
 		let html: any/*TODO: fix type*/ = this.#childs.get(element);
 		if (!html) {
 			//html = createElement('div') as HTMLTimelineElement;
@@ -198,7 +204,7 @@ export class HTMLTimelineElement extends HTMLElement {
 		return html;
 	}
 
-	#createChild(element: TimelineElement): { [key: string]: HTMLElement, html: HTMLElement } | undefined {
+	#createChild(element: TimelineElement): TimelineChild | undefined {
 		let htmlHeader, htmlContent;
 		switch (element.type) {
 			case TimelineElementType.Group:

@@ -34,8 +34,8 @@ export class ApplyStickerStage extends Stage {
 			let thisWeight = possibleSticker.weight;
 			if (weight < thisWeight) {
 				this.choice = i;
-				this.texturePath = parameters.possibleStickers[i].fileName;
-				this.specularTexturePath = parameters.possibleStickers[i].fileName.replace(/\.vtf$/, '') + '_s';
+				this.texturePath = parameters.possibleStickers[i]!.fileName;
+				this.specularTexturePath = parameters.possibleStickers[i]!.fileName.replace(/\.vtf$/, '') + '_s';
 				break;
 			} else {
 				weight -= thisWeight;
