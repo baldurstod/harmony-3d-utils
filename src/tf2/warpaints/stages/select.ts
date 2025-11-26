@@ -30,7 +30,7 @@ export class SelectStage extends Stage {
 				lookupNode.inputTexture = texture;
 
 			}
-			(lookupNode as any).texturePath = texturePath;
+			//(lookupNode as any).texturePath = texturePath;
 			lookupNode.invalidate();
 		}
 	}

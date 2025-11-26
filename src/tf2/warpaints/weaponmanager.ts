@@ -176,8 +176,6 @@ export class WeaponManager extends StaticEventTarget {
 	}
 
 	static refreshWarpaint(item: WeaponManagerItem, clearQueue = false): void {
-		const textureName = `#warpaint_${item.id.replace(/\~\d+/, '')}_${item.warpaintId}_${item.warpaintWear}_${item.warpaintSeed}`;
-		console.info(textureName);
 		if (clearQueue) {
 			this.#itemQueue = [];
 		}
@@ -196,7 +194,7 @@ export class WeaponManager extends StaticEventTarget {
 			this.currentItem = this.#itemQueue.shift();
 			const ci = this.currentItem!;
 
-			const textureName = `#warpaint_${ci.id.replace(/\~\d+/, '')}_${ci.warpaintId}_${ci.warpaintWear}_${ci.warpaintSeed}`;
+			const textureName = `#warpaint_${ci.id.replace(/\~\d+/, '')}_${ci.warpaintId}_${ci.warpaintWear}_${ci.warpaintSeed}_${ci.team}`;
 
 			const existingTexture = await Source1TextureManager.getTextureAsync(ci.model?.sourceModel.repository ?? '', textureName, 0, false);
 			if (existingTexture) {

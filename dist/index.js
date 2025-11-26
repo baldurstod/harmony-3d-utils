@@ -259,7 +259,7 @@ class SelectStage extends Stage {
             if (texture) {
                 lookupNode.inputTexture = texture;
             }
-            lookupNode.texturePath = texturePath;
+            //(lookupNode as any).texturePath = texturePath;
             lookupNode.invalidate();
         }
     }
@@ -947,8 +947,6 @@ class WeaponManager extends StaticEventTarget {
         return itemList;
     }
     static refreshWarpaint(item, clearQueue = false) {
-        const textureName = `#warpaint_${item.id.replace(/\~\d+/, '')}_${item.warpaintId}_${item.warpaintWear}_${item.warpaintSeed}`;
-        console.info(textureName);
         if (clearQueue) {
             this.#itemQueue = [];
         }
@@ -964,7 +962,7 @@ class WeaponManager extends StaticEventTarget {
         if (!this.currentItem && this.#itemQueue.length) {
             this.currentItem = this.#itemQueue.shift();
             const ci = this.currentItem;
-            const textureName = `#warpaint_${ci.id.replace(/\~\d+/, '')}_${ci.warpaintId}_${ci.warpaintWear}_${ci.warpaintSeed}`;
+            const textureName = `#warpaint_${ci.id.replace(/\~\d+/, '')}_${ci.warpaintId}_${ci.warpaintWear}_${ci.warpaintSeed}_${ci.team}`;
             const existingTexture = await Source1TextureManager.getTextureAsync(ci.model?.sourceModel.repository ?? '', textureName, 0, false);
             if (existingTexture) {
                 ci.model?.setMaterialParam('WeaponSkin', textureName);
