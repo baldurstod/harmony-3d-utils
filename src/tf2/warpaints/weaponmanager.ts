@@ -198,6 +198,7 @@ export class WeaponManager extends StaticEventTarget {
 
 			const existingTexture = await Source1TextureManager.getTextureAsync(ci.model?.sourceModel.repository ?? '', textureName, 0, false);
 			if (existingTexture) {
+				existingTexture.addUser(ci.model);
 				ci.model?.setMaterialParam('WeaponSkin', textureName);
 				this.currentItem = undefined;
 				this.#processNextItemInQueue();
@@ -205,6 +206,7 @@ export class WeaponManager extends StaticEventTarget {
 			}
 
 			const { /*name: textureName,*/ texture } = Source1TextureManager.addInternalTexture(ci.model?.sourceModel.repository ?? '', textureName);
+			texture.addUser(ci.model);
 			texture.setAlphaBits(8);
 			if (ci.warpaintId !== undefined) {
 				this.dispatchEvent(new CustomEvent<WeaponManagerItem>(WeaponManagerEvents.Started, { detail: ci }));
