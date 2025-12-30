@@ -962,7 +962,7 @@ class WeaponManager extends StaticEventTarget {
         if (!this.currentItem && this.#itemQueue.length) {
             this.currentItem = this.#itemQueue.shift();
             const ci = this.currentItem;
-            const textureName = `#warpaint_${ci.id.replace(/\~\d+/, '')}_${ci.warpaintId}_${ci.warpaintWear}_${ci.warpaintSeed}_${ci.team}`;
+            const textureName = `#warpaint_${ci.id.replace(/\~\d+/, '')}_${ci.warpaintId}_${ci.warpaintWear}_${ci.warpaintSeed}_${ci.team}_${ci.textureSize ?? ''}`;
             const existingTexture = await Source1TextureManager.getTextureAsync(ci.model?.sourceModel.repository ?? '', textureName, 0, false);
             if (existingTexture) {
                 ci.model?.setMaterialParam('WeaponSkin', textureName);
