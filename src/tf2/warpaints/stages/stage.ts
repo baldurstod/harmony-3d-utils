@@ -15,7 +15,17 @@ export class Stage {
 		this.node = node;
 		if (!blackTexture) {
 			Graphics.ready.then(() => {
-				blackTexture = TextureManager.createFlatTexture(new Color(0, 0, 0))
+				blackTexture = TextureManager.createFlatTexture({
+					webgpuDescriptor: {
+						size: {
+							width: 1,
+							height: 1,
+						},
+						format: 'rgba8unorm',
+						usage: GPUTextureUsage.TEXTURE_BINDING | GPUTextureUsage.COPY_DST,
+					},
+					color: new Color(0, 0, 0)
+				})
 				blackTexture.addUser(1);
 			});
 		}
@@ -132,7 +142,7 @@ export class Stage {
 
 	static async getTexture(texturePath: string, def?: Texture): Promise<Texture | null> {
 		if (!Stage.#textures.has(texturePath)) {
-			const promise = Source1TextureManager.getTextureAsync('tf2', texturePath, 0, false, def, false);
+			const promise = Source1TextureManager.getInternalTexture('tf2', texturePath, 0, false, def, false);
 			promise.then(texture => {
 				if (texture) {
 					texture.addUser(this);

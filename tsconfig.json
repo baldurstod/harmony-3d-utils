@@ -8,5 +8,8 @@
     "skipLibCheck": true,
     "outDir": "dist",
     "noUncheckedIndexedAccess": true,
+    "types": [
+      "@webgpu/types",
+    ],
   }
 }

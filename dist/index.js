@@ -26,7 +26,17 @@ class Stage {
         this.node = node;
         if (!blackTexture) {
             Graphics.ready.then(() => {
-                blackTexture = TextureManager.createFlatTexture(new Color(0, 0, 0));
+                blackTexture = TextureManager.createFlatTexture({
+                    webgpuDescriptor: {
+                        size: {
+                            width: 1,
+                            height: 1,
+                        },
+                        format: 'rgba8unorm',
+                        usage: GPUTextureUsage.TEXTURE_BINDING | GPUTextureUsage.COPY_DST,
+                    },
+                    color: new Color(0, 0, 0)
+                });
                 blackTexture.addUser(1);
             });
         }
@@ -126,7 +136,7 @@ class Stage {
     }
     static async getTexture(texturePath, def) {
         if (!Stage.#textures.has(texturePath)) {
-            const promise = Source1TextureManager.getTextureAsync('tf2', texturePath, 0, false, def, false);
+            const promise = Source1TextureManager.getInternalTexture('tf2', texturePath, 0, false, def, false);
             promise.then(texture => {
                 if (texture) {
                     texture.addUser(this);
@@ -963,7 +973,7 @@ class WeaponManager extends StaticEventTarget {
             this.currentItem = this.#itemQueue.shift();
             const ci = this.currentItem;
             const textureName = `#warpaint_${ci.id.replace(/\~\d+/, '')}_${ci.warpaintId}_${ci.warpaintWear}_${ci.warpaintSeed}_${ci.team}_${ci.textureSize ?? ''}`;
-            const existingTexture = await Source1TextureManager.getTextureAsync(ci.model?.sourceModel.repository ?? '', textureName, 0, false);
+            const existingTexture = await Source1TextureManager.getInternalTexture(ci.model?.sourceModel.repository ?? '', textureName, 0, false);
             if (existingTexture) {
                 ci.model?.setMaterialParam('WeaponSkin', textureName);
                 this.currentItem = undefined;
