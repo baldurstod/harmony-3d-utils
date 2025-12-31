@@ -136,7 +136,7 @@ class Stage {
     }
     static async getTexture(texturePath, def) {
         if (!Stage.#textures.has(texturePath)) {
-            const promise = Source1TextureManager.getInternalTexture('tf2', texturePath, 0, false, def, false);
+            const promise = Source1TextureManager.getTextureAsync('tf2', texturePath, 0, false, def, false);
             promise.then(texture => {
                 if (texture) {
                     texture.addUser(this);
