@@ -120,7 +120,7 @@ export class Stage {
 			try {
 				const specular = this.node.getInput('specular');
 				if (specular) {
-					specular.value = await Stage.getSpecularTexture(texturePath);
+					specular.setValue(await Stage.getSpecularTexture(texturePath));
 				}
 			} catch (e) {
 				console.log(e);

@@ -50,7 +50,7 @@ export class TextureCombiner {
 		return WarpaintDefinitions.getDefinition(CMsgProtoDefID);
 	}
 
-	static async combinePaint(warpaintDefId: number, wearLevel: number, weaponDefIndex: string/*, outputTextureName: string, outputTexture: Texture*/, team: number, seed = 0n, textureSize = this.#textureSize): Promise<AnimatedTexture | null> {
+	static async combinePaint(warpaintDefId: number, wearLevel: number, weaponDefIndex: string/*, outputTextureName: string, outputTexture: Texture*/, team: number, seed = 0n, updatePreview: boolean, textureSize = this.#textureSize): Promise<AnimatedTexture | null> {
 		this.#lookupNodes = new Map();
 
 		const combinePaintFunction = async (resolve: (value: AnimatedTexture | null) => void): Promise<void> => {
@@ -124,7 +124,6 @@ export class TextureCombiner {
 								(stage as Stage).computeRandomValues({ currentIndex: 0 }, randomStreams, randomStreams.length);
 								await (stage as Stage).setupTextures();
 								const finalNode = (stage as Stage).node;
-								finalNode.autoRedraw = true;
 								//finalNode.getOutput('output')!._value = outputTexture;
 
 								/*
@@ -140,7 +139,7 @@ export class TextureCombiner {
 								//let pixelArray = await node.getOutput('output').pixelArray;
 								//console.error(await node.toString());
 								//processPixelArray(pixelArray);
-								await finalNode.redraw();
+								await finalNode.redraw({ updatePreview });
 
 								const texture = new AnimatedTexture();// TODO: create a Texture instead ?
 								texture.addFrame(0, finalNode.getOutput('output')!._value as Texture);

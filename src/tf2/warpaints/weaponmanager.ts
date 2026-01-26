@@ -23,6 +23,7 @@ export interface WeaponManagerItem {
 	userData?: any;
 	team: number;
 	textureSize?: number;
+	updatePreview: boolean;
 }
 
 export enum WeaponManagerEvents {
@@ -207,7 +208,7 @@ export class WeaponManager extends StaticEventTarget {
 			//const { /*name: textureName,*/ texture } = Source1TextureManager.addInternalTexture(ci.model?.sourceModel.repository ?? '', textureName);
 			if (ci.warpaintId !== undefined) {
 				this.dispatchEvent(new CustomEvent<WeaponManagerItem>(WeaponManagerEvents.Started, { detail: ci }));
-				const promise = TextureCombiner.combinePaint(ci.warpaintId, ci.warpaintWear, ci.id.replace(/\~\d+/, ''), /*textureName, texture.getFrame(0)!, */ci.team, ci.warpaintSeed, ci.textureSize);
+				const promise = TextureCombiner.combinePaint(ci.warpaintId, ci.warpaintWear, ci.id.replace(/\~\d+/, ''), /*textureName, texture.getFrame(0)!, */ci.team, ci.warpaintSeed, ci.updatePreview, ci.textureSize);
 				//this._textureCombiner.nodeImageEditor.setOutputTextureName(textureName);
 				promise.then((texture: AnimatedTexture | null) => {
 					if (texture) {

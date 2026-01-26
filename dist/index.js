@@ -116,7 +116,7 @@ class Stage {
             try {
                 const specular = this.node.getInput('specular');
                 if (specular) {
-                    specular.value = await Stage.getSpecularTexture(texturePath);
+                    specular.setValue(await Stage.getSpecularTexture(texturePath));
                 }
             }
             catch (e) {
@@ -334,7 +334,7 @@ class TextureCombiner {
     static async _getDefindex(CMsgProtoDefID) {
         return WarpaintDefinitions.getDefinition(CMsgProtoDefID);
     }
-    static async combinePaint(warpaintDefId, wearLevel, weaponDefIndex /*, outputTextureName: string, outputTexture: Texture*/, team, seed = 0n, textureSize = this.#textureSize) {
+    static async combinePaint(warpaintDefId, wearLevel, weaponDefIndex /*, outputTextureName: string, outputTexture: Texture*/, team, seed = 0n, updatePreview, textureSize = this.#textureSize) {
         this.#lookupNodes = new Map();
         const combinePaintFunction = async (resolve) => {
             //let finalPromise;
@@ -399,7 +399,6 @@ class TextureCombiner {
                                 stage.computeRandomValues({ currentIndex: 0 }, randomStreams, randomStreams.length);
                                 await stage.setupTextures();
                                 const finalNode = stage.node;
-                                finalNode.autoRedraw = true;
                                 //finalNode.getOutput('output')!._value = outputTexture;
                                 /*
                                                                 let processPixelArray = (pixelArray) => {
@@ -414,7 +413,7 @@ class TextureCombiner {
                                 //let pixelArray = await node.getOutput('output').pixelArray;
                                 //console.error(await node.toString());
                                 //processPixelArray(pixelArray);
-                                await finalNode.redraw();
+                                await finalNode.redraw({ updatePreview });
                                 const texture = new AnimatedTexture(); // TODO: create a Texture instead ?
                                 texture.addFrame(0, finalNode.getOutput('output')._value);
                                 TextureCombinerEventTarget.dispatchEvent(new CustomEvent('paintdone', {
@@ -985,7 +984,7 @@ class WeaponManager extends StaticEventTarget {
             //const { /*name: textureName,*/ texture } = Source1TextureManager.addInternalTexture(ci.model?.sourceModel.repository ?? '', textureName);
             if (ci.warpaintId !== undefined) {
                 this.dispatchEvent(new CustomEvent(WeaponManagerEvents.Started, { detail: ci }));
-                const promise = TextureCombiner.combinePaint(ci.warpaintId, ci.warpaintWear, ci.id.replace(/\~\d+/, ''), /*textureName, texture.getFrame(0)!, */ ci.team, ci.warpaintSeed, ci.textureSize);
+                const promise = TextureCombiner.combinePaint(ci.warpaintId, ci.warpaintWear, ci.id.replace(/\~\d+/, ''), /*textureName, texture.getFrame(0)!, */ ci.team, ci.warpaintSeed, ci.updatePreview, ci.textureSize);
                 //this._textureCombiner.nodeImageEditor.setOutputTextureName(textureName);
                 promise.then((texture) => {
                     if (texture) {

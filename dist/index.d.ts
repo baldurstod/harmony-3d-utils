@@ -58,7 +58,7 @@ export declare class TextureCombiner {
     static variables: any;
     static setTextureSize(textureSize: number): void;
     static _getDefindex(CMsgProtoDefID: any): Promise<any>;
-    static combinePaint(warpaintDefId: number, wearLevel: number, weaponDefIndex: string, team: number, seed?: bigint, textureSize?: number): Promise<AnimatedTexture | null>;
+    static combinePaint(warpaintDefId: number, wearLevel: number, weaponDefIndex: string, team: number, seed: bigint | undefined, updatePreview: boolean, textureSize?: number): Promise<AnimatedTexture | null>;
 }
 
 export declare const TextureCombinerEventTarget: EventTarget;
@@ -114,6 +114,7 @@ export declare interface WeaponManagerItem {
     userData?: any;
     team: number;
     textureSize?: number;
+    updatePreview: boolean;
 }
 
 export { }
