@@ -1,4 +1,4 @@
-import { Graphics, TextureManager, Color, Source1TextureManager, DEG_TO_RAD, DEFAULT_TEXTURE_SIZE, NodeImageEditor, NodeImageEditorGui, TimelineElementType } from 'harmony-3d';
+import { Graphics, TextureManager, Color, Source1TextureManager, DEG_TO_RAD, DEFAULT_TEXTURE_SIZE, NodeImageEditor, AnimatedTexture, NodeImageEditorGui, TimelineElementType } from 'harmony-3d';
 import { WarpaintDefinitions, getLegacyWarpaint, UniformRandomStream } from 'harmony-tf2-utils';
 import { vec2 } from 'gl-matrix';
 import { createElement, shadowRootStyle, show, hide, I18n, cloneEvent } from 'harmony-ui';
@@ -334,7 +334,7 @@ class TextureCombiner {
     static async _getDefindex(CMsgProtoDefID) {
         return WarpaintDefinitions.getDefinition(CMsgProtoDefID);
     }
-    static async combinePaint(warpaintDefId, wearLevel, weaponDefIndex, outputTextureName, outputTexture, team, seed = 0n, textureSize = this.#textureSize) {
+    static async combinePaint(warpaintDefId, wearLevel, weaponDefIndex /*, outputTextureName: string, outputTexture: Texture*/, team, seed = 0n, textureSize = this.#textureSize) {
         this.#lookupNodes = new Map();
         const combinePaintFunction = async (resolve) => {
             //let finalPromise;
@@ -400,7 +400,7 @@ class TextureCombiner {
                                 await stage.setupTextures();
                                 const finalNode = stage.node;
                                 finalNode.autoRedraw = true;
-                                finalNode.getOutput('output')._value = outputTexture;
+                                //finalNode.getOutput('output')!._value = outputTexture;
                                 /*
                                                                 let processPixelArray = (pixelArray) => {
                                                                     this.pixelArray = pixelArray;
@@ -415,27 +415,29 @@ class TextureCombiner {
                                 //console.error(await node.toString());
                                 //processPixelArray(pixelArray);
                                 await finalNode.redraw();
+                                const texture = new AnimatedTexture(); // TODO: create a Texture instead ?
+                                texture.addFrame(0, finalNode.getOutput('output')._value);
                                 TextureCombinerEventTarget.dispatchEvent(new CustomEvent('paintdone', {
                                     detail: {
                                         warpaintDefId: warpaintDefId,
                                         wearLevel: wearLevel,
                                         weaponDefIndex: weaponDefIndex,
-                                        outputTextureName: outputTextureName,
-                                        outputTexture: outputTexture,
+                                        //outputTextureName: outputTextureName,
+                                        //outputTexture: outputTexture,
                                         seed: seed,
                                         node: finalNode,
                                     }
                                 }));
-                                resolve(true);
+                                resolve(texture);
                                 return;
                             }
                         }
                     }
-                    resolve(false);
+                    resolve(null);
                 }
             }
             else {
-                resolve(false);
+                resolve(null);
             }
             /*if (!finalPromise) {
                 resolve(false);
@@ -980,15 +982,21 @@ class WeaponManager extends StaticEventTarget {
                 this.#processNextItemInQueue();
                 return;
             }
-            const { /*name: textureName,*/ texture } = Source1TextureManager.addInternalTexture(ci.model?.sourceModel.repository ?? '', textureName);
-            texture.setAlphaBits(8);
+            //const { /*name: textureName,*/ texture } = Source1TextureManager.addInternalTexture(ci.model?.sourceModel.repository ?? '', textureName);
             if (ci.warpaintId !== undefined) {
                 this.dispatchEvent(new CustomEvent(WeaponManagerEvents.Started, { detail: ci }));
-                const promise = TextureCombiner.combinePaint(ci.warpaintId, ci.warpaintWear, ci.id.replace(/\~\d+/, ''), textureName, texture.getFrame(0), ci.team, ci.warpaintSeed, ci.textureSize);
-                ci.model?.setMaterialParam('WeaponSkin', textureName);
+                const promise = TextureCombiner.combinePaint(ci.warpaintId, ci.warpaintWear, ci.id.replace(/\~\d+/, ''), /*textureName, texture.getFrame(0)!, */ ci.team, ci.warpaintSeed, ci.textureSize);
                 //this._textureCombiner.nodeImageEditor.setOutputTextureName(textureName);
-                promise.then(() => {
-                    this.dispatchEvent(new CustomEvent(WeaponManagerEvents.Success, { detail: ci }));
+                promise.then((texture) => {
+                    if (texture) {
+                        Source1TextureManager.setTexture(ci.model?.sourceModel.repository ?? '', textureName, texture);
+                        texture.setAlphaBits(8);
+                        ci.model?.setMaterialParam('WeaponSkin', textureName);
+                        this.dispatchEvent(new CustomEvent(WeaponManagerEvents.Success, { detail: ci }));
+                    }
+                    else {
+                        this.dispatchEvent(new CustomEvent(WeaponManagerEvents.Failure, { detail: ci }));
+                    }
                     this.currentItem = undefined;
                     this.#processNextItemInQueue();
                 });

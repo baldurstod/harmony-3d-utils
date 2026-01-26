@@ -1,5 +1,5 @@
 import { vec2 } from 'gl-matrix';
-import { DEFAULT_TEXTURE_SIZE, IntArrayNode, Node, NodeImageEditor, Texture } from 'harmony-3d';
+import { AnimatedTexture, DEFAULT_TEXTURE_SIZE, IntArrayNode, Node, NodeImageEditor, Texture } from 'harmony-3d';
 import { getLegacyWarpaint, UniformRandomStream, WarpaintDefinitions } from 'harmony-tf2-utils';
 import { ApplyStickerStage, Sticker } from './stages/applysticker';
 import { CombineStage } from './stages/combine';
@@ -16,8 +16,8 @@ export type WarpaintDoneEvent = {
 	warpaintDefId: number,
 	wearLevel: number,
 	weaponDefIndex: string,
-	outputTextureName: string,
-	outputTexture: Texture,
+	//outputTextureName: string,
+	//outputTexture: Texture,
 	seed: bigint,
 	node: Node,
 }
@@ -50,10 +50,10 @@ export class TextureCombiner {
 		return WarpaintDefinitions.getDefinition(CMsgProtoDefID);
 	}
 
-	static async combinePaint(warpaintDefId: number, wearLevel: number, weaponDefIndex: string, outputTextureName: string, outputTexture: Texture, team: number, seed = 0n, textureSize = this.#textureSize): Promise<boolean> {
+	static async combinePaint(warpaintDefId: number, wearLevel: number, weaponDefIndex: string/*, outputTextureName: string, outputTexture: Texture*/, team: number, seed = 0n, textureSize = this.#textureSize): Promise<AnimatedTexture | null> {
 		this.#lookupNodes = new Map();
 
-		const combinePaintFunction = async (resolve: (value: boolean) => void): Promise<void> => {
+		const combinePaintFunction = async (resolve: (value: AnimatedTexture | null) => void): Promise<void> => {
 			//let finalPromise;
 			if (warpaintDefId != undefined && wearLevel != undefined && weaponDefIndex != undefined) {
 				this.nodeImageEditor.removeAllNodes();
@@ -125,7 +125,7 @@ export class TextureCombiner {
 								await (stage as Stage).setupTextures();
 								const finalNode = (stage as Stage).node;
 								finalNode.autoRedraw = true;
-								finalNode.getOutput('output')!._value = outputTexture;
+								//finalNode.getOutput('output')!._value = outputTexture;
 
 								/*
 																let processPixelArray = (pixelArray) => {
@@ -140,34 +140,38 @@ export class TextureCombiner {
 								//let pixelArray = await node.getOutput('output').pixelArray;
 								//console.error(await node.toString());
 								//processPixelArray(pixelArray);
-								await finalNode.redraw()
+								await finalNode.redraw();
+
+								const texture = new AnimatedTexture();// TODO: create a Texture instead ?
+								texture.addFrame(0, finalNode.getOutput('output')!._value as Texture);
+
 								TextureCombinerEventTarget.dispatchEvent(new CustomEvent<WarpaintDoneEvent>('paintdone', {
 									detail: {
 										warpaintDefId: warpaintDefId,
 										wearLevel: wearLevel,
 										weaponDefIndex: weaponDefIndex,
-										outputTextureName: outputTextureName,
-										outputTexture: outputTexture,
+										//outputTextureName: outputTextureName,
+										//outputTexture: outputTexture,
 										seed: seed,
 										node: finalNode,
 									}
 								}));
-								resolve(true);
+								resolve(texture);
 								return;
 							}
 						}
 					}
-					resolve(false);
+					resolve(null);
 				}
 			} else {
-				resolve(false);
+				resolve(null);
 			}
 			/*if (!finalPromise) {
 				resolve(false);
 			}*/
 		};
 
-		const combinePaintPromise = new Promise<boolean>(resolve => { combinePaintFunction(resolve) });
+		const combinePaintPromise = new Promise<AnimatedTexture | null>(resolve => { combinePaintFunction(resolve) });
 		return combinePaintPromise;
 	}
 

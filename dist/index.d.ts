@@ -1,3 +1,4 @@
+import { AnimatedTexture } from 'harmony-3d';
 import { Node as Node_2 } from 'harmony-3d';
 import { NodeImageEditor } from 'harmony-3d';
 import { NodeImageEditorGui } from 'harmony-3d';
@@ -6,7 +7,6 @@ import { RepositoryEntry } from 'harmony-3d';
 import { RepositoryFilter } from 'harmony-3d';
 import { Source1ModelInstance } from 'harmony-3d';
 import { StaticEventTarget } from 'harmony-utils';
-import { Texture } from 'harmony-3d';
 import { Timeline } from 'harmony-3d';
 
 export declare type AddWarpaintEvent = {
@@ -58,7 +58,7 @@ export declare class TextureCombiner {
     static variables: any;
     static setTextureSize(textureSize: number): void;
     static _getDefindex(CMsgProtoDefID: any): Promise<any>;
-    static combinePaint(warpaintDefId: number, wearLevel: number, weaponDefIndex: string, outputTextureName: string, outputTexture: Texture, team: number, seed?: bigint, textureSize?: number): Promise<boolean>;
+    static combinePaint(warpaintDefId: number, wearLevel: number, weaponDefIndex: string, team: number, seed?: bigint, textureSize?: number): Promise<AnimatedTexture | null>;
 }
 
 export declare const TextureCombinerEventTarget: EventTarget;
@@ -67,8 +67,6 @@ export declare type WarpaintDoneEvent = {
     warpaintDefId: number;
     wearLevel: number;
     weaponDefIndex: string;
-    outputTextureName: string;
-    outputTexture: Texture;
     seed: bigint;
     node: Node_2;
 };

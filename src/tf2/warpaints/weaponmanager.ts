@@ -1,4 +1,4 @@
-import { Source1ModelInstance, Source1TextureManager } from 'harmony-3d';
+import { AnimatedTexture, Source1ModelInstance, Source1TextureManager, Texture } from 'harmony-3d';
 import { WarpaintDefinitions } from 'harmony-tf2-utils';
 import { createElement } from 'harmony-ui';
 import { StaticEventTarget } from 'harmony-utils';
@@ -204,15 +204,20 @@ export class WeaponManager extends StaticEventTarget {
 				return;
 			}
 
-			const { /*name: textureName,*/ texture } = Source1TextureManager.addInternalTexture(ci.model?.sourceModel.repository ?? '', textureName);
-			texture.setAlphaBits(8);
+			//const { /*name: textureName,*/ texture } = Source1TextureManager.addInternalTexture(ci.model?.sourceModel.repository ?? '', textureName);
 			if (ci.warpaintId !== undefined) {
 				this.dispatchEvent(new CustomEvent<WeaponManagerItem>(WeaponManagerEvents.Started, { detail: ci }));
-				const promise = TextureCombiner.combinePaint(ci.warpaintId, ci.warpaintWear, ci.id.replace(/\~\d+/, ''), textureName, texture.getFrame(0)!, ci.team, ci.warpaintSeed, ci.textureSize);
-				ci.model?.setMaterialParam('WeaponSkin', textureName);
+				const promise = TextureCombiner.combinePaint(ci.warpaintId, ci.warpaintWear, ci.id.replace(/\~\d+/, ''), /*textureName, texture.getFrame(0)!, */ci.team, ci.warpaintSeed, ci.textureSize);
 				//this._textureCombiner.nodeImageEditor.setOutputTextureName(textureName);
-				promise.then(() => {
-					this.dispatchEvent(new CustomEvent<WeaponManagerItem>(WeaponManagerEvents.Success, { detail: ci }));
+				promise.then((texture: AnimatedTexture | null) => {
+					if (texture) {
+						Source1TextureManager.setTexture(ci.model?.sourceModel.repository ?? '', textureName, texture);
+						texture.setAlphaBits(8);
+						ci.model?.setMaterialParam('WeaponSkin', textureName);
+						this.dispatchEvent(new CustomEvent<WeaponManagerItem>(WeaponManagerEvents.Success, { detail: ci }));
+					} else {
+						this.dispatchEvent(new CustomEvent<WeaponManagerItem>(WeaponManagerEvents.Failure, { detail: ci }));
+					}
 					this.currentItem = undefined;
 					this.#processNextItemInQueue();
 
