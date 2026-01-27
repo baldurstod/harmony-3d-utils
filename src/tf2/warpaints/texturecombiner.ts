@@ -32,6 +32,11 @@ type StageField = {
 	string: string;
 }
 
+export type CombinePaintResult = {
+	texture: AnimatedTexture;
+	materialOverride: string;
+}
+
 export class TextureCombiner {
 	static #textureSize = DEFAULT_TEXTURE_SIZE;
 	static paintIds = {};// TODO: turn to map ?
@@ -50,10 +55,10 @@ export class TextureCombiner {
 		return WarpaintDefinitions.getDefinition(CMsgProtoDefID);
 	}
 
-	static async combinePaint(warpaintDefId: number, wearLevel: number, weaponDefIndex: string/*, outputTextureName: string, outputTexture: Texture*/, team: number, seed = 0n, updatePreview: boolean, textureSize = this.#textureSize): Promise<AnimatedTexture | null> {
+	static async combinePaint(warpaintDefId: number, wearLevel: number, weaponDefIndex: string/*, outputTextureName: string, outputTexture: Texture*/, team: number, seed = 0n, updatePreview: boolean, textureSize = this.#textureSize): Promise<CombinePaintResult | null> {
 		this.#lookupNodes = new Map();
 
-		const combinePaintFunction = async (resolve: (value: AnimatedTexture | null) => void): Promise<void> => {
+		const combinePaintFunction = async (resolve: (value: CombinePaintResult | null) => void): Promise<void> => {
 			//let finalPromise;
 			if (warpaintDefId != undefined && wearLevel != undefined && weaponDefIndex != undefined) {
 				this.nodeImageEditor.removeAllNodes();
@@ -100,7 +105,7 @@ export class TextureCombiner {
 							const operationTemplate = await this._getDefindex(template);
 							//console.error(operationTemplate);//removeme
 							if (operationTemplate && (operationTemplate.operationNode ?? operationTemplate.operation_node)) {
-								await this.#setupVariables(warpaintDefinition, wearLevel, item);
+								const materialOverride = await this.#setupVariables(warpaintDefinition, wearLevel, item);
 								const stage = await this.#processOperationNode((operationTemplate.operationNode ?? operationTemplate.operation_node)[0], { team, textureSize });//top level node has 1 operation
 								//console.error(stage.toString());
 								(stage as Stage).linkNodes();
@@ -155,7 +160,7 @@ export class TextureCombiner {
 										node: finalNode,
 									}
 								}));
-								resolve(texture);
+								resolve({ texture, materialOverride });
 								return;
 							}
 						}
@@ -170,16 +175,18 @@ export class TextureCombiner {
 			}*/
 		};
 
-		const combinePaintPromise = new Promise<AnimatedTexture | null>(resolve => { combinePaintFunction(resolve) });
+		const combinePaintPromise = new Promise<CombinePaintResult | null>(resolve => { combinePaintFunction(resolve) });
 		return combinePaintPromise;
 	}
 
-	static async #setupVariables(warpaintDefinition: any, wearLevel: number, item: any): Promise<void> {
+	static async #setupVariables(warpaintDefinition: any, wearLevel: number, item: any): Promise<string> {
 		this.variables = {};
+		let materialOverride = '';
 
 		if (item) {
 			if (item.data) {
 				this.#addVariables(item.data.variable);
+				materialOverride = item.data.materialOverride ?? '';
 			}
 			if (item.itemDefinitionTemplate ?? item.item_definition_template) {
 				const itemDefinition = await this._getDefindex(item.itemDefinitionTemplate ?? item.item_definition_template)
@@ -197,6 +204,8 @@ export class TextureCombiner {
 		if (warpaintDefinition.header) {
 			this.#addVariables2(warpaintDefinition.header.variables);
 		}
+
+		return materialOverride;
 	}
 
 	static #addVariables(variableArray: any[]): void {

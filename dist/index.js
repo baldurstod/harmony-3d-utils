@@ -1,4 +1,4 @@
-import { Graphics, TextureManager, Color, Source1TextureManager, DEG_TO_RAD, DEFAULT_TEXTURE_SIZE, NodeImageEditor, AnimatedTexture, NodeImageEditorGui, TimelineElementType } from 'harmony-3d';
+import { Graphics, TextureManager, Color, Source1TextureManager, DEG_TO_RAD, DEFAULT_TEXTURE_SIZE, NodeImageEditor, AnimatedTexture, NodeImageEditorGui, Source1MaterialManager, TimelineElementType } from 'harmony-3d';
 import { WarpaintDefinitions, getLegacyWarpaint, UniformRandomStream } from 'harmony-tf2-utils';
 import { vec2 } from 'gl-matrix';
 import { createElement, shadowRootStyle, show, hide, I18n, cloneEvent } from 'harmony-ui';
@@ -380,7 +380,7 @@ class TextureCombiner {
                             const operationTemplate = await this._getDefindex(template);
                             //console.error(operationTemplate);//removeme
                             if (operationTemplate && (operationTemplate.operationNode ?? operationTemplate.operation_node)) {
-                                await this.#setupVariables(warpaintDefinition, wearLevel, item);
+                                const materialOverride = await this.#setupVariables(warpaintDefinition, wearLevel, item);
                                 const stage = await this.#processOperationNode((operationTemplate.operationNode ?? operationTemplate.operation_node)[0], { team, textureSize }); //top level node has 1 operation
                                 //console.error(stage.toString());
                                 stage.linkNodes();
@@ -427,7 +427,7 @@ class TextureCombiner {
                                         node: finalNode,
                                     }
                                 }));
-                                resolve(texture);
+                                resolve({ texture, materialOverride });
                                 return;
                             }
                         }
@@ -447,9 +447,11 @@ class TextureCombiner {
     }
     static async #setupVariables(warpaintDefinition, wearLevel, item) {
         this.variables = {};
+        let materialOverride = '';
         if (item) {
             if (item.data) {
                 this.#addVariables(item.data.variable);
+                materialOverride = item.data.materialOverride ?? '';
             }
             if (item.itemDefinitionTemplate ?? item.item_definition_template) {
                 const itemDefinition = await this._getDefindex(item.itemDefinitionTemplate ?? item.item_definition_template);
@@ -466,6 +468,7 @@ class TextureCombiner {
         if (warpaintDefinition.header) {
             this.#addVariables2(warpaintDefinition.header.variables);
         }
+        return materialOverride;
     }
     static #addVariables(variableArray) {
         if (variableArray) {
@@ -852,6 +855,7 @@ class WeaponManager extends StaticEventTarget {
     static #itemQueue = [];
     static currentItem;
     static weaponId = 0;
+    static #materialOverride = new Map();
     static async initWarpaintDefinitions(url) {
         const response = await fetch(url);
         this.protoDefs = await response.json();
@@ -977,6 +981,8 @@ class WeaponManager extends StaticEventTarget {
             const existingTexture = await Source1TextureManager.getInternalTexture(ci.model?.sourceModel.repository ?? '', textureName, 0, false);
             if (existingTexture) {
                 ci.model?.setMaterialParam('WeaponSkin', textureName);
+                const materialOverride = this.#materialOverride.get(textureName) ?? null;
+                ci.model?.setMaterialOverride(materialOverride);
                 this.currentItem = undefined;
                 this.#processNextItemInQueue();
                 return;
@@ -986,10 +992,21 @@ class WeaponManager extends StaticEventTarget {
                 this.dispatchEvent(new CustomEvent(WeaponManagerEvents.Started, { detail: ci }));
                 const promise = TextureCombiner.combinePaint(ci.warpaintId, ci.warpaintWear, ci.id.replace(/\~\d+/, ''), /*textureName, texture.getFrame(0)!, */ ci.team, ci.warpaintSeed, ci.updatePreview, ci.textureSize);
                 //this._textureCombiner.nodeImageEditor.setOutputTextureName(textureName);
-                promise.then((texture) => {
+                promise.then(async (result) => {
+                    const texture = result?.texture;
+                    const materialOverride = result?.materialOverride;
                     if (texture) {
                         Source1TextureManager.setTexture(ci.model?.sourceModel.repository ?? '', textureName, texture);
                         texture.setAlphaBits(8);
+                        if (materialOverride) {
+                            const material = await Source1MaterialManager.getMaterial(ci.model?.sourceModel.repository ?? '', materialOverride);
+                            ci.model?.setMaterialOverride(material);
+                            this.#materialOverride.set(textureName, material);
+                        }
+                        else {
+                            ci.model?.setMaterialOverride(null);
+                            this.#materialOverride.set(textureName, null);
+                        }
                         ci.model?.setMaterialParam('WeaponSkin', textureName);
                         this.dispatchEvent(new CustomEvent(WeaponManagerEvents.Success, { detail: ci }));
                     }

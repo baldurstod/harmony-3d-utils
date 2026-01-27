@@ -16,6 +16,11 @@ export declare type AddWarpaintEvent = {
     p4: string;
 };
 
+export declare type CombinePaintResult = {
+    texture: AnimatedTexture;
+    materialOverride: string;
+};
+
 export declare function defineRepository(): void;
 
 export declare function defineRepositoryEntry(): void;
@@ -58,7 +63,7 @@ export declare class TextureCombiner {
     static variables: any;
     static setTextureSize(textureSize: number): void;
     static _getDefindex(CMsgProtoDefID: any): Promise<any>;
-    static combinePaint(warpaintDefId: number, wearLevel: number, weaponDefIndex: string, team: number, seed: bigint | undefined, updatePreview: boolean, textureSize?: number): Promise<AnimatedTexture | null>;
+    static combinePaint(warpaintDefId: number, wearLevel: number, weaponDefIndex: string, team: number, seed: bigint | undefined, updatePreview: boolean, textureSize?: number): Promise<CombinePaintResult | null>;
 }
 
 export declare const TextureCombinerEventTarget: EventTarget;

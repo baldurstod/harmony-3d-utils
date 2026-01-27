@@ -1,8 +1,8 @@
-import { AnimatedTexture, Source1ModelInstance, Source1TextureManager, Texture } from 'harmony-3d';
+import { Material, Source1MaterialManager, Source1ModelInstance, Source1TextureManager } from 'harmony-3d';
 import { WarpaintDefinitions } from 'harmony-tf2-utils';
 import { createElement } from 'harmony-ui';
 import { StaticEventTarget } from 'harmony-utils';
-import { TextureCombiner } from './texturecombiner';
+import { CombinePaintResult, TextureCombiner } from './texturecombiner';
 
 /*
 const definitionsPerType = {
@@ -57,6 +57,7 @@ export class WeaponManager extends StaticEventTarget {
 	static #itemQueue: WeaponManagerItem[] = [];
 	static currentItem?: WeaponManagerItem;
 	static weaponId = 0;
+	static #materialOverride = new Map<string, Material | null>();
 
 	static async initWarpaintDefinitions(url: string): Promise<void> {
 		const response = await fetch(url);
@@ -200,6 +201,9 @@ export class WeaponManager extends StaticEventTarget {
 			const existingTexture = await Source1TextureManager.getInternalTexture(ci.model?.sourceModel.repository ?? '', textureName, 0, false);
 			if (existingTexture) {
 				ci.model?.setMaterialParam('WeaponSkin', textureName);
+				const materialOverride = this.#materialOverride.get(textureName) ?? null;
+				ci.model?.setMaterialOverride(materialOverride);
+
 				this.currentItem = undefined;
 				this.#processNextItemInQueue();
 				return;
@@ -210,10 +214,20 @@ export class WeaponManager extends StaticEventTarget {
 				this.dispatchEvent(new CustomEvent<WeaponManagerItem>(WeaponManagerEvents.Started, { detail: ci }));
 				const promise = TextureCombiner.combinePaint(ci.warpaintId, ci.warpaintWear, ci.id.replace(/\~\d+/, ''), /*textureName, texture.getFrame(0)!, */ci.team, ci.warpaintSeed, ci.updatePreview, ci.textureSize);
 				//this._textureCombiner.nodeImageEditor.setOutputTextureName(textureName);
-				promise.then((texture: AnimatedTexture | null) => {
+				promise.then(async (result: CombinePaintResult | null) => {
+					const texture = result?.texture;
+					const materialOverride = result?.materialOverride;
 					if (texture) {
 						Source1TextureManager.setTexture(ci.model?.sourceModel.repository ?? '', textureName, texture);
 						texture.setAlphaBits(8);
+						if (materialOverride) {
+							const material = await Source1MaterialManager.getMaterial(ci.model?.sourceModel.repository ?? '', materialOverride);
+							ci.model?.setMaterialOverride(material);
+							this.#materialOverride.set(textureName, material);
+						} else {
+							ci.model?.setMaterialOverride(null);
+							this.#materialOverride.set(textureName, null);
+						}
 						ci.model?.setMaterialParam('WeaponSkin', textureName);
 						this.dispatchEvent(new CustomEvent<WeaponManagerItem>(WeaponManagerEvents.Success, { detail: ci }));
 					} else {
