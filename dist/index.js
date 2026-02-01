@@ -399,6 +399,7 @@ class TextureCombiner {
                                 stage.computeRandomValues({ currentIndex: 0 }, randomStreams, randomStreams.length);
                                 await stage.setupTextures();
                                 const finalNode = stage.node;
+                                finalNode.autoRedraw = true;
                                 //finalNode.getOutput('output')!._value = outputTexture;
                                 /*
                                                                 let processPixelArray = (pixelArray) => {

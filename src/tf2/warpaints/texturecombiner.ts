@@ -129,6 +129,7 @@ export class TextureCombiner {
 								(stage as Stage).computeRandomValues({ currentIndex: 0 }, randomStreams, randomStreams.length);
 								await (stage as Stage).setupTextures();
 								const finalNode = (stage as Stage).node;
+								finalNode.autoRedraw = true;
 								//finalNode.getOutput('output')!._value = outputTexture;
 
 								/*
