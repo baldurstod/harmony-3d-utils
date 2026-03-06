@@ -1,7 +1,7 @@
-import { DEG_TO_RAD } from 'harmony-3d';
-import { Stage } from './stage';
-import { Range } from './parameters';
+import { DEG_TO_RAD, NodeParamOrigin } from 'harmony-3d';
 import { UniformRandomStream } from 'harmony-tf2-utils';
+import { Range } from './parameters';
+import { Stage } from './stage';
 
 
 class TextureStageParameters {
@@ -36,15 +36,15 @@ export class TextureStage extends Stage {
 		const adjustWhite = adjustBlack + adjustOffset;
 
 		const node = this.node;
-		node.setParam('adjust black', adjustBlack);
-		node.setParam('adjust white', adjustWhite);
-		node.setParam('adjust gamma', adjustGamma);
-		node.setParam('rotation', rotation * DEG_TO_RAD);
-		node.setParam('translate u', translateU);
-		node.setParam('translate v', translateV);
-		node.setParam('scale u', scaleUV * (shouldFlipU ? -1 : 1));
-		node.setParam('scale v', scaleUV * (shouldFlipV ? -1 : 1));
-		node.setParam('path', parameters.texturePath);
+		node.setParam(NodeParamOrigin.Code, 'adjust black', adjustBlack);
+		node.setParam(NodeParamOrigin.Code, 'adjust white', adjustWhite);
+		node.setParam(NodeParamOrigin.Code, 'adjust gamma', adjustGamma);
+		node.setParam(NodeParamOrigin.Code, 'rotation', rotation * DEG_TO_RAD);
+		node.setParam(NodeParamOrigin.Code, 'translate u', translateU);
+		node.setParam(NodeParamOrigin.Code, 'translate v', translateV);
+		node.setParam(NodeParamOrigin.Code, 'scale u', scaleUV * (shouldFlipU ? -1 : 1));
+		node.setParam(NodeParamOrigin.Code, 'scale v', scaleUV * (shouldFlipV ? -1 : 1));
+		node.setParam(NodeParamOrigin.Code, 'path', parameters.texturePath);
 
 		node.invalidate();
 		return true;

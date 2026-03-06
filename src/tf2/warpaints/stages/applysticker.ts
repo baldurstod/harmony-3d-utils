@@ -1,4 +1,5 @@
 import { vec2 } from 'gl-matrix';
+import { NodeParamOrigin } from 'harmony-3d';
 import { UniformRandomStream } from 'harmony-tf2-utils';
 import { Range } from './parameters';
 import { Stage } from './stage';
@@ -54,13 +55,13 @@ export class ApplyStickerStage extends Stage {
 		/*node.params.adjustBlack = adjustBlack;
 		node.params.adjustWhite = adjustWhite;
 		node.params.adjustGamma = adjustGamma;*/
-		node.setParam('adjust black', adjustBlack);
-		node.setParam('adjust white', adjustWhite);
-		node.setParam('adjust gamma', adjustGamma);
+		node.setParam(NodeParamOrigin.Code, 'adjust black', adjustBlack);
+		node.setParam(NodeParamOrigin.Code, 'adjust white', adjustWhite);
+		node.setParam(NodeParamOrigin.Code, 'adjust gamma', adjustGamma);
 
-		node.setParam('bottom left', parameters.bl);
-		node.setParam('top left', parameters.tl);
-		node.setParam('top right', parameters.tr);
+		node.setParam(NodeParamOrigin.Code, 'bottom left', parameters.bl);
+		node.setParam(NodeParamOrigin.Code, 'top left', parameters.tl);
+		node.setParam(NodeParamOrigin.Code, 'top right', parameters.tr);
 
 		//vec2.copy(node.params.bl, parameters.bl);
 		//vec2.copy(node.params.tl, parameters.tl);

@@ -1,5 +1,5 @@
 import { vec2 } from 'gl-matrix';
-import { AnimatedTexture, DEFAULT_TEXTURE_SIZE, IntArrayNode, Node, NodeImageEditor, Texture } from 'harmony-3d';
+import { AnimatedTexture, DEFAULT_TEXTURE_SIZE, IntArrayNode, Node, NodeEventType, NodeImageEditor, NodeParamChangedEvent, NodeParamOrigin, Texture, TextureLookup } from 'harmony-3d';
 import { getLegacyWarpaint, UniformRandomStream, WarpaintDefinitions } from 'harmony-tf2-utils';
 import { ApplyStickerStage, Sticker } from './stages/applysticker';
 import { CombineStage } from './stages/combine';
@@ -405,12 +405,25 @@ console.error('node or subnode is null', node, subNode);
 			//texturePathPrefixRemoveMe + texturePath + this.#imageExtension;
 			if (!node) {
 				node = this.nodeImageEditor.addNode(TEXTURE_LOOKUP_NODE, { textureSize: context.textureSize });
-				node?.setParam('path', texturePath);
+				node?.setParam(NodeParamOrigin.Code, 'path', texturePath);
 			}
 		}
 		if (!node) {
 			return null;
 		}
+
+		node.addEventListener(NodeEventType.ParamChanged, (event) => {
+			(async () => {
+				const detail = (event as CustomEvent<NodeParamChangedEvent>).detail;
+				if (detail.paramName === 'path' && detail.origin === NodeParamOrigin.Gui) {
+					const texture = await Stage.getTexture(detail.newValue as string);
+					if (texture) {
+						(node as TextureLookup).inputTexture = texture;
+						node.revalidate({ updatePreview: true });
+					}
+				}
+			})()
+		});
 
 		const textureStage = new TextureStage(node);
 		textureStage.texturePath = texturePath;
@@ -484,6 +497,21 @@ console.error('node or subnode is null', node, subNode);
 		if (!applyStickerNode) {
 			return null;
 		}
+
+		applyStickerNode.addEventListener(NodeEventType.ParamChanged, (event) => {
+			(async () => {
+				const detail = (event as CustomEvent<NodeParamChangedEvent>).detail;
+				if (detail.paramName === 'path' && detail.origin === NodeParamOrigin.Gui) {
+
+					const texture = await Stage.getTexture(detail.newValue as string);
+					if (texture) {
+						(applyStickerNode as TextureLookup).inputTexture = texture;
+						applyStickerNode.revalidate({ updatePreview: true });
+					}
+				}
+			})()
+		});
+
 		const applyStickerStage = new ApplyStickerStage(applyStickerNode);
 
 		if (stage.adjustBlack ?? stage.adjust_black) {

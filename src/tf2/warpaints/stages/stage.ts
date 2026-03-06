@@ -1,4 +1,4 @@
-import { ApplySticker, Color, Graphics, Node, Source1TextureManager, Texture, TextureLookup, TextureManager } from 'harmony-3d';
+import { ApplySticker, Color, Graphics, Node, NodeParamOrigin, Source1TextureManager, Texture, TextureLookup, TextureManager } from 'harmony-3d';
 import { UniformRandomStream } from 'harmony-tf2-utils';
 
 let blackTexture: Texture;
@@ -112,7 +112,7 @@ export class Stage {
 		const texturePath = this.texturePath;
 		if (texturePath) {
 			(this.node as ApplySticker | TextureLookup).inputTexture = await Stage.getTexture(texturePath);
-			this.node.setParam('path', texturePath);
+			this.node.setParam(NodeParamOrigin.Code, 'path', texturePath);
 			this.node.invalidate();
 		}
 		const specularTexturePath = this.specularTexturePath;

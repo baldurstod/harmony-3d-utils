@@ -1,4 +1,4 @@
-import { Node } from 'harmony-3d';
+import { Node, NodeParamOrigin } from 'harmony-3d';
 import { UniformRandomStream } from 'harmony-tf2-utils';
 import { Range } from './parameters';
 import { Stage } from './stage';
@@ -28,9 +28,9 @@ export class CombineStage extends Stage {
 		/*node.params.adjustBlack = adjustBlack;
 		node.params.adjustWhite = adjustWhite;
 		node.params.adjustGamma = adjustGamma;*/
-		node.setParam('adjust black', adjustBlack);
-		node.setParam('adjust white', adjustWhite);
-		node.setParam('adjust gamma', adjustGamma);
+		node.setParam(NodeParamOrigin.Code, 'adjust black', adjustBlack);
+		node.setParam(NodeParamOrigin.Code, 'adjust white', adjustWhite);
+		node.setParam(NodeParamOrigin.Code, 'adjust gamma', adjustGamma);
 		return true;
 	}
 

@@ -1,4 +1,4 @@
-import { Graphics, TextureManager, Color, Source1TextureManager, DEG_TO_RAD, DEFAULT_TEXTURE_SIZE, NodeImageEditor, AnimatedTexture, NodeImageEditorGui, Source1MaterialManager, TimelineElementType } from 'harmony-3d';
+import { Graphics, TextureManager, Color, NodeParamOrigin, Source1TextureManager, NodeEventType, DEG_TO_RAD, DEFAULT_TEXTURE_SIZE, NodeImageEditor, AnimatedTexture, NodeImageEditorGui, Source1MaterialManager, TimelineElementType } from 'harmony-3d';
 import { WarpaintDefinitions, getLegacyWarpaint, UniformRandomStream } from 'harmony-tf2-utils';
 import { vec2 } from 'gl-matrix';
 import { createElement, shadowRootStyle, show, hide, I18n, cloneEvent } from 'harmony-ui';
@@ -99,7 +99,7 @@ class Stage {
         const texturePath = this.texturePath;
         if (texturePath) {
             this.node.inputTexture = await Stage.getTexture(texturePath);
-            this.node.setParam('path', texturePath);
+            this.node.setParam(NodeParamOrigin.Code, 'path', texturePath);
             this.node.invalidate();
         }
         const specularTexturePath = this.specularTexturePath;
@@ -199,12 +199,12 @@ class ApplyStickerStage extends Stage {
         /*node.params.adjustBlack = adjustBlack;
         node.params.adjustWhite = adjustWhite;
         node.params.adjustGamma = adjustGamma;*/
-        node.setParam('adjust black', adjustBlack);
-        node.setParam('adjust white', adjustWhite);
-        node.setParam('adjust gamma', adjustGamma);
-        node.setParam('bottom left', parameters.bl);
-        node.setParam('top left', parameters.tl);
-        node.setParam('top right', parameters.tr);
+        node.setParam(NodeParamOrigin.Code, 'adjust black', adjustBlack);
+        node.setParam(NodeParamOrigin.Code, 'adjust white', adjustWhite);
+        node.setParam(NodeParamOrigin.Code, 'adjust gamma', adjustGamma);
+        node.setParam(NodeParamOrigin.Code, 'bottom left', parameters.bl);
+        node.setParam(NodeParamOrigin.Code, 'top left', parameters.tl);
+        node.setParam(NodeParamOrigin.Code, 'top right', parameters.tr);
         //vec2.copy(node.params.bl, parameters.bl);
         //vec2.copy(node.params.tl, parameters.tl);
         //vec2.copy(node.params.tr, parameters.tr);
@@ -235,9 +235,9 @@ class CombineStage extends Stage {
         /*node.params.adjustBlack = adjustBlack;
         node.params.adjustWhite = adjustWhite;
         node.params.adjustGamma = adjustGamma;*/
-        node.setParam('adjust black', adjustBlack);
-        node.setParam('adjust white', adjustWhite);
-        node.setParam('adjust gamma', adjustGamma);
+        node.setParam(NodeParamOrigin.Code, 'adjust black', adjustBlack);
+        node.setParam(NodeParamOrigin.Code, 'adjust white', adjustWhite);
+        node.setParam(NodeParamOrigin.Code, 'adjust gamma', adjustGamma);
         return true;
     }
     get displayName() {
@@ -271,6 +271,18 @@ class SelectStage extends Stage {
             }
             //(lookupNode as any).texturePath = texturePath;
             lookupNode.invalidate();
+            lookupNode.addEventListener(NodeEventType.ParamChanged, (event) => {
+                (async () => {
+                    const detail = event.detail;
+                    if (detail.paramName === 'path' && detail.origin === NodeParamOrigin.Gui) {
+                        const texture = await Stage.getTexture(detail.newValue);
+                        if (texture) {
+                            lookupNode.inputTexture = texture;
+                            lookupNode.revalidate({ updatePreview: true });
+                        }
+                    }
+                })();
+            });
         }
     }
 }
@@ -303,15 +315,15 @@ class TextureStage extends Stage {
         const adjustGamma = randomStream.randomFloat(parameters.adjustGamma.low, parameters.adjustGamma.high);
         const adjustWhite = adjustBlack + adjustOffset;
         const node = this.node;
-        node.setParam('adjust black', adjustBlack);
-        node.setParam('adjust white', adjustWhite);
-        node.setParam('adjust gamma', adjustGamma);
-        node.setParam('rotation', rotation * DEG_TO_RAD);
-        node.setParam('translate u', translateU);
-        node.setParam('translate v', translateV);
-        node.setParam('scale u', scaleUV * (shouldFlipU ? -1 : 1));
-        node.setParam('scale v', scaleUV * (shouldFlipV ? -1 : 1));
-        node.setParam('path', parameters.texturePath);
+        node.setParam(NodeParamOrigin.Code, 'adjust black', adjustBlack);
+        node.setParam(NodeParamOrigin.Code, 'adjust white', adjustWhite);
+        node.setParam(NodeParamOrigin.Code, 'adjust gamma', adjustGamma);
+        node.setParam(NodeParamOrigin.Code, 'rotation', rotation * DEG_TO_RAD);
+        node.setParam(NodeParamOrigin.Code, 'translate u', translateU);
+        node.setParam(NodeParamOrigin.Code, 'translate v', translateV);
+        node.setParam(NodeParamOrigin.Code, 'scale u', scaleUV * (shouldFlipU ? -1 : 1));
+        node.setParam(NodeParamOrigin.Code, 'scale v', scaleUV * (shouldFlipV ? -1 : 1));
+        node.setParam(NodeParamOrigin.Code, 'path', parameters.texturePath);
         node.invalidate();
         return true;
     }
@@ -653,12 +665,24 @@ console.error('node or subnode is null', node, subNode);
             //texturePathPrefixRemoveMe + texturePath + this.#imageExtension;
             if (!node) {
                 node = this.nodeImageEditor.addNode(TEXTURE_LOOKUP_NODE, { textureSize: context.textureSize });
-                node?.setParam('path', texturePath);
+                node?.setParam(NodeParamOrigin.Code, 'path', texturePath);
             }
         }
         if (!node) {
             return null;
         }
+        node.addEventListener(NodeEventType.ParamChanged, (event) => {
+            (async () => {
+                const detail = event.detail;
+                if (detail.paramName === 'path' && detail.origin === NodeParamOrigin.Gui) {
+                    const texture = await Stage.getTexture(detail.newValue);
+                    if (texture) {
+                        node.inputTexture = texture;
+                        node.revalidate({ updatePreview: true });
+                    }
+                }
+            })();
+        });
         const textureStage = new TextureStage(node);
         textureStage.texturePath = texturePath;
         if (stage.adjustBlack ?? stage.adjust_black) {
@@ -721,6 +745,18 @@ console.error('node or subnode is null', node, subNode);
         if (!applyStickerNode) {
             return null;
         }
+        applyStickerNode.addEventListener(NodeEventType.ParamChanged, (event) => {
+            (async () => {
+                const detail = event.detail;
+                if (detail.paramName === 'path' && detail.origin === NodeParamOrigin.Gui) {
+                    const texture = await Stage.getTexture(detail.newValue);
+                    if (texture) {
+                        applyStickerNode.inputTexture = texture;
+                        applyStickerNode.revalidate({ updatePreview: true });
+                    }
+                }
+            })();
+        });
         const applyStickerStage = new ApplyStickerStage(applyStickerNode);
         if (stage.adjustBlack ?? stage.adjust_black) {
             ParseRangeThenDivideBy(applyStickerStage.parameters.adjustBlack, this.#getVarField(stage.adjustBlack ?? stage.adjust_black));
