@@ -5,15 +5,6 @@ import { createElement, shadowRootStyle, show, hide, I18n, cloneEvent } from 'ha
 import { StaticEventTarget } from 'harmony-utils';
 import { closeSVG } from 'harmony-svg';
 
-class Range {
-    low;
-    high;
-    constructor(low = 0, high = 0) {
-        this.low = low;
-        this.high = high;
-    }
-}
-
 let blackTexture;
 class Stage {
     static #textures = new Map();
@@ -151,6 +142,15 @@ class Stage {
     }
     static getSpecularTexture(specularTexturePath) {
         return this.getTexture(specularTexturePath, blackTexture);
+    }
+}
+
+class Range {
+    low;
+    high;
+    constructor(low = 0, high = 0) {
+        this.low = low;
+        this.high = high;
     }
 }
 
@@ -1577,4 +1577,4 @@ function defineRepository() {
     }
 }
 
-export { HTMLRepositoryElement, HTMLRepositoryEntryElement, HTMLTimelineElement, RepositoryDisplayMode, TextureCombiner, TextureCombinerEventTarget, WarpaintEditor, WeaponManager, WeaponManagerEvents, defineRepository, defineRepositoryEntry, defineTimelineElement };
+export { HTMLRepositoryElement, HTMLRepositoryEntryElement, HTMLTimelineElement, RepositoryDisplayMode, Stage, TextureCombiner, TextureCombinerEventTarget, WarpaintEditor, WeaponManager, WeaponManagerEvents, defineRepository, defineRepositoryEntry, defineTimelineElement };

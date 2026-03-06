@@ -7,7 +7,9 @@ import { RepositoryEntry } from 'harmony-3d';
 import { RepositoryFilter } from 'harmony-3d';
 import { Source1ModelInstance } from 'harmony-3d';
 import { StaticEventTarget } from 'harmony-utils';
+import { Texture } from 'harmony-3d';
 import { Timeline } from 'harmony-3d';
+import { UniformRandomStream } from 'harmony-tf2-utils';
 
 export declare type AddWarpaintEvent = {
     p1: number;
@@ -54,6 +56,30 @@ export declare class HTMLTimelineElement extends HTMLElement {
 export declare enum RepositoryDisplayMode {
     Flat = "flat",
     Tree = "tree"
+}
+
+export declare class Stage {
+    #private;
+    texturePath: string;
+    specularTexturePath: string;
+    node: Node_2;
+    constructor(node: Node_2);
+    computeRandomValues(currentIndexObject: {
+        currentIndex: number;
+    }, pRNGs: UniformRandomStream[], nRNGCount: number): void;
+    computeRandomValuesThis(s: UniformRandomStream): boolean;
+    set firstChild(stage: Stage | null);
+    get firstChild(): Stage | null;
+    set nextSibling(stage: Stage | null);
+    get nextSibling(): Stage | null;
+    appendChildren(children: Stage[]): void;
+    get displayName(): string;
+    toString(tabs?: string): string;
+    linkNodes(): void;
+    _setupTextures(): Promise<void>;
+    setupTextures(): Promise<void>;
+    static getTexture(texturePath: string, def?: Texture): Promise<Texture | null>;
+    static getSpecularTexture(specularTexturePath: string): Promise<Texture | null>;
 }
 
 export declare class TextureCombiner {
