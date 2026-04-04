@@ -405,7 +405,7 @@ console.error('node or subnode is null', node, subNode);
 			//texturePathPrefixRemoveMe + texturePath + this.#imageExtension;
 			if (!node) {
 				node = this.nodeImageEditor.addNode(TEXTURE_LOOKUP_NODE, { textureSize: context.textureSize });
-				node?.setParam(NodeParamOrigin.Code, 'path', texturePath);
+				node?.setInitialParamValue(NodeParamOrigin.Code, 'path', texturePath);
 			}
 		}
 		if (!node) {

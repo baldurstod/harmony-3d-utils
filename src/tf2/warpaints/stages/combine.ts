@@ -28,9 +28,9 @@ export class CombineStage extends Stage {
 		/*node.params.adjustBlack = adjustBlack;
 		node.params.adjustWhite = adjustWhite;
 		node.params.adjustGamma = adjustGamma;*/
-		node.setParam(NodeParamOrigin.Code, 'adjust black', adjustBlack);
-		node.setParam(NodeParamOrigin.Code, 'adjust white', adjustWhite);
-		node.setParam(NodeParamOrigin.Code, 'adjust gamma', adjustGamma);
+		node.setInitialParamValue(NodeParamOrigin.Code, 'adjust black', adjustBlack);
+		node.setInitialParamValue(NodeParamOrigin.Code, 'adjust white', adjustWhite);
+		node.setInitialParamValue(NodeParamOrigin.Code, 'adjust gamma', adjustGamma);
 		return true;
 	}
 

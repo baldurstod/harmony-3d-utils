@@ -55,13 +55,13 @@ export class ApplyStickerStage extends Stage {
 		/*node.params.adjustBlack = adjustBlack;
 		node.params.adjustWhite = adjustWhite;
 		node.params.adjustGamma = adjustGamma;*/
-		node.setParam(NodeParamOrigin.Code, 'adjust black', adjustBlack);
-		node.setParam(NodeParamOrigin.Code, 'adjust white', adjustWhite);
-		node.setParam(NodeParamOrigin.Code, 'adjust gamma', adjustGamma);
+		node.setInitialParamValue(NodeParamOrigin.Code, 'adjust black', adjustBlack);
+		node.setInitialParamValue(NodeParamOrigin.Code, 'adjust white', adjustWhite);
+		node.setInitialParamValue(NodeParamOrigin.Code, 'adjust gamma', adjustGamma);
 
-		node.setParam(NodeParamOrigin.Code, 'bottom left', parameters.bl);
-		node.setParam(NodeParamOrigin.Code, 'top left', parameters.tl);
-		node.setParam(NodeParamOrigin.Code, 'top right', parameters.tr);
+		node.setInitialParamValue(NodeParamOrigin.Code, 'bottom left', parameters.bl);
+		node.setInitialParamValue(NodeParamOrigin.Code, 'top left', parameters.tl);
+		node.setInitialParamValue(NodeParamOrigin.Code, 'top right', parameters.tr);
 
 		//vec2.copy(node.params.bl, parameters.bl);
 		//vec2.copy(node.params.tl, parameters.tl);

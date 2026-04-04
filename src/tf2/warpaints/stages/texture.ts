@@ -36,15 +36,15 @@ export class TextureStage extends Stage {
 		const adjustWhite = adjustBlack + adjustOffset;
 
 		const node = this.node;
-		node.setParam(NodeParamOrigin.Code, 'adjust black', adjustBlack);
-		node.setParam(NodeParamOrigin.Code, 'adjust white', adjustWhite);
-		node.setParam(NodeParamOrigin.Code, 'adjust gamma', adjustGamma);
-		node.setParam(NodeParamOrigin.Code, 'rotation', rotation * DEG_TO_RAD);
-		node.setParam(NodeParamOrigin.Code, 'translate u', translateU);
-		node.setParam(NodeParamOrigin.Code, 'translate v', translateV);
-		node.setParam(NodeParamOrigin.Code, 'scale u', scaleUV * (shouldFlipU ? -1 : 1));
-		node.setParam(NodeParamOrigin.Code, 'scale v', scaleUV * (shouldFlipV ? -1 : 1));
-		node.setParam(NodeParamOrigin.Code, 'path', parameters.texturePath);
+		node.setInitialParamValue(NodeParamOrigin.Code, 'adjust black', adjustBlack);
+		node.setInitialParamValue(NodeParamOrigin.Code, 'adjust white', adjustWhite);
+		node.setInitialParamValue(NodeParamOrigin.Code, 'adjust gamma', adjustGamma);
+		node.setInitialParamValue(NodeParamOrigin.Code, 'rotation', rotation * DEG_TO_RAD);
+		node.setInitialParamValue(NodeParamOrigin.Code, 'translate u', translateU);
+		node.setInitialParamValue(NodeParamOrigin.Code, 'translate v', translateV);
+		node.setInitialParamValue(NodeParamOrigin.Code, 'scale u', scaleUV * (shouldFlipU ? -1 : 1));
+		node.setInitialParamValue(NodeParamOrigin.Code, 'scale v', scaleUV * (shouldFlipV ? -1 : 1));
+		node.setInitialParamValue(NodeParamOrigin.Code, 'path', parameters.texturePath);
 
 		node.invalidate();
 		return true;

@@ -112,7 +112,7 @@ export class Stage {
 		const texturePath = this.texturePath;
 		if (texturePath) {
 			(this.node as ApplySticker | TextureLookup).inputTexture = await Stage.getTexture(texturePath);
-			this.node.setParam(NodeParamOrigin.Code, 'path', texturePath);
+			this.node.setInitialParamValue(NodeParamOrigin.Code, 'path', texturePath);
 			this.node.invalidate();
 		}
 		const specularTexturePath = this.specularTexturePath;
