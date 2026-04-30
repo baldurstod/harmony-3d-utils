@@ -858,12 +858,18 @@ function ParseRangeThenDivideBy(output, input, div = 255) {
 }
 
 class WarpaintEditor {
-    static #nodeImageEditorGui = new NodeImageEditorGui();
+    static #nodeImageEditorGui;
     static init(container) {
-        container.append(this.#nodeImageEditorGui.htmlElement);
-        this.#nodeImageEditorGui.setNodeImageEditor(TextureCombiner.nodeImageEditor);
+        container.append(this.#getGui().htmlElement);
+        this.#getGui().setNodeImageEditor(TextureCombiner.nodeImageEditor);
     }
     static getGui() {
+        return this.#getGui();
+    }
+    static #getGui() {
+        if (!this.#nodeImageEditorGui) {
+            this.#nodeImageEditorGui = new NodeImageEditorGui();
+        }
         return this.#nodeImageEditorGui;
     }
 }
