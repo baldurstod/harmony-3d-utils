@@ -111,7 +111,7 @@ export class Stage {
 	async _setupTextures(): Promise<void> {
 		const texturePath = this.texturePath;
 		if (texturePath) {
-			(this.node as ApplySticker | TextureLookup).inputTexture = await Stage.getTexture(texturePath);
+			(this.node as ApplySticker | TextureLookup).setInputTexture(await Stage.getTexture(texturePath));
 			this.node.setInitialParamValue(NodeParamOrigin.Code, 'path', texturePath);
 			this.node.invalidate();
 		}
@@ -144,9 +144,7 @@ export class Stage {
 		if (!Stage.#textures.has(texturePath)) {
 			const promise = Source1TextureManager.getTextureAsync('tf2', texturePath, 0, false, def, false);
 			promise.then(texture => {
-				if (texture) {
-					texture.addUser(this);
-				} else {
+				if (!texture) {
 					Stage.#textures.delete(texturePath);
 				}
 			});

@@ -198,7 +198,7 @@ export class WeaponManager extends StaticEventTarget {
 
 			const textureName = `#warpaint_${ci.id.replace(/\~\d+/, '')}_${ci.warpaintId}_${ci.warpaintWear}_${ci.warpaintSeed}_${ci.team}_${ci.textureSize ?? ''}`;
 
-			const existingTexture = await Source1TextureManager.getInternalTexture(ci.model?.sourceModel.repository ?? '', textureName, 0, false);
+			const existingTexture = Source1TextureManager.getInternalTexture(ci.model?.sourceModel.repository ?? '', textureName, 0/*, false*/);
 			if (existingTexture) {
 				ci.model?.setMaterialParam('WeaponSkin', textureName);
 				const materialOverride = this.#materialOverride.get(textureName) ?? null;

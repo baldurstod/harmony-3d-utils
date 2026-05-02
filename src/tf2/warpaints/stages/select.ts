@@ -27,7 +27,7 @@ export class SelectStage extends Stage {
 			this.node.setPredecessor('input', lookupNode, 'output');
 			const texture = await Stage.getTexture(texturePath);
 			if (texture) {
-				lookupNode.inputTexture = texture;
+				lookupNode.setInputTexture(texture);
 			}
 			//(lookupNode as any).texturePath = texturePath;
 			lookupNode.invalidate();
@@ -38,7 +38,7 @@ export class SelectStage extends Stage {
 					if (detail.paramName === 'path' && detail.origin === NodeParamOrigin.Gui) {
 						const texture = await Stage.getTexture(detail.newValue as string);
 						if (texture) {
-							lookupNode.inputTexture = texture;
+							lookupNode.setInputTexture(texture);
 							lookupNode.revalidate({ updatePreview: true });
 						}
 					}

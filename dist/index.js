@@ -98,7 +98,7 @@ class Stage {
     async _setupTextures() {
         const texturePath = this.texturePath;
         if (texturePath) {
-            this.node.inputTexture = await Stage.getTexture(texturePath);
+            this.node.setInputTexture(await Stage.getTexture(texturePath));
             this.node.setInitialParamValue(NodeParamOrigin.Code, 'path', texturePath);
             this.node.invalidate();
         }
@@ -129,10 +129,7 @@ class Stage {
         if (!Stage.#textures.has(texturePath)) {
             const promise = Source1TextureManager.getTextureAsync('tf2', texturePath, 0, false, def, false);
             promise.then(texture => {
-                if (texture) {
-                    texture.addUser(this);
-                }
-                else {
+                if (!texture) {
                     Stage.#textures.delete(texturePath);
                 }
             });
@@ -267,7 +264,7 @@ class SelectStage extends Stage {
             this.node.setPredecessor('input', lookupNode, 'output');
             const texture = await Stage.getTexture(texturePath);
             if (texture) {
-                lookupNode.inputTexture = texture;
+                lookupNode.setInputTexture(texture);
             }
             //(lookupNode as any).texturePath = texturePath;
             lookupNode.invalidate();
@@ -277,7 +274,7 @@ class SelectStage extends Stage {
                     if (detail.paramName === 'path' && detail.origin === NodeParamOrigin.Gui) {
                         const texture = await Stage.getTexture(detail.newValue);
                         if (texture) {
-                            lookupNode.inputTexture = texture;
+                            lookupNode.setInputTexture(texture);
                             lookupNode.revalidate({ updatePreview: true });
                         }
                     }
@@ -677,7 +674,7 @@ console.error('node or subnode is null', node, subNode);
                 if (detail.paramName === 'path' && detail.origin === NodeParamOrigin.Gui) {
                     const texture = await Stage.getTexture(detail.newValue);
                     if (texture) {
-                        node.inputTexture = texture;
+                        node.setInputTexture(texture);
                         node.revalidate({ updatePreview: true });
                     }
                 }
@@ -751,7 +748,7 @@ console.error('node or subnode is null', node, subNode);
                 if (detail.paramName === 'path' && detail.origin === NodeParamOrigin.Gui) {
                     const texture = await Stage.getTexture(detail.newValue);
                     if (texture) {
-                        applyStickerNode.inputTexture = texture;
+                        applyStickerNode.setInputTexture(texture);
                         applyStickerNode.revalidate({ updatePreview: true });
                     }
                 }
@@ -1021,7 +1018,7 @@ class WeaponManager extends StaticEventTarget {
             this.currentItem = this.#itemQueue.shift();
             const ci = this.currentItem;
             const textureName = `#warpaint_${ci.id.replace(/\~\d+/, '')}_${ci.warpaintId}_${ci.warpaintWear}_${ci.warpaintSeed}_${ci.team}_${ci.textureSize ?? ''}`;
-            const existingTexture = await Source1TextureManager.getInternalTexture(ci.model?.sourceModel.repository ?? '', textureName, 0, false);
+            const existingTexture = Source1TextureManager.getInternalTexture(ci.model?.sourceModel.repository ?? '', textureName, 0 /*, false*/);
             if (existingTexture) {
                 ci.model?.setMaterialParam('WeaponSkin', textureName);
                 const materialOverride = this.#materialOverride.get(textureName) ?? null;

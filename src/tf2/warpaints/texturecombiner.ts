@@ -418,7 +418,7 @@ console.error('node or subnode is null', node, subNode);
 				if (detail.paramName === 'path' && detail.origin === NodeParamOrigin.Gui) {
 					const texture = await Stage.getTexture(detail.newValue as string);
 					if (texture) {
-						(node as TextureLookup).inputTexture = texture;
+						(node as TextureLookup).setInputTexture(texture);
 						node.revalidate({ updatePreview: true });
 					}
 				}
@@ -505,7 +505,7 @@ console.error('node or subnode is null', node, subNode);
 
 					const texture = await Stage.getTexture(detail.newValue as string);
 					if (texture) {
-						(applyStickerNode as TextureLookup).inputTexture = texture;
+						(applyStickerNode as TextureLookup).setInputTexture(texture);
 						applyStickerNode.revalidate({ updatePreview: true });
 					}
 				}
