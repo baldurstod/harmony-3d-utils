@@ -80,7 +80,7 @@ export class HTMLRepositoryElement extends HTMLElement {
 	}
 
 	async #updateHTML(): Promise<void> {
-		this.#htmlTitle.innerText = this.#repository?.name ?? '';
+		this.#htmlTitle.innerText = this.#repository?.description ?? this.#repository?.name ?? '';
 		this.#htmlEntries.innerText = '';
 		if (!this.#repository) {
 			return;
