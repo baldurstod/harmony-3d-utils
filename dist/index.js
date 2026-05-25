@@ -1389,7 +1389,7 @@ function defineTimelineElement() {
     }
 }
 
-var repositoryCSS = ":host {\n\tuser-select: none;\n\tpadding: 0.5rem;\n\tmargin: 0.5rem;\n\tdisplay: flex;\n\tflex-direction: column;\n\tborder: 0.1rem solid;\n}\n\n.header {\n\tdisplay: flex;\n}\n\n.title {\n\tflex: 1;\n}\n\n.close {\n\tcursor: pointer;\n}\n";
+var repositoryCSS = ":host {\n\tuser-select: none;\n\tpadding: 0.5rem;\n\tmargin: 0.5rem;\n\tdisplay: flex;\n\tflex-direction: column;\n\tborder: 0.1rem solid;\n}\n\n.header {\n\tdisplay: flex;\n}\n\n.title {\n\tflex: 1;\n}\n\n.close {\n\tcursor: pointer;\n}\n\n.status {\n\tfont-size: 1.5rem;\n\tbackground-color: var(--harmony-ui-accent-primary);\n\tcolor: #000;\n}\n";
 
 var repositoryEntryCSS = ":host {\n\t--hover-bg-color: var(--harmony3d-repository-hover-bg-color, red);\n\tuser-select: none;\n}\n\n.header {\n\tdisplay: flex;\n}\n\n.header:hover {\n\tbackground-color: var(--hover-bg-color);\n}\n\n.self {\n\tflex: 1;\n}\n\n.custom {\n\tdisplay: block;\n\tflex: 0;\n}\n";
 
@@ -1491,6 +1491,7 @@ class HTMLRepositoryElement extends HTMLElement {
     #shadowRoot;
     #htmlTitle;
     #htmlActive;
+    #htmlStatus;
     #htmlEntries;
     #repository;
     #displayMode = RepositoryDisplayMode.Flat;
@@ -1529,10 +1530,17 @@ class HTMLRepositoryElement extends HTMLElement {
         this.#htmlEntries = createElement('div', {
             parent: this.#shadowRoot,
         });
+        this.#htmlStatus = createElement('div', {
+            parent: this.#shadowRoot,
+            class: 'status',
+            hidden: true,
+            i18n: '#loading_file_list',
+        });
     }
     setRepository(repository) {
         this.#repository = repository;
         if (repository) {
+            show(this.#htmlStatus);
             repository.active = this.#htmlActive.state;
         }
         this.#updateHTML();
@@ -1555,6 +1563,7 @@ class HTMLRepositoryElement extends HTMLElement {
             return;
         }
         const response = await this.#repository.getFileList();
+        hide(this.#htmlStatus);
         if (response.error) {
             return;
         }

@@ -1,6 +1,6 @@
 import { Repository, RepositoryEntry, RepositoryFilter } from 'harmony-3d';
 import { closeSVG } from 'harmony-svg';
-import { cloneEvent, createElement, HTMLHarmonySwitchElement, shadowRootStyle } from 'harmony-ui';
+import { cloneEvent, createElement, hide, HTMLHarmonySwitchElement, shadowRootStyle, show } from 'harmony-ui';
 import repositoryCSS from '../css/repository.css';
 import { defineRepositoryEntry, HTMLRepositoryEntryElement } from './repositoryentry';
 
@@ -13,6 +13,7 @@ export class HTMLRepositoryElement extends HTMLElement {
 	#shadowRoot: ShadowRoot;
 	#htmlTitle: HTMLElement;
 	#htmlActive: HTMLHarmonySwitchElement;
+	#htmlStatus: HTMLElement;
 	#htmlEntries: HTMLElement;
 	#repository?: Repository;
 	#displayMode: RepositoryDisplayMode = RepositoryDisplayMode.Flat;
@@ -55,11 +56,18 @@ export class HTMLRepositoryElement extends HTMLElement {
 		this.#htmlEntries = createElement('div', {
 			parent: this.#shadowRoot,
 		});
+		this.#htmlStatus = createElement('div', {
+			parent: this.#shadowRoot,
+			class: 'status',
+			hidden: true,
+			i18n: '#loading_file_list',
+		});
 	}
 
 	setRepository(repository?: Repository): void {
 		this.#repository = repository;
 		if (repository) {
+			show(this.#htmlStatus);
 			repository.active = this.#htmlActive.state as boolean;
 		}
 		this.#updateHTML();
@@ -87,6 +95,7 @@ export class HTMLRepositoryElement extends HTMLElement {
 		}
 
 		const response = await this.#repository.getFileList();
+		hide(this.#htmlStatus);
 		if (response.error) {
 			return;
 		}

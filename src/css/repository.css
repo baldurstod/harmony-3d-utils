@@ -18,3 +18,9 @@
 .close {
 	cursor: pointer;
 }
+
+.status {
+	font-size: 1.5rem;
+	background-color: var(--harmony-ui-accent-primary);
+	color: #000;
+}
