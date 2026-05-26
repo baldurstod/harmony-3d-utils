@@ -12,7 +12,12 @@
 }
 
 .title {
+	font-size: 1.5rem;
 	flex: 1;
+}
+
+.title a {
+	color: white;
 }
 
 .close {

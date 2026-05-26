@@ -1389,7 +1389,7 @@ function defineTimelineElement() {
     }
 }
 
-var repositoryCSS = ":host {\n\tuser-select: none;\n\tpadding: 0.5rem;\n\tmargin: 0.5rem;\n\tdisplay: flex;\n\tflex-direction: column;\n\tborder: 0.1rem solid;\n}\n\n.header {\n\tdisplay: flex;\n}\n\n.title {\n\tflex: 1;\n}\n\n.close {\n\tcursor: pointer;\n}\n\n.status {\n\tfont-size: 1.5rem;\n\tbackground-color: var(--harmony-ui-accent-primary);\n\tcolor: #000;\n}\n";
+var repositoryCSS = ":host {\n\tuser-select: none;\n\tpadding: 0.5rem;\n\tmargin: 0.5rem;\n\tdisplay: flex;\n\tflex-direction: column;\n\tborder: 0.1rem solid;\n}\n\n.header {\n\tdisplay: flex;\n}\n\n.title {\n\tfont-size: 1.5rem;\n\tflex: 1;\n}\n\n.title a {\n\tcolor: white;\n}\n\n.close {\n\tcursor: pointer;\n}\n\n.status {\n\tfont-size: 1.5rem;\n\tbackground-color: var(--harmony-ui-accent-primary);\n\tcolor: #000;\n}\n";
 
 var repositoryEntryCSS = ":host {\n\t--hover-bg-color: var(--harmony3d-repository-hover-bg-color, red);\n\tuser-select: none;\n}\n\n.header {\n\tdisplay: flex;\n}\n\n.header:hover {\n\tbackground-color: var(--hover-bg-color);\n}\n\n.self {\n\tflex: 1;\n}\n\n.custom {\n\tdisplay: block;\n\tflex: 0;\n}\n";
 
@@ -1557,7 +1557,18 @@ class HTMLRepositoryElement extends HTMLElement {
         this.#shadowRoot.adoptedStyleSheets.push(styleSheet);
     }
     async #updateHTML() {
-        this.#htmlTitle.innerText = this.#repository?.description ?? this.#repository?.name ?? '';
+        const url = this.#repository?.properties.get('url');
+        const text = this.#repository?.properties.get('description') ?? this.#repository?.name ?? '';
+        if (url) {
+            this.#htmlTitle.replaceChildren(createElement('a', {
+                href: url,
+                target: '_blank',
+                innerText: text,
+            }));
+        }
+        else {
+            this.#htmlTitle.innerText = text;
+        }
         this.#htmlEntries.innerText = '';
         if (!this.#repository) {
             return;

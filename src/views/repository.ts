@@ -88,7 +88,17 @@ export class HTMLRepositoryElement extends HTMLElement {
 	}
 
 	async #updateHTML(): Promise<void> {
-		this.#htmlTitle.innerText = this.#repository?.description ?? this.#repository?.name ?? '';
+		const url = this.#repository?.properties.get('url');
+		const text = this.#repository?.properties.get('description') ?? this.#repository?.name ?? '';
+		if (url) {
+			this.#htmlTitle.replaceChildren(createElement('a', {
+				href: url,
+				target: '_blank',
+				innerText: text,
+			}));
+		} else {
+			this.#htmlTitle.innerText = text;
+		}
 		this.#htmlEntries.innerText = '';
 		if (!this.#repository) {
 			return;
