@@ -9,6 +9,11 @@ export enum RepositoryDisplayMode {
 	Tree = 'tree',
 }
 
+export type EntryCreated = {
+	entry: RepositoryEntry;
+	view: HTMLRepositoryEntryElement;
+}
+
 export class HTMLRepositoryElement extends HTMLElement {
 	#shadowRoot: ShadowRoot;
 	#htmlTitle: HTMLElement;
@@ -138,7 +143,7 @@ export class HTMLRepositoryElement extends HTMLElement {
 			}) as HTMLRepositoryEntryElement;
 
 			entryview.setRepositoryEntry(entry);
-			this.dispatchEvent(new CustomEvent('entrycreated', { detail: { entry: entry, view: entryview } }));
+			this.dispatchEvent(new CustomEvent<EntryCreated>('entrycreated', { detail: { entry: entry, view: entryview } }));
 		}
 	}
 
@@ -153,7 +158,7 @@ export class HTMLRepositoryElement extends HTMLElement {
 		}) as HTMLRepositoryEntryElement;
 
 		entryview.setRepositoryEntry(root);
-		this.dispatchEvent(new CustomEvent('entrycreated', { detail: { entry: root, view: entryview } }));
+		this.dispatchEvent(new CustomEvent<EntryCreated>('entrycreated', { detail: { entry: root, view: entryview } }));
 	}
 
 	attributeChangedCallback(name: string, oldValue: string, newValue: string): void {

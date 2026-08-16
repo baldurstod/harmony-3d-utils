@@ -29,6 +29,11 @@ export declare function defineRepositoryEntry(): void;
 
 export declare function defineTimelineElement(): void;
 
+export declare type EntryCreated = {
+    entry: RepositoryEntry;
+    view: HTMLRepositoryEntryElement;
+};
+
 export declare class HTMLRepositoryElement extends HTMLElement {
     #private;
     constructor();
