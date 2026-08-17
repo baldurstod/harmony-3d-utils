@@ -70,9 +70,9 @@ export class HTMLRepositoryEntryElement extends HTMLElement {
 
 		if (this.#repositoryEntry.isDirectory()) {
 			this.#toggle();
-			this.dispatchEvent(new CustomEvent('directoryclick', { detail: this.#repositoryEntry }));
+			this.dispatchEvent(new CustomEvent<RepositoryEntry>('directoryclick', { detail: this.#repositoryEntry }));
 		} else {
-			this.dispatchEvent(new CustomEvent('fileclick', { detail: this.#repositoryEntry }));
+			this.dispatchEvent(new CustomEvent<RepositoryEntry>('fileclick', { detail: this.#repositoryEntry }));
 		}
 	}
 
@@ -87,13 +87,13 @@ export class HTMLRepositoryEntryElement extends HTMLElement {
 	#collapse(): void {
 		hide(this.#htmlChilds);
 		this.#expanded = false;
-		this.dispatchEvent(new CustomEvent('collapse', { detail: this.#repositoryEntry }));
+		this.dispatchEvent(new CustomEvent<RepositoryEntry>('collapse', { detail: this.#repositoryEntry }));
 	}
 
 	#expand(): void {
 		show(this.#htmlChilds);
 		this.#expanded = true;
-		this.dispatchEvent(new CustomEvent('expand', { detail: this.#repositoryEntry }));
+		this.dispatchEvent(new CustomEvent<RepositoryEntry>('expand', { detail: this.#repositoryEntry }));
 	}
 }
 
