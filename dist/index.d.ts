@@ -11,6 +11,8 @@ import { Texture } from 'harmony-3d';
 import { Timeline } from 'harmony-3d';
 import { UniformRandomStream } from 'harmony-tf2-utils';
 
+export declare const ACE_EDITOR_URI = "https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js";
+
 export declare type AddWarpaintEvent = {
     p1: number;
     p2: number;
@@ -58,9 +60,22 @@ export declare class HTMLTimelineElement extends HTMLElement {
     setTimeOffset(offset: number): void;
 }
 
+export declare function registerPyodideModule(name: string, module: any): Promise<void>;
+
 export declare enum RepositoryDisplayMode {
     Flat = "flat",
     Tree = "tree"
+}
+
+export declare class ScriptEditor {
+    #private;
+    constructor();
+    get htmlElement(): HTMLElement;
+    initEditor(options?: ScriptEditorOptions): void;
+}
+
+export declare interface ScriptEditorOptions {
+    aceUrl?: string;
 }
 
 export declare class Stage {

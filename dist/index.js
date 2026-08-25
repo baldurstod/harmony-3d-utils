@@ -1,9 +1,401 @@
+import { loadScript, loadScripts, PersistentStorage } from 'harmony-browser-utils';
+import { createShadowRoot, I18n, defineHarmonyInfoBox, defineHarmonyTab, defineHarmonyTabGroup, createElement, updateElement, shadowRootStyle, show, hide, cloneEvent } from 'harmony-ui';
 import { Graphics, TextureManager, Color, NodeParamOrigin, Source1TextureManager, NodeEventType, DEG_TO_RAD, DEFAULT_TEXTURE_SIZE, NodeImageEditor, AnimatedTexture, NodeImageEditorGui, Source1MaterialManager, TimelineElementType } from 'harmony-3d';
 import { WarpaintDefinitions, getLegacyWarpaint, UniformRandomStream } from 'harmony-tf2-utils';
 import { vec2 } from 'gl-matrix';
-import { createElement, shadowRootStyle, show, hide, I18n, cloneEvent } from 'harmony-ui';
 import { StaticEventTarget } from 'harmony-utils';
 import { closeSVG } from 'harmony-svg';
+
+let initialized = false;
+let pyodide;
+let readyPromiseResolve;
+const readyPromise = new Promise((resolve) => readyPromiseResolve = resolve);
+async function getPyodide() {
+    if (!initialized) {
+        initPyodide();
+    }
+    await readyPromise;
+    return pyodide;
+}
+async function initPyodide() {
+    if (initialized) {
+        return true;
+    }
+    initialized = true;
+    if (!await loadScript('./assets/js/pyodide/pyodide.js')) {
+        return false;
+    }
+    pyodide = await globalThis.loadPyodide({ jsglobals: {} });
+    pyodide.setDebug(true);
+    pyodide.setStderr({ batched: (msg) => console.log(msg) });
+    /*
+    pyodide.registerJsModule('loadout', new Loadout());
+    pyodide.registerJsModule('engine', new Engine);
+    pyodide.registerJsModule('characters', CharacterManager);
+    pyodide.registerJsModule('items', ItemManager);
+    pyodide.registerJsModule('tf2', new Tf2);
+    pyodide.registerJsModule('entities', new Entities);
+    pyodide.registerJsModule('source1', new Source1);
+    pyodide.registerJsModule('glmatrix', new GlMatrix);
+    pyodide.registerJsModule('primitives', new Primitives);
+    */
+    //pyodide.registerJsModule('math', Math);
+    //pyodide.registerJsModule('characters', Characters);
+    //pyodide.registerJsModule('utils', Utils);
+    readyPromiseResolve(true);
+    return true;
+}
+async function registerPyodideModule(name, module) {
+    const pyodide = await getPyodide();
+    pyodide.registerJsModule(name, module);
+}
+
+var scriptEditorCSS = ":host {\n\tdisplay: flex;\n\tflex-direction: column;\n\theight: 100%;\n\twidth: 100%;\n}\n\n.error {\n\tpadding: 0.5rem;\n\tcolor: red;\n}\n\n.widget {\n\tborder-top: 2px solid;\n\tborder-top-color: currentcolor;\n\tborder-bottom: 2px solid;\n\tborder-bottom-color: currentcolor;\n\t/*\n\tmargin: 5px 0px;\n\tpadding: 10px 40px;\n\t*/\n\twhite-space: nowrap;\n}\n\n\n.widget .error {\n\tborder-color: rgb(170, 90, 90);\n}\n\n.widget .text {\n\tpadding: 1rem;\n\tmax-height: 10rem;\n\toverflow: auto;\n}\n\n.tabs {\n\theight: unset;\n}\n";
+
+const ACE_EDITOR_URI = 'https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js';
+const SCRIPT_PATH = '/scripts/';
+class ScriptEditor {
+    #aceEditorResolve;
+    #aceEditorReady = new Promise((resolve) => this.#aceEditorResolve = resolve);
+    #initialized = false;
+    #shadowRoot;
+    #aceEditor;
+    #sessions = new Map;
+    #currentSession = null;
+    #htmlSaveButton;
+    #htmlFileTabs;
+    #knownScripts = new Map();
+    #scriptsInitialized = false;
+    #activeScript;
+    constructor() {
+        window.addEventListener('beforeunload', (event) => this.#beforeUnload(event));
+    }
+    get htmlElement() {
+        this.#initHtml();
+        return this.#shadowRoot.host;
+    }
+    #initHtml() {
+        if (this.#shadowRoot) {
+            return;
+        }
+        this.#shadowRoot = createShadowRoot('div', { adoptStyle: scriptEditorCSS });
+        I18n.observeElement(this.#shadowRoot);
+    }
+    initEditor(options = {}) {
+        if (this.#initialized) {
+            return;
+        }
+        this.#initHtml();
+        defineHarmonyInfoBox();
+        defineHarmonyTab();
+        defineHarmonyTabGroup();
+        //this.#pyodideWorker.postMessage({ cmd: "setInterruptBuffer", interruptBuffer: this.#interruptBuffer });
+        //this.#shadowRoot = this.attachShadow({ mode: 'closed' });
+        //shadowRootStyle(this.#shadowRoot, scriptEditorCSS);
+        const aceScript = options.aceUrl ?? ACE_EDITOR_URI;
+        this.#initialized = true;
+        //this.style.cssText = 'display: flex;flex-direction: column;height: 100%;width: 100%;';
+        createElement('button', {
+            parent: this.#shadowRoot,
+            i18n: '#new_script',
+            $click: () => { this.#newScript(); },
+        });
+        this.#htmlSaveButton = createElement('button', {
+            parent: this.#shadowRoot,
+            i18n: {
+                innerText: '#save',
+                values: {
+                    filename: '',
+                }
+            },
+            disabled: true,
+            $click: () => { this.#saveScript(); },
+        });
+        createElement('button', {
+            parent: this.#shadowRoot,
+            i18n: '#run',
+            $click: () => { this.#run(); },
+        });
+        /*
+        createElement('button', {
+            parent: this.#shadowRoot,
+            i18n: '#stop',
+            $click: () => { this.#stop() },
+        }) as HTMLButtonElement;
+        */
+        createElement('harmony-info-box', {
+            parent: this.#shadowRoot,
+            type: 'error',
+            i18n: '#script_warning',
+        });
+        /*
+        createElement('harmony-info-box', {
+            parent: this.#shadowRoot,
+            type: 'ok',
+            childs: [
+                createElement('span', { i18n: '#script_snippets', }),
+                createElement('a', { href: SNIPPET_URL, innerText: SNIPPET_URL, target: '_blank', style: 'color:white;' }),
+            ],
+        });
+        */
+        /*
+        createElement('button', {
+            parent:this.#shadowRoot,
+            i18n: '#stop',
+            $click: () => this.#stop(),
+        }) as HTMLButtonElement;
+        */
+        this.#htmlFileTabs = createElement('harmony-tab-group', {
+            class: 'tabs',
+            parent: this.#shadowRoot,
+        });
+        const container = createElement('div', { style: 'flex:1;', parent: this.#shadowRoot });
+        //this.#htmlErrors = createElement('textarea', { style: 'flex:1;', parent: this.#shadowRoot }) as HTMLTextAreaElement;
+        if (aceScript == '') {
+            this.#initEditor2(container);
+        }
+        else {
+            loadScripts([aceScript]).then(() => {
+                loadScripts(['./assets/js/ace-builds/src-min/ext-language_tools.js', './assets/js/ace-builds/src-min/ext-code_lens.js']).then(() => this.#initEditor2(container));
+                //loadScripts([aceScript]).then(() => this.#initEditor2(container));
+            });
+        }
+        this.#initTabs();
+    }
+    async #initTabs() {
+        this.#scriptsInitialized = true;
+        const file = await PersistentStorage.readFileAsString(SCRIPT_PATH + 'scripts.json');
+        if (file) {
+            const json = JSON.parse(file);
+            if (json) {
+                this.#knownScripts.clear();
+                for (const scriptJSON of json.scripts) {
+                    const content = await PersistentStorage.readFileAsString(SCRIPT_PATH + scriptJSON.filename);
+                    if (content) {
+                        const script = { filename: scriptJSON.filename, isOpen: scriptJSON.is_open, content: content, modified: false, persistent: true };
+                        this.#knownScripts.set(script.filename, script);
+                        if (scriptJSON.is_open) {
+                            this.#addTab(script);
+                        }
+                    }
+                }
+            }
+        }
+        else {
+            //this.#addTab('script1', '');
+            await this.#newScript();
+        }
+    }
+    #addTab(script) {
+        script.tab = createElement('harmony-tab', {
+            $activated: () => this.#setActive(script),
+            parent: this.#htmlFileTabs,
+            'data-text': script.filename,
+        });
+        script.tab.activate();
+        this.#addSession(script.filename, script.content);
+    }
+    #setActive(script) {
+        this.#setSession(script.filename);
+        this.#refreshSaveButton(script);
+        this.#activeScript = script;
+        updateElement(this.#htmlSaveButton, {
+            i18n: {
+                values: {
+                    filename: script.filename,
+                }
+            },
+        });
+    }
+    #refreshSaveButton(script) {
+        if (script.modified) {
+            this.#htmlSaveButton?.removeAttribute('disabled');
+            script.tab?.setAttribute('data-text', script.filename + ' *');
+        }
+        else {
+            this.#htmlSaveButton?.setAttribute('disabled', '1');
+            script.tab?.setAttribute('data-text', script.filename);
+        }
+        this.#refreshTitle();
+    }
+    #refreshTitle() {
+        for (const [, knownScript] of this.#knownScripts) {
+            if (knownScript.modified) {
+                break;
+            }
+        }
+        //Controller.dispatchEvent<boolean>(ControllerEvent.SetTitleModified, { detail });
+    }
+    #newScript() {
+        let index = 1;
+        const regex = /script(\d*).py/;
+        for (const [, knownScript] of this.#knownScripts) {
+            const result = regex.exec(knownScript.filename);
+            if (result && result?.length > 1) {
+                const existing = Number(result[1]);
+                if (index <= existing) {
+                    index = existing + 1;
+                }
+            }
+        }
+        const script = { filename: `script${index}.py`, isOpen: true, content: `#script${index}.py`, modified: false, persistent: false };
+        this.#knownScripts.set(script.filename, script);
+        this.#addTab(script);
+    }
+    async #saveScript() {
+        const script = this.#activeScript;
+        if (script) {
+            if (await PersistentStorage.writeFile(SCRIPT_PATH + script.filename, script.content)) {
+                script.modified = false;
+                script.persistent = true;
+                this.#refreshSaveButton(script);
+                await this.#saveScripts();
+            }
+            else {
+                alert('Failed to save script');
+            }
+        }
+    }
+    async #saveScripts() {
+        const json = { scripts: [] };
+        for (const [, script] of this.#knownScripts) {
+            if (script.persistent) {
+                json.scripts.push({ filename: script.filename, is_open: script.isOpen });
+            }
+        }
+        await PersistentStorage.writeFile(SCRIPT_PATH + 'scripts.json', JSON.stringify(json));
+    }
+    async #run() {
+        //Utils.setInterrupt(false);
+        const scriptText = this.#aceEditor.getValue();
+        const session = this.#currentSession;
+        (await getPyodide()).runPythonAsync(scriptText).catch((e) => {
+            if (e instanceof Error) {
+                /*
+                if (e.stack?.includes(InterruptError)) {
+                    // TODO: process interruption
+                    return;
+                }
+                */
+                let message;
+                /*
+                if (e.cause) {
+                    message += e.cause;
+                }
+                */
+                if (e.stack) {
+                    message = e.stack;
+                }
+                else {
+                    message = e.name + ': ' + e.message;
+                }
+                //this.#htmlErrors!.value = message;
+                this.#addErrorWidget(session, message);
+            }
+            else {
+                console.error(e);
+                //this.#htmlErrors!.value = String(e);
+                this.#addErrorWidget(session, String(e));
+            }
+            //const range = new (globalThis as any).ace.Range(0, 0, 0, 10);
+            //this.#currentSession?.addMarker(range, "ace_link_marker", "text", true);
+        });
+        //this.#pyodideWorker.postMessage({ cmd: "runCode", scriptText });
+    }
+    #initEditor2(id) {
+        this.#aceEditor = globalThis.ace.edit(id);
+        this.#aceEditor.setOptions({
+            enableBasicAutocompletion: true,
+            enableSnippets: true,
+            enableLiveAutocompletion: true
+        });
+        this.#aceEditorResolve();
+        this.#aceEditor.renderer.attachToShadowRoot();
+        //this.#aceEditor.$blockScrolling = Infinity;
+        this.#aceEditor.setTheme('ace/theme/monokai');
+        //this.#scriptEditor.getSession().setMode('ace/mode/python');
+        /*
+        this.#scriptEditor.getSession().on('change', () => {
+            //clearTimeout(this.#recompileTimeout);
+            //this.#recompileTimeout = setTimeout(() => { this.recompile() }, this.#recompileDelay);//TODO:
+        });
+        */
+        this.#aceEditor.commands.addCommand({
+            name: 'myCommand',
+            bindKey: { win: 'Ctrl-Shift-C', mac: 'Command-M' },
+            exec: () => {
+                //this.recompile();
+            },
+        });
+    }
+    async #addSession(name, content) {
+        await this.#aceEditorReady;
+        const ace = globalThis.ace;
+        const session = new ace.EditSession(content, 'ace/mode/python');
+        session.setUndoManager(new ace.UndoManager());
+        //session.setMode('ace/mode/python');
+        session.on('change', () => {
+            //this.#recompileTimeout = setTimeout(() => { this.recompile() }, this.#recompileDelay);//TODO:
+            const knownScript = this.#knownScripts.get(name);
+            if (knownScript) {
+                knownScript.modified = true;
+                knownScript.content = session.getValue();
+                this.#refreshSaveButton(knownScript);
+            }
+        });
+        this.#sessions.set(name, session);
+        await this.#setSession(name);
+    }
+    async #setSession(name) {
+        await this.#aceEditorReady;
+        const session = this.#sessions.get(name);
+        if (session) {
+            this.#currentSession = session;
+            this.#aceEditor.setSession(session);
+        }
+    }
+    #addLineWidget(session, element) {
+        const LineWidgets = require("ace/line_widgets").LineWidgets;
+        if (!session.widgetManager) {
+            session.widgetManager = new LineWidgets(session);
+            session.widgetManager.attach(this.#aceEditor);
+        }
+        const w = {
+            row: 0,
+            fixedWidth: true,
+            coverGutter: false,
+            el: element,
+        };
+        session.widgetManager.addLineWidget(w);
+        return w;
+    }
+    #addErrorWidget(session, error) {
+        const lineWidget = this.#addLineWidget(session, createElement('div', {
+            class: 'widget error',
+            childs: [
+                createElement('button', {
+                    i18n: '#clear_error',
+                    $click: () => session.widgetManager.removeLineWidget(lineWidget),
+                }),
+                createElement('div', {
+                    class: 'text',
+                    innerText: error,
+                }),
+            ]
+        }));
+    }
+    #beforeUnload(event) {
+        if (!this.#scriptsInitialized) {
+            return;
+        }
+        for (const [, knownScript] of this.#knownScripts) {
+            if (knownScript.modified) {
+                event.preventDefault();
+                return;
+            }
+        }
+    }
+}
 
 let blackTexture;
 class Stage {
@@ -1636,4 +2028,4 @@ function defineRepository() {
     }
 }
 
-export { HTMLRepositoryElement, HTMLRepositoryEntryElement, HTMLTimelineElement, RepositoryDisplayMode, Stage, TextureCombiner, TextureCombinerEventTarget, WarpaintEditor, WeaponManager, WeaponManagerEvents, defineRepository, defineRepositoryEntry, defineTimelineElement };
+export { ACE_EDITOR_URI, HTMLRepositoryElement, HTMLRepositoryEntryElement, HTMLTimelineElement, RepositoryDisplayMode, ScriptEditor, Stage, TextureCombiner, TextureCombinerEventTarget, WarpaintEditor, WeaponManager, WeaponManagerEvents, defineRepository, defineRepositoryEntry, defineTimelineElement, registerPyodideModule };

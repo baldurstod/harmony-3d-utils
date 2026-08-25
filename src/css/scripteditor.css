@@ -1,0 +1,38 @@
+:host {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	width: 100%;
+}
+
+.error {
+	padding: 0.5rem;
+	color: red;
+}
+
+.widget {
+	border-top: 2px solid;
+	border-top-color: currentcolor;
+	border-bottom: 2px solid;
+	border-bottom-color: currentcolor;
+	/*
+	margin: 5px 0px;
+	padding: 10px 40px;
+	*/
+	white-space: nowrap;
+}
+
+
+.widget .error {
+	border-color: rgb(170, 90, 90);
+}
+
+.widget .text {
+	padding: 1rem;
+	max-height: 10rem;
+	overflow: auto;
+}
+
+.tabs {
+	height: unset;
+}

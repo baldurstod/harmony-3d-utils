@@ -1,6 +1,6 @@
 {
   "name": "harmony-3d-utils",
-  "version": "0.4.25",
+  "version": "0.5.0",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -15,12 +15,14 @@
     "harmony-tf2-utils": "github:baldurstod/harmony-tf2-utils",
     "harmony-ui": "github:baldurstod/harmony-ui",
     "harmony-utils": "github:baldurstod/harmony-utils",
-    "harmony-vpk": "github:baldurstod/harmony-vpk"
+    "harmony-vpk": "github:baldurstod/harmony-vpk",
+    "pyodide": "^314.0.5"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
     "@rollup/plugin-node-resolve": "^15.3.0",
     "@rollup/plugin-typescript": "^12.1.1",
+    "@types/node": "^26.2.0",
     "@webgpu/types": "^0.1.68",
     "eslint": "^9.39.1",
     "rollup": "^4.24.2",
