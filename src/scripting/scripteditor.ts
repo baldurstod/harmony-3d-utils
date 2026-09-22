@@ -180,7 +180,8 @@ export class ScriptEditor {
 			}
 		} else {
 			//this.#addTab('script1', '');
-			await this.#newScript();
+			await PersistentStorage.writeFile(SCRIPT_PATH + 'scripts.json', '{"scripts":[]}');
+			this.#newScript();
 		}
 	}
 

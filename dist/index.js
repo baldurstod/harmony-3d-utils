@@ -28,20 +28,6 @@ async function initPyodide() {
     pyodide = await globalThis.loadPyodide({ jsglobals: {} });
     pyodide.setDebug(true);
     pyodide.setStderr({ batched: (msg) => console.log(msg) });
-    /*
-    pyodide.registerJsModule('loadout', new Loadout());
-    pyodide.registerJsModule('engine', new Engine);
-    pyodide.registerJsModule('characters', CharacterManager);
-    pyodide.registerJsModule('items', ItemManager);
-    pyodide.registerJsModule('tf2', new Tf2);
-    pyodide.registerJsModule('entities', new Entities);
-    pyodide.registerJsModule('source1', new Source1);
-    pyodide.registerJsModule('glmatrix', new GlMatrix);
-    pyodide.registerJsModule('primitives', new Primitives);
-    */
-    //pyodide.registerJsModule('math', Math);
-    //pyodide.registerJsModule('characters', Characters);
-    //pyodide.registerJsModule('utils', Utils);
     readyPromiseResolve(true);
     return true;
 }
@@ -183,7 +169,8 @@ class ScriptEditor {
         }
         else {
             //this.#addTab('script1', '');
-            await this.#newScript();
+            await PersistentStorage.writeFile(SCRIPT_PATH + 'scripts.json', '{"scripts":[]}');
+            this.#newScript();
         }
     }
     #addTab(script) {
