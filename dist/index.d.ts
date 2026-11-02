@@ -1,4 +1,7 @@
 import { AnimatedTexture } from 'harmony-3d';
+import { CreateElementChildOption } from 'harmony-ui';
+import { HTMLHarmonyInfoBoxElementType } from 'harmony-ui';
+import { MyEventTarget } from 'harmony-utils';
 import { Node as Node_2 } from 'harmony-3d';
 import { NodeImageEditor } from 'harmony-3d';
 import { NodeImageEditorGui } from 'harmony-3d';
@@ -67,11 +70,13 @@ export declare enum RepositoryDisplayMode {
     Tree = "tree"
 }
 
-export declare class ScriptEditor {
+export declare class ScriptEditor extends MyEventTarget {
     #private;
     constructor();
     get htmlElement(): HTMLElement;
     initEditor(options?: ScriptEditorOptions): void;
+    addInfo(type: HTMLHarmonyInfoBoxElementType, children: CreateElementChildOption[]): void;
+    setAnnotations(): void;
 }
 
 export declare interface ScriptEditorOptions {

@@ -1,6 +1,6 @@
 {
   "name": "harmony-3d-utils",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -11,6 +11,7 @@
   "dependencies": {
     "gl-matrix": "^3.4.3",
     "harmony-3d": "github:baldurstod/harmony-3d",
+    "harmony-browser-utils": "github:baldurstod/harmony-browser-utils",
     "harmony-svg": "github:baldurstod/harmony-svg",
     "harmony-tf2-utils": "github:baldurstod/harmony-tf2-utils",
     "harmony-ui": "github:baldurstod/harmony-ui",

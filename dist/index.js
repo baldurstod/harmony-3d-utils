@@ -1,9 +1,9 @@
 import { loadScript, loadScripts, PersistentStorage } from 'harmony-browser-utils';
 import { createShadowRoot, I18n, defineHarmonyInfoBox, defineHarmonyTab, defineHarmonyTabGroup, createElement, updateElement, shadowRootStyle, show, hide, cloneEvent } from 'harmony-ui';
+import { MyEventTarget, StaticEventTarget } from 'harmony-utils';
 import { Graphics, TextureManager, Color, NodeParamOrigin, Source1TextureManager, NodeEventType, DEG_TO_RAD, DEFAULT_TEXTURE_SIZE, NodeImageEditor, AnimatedTexture, NodeImageEditorGui, Source1MaterialManager, TimelineElementType } from 'harmony-3d';
 import { WarpaintDefinitions, getLegacyWarpaint, UniformRandomStream } from 'harmony-tf2-utils';
 import { vec2 } from 'gl-matrix';
-import { StaticEventTarget } from 'harmony-utils';
 import { closeSVG } from 'harmony-svg';
 
 let initialized = false;
@@ -12,7 +12,7 @@ let readyPromiseResolve;
 const readyPromise = new Promise((resolve) => readyPromiseResolve = resolve);
 async function getPyodide() {
     if (!initialized) {
-        initPyodide();
+        await initPyodide();
     }
     await readyPromise;
     return pyodide;
@@ -28,19 +28,29 @@ async function initPyodide() {
     pyodide = await globalThis.loadPyodide({ jsglobals: {} });
     pyodide.setDebug(true);
     pyodide.setStderr({ batched: (msg) => console.log(msg) });
+    for (const [name, module] of modules) {
+        pyodide.registerJsModule(name, module);
+    }
     readyPromiseResolve(true);
     return true;
 }
+const modules = new Map();
 async function registerPyodideModule(name, module) {
-    const pyodide = await getPyodide();
-    pyodide.registerJsModule(name, module);
+    if (pyodide) {
+        // If pyodide is already initialized, register the module
+        pyodide.registerJsModule(name, module);
+    }
+    else {
+        // Save the module for later
+        modules.set(name, module);
+    }
 }
 
-var scriptEditorCSS = ":host {\n\tdisplay: flex;\n\tflex-direction: column;\n\theight: 100%;\n\twidth: 100%;\n}\n\n.error {\n\tpadding: 0.5rem;\n\tcolor: red;\n}\n\n.widget {\n\tborder-top: 2px solid;\n\tborder-top-color: currentcolor;\n\tborder-bottom: 2px solid;\n\tborder-bottom-color: currentcolor;\n\t/*\n\tmargin: 5px 0px;\n\tpadding: 10px 40px;\n\t*/\n\twhite-space: nowrap;\n}\n\n\n.widget .error {\n\tborder-color: rgb(170, 90, 90);\n}\n\n.widget .text {\n\tpadding: 1rem;\n\tmax-height: 10rem;\n\toverflow: auto;\n}\n\n.tabs {\n\theight: unset;\n}\n";
+var scriptEditorCSS = ":host {\n\tdisplay: flex;\n\tflex-direction: column;\n\theight: 100%;\n\twidth: 100%;\n}\n\n.error {\n\tpadding: 0.5rem;\n\tcolor: red;\n}\n\n.widget {\n\tborder-top: 2px solid;\n\tborder-top-color: currentcolor;\n\tborder-bottom: 2px solid;\n\tborder-bottom-color: currentcolor;\n\t/*\n\tmargin: 5px 0px;\n\tpadding: 10px 40px;\n\t*/\n\twhite-space: nowrap;\n}\n\n\n.widget .error {\n\tborder-color: rgb(170, 90, 90);\n}\n\n.widget .text {\n\tpadding: 1rem;\n\tmax-height: 10rem;\n\toverflow: auto;\n}\n\n.tabs {\n\theight: unset;\n}\n\n.infos{\n\tfont-size: 1.2rem;\n}\n\n.script-warning{\n\tfont-size: 1.5rem;\n}\n";
 
 const ACE_EDITOR_URI = 'https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js';
 const SCRIPT_PATH = '/scripts/';
-class ScriptEditor {
+class ScriptEditor extends MyEventTarget {
     #aceEditorResolve;
     #aceEditorReady = new Promise((resolve) => this.#aceEditorResolve = resolve);
     #initialized = false;
@@ -49,11 +59,13 @@ class ScriptEditor {
     #sessions = new Map;
     #currentSession = null;
     #htmlSaveButton;
+    #htmlInfos;
     #htmlFileTabs;
     #knownScripts = new Map();
     #scriptsInitialized = false;
     #activeScript;
     constructor() {
+        super();
         window.addEventListener('beforeunload', (event) => this.#beforeUnload(event));
     }
     get htmlElement() {
@@ -109,8 +121,13 @@ class ScriptEditor {
             $click: () => { this.#stop() },
         }) as HTMLButtonElement;
         */
-        createElement('harmony-info-box', {
+        this.#htmlInfos = createElement('div', {
             parent: this.#shadowRoot,
+            class: 'infos',
+        });
+        createElement('harmony-info-box', {
+            parent: this.#htmlInfos,
+            class: 'script-warning',
             type: 'error',
             i18n: '#script_warning',
         });
@@ -147,6 +164,17 @@ class ScriptEditor {
             });
         }
         this.#initTabs();
+    }
+    addInfo(type, children) {
+        if (!this.#initialized) {
+            console.error('You must initialize the editor before using this method');
+            return;
+        }
+        createElement('harmony-info-box', {
+            parent: this.#htmlInfos,
+            type,
+            childs: children,
+        });
     }
     async #initTabs() {
         this.#scriptsInitialized = true;
@@ -206,12 +234,14 @@ class ScriptEditor {
         this.#refreshTitle();
     }
     #refreshTitle() {
+        let detail = false;
         for (const [, knownScript] of this.#knownScripts) {
             if (knownScript.modified) {
+                detail = true;
                 break;
             }
         }
-        //Controller.dispatchEvent<boolean>(ControllerEvent.SetTitleModified, { detail });
+        this.dispatchEvent(new CustomEvent('has-modified-script', { detail }));
     }
     #newScript() {
         let index = 1;
@@ -315,6 +345,13 @@ class ScriptEditor {
             },
         });
     }
+    setAnnotations() {
+        /*
+        if (shaderName == this.#editorShaderName) {
+            this.#scriptEditor.getSession().setAnnotations(ShaderManager.getCustomSourceAnnotations(shaderName));
+        }
+        */
+    }
     async #addSession(name, content) {
         await this.#aceEditorReady;
         const ace = globalThis.ace;
@@ -342,6 +379,7 @@ class ScriptEditor {
         }
     }
     #addLineWidget(session, element) {
+        // eslint-disable-next-line @typescript-eslint/no-require-imports
         const LineWidgets = require("ace/line_widgets").LineWidgets;
         if (!session.widgetManager) {
             session.widgetManager = new LineWidgets(session);

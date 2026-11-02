@@ -1,7 +1,8 @@
 import { Editor, EditSession } from 'ace-builds';
 import { LineWidget } from 'ace-builds-internal/line_widgets';
 import { loadScripts, PersistentStorage } from 'harmony-browser-utils';
-import { createElement, createShadowRoot, defineHarmonyInfoBox, defineHarmonyTab, defineHarmonyTabGroup, HTMLHarmonyTabElement, HTMLHarmonyTabGroupElement, I18n, updateElement } from 'harmony-ui';
+import { createElement, CreateElementChildOption, createShadowRoot, defineHarmonyInfoBox, defineHarmonyTab, defineHarmonyTabGroup, HTMLHarmonyInfoBoxElementType, HTMLHarmonyTabElement, HTMLHarmonyTabGroupElement, I18n, updateElement } from 'harmony-ui';
+import { MyEventTarget } from 'harmony-utils';
 import scriptEditorCSS from '../css/scripteditor.css';
 import { getPyodide } from './pyodide';
 
@@ -33,7 +34,7 @@ type Script = {
 	persistent: boolean;
 }
 
-export class ScriptEditor {
+export class ScriptEditor extends MyEventTarget {
 	#aceEditorResolve!: () => void;
 	#aceEditorReady = new Promise((resolve: (value: void) => void) => this.#aceEditorResolve = resolve);
 	#initialized = false;
@@ -42,12 +43,14 @@ export class ScriptEditor {
 	#sessions = new Map<string, EditSession>;
 	#currentSession: EditSession | null = null;
 	#htmlSaveButton?: HTMLButtonElement;
+	#htmlInfos?: HTMLElement;
 	#htmlFileTabs?: HTMLHarmonyTabGroupElement;
 	#knownScripts = new Map<string, Script>();
 	#scriptsInitialized = false;
 	#activeScript?: Script;
 
 	constructor() {
+		super();
 		window.addEventListener('beforeunload', (event: Event) => this.#beforeUnload(event));
 	}
 
@@ -116,8 +119,14 @@ export class ScriptEditor {
 		}) as HTMLButtonElement;
 		*/
 
-		createElement('harmony-info-box', {
+		this.#htmlInfos = createElement('div', {
 			parent: this.#shadowRoot,
+			class: 'infos',
+		});
+
+		createElement('harmony-info-box', {
+			parent: this.#htmlInfos,
+			class: 'script-warning',
 			type: 'error',
 			i18n: '#script_warning',
 		});
@@ -158,6 +167,19 @@ export class ScriptEditor {
 		}
 
 		this.#initTabs();
+	}
+
+	addInfo(type: HTMLHarmonyInfoBoxElementType, children: CreateElementChildOption[]): void {
+		if (!this.#initialized) {
+			console.error('You must initialize the editor before using this method');
+			return;
+		}
+
+		createElement('harmony-info-box', {
+			parent: this.#htmlInfos,
+			type,
+			childs: children,
+		});
 	}
 
 	async #initTabs(): Promise<void> {
@@ -223,7 +245,7 @@ export class ScriptEditor {
 		this.#refreshTitle();
 	}
 
-	#refreshTitle() {
+	#refreshTitle(): void {
 		let detail = false;
 		for (const [, knownScript] of this.#knownScripts) {
 			if (knownScript.modified) {
@@ -232,7 +254,7 @@ export class ScriptEditor {
 			}
 		}
 
-		//Controller.dispatchEvent<boolean>(ControllerEvent.SetTitleModified, { detail });
+		this.dispatchEvent(new CustomEvent<boolean>('has-modified-script', { detail }));
 	}
 
 	#newScript(): void {
@@ -277,7 +299,6 @@ export class ScriptEditor {
 
 		await PersistentStorage.writeFile(SCRIPT_PATH + 'scripts.json', JSON.stringify(json));
 	}
-
 
 	async #run(): Promise<void> {
 		//Utils.setInterrupt(false);
@@ -349,6 +370,14 @@ export class ScriptEditor {
 		});
 	}
 
+	setAnnotations(): void {
+		/*
+		if (shaderName == this.#editorShaderName) {
+			this.#scriptEditor.getSession().setAnnotations(ShaderManager.getCustomSourceAnnotations(shaderName));
+		}
+		*/
+	}
+
 	async #addSession(name: string, content: string): Promise<void> {
 		await this.#aceEditorReady;
 		const ace = (globalThis as any).ace;
@@ -382,6 +411,7 @@ export class ScriptEditor {
 	}
 
 	#addLineWidget(session: EditSession, element: HTMLElement): LineWidget {
+		// eslint-disable-next-line @typescript-eslint/no-require-imports
 		const LineWidgets = require("ace/line_widgets").LineWidgets;
 		if (!session.widgetManager) {
 			session.widgetManager = new LineWidgets(session);

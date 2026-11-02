@@ -1,3 +1,47 @@
+const checkOutlineSVG = '<svg xmlns="http://www.w3.org/2000/svg"  height="24" viewBox="0 -960 960 960" width="24" fill="currentColor"><path d="m 381,-240 424,-424 -57,-56 -368,367 -169,-170 -57,57 z m 0,113 -339,-339 169,-170 170,170 366,-367 172,168 z"/><path fill="#ffffff" d="m 381,-240 424,-424 -57,-56 -368,367 -169,-170 -57,57 z m 366,-593 c -498,-84.66667 -249,-42.33333 0,0 z"/></svg>';
+
+const closeSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="currentColor"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>';
+
+const contentCopySVG = '<svg height="24" viewBox="0 -960 960 960" width="24" fill="currentColor"><path d="M360-240q-33 0-56.5-23.5T280-320v-480q0-33 23.5-56.5T360-880h360q33 0 56.5 23.5T800-800v480q0 33-23.5 56.5T720-240H360Zm0-80h360v-480H360v480ZM200-80q-33 0-56.5-23.5T120-160v-560h80v560h440v80H200Zm160-240v-480 480Z"/></svg>';
+
+const dragPanSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M480-80 310-250l57-57 73 73v-206H235l73 72-58 58L80-480l169-169 57 57-72 72h206v-206l-73 73-57-57 170-170 170 170-57 57-73-73v206h205l-73-72 58-58 170 170-170 170-57-57 73-73H520v205l72-73 58 58L480-80Z"/></svg>';
+
+const folderOpenSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h240l80 80h320q33 0 56.5 23.5T880-640H447l-80-80H160v480l96-320h684L837-217q-8 26-29.5 41.5T760-160H160Zm84-80h516l72-240H316l-72 240Zm0 0 72-240-72 240Zm-84-400v-80 80Z"/></svg>';
+
+const infoSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M440-280h80v-240h-80v240Zm40-320q17 0 28.5-11.5T520-640q0-17-11.5-28.5T480-680q-17 0-28.5 11.5T440-640q0 17 11.5 28.5T480-600Zm0 520q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>';
+
+const lockSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M240-80q-33 0-56.5-23.5T160-160v-400q0-33 23.5-56.5T240-640h40v-80q0-83 58.5-141.5T480-920q83 0 141.5 58.5T680-720v80h40q33 0 56.5 23.5T800-560v400q0 33-23.5 56.5T720-80H240Zm0-80h480v-400H240v400Zm240-120q33 0 56.5-23.5T560-360q0-33-23.5-56.5T480-440q-33 0-56.5 23.5T400-360q0 33 23.5 56.5T480-280ZM360-640h240v-80q0-50-35-85t-85-35q-50 0-85 35t-35 85v80ZM240-160v-400 400Z"/></svg>';
+
+const lockOpenRightSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M240-160h480v-400H240v400Zm240-120q33 0 56.5-23.5T560-360q0-33-23.5-56.5T480-440q-33 0-56.5 23.5T400-360q0 33 23.5 56.5T480-280ZM240-160v-400 400Zm0 80q-33 0-56.5-23.5T160-160v-400q0-33 23.5-56.5T240-640h280v-80q0-83 58.5-141.5T720-920q83 0 141.5 58.5T920-720h-80q0-50-35-85t-85-35q-50 0-85 35t-35 85v80h120q33 0 56.5 23.5T800-560v400q0 33-23.5 56.5T720-80H240Z"/></svg>';
+
+const panZoomSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M120-120v-240h80v104l124-124 56 56-124 124h104v80H120Zm516-460-56-56 124-124H600v-80h240v240h-80v-104L636-580Z"/></svg>';
+
+const pauseSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="currentColor"><path d="M560-200v-560h160v560H560Zm-320 0v-560h160v560H240Z"/></svg>';
+
+const playSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="currentColor"><path d="M320-200v-560l440 280-440 280Z"/></svg>';
+
+const repeatSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentcolor"><path d="M280-80 120-240l160-160 56 58-62 62h406v-160h80v240H274l62 62-56 58Zm-80-440v-240h486l-62-62 56-58 160 160-160 160-56-58 62-62H280v160h-80Z"/></svg>';
+
+const repeatOnSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentcolor"><path d="M120-40q-33 0-56.5-23.5T40-120v-720q0-33 23.5-56.5T120-920h720q33 0 56.5 23.5T920-840v720q0 33-23.5 56.5T840-40H120Zm160-40 56-58-62-62h486v-240h-80v160H274l62-62-56-58-160 160L280-80Zm-80-440h80v-160h406l-62 62 56 58 160-160-160-160-56 58 62 62H200v240Z"/></svg>';
+
+const resetWrenchSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentcolor"><path d="m653-208-88 88-85-85 88-88q-4-11-6-23t-2-24q0-58 41-99t99-41q18 0 35 4.5t32 12.5l-95 95 56 56 95-94q8 15 12.5 31.5T840-340q0 58-41 99t-99 41q-13 0-24.5-2t-22.5-6Zm178-352h-83q-26-88-99-144t-169-56q-117 0-198.5 81.5T200-480q0 72 32.5 132t87.5 98v-110h80v240H160v-80h94q-62-50-98-122.5T120-480q0-75 28.5-140.5t77-114q48.5-48.5 114-77T480-840q129 0 226.5 79.5T831-560Z"/></svg>';
+
+const restartSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M440-122q-121-15-200.5-105.5T160-440q0-66 26-126.5T260-672l57 57q-38 34-57.5 79T240-440q0 88 56 155.5T440-202v80Zm80 0v-80q87-16 143.5-83T720-440q0-100-70-170t-170-70h-3l44 44-56 56-140-140 140-140 56 56-44 44h3q134 0 227 93t93 227q0 121-79.5 211.5T520-122Z"/></svg>';
+
+const rotateSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M482-160q-134 0-228-93t-94-227v-7l-64 64-56-56 160-160 160 160-56 56-64-64v7q0 100 70.5 170T482-240q26 0 51-6t49-18l60 60q-38 22-78 33t-82 11Zm278-161L600-481l56-56 64 64v-7q0-100-70.5-170T478-720q-26 0-51 6t-49 18l-60-60q38-22 78-33t82-11q134 0 228 93t94 227v7l64-64 56 56-160 160Z"/></svg>';
+
+const runSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"  fill="currentColor"><path d="M520-40v-240l-84-80-40 176-276-56 16-80 192 40 64-324-72 28v136h-80v-188l158-68q35-15 51.5-19.5T480-720q21 0 39 11t29 29l40 64q26 42 70.5 69T760-520v80q-66 0-123.5-27.5T540-540l-24 120 84 80v300h-80Zm20-700q-33 0-56.5-23.5T460-820q0-33 23.5-56.5T540-900q33 0 56.5 23.5T620-820q0 33-23.5 56.5T540-740Z"/></svg>';
+
+const visibilityOffSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor"><path d="M0 0h24v24H0zm0 0h24v24H0zm0 0h24v24H0zm0 0h24v24H0z" fill="none"/><path d="M12 7c2.76 0 5 2.24 5 5 0 .65-.13 1.26-.36 1.83l2.92 2.92c1.51-1.26 2.7-2.89 3.43-4.75-1.73-4.39-6-7.5-11-7.5-1.4 0-2.74.25-3.98.7l2.16 2.16C10.74 7.13 11.35 7 12 7zM2 4.27l2.28 2.28.46.46C3.08 8.3 1.78 10.02 1 12c1.73 4.39 6 7.5 11 7.5 1.55 0 3.03-.3 4.38-.84l.42.42L19.73 22 21 20.73 3.27 3 2 4.27zM7.53 9.8l1.55 1.55c-.05.21-.08.43-.08.65 0 1.66 1.34 3 3 3 .22 0 .44-.03.65-.08l1.55 1.55c-.67.33-1.41.53-2.2.53-2.76 0-5-2.24-5-5 0-.79.2-1.53.53-2.2zm4.31-.78l3.15 3.15.02-.16c0-1.66-1.34-3-3-3l-.17.01z"/></svg>';
+
+const visibilityOnSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>';
+
+const walkSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="m280-40 112-564-72 28v136h-80v-188l202-86q14-6 29.5-7t29.5 4q14 5 26.5 14t20.5 23l40 64q26 42 70.5 69T760-520v80q-70 0-125-29t-94-74l-25 123 84 80v300h-80v-260l-84-64-72 324h-84Zm260-700q-33 0-56.5-23.5T460-820q0-33 23.5-56.5T540-900q33 0 56.5 23.5T620-820q0 33-23.5 56.5T540-740Z"/></svg>';
+
+const zoomInSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="currentColor"><path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Zm-40-60v-80h-80v-80h80v-80h80v80h80v80h-80v80h-80Z"/></svg>';
+
+const zoomOutSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="currentColor"><path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400ZM280-540v-80h200v80H280Z"/></svg>';
+
 function rgbToHsl(r, g, b) {
     const max = Math.max(r, g, b), min = Math.min(r, g, b);
     let h = 0, s;
@@ -102,6 +146,12 @@ let Color$1 = class Color {
     }
     getRgba() {
         return this.#rgba;
+    }
+    setRgba(rgba) {
+        this.#rgba[0] = rgba[0];
+        this.#rgba[1] = rgba[1];
+        this.#rgba[2] = rgba[2];
+        this.#rgba[3] = rgba[3];
     }
     set red(red) {
         this.#rgba[0] = red;
@@ -263,6 +313,97 @@ function errorMap(message, key, value) {
 }
 
 /**
+ * Set2 holds a key-key pair using an underlying Set
+ * Any value can be used as either keys
+ */
+let Set2$1 = class Set2 {
+    #map = new Map();
+    clear() {
+        this.#map.clear();
+    }
+    delete(key1, key2) {
+        return this.#map.get(key1)?.delete(key2) ?? false;
+    }
+    forEach(callbackfn, thisArg) {
+        this.#map.forEach((value, key1) => {
+            value.forEach((key2) => callbackfn.call(thisArg, key1, key2, this));
+        });
+    }
+    getMap() {
+        return this.#map;
+    }
+    getSubSet(key1) {
+        return this.#map.get(key1);
+    }
+    has(key1, key2) {
+        return this.#map.get(key1)?.has(key2) ?? false;
+    }
+    add(key1, key2) {
+        if (!this.#map.has(key1)) {
+            this.#map.set(key1, new Set());
+        }
+        this.#map.get(key1).add(key2);
+        return this;
+    }
+    get size() {
+        let size = 0;
+        for (const [, m] of this.#map) {
+            size += m.size;
+        }
+        return size;
+    }
+    [Symbol.iterator] = () => {
+        const iterator1 = this.#map.entries();
+        let iterator2 = null;
+        let current1;
+        const next = () => {
+            if (iterator2 == null) {
+                current1 = iterator1.next();
+                if (current1.done) {
+                    return { done: true };
+                }
+                iterator2 = current1.value[1].keys();
+            }
+            const current2 = iterator2.next();
+            if (current2.done) {
+                iterator2 = null;
+                return next();
+            }
+            return { value: [current1.value[0], current2.value], done: false };
+        };
+        return {
+            next: next,
+            [Symbol.iterator]() {
+                return this;
+            },
+        };
+    };
+};
+
+let BugReporter$1 = class BugReporter {
+    static #eventTarget = new EventTarget();
+    static #dispatched = new Set2$1();
+    static addEventListener(type, callback, options) {
+        this.#eventTarget.addEventListener(type, callback, options);
+    }
+    static removeEventListener(type, callback, options) {
+        this.#eventTarget.removeEventListener(type, callback, options);
+    }
+    static reportBug(severity, message) {
+        if (this.#dispatched.has(severity, message)) {
+            return;
+        }
+        this.#dispatched.add(severity, message);
+        this.#eventTarget.dispatchEvent(new CustomEvent('report', {
+            detail: {
+                severity,
+                message,
+            },
+        }));
+    }
+};
+
+/**
  * An utility class that either count frames per second or quantity per second, averaging the last N samples
  */
 class FpsCounter {
@@ -414,13 +555,13 @@ function joinPath(...segments) {
     return newParts.join("/") || (newParts.length ? "/" : ".");
 }
 
-class Item {
+let Item$1 = class Item {
     data;
     next = null;
     constructor(data) {
         this.data = data;
     }
-}
+};
 class Queue {
     #first = null;
     #last = null;
@@ -430,7 +571,7 @@ class Queue {
         }
     }
     enqueue(value) {
-        const item = new Item(value);
+        const item = new Item$1(value);
         if (!this.#first) {
             this.#first = item;
         }
@@ -455,7 +596,7 @@ class Queue {
 /**
  * Static version of MyEventTarget
  */
-class StaticEventTarget {
+let StaticEventTarget$1 = class StaticEventTarget {
     static eventTarget = new EventTarget();
     static addEventListener(type, callback, options) {
         this.eventTarget.addEventListener(type, callback, options);
@@ -466,7 +607,7 @@ class StaticEventTarget {
     static removeEventListener(type, callback, options) {
         this.eventTarget.removeEventListener(type, callback, options);
     }
-}
+};
 
 /* eslint-disable @typescript-eslint/no-unsafe-function-type */
 function once$2(fn, context) {
@@ -481,7 +622,7 @@ function once$2(fn, context) {
     };
 }
 
-function setTimeoutPromise(timeout, signal) {
+function setTimeoutPromise$1(timeout, signal) {
     return new Promise((resolve, reject) => {
         const timeoutID = setTimeout(resolve, timeout);
         if (signal) {
@@ -499,54 +640,7 @@ function setTimeoutPromise(timeout, signal) {
     });
 }
 
-const checkOutlineSVG = '<svg xmlns="http://www.w3.org/2000/svg"  height="24" viewBox="0 -960 960 960" width="24" fill="currentColor"><path d="m 381,-240 424,-424 -57,-56 -368,367 -169,-170 -57,57 z m 0,113 -339,-339 169,-170 170,170 366,-367 172,168 z"/><path fill="#ffffff" d="m 381,-240 424,-424 -57,-56 -368,367 -169,-170 -57,57 z m 366,-593 c -498,-84.66667 -249,-42.33333 0,0 z"/></svg>';
-
-const closeSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="currentColor"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>';
-
-const contentCopySVG = '<svg height="24" viewBox="0 -960 960 960" width="24" fill="currentColor"><path d="M360-240q-33 0-56.5-23.5T280-320v-480q0-33 23.5-56.5T360-880h360q33 0 56.5 23.5T800-800v480q0 33-23.5 56.5T720-240H360Zm0-80h360v-480H360v480ZM200-80q-33 0-56.5-23.5T120-160v-560h80v560h440v80H200Zm160-240v-480 480Z"/></svg>';
-
-const dragPanSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M480-80 310-250l57-57 73 73v-206H235l73 72-58 58L80-480l169-169 57 57-72 72h206v-206l-73 73-57-57 170-170 170 170-57 57-73-73v206h205l-73-72 58-58 170 170-170 170-57-57 73-73H520v205l72-73 58 58L480-80Z"/></svg>';
-
-const folderOpenSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h240l80 80h320q33 0 56.5 23.5T880-640H447l-80-80H160v480l96-320h684L837-217q-8 26-29.5 41.5T760-160H160Zm84-80h516l72-240H316l-72 240Zm0 0 72-240-72 240Zm-84-400v-80 80Z"/></svg>';
-
-const infoSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M440-280h80v-240h-80v240Zm40-320q17 0 28.5-11.5T520-640q0-17-11.5-28.5T480-680q-17 0-28.5 11.5T440-640q0 17 11.5 28.5T480-600Zm0 520q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>';
-
-const lockSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M240-80q-33 0-56.5-23.5T160-160v-400q0-33 23.5-56.5T240-640h40v-80q0-83 58.5-141.5T480-920q83 0 141.5 58.5T680-720v80h40q33 0 56.5 23.5T800-560v400q0 33-23.5 56.5T720-80H240Zm0-80h480v-400H240v400Zm240-120q33 0 56.5-23.5T560-360q0-33-23.5-56.5T480-440q-33 0-56.5 23.5T400-360q0 33 23.5 56.5T480-280ZM360-640h240v-80q0-50-35-85t-85-35q-50 0-85 35t-35 85v80ZM240-160v-400 400Z"/></svg>';
-
-const lockOpenRightSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M240-160h480v-400H240v400Zm240-120q33 0 56.5-23.5T560-360q0-33-23.5-56.5T480-440q-33 0-56.5 23.5T400-360q0 33 23.5 56.5T480-280ZM240-160v-400 400Zm0 80q-33 0-56.5-23.5T160-160v-400q0-33 23.5-56.5T240-640h280v-80q0-83 58.5-141.5T720-920q83 0 141.5 58.5T920-720h-80q0-50-35-85t-85-35q-50 0-85 35t-35 85v80h120q33 0 56.5 23.5T800-560v400q0 33-23.5 56.5T720-80H240Z"/></svg>';
-
-const panZoomSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M120-120v-240h80v104l124-124 56 56-124 124h104v80H120Zm516-460-56-56 124-124H600v-80h240v240h-80v-104L636-580Z"/></svg>';
-
-const pauseSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="currentColor"><path d="M560-200v-560h160v560H560Zm-320 0v-560h160v560H240Z"/></svg>';
-
-const playSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="currentColor"><path d="M320-200v-560l440 280-440 280Z"/></svg>';
-
-const repeatSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentcolor"><path d="M280-80 120-240l160-160 56 58-62 62h406v-160h80v240H274l62 62-56 58Zm-80-440v-240h486l-62-62 56-58 160 160-160 160-56-58 62-62H280v160h-80Z"/></svg>';
-
-const repeatOnSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentcolor"><path d="M120-40q-33 0-56.5-23.5T40-120v-720q0-33 23.5-56.5T120-920h720q33 0 56.5 23.5T920-840v720q0 33-23.5 56.5T840-40H120Zm160-40 56-58-62-62h486v-240h-80v160H274l62-62-56-58-160 160L280-80Zm-80-440h80v-160h406l-62 62 56 58 160-160-160-160-56 58 62 62H200v240Z"/></svg>';
-
-const resetWrenchSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentcolor"><path d="m653-208-88 88-85-85 88-88q-4-11-6-23t-2-24q0-58 41-99t99-41q18 0 35 4.5t32 12.5l-95 95 56 56 95-94q8 15 12.5 31.5T840-340q0 58-41 99t-99 41q-13 0-24.5-2t-22.5-6Zm178-352h-83q-26-88-99-144t-169-56q-117 0-198.5 81.5T200-480q0 72 32.5 132t87.5 98v-110h80v240H160v-80h94q-62-50-98-122.5T120-480q0-75 28.5-140.5t77-114q48.5-48.5 114-77T480-840q129 0 226.5 79.5T831-560Z"/></svg>';
-
-const restartSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M440-122q-121-15-200.5-105.5T160-440q0-66 26-126.5T260-672l57 57q-38 34-57.5 79T240-440q0 88 56 155.5T440-202v80Zm80 0v-80q87-16 143.5-83T720-440q0-100-70-170t-170-70h-3l44 44-56 56-140-140 140-140 56 56-44 44h3q134 0 227 93t93 227q0 121-79.5 211.5T520-122Z"/></svg>';
-
-const rotateSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M482-160q-134 0-228-93t-94-227v-7l-64 64-56-56 160-160 160 160-56 56-64-64v7q0 100 70.5 170T482-240q26 0 51-6t49-18l60 60q-38 22-78 33t-82 11Zm278-161L600-481l56-56 64 64v-7q0-100-70.5-170T478-720q-26 0-51 6t-49 18l-60-60q38-22 78-33t82-11q134 0 228 93t94 227v7l64-64 56 56-160 160Z"/></svg>';
-
-const runSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"  fill="currentColor"><path d="M520-40v-240l-84-80-40 176-276-56 16-80 192 40 64-324-72 28v136h-80v-188l158-68q35-15 51.5-19.5T480-720q21 0 39 11t29 29l40 64q26 42 70.5 69T760-520v80q-66 0-123.5-27.5T540-540l-24 120 84 80v300h-80Zm20-700q-33 0-56.5-23.5T460-820q0-33 23.5-56.5T540-900q33 0 56.5 23.5T620-820q0 33-23.5 56.5T540-740Z"/></svg>';
-
-const visibilityOffSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor"><path d="M0 0h24v24H0zm0 0h24v24H0zm0 0h24v24H0zm0 0h24v24H0z" fill="none"/><path d="M12 7c2.76 0 5 2.24 5 5 0 .65-.13 1.26-.36 1.83l2.92 2.92c1.51-1.26 2.7-2.89 3.43-4.75-1.73-4.39-6-7.5-11-7.5-1.4 0-2.74.25-3.98.7l2.16 2.16C10.74 7.13 11.35 7 12 7zM2 4.27l2.28 2.28.46.46C3.08 8.3 1.78 10.02 1 12c1.73 4.39 6 7.5 11 7.5 1.55 0 3.03-.3 4.38-.84l.42.42L19.73 22 21 20.73 3.27 3 2 4.27zM7.53 9.8l1.55 1.55c-.05.21-.08.43-.08.65 0 1.66 1.34 3 3 3 .22 0 .44-.03.65-.08l1.55 1.55c-.67.33-1.41.53-2.2.53-2.76 0-5-2.24-5-5 0-.79.2-1.53.53-2.2zm4.31-.78l3.15 3.15.02-.16c0-1.66-1.34-3-3-3l-.17.01z"/></svg>';
-
-const visibilityOnSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>';
-
-const walkSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="m280-40 112-564-72 28v136h-80v-188l202-86q14-6 29.5-7t29.5 4q14 5 26.5 14t20.5 23l40 64q26 42 70.5 69T760-520v80q-70 0-125-29t-94-74l-25 123 84 80v300h-80v-260l-84-64-72 324h-84Zm260-700q-33 0-56.5-23.5T460-820q0-33 23.5-56.5T540-900q33 0 56.5 23.5T620-820q0 33-23.5 56.5T540-740Z"/></svg>';
-
-const zoomInSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="currentColor"><path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Zm-40-60v-80h-80v-80h80v-80h80v80h80v80h-80v80h-80Z"/></svg>';
-
-const zoomOutSVG = '<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="currentColor"><path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400ZM280-540v-80h200v80H280Z"/></svg>';
-
-function cloneEvent(event) {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-explicit-any
-    return new event.constructor(event.type, event);
-}
+var panelCSS = ":host {\n\tdisplay: flex;\n\tflex: 1;\n\tflex-direction: column;\n\t/*flex: 0 0 auto;*/\n\tbox-sizing: border-box;\n\tpointer-events: all;\n\tposition: relative;\n\tbox-sizing: border-box;\n\n\tmax-width: 100%;\n\tmax-height: 100%;\n\n\t--header-bg-color: var(--harmony-panel-header-bg-color, var(--main-bg-color-dark, black));\n\t--content-bg-color: var(--harmony-panel-content-bg-color, var(--main-bg-color-dark, black));\n\t--border-color: var(--harmony-panel-border-color, var(--text-primary, white));\n\n\t--resize-bar-size: 0.5rem;\n\t--layout: column;\n}\n\n/* Prevent child panel header to appear for tabs layout */\n@container style(--layout: tabs) {\n\t:host {\n\t\t--display-header: none;\n\t}\n}\n\n@container style(--layout: column) {\n\t:host {\n\t\t--display-header: initial;\n\t}\n}\n\n@container style(--layout: row) {\n\t:host {\n\t\t--display-header: initial;\n\t}\n}\n\n:host(.collapsed) {\n\tflex: 0 0 auto;\n}\n\n.harmony-panel-row,\n:host(.harmony-panel-row) {\n\t--layout: row;\n}\n\n.harmony-panel-row>harmony-panel {\n\theight: 100%;\n}\n\n.harmony-panel-column,\n:host(.harmony-panel-column) {\n\t--layout: column;\n}\n\n.harmony-panel-tabs,\n:host(.harmony-panel-tabs) {\n\t--layout: tabs;\n}\n\n.harmony-panel-column>harmony-panel {\n\twidth: 100%;\n}\n\n.harmony-panel-splitter {\n\tdisplay: none;\n\tflex: 0 0 10px;\n\tbackground-color: red;\n}\n\n.header {\n\tcursor: pointer;\n\tfont-size: 1.5em;\n\tpadding: 0.25rem;\n\toverflow: hidden;\n\tflex: 0 0 2rem;\n\tbackground-color: var(--header-bg-color);\n\tdisplay: var(--display-header, flex);\n\talign-items: center;\n\tdisplay: flex;\n\talign-items: center;\n}\n\n.header-title {\n\tflex: 1;\n}\n\n.header-close {\n\tdisplay: flex;\n}\n\n.header.hidden {\n\tdisplay: var(--harmony-panel-display-headers, none);\n}\n\n.content {\n\twidth: 100%;\n\tbox-sizing: border-box;\n\tbackground-color: var(--content-bg-color);\n\tflex: 1;\n\toverflow: hidden;\n\tdisplay: flex;\n\tposition: relative;\n\tflex-direction: var(--layout, column);\n}\n\n.header.target {\n\tbackground: blue;\n}\n\n.content.target {\n\tbackground: blue;\n}\n\n[collapsible='1']>.title::after,\n:host(.collapsible)>.title::after {\n\tcontent: \"-\";\n\tright: 0.25rem;\n\tposition: absolute;\n}\n\n[collapsed='1']>.title::after,\n:host(.collapsed)>.title::after {\n\tcontent: \"+\";\n}\n\n.panel-resize {\n\tpointer-events: none;\n\tdisplay: none;\n\ttop: 0;\n\tleft: 0;\n\twidth: 100%;\n\theight: 100%;\n\tposition: absolute;\n}\n\n.panel-resize>* {\n\tpointer-events: all;\n\tposition: absolute;\n}\n\n.panel-resize>.side {\n\tinset: calc(var(--resize-bar-size) * 0.5);\n}\n\n.panel-resize>.corner {\n\theight: var(--resize-bar-size);\n\twidth: var(--resize-bar-size);\n}\n\n.panel-resize>.top,\n.panel-resize>.bottom {\n\theight: var(--resize-bar-size);\n\twidth: auto;\n\tcursor: ns-resize;\n}\n\n.panel-resize>.right,\n.panel-resize>.left {\n\twidth: var(--resize-bar-size);\n\theight: auto;\n\tcursor: ew-resize;\n}\n\n.panel-resize>.top {\n\ttop: calc(var(--resize-bar-size) * -0.5);\n\tbottom: unset;\n}\n\n.panel-resize>.bottom {\n\ttop: unset;\n\tbottom: calc(var(--resize-bar-size) * -0.5);\n}\n\n.panel-resize>.left {\n\tleft: calc(var(--resize-bar-size) * -0.5);\n\tright: unset;\n}\n\n.panel-resize>.right {\n\tleft: unset;\n\tright: calc(var(--resize-bar-size) * -0.5);\n}\n\n.panel-resize>.top_right {\n\ttop: calc(var(--resize-bar-size) * -0.5);\n\tright: calc(var(--resize-bar-size) * -0.5);\n\tcursor: ne-resize;\n}\n\n.panel-resize>.bottom_right {\n\tbottom: calc(var(--resize-bar-size) * -0.5);\n\tright: calc(var(--resize-bar-size) * -0.5);\n\tcursor: se-resize;\n}\n\n.panel-resize>.top_left {\n\ttop: calc(var(--resize-bar-size) * -0.5);\n\tleft: calc(var(--resize-bar-size) * -0.5);\n\tcursor: nw-resize;\n}\n\n.panel-resize>.bottom_left {\n\tbottom: calc(var(--resize-bar-size) * -0.5);\n\tleft: calc(var(--resize-bar-size) * -0.5);\n\tcursor: sw-resize;\n}\n\n:host(.floating) {\n\tz-index: 10000;\n\tborder: 0.1rem solid var(--border-color);\n}\n\n:host(.floating) .panel-resize {\n\tdisplay: initial;\n}\n";
 
 async function documentStyle(cssText) {
     return await shadowRootStyle(document, cssText);
@@ -641,14 +735,36 @@ class I18n {
         }
         this.i18n();
     }
-    static addTranslation(translation) {
-        this.#addTranslation(translation);
+    /**
+     * Add a translation
+     * @param translation The tranaslation to add
+     * @param overwrite If an existing translation for the same language and the same string, should we keep or overwrite that string
+     */
+    static addTranslation(translation, overwrite = false) {
+        this.#addTranslation(translation, overwrite);
         if (translation.lang == this.#lang) {
             this.i18n();
         }
     }
-    static #addTranslation(translation) {
-        this.#translations.set(translation.lang, translation);
+    static #addTranslation(translation, overwrite = false) {
+        const existing = this.#translations.get(translation.lang);
+        if (!existing) {
+            this.#translations.set(translation.lang, translation);
+            return;
+        }
+        for (const key in translation.strings) {
+            if (existing.strings[key] === undefined || overwrite) {
+                existing.strings[key] = translation.strings[key];
+            }
+        }
+        if (translation.authors && !existing.authors) {
+            existing.authors = [];
+        }
+        for (const author in translation.authors) {
+            if (!existing.authors?.includes(author)) {
+                existing.authors?.push(author);
+            }
+        }
     }
     static #initObserver() {
         if (this.#observer) {
@@ -803,7 +919,14 @@ class I18n {
     static formatString(s, values) {
         let str = this.getString(s);
         for (const key in values) {
-            str = str.replace(new RegExp("\\${" + key + "\\}", "gi"), String(values[key]));
+            const valueRegExp = new RegExp("\\${" + key + "\\}", "gi");
+            const translationRegExp = new RegExp("\\#{" + key + "\\}", "gi");
+            if (str.match(valueRegExp)) {
+                str = str.replace(valueRegExp, String(values[key]));
+            }
+            if (str.match(translationRegExp)) {
+                str = str.replace(translationRegExp, this.getString(String(values[key])));
+            }
         }
         return str;
     }
@@ -827,70 +950,71 @@ class I18n {
     }
 }
 
-var helpCSS = "div {\n\tposition: fixed;\n\tleft: 20%;\n\ttop: 5%;\n\tmax-height: 30%;\n\twidth: 60%;\n\ttext-align: center;\n\tbackground-color: #772222;\n\tborder-radius: 1em;\n\toverflow: auto;\n\tz-index: 10;\n\tfont-family: tf2build, Verdana, sans-serif;\n\tpadding: 0.2rem;\n}\n";
+var helpCSS = ":host {\n\tposition: absolute;\n\theight: 100%;\n\twidth: 100%;\n\ttop: 0;\n\tleft: 0;\n\tpointer-events: none;\n\tz-index: 10000;\n\tfont-size: var(--harmony-help-font-size, 2rem);\n}\n\ndiv {\n\tposition: fixed;\n\tleft: 20%;\n\ttop: 5%;\n\tmax-height: 30%;\n\twidth: 60%;\n\ttext-align: center;\n\tbackground-color: #772222;\n\tborder-radius: 1rem;\n\toverflow: auto;\n\tz-index: 10;\n\tfont-family: tf2build, Verdana, sans-serif;\n\tpadding: 1rem;\n\tbox-sizing: border-box;\n}\n\n.help.html {\n\ttext-align: unset;\n\tmax-height: 90%;\n}\n";
 
-let helpInstance = null;
-function getHelp() {
-    if (!helpInstance) {
-        helpInstance = new Help();
-    }
-    return helpInstance;
-}
 class Help {
-    #display = false;
-    #html;
-    #shadowRoot;
-    #elements = new Map();
-    constructor() {
-        document.body.addEventListener('keydown', (event) => this.#handleKeyDown(event));
-        document.body.addEventListener('keyup', (event) => this.#handleKeyUp(event));
-        document.body.addEventListener('mousemove', (event) => this.#handleMouseMove(event));
-        this.#shadowRoot = createShadowRoot('div', {
-            parent: document.body,
-            hidden: true,
-            childs: [
-                this.#html = createElement('div', {
-                    class: 'help',
-                    i18n: '',
-                }),
-            ],
-        });
-        void shadowRootStyle(this.#shadowRoot, helpCSS);
+    static #html;
+    static #shadowRoot;
+    static #elements = new Map();
+    static {
+        const onLoad = () => {
+            document.body.addEventListener('keydown', (event) => this.#handleKeyDown(event));
+            document.body.addEventListener('keyup', (event) => this.#handleKeyUp(event));
+            this.#shadowRoot = createShadowRoot('div', {
+                parent: document.body,
+                hidden: true,
+                childs: [
+                    this.#html = createElement('div', {
+                        class: 'help',
+                        hidden: true,
+                    }),
+                ],
+            });
+            void shadowRootStyle(this.#shadowRoot, helpCSS);
+            removeEventListener('load', onLoad);
+        };
+        addEventListener('load', onLoad);
     }
-    #handleKeyDown(event) {
-        if (event.key == 'F1') {
+    static #handleKeyDown(event) {
+        if (event.key == 'F1' && !event.repeat) {
             event.preventDefault();
             show(this.#shadowRoot);
-            this.#display = true;
         }
     }
-    #handleKeyUp(event) {
+    static #handleKeyUp(event) {
         if (event.key == 'F1') {
             hide(this.#shadowRoot);
-            this.#display = false;
         }
     }
-    #handleMouseMove(event) {
-        const element = document.elementFromPoint(event.clientX, event.clientY);
-        if (!element) {
-            return;
-        }
+    static #handleMouseOver(element) {
         const i18n = this.#elements.get(element);
         if (i18n) {
+            this.#html.classList.remove('html');
+            if (i18n && typeof i18n !== 'string' && i18n.innerHTML) {
+                this.#html.classList.add('html');
+            }
             updateElement(this.#html, {
                 i18n: i18n,
             });
-            display(this.#shadowRoot, this.#display);
+            show(this.#html);
         }
         else {
-            hide(this.#shadowRoot);
+            hide(this.#html);
         }
     }
-    addElement(element, i18n) {
+    static #handleMouseOut() {
+        hide(this.#html);
+    }
+    static addElement(element, i18n) {
+        if (!this.#elements.has(element)) {
+            element.addEventListener('mouseover', () => Help.#handleMouseOver(element));
+            element.addEventListener('mouseout', () => Help.#handleMouseOut());
+        }
         this.#elements.set(element, i18n);
     }
 }
 
+const svgNamespace = 'http://www.w3.org/2000/svg';
 function createElement(tagName, options) {
     const element = document.createElement(tagName);
     createElementOptions(element, options);
@@ -915,6 +1039,19 @@ function createShadowRoot(tagName, options, shadowOptions) {
     createElementOptions(element, options, shadowRoot);
     return shadowRoot;
 }
+function createShadowRootNS(namespaceURI, tagName, options, shadowOptions) {
+    const element = document.createElementNS(namespaceURI, tagName);
+    const shadowRoot = element.attachShadow({
+        clonable: shadowOptions?.clonable,
+        customElementRegistry: shadowOptions?.customElementRegistry,
+        delegatesFocus: shadowOptions?.delegatesFocus,
+        mode: shadowOptions?.mode ?? 'closed',
+        serializable: shadowOptions?.serializable,
+        slotAssignment: shadowOptions?.slotAssignment,
+    });
+    createElementOptions(element, options, shadowRoot);
+    return shadowRoot;
+}
 function updateElement(element, options) {
     if (!element) {
         return;
@@ -922,6 +1059,14 @@ function updateElement(element, options) {
     createElementOptions(element, options);
     ET.dispatchEvent(new CustomEvent('updated', { detail: element }));
     return element;
+}
+function updateShadowRoot(shadowRoot, options) {
+    if (!shadowRoot) {
+        return;
+    }
+    createElementOptions(shadowRoot.host, options, shadowRoot);
+    ET.dispatchEvent(new CustomEvent('updated', { detail: shadowRoot }));
+    return shadowRoot;
 }
 function append$1(element, child) {
     if (child === null || child === undefined) {
@@ -939,8 +1084,11 @@ function createElementOptions(element, options, shadowRoot) {
         for (const optionName in options) {
             const optionValue = options[optionName];
             if (optionName.startsWith('$')) {
-                const eventType = optionName.substring(1);
-                element.addEventListener(eventType, optionValue);
+                element.addEventListener(optionName.substring(1), optionValue);
+                continue;
+            }
+            if (optionName.startsWith('@')) {
+                element.setAttribute(optionName.substring(1), optionValue);
                 continue;
             }
             switch (optionName) {
@@ -951,10 +1099,21 @@ function createElementOptions(element, options, shadowRoot) {
                     element.classList.add(...optionValue.split(' ').filter((n) => n));
                     break;
                 case 'i18n':
-                    AddI18nElement(element, optionValue);
+                    if (element.setTitleI18n) {
+                        element.setTitleI18n(optionValue);
+                    }
+                    else {
+                        AddI18nElement(element, optionValue);
+                    }
                     break;
                 case 'parent':
-                    optionValue.append(element);
+                    optionValue?.append(element);
+                    break;
+                case 'after':
+                    optionValue?.after(element);
+                    break;
+                case 'before':
+                    optionValue?.before(element);
                     break;
                 case 'child':
                     append$1(shadowRoot ?? element, optionValue);
@@ -980,7 +1139,7 @@ function createElementOptions(element, options, shadowRoot) {
                     }
                     break;
                 case 'innerHTML':
-                    element.innerHTML = optionValue ?? '';
+                    (shadowRoot ?? element).innerHTML = optionValue ?? '';
                     break;
                 case 'innerText':
                     element.innerText = optionValue ?? '';
@@ -997,7 +1156,9 @@ function createElementOptions(element, options, shadowRoot) {
                     element.htmlFor = optionValue;
                     break;
                 case 'adoptStyle':
-                    void adoptStyle(shadowRoot ?? element, optionValue);
+                    if (optionValue) {
+                        void adoptStyle(shadowRoot ?? element, optionValue);
+                    }
                     break;
                 case 'adoptStyles':
                     (optionValue ?? []).forEach((entry) => {
@@ -1005,7 +1166,9 @@ function createElementOptions(element, options, shadowRoot) {
                     });
                     break;
                 case 'adoptStyleSheet':
-                    adoptStyleSheet(shadowRoot ?? element, optionValue);
+                    if (optionValue) {
+                        adoptStyleSheet(shadowRoot ?? element, optionValue);
+                    }
                     break;
                 case 'adoptStyleSheets':
                     (optionValue ?? []).forEach((entry) => {
@@ -1019,7 +1182,7 @@ function createElementOptions(element, options, shadowRoot) {
                     element.checked = optionValue;
                     break;
                 case 'help':
-                    getHelp().addElement(element, optionValue);
+                    Help.addElement(element, optionValue);
                     break;
                 case 'elementCreated':
                     break;
@@ -1119,18 +1282,1130 @@ function getCustomElementRegistry() {
 }
 function defineElement(name, constructor, options) {
     if (window.customElements) {
-        customElements.define(name, constructor, options);
+        if (!customElements.get(name)) {
+            customElements.define(name, constructor, options);
+        }
     }
-    getCustomElementRegistry()?.define(name, constructor, options);
+    const customRegistry = getCustomElementRegistry();
+    if (customRegistry && !customRegistry.get(name)) {
+        customRegistry.define(name, constructor, options);
+    }
+}
+function addRemoveClass(element, clas, add) {
+    if (add) {
+        element?.classList.add(clas);
+    }
+    else {
+        element?.classList.remove(clas);
+    }
 }
 
-var manipulator2dCSS = ":host {\n\t--handle-radius: var(--harmony-2d-manipulator-radius, 0.5rem);\n\t--harmony-2d-manipulator-shadow-bg-color: var(--harmony-2d-manipulator-bg-color, red);\n\t--harmony-2d-manipulator-shadow-border: var(--harmony-2d-manipulator-border, none);\n\t--handle-bg-color: var(--harmony-2d-manipulator-handle-bg-color, chartreuse);\n\t--corner-bg-color: var(--harmony-2d-manipulator-corner-bg-color, var(--handle-bg-color));\n\t--side-bg-color: var(--harmony-2d-manipulator-side-bg-color, var(--handle-bg-color));\n\t--rotate-bg-color: var(--harmony-2d-manipulator-rotate-bg-color, var(--handle-bg-color));\n\n\twidth: 1rem;\n\theight: 1rem;\n\tdisplay: block;\n\tuser-select: none;\n\tpointer-events: all;\n}\n\n:host-context(.grabbing) {\n\tcursor: grabbing;\n}\n\n.manipulator {\n\tposition: absolute;\n\tbackground-color: var(--harmony-2d-manipulator-shadow-bg-color);\n\tborder: var(--harmony-2d-manipulator-shadow-border);\n\tcursor: move;\n\tpointer-events: all;\n}\n\n.rotator {\n\tscale: var(--rotate);\n\tposition: absolute;\n\twidth: var(--handle-radius);\n\theight: var(--handle-radius);\n\tbackground-color: var(--rotate-bg-color);\n\tborder-radius: calc(var(--handle-radius) * 0.5);\n\ttransform: translate(-50%, -50%);\n\tcursor: grab;\n}\n\n.corner {\n\tscale: var(--scale);\n\tposition: absolute;\n\twidth: var(--handle-radius);\n\theight: var(--handle-radius);\n\tbackground-color: var(--corner-bg-color);\n\tborder-radius: calc(var(--handle-radius) * 0.5);\n\ttransform: translate(-50%, -50%);\n\tcursor: grab;\n}\n\n.side {\n\tposition: absolute;\n\twidth: var(--handle-radius);\n\theight: var(--handle-radius);\n\tbackground-color: var(--side-bg-color);\n\tborder-radius: calc(var(--handle-radius) * 0.5);\n\ttransform: translate(-50%, -50%);\n\tcursor: grab;\n}\n\n.side.x {\n\tscale: var(--resize-x);\n}\n\n.side.y {\n\tscale: var(--resize-y);\n}\n\n.corner.grabbing {\n\tcursor: grabbing;\n}\n";
+var tabCSS$1 = ":host {\n\tdisplay: inline-block;\n\tbackground-color: var(--main-bg-color-bright);\n\t/*padding: 10px;*/\n\tborder: 0.1rem solid var(--harmony-ui-text-primary);\n\tborder-top: 0px;\n\tposition: relative;\n\tcolor: var(--harmony-ui-text-primary);\n\tcursor: pointer;\n\tuser-select: none;\n\tpointer-events: all;\n\tflex: 0 0;\n\ttext-align: center;\n\twhite-space: nowrap;\n\tdisplay: flex;\n\talign-items: center;\n}\n\ndiv {\n\tpadding: 0.2rem;\n}\n";
 
-function toBool(s) {
-    return s === '1' || s === 'true';
+class HarmonyTab extends MyEventTarget {
+    htmlElement = createElement('div', {
+        $click: () => this.#click(),
+    });
+    #shadowRoot;
+    #disabled = false;
+    #active = false;
+    //#header?: HTMLElement;
+    #htmlHeader;
+    #htmlTitle;
+    #htmlClose;
+    #group;
+    #closable = false;
+    #closed = false;
+    #draggable = false;
+    content;
+    panel;
+    constructor(params = {}) {
+        super();
+        this.setParams(params);
+    }
+    setParams(params) {
+        if (params.title !== undefined) {
+            this.setTitle(params.title);
+        }
+        if (params.titleI18n !== undefined) {
+            this.setTitleI18n(params.titleI18n);
+        }
+        this.#draggable = params.draggable ?? false;
+        this.content = params.content;
+        this.panel = params.panel;
+    }
+    #initHTML() {
+        if (this.#shadowRoot) {
+            return;
+        }
+        this.#shadowRoot = this.htmlElement.attachShadow({ mode: 'closed' });
+        I18n.observeElement(this.#shadowRoot);
+        void shadowRootStyle(this.#shadowRoot, tabCSS$1);
+        this.#htmlHeader = createElement('div', {
+            class: 'tab',
+            parent: this.#shadowRoot,
+            childs: [
+                this.#htmlTitle = createElement('span'),
+                this.#htmlClose = createElement('span', {
+                    class: 'close',
+                    innerHTML: closeSVG,
+                    hidden: !this.#closable,
+                    $click: (event) => { event.stopPropagation(); this.close(); },
+                }),
+            ],
+            $click: () => this.#click(),
+            $contextmenu: (event) => this.#onContextMenu(event),
+            $mousedown: (event) => this.#handleMouseDown(event),
+        });
+    }
+    setTitle(title) {
+        this.#initHTML();
+        this.#htmlTitle.innerText = title;
+        show(this.#htmlTitle);
+    }
+    setTitleI18n(i18n) {
+        this.#initHTML();
+        if (typeof i18n === 'string') {
+            updateElement(this.#htmlTitle, {
+                i18n,
+            });
+        }
+        else {
+            errorOnce('unhandled type ' + typeof i18n + i18n);
+        }
+        show(this.#htmlTitle);
+    }
+    setDisabled(disabled) {
+        this.#disabled = disabled ? true : false;
+        addRemoveClass(this.#htmlHeader, 'disabled', this.#disabled);
+    }
+    getDisabled() {
+        return this.#disabled;
+    }
+    activate() {
+        this.setActive(true);
+    }
+    close() {
+        if (this.#closed) {
+            return false;
+        }
+        if (!this.dispatchEvent(new CustomEvent('close', { cancelable: true, detail: { tab: this } }))) {
+            return false;
+        }
+        this.#group?.closeTab(this);
+        return true;
+    }
+    setActive(active) {
+        if (this.#active != active) {
+            this.#active = active;
+            if (active) {
+                this.dispatchEvent(new CustomEvent('activated', { detail: { tab: this } }));
+            }
+            else {
+                this.dispatchEvent(new CustomEvent('deactivated', { detail: { tab: this } }));
+            }
+        }
+        //display(this.htmlElement, active);
+        this.#initHTML();
+        addRemoveClass(this.#htmlHeader, 'activated', active);
+        if (active && this.#group) {
+            this.#group.activateTab(this);
+        }
+        display(this.content, active);
+    }
+    isActive() {
+        return this.#active;
+    }
+    isClosed() {
+        return this.#closed;
+    }
+    #click() {
+        if (!this.dispatchEvent(new CustomEvent('click', { cancelable: true, detail: { tab: this } }))) {
+            return;
+        }
+        if (!this.#disabled) {
+            this.activate();
+        }
+    }
+    #onContextMenu(event) {
+        this.dispatchEvent(new CustomEvent('contextmenu', { detail: { tab: this, originalEvent: event } }));
+    }
+    scrollIntoView() {
+        this.#initHTML();
+        this.#htmlHeader.scrollIntoView();
+    }
+    setClosable(closable) {
+        this.#closable = closable;
+        display(this.#htmlClose, closable);
+    }
+    setGroup(group) {
+        this.#group = group;
+    }
+    #handleMouseDown(event) {
+        if (this.#draggable && event.button === 0 && this.panel) {
+            // Activate this tab before dragging
+            this.activate();
+            this.panel.getHeader().dispatchEvent(cloneEvent(event));
+        }
+    }
 }
 
-var uiCSS = "@media (prefers-color-scheme: light) {\n\t:root:not(.light):not(.dark) {\n\t\t--harmony-ui-background-primary: #ccc;\n\t\t--harmony-ui-background-secondary: #f9f9fb;\n\t\t--harmony-ui-background-tertiary: #fff;\n\n\t\t--harmony-ui-input-background-primary: #aaa;\n\t\t--harmony-ui-input-background-secondary: #ccc;\n\t\t--harmony-ui-input-background-tertiary: #4e4e4e;\n\n\t\t--harmony-ui-border-primary: #222;\n\t\t--harmony-ui-border-secondary: #222;\n\n\t\t--harmony-ui-input-border-primary: #222;\n\t\t--harmony-ui-input-border-secondary: #222;\n\n\t\t--harmony-ui-text-primary: #222;\n\t\t--harmony-ui-text-secondary: #222;\n\t\t--harmony-ui-text-inactive: #9e9e9ea6;\n\t\t--harmony-ui-text-link: #0069c2;\n\t\t--harmony-ui-text-invert: #fff;\n\n\t\t--harmony-ui-accent-primary: #1072eb;\n\t\t--harmony-ui-accent-secondary: #1040c1;\n\n\t\t--harmony-ui-scrollbar-bg: transparent;\n\t\t--harmony-ui-scrollbar-color: rgba(0, 0, 0, 0.25);\n\n\t\t--harmony-ui-menu-bg-color: #ccc;\n\t\t--harmony-ui-menu-item-bg-color: #ccc;\n\t\t--harmony-ui-menu-item-selected-bg-color: #ccc;\n\t\t--harmony-ui-menu-submenu-bg-color: #ccc;\n\t\t--harmony-ui-menu-submenu-fg-color: #777;\n\t\t--harmony-ui-menu-item-hover-bg-color: #fff;\n\t}\n}\n\n@media (prefers-color-scheme: dark) {\n\t:root:not(.light):not(.dark) {\n\t\t--harmony-ui-background-primary: #1b1b1b;\n\t\t--harmony-ui-background-secondary: #464747;\n\t\t--harmony-ui-background-tertiary: #4e4e4e;\n\n\t\t--harmony-ui-input-background-primary: #555;\n\t\t--harmony-ui-input-background-secondary: #333;\n\t\t--harmony-ui-input-background-tertiary: #fff;\n\n\t\t--harmony-ui-border-primary: #858585;\n\t\t--harmony-ui-border-secondary: #696969;\n\n\t\t--harmony-ui-input-border-primary: #aaa;\n\t\t--harmony-ui-input-border-secondary: #696969;\n\n\t\t--harmony-ui-text-primary: #fff;\n\t\t--harmony-ui-text-secondary: #cdcdcd;\n\t\t--harmony-ui-text-inactive: #cdcdcda6;\n\t\t--harmony-ui-text-link: #8cb4ff;\n\t\t--harmony-ui-text-invert: #1b1b1b;\n\n\t\t--harmony-ui-accent-primary: #1072eb;\n\t\t--harmony-ui-accent-secondary: #1040c1;\n\n\t\t--harmony-ui-scrollbar-bg: transparent;\n\t\t--harmony-ui-scrollbar-color: rgba(255, 255, 255, 0.25);\n\n\t\t--harmony-ui-menu-bg-color: #333333;\n\t\t--harmony-ui-menu-item-bg-color: #333333;\n\t\t--harmony-ui-menu-item-selected-bg-color: #333333;\n\t\t--harmony-ui-menu-submenu-bg-color: #333333;\n\t\t--harmony-ui-menu-submenu-fg-color: #888888;\n\t\t--harmony-ui-menu-item-hover-bg-color: #000000;\n\t}\n}\n\n:root.light {\n\t--harmony-ui-background-primary: #ccc;\n\t--harmony-ui-background-secondary: #f9f9fb;\n\t--harmony-ui-background-tertiary: #fff;\n\n\t--harmony-ui-input-background-primary: #aaa;\n\t--harmony-ui-input-background-secondary: #ccc;\n\t--harmony-ui-input-background-tertiary: #4e4e4e;\n\n\t--harmony-ui-border-primary: #222;\n\t--harmony-ui-border-secondary: #222;\n\n\t--harmony-ui-input-border-primary: #222;\n\t--harmony-ui-input-border-secondary: #222;\n\n\t--harmony-ui-text-primary: #222;\n\t--harmony-ui-text-secondary: #222;\n\t--harmony-ui-text-inactive: #9e9e9ea6;\n\t--harmony-ui-text-link: #0069c2;\n\t--harmony-ui-text-invert: #fff;\n\n\t--harmony-ui-accent-primary: #1072eb;\n\t--harmony-ui-accent-secondary: #1040c1;\n\n\t--harmony-ui-scrollbar-bg: transparent;\n\t--harmony-ui-scrollbar-color: rgba(0, 0, 0, 0.25);\n}\n\n:root.dark {\n\t--harmony-ui-background-primary: #1b1b1b;\n\t--harmony-ui-background-secondary: #464747;\n\t--harmony-ui-background-tertiary: #4e4e4e;\n\n\t--harmony-ui-input-background-primary: #555;\n\t--harmony-ui-input-background-secondary: #333;\n\t--harmony-ui-input-background-tertiary: #fff;\n\n\t--harmony-ui-border-primary: #858585;\n\t--harmony-ui-border-secondary: #696969;\n\n\t--harmony-ui-input-border-primary: #aaa;\n\t--harmony-ui-input-border-secondary: #696969;\n\n\t--harmony-ui-text-primary: #fff;\n\t--harmony-ui-text-secondary: #cdcdcd;\n\t--harmony-ui-text-inactive: #cdcdcda6;\n\t--harmony-ui-text-link: #8cb4ff;\n\t--harmony-ui-text-invert: #1b1b1b;\n\n\t--harmony-ui-accent-primary: #1072eb;\n\t--harmony-ui-accent-secondary: #1040c1;\n\n\t--harmony-ui-scrollbar-bg: transparent;\n\t--harmony-ui-scrollbar-color: rgba(255, 255, 255, 0.25);\n}\n";
+var tabGroupCSS$1 = ":host>div {\n\twidth: 100%;\n\theight: 100%;\n\tdisplay: flex;\n\tflex-direction: row;\n\tposition: relative;\n\tgap: 0.1rem;\n}\n";
+
+class HarmonyTabGroup {
+    htmlElement = createElement('div');
+    #shadowRoot;
+    #htmlTabs;
+    #tabs = new Set();
+    #activeTab;
+    constructor(params = {}) {
+        this.setParams(params);
+    }
+    setParams(params) {
+        if (params.adoptStyle || params.adoptStyles || params.adoptStyleSheet || params.adoptStyleSheets) {
+            this.#initHTML();
+            updateShadowRoot(this.#shadowRoot, {
+                adoptStyle: params.adoptStyle,
+                adoptStyles: params.adoptStyles,
+                adoptStyleSheet: params.adoptStyleSheet,
+                adoptStyleSheets: params.adoptStyleSheets,
+            });
+        }
+    }
+    #initHTML() {
+        if (this.#shadowRoot) {
+            return;
+        }
+        this.#shadowRoot = this.htmlElement.attachShadow({ mode: 'closed' });
+        I18n.observeElement(this.#shadowRoot);
+        void shadowRootStyle(this.#shadowRoot, tabGroupCSS$1);
+        this.#htmlTabs = createElement('div', {
+            parent: this.#shadowRoot,
+        });
+    }
+    /*
+    addTabs(...tabs: HarmonyTab[]): void {
+        for (const tab of tabs) {
+            this.#tabs.add(tab);
+            this.htmlElement.append(tab.htmlElement);
+        }
+    }
+    */
+    append(...tabs) {
+        this.#initHTML();
+        for (const tab of tabs) {
+            this.#tabs.add(tab);
+            this.#htmlTabs.append(tab.htmlElement);
+            tab.setActive(!this.#activeTab || this.#activeTab === tab);
+            tab.setGroup(this);
+        }
+    }
+    prepend(...tabs) {
+        this.#initHTML();
+        for (const tab of tabs) {
+            this.#tabs.add(tab);
+            this.#htmlTabs.prepend(tab.htmlElement);
+            tab.setActive(!this.#activeTab || this.#activeTab === tab);
+            tab.setGroup(this);
+        }
+    }
+    addTab(tab) {
+        this.#tabs.add(tab);
+        if (!this.#activeTab) {
+            this.#activeTab = tab;
+        }
+        else {
+            tab.setActive(false);
+        }
+        tab.setGroup(this);
+        this.#refresh();
+    }
+    getTabs() {
+        return new Set(this.#tabs);
+    }
+    #refresh() {
+        this.#initHTML();
+        //this.#header.replaceChildren();
+        this.#htmlTabs.replaceChildren();
+        for (const tab of this.#tabs) {
+            this.#htmlTabs.append(tab.htmlElement);
+            //this.#content.append(tab);
+            if (tab != this.#activeTab) {
+                tab.setActive(false);
+            }
+        }
+        this.#activeTab?.setActive(true);
+        setTimeout(() => {
+            this.#activeTab?.htmlElement.scrollIntoView();
+        }, 0);
+    }
+    activateTab(tab) {
+        if (this.#activeTab != tab) {
+            this.#activeTab = tab;
+            this.#refresh();
+        }
+    }
+    closeTab(tab) {
+        this.#tabs.delete(tab);
+        if (this.#activeTab == tab) {
+            this.#activeTab = this.#tabs.values().next().value;
+        }
+        this.#refresh();
+    }
+    closeAllTabs() {
+        for (const tab of this.#tabs) {
+            tab.close();
+        }
+    }
+    clear() {
+        this.#tabs.clear();
+        this.#activeTab = undefined;
+        this.#htmlTabs?.replaceChildren();
+    }
+}
+
+var _a$1$1;
+//const dragged = null;
+let nextId$1 = 0;
+//let spliter: HTMLElement = createElement('div', { class: 'harmony-panel-splitter' }) as HTMLElement;
+let highlitPanel$1;
+const DRAG_THRESHOLD$1 = 15;
+class HarmonyPanel {
+    htmlElement = createElement('div');
+    isHarmonyPanel = true;
+    #doOnce = true;
+    #parent = null;
+    #size = 1;
+    #layout;
+    isMovable = false;
+    #collapsible = true;
+    #collapsed = false;
+    #closable;
+    #startClosed = false;
+    #dropTarget;
+    customPanelId = nextId$1++;
+    #htmlHeader;
+    #htmlHeaderTitle;
+    #htmlTabGroup;
+    #htmlContent;
+    #htmlResize;
+    #isDummy = false;
+    #shadowRoot;
+    #headerVisible = false;
+    #isDraggable = true;
+    #floating = false;
+    #floatingWidth;
+    #floatingHeight;
+    #childPanels = new Set;
+    #title;
+    #titleI18n;
+    #parentTab;
+    #tabIndex;
+    static #dragMode = 'none';
+    static #resizeX = 0;
+    static #resizeY = 0;
+    static #dragging = false;
+    static #draggedPanel;
+    static #deltaX = 0;
+    static #deltaY = 0;
+    static #startClientX = 0;
+    static #startClientY = 0;
+    static #mouseDown = false;
+    static #panels = new Set;
+    static #target = null;
+    static #startRect;
+    static {
+        document.addEventListener('mousedown', (event) => _a$1$1.#handleDocumentMouseDown(event));
+        document.addEventListener('mousemove', (event) => _a$1$1.#handleDocumentMouseMove(event));
+        document.addEventListener('mouseup', (event) => _a$1$1.#handleDocumentMouseUp(event));
+    }
+    constructor(params = {}) {
+        _a$1$1.#panels.add(this);
+        this.setParams(params);
+    }
+    setParams(params) {
+        this.#startClosed = params.closed ?? false;
+        this.setCollapsible(params.collapsible ?? true);
+        this.setCollapsed(params.collapsed ?? false);
+        this.isMovable = params.movable ?? false;
+        this.#closable = params.closable ?? false;
+        this.#dropTarget = params.dropTarget ?? false;
+        this.#tabIndex = params.tabIndex;
+        this.setLayout(params.layout ?? 'row');
+        if (params.floating) {
+            this.setFloating(params.width, params.height);
+            // If we start in floating mode, force a the presence of a header
+            this.getHeader();
+        }
+        if (params.size !== undefined) {
+            this.setSize(params.size);
+        }
+        if (params.title !== undefined) {
+            this.setTitle(params.title);
+        }
+        if (params.titleI18n !== undefined) {
+            this.setTitleI18n(params.titleI18n);
+        }
+        if (params.adoptStyle || params.adoptStyles || params.adoptStyleSheet || params.adoptStyleSheets) {
+            this.#initHTML();
+            updateShadowRoot(this.#shadowRoot, {
+                adoptStyle: params.adoptStyle,
+                adoptStyles: params.adoptStyles,
+                adoptStyleSheet: params.adoptStyleSheet,
+                adoptStyleSheets: params.adoptStyleSheets,
+            });
+        }
+    }
+    #initHTML() {
+        if (this.#shadowRoot) {
+            return;
+        }
+        this.#shadowRoot = this.htmlElement.attachShadow({ mode: 'closed' });
+        I18n.observeElement(this.#shadowRoot);
+        void shadowRootStyle(this.#shadowRoot, panelCSS);
+        this.#htmlContent = createElement('div', {
+            class: 'content',
+            parent: this.#shadowRoot,
+            ...(this.#tabIndex !== undefined && { '@tabindex': this.#tabIndex }),
+        });
+        display(this.#shadowRoot.host, !this.#startClosed);
+        this.#htmlResize = createElement('div', {
+            class: 'panel-resize',
+            parent: this.#shadowRoot,
+            childs: [
+                createElement('div', { class: 'side top', $mousedown: (event) => this.#startResize(event, 0, -1) }),
+                createElement('div', { class: 'side right', $mousedown: (event) => this.#startResize(event, 1, 0) }),
+                createElement('div', { class: 'side bottom', $mousedown: (event) => this.#startResize(event, 0, 1) }),
+                createElement('div', { class: 'side left', $mousedown: (event) => this.#startResize(event, -1, 0) }),
+                createElement('div', { class: 'corner top_right', $mousedown: (event) => this.#startResize(event, 1, -1) }),
+                createElement('div', { class: 'corner bottom_right', $mousedown: (event) => this.#startResize(event, 1, 1) }),
+                createElement('div', { class: 'corner bottom_left', $mousedown: (event) => this.#startResize(event, -1, 1) }),
+                createElement('div', { class: 'corner top_left', $mousedown: (event) => this.#startResize(event, -1, -1) }),
+            ],
+            $mousedown: (event) => this.#handleMouseDown(event),
+        });
+    }
+    getHtml() {
+        this.#initHTML();
+        return this.#shadowRoot.host;
+    }
+    getHeader() {
+        this.#initHTML();
+        if (!this.#htmlHeader) {
+            const childs = [
+                this.#htmlHeaderTitle = createElement('div', {
+                    class: 'header-title',
+                }),
+            ];
+            if (this.#closable) {
+                childs.push(createElement('span', {
+                    class: 'header-close',
+                    innerHTML: closeSVG,
+                    $click: () => this.close(),
+                }));
+            }
+            this.#htmlHeader = createElement('div', {
+                class: 'header',
+                childs,
+                $dblclick: () => this.#toggleCollapse(),
+                $mousedown: (event) => this.#handleMouseDown(event),
+            });
+        }
+        this.#shadowRoot.prepend(this.#htmlHeader);
+        return this.#htmlHeader;
+    }
+    getContent() {
+        this.#initHTML();
+        return this.#htmlContent;
+    }
+    append(...nodes) {
+        this.#initHTML();
+        for (const node of nodes) {
+            const htmlElement = node.htmlElement;
+            if (htmlElement) {
+                if (node.isHarmonyPanel) {
+                    node.setParent(this);
+                    if (this.#layout === 'tabs') {
+                        this.#addTab(node);
+                    }
+                }
+                this.#htmlContent.append(htmlElement);
+            }
+            else {
+                // eslint-disable-next-line prefer-rest-params
+                this.#htmlContent.append(node);
+            }
+        }
+    }
+    prepend(...nodes) {
+        this.#initHTML();
+        for (const node of nodes) {
+            const htmlElement = node.htmlElement;
+            if (htmlElement) {
+                if (node.isHarmonyPanel) {
+                    //this.#childPanels.add((node as HarmonyPanel));
+                    node.setParent(this);
+                    if (this.#layout === 'tabs') {
+                        this.#addTab(node);
+                    }
+                }
+                this.#htmlContent.prepend(htmlElement);
+            }
+            else {
+                // eslint-disable-next-line prefer-rest-params
+                this.#htmlContent.prepend(node);
+            }
+        }
+    }
+    #addChild(child) {
+        this.#childPanels.add(child);
+    }
+    #removeChild(child) {
+        this.#childPanels.delete(child);
+    }
+    /*
+        appendChild(child: HTMLElement) {
+            this.htmlContent.appendChild(child);
+        }
+    */
+    /*
+    get innerHTML(): string {
+        return this.#htmlContent.innerHTML;
+    }
+
+    set innerHTML(innerHTML) {
+        this.#htmlContent.innerHTML = innerHTML;
+    }
+    */
+    /*
+    attributeChangedCallback(name: string, oldValue: string, newValue: string): void {
+        if (oldValue == newValue) {
+            return;
+        }
+
+        switch (name) {
+            case 'panel-direction':
+                this.#direction = newValue;
+                break;
+            case 'panel-size':
+                this.size = Number(newValue);
+                break;
+            case 'is-movable':
+                this.isMovable = toBool(newValue);
+                break;
+            case 'collapsible':
+                this.collapsible = toBool(newValue);
+                break;
+            case 'collapsed':
+                this.collapsed = toBool(newValue);
+                break;
+            case 'title':
+                this.setTitle(newValue);
+                break;
+            case 'has-header':
+                this.hasHeader = toBool(newValue);
+                break;
+            case 'draggable':
+                this.#isDraggable = toBool(newValue);
+                this.#htmlHeader.setAttribute('draggable', newValue);
+                break;
+            case 'hidden-title':
+                if (toBool(newValue)) {
+                    this.#htmlHeader.classList.add('hidden');
+                } else {
+                    this.#htmlHeader.classList.remove('hidden');
+                }
+                break;
+        }
+    }
+    */
+    /*
+    static get observedAttributes(): string[] {
+        return ['panel-direction', 'panel-size', 'is-movable', 'title', 'collapsible', 'collapsed', 'has-header', 'draggable', 'hidden-title'];
+    }
+    */
+    /*
+        _handleDragStart(event) {
+            if (this._isMovable == false) {
+                event.preventDefault();
+                return;
+            }
+            event.stopPropagation();
+            event.dataTransfer.setData('text/plain', null);
+            dragged = event.target;
+        }
+
+        _handleDragOver(event) {
+            if (this._isContainer != false) {
+                event.preventDefault();
+            }
+            event.stopPropagation();
+        }
+
+        _handleDrop(event) {
+            if (this._isContainer != false) {
+                event.stopPropagation();
+                event.preventDefault();
+                if (dragged) {
+                    if (this != dragged) {
+                        this._addChild(dragged, event.offsetX, event.offsetY);
+                        //OptionsManager.setItem('app.layout.disposition', HTMLHarmonyPanelElement.saveDisposition());
+                    }
+                }
+            }
+            dragged = null;
+        }
+
+        _handleMouseEnter(event) {
+            //console.error(this, event);
+            //clearInterval(HTMLHarmonyPanelElement._interval);
+            //HTMLHarmonyPanelElement._interval = setInterval(event => this.style.opacity = (Math.floor(new Date().getTime() / 500) % 2) / 2 + 0.5, 100);
+            //event.stopPropagation();
+        }
+
+        _handleMouseMove(event) {
+            const delta = 5;
+            //console.error(event.offsetX, event.offsetY);
+            //this.style.opacity = (Math.floor(new Date().getTime() / 1000) % 2);
+            //HTMLHarmonyPanelElement.highlitPanel = this;
+            event.stopPropagation();
+            if (event.offsetX < delta || event.offsetY < delta) {
+                HTMLHarmonyPanelElement.highlitPanel = this;
+                this.parentNode.insertBefore(HTMLHarmonyPanelElement._spliter, this);
+            } else if ((this.offsetWidth - event.offsetX) < delta || (this.offsetHeight - event.offsetY) < delta) {
+                HTMLHarmonyPanelElement.highlitPanel = this;
+                this.parentNode.insertBefore(HTMLHarmonyPanelElement._spliter, this.nextSibling);
+            } else {
+                HTMLHarmonyPanelElement.highlitPanel = null;
+            }
+
+        }
+
+        _handleMouseLeave(event) {
+            //console.error(this, event);
+            //clearInterval(HTMLHarmonyPanelElement._interval);
+        }
+            */
+    static set highlitPanel(panel) {
+        if (highlitPanel$1) {
+            highlitPanel$1.style.filter = '';
+        }
+        highlitPanel$1 = panel;
+        if (highlitPanel$1) {
+            highlitPanel$1.style.filter = 'grayscale(80%)'; ///'contrast(200%)';
+        }
+    }
+    /*
+        _addChild(child, x, y) {
+            let percent = 0.2;
+            let percent2 = 0.8;
+            let height = this.clientHeight;
+            let width = this.clientWidth;
+
+            if (this._direction == undefined) {
+                if (x <= width * percent) {
+                    this.prepend(dragged);
+                    this.direction = 'row';
+                }
+                if (x >= width * percent2) {
+                    this.append(dragged);
+                    this.direction = 'row';
+                }
+                if (y <= height * percent) {
+                    this.prepend(dragged);
+                    this.direction = 'column';
+                }
+                if (y >= height * percent2) {
+                    this.append(dragged);
+                    this.direction = 'column';
+                }
+            } else if (this._direction == 'row') {
+                if (x <= width * percent) {
+                    this.prepend(dragged);
+                }
+                if (x >= width * percent2) {
+                    this.append(dragged);
+                }
+                if (y <= height * percent) {
+                    this._split(dragged, true, 'column');
+                }
+                if (y >= height * percent2) {
+                    this._split(dragged, false, 'column');
+                }
+            } else if (this._direction == 'column') {
+                if (x <= width * percent) {
+                    this._split(dragged, true, 'row');
+                }
+                if (x >= width * percent2) {
+                    this._split(dragged, false, 'row');
+                }
+                if (y <= height * percent) {
+                    this.prepend(dragged);
+                }
+                if (y >= height * percent2) {
+                    this.append(dragged);
+                }
+            }
+        }*/
+    /*
+        _split(newNode, before, direction) {
+            let panel = HTMLHarmonyPanelElement._createDummy();//document.createElement('harmony-panel');
+            /*panel.id = HTMLHarmonyPanelElement.nextId;
+            panel._isDummy = true;
+            panel.classList.add('dummy');* /
+            panel.size = this.size;
+            this.style.flex = this.style.flex;
+            this.after(panel);
+            if (before) {
+                panel.append(newNode);
+                panel.append(this);
+            } else {
+                panel.append(this);
+                panel.append(newNode);
+            }
+            panel.direction = direction;
+        }
+    */
+    /*
+        static _createDummy() {
+            let dummy = document.createElement('harmony-panel');
+            dummy.id = HTMLHarmonyPanelElement.#nextId;
+            dummy._isDummy = true;
+            dummy.classList.add('dummy');
+            return dummy;
+        }
+    */
+    /*
+        _addPanel(panel) {
+            this._panels.add(panel);
+        }
+
+        _removePanel(panel) {
+            this._panels.delete(panel);
+            if (this._isDummy) {
+                if (this._panels.size == 0) {
+                    this.remove();
+                } else if (this._panels.size == 1) {
+                    this.after(this._panels.values().next().value);
+                    this.remove();
+                }
+            }
+        }
+    */
+    /*
+        set active(active) {
+            if (this._active != active) {
+                this.dispatchEvent(new CustomEvent('activated'));
+            }
+            this._active = active;
+            this.style.display = active ? '' : 'none';
+            if (active) {
+                this._header.classList.add('activated');
+            } else {
+                this._header.classList.remove('activated');
+            }
+        }
+        */
+    /*
+        _click() {
+            this.active = true;
+            if (this._group) {
+                this._group.active = this;
+            }
+        }
+    */
+    setLayout(layout) {
+        this.#layout = layout;
+        this.htmlElement.classList.remove('harmony-panel-row');
+        this.htmlElement.classList.remove('harmony-panel-column');
+        if (layout) {
+            this.htmlElement.classList.add(`harmony-panel-${layout}`);
+        }
+        if (layout === 'tabs') {
+            for (const panel of this.#childPanels) {
+                this.#addTab(panel);
+            }
+        }
+        else {
+            hide(this.#htmlTabGroup?.htmlElement);
+        }
+    }
+    #addTab(panel) {
+        if (!this.#htmlTabGroup) {
+            this.#initHTML();
+            this.#htmlTabGroup = new HarmonyTabGroup();
+            this.#htmlContent.before(this.#htmlTabGroup.htmlElement);
+        }
+        const tab = new HarmonyTab({
+            title: panel.#title,
+            titleI18n: panel.#titleI18n,
+            content: panel.htmlElement,
+            draggable: true,
+            panel,
+        });
+        this.#htmlTabGroup.addTab(tab);
+        //tab.activate();
+        panel.#parentTab = tab;
+    }
+    getLayout() {
+        return this.#layout;
+    }
+    setSize(size) {
+        /*if (size === undefined) {
+            return;
+        }*/
+        this.#size = size;
+        //this.style.flexBasis = size;
+        this.htmlElement.style.flex = String(size);
+    }
+    getSize() {
+        return this.#size;
+    }
+    setCollapsible(collapsible) {
+        this.#collapsible = collapsible;
+        //this.htmlElement.setAttribute('collapsible', String(this.#collapsible ? 1 : 0));
+        addRemoveClass(this.htmlElement, 'collapsible', collapsible);
+    }
+    setCollapsed(collapsed) {
+        this.#collapsed = collapsed && this.#collapsible;
+        //this.htmlElement.setAttribute('collapsed', String(this.#isCollapsed ? 1 : 0));
+        addRemoveClass(this.htmlElement, 'collapsed', this.#collapsed);
+        if (this.#collapsed) {
+            this.collapse();
+        }
+        else {
+            this.expand();
+        }
+    }
+    displayHeader(visible) {
+        this.#headerVisible = visible;
+        display(this.#htmlHeader, visible);
+    }
+    headerVisible() {
+        return this.#headerVisible;
+    }
+    collapse() {
+        hide(this.#htmlContent);
+        this.#collapsed = true;
+    }
+    expand() {
+        show(this.#htmlContent);
+        this.#collapsed = false;
+    }
+    setTitle(title) {
+        this.#title = title;
+        const header = this.getHeader();
+        header.innerText = title;
+        show(header);
+        /*
+        if (title) {
+            //this.#htmlTitle = this.#htmlTitle ?? document.createElement('div');
+            super.prepend(this.#htmlTitle);
+        } else {
+            this.#htmlTitle.remove();
+        }
+        */
+    }
+    setTitleI18n(i18n) {
+        this.getHeader();
+        this.#titleI18n = i18n;
+        if (typeof i18n === 'string') {
+            updateElement(this.#htmlHeaderTitle, {
+                i18n,
+            });
+        }
+        else {
+            errorOnce('unhandled type ' + typeof i18n + i18n);
+        }
+        show(this.#htmlHeader);
+    }
+    #toggleCollapse() {
+        this.setCollapsed(!this.#collapsed);
+    }
+    /*
+    static getNextId(): string {
+        return `harmony-panel-dummy-${++nextId}`;
+    }
+    */
+    /*
+    static saveDisposition(): JSONObject {
+        const list = document.getElementsByTagName('harmony-panel');
+        const json: { panels: Record<string, any>, dummies: any[] } = { panels: {}, dummies: [] };
+        for (const panel of list) {
+            if (panel.id && panel.parentElement && panel.parentElement.id && panel.parentElement.tagName == 'HARMONY-PANEL') {
+                json.panels[(panel as any).id] = { parent: panel.parentElement.id, size: (panel as any).size, direction: (panel as any).direction };
+                if ((panel as HTMLHarmonyPanelElement).#isDummy) {
+                    json.dummies.push((panel as any).id);
+                }
+            }
+        }
+        return json;
+    }
+    */
+    /*
+    static restoreDisposition(json: Record<string, any>): void {
+        return;
+        /*
+        if (!json || !json.dummies || !json.panels) { return; }
+
+        let dummiesList = new Map();
+        for (let oldDummy of json.dummies) {
+            let newDummy = HTMLHarmonyPanelElement._createDummy();
+            document.body.append(newDummy);
+            dummiesList.set(oldDummy, newDummy.id);
+        }
+
+        let list = document.getElementsByTagName('harmony-panel');
+        for (let panel of list) {
+            if (panel.id) {
+                let p = json.panels[panel.id];
+                if (p) {
+                    if (p.size != 1 || panel._isDummy) {
+                        panel.size = p.size;
+                    }
+                    panel.direction = p.direction;
+                    let newParentId = dummiesList.get(p.parent) || p.parent;
+                    if (p && newParentId) {
+                        let parent = document.getElementById(newParentId);
+                        /*if (!parent && p.dummy) {
+                            parent = document.createElement('harmony-panel');
+                        }* /
+                        if (parent) {
+                            parent.append(panel);
+                        } else {
+                            console.error('no parent', panel, newParentId);
+                        }
+                    }
+                }
+            }
+        }* /
+    }
+    */
+    adoptStyleSheet(styleSheet) {
+        this.#initHTML();
+        this.#shadowRoot.adoptedStyleSheets.push(styleSheet);
+    }
+    #handleMouseDown(event) {
+        if (this.#isDraggable && event.button === 0) {
+            _a$1$1.#draggedPanel = this;
+        }
+    }
+    #startDrag() {
+        if (_a$1$1.#dragging) {
+            return;
+        }
+        _a$1$1.#dragging = true;
+        _a$1$1.#dragMode = 'move';
+        if (this.#parentTab) {
+            this.#parentTab.close();
+            this.#parentTab = undefined;
+        }
+        const rect = this.htmlElement.getBoundingClientRect();
+        this.setFloating();
+        this.#floatingWidth = this.#floatingWidth ?? rect.width;
+        this.#floatingHeight = this.#floatingHeight ?? rect.height;
+        this.htmlElement.style.left = `${rect.x}px`;
+        this.htmlElement.style.top = `${rect.y}px`;
+        this.htmlElement.style.width = `${this.#floatingWidth}px`;
+        this.htmlElement.style.height = `${this.#floatingHeight}px`;
+        this.htmlElement.style.position = 'absolute';
+        _a$1$1.#deltaX = rect.x - _a$1$1.#startClientX;
+        _a$1$1.#deltaY = rect.y - _a$1$1.#startClientY;
+    }
+    setFloating(width, height) {
+        document.body.append(this.htmlElement);
+        this.#floating = true;
+        this.htmlElement.classList.add('floating');
+        this.htmlElement.classList.remove('docked');
+        width = (width ?? 50);
+        height = (height ?? 50);
+        this.htmlElement.style.left = `${(100 - width) / 2}%`;
+        this.htmlElement.style.top = `${(100 - height) / 2}%`;
+        this.htmlElement.style.width = `${width}%`;
+        this.htmlElement.style.height = `${height}%`;
+        this.htmlElement.style.position = 'absolute';
+    }
+    setDocked(parentPanel) {
+        parentPanel.append(this);
+        this.#floating = false;
+        this.htmlElement.classList.remove('floating');
+        this.htmlElement.classList.add('docked');
+        // Reset styles used during drag
+        this.htmlElement.style.left = '';
+        this.htmlElement.style.top = '';
+        this.htmlElement.style.width = '';
+        this.htmlElement.style.height = '';
+        this.htmlElement.style.position = '';
+        this.htmlElement.style.flex = '';
+    }
+    #drag(event) {
+        if (!_a$1$1.#dragging) {
+            return;
+        }
+        this.htmlElement.style.left = `${event.clientX + _a$1$1.#deltaX}px`;
+        this.htmlElement.style.top = `${event.clientY + _a$1$1.#deltaY}px`;
+        if (event.ctrlKey) {
+            _a$1$1.#setTarget(null);
+        }
+        else {
+            const panel = this.#getDropTargetAtMousePosition(event);
+            _a$1$1.#setTarget(panel);
+        }
+    }
+    #stopDrag() {
+        _a$1$1.#dragging = false;
+        _a$1$1.#dragMode = 'none';
+        if (_a$1$1.#target) {
+            this.setDocked(_a$1$1.#target);
+        }
+    }
+    #resize(event) {
+        if (_a$1$1.#dragMode !== 'resize' || !_a$1$1.#startRect) {
+            return;
+        }
+        const deltaX = event.clientX - _a$1$1.#startClientX;
+        const deltaY = event.clientY - _a$1$1.#startClientY;
+        const rect = _a$1$1.#startRect;
+        let deltaTop = 0, deltaWidth = 0, deltaHeight = 0, deltaLeft = 0;
+        switch (_a$1$1.#resizeX) {
+            case -1:
+                deltaLeft += deltaX;
+                deltaWidth -= deltaX;
+                break;
+            case 1:
+                deltaWidth += deltaX;
+                break;
+        }
+        switch (_a$1$1.#resizeY) {
+            case -1:
+                deltaTop += deltaY;
+                deltaHeight -= deltaY;
+                break;
+            case 1:
+                deltaHeight += deltaY;
+                break;
+        }
+        this.#floatingWidth = rect.width + deltaWidth;
+        this.#floatingHeight = rect.height + deltaHeight;
+        this.htmlElement.style.left = `${rect.x + deltaLeft}px`;
+        this.htmlElement.style.top = `${rect.y + deltaTop}px`;
+        this.htmlElement.style.width = `${this.#floatingWidth}px`;
+        this.htmlElement.style.height = `${this.#floatingHeight}px`;
+    }
+    #stopResize() {
+        _a$1$1.#dragging = false;
+        _a$1$1.#dragMode = 'none';
+    }
+    static #setTarget(target) {
+        if (this.#target) {
+            this.#target.#htmlHeader?.classList.remove('target');
+            this.#target.#htmlContent?.classList.remove('target');
+        }
+        if (target) {
+            target.#htmlHeader?.classList.add('target');
+            target.#htmlContent?.classList.add('target');
+        }
+        this.#target = target;
+    }
+    static #handleDocumentMouseMove(event) {
+        if (!this.#mouseDown || !this.#draggedPanel) {
+            return;
+        }
+        switch (_a$1$1.#dragMode) {
+            case 'none':
+                const deltaX = event.clientX - this.#startClientX;
+                const deltaY = event.clientY - this.#startClientY;
+                if (deltaX * deltaX + deltaY * deltaY > DRAG_THRESHOLD$1) {
+                    this.#draggedPanel.#startDrag();
+                }
+                break;
+            case 'move':
+                this.#draggedPanel.#drag(event);
+                break;
+            case 'resize':
+                this.#draggedPanel.#resize(event);
+                break;
+        }
+    }
+    static #handleDocumentMouseDown(event) {
+        this.#mouseDown = true;
+        this.#startClientX = event.clientX;
+        this.#startClientY = event.clientY;
+    }
+    static #handleDocumentMouseUp(event) {
+        this.#mouseDown = false;
+        _a$1$1.#dragging = false;
+        _a$1$1.#dragMode = 'none';
+        if (this.#draggedPanel) {
+            this.#draggedPanel.#stopDrag();
+            this.#draggedPanel.#stopResize();
+        }
+        this.#draggedPanel = undefined;
+        this.#setTarget(null);
+    }
+    #getDropTargetAtMousePosition(event) {
+        let best = null;
+        let bestRect;
+        for (const panel of _a$1$1.#panels) {
+            if (panel === this || !panel.htmlElement.isConnected || !panel.#dropTarget) {
+                continue;
+            }
+            const rect = panel.htmlElement.getBoundingClientRect();
+            if (event.clientX >= rect.left
+                && event.clientX < rect.right
+                && event.clientY >= rect.top
+                && event.clientY < rect.bottom) {
+                if (!best ||
+                    (bestRect.left <= rect.left
+                        && bestRect.right >= rect.right
+                        && bestRect.top <= rect.top
+                        && bestRect.bottom >= rect.bottom)) {
+                    best = panel;
+                    bestRect = rect;
+                }
+            }
+        }
+        return best;
+    }
+    #startResize(event, x, y) {
+        if (_a$1$1.#dragMode !== 'none') {
+            return;
+        }
+        _a$1$1.#dragMode = 'resize';
+        _a$1$1.#resizeX = x;
+        _a$1$1.#resizeY = y;
+        _a$1$1.#startRect = this.htmlElement.getBoundingClientRect();
+    }
+    activate() {
+        this.#parentTab?.activate();
+        this.#parent?.activate();
+    }
+    open() {
+        this.#initHTML();
+        show(this.#shadowRoot);
+    }
+    close() {
+        if (this.#shadowRoot) {
+            hide(this.#shadowRoot);
+        }
+    }
+    setParent(parent) {
+        if (this.#parent) {
+            this.#parent.#removeChild(this);
+        }
+        if (parent) {
+            parent.#addChild(this);
+        }
+        this.#parent = parent;
+    }
+}
+_a$1$1 = HarmonyPanel;
+
+var treeCSS = ":host {\n\t--child-margin: var(--harmony-tree-child-margin, 1rem);\n\t--header-bg-color: var(--harmony-tree-header-bg-color, var(--main-bg-color-dark, black));\n\t--header-bg-color-hover: var(--harmony-tree-header-bg-color-hover, var(--main-bg-color-bright, #41454d));\n\t--selected-bg-color: var(--harmony-tree-selected-bg-color, var(--accent-primary, rgb(26, 172, 201)));\n\tcolor: var(--main-text-color-dark2, white);\n\tbackground-color: var(--header-bg-color);\n}\n\n.item {\n\twidth: 100%;\n}\n\n.header {\n\twidth: 100%;\n\theight: 1rem;\n\tbackground-color: var(--header-bg-color);\n\tcursor: pointer;\n\tdisplay: flex;\n\tgap: 0.2rem;\n\talign-items: center;\n}\n\n.header:hover {\n\tbackground-color: var(--header-bg-color-hover);\n}\n\n.title {\n\tflex: 1;\n\ttext-wrap: nowrap;\n\toverflow: hidden;\n\ttext-overflow: ellipsis;\n}\n\n.childs {\n\tmargin-left: var(--child-margin);\n}\n\n.root>.header {\n\tdisplay: var(--harmony-tree-display-root, none);\n}\n\n.root>.childs {\n\tmargin-left: unset;\n}\n\n.actions {\n\tdisplay: flex;\n\tflex: 0;\n\tvisibility: hidden;\n}\n\n.header:hover>.actions {\n\tvisibility: visible;\n}\n\n.header.selected {\n\tbackground-color: var(--selected-bg-color);\n}\n";
+
+var menuCSS = ":host {\n\tfont-size: 1.5em;\n\tcursor: not-allowed;\n\tcolor: var(--harmony-ui-text-primary);\n\tbackground-color: var(--harmony-ui-menu-bg-color);\n\toverflow: auto;\n\tz-index: 100000;\n}\n\n.harmony-menu-item {\n\tbackground-color: green;\n\tcursor: pointer;\n\tbackground-color: var(--harmony-ui-menu-item-bg-color);\n}\n\n.harmony-menu-item.disabled {\n\tpointer-events: none;\n}\n\n.harmony-menu-item.selected {\n\tbackground-color: var(--harmony-ui-menu-item-selected-bg-color);\n}\n\n\n.harmony-menu-item.separator {\n\theight: 5px;\n\tbackground-color: black;\n}\n\n.harmony-menu-item>.harmony-menu-item-title:hover {\n\tbackground-color: var(--harmony-ui-menu-item-hover-bg-color);\n}\n\n.harmony-menu-item.selected>.harmony-menu-item-title::after {\n\tcontent: \"✔\";\n}\n\n.harmony-menu-item>.harmony-menu-item-title::after {\n\ttransition: all 0.2s ease 0s;\n\twidth: 32px;\n\theight: 32px;\n}\n\n.harmony-menu-item.closed>.harmony-menu-item-title,\n.harmony-menu-item.opened>.harmony-menu-item-title {\n\tpadding-right: 32px;\n}\n\n.harmony-menu-item.closed>.harmony-menu-item-title::after {\n\tcontent: \"➤\";\n}\n\n.harmony-menu-item.opened>.harmony-menu-item-title::after {\n\tcontent: \"➤\";\n\ttransform: rotate(90deg);\n}\n\n.harmony-menu-item .submenu {\n\tbackground-color: var(--harmony-ui-menu-submenu-bg-color);\n\tpadding-left: 10px;\n\tmargin-left: 2px;\n\tdisplay: none;\n\toverflow: hidden;\n\tposition: relative;\n\tbackground-color: var(--harmony-ui-menu-submenu-fg-color);\n}\n\n.harmony-menu-item.opened>.submenu {\n\tdisplay: block;\n}\n";
+
+var uiCSS = "@media (prefers-color-scheme: light) {\n\t:root:not(.light):not(.dark) {\n\t\t--harmony-ui-background-primary: #ccc;\n\t\t--harmony-ui-background-secondary: #f9f9fb;\n\t\t--harmony-ui-background-tertiary: #fff;\n\n\t\t--harmony-ui-input-background-primary: #aaa;\n\t\t--harmony-ui-input-background-secondary: #ccc;\n\t\t--harmony-ui-input-background-tertiary: #4e4e4e;\n\n\t\t--harmony-ui-border-primary: #222;\n\t\t--harmony-ui-border-secondary: #222;\n\n\t\t--harmony-ui-input-border-primary: #222;\n\t\t--harmony-ui-input-border-secondary: #222;\n\n\t\t--harmony-ui-text-primary: #222;\n\t\t--harmony-ui-text-secondary: #222;\n\t\t--harmony-ui-text-inactive: #9e9e9ea6;\n\t\t--harmony-ui-text-link: #0069c2;\n\t\t--harmony-ui-text-invert: #fff;\n\n\t\t--harmony-ui-accent-primary: #1072eb;\n\t\t--harmony-ui-accent-secondary: #1040c1;\n\n\t\t--harmony-ui-scrollbar-bg: transparent;\n\t\t--harmony-ui-scrollbar-color: rgba(0, 0, 0, 0.25);\n\n\t\t--harmony-ui-menu-bg-color: #ccc;\n\t\t--harmony-ui-menu-item-bg-color: #ccc;\n\t\t--harmony-ui-menu-item-selected-bg-color: #ccc;\n\t\t--harmony-ui-menu-submenu-bg-color: #ccc;\n\t\t--harmony-ui-menu-submenu-fg-color: #777;\n\t\t--harmony-ui-menu-item-hover-bg-color: #fff;\n\t}\n}\n\n@media (prefers-color-scheme: dark) {\n\t:root:not(.light):not(.dark) {\n\t\t--harmony-ui-background-primary: #1b1b1b;\n\t\t--harmony-ui-background-secondary: #464747;\n\t\t--harmony-ui-background-tertiary: #4e4e4e;\n\n\t\t--harmony-ui-input-background-primary: #555;\n\t\t--harmony-ui-input-background-secondary: #333;\n\t\t--harmony-ui-input-background-tertiary: #fff;\n\n\t\t--harmony-ui-border-primary: #858585;\n\t\t--harmony-ui-border-secondary: #696969;\n\n\t\t--harmony-ui-input-border-primary: #aaa;\n\t\t--harmony-ui-input-border-secondary: #696969;\n\n\t\t--harmony-ui-text-primary: #fff;\n\t\t--harmony-ui-text-secondary: #cdcdcd;\n\t\t--harmony-ui-text-inactive: #cdcdcda6;\n\t\t--harmony-ui-text-link: #8cb4ff;\n\t\t--harmony-ui-text-invert: #1b1b1b;\n\n\t\t--harmony-ui-accent-primary: #1072eb;\n\t\t--harmony-ui-accent-secondary: #1040c1;\n\n\t\t--harmony-ui-scrollbar-bg: transparent;\n\t\t--harmony-ui-scrollbar-color: rgba(255, 255, 255, 0.25);\n\n\t\t--harmony-ui-menu-bg-color: #333333;\n\t\t--harmony-ui-menu-item-bg-color: #333333;\n\t\t--harmony-ui-menu-item-selected-bg-color: #333333;\n\t\t--harmony-ui-menu-submenu-bg-color: #333333;\n\t\t--harmony-ui-menu-submenu-fg-color: #888888;\n\t\t--harmony-ui-menu-item-hover-bg-color: #000000;\n\t}\n}\n\n:root.light {\n\t--harmony-ui-background-primary: #ccc;\n\t--harmony-ui-background-secondary: #f9f9fb;\n\t--harmony-ui-background-tertiary: #fff;\n\n\t--harmony-ui-input-background-primary: #aaa;\n\t--harmony-ui-input-background-secondary: #ccc;\n\t--harmony-ui-input-background-tertiary: #4e4e4e;\n\n\t--harmony-ui-border-primary: #222;\n\t--harmony-ui-border-secondary: #222;\n\n\t--harmony-ui-input-border-primary: #222;\n\t--harmony-ui-input-border-secondary: #222;\n\n\t--harmony-ui-text-primary: #222;\n\t--harmony-ui-text-secondary: #222;\n\t--harmony-ui-text-inactive: #9e9e9ea6;\n\t--harmony-ui-text-link: #0069c2;\n\t--harmony-ui-text-invert: #fff;\n\n\t--harmony-ui-accent-primary: #1072eb;\n\t--harmony-ui-accent-secondary: #1040c1;\n\n\t--harmony-ui-scrollbar-bg: transparent;\n\t--harmony-ui-scrollbar-color: rgba(0, 0, 0, 0.25);\n\n\t--harmony-ui-menu-bg-color: #ccc;\n\t--harmony-ui-menu-item-bg-color: #ccc;\n\t--harmony-ui-menu-item-selected-bg-color: #ccc;\n\t--harmony-ui-menu-submenu-bg-color: #ccc;\n\t--harmony-ui-menu-submenu-fg-color: #777;\n\t--harmony-ui-menu-item-hover-bg-color: #fff;\n}\n\n:root.dark {\n\t--harmony-ui-background-primary: #1b1b1b;\n\t--harmony-ui-background-secondary: #464747;\n\t--harmony-ui-background-tertiary: #4e4e4e;\n\n\t--harmony-ui-input-background-primary: #555;\n\t--harmony-ui-input-background-secondary: #333;\n\t--harmony-ui-input-background-tertiary: #fff;\n\n\t--harmony-ui-border-primary: #858585;\n\t--harmony-ui-border-secondary: #696969;\n\n\t--harmony-ui-input-border-primary: #aaa;\n\t--harmony-ui-input-border-secondary: #696969;\n\n\t--harmony-ui-text-primary: #fff;\n\t--harmony-ui-text-secondary: #cdcdcd;\n\t--harmony-ui-text-inactive: #cdcdcda6;\n\t--harmony-ui-text-link: #8cb4ff;\n\t--harmony-ui-text-invert: #1b1b1b;\n\n\t--harmony-ui-accent-primary: #1072eb;\n\t--harmony-ui-accent-secondary: #1040c1;\n\n\t--harmony-ui-scrollbar-bg: transparent;\n\t--harmony-ui-scrollbar-color: rgba(255, 255, 255, 0.25);\n\n\t--harmony-ui-menu-bg-color: #333333;\n\t--harmony-ui-menu-item-bg-color: #333333;\n\t--harmony-ui-menu-item-selected-bg-color: #333333;\n\t--harmony-ui-menu-submenu-bg-color: #333333;\n\t--harmony-ui-menu-submenu-fg-color: #888888;\n\t--harmony-ui-menu-item-hover-bg-color: #000000;\n}\n";
 
 let injected = false;
 function injectGlobalCss() {
@@ -1139,6 +2414,1102 @@ function injectGlobalCss() {
     }
     void documentStyle(uiCSS);
     injected = true;
+}
+
+class HTMLHarmonyMenuElement extends HTMLElement {
+    #doOnce = true;
+    #subMenus = new Map();
+    #shadowRoot;
+    #contextual = false;
+    constructor() {
+        super();
+        this.#shadowRoot = this.attachShadow({ mode: 'closed' });
+        document.addEventListener('click', (event) => {
+            if (this.#contextual && !this.contains(event.target)) {
+                this.close();
+            }
+        });
+    }
+    #show(items, userData) {
+        this.#setItems(items, userData);
+        this.#checkSize();
+    }
+    show(items, userData) {
+        this.#show(items, userData);
+        this.setContextual(false);
+    }
+    showContextual(items, clientX, clientY, userData) {
+        document.body.append(this);
+        this.style.left = clientX + 'px';
+        this.style.top = clientY + 'px';
+        this.setContextual(true);
+        this.#show(items, userData);
+    }
+    setContextual(contextual) {
+        this.style.position = contextual ? 'absolute' : '';
+        this.#contextual = contextual;
+    }
+    #checkSize() {
+        const bodyRect = document.body.getBoundingClientRect();
+        const elemRect = this.getBoundingClientRect();
+        this.style.maxWidth = bodyRect.width + 'px';
+        this.style.maxHeight = bodyRect.height + 'px';
+        if (elemRect.right > bodyRect.right) {
+            this.style.left = Math.max((bodyRect.width - elemRect.width), 0) + 'px';
+            /*if (elemRect.width > bodyRect.width) {
+                this.style.maxWidth = bodyRect.width + 'px';
+            } else {
+                this.style.maxWidth = '';
+            }*/
+        }
+        if (elemRect.bottom > bodyRect.bottom) {
+            this.style.top = Math.max((bodyRect.height - elemRect.height), 0) + 'px';
+            /*if (elemRect.height > bodyRect.height) {
+                this.style.maxHeight = bodyRect.height + 'px';
+            } else {
+                this.style.maxHeight = '';
+            }*/
+        }
+        if (elemRect.left < 0) {
+            this.style.left = '0px';
+        }
+        if (elemRect.top < 0) {
+            this.style.top = '0px';
+        }
+    }
+    close() {
+        if (this.#contextual) {
+            this.remove();
+        }
+    }
+    connectedCallback() {
+        if (this.#doOnce) {
+            I18n.observeElement(this.#shadowRoot);
+            void shadowRootStyle(this.#shadowRoot, menuCSS);
+            const callback = (entries) => {
+                entries.forEach(() => {
+                    this.#checkSize();
+                });
+            };
+            const resizeObserver = new ResizeObserver(callback);
+            resizeObserver.observe(this);
+            resizeObserver.observe(document.body);
+            this.#doOnce = false;
+        }
+    }
+    #setItems(items, userData) {
+        this.#shadowRoot.replaceChildren();
+        if (items instanceof Array) {
+            for (const item of items) {
+                this.#shadowRoot.append(this.addItem(item, userData));
+            }
+        }
+        else {
+            for (const itemId in items) {
+                const item = items[itemId];
+                this.#shadowRoot.append(this.addItem(item, userData));
+            }
+        }
+    }
+    #openSubMenu(htmlSubMenu) {
+        for (const [htmlItem, sub] of this.#subMenus) {
+            if (sub == htmlSubMenu || sub.contains(htmlSubMenu)) {
+                htmlItem.classList.add('opened');
+                htmlItem.classList.remove('closed');
+            }
+            else {
+                htmlItem.classList.remove('opened');
+                htmlItem.classList.add('closed');
+            }
+        }
+        this.#checkSize();
+    }
+    addItem(item, userData) {
+        const htmlItem = createElement('div', {
+            class: 'harmony-menu-item',
+        });
+        if (!item) {
+            htmlItem.classList.add('separator');
+        }
+        else {
+            const htmlItemTitle = createElement('div', {
+                class: 'harmony-menu-item-title',
+            });
+            if (item.i18n) {
+                htmlItemTitle.classList.add('i18n');
+                htmlItemTitle.setAttribute('data-i18n', item.i18n);
+                htmlItemTitle.innerText = item.i18n;
+            }
+            else {
+                htmlItemTitle.innerText = item.name ?? '';
+            }
+            htmlItem.append(htmlItemTitle);
+            if (item.selected) {
+                htmlItem.classList.add('selected');
+            }
+            if (item.disabled) {
+                htmlItem.classList.add('disabled');
+            }
+            if (item.submenu) {
+                const htmlSubMenu = createElement('div', {
+                    class: 'submenu',
+                });
+                this.#subMenus.set(htmlItem, htmlSubMenu);
+                let subItems = 0;
+                if (item.submenu instanceof Array) {
+                    for (const subItem of item.submenu) {
+                        htmlSubMenu.append(this.addItem(subItem, userData));
+                        ++subItems;
+                    }
+                }
+                else {
+                    for (const subItemName in item.submenu) {
+                        const subItem = item.submenu[subItemName];
+                        htmlSubMenu.append(this.addItem(subItem, userData));
+                        ++subItems;
+                    }
+                }
+                htmlItem.append(htmlSubMenu);
+                //htmlSubMenu.style.display = 'none';
+                htmlItem.classList.add('closed');
+                if (item.opened) {
+                    this.#openSubMenu(htmlSubMenu);
+                }
+                htmlItem.addEventListener('click', event => {
+                    this.#openSubMenu(htmlSubMenu);
+                    if (item.cmd) {
+                        this.dispatchEvent(new CustomEvent(item.cmd));
+                    }
+                    if (item.f) {
+                        void item.f(userData);
+                    }
+                    event.stopPropagation();
+                });
+                if (subItems == 0) {
+                    hide(htmlItem);
+                }
+            }
+            else {
+                htmlItem.addEventListener('click', (event) => {
+                    if (item.cmd) {
+                        this.dispatchEvent(new CustomEvent(item.cmd));
+                    }
+                    if (item.f) {
+                        void item.f(userData);
+                    }
+                    event.stopPropagation();
+                });
+                htmlItem.addEventListener('click', () => this.close());
+            }
+        }
+        return htmlItem;
+    }
+}
+function defineHarmonyMenu(suffix = '') {
+    defineElement('harmony-menu' + suffix, HTMLHarmonyMenuElement);
+    injectGlobalCss();
+}
+
+class HTMLHarmonyElement extends HTMLElement {
+    initialized = false;
+    initElement() {
+        if (this.initialized) {
+            return;
+        }
+        this.initialized = true;
+        this.createElement();
+    }
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    createElement() {
+    }
+    connectedCallback() {
+        this.initElement();
+    }
+    attributeChangedCallback(name, oldValue, newValue) {
+        this.initElement();
+        this.onAttributeChanged(name, oldValue, newValue);
+    }
+    // eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-unused-vars
+    onAttributeChanged(name, oldValue, newValue) {
+    }
+    static get observedAttributes() {
+        return ['label'];
+    }
+}
+
+var TreeItemKind;
+(function (TreeItemKind) {
+    TreeItemKind["Root"] = "root";
+    TreeItemKind["Directory"] = "directory";
+    TreeItemKind["File"] = "file";
+    TreeItemKind["Item"] = "item";
+})(TreeItemKind || (TreeItemKind = {}));
+class TreeItem {
+    name;
+    icon;
+    kind;
+    parent;
+    childs = new Set;
+    actions = new Set();
+    userData;
+    constructor(name, options = {}) {
+        this.name = name;
+        this.icon = options.icon;
+        this.kind = options.kind ?? TreeItemKind.File;
+        this.parent = options.parent;
+        this.userData = options.userData;
+        if (options.parent) {
+            options.parent.addChild(this);
+        }
+        if (options.childs) {
+            for (const child of options.childs) {
+                this.addChild(child);
+            }
+        }
+        this.#sortByName();
+    }
+    addChild(child) {
+        this.childs.add(child);
+    }
+    #sortByName() {
+        this.childs[Symbol.iterator] = function* () {
+            yield* [...this.values()].sort((a, b) => {
+                return a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1;
+            });
+        };
+    }
+    getPath(separator = '/') {
+        let path = '';
+        if (this.parent) {
+            const parentPath = this.parent.getPath(separator);
+            if (parentPath) {
+                path = parentPath + separator;
+            }
+        }
+        return path + this.name;
+    }
+    getLevel() {
+        if (this.parent) {
+            return 1 + this.parent.getLevel();
+        }
+        return 0;
+    }
+    addAction(action) {
+        this.actions.add(action);
+    }
+    addActions(actions) {
+        for (const action of actions) {
+            this.actions.add(action);
+        }
+    }
+    removeAction(action) {
+        this.actions.delete(action);
+    }
+    static createFromPathList(paths, options = {}) {
+        class element {
+            tree;
+            childs = new Map();
+            constructor(tree) {
+                this.tree = tree;
+            }
+        }
+        const root = new TreeItem(options.rootName ?? '', { userData: options.rootUserData ?? options.userData, kind: TreeItemKind.Root });
+        const top = new element(root);
+        for (const [path, perElementUserData] of paths.entries()) {
+            const segments = path.split(options.pathSeparator ?? '/');
+            let current = top;
+            let parent = root;
+            for (let i = 0, l = segments.length; i < l; i++) {
+                const s = segments[i];
+                if (s == '') {
+                    continue;
+                }
+                let kind = TreeItemKind.Directory;
+                if (i == l - 1) {
+                    kind = TreeItemKind.File;
+                }
+                if (!current.childs.has(s)) {
+                    current.childs.set(s, new element(new TreeItem(s, { parent: parent, kind: kind, userData: perElementUserData != path ? perElementUserData : options.userData })));
+                }
+                parent = current.childs.get(s).tree;
+                current = current.childs.get(s);
+            }
+        }
+        return root;
+    }
+    #matchFilter(filter) {
+        if (!filter) {
+            return true;
+        }
+        const lowerName = this.name.toLowerCase();
+        if (filter.name) {
+            if (!lowerName.includes(filter.name.toLowerCase())) {
+                return false;
+            }
+            if (this.kind != TreeItemKind.File) {
+                return false;
+            }
+        }
+        if (filter.kinds) {
+            let match = false;
+            for (const tf of filter.kinds) {
+                if (tf === this.kind) {
+                    match = true;
+                    break;
+                }
+            }
+            if (!match) {
+                return false;
+            }
+        }
+        if (filter.kind !== undefined) {
+            if (filter.kind !== this.kind) {
+                return false;
+            }
+        }
+        if (filter.extensions) {
+            if (this.kind != TreeItemKind.File) {
+                return false;
+            }
+            const extension = lowerName.split('.').pop() ?? '';
+            if (!filter.extensions.has(extension)) {
+                if (filter.extensions.get('^') === false) {
+                    return false;
+                }
+            }
+            else {
+                if ((filter.extensions.get(extension) ?? filter.extensions.get('*')) === false) {
+                    return false;
+                }
+            }
+        }
+        if (filter.customFilter) {
+            return filter.customFilter(this);
+        }
+        return true;
+    }
+    *walk(filter) {
+        const stack = [this];
+        let current;
+        do {
+            current = stack.pop();
+            if (!current) {
+                break;
+            }
+            if (current.#matchFilter(filter)) {
+                yield current;
+            }
+            for (const child of current.childs) {
+                stack.push(child);
+            }
+        } while (current);
+    }
+}
+class HTMLHarmonyTreeElement extends HTMLHarmonyElement {
+    #shadowRoot;
+    #root;
+    #htmlContextMenu;
+    #isInitialized = new Set();
+    #isExpanded = new Map();
+    #filter;
+    #isVisible = new Set();
+    #actions = new Map();
+    #itemElements = new Map();
+    #elementItem = new Map();
+    #selectedItem = null;
+    #rootLevel;
+    #sticky = new Set();
+    #dynamicSheet = new CSSStyleSheet();
+    #cssLevel = new Set();
+    createElement() {
+        this.#shadowRoot = this.attachShadow({ mode: 'closed' });
+        void shadowRootStyle(this.#shadowRoot, treeCSS);
+        this.#shadowRoot.adoptedStyleSheets.push(this.#dynamicSheet);
+        I18n.observeElement(this.#shadowRoot);
+        this.#refresh();
+        this.addEventListener('scroll', () => this.#handleScroll());
+    }
+    adoptStyle(css) {
+        this.initElement();
+        void shadowRootStyle(this.#shadowRoot, css);
+    }
+    #refresh() {
+        if (!this.#shadowRoot) {
+            return;
+        }
+        if (!this.#root) {
+            return;
+        }
+        this.#createItem(this.#root, null, true);
+        this.#refreshFilter();
+    }
+    #refreshFilter() {
+        for (const [item, itemElement] of this.#itemElements) {
+            const show = (!this.#filter || this.#isVisible.has(item)) && this.#isFullyExpanded(item);
+            display(itemElement.element, show);
+        }
+    }
+    #isFullyExpanded(item) {
+        let current = item.parent;
+        if (!current) {
+            return true;
+        }
+        do {
+            if (!this.#isExpanded.get(current)) {
+                return false;
+            }
+            current = current.parent;
+        } while (current);
+        return true;
+    }
+    setRoot(root) {
+        this.#root = root;
+        this.#shadowRoot?.replaceChildren();
+        this.#filterItems();
+    }
+    #buildContextMenu(contextMenu, x, y) {
+        if (!this.#htmlContextMenu) {
+            defineHarmonyMenu();
+            this.#htmlContextMenu = createElement('harmony-menu');
+        }
+        this.#htmlContextMenu.showContextual(contextMenu, x, y);
+    }
+    #contextMenuHandler(event, item) {
+        if (!event.shiftKey) {
+            this.dispatchEvent(new CustomEvent('contextmenu', {
+                detail: {
+                    item: item,
+                    buildContextMenu: (menu) => this.#buildContextMenu(menu, event.clientX, event.clientY),
+                },
+            }));
+            event.preventDefault();
+            event.stopPropagation();
+        }
+    }
+    #createItem(item, predecessor, createExpanded) {
+        let element;
+        const itemElement = this.#itemElements.get(item);
+        if (itemElement) {
+            element = itemElement.element;
+            if (predecessor) {
+                predecessor.after(element);
+            }
+            else {
+                this.#shadowRoot?.append(element);
+            }
+        }
+        else {
+            const itemLevel = item.getLevel();
+            let header;
+            let actions;
+            this.#addCssLevel(itemLevel);
+            element = createElement('div', {
+                class: `item level${itemLevel}`,
+                parent: this.#shadowRoot,
+                childs: [
+                    header = createElement('div', {
+                        class: 'header',
+                        childs: [
+                            createElement('div', {
+                                class: 'padding',
+                            }),
+                            createElement('div', {
+                                class: 'title',
+                                innerText: item.name,
+                            }),
+                            actions = createElement('div', {
+                                class: 'actions',
+                            }),
+                        ],
+                        $click: () => {
+                            if (this.#isExpanded.get(item)) {
+                                this.collapseItem(item);
+                            }
+                            else {
+                                this.expandItem(item);
+                                this.#refreshFilter();
+                            }
+                            this.dispatchEvent(new CustomEvent('itemclick', { detail: { item: item } }));
+                        },
+                        $contextmenu: (event) => this.#contextMenuHandler(event, item),
+                    }),
+                ]
+            });
+            if (predecessor) {
+                predecessor.after(element);
+            }
+            this.#itemElements.set(item, { element: element, header: header, actions: actions });
+            this.#elementItem.set(element, item);
+        }
+        if (item.kind == TreeItemKind.Root && item.name == '') {
+            element.classList.add('root');
+        }
+        if (item.kind) {
+            element.classList.add(`type-${item.kind}`);
+        }
+        if (createExpanded || this.#isExpanded.get(item)) {
+            this.expandItem(item);
+        }
+        this.refreshActions(item);
+        return element;
+    }
+    expandItem(item) {
+        if (item.parent) {
+            this.expandItem(item.parent);
+        }
+        const element = this.#itemElements.get(item)?.element;
+        if (!element) {
+            return;
+        }
+        if (this.#isExpanded.get(item)) {
+            return;
+        }
+        this.#isExpanded.set(item, true);
+        if (!this.#isInitialized.has(item)) {
+            let predecessor = element;
+            for (const child of item.childs) {
+                const childElement = this.#createItem(child, predecessor, false);
+                predecessor = childElement;
+            }
+            this.#isInitialized.add(item);
+        }
+        else {
+            for (const child of item.childs) {
+                this.showItem(child);
+            }
+        }
+    }
+    collapseItem(item) {
+        this.#isExpanded.set(item, false);
+        for (const child of item.childs) {
+            this.hideItem(child);
+        }
+    }
+    showItem(item) {
+        const element = this.#itemElements.get(item);
+        if (element) {
+            show(element.element);
+        }
+        if (this.#isExpanded.get(item)) {
+            for (const child of item.childs) {
+                this.showItem(child);
+            }
+        }
+    }
+    hideItem(item) {
+        const element = this.#itemElements.get(item);
+        if (element) {
+            hide(element.element);
+        }
+        for (const child of item.childs) {
+            this.hideItem(child);
+        }
+    }
+    selectItem(item, scrollIntoView = true) {
+        if (item == this.#selectedItem) {
+            return;
+        }
+        if (this.#selectedItem) {
+            this.#itemElements.get(this.#selectedItem)?.header?.classList.remove('selected');
+        }
+        if (item) {
+            if (item.parent) {
+                this.expandItem(item.parent);
+            }
+            const itemElement = this.#itemElements.get(item)?.header;
+            itemElement?.classList.add('selected');
+            if (scrollIntoView) {
+                setTimeout(() => {
+                    itemElement?.scrollIntoView({ block: 'center' });
+                }, 0);
+            }
+        }
+        this.#selectedItem = item;
+    }
+    addAction(name, img, tooltip) {
+        const action = {
+            name: name,
+            tooltip: tooltip,
+        };
+        if (typeof img == 'string') {
+            action.innerHTML = img;
+        }
+        else {
+            action.element = img;
+        }
+        this.#actions.set(name, action);
+    }
+    refreshActions(item) {
+        const htmlActions = this.#itemElements.get(item)?.actions;
+        htmlActions?.replaceChildren();
+        for (const actionName of item.actions) {
+            const action = this.#actions.get(actionName);
+            if (action) {
+                createElement('div', {
+                    child: action.element,
+                    innerHTML: action.innerHTML,
+                    parent: htmlActions,
+                    i18n: {
+                        title: action.tooltip,
+                    },
+                    $click: (event) => this.#actionHandler(event, item, actionName),
+                });
+            }
+        }
+    }
+    #actionHandler(event, item, action) {
+        this.dispatchEvent(new CustomEvent('itemaction', {
+            detail: {
+                item: item,
+                action: action,
+            },
+        }));
+        event.preventDefault();
+        event.stopPropagation();
+    }
+    setFilter(filter) {
+        this.#filter = filter;
+        this.#filterItems();
+    }
+    #filterItems() {
+        this.#isVisible.clear();
+        if (this.#filter && this.#root) {
+            for (const item of this.#root.walk(this.#filter)) {
+                let current = item;
+                do {
+                    this.#isVisible.add(current);
+                    current = current.parent;
+                } while (current);
+            }
+        }
+        this.#refresh();
+    }
+    #handleScroll() {
+        let stickyHeight = 0;
+        for (const sticky of this.#sticky) {
+            const rect = sticky.getBoundingClientRect();
+            stickyHeight += rect.height;
+        }
+        const rect = this.getBoundingClientRect();
+        const elements = this.#shadowRoot.elementsFromPoint(rect.x + 1, rect.y + stickyHeight + 1);
+        if (!elements) {
+            return;
+        }
+        for (const element of elements) {
+            let treeItem = this.#elementItem.get(element);
+            if (!treeItem) {
+                continue;
+            }
+            treeItem = treeItem.parent;
+            if (!treeItem) {
+                continue;
+            }
+            this.#setSticky(treeItem);
+            break;
+        }
+    }
+    #addCssLevel(level) {
+        if (level == 0) {
+            return;
+        }
+        if (!this.#cssLevel.has(level)) {
+            this.#cssLevel.add(level);
+            this.#dynamicSheet.insertRule(`.level${level} .padding{flex: 0 0 ${level}rem}`);
+        }
+    }
+    #setSticky(item) {
+        for (const treeItemElement of this.#sticky) {
+            treeItemElement.style.cssText = '';
+        }
+        this.#sticky.clear();
+        let current = item;
+        while (current) {
+            const treeItemElement = this.#itemElements.get(current);
+            if (treeItemElement) {
+                this.#sticky.add(treeItemElement.element);
+                treeItemElement.element.style.cssText = `position:sticky;top:${current.getLevel()}rem;`;
+            }
+            current = current.parent;
+        }
+    }
+}
+function defineHarmonyTree(suffix = '') {
+    defineElement('harmony-tree' + suffix, class extends HTMLHarmonyTreeElement {
+    });
+    defineElement('h-tree' + suffix, class extends HTMLHarmonyTreeElement {
+    });
+    injectGlobalCss();
+}
+
+class HarmonyTree extends MyEventTarget {
+    htmlElement = createElement('div');
+    #shadowRoot;
+    #root;
+    #htmlContextMenu;
+    #isInitialized = new Set();
+    #isExpanded = new Map();
+    #filter;
+    #isVisible = new Set();
+    #actions = new Map();
+    #itemElements = new Map();
+    #elementItem = new Map();
+    #selectedItem = null;
+    #rootLevel;
+    #sticky = new Set();
+    #dynamicSheet = new CSSStyleSheet();
+    #cssLevel = new Set();
+    #initHTML() {
+        if (this.#shadowRoot) {
+            return;
+        }
+        this.#shadowRoot = this.htmlElement.attachShadow({ mode: 'closed' });
+        I18n.observeElement(this.#shadowRoot);
+        void shadowRootStyle(this.#shadowRoot, treeCSS);
+        this.#shadowRoot.adoptedStyleSheets.push(this.#dynamicSheet);
+        this.#refresh();
+        this.htmlElement.addEventListener('scroll', () => this.#handleScroll());
+    }
+    adoptStyle(css) {
+        this.#initHTML();
+        void shadowRootStyle(this.#shadowRoot, css);
+    }
+    #refresh() {
+        if (!this.#shadowRoot) {
+            return;
+        }
+        if (!this.#root) {
+            return;
+        }
+        this.#createItem(this.#root, null, true);
+        this.#refreshFilter();
+    }
+    #refreshFilter() {
+        for (const [item, itemElement] of this.#itemElements) {
+            const show = (!this.#filter || this.#isVisible.has(item)) && this.#isFullyExpanded(item);
+            display(itemElement.element, show);
+        }
+    }
+    #isFullyExpanded(item) {
+        let current = item.parent;
+        if (!current) {
+            return true;
+        }
+        do {
+            if (!this.#isExpanded.get(current)) {
+                return false;
+            }
+            current = current.parent;
+        } while (current);
+        return true;
+    }
+    setRoot(root) {
+        this.#initHTML();
+        this.#root = root;
+        this.#shadowRoot?.replaceChildren();
+        this.#filterItems();
+    }
+    #buildContextMenu(contextMenu, x, y) {
+        if (!this.#htmlContextMenu) {
+            defineHarmonyMenu();
+            this.#htmlContextMenu = createElement('harmony-menu');
+        }
+        this.#htmlContextMenu.showContextual(contextMenu, x, y);
+    }
+    #contextMenuHandler(event, item) {
+        if (!event.shiftKey) {
+            this.dispatchEvent(new CustomEvent('contextmenu', {
+                detail: {
+                    item: item,
+                    buildContextMenu: (menu) => this.#buildContextMenu(menu, event.clientX, event.clientY),
+                },
+            }));
+            event.preventDefault();
+            event.stopPropagation();
+        }
+    }
+    #createItem(item, predecessor, createExpanded) {
+        let element;
+        const itemElement = this.#itemElements.get(item);
+        if (itemElement) {
+            element = itemElement.element;
+            if (predecessor) {
+                predecessor.after(element);
+            }
+            else {
+                this.#shadowRoot?.append(element);
+            }
+        }
+        else {
+            const itemLevel = item.getLevel();
+            let header;
+            let actions;
+            this.#addCssLevel(itemLevel);
+            element = createElement('div', {
+                class: `item level${itemLevel}`,
+                parent: this.#shadowRoot,
+                childs: [
+                    header = createElement('div', {
+                        class: 'header',
+                        childs: [
+                            createElement('div', {
+                                class: 'padding',
+                            }),
+                            createElement('div', {
+                                class: 'title',
+                                innerText: item.name,
+                            }),
+                            actions = createElement('div', {
+                                class: 'actions',
+                            }),
+                        ],
+                        $click: () => {
+                            const expanded = this.#isExpanded.get(item);
+                            const event = new CustomEvent('itemclick', { detail: { item: item }, cancelable: true, });
+                            this.dispatchEvent(event);
+                            if (event.defaultPrevented) {
+                                return;
+                            }
+                            if (expanded) {
+                                this.collapseItem(item);
+                            }
+                            else {
+                                this.expandItem(item);
+                                this.#refreshFilter();
+                            }
+                        },
+                        $contextmenu: (event) => this.#contextMenuHandler(event, item),
+                    }),
+                ]
+            });
+            if (predecessor) {
+                predecessor.after(element);
+            }
+            this.#itemElements.set(item, { element: element, header: header, actions: actions });
+            this.#elementItem.set(element, item);
+        }
+        if (item.kind == TreeItemKind.Root && item.name == '') {
+            element.classList.add('root');
+        }
+        if (item.kind) {
+            element.classList.add(`type-${item.kind}`);
+        }
+        if (createExpanded || this.#isExpanded.get(item)) {
+            this.expandItem(item);
+        }
+        this.refreshActions(item);
+        return element;
+    }
+    isExpanded(item) {
+        return this.#isExpanded.get(item) ?? false;
+    }
+    expandItem(item) {
+        this.#initHTML();
+        if (item.parent) {
+            this.expandItem(item.parent);
+        }
+        if (this.#isExpanded.get(item)) {
+            return;
+        }
+        this.#isExpanded.set(item, true);
+        if (!this.#isInitialized.has(item)) {
+            this.#initItem(item);
+        }
+        else {
+            for (const child of item.childs) {
+                this.showItem(child);
+            }
+        }
+    }
+    #initItem(item) {
+        const element = this.#itemElements.get(item)?.element;
+        if (!element) {
+            return;
+        }
+        let predecessor = element;
+        for (const child of item.childs) {
+            const childElement = this.#createItem(child, predecessor, false);
+            predecessor = childElement;
+        }
+        this.#isInitialized.add(item);
+    }
+    collapseItem(item) {
+        this.#initHTML();
+        this.#isExpanded.set(item, false);
+        for (const child of item.childs) {
+            this.hideItem(child);
+        }
+    }
+    refreshItem(item) {
+        this.#isInitialized.delete(item);
+        this.#initItem(item);
+    }
+    showItem(item) {
+        this.#initHTML();
+        const element = this.#itemElements.get(item);
+        if (element) {
+            show(element.element);
+        }
+        if (this.#isExpanded.get(item)) {
+            for (const child of item.childs) {
+                this.showItem(child);
+            }
+        }
+    }
+    hideItem(item) {
+        const element = this.#itemElements.get(item);
+        if (element) {
+            hide(element.element);
+        }
+        for (const child of item.childs) {
+            this.hideItem(child);
+        }
+    }
+    selectItem(item, scrollIntoView = true) {
+        this.#initHTML();
+        if (item == this.#selectedItem) {
+            return;
+        }
+        if (this.#selectedItem) {
+            this.#itemElements.get(this.#selectedItem)?.header?.classList.remove('selected');
+        }
+        if (item) {
+            if (item.parent) {
+                this.expandItem(item.parent);
+            }
+            const itemElement = this.#itemElements.get(item)?.header;
+            itemElement?.classList.add('selected');
+            if (scrollIntoView) {
+                setTimeout(() => {
+                    itemElement?.scrollIntoView({ block: 'center' });
+                }, 0);
+            }
+        }
+        this.#selectedItem = item;
+    }
+    addAction(name, img, tooltip) {
+        const action = {
+            name: name,
+            tooltip: tooltip,
+        };
+        if (typeof img == 'string') {
+            action.innerHTML = img;
+        }
+        else {
+            action.element = img;
+        }
+        this.#actions.set(name, action);
+    }
+    refreshActions(item) {
+        const htmlActions = this.#itemElements.get(item)?.actions;
+        htmlActions?.replaceChildren();
+        for (const actionName of item.actions) {
+            const action = this.#actions.get(actionName);
+            if (action) {
+                createElement('div', {
+                    child: action.element,
+                    innerHTML: action.innerHTML,
+                    parent: htmlActions,
+                    i18n: {
+                        title: action.tooltip,
+                    },
+                    $click: (event) => this.#actionHandler(event, item, actionName),
+                });
+            }
+        }
+    }
+    #actionHandler(event, item, action) {
+        this.dispatchEvent(new CustomEvent('itemaction', {
+            detail: {
+                item: item,
+                action: action,
+            },
+        }));
+        event.preventDefault();
+        event.stopPropagation();
+    }
+    setFilter(filter) {
+        this.#initHTML();
+        this.#filter = filter;
+        this.#filterItems();
+    }
+    #filterItems() {
+        this.#isVisible.clear();
+        if (this.#filter && this.#root) {
+            for (const item of this.#root.walk(this.#filter)) {
+                let current = item;
+                do {
+                    this.#isVisible.add(current);
+                    current = current.parent;
+                } while (current);
+            }
+        }
+        this.#refresh();
+    }
+    #handleScroll() {
+        let stickyHeight = 0;
+        for (const sticky of this.#sticky) {
+            const rect = sticky.getBoundingClientRect();
+            stickyHeight += rect.height;
+        }
+        const rect = this.htmlElement.getBoundingClientRect();
+        const elements = this.#shadowRoot.elementsFromPoint(rect.x + 1, rect.y + stickyHeight + 1);
+        if (!elements) {
+            return;
+        }
+        for (const element of elements) {
+            let treeItem = this.#elementItem.get(element);
+            if (!treeItem) {
+                continue;
+            }
+            treeItem = treeItem.parent;
+            if (!treeItem) {
+                continue;
+            }
+            this.#setSticky(treeItem);
+            break;
+        }
+    }
+    #addCssLevel(level) {
+        if (level == 0) {
+            return;
+        }
+        if (!this.#cssLevel.has(level)) {
+            this.#cssLevel.add(level);
+            this.#dynamicSheet.insertRule(`.level${level} .padding{flex: 0 0 ${level}rem}`);
+        }
+    }
+    #setSticky(item) {
+        for (const treeItemElement of this.#sticky) {
+            treeItemElement.style.cssText = '';
+        }
+        this.#sticky.clear();
+        let current = item;
+        while (current) {
+            const treeItemElement = this.#itemElements.get(current);
+            if (treeItemElement) {
+                this.#sticky.add(treeItemElement.element);
+                treeItemElement.element.style.cssText = `position:sticky;top:${current.getLevel()}rem;`;
+            }
+            current = current.parent;
+        }
+    }
+}
+/*
+let definedTree = false;
+export function defineHarmonyTree(): void {
+    if (!definedTree) {
+        defineElement('harmony-tree', class extends HTMLHarmonyTreeElement { });
+        defineElement('h-tree', class extends HTMLHarmonyTreeElement { });
+        definedTree = true;
+        injectGlobalCss();
+    }
+}
+*/
+
+var manipulator2dCSS = ":host {\n\t--handle-radius: var(--harmony-2d-manipulator-radius, 0.5rem);\n\t--harmony-2d-manipulator-shadow-bg-color: var(--harmony-2d-manipulator-bg-color, red);\n\t--harmony-2d-manipulator-shadow-border: var(--harmony-2d-manipulator-border, none);\n\t--handle-bg-color: var(--harmony-2d-manipulator-handle-bg-color, chartreuse);\n\t--corner-bg-color: var(--harmony-2d-manipulator-corner-bg-color, var(--handle-bg-color));\n\t--side-bg-color: var(--harmony-2d-manipulator-side-bg-color, var(--handle-bg-color));\n\t--rotate-bg-color: var(--harmony-2d-manipulator-rotate-bg-color, var(--handle-bg-color));\n\n\twidth: 1rem;\n\theight: 1rem;\n\tdisplay: block;\n\tuser-select: none;\n\tpointer-events: all;\n}\n\n:host-context(.grabbing) {\n\tcursor: grabbing;\n}\n\n.manipulator {\n\tposition: absolute;\n\tbackground-color: var(--harmony-2d-manipulator-shadow-bg-color);\n\tborder: var(--harmony-2d-manipulator-shadow-border);\n\tcursor: move;\n\tpointer-events: all;\n}\n\n.rotator {\n\tscale: var(--rotate);\n\tposition: absolute;\n\twidth: var(--handle-radius);\n\theight: var(--handle-radius);\n\tbackground-color: var(--rotate-bg-color);\n\tborder-radius: calc(var(--handle-radius) * 0.5);\n\ttransform: translate(-50%, -50%);\n\tcursor: grab;\n}\n\n.corner {\n\tscale: var(--scale);\n\tposition: absolute;\n\twidth: var(--handle-radius);\n\theight: var(--handle-radius);\n\tbackground-color: var(--corner-bg-color);\n\tborder-radius: calc(var(--handle-radius) * 0.5);\n\ttransform: translate(-50%, -50%);\n\tcursor: grab;\n}\n\n.side {\n\tposition: absolute;\n\twidth: var(--handle-radius);\n\theight: var(--handle-radius);\n\tbackground-color: var(--side-bg-color);\n\tborder-radius: calc(var(--handle-radius) * 0.5);\n\ttransform: translate(-50%, -50%);\n\tcursor: grab;\n}\n\n.side.x {\n\tscale: var(--resize-x);\n}\n\n.side.y {\n\tscale: var(--resize-y);\n}\n\n.corner.grabbing {\n\tcursor: grabbing;\n}\n";
+
+function toBool(s) {
+    return s === '1' || s === 'true';
 }
 
 var ManipulatorDirection;
@@ -1902,13 +4273,9 @@ class HTMLHarmony2dManipulatorElement extends HTMLElement {
         this.#refresh();
     }
 }
-let defined2dManipulator = false;
-function defineHarmony2dManipulator() {
-    if (!defined2dManipulator) {
-        defineElement('harmony-2d-manipulator', HTMLHarmony2dManipulatorElement);
-        defined2dManipulator = true;
-        injectGlobalCss();
-    }
+function defineHarmony2dManipulator(suffix = '') {
+    defineElement('harmony-2d-manipulator' + suffix, HTMLHarmony2dManipulatorElement);
+    injectGlobalCss();
 }
 
 var accordionCSS = ":host {\n\toverflow: hidden;\n\tdisplay: flex;\n\tjustify-content: center;\n\tflex-direction: column;\n\tposition: relative;\n\n\t/*--accordion-text-color: #000;*/\n}\n\n.item .header {\n\tcursor: pointer;\n\tdisplay: block;\n\tuser-select: none;\n\tpadding: 5px;\n\t/*color: var(--accordion-text-color)\n\tcolor: var(--accordion-text-color)*/\n}\n\n.item .content {\n\tdisplay: block;\n\toverflow: hidden;\n\theight: 0;\n\t/*transition: all 0.5s ease 0s;*/\n}\n\n.item .content.selected {\n\theight: unset;\n\tpadding: 10px;\n}\n\n\n@media (prefers-color-scheme: light) {\n\t:host {\n\t\t--accordion-text-color: #000;\n\t\t--accordion-background-color: #eee;\n\t\tcolor: #000;\n\t\tbackground: #eee;\n\t}\n}\n\n@media (prefers-color-scheme: dark) {\n\t:host {\n\t\t--accordion-text-color: #eee;\n\t\t--accordion-background-color: #000;\n\t\tcolor: #eee;\n\t\tbackground: #000;\n\t}\n}\n";
@@ -1954,12 +4321,8 @@ class HTMLHarmonyItemElement extends HTMLElement {
         return ['id', 'item-id'];
     }
 }
-let definedHarmonyItem = false;
-function defineHarmonyItem() {
-    if (!definedHarmonyItem) {
-        defineElement('harmony-item', HTMLHarmonyItemElement);
-        definedHarmonyItem = true;
-    }
+function defineHarmonyItem(suffix = '') {
+    defineElement('harmony-item' + suffix, HTMLHarmonyItemElement);
 }
 
 class HTMLHarmonyAccordionElement extends HTMLElement {
@@ -1991,7 +4354,7 @@ class HTMLHarmonyAccordionElement extends HTMLElement {
         if (this.#items.has(item)) {
             return;
         }
-        if (item.tagName == 'HARMONY-ITEM') {
+        if (item.tagName.startsWith('HARMONY-ITEM')) {
             const htmlSlot = createElement('slot', {
                 parent: this.#shadowRoot,
             });
@@ -2113,7 +4476,7 @@ class HTMLHarmonyAccordionElement extends HTMLElement {
     }
     set disabled(disabled) {
         this.#disabled = disabled ? true : false;
-        this.classList[this.#disabled ? 'add' : 'remove']('disabled');
+        addRemoveClass(this, 'disabled', this.#disabled);
     }
     get disabled() {
         return this.#disabled;
@@ -2129,14 +4492,102 @@ class HTMLHarmonyAccordionElement extends HTMLElement {
         return ['multiple'];
     }
 }
-let definedAccordion = false;
-function defineHarmonyAccordion() {
-    if (!definedAccordion) {
-        defineHarmonyItem();
-        defineElement('harmony-accordion', HTMLHarmonyAccordionElement);
-        definedAccordion = true;
-        injectGlobalCss();
+function defineHarmonyAccordion(suffix = '') {
+    defineHarmonyItem(suffix);
+    defineElement('harmony-accordion' + suffix, HTMLHarmonyAccordionElement);
+    injectGlobalCss();
+}
+
+var circularProgressCSS = ":host {\n\t--track-color: var(--harmony-circular-progress-track-color, #CCC);\n\t--progress-color: var(--harmony-circular-progress-progress-color, #F00);\n\tdisplay: inline-flex;\n}\n\n.track {\n\tcolor: var(--track-color);\n\topacity: 30%;\n\tstroke-width: 10%;\n}\n\n.progress {\n\tcolor: var(--progress-color);\n\tstroke-dasharray: calc(var(--progress) * pi * 100% * 0.8) calc((1 - var(--progress)) * pi * 100% * 0.8);\n\tstroke-width: 10%;\n\tstroke-dashoffset: calc(pi * 100% * 0.8 * 0.25);\n}\n";
+
+class HTMLHarmonyCircularProgressElement extends HTMLHarmonyElement {
+    #shadowRoot;
+    #disabled = false;
+    #htmlLabel;
+    #htmlSVG;
+    #htmlTrack;
+    #htmlProgress;
+    #start = 0;
+    #end = Math.PI * 2;
+    #progress = 0.5;
+    createElement() {
+        this.#shadowRoot = this.attachShadow({ mode: 'closed' });
+        void shadowRootStyle(this.#shadowRoot, circularProgressCSS);
+        I18n.observeElement(this.#shadowRoot);
+        this.#htmlLabel = createElement('div', {
+            parent: this.#shadowRoot,
+            class: 'label',
+        });
+        this.#htmlSVG = createElementNS('http://www.w3.org/2000/svg', 'svg', {
+            style: `--progress:${this.#progress};`,
+            parent: this.#shadowRoot,
+            childs: [
+                this.#htmlTrack = createElementNS('http://www.w3.org/2000/svg', 'circle', {
+                    class: 'track',
+                    attributes: {
+                        cx: '50%',
+                        cy: '50%',
+                        r: '40%',
+                        fill: 'none',
+                        'stroke-width': '10%',
+                        'shape-rendering': 'geometricPrecision',
+                        stroke: 'currentColor',
+                    }
+                }),
+                this.#htmlProgress = createElementNS('http://www.w3.org/2000/svg', 'circle', {
+                    class: 'progress',
+                    attributes: {
+                        cx: '50%',
+                        cy: '50%',
+                        r: '40%',
+                        fill: 'none',
+                        'stroke-width': '10%',
+                        'shape-rendering': 'geometricPrecision',
+                        stroke: 'currentColor',
+                    }
+                }),
+            ],
+        });
+        this.#refresh();
     }
+    setProgress(progress) {
+        this.#progress = progress;
+        if (this.#htmlSVG) {
+            this.#htmlSVG.style.cssText = `--progress: ${progress}`;
+        }
+    }
+    #refresh() {
+        if (this.#htmlSVG) {
+            this.#htmlSVG.style.cssText = `--progress: ${this.#progress}`;
+        }
+    }
+    onAttributeChanged(name, oldValue, newValue) {
+        switch (name) {
+            case 'data-label':
+                if (this.#htmlLabel) {
+                    this.#htmlLabel.innerHTML = newValue;
+                }
+                this.#htmlLabel?.classList.remove('i18n');
+                break;
+            case 'data-i18n':
+                this.#htmlLabel?.setAttribute('data-i18n', newValue);
+                if (this.#htmlLabel) {
+                    this.#htmlLabel.innerHTML = newValue;
+                }
+                this.#htmlLabel?.classList.add('i18n');
+                break;
+        }
+    }
+    static get observedAttributes() {
+        return ['data-label', 'data-i18n'];
+    }
+}
+function defineHarmonyCircularProgress(suffix = '') {
+    defineElement('harmony-circular-progress' + suffix, class extends HTMLHarmonyCircularProgressElement {
+    });
+    defineElement('h-cp' + suffix, class extends HTMLHarmonyCircularProgressElement {
+    });
+    injectGlobalCss();
 }
 
 var colorPickerCSS = ":host {\n\t--harmony-color-picker-shadow-width: var(--harmony-color-picker-width, 15rem);\n\t--harmony-color-picker-shadow-height: var(--harmony-color-picker-height, 15rem);\n\t--harmony-color-picker-shadow-gap: var(--harmony-color-picker-gap, 0.5rem);\n\n\t--foreground-layer: none;\n\n\tbackground-color: var(--main-bg-color-bright);\n\tpadding: var(--harmony-color-picker-shadow-gap);\n\tbox-sizing: border-box;\n\tdisplay: inline-grid;\n\t/*grid-template-rows: 1rem 5fr;\n\tgrid-template-columns: 2fr 2fr 1rem;*/\n\tcolumn-gap: var(--harmony-color-picker-shadow-gap);\n\trow-gap: var(--harmony-color-picker-shadow-gap);\n\n\t/*width: var(--harmony-color-picker-width, 10rem);\n\theight: var(--harmony-color-picker-height, 10rem);*/\n\t/*display: flex;\n\tflex-wrap: wrap;*/\n\tgrid-template-areas: \"h h h h\" \"m m m a\" \"i i s s\" \"b b b b\";\n}\n\n#hue-picker {\n\tposition: relative;\n\t/*flex-basis: var(--harmony-color-picker-shadow-width);*/\n\tpadding: 1rem;\n\tbackground-image: linear-gradient(90deg, red, yellow, lime, cyan, blue, magenta, red);\n\tgrid-area: h;\n\theight: 0;\n}\n\n#main-picker {\n\tposition: relative;\n\tgrid-area: m;\n\twidth: var(--harmony-color-picker-shadow-width);\n\theight: var(--harmony-color-picker-shadow-height);\n\tbackground-image: linear-gradient(180deg, white, rgba(255, 255, 255, 0) 50%), linear-gradient(0deg, black, rgba(0, 0, 0, 0) 50%), linear-gradient(90deg, #808080, rgba(128, 128, 128, 0));\n\tbackground-color: currentColor;\n}\n\n#alpha-picker {\n\tposition: relative;\n\tpadding: 1rem;\n\tgrid-area: a;\n\twidth: 0;\n}\n\n#hue-selector {\n\tpadding: 1rem 0.2rem;\n}\n\n#alpha-selector {\n\tpadding: 0.2rem 1rem;\n}\n\n#main-selector {\n\tpadding: 0.5rem;\n\tborder-radius: 50%;\n}\n\n#input {\n\twidth: calc(var(--harmony-color-picker-shadow-width) * 0.6);\n\tgrid-area: i;\n\tfont-family: monospace;\n\tfont-size: 1.5rem;\n\tbox-sizing: border-box;\n}\n\n#sample {\n\tgrid-area: s;\n\t/*width: calc(var(--harmony-color-picker-shadow-width) * 0.25);*/\n}\n\n#buttons {\n\tgrid-area: b;\n\tdisplay: flex;\n\tgap: 2rem;\n}\n\n#buttons>button {\n\tflex: 1;\n\tfont-size: 1.5rem;\n\tcursor: pointer;\n}\n\n.alpha-background {\n\tbackground: var(--foreground-layer),\n\t\tlinear-gradient(45deg, lightgrey 25%, transparent 25%, transparent 75%, lightgrey 75%) 0 0 / 1rem 1rem,\n\t\tlinear-gradient(45deg, lightgrey 25%, white 25%, white 75%, lightgrey 75%) 0.5em 0.5em / 1em 1em;\n}\n\n.selector {\n\tposition: absolute;\n\tborder: 2px solid #fff;\n\tborder-radius: 100%;\n\tbox-shadow: 0 0 3px 1px #67b9ff;\n\ttransform: translate(-50%, -50%);\n\tcursor: pointer;\n\tdisplay: block;\n\tbackground: none;\n\tborder-radius: 2px;\n}\n";
@@ -2313,6 +4764,10 @@ class HTMLHarmonyColorPickerElement extends HTMLElement {
         this.#color.setHex(hex);
         this.#update();
     }
+    setRgba(rgba) {
+        this.#color.setRgba(rgba);
+        this.#update();
+    }
     #handleMouseDown(event, selector) {
         this.#dragElement = selector ?? event.currentTarget;
         this.#shiftX = (selector ?? event.currentTarget).offsetLeft;
@@ -2341,213 +4796,9 @@ class HTMLHarmonyColorPickerElement extends HTMLElement {
         }
     }
 }
-let definedColorPicker = false;
-function defineHarmonyColorPicker() {
-    if (!definedColorPicker) {
-        defineElement('harmony-color-picker', HTMLHarmonyColorPickerElement);
-        definedColorPicker = true;
-        injectGlobalCss();
-    }
-}
-
-var menuCSS = ":host {\n\tfont-size: 1.5em;\n\tcursor: not-allowed;\n\tcolor: var(--harmony-ui-text-primary);\n\tbackground-color: green;\n\tbackground-color: var(--harmony-ui-menu-bg-color);\n\toverflow: auto;\n\tz-index: 100000;\n}\n\n.harmony-menu-item {\n\tbackground-color: green;\n\tcursor: pointer;\n\tbackground-color: var(--harmony-ui-menu-item-bg-color);\n}\n\n.harmony-menu-item.disabled {\n\tpointer-events: none;\n}\n\n.harmony-menu-item.selected {\n\tbackground-color: blue;\n\tbackground-color: var(--harmony-ui-menu-item-selected-bg-color);\n}\n\n\n.harmony-menu-item.separator {\n\theight: 5px;\n\tbackground-color: black;\n}\n\n.harmony-menu-item>.harmony-menu-item-title:hover {\n\tbackground-color: var(--harmony-ui-menu-item-hover-bg-color);\n}\n\n.harmony-menu-item.selected>.harmony-menu-item-title::after {\n\tcontent: \"✔\";\n}\n\n.harmony-menu-item>.harmony-menu-item-title::after {\n\ttransition: all 0.2s ease 0s;\n\twidth: 32px;\n\theight: 32px;\n}\n\n.harmony-menu-item.closed>.harmony-menu-item-title,\n.harmony-menu-item.opened>.harmony-menu-item-title {\n\tpadding-right: 32px;\n}\n\n.harmony-menu-item.closed>.harmony-menu-item-title::after {\n\tcontent: \"➤\";\n}\n\n.harmony-menu-item.opened>.harmony-menu-item-title::after {\n\tcontent: \"➤\";\n\ttransform: rotate(90deg);\n}\n\n.harmony-menu-item .submenu {\n\tbackground-color: var(--harmony-ui-menu-submenu-bg-color);\n\tpadding-left: 10px;\n\tmargin-left: 2px;\n\tdisplay: none;\n\toverflow: hidden;\n\tposition: relative;\n\tbackground-color: var(--harmony-ui-menu-submenu-fg-color);\n}\n\n.harmony-menu-item.opened>.submenu {\n\tdisplay: block;\n}\n";
-
-class HTMLHarmonyMenuElement extends HTMLElement {
-    #doOnce = true;
-    #subMenus = new Map();
-    #shadowRoot;
-    #contextual = false;
-    constructor() {
-        super();
-        this.#shadowRoot = this.attachShadow({ mode: 'closed' });
-        document.addEventListener('click', (event) => {
-            if (this.#contextual && !this.contains(event.target)) {
-                this.close();
-            }
-        });
-    }
-    #show(items, userData) {
-        this.#setItems(items, userData);
-        this.#checkSize();
-    }
-    show(items, userData) {
-        this.#show(items, userData);
-        this.setContextual(false);
-    }
-    showContextual(items, clientX, clientY, userData) {
-        document.body.append(this);
-        this.style.left = clientX + 'px';
-        this.style.top = clientY + 'px';
-        this.setContextual(true);
-        this.#show(items, userData);
-    }
-    setContextual(contextual) {
-        this.style.position = contextual ? 'absolute' : '';
-        this.#contextual = contextual;
-    }
-    #checkSize() {
-        const bodyRect = document.body.getBoundingClientRect();
-        const elemRect = this.getBoundingClientRect();
-        this.style.maxWidth = bodyRect.width + 'px';
-        this.style.maxHeight = bodyRect.height + 'px';
-        if (elemRect.right > bodyRect.right) {
-            this.style.left = Math.max((bodyRect.width - elemRect.width), 0) + 'px';
-            /*if (elemRect.width > bodyRect.width) {
-                this.style.maxWidth = bodyRect.width + 'px';
-            } else {
-                this.style.maxWidth = '';
-            }*/
-        }
-        if (elemRect.bottom > bodyRect.bottom) {
-            this.style.top = Math.max((bodyRect.height - elemRect.height), 0) + 'px';
-            /*if (elemRect.height > bodyRect.height) {
-                this.style.maxHeight = bodyRect.height + 'px';
-            } else {
-                this.style.maxHeight = '';
-            }*/
-        }
-        if (elemRect.left < 0) {
-            this.style.left = '0px';
-        }
-        if (elemRect.top < 0) {
-            this.style.top = '0px';
-        }
-    }
-    close() {
-        if (this.#contextual) {
-            this.remove();
-        }
-    }
-    connectedCallback() {
-        if (this.#doOnce) {
-            I18n.observeElement(this.#shadowRoot);
-            void shadowRootStyle(this.#shadowRoot, menuCSS);
-            const callback = (entries) => {
-                entries.forEach(() => {
-                    this.#checkSize();
-                });
-            };
-            const resizeObserver = new ResizeObserver(callback);
-            resizeObserver.observe(this);
-            resizeObserver.observe(document.body);
-            this.#doOnce = false;
-        }
-    }
-    #setItems(items, userData) {
-        this.#shadowRoot.replaceChildren();
-        if (items instanceof Array) {
-            for (const item of items) {
-                this.#shadowRoot.append(this.addItem(item, userData));
-            }
-        }
-        else {
-            for (const itemId in items) {
-                const item = items[itemId];
-                this.#shadowRoot.append(this.addItem(item, userData));
-            }
-        }
-    }
-    #openSubMenu(htmlSubMenu) {
-        for (const [htmlItem, sub] of this.#subMenus) {
-            if (sub == htmlSubMenu || sub.contains(htmlSubMenu)) {
-                htmlItem.classList.add('opened');
-                htmlItem.classList.remove('closed');
-            }
-            else {
-                htmlItem.classList.remove('opened');
-                htmlItem.classList.add('closed');
-            }
-        }
-        this.#checkSize();
-    }
-    addItem(item, userData) {
-        const htmlItem = createElement('div', {
-            class: 'harmony-menu-item',
-        });
-        if (!item) {
-            htmlItem.classList.add('separator');
-        }
-        else {
-            const htmlItemTitle = createElement('div', {
-                class: 'harmony-menu-item-title',
-            });
-            if (item.i18n) {
-                htmlItemTitle.classList.add('i18n');
-                htmlItemTitle.setAttribute('data-i18n', item.i18n);
-                htmlItemTitle.innerText = item.i18n;
-            }
-            else {
-                htmlItemTitle.innerText = item.name ?? '';
-            }
-            htmlItem.append(htmlItemTitle);
-            if (item.selected) {
-                htmlItem.classList.add('selected');
-            }
-            if (item.disabled) {
-                htmlItem.classList.add('disabled');
-            }
-            if (item.submenu) {
-                const htmlSubMenu = createElement('div', {
-                    class: 'submenu',
-                });
-                this.#subMenus.set(htmlItem, htmlSubMenu);
-                let subItems = 0;
-                if (item.submenu instanceof Array) {
-                    for (const subItem of item.submenu) {
-                        htmlSubMenu.append(this.addItem(subItem, userData));
-                        ++subItems;
-                    }
-                }
-                else {
-                    for (const subItemName in item.submenu) {
-                        const subItem = item.submenu[subItemName];
-                        htmlSubMenu.append(this.addItem(subItem, userData));
-                        ++subItems;
-                    }
-                }
-                htmlItem.append(htmlSubMenu);
-                //htmlSubMenu.style.display = 'none';
-                htmlItem.classList.add('closed');
-                if (item.opened) {
-                    this.#openSubMenu(htmlSubMenu);
-                }
-                htmlItem.addEventListener('click', event => {
-                    this.#openSubMenu(htmlSubMenu);
-                    if (item.cmd) {
-                        this.dispatchEvent(new CustomEvent(item.cmd));
-                    }
-                    if (item.f) {
-                        void item.f(userData);
-                    }
-                    event.stopPropagation();
-                });
-                if (subItems == 0) {
-                    hide(htmlItem);
-                }
-            }
-            else {
-                htmlItem.addEventListener('click', (event) => {
-                    if (item.cmd) {
-                        this.dispatchEvent(new CustomEvent(item.cmd));
-                    }
-                    if (item.f) {
-                        void item.f(userData);
-                    }
-                    event.stopPropagation();
-                });
-                htmlItem.addEventListener('click', () => this.close());
-            }
-        }
-        return htmlItem;
-    }
-}
-let definedMenu = false;
-function defineHarmonyMenu() {
-    if (!definedMenu) {
-        defineElement('harmony-menu', HTMLHarmonyMenuElement);
-        definedMenu = true;
-        injectGlobalCss();
-    }
+function defineHarmonyColorPicker(suffix = '') {
+    defineElement('harmony-color-picker' + suffix, HTMLHarmonyColorPickerElement);
+    injectGlobalCss();
 }
 
 var copyCSS = "harmony-copy {\n\tcursor: pointer;\n\tposition: relative;\n}\n\n.harmony-copy-copied {\n\ttransition: top 1s;\n\tposition: absolute;\n\ttop: 0%;\n}\n\n.harmony-copy-copied-end {\n\ttop: -100%;\n}\n";
@@ -2581,17 +4832,18 @@ class HTMLHarmonyCopyElement extends HTMLElement {
         }
     }
 }
-let definedCopy = false;
-function defineHarmonyCopy() {
-    if (!definedCopy) {
-        defineElement('harmony-copy', HTMLHarmonyCopyElement);
-        void documentStyle(copyCSS);
-        definedCopy = true;
-        injectGlobalCss();
-    }
+function defineHarmonyCopy(suffix = '') {
+    defineElement('harmony-copy' + suffix, HTMLHarmonyCopyElement);
+    void documentStyle(copyCSS);
+    injectGlobalCss();
 }
 
 var fileInputCSS = "label {\n\tcursor: pointer;\n\tdisplay: flex;\n\tuser-select: none;\n}\n\nlabel>span {\n\tmargin: auto;\n}\n\n.tooltip {\n\tposition: relative;\n}\n\n.text {\n\tflex: 1;\n\tfont-size: 2rem;\n}\n\n.icon,\n.info {\n\tzoom: 2;\n}\n";
+
+function cloneEvent(event) {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-explicit-any
+    return new event.constructor(event.type, event);
+}
 
 var tooltipCSS = ":host {\n\tdisplay: grid;\n\tposition: absolute;\n\twidth: 100%;\n\theight: 100%;\n\ttop: 0;\n\tanchor-name: --anchor-el;\n}\n\n:host(:hover) {\n\t--harmony-tooltip-hover: 1;\n}\n\n.tooltip {\n\t--bottom-tip: conic-gradient(from -30deg at bottom, rgba(0, 0, 0, 0), #000 1deg 60deg, rgba(0, 0, 0, 0) 61deg) bottom / 100% 50% no-repeat;\n\t--top-tip: conic-gradient(from 150deg at top, rgba(0, 0, 0, 0), #000 1deg 60deg, rgba(0, 0, 0, 0) 61deg) top / 100% 50% no-repeat;\n\t--right-tip: conic-gradient(from -120deg at right, rgba(0, 0, 0, 0), #000 1deg 60deg, rgba(0, 0, 0, 0) 61deg) right / 50% 100% no-repeat;\n\t--left-tip: conic-gradient(from 60deg at left, rgba(0, 0, 0, 0), #000 1deg 60deg, rgba(0, 0, 0, 0) 61deg) left / 50% 100% no-repeat;\n\n\t--p-inline: 1.5ch;\n\t--p-block: .75ch;\n\t--triangle-size: 0.5rem;\n\t--bg: hsl(0 0% 20%);\n\n\n\n\tpointer-events: none;\n\tuser-select: none;\n\topacity: var(--harmony-tooltip-hover, 0);\n\tposition: fixed;\n\tposition-anchor: --anchor-el;\n\t/*top: anchor(bottom);*/\n\t/*justify-self: anchor-center;*/\n\tjustify-self: var(--justify);\n\tbottom: var(--bottom);\n\tleft: var(--left);\n\tright: var(--right);\n\ttop: var(--top);\n\n\tmax-width: 10rem;\n\tbackground-color: var(--bg);\n\tcolor: #fff;\n\ttext-align: center;\n\tborder-radius: 6px;\n\tpadding: 0.3rem 0.3rem;\n\tz-index: 1;\n\ttransition: opacity 0.3s;\n}\n\n.tooltip::after {\n\tcontent: \"\";\n\tbackground: var(--bg);\n\tposition: absolute;\n\tz-index: -1;\n\tinset: 0;\n\tmask: var(--tip);\n\tinset-block-start: var(--inset-block-start-tip, 0);\n\tinset-block-end: var(--inset-block-end-tip, 0);\n\tborder-block-start: var(--border-block-start-tip, 0);\n\tborder-block-end: var(--border-block-end-tip, 0);\n\tinset-inline-start: var(--inset-inline-start-tip, 0);\n\tinset-inline-end: var(--inset-inline-end-tip, 0);\n\tborder-inline-start: var(--border-inline-start-tip, 0);\n\tborder-inline-end: var(--border-inline-end-tip, 0);\n}\n\n.tooltip:is([data-position=\"top\"], :not([data-position])) {\n\t--bottom: anchor(top);\n\t--justify: anchor-center;\n\t--tip: var(--bottom-tip);\n\t--inset-block-end-tip: calc(var(--triangle-size) * -1);\n\t--border-block-end-tip: var(--triangle-size) solid transparent;\n}\n\n.tooltip[data-position=\"left\"] {\n\t--right: anchor(left);\n\t--tip: var(--right-tip);\n\t--inset-inline-end-tip: calc(var(--triangle-size) * -1);\n\t--border-inline-end-tip: var(--triangle-size) solid transparent;\n}\n\n.tooltip[data-position=\"right\"] {\n\t--left: anchor(right);\n\t--tip: var(--left-tip);\n\t--inset-inline-start-tip: calc(var(--triangle-size) * -1);\n\t--border-inline-start-tip: var(--triangle-size) solid transparent;\n}\n\n.tooltip[data-position=\"bottom\"] {\n\t--top: anchor(bottom);\n\t--justify: anchor-center;\n\t--tip: var(--top-tip);\n\t--inset-block-start-tip: calc(var(--triangle-size) * -1);\n\t--border-block-start-tip: var(--triangle-size) solid transparent;\n}\n";
 
@@ -2628,13 +4880,9 @@ class HTMLHarmonyTooltipElement extends HTMLElement {
         return ['data-label', 'data-i18n', 'data-position'];
     }
 }
-let definedTooltip = false;
-function defineHarmonyTooltip() {
-    if (!definedTooltip) {
-        defineElement('harmony-tooltip', HTMLHarmonyTooltipElement);
-        definedTooltip = true;
-        injectGlobalCss();
-    }
+function defineHarmonyTooltip(suffix = '') {
+    defineElement('harmony-tooltip' + suffix, HTMLHarmonyTooltipElement);
+    injectGlobalCss();
 }
 
 class HTMLHarmonyFileInputElement extends HTMLElement {
@@ -2730,13 +4978,358 @@ class HTMLHarmonyFileInputElement extends HTMLElement {
         return ['data-label', 'data-i18n', 'data-accept', 'data-tooltip-i18n', 'multiple'];
     }
 }
-let definedFileInput = false;
-function defineHarmonyFileInput() {
-    if (!definedFileInput) {
-        defineElement('harmony-file-input', HTMLHarmonyFileInputElement);
-        definedFileInput = true;
-        injectGlobalCss();
+function defineHarmonyFileInput(suffix = '') {
+    defineElement('harmony-file-input' + suffix, HTMLHarmonyFileInputElement);
+    injectGlobalCss();
+}
+
+var filterCSS = ":host {\n\toverflow: hidden;\n\tdisplay: flex;\n\tjustify-content: center;\n\tposition: relative;\n\twidth: 100%;\n\n\t--bg-color: var(--harmony-toolbar-bg-color, var(--main-bg-color, black));\n\tbackground-color: var(--bg-color);\n}\n\n.string {\n\twidth: 100%;\n\tdisplay: flex;\n\tgap: 0.25rem;\n}\n\n.string>span {\n\tflex: 0 0 auto;\n\tmax-width: 50%;\n}\n\n.string>input {\n\tflex: 1 1 auto;\n}\n\nbutton {\n\ttext-wrap: nowrap;\n}\n";
+
+var filter2CSS = ":host {\n\tposition: absolute;\n\ttop: 0;\n\tleft: 0;\n\twidth: 100%;\n\theight: 100%;\n\tpointer-events: none;\n}\n\n.list {\n\tpointer-events: all;\n\tposition: absolute;\n\tmax-height: 100%;\n\t/*width: 100px;*/\n\toverflow: auto;\n\tbackground-color: red;\n\tmargin: 0;\n\tdisplay: flex;\n\tflex-direction: column;\n}\n\n.list:where(:not(:popover-open)) {\n\tdisplay: none;\n}\n";
+
+var switchCSS = ":host {\n\t--harmony-switch-shadow-width: var(--harmony-switch-width, 4rem);\n\t--harmony-switch-shadow-height: var(--harmony-switch-height, 2rem);\n\t--harmony-switch-shadow-on-background-color: var(--harmony-switch-on-background-color, #1072eb);\n\t--harmony-switch-shadow-on-background-color-hover: var(--harmony-switch-on-background-color-hover, #1040c1);\n\t--harmony-switch-shadow-slider-width: var(--harmony-switch-slider-width, 1.4rem);\n\t--harmony-switch-shadow-slider-height: var(--harmony-switch-slider-height, 1.4rem);\n\t--harmony-switch-shadow-slider-margin: var(--harmony-switch-slider-margin, 0.3rem);\n\t--harmony-switch-shadow-slider-border-width: var(--harmony-switch-slider-border-width, 0rem);\n\t--slot-width: var(--harmony-switch-slot-width, auto);\n\t--prepend-width: var(--harmony-switch-prepend-width, var(--slot-width));\n\t--append-width: var(--harmony-switch-append-width, var(--slot-width));\n\n\tdisplay: inline-flex;\n\tuser-select: none;\n\tcursor: pointer;\n\tjustify-content: space-between;\n}\n\n:host>* {\n\tflex-grow: 0;\n}\n\n.label {\n\tmargin: auto 0;\n\tfont-weight: bold;\n\tflex: 1;\n}\n\nslot{\n\tdisplay: inline-block;\n}\n\nslot[name=\"prepend\"] {\n\twidth: var(--prepend-width);\n}\n\nslot[name=\"append\"] {\n\twidth: var(--append-width);\n}\n\n.harmony-switch-outer {\n\tdisplay: flex;\n\theight: var(--harmony-switch-shadow-height);\n\tborder-radius: calc(var(--harmony-switch-shadow-height) * 0.5);\n\talign-items: center;\n\tmargin-left: 0.25rem;\n\ttransition: background-color 0.25s linear;\n\twidth: var(--harmony-switch-shadow-width);\n}\n\n.harmony-switch-outer {\n\tbackground-color: var(--harmony-ui-input-background-primary);\n}\n\n.harmony-switch-outer:hover {\n\tbackground-color: var(--harmony-ui-input-background-secondary);\n}\n\n.harmony-switch-outer.on {\n\tbackground-color: var(--harmony-ui-accent-primary);\n}\n\n.harmony-switch-outer.on:hover {\n\tbackground-color: var(--harmony-ui-accent-secondary);\n}\n\n.harmony-switch-inner {\n\tdisplay: inline-block;\n\theight: var(--harmony-switch-shadow-slider-height);\n\twidth: var(--harmony-switch-shadow-slider-width);\n\tborder-radius: calc(var(--harmony-switch-shadow-slider-height) * 0.5);\n\ttransition: all 0.25s;\n\tposition: relative;\n\tleft: var(--harmony-switch-shadow-slider-margin);\n\tborder: var(--harmony-switch-shadow-slider-border-width) solid;\n\tbox-sizing: border-box;\n\tborder-color: var(--harmony-ui-input-border-primary);\n\tbackground-color: var(--harmony-ui-input-background-tertiary);\n}\n\n.harmony-switch-outer.ternary .harmony-switch-inner {\n\tleft: calc(50% - var(--harmony-switch-shadow-slider-width) * 0.5);\n}\n\n.harmony-switch-outer.off .harmony-switch-inner {\n\tleft: var(--harmony-switch-shadow-slider-margin);\n}\n\n.harmony-switch-outer.on .harmony-switch-inner {\n\tleft: calc(100% - var(--harmony-switch-shadow-slider-width) - var(--harmony-switch-shadow-slider-margin));\n}\n\n.harmony-switch-outer.ternary.off {\n\tbackground-color: red;\n}\n\n.harmony-switch-outer.ternary.off:hover {\n\tbackground-color: red;\n}\n\n.harmony-switch-outer.ternary.on {\n\tbackground-color: green;\n}\n\n.harmony-switch-outer.ternary.on:hover {\n\tbackground-color: green;\n}\n";
+
+class HTMLHarmonySwitchElement extends HTMLHarmonyElement {
+    #shadowRoot;
+    #disabled = false;
+    #htmlLabel;
+    #htmlSwitchOuter;
+    #state = false;
+    #ternary = false;
+    createElement() {
+        this.#shadowRoot = this.attachShadow({ mode: 'closed' });
+        void shadowRootStyle(this.#shadowRoot, switchCSS);
+        I18n.observeElement(this.#shadowRoot);
+        this.#htmlLabel = createElement('div', {
+            parent: this.#shadowRoot,
+            class: 'label',
+        });
+        createElement('slot', {
+            parent: this.#shadowRoot,
+            name: 'prepend',
+            $click: () => this.state = false,
+        });
+        this.#htmlSwitchOuter = createElement('span', {
+            parent: this.#shadowRoot,
+            class: 'harmony-switch-outer',
+            child: createElement('span', { class: 'harmony-switch-inner' }),
+            $click: () => this.toggle(),
+        });
+        createElement('slot', {
+            parent: this.#shadowRoot,
+            name: 'append',
+            $click: () => this.state = true,
+        });
+        this.#refresh();
     }
+    set disabled(disabled) {
+        this.#disabled = disabled ? true : false;
+        addRemoveClass(this, 'disabled', this.#disabled);
+    }
+    get disabled() {
+        return this.#disabled;
+    }
+    set state(state) {
+        if (this.#state != state) {
+            this.#state = state;
+            this.dispatchEvent(new CustomEvent('change', { detail: { state: state, value: state } }));
+        }
+        else {
+            this.#state = state;
+        }
+        this.#refresh();
+    }
+    get state() {
+        return this.#state;
+    }
+    set checked(checked) {
+        this.state = checked;
+    }
+    get checked() {
+        return this.#state;
+    }
+    set ternary(ternary) {
+        this.#ternary = ternary;
+        this.#refresh();
+    }
+    get ternary() {
+        return this.#ternary;
+    }
+    toggle() {
+        if (this.#ternary) {
+            if (this.#state === false) {
+                this.state = undefined;
+            }
+            else if (this.#state === undefined) {
+                this.state = true;
+            }
+            else {
+                this.state = false;
+            }
+        }
+        else {
+            this.state = !this.#state;
+        }
+        this.#refresh();
+    }
+    #refresh() {
+        this.#htmlSwitchOuter?.classList.remove('on', 'off', 'ternary');
+        if (this.#ternary) {
+            this.#htmlSwitchOuter?.classList.add('ternary');
+        }
+        if (this.#state === undefined) {
+            return;
+        }
+        this.#htmlSwitchOuter?.classList.add(this.#state ? 'on' : 'off');
+    }
+    onAttributeChanged(name, oldValue, newValue) {
+        switch (name) {
+            case 'data-label':
+                if (this.#htmlLabel) {
+                    this.#htmlLabel.innerHTML = newValue;
+                }
+                this.#htmlLabel?.classList.remove('i18n');
+                break;
+            case 'data-i18n':
+                this.#htmlLabel?.setAttribute('data-i18n', newValue);
+                if (this.#htmlLabel) {
+                    this.#htmlLabel.innerHTML = newValue;
+                }
+                this.#htmlLabel?.classList.add('i18n');
+                break;
+            case 'disabled':
+                this.disabled = toBool(newValue);
+                break;
+            case 'ternary':
+                this.ternary = true;
+            case 'state':
+                if (newValue == '' || newValue == 'undefined') {
+                    this.state = undefined;
+                }
+                else {
+                    if (newValue == 'true' || newValue == '1') {
+                        this.state = true;
+                    }
+                    else {
+                        this.state = false;
+                    }
+                }
+                break;
+        }
+    }
+    static get observedAttributes() {
+        return ['data-label', 'data-i18n', 'disabled', 'ternary', 'state'];
+    }
+}
+function defineHarmonySwitch(suffix = '') {
+    defineElement('harmony-switch' + suffix, HTMLHarmonySwitchElement);
+    injectGlobalCss();
+}
+
+/**
+ * For list like filters, determine the type of options
+ */
+var HarmonyFilterListType;
+(function (HarmonyFilterListType) {
+    /** Value can be true or false. Default option value is false */
+    HarmonyFilterListType[HarmonyFilterListType["Boolean"] = 0] = "Boolean";
+    /** Value can be true, false or undefined. Default option value is undefined */
+    HarmonyFilterListType[HarmonyFilterListType["Ternary"] = 1] = "Ternary";
+})(HarmonyFilterListType || (HarmonyFilterListType = {}));
+class HTMLHarmonyFilterElement extends HTMLHarmonyElement {
+    #shadowRoot;
+    #bodyShadowRoot;
+    #items = new Set();
+    createElement() {
+        this.#shadowRoot = this.attachShadow({ mode: 'closed' });
+        void shadowRootStyle(this.#shadowRoot, filterCSS);
+        const div = createElement('div', { parent: document.body, });
+        this.#bodyShadowRoot = div.attachShadow({ mode: 'closed' });
+        void shadowRootStyle(this.#bodyShadowRoot, filter2CSS);
+        this.#initObserver();
+        this.#processChilds();
+    }
+    #initObserver() {
+        const config = { childList: true, subtree: true };
+        const mutationCallback = (mutationsList) => {
+            for (const mutation of mutationsList) {
+                for (const addedNode of mutation.addedNodes) {
+                    if (addedNode.parentNode == this) {
+                        this.addItem(addedNode);
+                    }
+                }
+            }
+        };
+        const observer = new MutationObserver(mutationCallback);
+        observer.observe(this, config);
+    }
+    #processChilds() {
+        for (const child of this.children) {
+            this.addItem(child);
+        }
+    }
+    addItem(item) {
+        if (this.#items.has(item)) {
+            return;
+        }
+        this.initElement();
+        this.#shadowRoot.append(item);
+        /*
+        const htmlSlot: HTMLSlotElement = createElement('slot', {
+            parent: this.#shadowRoot,
+        }) as HTMLSlotElement;
+        htmlSlot.assign(item);
+        */
+        this.#items.add(item);
+    }
+    /*
+    addItem(item: HTMLElement): void {
+        if (this.#items.has(item)) {
+            return;
+        }
+        this.initElement();
+        this.append(item);
+
+        const htmlSlot: HTMLSlotElement = createElement('slot', {
+            parent: this.#shadowRoot,
+        }) as HTMLSlotElement;
+        htmlSlot.assign(item);
+        this.#items.add(item);
+    }
+    */
+    clearFilter() {
+        for (const item of this.#items) {
+            item.remove();
+        }
+        this.#items.clear();
+    }
+    addFilters(filters) {
+        for (const filter of filters) {
+            this.addFilter(filter);
+        }
+    }
+    addFilter(filter) {
+        const element = this.#createFilterElement(filter);
+        if (element) {
+            this.addItem(element);
+        }
+        switch (filter.type) {
+            case 'list':
+                if (filter.options) {
+                    const values = new Map();
+                    for (const option of filter.options) {
+                        values.set(option.name, option.value);
+                    }
+                    this.#dispatchEvent(filter.name, values);
+                }
+                break;
+        }
+    }
+    #createFilterElement(filter) {
+        switch (filter.type) {
+            /*
+            export enum HarmonyFilterType {
+                String,
+                Number,
+                Range,
+                List,
+                Select,
+                Custom,
+            }*/
+            case 'string':
+                return createElement('label', {
+                    class: 'string',
+                    childs: [
+                        createElement('span', {
+                            ...(filter.i18n !== false) && {
+                                i18n: filter.title,
+                            },
+                            ...(filter.i18n === false) && {
+                                innerText: filter.title,
+                            },
+                        }),
+                        createElement('input', {
+                            ...(filter.i18n !== false) && {
+                                i18n: {
+                                    placeholder: filter.placeholder ?? '',
+                                },
+                            },
+                            ...(filter.i18n === false) && {
+                                placeholder: filter.placeholder ?? '',
+                            },
+                            $input: (event) => {
+                                this.#dispatchEvent(filter.name, event.target.value);
+                                event.stopPropagation();
+                            }
+                        }),
+                    ],
+                });
+            case 'number':
+                return createElement('input', { type: 'number', });
+            case 'range':
+                return createElement('div', {
+                    childs: [
+                        createElement('input', { type: 'number', }),
+                        createElement('input', { type: 'number', }),
+                    ],
+                });
+            case 'list':
+                const htmlList = createElement('div', {
+                    class: 'list',
+                    popover: 'auto',
+                    hidden: true,
+                    parent: this.#bodyShadowRoot,
+                });
+                defineHarmonySwitch();
+                const html = new Map();
+                const handleChange = () => {
+                    const values = new Map();
+                    for (const [name, sw] of html) {
+                        values.set(name, sw.state);
+                    }
+                    this.#dispatchEvent(filter.name, values);
+                };
+                for (const option of filter.options ?? []) {
+                    html.set(option.name, createElement('harmony-switch', {
+                        parent: htmlList,
+                        'data-i18n': option.title,
+                        ...((option.optionType ?? filter.listType) === HarmonyFilterListType.Ternary) && {
+                            ternary: 1,
+                        },
+                        state: option.value,
+                        $change: (event) => handleChange(),
+                    }));
+                }
+                return createElement('button', {
+                    ...(filter.i18n !== false) && {
+                        i18n: filter.title,
+                    },
+                    $click: (event) => {
+                        htmlList.style.left = event.pageX + 'px';
+                        htmlList.style.top = event.pageY + 'px';
+                        show(htmlList);
+                        htmlList.showPopover();
+                    },
+                });
+            default:
+                BugReporter$1.reportBug('error', `missing filter type ${filter.type}`);
+                break;
+        }
+        return null;
+    }
+    #dispatchEvent(name, value) {
+        this.dispatchEvent(new CustomEvent('filter', {
+            detail: {
+                name,
+                value,
+            },
+        }));
+    }
+}
+function defineHarmonyFilter(suffix = '') {
+    defineHarmonyItem(suffix);
+    defineElement('harmony-filter' + suffix, HTMLHarmonyFilterElement);
+    injectGlobalCss();
 }
 
 var infoBoxCSS = ":host {\n\tdisplay: flex;\n\tpadding: 0.5rem;\n}\n\n:host-context(.ok) {\n\tbackground-color: green;\n\tcolor: white;\n}\n\n:host-context(.warning) {\n\tbackground-color: #413c26;\n\tcolor: #D3A247;\n}\n\n:host-context(.error) {\n\tbackground-color: #4E3534;\n\tcolor: red;\n}\n";
@@ -2803,13 +5396,9 @@ class HTMLHarmonyInfoBoxElement extends HTMLElement {
         return ['i18n', 'type'];
     }
 }
-let definedInfoBox = false;
-function defineHarmonyInfoBox() {
-    if (!definedInfoBox) {
-        defineElement('harmony-info-box', HTMLHarmonyInfoBoxElement);
-        definedInfoBox = true;
-        injectGlobalCss();
-    }
+function defineHarmonyInfoBox(suffix = '') {
+    defineElement('harmony-info-box' + suffix, HTMLHarmonyInfoBoxElement);
+    injectGlobalCss();
 }
 
 var labelPropertyCSS = ":host {\n\tdisplay: flex;\n\tgap: var(--harmony-label-property-gap, 0.5);\n}\n";
@@ -2839,13 +5428,9 @@ class HTMLHarmonyLabelPropertyElement extends HTMLElement {
         }
     }
 }
-let definedLabelProperty = false;
-function defineHarmonyLabelProperty() {
-    if (!definedLabelProperty) {
-        defineElement('harmony-label-property', HTMLHarmonyLabelPropertyElement);
-        definedLabelProperty = true;
-        injectGlobalCss();
-    }
+function defineHarmonyLabelProperty(suffix = '') {
+    defineElement('harmony-label-property' + suffix, HTMLHarmonyLabelPropertyElement);
+    injectGlobalCss();
 }
 
 var paletteCSS = ":host {\r\n\t--harmony-palette-shadow-color-size: var(--harmony-palette-color-size, 2rem);\r\n\t--harmony-palette-shadow-gap: var(--harmony-palette-gap, 0.5rem);\r\n\t--harmony-palette-shadow-border-color: var(--harmony-palette-border-color, grey);\r\n\t--harmony-palette-shadow-selected-border-color: var(--harmony-palette-selected-border-color, orange);\r\n\tdisplay: flex;\r\n\tflex-direction: row;\r\n\tflex-wrap: wrap;\r\n\tgap: var(--harmony-palette-shadow-gap);\r\n}\r\n\r\n.color {\r\n\theight: var(--harmony-palette-shadow-color-size);\r\n\twidth: var(--harmony-palette-shadow-color-size);\r\n\tborder-radius: calc(var(--harmony-palette-shadow-color-size) * .1);\r\n\tborder: calc(var(--harmony-palette-shadow-color-size) * .1) solid var(--harmony-palette-shadow-border-color);\r\n\tpadding: calc(var(--harmony-palette-shadow-color-size) * .1);\r\n\tcursor: pointer;\r\n}\r\n\r\n.color.selected {\r\n\tborder-color: var(--harmony-palette-shadow-selected-border-color);\r\n\tborder-width: calc(var(--harmony-palette-shadow-color-size) * .2);\r\n\tpadding: 0;\r\n\tcolor: black;\r\n}\r\n\r\n.color>svg {\r\n\theight: 100%;\r\n\twidth: 100%;\r\n}\r\n";
@@ -3012,56 +5597,84 @@ class HTMLHarmonyPaletteElement extends HTMLElement {
         return ['multiple'];
     }
 }
-let definedPalette = false;
-function defineHarmonyPalette() {
-    if (!definedPalette) {
-        defineElement('harmony-palette', HTMLHarmonyPaletteElement);
-        definedPalette = true;
-        injectGlobalCss();
-    }
+function defineHarmonyPalette(suffix = '') {
+    defineElement('harmony-palette' + suffix, HTMLHarmonyPaletteElement);
+    injectGlobalCss();
 }
 
-var panelCSS = ":host {\n\tdisplay: flex;\n\tflex: 1;\n\tflex-direction: column;\n\n\tflex: 0 0 auto;\n\t/*flex-grow: 0;\n\tflex-shrink: 0;\n\tflex-basis: auto;*/\n\t/*flex-basis: 0;*/\n\t/*flex: 1;*/\n\t/*height:100%;\n\twidth:100%;*/\n\n\t/*padding: 5px !important;*/\n\tbox-sizing: border-box;\n\tpointer-events: all;\n\toverflow: hidden;\n\tposition: relative;\n\tflex-direction: column;\n\tbox-sizing: border-box;\n}\n\n.harmony-panel-row {\n\tflex-direction: row;\n}\n\n.harmony-panel-row>harmony-panel {\n\theight: 100%;\n}\n\n.harmony-panel-column {\n\tflex-direction: column;\n}\n\n.harmony-panel-column>harmony-panel {\n\twidth: 100%;\n}\n\n.harmony-panel-splitter {\n\tdisplay: none;\n\tflex: 0 0 10px;\n\tbackground-color: red;\n}\n\n.title {\n\tcursor: pointer;\n\ttext-align: center;\n\tfont-size: 1.5em;\n\tpadding: 4px;\n\toverflow: hidden;\n}\n\n.content {\n\twidth: 100%;\n\tbox-sizing: border-box;\n}\n\n[collapsible='1']>.title::after {\n\tcontent: \"-\";\n\tright: 5px;\n\tposition: absolute;\n}\n\n[collapsed='1']>.title::after {\n\tcontent: \"+\";\n}\n";
-
+var _a$8;
 //const dragged = null;
 let nextId = 0;
 //let spliter: HTMLElement = createElement('div', { class: 'harmony-panel-splitter' }) as HTMLElement;
 let highlitPanel;
+const DRAG_THRESHOLD = 15;
 class HTMLHarmonyPanelElement extends HTMLElement {
     #doOnce = true;
     #parent = null;
-    #panels = new Set();
     #size = 1;
     #direction = 'undefined';
-    #isContainer = false;
     #isMovable = false;
-    #isCollapsible = false;
+    #isCollapsible = true;
     #isCollapsed = false;
     customPanelId = nextId++;
-    htmlTitle;
-    htmlContent;
+    #htmlHeader;
+    #htmlContent;
+    #htmlResize;
     #isDummy = false;
     #shadowRoot;
+    #hasHeader = true;
+    #isDraggable = true;
+    #floating = false;
+    #floatingWidth;
+    #floatingHeight;
+    static #dragMode = 'none';
+    static #resizeX = 0;
+    static #resizeY = 0;
+    static #dragging = false;
+    static #draggedPanel;
+    static #deltaX = 0;
+    static #deltaY = 0;
+    static #startClientX = 0;
+    static #startClientY = 0;
+    static #mouseDown = false;
+    static #panels = new Set;
+    static #target = null;
+    static #startRect;
+    static {
+        document.addEventListener('mousedown', (event) => _a$8.#handleDocumentMouseDown(event));
+        document.addEventListener('mousemove', (event) => _a$8.#handleDocumentMouseMove(event));
+        document.addEventListener('mouseup', (event) => _a$8.#handleDocumentMouseUp(event));
+    }
     constructor() {
         super();
+        _a$8.#panels.add(this);
         this.#shadowRoot = this.attachShadow({ mode: 'closed' });
         void shadowRootStyle(this.#shadowRoot, panelCSS);
-        //this.addEventListener('dragstart', event => this._handleDragStart(event));
-        //this.addEventListener('dragover', event => this._handleDragOver(event));
-        //this.addEventListener('drop', event => this._handleDrop(event));
-        //this.addEventListener('mouseenter', event => this._handleMouseEnter(event));
-        //this.addEventListener('mousemove', event => this._handleMouseMove(event));
-        //this.addEventListener('mouseleave', event => this._handleMouseLeave(event));
-        this.htmlTitle = createElement('div', {
-            class: 'title',
+        this.#htmlHeader = createElement('div', {
+            class: 'header',
             parent: this.#shadowRoot,
-            events: {
-                click: () => this.#toggleCollapse(),
-            }
+            hidden: true,
+            $dblclick: () => this.#toggleCollapse(),
+            $mousedown: (event) => this.#handleMouseDown(event),
         });
-        this.htmlContent = createElement('div', {
+        this.#htmlContent = createElement('div', {
             class: 'content',
             parent: this.#shadowRoot,
+        });
+        this.#htmlResize = createElement('div', {
+            class: 'panel-resize',
+            parent: this.#shadowRoot,
+            childs: [
+                createElement('div', { class: 'side top', $mousedown: (event) => this.#startResize(event, 0, -1) }),
+                createElement('div', { class: 'side right', $mousedown: (event) => this.#startResize(event, 1, 0) }),
+                createElement('div', { class: 'side bottom', $mousedown: (event) => this.#startResize(event, 0, 1) }),
+                createElement('div', { class: 'side left', $mousedown: (event) => this.#startResize(event, -1, 0) }),
+                createElement('div', { class: 'corner top_right', $mousedown: (event) => this.#startResize(event, 1, -1) }),
+                createElement('div', { class: 'corner bottom_right', $mousedown: (event) => this.#startResize(event, 1, 1) }),
+                createElement('div', { class: 'corner bottom_left', $mousedown: (event) => this.#startResize(event, -1, 1) }),
+                createElement('div', { class: 'corner top_left', $mousedown: (event) => this.#startResize(event, -1, -1) }),
+            ],
+            $mousedown: (event) => this.#handleMouseDown(event),
         });
     }
     connectedCallback() {
@@ -3069,8 +5682,8 @@ class HTMLHarmonyPanelElement extends HTMLElement {
             //this.append(...this.childNodes);
             this.#doOnce = false;
         }
-        super.append(this.htmlTitle);
-        super.append(this.htmlContent);
+        //super.append(this.#htmlTitle);
+        //super.append(this.#htmlContent);
         //let parentElement = this.parentElement;
         /*if (this._parent && (this._parent != parentElement)) {
             this._parent._removePanel(this);
@@ -3090,13 +5703,13 @@ class HTMLHarmonyPanelElement extends HTMLElement {
             //this.draggable = true;
         }*/
     }
-    append() {
+    append(...nodes) {
         // eslint-disable-next-line prefer-rest-params
-        this.htmlContent.append(...arguments);
+        this.#htmlContent.append(...nodes);
     }
-    prepend() {
+    prepend(...nodes) {
         // eslint-disable-next-line prefer-rest-params
-        this.htmlContent.prepend(...arguments);
+        this.#htmlContent.prepend(...nodes);
     }
     /*
         appendChild(child: HTMLElement) {
@@ -3104,42 +5717,53 @@ class HTMLHarmonyPanelElement extends HTMLElement {
         }
     */
     get innerHTML() {
-        return this.htmlContent.innerHTML;
+        return this.#htmlContent.innerHTML;
     }
     set innerHTML(innerHTML) {
-        this.htmlContent.innerHTML = innerHTML;
+        this.#htmlContent.innerHTML = innerHTML;
     }
     attributeChangedCallback(name, oldValue, newValue) {
         if (oldValue == newValue) {
             return;
         }
-        if (name == 'panel-direction') {
-            this.#direction = newValue;
-        }
-        else if (name == 'panel-size') {
-            this.size = Number(newValue);
-        }
-        else if (name == 'is-container') {
-            this.isContainer = toBool(newValue);
-        }
-        else if (name == 'is-movable') {
-            this.isMovable = toBool(newValue);
-        }
-        else if (name == 'collapsible') {
-            this.collapsible = toBool(newValue);
-        }
-        else if (name == 'collapsed') {
-            this.collapsed = toBool(newValue);
-        }
-        else if (name == 'title') {
-            this.title = newValue;
-        }
-        else if (name == 'title-i18n') {
-            this.titleI18n = newValue;
+        switch (name) {
+            case 'panel-direction':
+                this.#direction = newValue;
+                break;
+            case 'panel-size':
+                this.size = Number(newValue);
+                break;
+            case 'is-movable':
+                this.isMovable = toBool(newValue);
+                break;
+            case 'collapsible':
+                this.collapsible = toBool(newValue);
+                break;
+            case 'collapsed':
+                this.collapsed = toBool(newValue);
+                break;
+            case 'title':
+                this.setTitle(newValue);
+                break;
+            case 'has-header':
+                this.hasHeader = toBool(newValue);
+                break;
+            case 'draggable':
+                this.#isDraggable = toBool(newValue);
+                this.#htmlHeader.setAttribute('draggable', newValue);
+                break;
+            case 'hidden-title':
+                if (toBool(newValue)) {
+                    this.#htmlHeader.classList.add('hidden');
+                }
+                else {
+                    this.#htmlHeader.classList.remove('hidden');
+                }
+                break;
         }
     }
     static get observedAttributes() {
-        return ['panel-direction', 'panel-size', 'is-container', 'is-movable', 'title', 'title-i18n', 'collapsible', 'collapsed'];
+        return ['panel-direction', 'panel-size', 'is-movable', 'title', 'collapsible', 'collapsed', 'has-header', 'draggable', 'hidden-title'];
     }
     /*
         _handleDragStart(event) {
@@ -3356,9 +5980,6 @@ class HTMLHarmonyPanelElement extends HTMLElement {
     get size() {
         return this.#size;
     }
-    set isContainer(isContainer) {
-        this.#isContainer = isContainer;
-    }
     set isMovable(isMovable) {
         this.#isMovable = isMovable;
     }
@@ -3370,27 +5991,50 @@ class HTMLHarmonyPanelElement extends HTMLElement {
         this.#isCollapsed = (collapsed == true) ? this.#isCollapsible : false;
         this.setAttribute('collapsed', String(this.#isCollapsed ? 1 : 0));
         if (this.#isCollapsed) {
-            this.htmlContent.style.display = 'none';
+            this.collapse();
         }
         else {
-            this.htmlContent.style.display = '';
+            this.expand();
         }
     }
-    set title(title) {
+    set hasHeader(hasHeader) {
+        this.#hasHeader = hasHeader;
+        display(this.#htmlHeader, hasHeader);
+    }
+    get hasHeader() {
+        return this.#hasHeader;
+    }
+    collapse() {
+        hide(this.#htmlContent);
+        this.#isCollapsed = true;
+    }
+    expand() {
+        show(this.#htmlContent);
+        this.#isCollapsed = false;
+    }
+    setTitle(title) {
+        this.#htmlHeader.innerText = title;
+        show(this.#htmlHeader);
+        /*
         if (title) {
-            this.htmlTitle = this.htmlTitle ?? document.createElement('div');
-            this.htmlTitle.innerText = title;
-            super.prepend(this.htmlTitle);
+            //this.#htmlTitle = this.#htmlTitle ?? document.createElement('div');
+            super.prepend(this.#htmlTitle);
+        } else {
+            this.#htmlTitle.remove();
+        }
+        */
+    }
+    setTitleI18n(i18n) {
+        if (typeof i18n === 'string') {
+            this.#setTitleI18n(i18n);
         }
         else {
-            this.htmlTitle.remove();
+            errorOnce('unhandled type ' + typeof i18n + i18n);
         }
+        show(this.#htmlHeader);
     }
-    set titleI18n(titleI18n) {
-        this.htmlTitle.classList.add('i18n');
-        this.htmlTitle.setAttribute('data-i18n', titleI18n);
-        this.htmlTitle.remove();
-        this.title = titleI18n;
+    #setTitleI18n(titleI18n) {
+        AddI18nElement(this.#htmlHeader, titleI18n);
     }
     #toggleCollapse() {
         this.collapsed = !this.#isCollapsed;
@@ -3398,137 +6042,233 @@ class HTMLHarmonyPanelElement extends HTMLElement {
     static get nextId() {
         return `harmony-panel-dummy-${++nextId}`;
     }
-}
-let definedPanel = false;
-function defineHarmonyPanel() {
-    if (!definedPanel) {
-        defineElement('harmony-panel', HTMLHarmonyPanelElement);
-        definedPanel = true;
-        injectGlobalCss();
+    /*
+    static saveDisposition(): JSONObject {
+        const list = document.getElementsByTagName('harmony-panel');
+        const json: { panels: Record<string, any>, dummies: any[] } = { panels: {}, dummies: [] };
+        for (const panel of list) {
+            if (panel.id && panel.parentElement && panel.parentElement.id && panel.parentElement.tagName == 'HARMONY-PANEL') {
+                json.panels[(panel as any).id] = { parent: panel.parentElement.id, size: (panel as any).size, direction: (panel as any).direction };
+                if ((panel as HTMLHarmonyPanelElement).#isDummy) {
+                    json.dummies.push((panel as any).id);
+                }
+            }
+        }
+        return json;
     }
-}
+    */
+    /*
+    static restoreDisposition(json: Record<string, any>): void {
+        return;
+        /*
+        if (!json || !json.dummies || !json.panels) { return; }
 
-var circularProgressCSS = ":host {\n\t--track-color: var(--harmony-circular-progress-track-color, #CCC);\n\t--progress-color: var(--harmony-circular-progress-progress-color, #F00);\n\tdisplay: inline-flex;\n}\n\n.track {\n\tcolor: var(--track-color);\n\topacity: 30%;\n\tstroke-width: 10%;\n}\n\n.progress {\n\tcolor: var(--progress-color);\n\tstroke-dasharray: calc(var(--progress) * pi * 100% * 0.8) calc((1 - var(--progress)) * pi * 100% * 0.8);\n\tstroke-width: 10%;\n\tstroke-dashoffset: calc(pi * 100% * 0.8 * 0.25);\n}\n";
+        let dummiesList = new Map();
+        for (let oldDummy of json.dummies) {
+            let newDummy = HTMLHarmonyPanelElement._createDummy();
+            document.body.append(newDummy);
+            dummiesList.set(oldDummy, newDummy.id);
+        }
 
-class HTMLHarmonyElement extends HTMLElement {
-    initialized = false;
-    initElement() {
-        if (this.initialized) {
+        let list = document.getElementsByTagName('harmony-panel');
+        for (let panel of list) {
+            if (panel.id) {
+                let p = json.panels[panel.id];
+                if (p) {
+                    if (p.size != 1 || panel._isDummy) {
+                        panel.size = p.size;
+                    }
+                    panel.direction = p.direction;
+                    let newParentId = dummiesList.get(p.parent) || p.parent;
+                    if (p && newParentId) {
+                        let parent = document.getElementById(newParentId);
+                        /*if (!parent && p.dummy) {
+                            parent = document.createElement('harmony-panel');
+                        }* /
+                        if (parent) {
+                            parent.append(panel);
+                        } else {
+                            console.error('no parent', panel, newParentId);
+                        }
+                    }
+                }
+            }
+        }* /
+    }
+    */
+    adoptStyleSheet(styleSheet) {
+        this.#shadowRoot.adoptedStyleSheets.push(styleSheet);
+    }
+    #handleMouseDown(event) {
+        if (this.#isDraggable && event.button === 0) {
+            _a$8.#draggedPanel = this;
+        }
+    }
+    #startDrag() {
+        if (_a$8.#dragging) {
             return;
         }
-        this.initialized = true;
-        this.createElement();
+        _a$8.#dragging = true;
+        _a$8.#dragMode = 'move';
+        const rect = this.getBoundingClientRect();
+        document.body.append(this);
+        this.setFloating();
+        this.#floatingWidth = this.#floatingWidth ?? rect.width;
+        this.#floatingHeight = this.#floatingHeight ?? rect.height;
+        this.style.left = `${rect.x}px`;
+        this.style.top = `${rect.y}px`;
+        this.style.width = `${this.#floatingWidth}px`;
+        this.style.height = `${this.#floatingHeight}px`;
+        this.style.position = 'absolute';
+        _a$8.#deltaX = rect.x - _a$8.#startClientX;
+        _a$8.#deltaY = rect.y - _a$8.#startClientY;
     }
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    createElement() {
+    setFloating() {
+        this.#floating = true;
+        this.classList.add('floating');
+        this.classList.remove('docked');
     }
-    connectedCallback() {
-        this.initElement();
+    setDocked() {
+        this.#floating = false;
+        this.classList.remove('floating');
+        this.classList.add('docked');
     }
-    attributeChangedCallback(name, oldValue, newValue) {
-        this.initElement();
-        this.onAttributeChanged(name, oldValue, newValue);
-    }
-    // eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-unused-vars
-    onAttributeChanged(name, oldValue, newValue) {
-    }
-    static get observedAttributes() {
-        return ['label'];
-    }
-}
-
-class HTMLHarmonyCircularProgressElement extends HTMLHarmonyElement {
-    #shadowRoot;
-    #disabled = false;
-    #htmlLabel;
-    #htmlSVG;
-    #htmlTrack;
-    #htmlProgress;
-    #start = 0;
-    #end = Math.PI * 2;
-    #progress = 0.5;
-    createElement() {
-        this.#shadowRoot = this.attachShadow({ mode: 'closed' });
-        void shadowRootStyle(this.#shadowRoot, circularProgressCSS);
-        I18n.observeElement(this.#shadowRoot);
-        this.#htmlLabel = createElement('div', {
-            parent: this.#shadowRoot,
-            class: 'label',
-        });
-        this.#htmlSVG = createElementNS('http://www.w3.org/2000/svg', 'svg', {
-            style: `--progress:${this.#progress};`,
-            parent: this.#shadowRoot,
-            childs: [
-                this.#htmlTrack = createElementNS('http://www.w3.org/2000/svg', 'circle', {
-                    class: 'track',
-                    attributes: {
-                        cx: '50%',
-                        cy: '50%',
-                        r: '40%',
-                        fill: 'none',
-                        'stroke-width': '10%',
-                        'shape-rendering': 'geometricPrecision',
-                        stroke: 'currentColor',
-                    }
-                }),
-                this.#htmlProgress = createElementNS('http://www.w3.org/2000/svg', 'circle', {
-                    class: 'progress',
-                    attributes: {
-                        cx: '50%',
-                        cy: '50%',
-                        r: '40%',
-                        fill: 'none',
-                        'stroke-width': '10%',
-                        'shape-rendering': 'geometricPrecision',
-                        stroke: 'currentColor',
-                    }
-                }),
-            ],
-        });
-        this.#refresh();
-    }
-    setProgress(progress) {
-        this.#progress = progress;
-        if (this.#htmlSVG) {
-            this.#htmlSVG.style.cssText = `--progress: ${progress}`;
+    #drag(event) {
+        if (!_a$8.#dragging) {
+            return;
+        }
+        this.style.left = `${event.clientX + _a$8.#deltaX}px`;
+        this.style.top = `${event.clientY + _a$8.#deltaY}px`;
+        if (event.ctrlKey) {
+            _a$8.#setTarget(null);
+        }
+        else {
+            const panel = this.#getPanelAtMousePosition(event);
+            _a$8.#setTarget(panel);
         }
     }
-    #refresh() {
-        if (this.#htmlSVG) {
-            this.#htmlSVG.style.cssText = `--progress: ${this.#progress}`;
+    #stopDrag() {
+        _a$8.#dragging = false;
+        _a$8.#dragMode = 'none';
+        if (_a$8.#target) {
+            _a$8.#target.append(this);
+            this.setDocked();
+            this.style = '';
         }
     }
-    onAttributeChanged(name, oldValue, newValue) {
-        switch (name) {
-            case 'data-label':
-                if (this.#htmlLabel) {
-                    this.#htmlLabel.innerHTML = newValue;
-                }
-                this.#htmlLabel?.classList.remove('i18n');
+    #resize(event) {
+        if (_a$8.#dragMode !== 'resize' || !_a$8.#startRect) {
+            return;
+        }
+        const deltaX = event.clientX - _a$8.#startClientX;
+        const deltaY = event.clientY - _a$8.#startClientY;
+        const rect = _a$8.#startRect;
+        let deltaTop = 0, deltaWidth = 0, deltaHeight = 0, deltaLeft = 0;
+        switch (_a$8.#resizeX) {
+            case -1:
+                deltaLeft += deltaX;
+                deltaWidth -= deltaX;
                 break;
-            case 'data-i18n':
-                this.#htmlLabel?.setAttribute('data-i18n', newValue);
-                if (this.#htmlLabel) {
-                    this.#htmlLabel.innerHTML = newValue;
-                }
-                this.#htmlLabel?.classList.add('i18n');
+            case 1:
+                deltaWidth += deltaX;
                 break;
         }
+        switch (_a$8.#resizeY) {
+            case -1:
+                deltaTop += deltaY;
+                deltaHeight -= deltaY;
+                break;
+            case 1:
+                deltaHeight += deltaY;
+                break;
+        }
+        this.#floatingWidth = rect.width + deltaWidth;
+        this.#floatingHeight = rect.height + deltaHeight;
+        this.style.left = `${rect.x + deltaLeft}px`;
+        this.style.top = `${rect.y + deltaTop}px`;
+        this.style.width = `${this.#floatingWidth}px`;
+        this.style.height = `${this.#floatingHeight}px`;
     }
-    static get observedAttributes() {
-        return ['data-label', 'data-i18n'];
+    #stopResize() {
+        _a$8.#dragging = false;
+        _a$8.#dragMode = 'none';
+    }
+    static #setTarget(target) {
+        if (this.#target) {
+            this.#target.#htmlHeader.classList.remove('target');
+            this.#target.#htmlContent.classList.remove('target');
+        }
+        if (target) {
+            target.#htmlHeader.classList.add('target');
+            target.#htmlContent.classList.add('target');
+        }
+        this.#target = target;
+    }
+    static #handleDocumentMouseMove(event) {
+        if (!this.#mouseDown || !this.#draggedPanel) {
+            return;
+        }
+        switch (_a$8.#dragMode) {
+            case 'none':
+                const deltaX = event.clientX - this.#startClientX;
+                const deltaY = event.clientY - this.#startClientY;
+                if (deltaX * deltaX + deltaY * deltaY > DRAG_THRESHOLD) {
+                    this.#draggedPanel.#startDrag();
+                }
+                break;
+            case 'move':
+                this.#draggedPanel.#drag(event);
+                break;
+            case 'resize':
+                this.#draggedPanel.#resize(event);
+                break;
+        }
+    }
+    static #handleDocumentMouseDown(event) {
+        this.#mouseDown = true;
+        this.#startClientX = event.clientX;
+        this.#startClientY = event.clientY;
+    }
+    static #handleDocumentMouseUp(event) {
+        this.#mouseDown = false;
+        _a$8.#dragging = false;
+        _a$8.#dragMode = 'none';
+        if (this.#draggedPanel) {
+            this.#draggedPanel.#stopDrag();
+            this.#draggedPanel.#stopResize();
+        }
+        this.#draggedPanel = undefined;
+        this.#setTarget(null);
+    }
+    #getPanelAtMousePosition(event) {
+        for (const panel of _a$8.#panels) {
+            if (panel === this || !panel.isConnected) {
+                continue;
+            }
+            const rect = panel.getBoundingClientRect();
+            if (event.clientX >= rect.left
+                && event.clientX < rect.right
+                && event.clientY >= rect.top
+                && event.clientY < rect.bottom) {
+                return panel;
+            }
+        }
+        return null;
+    }
+    #startResize(event, x, y) {
+        if (_a$8.#dragMode !== 'none') {
+            return;
+        }
+        _a$8.#dragMode = 'resize';
+        _a$8.#resizeX = x;
+        _a$8.#resizeY = y;
+        _a$8.#startRect = this.getBoundingClientRect();
     }
 }
-let definedCircularProgress = false;
-function defineHarmonyCircularProgress() {
-    if (!definedCircularProgress) {
-        defineElement('harmony-circular-progress', class extends HTMLHarmonyCircularProgressElement {
-        });
-        defineElement('h-cp', class extends HTMLHarmonyCircularProgressElement {
-        });
-        definedCircularProgress = true;
-        injectGlobalCss();
-    }
+_a$8 = HTMLHarmonyPanelElement;
+function defineHarmonyPanel(suffix = '') {
+    defineElement('harmony-panel' + suffix, HTMLHarmonyPanelElement);
+    injectGlobalCss();
 }
 
 var radioCSS = ":host {\n\t--harmony-radio-shadow-button-border-radius: var(--harmony-radio-button-border-radius, 0.5rem);\n\tdisplay: inline-flex;\n\toverflow: hidden;\n\tuser-select: none;\n}\n\n.label {\n\tmargin: auto 0;\n\tfont-weight: bold;\n\tmargin-right: 0.25rem;\n}\n\n::slotted(button) {\n\tpadding: 0.5rem;\n\tcolor: var(--harmony-ui-text-primary);\n\tflex: auto;\n\tcursor: pointer;\n\tappearance: none;\n\tborder-style: solid;\n\tborder-width: 0.0625rem;\n\tborder-color: var(--harmony-ui-border-primary);\n\tborder-right-style: none;\n\tbackground-color: var(--harmony-ui-input-background-primary);\n\ttransition: background-color 0.2s linear;\n\tfont-size: 1rem;\n\toverflow: hidden;\n}\n\n::slotted(button:hover) {\n\tbackground-color: var(--harmony-ui-input-background-secondary);\n}\n\n::slotted(button[selected]) {\n\tbackground-color: var(--harmony-ui-accent-primary);\n}\n\n::slotted(button[selected]:hover) {\n\tbackground-color: var(--harmony-ui-accent-secondary);\n}\n\n::slotted(button:first-of-type) {\n\tborder-radius: var(--harmony-radio-shadow-button-border-radius) 0 0 var(--harmony-radio-shadow-button-border-radius);\n}\n\n::slotted(button:last-child) {\n\tborder-right-style: solid;\n\tborder-radius: 0 var(--harmony-radio-shadow-button-border-radius) var(--harmony-radio-shadow-button-border-radius) 0;\n}\n";
@@ -3619,7 +6359,7 @@ class HTMLHarmonyRadioElement extends HTMLElement {
     }
     set disabled(disabled) {
         this.#disabled = disabled ? true : false;
-        this.classList[this.#disabled ? 'add' : 'remove']('disabled');
+        addRemoveClass(this, 'disabled', this.#disabled);
     }
     get disabled() {
         return this.#disabled;
@@ -3640,10 +6380,14 @@ class HTMLHarmonyRadioElement extends HTMLElement {
         const config = { childList: true, subtree: true };
         const mutationCallback = (mutationsList) => {
             for (const mutation of mutationsList) {
-                const addedNodes = mutation.addedNodes;
-                for (const addedNode of addedNodes) {
+                for (const addedNode of mutation.addedNodes) {
                     if (addedNode.parentNode == this) {
                         this.#initButton(addedNode);
+                    }
+                }
+                for (const removedNode of mutation.removedNodes) {
+                    if (removedNode.parentNode == this) {
+                        this.#selected.delete(removedNode.value);
                     }
                 }
             }
@@ -3678,13 +6422,295 @@ class HTMLHarmonyRadioElement extends HTMLElement {
         return ['data-label', 'data-i18n', 'disabled', 'multiple', 'value'];
     }
 }
-let definedRadio = false;
-function defineHarmonyRadio() {
-    if (!definedRadio) {
-        defineElement('harmony-radio', HTMLHarmonyRadioElement);
-        definedRadio = true;
-        injectGlobalCss();
+function defineHarmonyRadio(suffix = '') {
+    defineElement('harmony-radio' + suffix, HTMLHarmonyRadioElement);
+    injectGlobalCss();
+}
+
+var selectCSS = "";
+
+class HTMLHarmonySelectElement extends HTMLElement {
+    #htmlSelect;
+    #shadowRoot;
+    constructor() {
+        super();
+        this.#shadowRoot = this.attachShadow({ mode: 'closed' });
+        this.#htmlSelect = createElement('select', { parent: this.#shadowRoot });
     }
+    connectedCallback() {
+        void shadowRootStyle(this.#shadowRoot, selectCSS);
+        this.#shadowRoot.append(this.#htmlSelect);
+    }
+    attributeChangedCallback(name, oldValue, newValue) {
+        if (name == 'multiple') {
+            this.#htmlSelect.setAttribute('multiple', newValue);
+        }
+    }
+    addEventListener(type, listener) {
+        this.#htmlSelect.addEventListener(type, listener);
+    }
+    /*
+        onChange(event: Event) {
+            let newEvent = new event.constructor(event.type, event);
+            this.dispatchEvent(newEvent);
+        }
+    */
+    addOption(value, text) {
+        text = text ?? value;
+        const option = document.createElement('option');
+        option.value = value;
+        option.innerHTML = text;
+        this.#htmlSelect.append(option);
+    }
+    addOptions(values) {
+        if (values && values.entries) {
+            for (const [value, text] of values.entries()) {
+                this.addOption(value, text);
+            }
+        }
+    }
+    setOptions(values) {
+        this.removeAllOptions();
+        this.addOptions(values);
+    }
+    removeOption(value) {
+        for (const option of this.#htmlSelect.children) {
+            if (option.value === value) {
+                option.remove();
+            }
+        }
+    }
+    removeAllOptions() {
+        const list = this.#htmlSelect.children;
+        while (list[0]) {
+            list[0].remove();
+        }
+    }
+    select(value) {
+        for (const option of this.#htmlSelect.children) {
+            if (option.value === value) {
+                option.selected = true;
+            }
+        }
+    }
+    selectFirst() {
+        if (this.#htmlSelect.children[0]) {
+            this.#htmlSelect.children[0].selected = true;
+            this.#htmlSelect.dispatchEvent(new Event('input'));
+        }
+    }
+    unselect(value) {
+        for (const option of this.#htmlSelect.children) {
+            if (option.value === value) {
+                option.selected = false;
+            }
+        }
+    }
+    unselectAll() {
+        for (const option of this.#htmlSelect.children) {
+            option.selected = false;
+        }
+    }
+    static get observedAttributes() {
+        return ['multiple'];
+    }
+}
+function defineHarmonySelect(suffix = '') {
+    defineElement('harmony-select' + suffix, HTMLHarmonySelectElement);
+    injectGlobalCss();
+}
+
+var sliderCSS = ":host {\n\tdisplay: flex;\n}\n\nlabel {\n\twidth: var(--h-slider-label-width, auto);\n}\n\ninput[type=range] {\n\tflex: auto;\n}\n\ninput[type=number] {\n\tflex: 0 0 var(--h-slider-input-width, 4rem);\n\tfont-size: var(--h-slider-input-font-size, 1.2rem);\n\tmin-width: 0;\n\ttext-align: center;\n}\n";
+
+class HTMLHarmonySliderElement extends HTMLHarmonyElement {
+    #shadowRoot;
+    #htmlLabel;
+    #htmlSlider;
+    #htmlInput;
+    #htmlPrependSlot;
+    #htmlAppendSlot;
+    #htmlPrependIcon;
+    #htmlAppendIcon;
+    #min = 0;
+    #max = 100;
+    #value = [50, 50];
+    #isRange = false;
+    createElement() {
+        this.#shadowRoot = this.attachShadow({ mode: 'closed' });
+        void shadowRootStyle(this.#shadowRoot, sliderCSS);
+        I18n.observeElement(this.#shadowRoot);
+        this.#htmlLabel = createElement('label', {
+            parent: this.#shadowRoot,
+            hidden: true,
+        });
+        this.#htmlPrependSlot = createElement('slot', {
+            parent: this.#shadowRoot,
+            name: 'prepend',
+        });
+        this.#htmlPrependIcon = createElement('img', {
+            parent: this.#shadowRoot,
+        });
+        this.#htmlSlider = createElement('input', {
+            type: 'range',
+            parent: this.#shadowRoot,
+            step: 'any',
+            $change: (event) => this.#setValue(Number(event.target.value), undefined, event.target),
+            $input: (event) => this.#setValue(Number(event.target.value), undefined, event.target),
+        });
+        this.#htmlAppendIcon = createElement('img', {
+            parent: this.#shadowRoot,
+        });
+        this.#htmlAppendSlot = createElement('slot', {
+            parent: this.#shadowRoot,
+            name: 'append',
+        });
+        this.#htmlInput = createElement('input', {
+            type: 'number',
+            hidden: true,
+            parent: this.#shadowRoot,
+            value: String(50),
+            step: 'any',
+            min: 0,
+            max: 1000,
+            $change: (event) => this.#setValue(Number(event.target.value), undefined, event.target),
+            $input: (event) => this.#setValue(Number(event.target.value), undefined, event.target),
+        });
+    }
+    #checkMin(value) {
+        if (value < this.#min) {
+            return this.#min;
+        }
+        return value;
+    }
+    #checkMax(max) {
+        if (max > this.#max) {
+            return this.#max;
+        }
+        return max;
+    }
+    #setValue(min, max, initiator) {
+        //	 TODO: swap min/max
+        if (min !== undefined) {
+            this.#value[0] = this.#checkMin(min);
+        }
+        if (max !== undefined) {
+            this.#value[1] = this.#checkMax(max);
+        }
+        if (initiator != this.#htmlSlider) {
+            this.#htmlSlider.value = String(min ?? this.#value[0]);
+        }
+        if (initiator != this.#htmlInput) {
+            this.#htmlInput.value = String((min ?? this.#value[0]).toFixed(2));
+        }
+        this.dispatchEvent(new CustomEvent('input', {
+            detail: {
+                value: this.#isRange ? this.#value : this.#value[0],
+            }
+        }));
+    }
+    get value() {
+        return this.#isRange ? this.#value : this.#value[0];
+    }
+    isRange() {
+        return this.#isRange;
+    }
+    setValue(value) {
+        if (Array.isArray(value)) {
+            this.#setValue(value[0], value[1]);
+        }
+        else {
+            if (this.#isRange) {
+                console.error('value must be an array');
+            }
+            else {
+                this.#setValue(value);
+            }
+        }
+    }
+    onAttributeChanged(name, oldValue, newValue) {
+        let step;
+        switch (name) {
+            case 'label':
+                this.#htmlLabel.innerHTML = newValue;
+                updateElement(this.#htmlLabel, { i18n: newValue, });
+                show(this.#htmlLabel);
+                break;
+            case 'min':
+                this.#min = Number(newValue);
+                this.#htmlSlider.setAttribute('min', String(this.#min));
+                this.#htmlInput.setAttribute('min', String(this.#min));
+                break;
+            case 'max':
+                this.#max = Number(newValue);
+                this.#htmlSlider.setAttribute('max', String(this.#max));
+                this.#htmlInput.setAttribute('max', String(this.#max));
+                break;
+            case 'value':
+                if (newValue === null) {
+                    break;
+                }
+                const value = JSON.parse(newValue);
+                if (Array.isArray(value)) {
+                    this.setValue(value);
+                }
+                else {
+                    const n = Number(value);
+                    if (!Number.isNaN(n)) {
+                        this.setValue(n);
+                    }
+                }
+                break;
+            case 'step':
+                step = Number(newValue);
+                if (Number.isNaN(step)) {
+                    step = undefined;
+                }
+                else {
+                    step = step;
+                }
+                this.#htmlSlider.setAttribute('step', step ? String(step) : 'any');
+                break;
+            case 'input-step':
+                step = Number(newValue);
+                if (Number.isNaN(step)) {
+                    step = undefined;
+                }
+                else {
+                    step = step;
+                }
+                this.#htmlInput.setAttribute('step', step ? String(step) : 'any');
+                break;
+            case 'has-input':
+                if (newValue === null) {
+                    hide(this.#htmlInput);
+                }
+                else {
+                    show(this.#htmlInput);
+                }
+                break;
+            /*
+            case 'data-label':
+                this.#htmlText.innerHTML = newValue;
+                this.#htmlText.classList.remove('i18n');
+                break;
+            case 'data-i18n':
+                this.#htmlText.setAttribute('data-i18n', newValue);
+                this.#htmlText.innerHTML = newValue;
+                this.#htmlText.classList.add('i18n');
+                break;
+            case 'data-position':
+                this.#htmlText.setAttribute('data-position', newValue);
+                break;
+                */
+        }
+    }
+    static get observedAttributes() {
+        return super.observedAttributes.concat(['label', 'min', 'max', 'input-step', 'has-input', 'append-icon', 'prepend-icon', 'value']);
+    }
+}
+function defineHarmonySlider(suffix = '') {
+    defineElement('harmony-slider' + suffix, HTMLHarmonySliderElement);
+    injectGlobalCss();
 }
 
 var slideshowZoomCSS = ":host {\n\tposition: fixed;\n\tpointer-events: none;\n\twidth: 100%;\n\theight: 100%;\n\tz-index: var(--harmony-slideshow-zoom-z-index, 1000000);\n\ttop: 0;\n\tleft: 0;\n\n}\n\nimg {\n\twidth: 100%;\n\tposition: relative;\n\twidth: 1500px;\n}\n";
@@ -4017,307 +7043,9 @@ class HTMLHarmonySlideshowElement extends HTMLElement {
         return ['dynamic'];
     }
 }
-let definedSlideshow = false;
-function defineHarmonySlideshow() {
-    if (!definedSlideshow) {
-        defineElement('harmony-slideshow', HTMLHarmonySlideshowElement);
-        definedSlideshow = true;
-        injectGlobalCss();
-    }
-}
-
-var selectCSS = "";
-
-class HTMLHarmonySelectElement extends HTMLElement {
-    #htmlSelect;
-    #shadowRoot;
-    constructor() {
-        super();
-        this.#shadowRoot = this.attachShadow({ mode: 'closed' });
-        this.#htmlSelect = createElement('select', { parent: this.#shadowRoot });
-    }
-    connectedCallback() {
-        void shadowRootStyle(this.#shadowRoot, selectCSS);
-        this.#shadowRoot.append(this.#htmlSelect);
-    }
-    attributeChangedCallback(name, oldValue, newValue) {
-        if (name == 'multiple') {
-            this.#htmlSelect.setAttribute('multiple', newValue);
-        }
-    }
-    addEventListener(type, listener) {
-        this.#htmlSelect.addEventListener(type, listener);
-    }
-    /*
-        onChange(event: Event) {
-            let newEvent = new event.constructor(event.type, event);
-            this.dispatchEvent(newEvent);
-        }
-    */
-    addOption(value, text) {
-        text = text ?? value;
-        const option = document.createElement('option');
-        option.value = value;
-        option.innerHTML = text;
-        this.#htmlSelect.append(option);
-    }
-    addOptions(values) {
-        if (values && values.entries) {
-            for (const [value, text] of values.entries()) {
-                this.addOption(value, text);
-            }
-        }
-    }
-    setOptions(values) {
-        this.removeAllOptions();
-        this.addOptions(values);
-    }
-    removeOption(value) {
-        for (const option of this.#htmlSelect.children) {
-            if (option.value === value) {
-                option.remove();
-            }
-        }
-    }
-    removeAllOptions() {
-        const list = this.#htmlSelect.children;
-        while (list[0]) {
-            list[0].remove();
-        }
-    }
-    select(value) {
-        for (const option of this.#htmlSelect.children) {
-            if (option.value === value) {
-                option.selected = true;
-            }
-        }
-    }
-    selectFirst() {
-        if (this.#htmlSelect.children[0]) {
-            this.#htmlSelect.children[0].selected = true;
-            this.#htmlSelect.dispatchEvent(new Event('input'));
-        }
-    }
-    unselect(value) {
-        for (const option of this.#htmlSelect.children) {
-            if (option.value === value) {
-                option.selected = false;
-            }
-        }
-    }
-    unselectAll() {
-        for (const option of this.#htmlSelect.children) {
-            option.selected = false;
-        }
-    }
-    static get observedAttributes() {
-        return ['multiple'];
-    }
-}
-let definedSelect = false;
-function defineHarmonySelect() {
-    if (!definedSelect) {
-        defineElement('harmony-select', HTMLHarmonySelectElement);
-        definedSelect = true;
-        injectGlobalCss();
-    }
-}
-
-var sliderCSS = ":host {\n\tdisplay: flex;\n}\n\nlabel {\n\twidth: var(--h-slider-label-width, auto);\n}\n\ninput[type=range] {\n\tflex: auto;\n}\n\ninput[type=number] {\n\tflex: 0 0 var(--h-slider-input-width, 4rem);\n\tfont-size: var(--h-slider-input-font-size, 1.2rem);\n\tmin-width: 0;\n\ttext-align: center;\n}\n";
-
-class HTMLHarmonySliderElement extends HTMLHarmonyElement {
-    #shadowRoot;
-    #htmlLabel;
-    #htmlSlider;
-    #htmlInput;
-    #htmlPrependSlot;
-    #htmlAppendSlot;
-    #htmlPrependIcon;
-    #htmlAppendIcon;
-    #min = 0;
-    #max = 100;
-    #value = [50, 50];
-    #isRange = false;
-    createElement() {
-        this.#shadowRoot = this.attachShadow({ mode: 'closed' });
-        void shadowRootStyle(this.#shadowRoot, sliderCSS);
-        I18n.observeElement(this.#shadowRoot);
-        this.#htmlLabel = createElement('label', {
-            parent: this.#shadowRoot,
-            hidden: true,
-        });
-        this.#htmlPrependSlot = createElement('slot', {
-            parent: this.#shadowRoot,
-            name: 'prepend',
-        });
-        this.#htmlPrependIcon = createElement('img', {
-            parent: this.#shadowRoot,
-        });
-        this.#htmlSlider = createElement('input', {
-            type: 'range',
-            parent: this.#shadowRoot,
-            step: 'any',
-            $change: (event) => this.#setValue(Number(event.target.value), undefined, event.target),
-            $input: (event) => this.#setValue(Number(event.target.value), undefined, event.target),
-        });
-        this.#htmlAppendIcon = createElement('img', {
-            parent: this.#shadowRoot,
-        });
-        this.#htmlAppendSlot = createElement('slot', {
-            parent: this.#shadowRoot,
-            name: 'append',
-        });
-        this.#htmlInput = createElement('input', {
-            type: 'number',
-            hidden: true,
-            parent: this.#shadowRoot,
-            value: String(50),
-            step: 'any',
-            min: 0,
-            max: 1000,
-            $change: (event) => this.#setValue(Number(event.target.value), undefined, event.target),
-            $input: (event) => this.#setValue(Number(event.target.value), undefined, event.target),
-        });
-    }
-    #checkMin(value) {
-        if (value < this.#min) {
-            return this.#min;
-        }
-        return value;
-    }
-    #checkMax(max) {
-        if (max > this.#max) {
-            return this.#max;
-        }
-        return max;
-    }
-    #setValue(min, max, initiator) {
-        //	 TODO: swap min/max
-        if (min !== undefined) {
-            this.#value[0] = this.#checkMin(min);
-        }
-        if (max !== undefined) {
-            this.#value[1] = this.#checkMax(max);
-        }
-        if (initiator != this.#htmlSlider) {
-            this.#htmlSlider.value = String(min ?? this.#value[0]);
-        }
-        if (initiator != this.#htmlInput) {
-            this.#htmlInput.value = String((min ?? this.#value[0]).toFixed(2));
-        }
-        this.dispatchEvent(new CustomEvent('input', {
-            detail: {
-                value: this.#isRange ? this.#value : this.#value[0],
-            }
-        }));
-    }
-    get value() {
-        return this.#isRange ? this.#value : this.#value[0];
-    }
-    isRange() {
-        return this.#isRange;
-    }
-    setValue(value) {
-        if (Array.isArray(value)) {
-            this.#setValue(value[0], value[1]);
-        }
-        else {
-            if (this.#isRange) {
-                console.error('value must be an array');
-            }
-            else {
-                this.#setValue(value);
-            }
-        }
-    }
-    onAttributeChanged(name, oldValue, newValue) {
-        let step;
-        switch (name) {
-            case 'label':
-                this.#htmlLabel.innerHTML = newValue;
-                updateElement(this.#htmlLabel, { i18n: newValue, });
-                show(this.#htmlLabel);
-                break;
-            case 'min':
-                this.#min = Number(newValue);
-                this.#htmlSlider.setAttribute('min', String(this.#min));
-                this.#htmlInput.setAttribute('min', String(this.#min));
-                break;
-            case 'max':
-                this.#max = Number(newValue);
-                this.#htmlSlider.setAttribute('max', String(this.#max));
-                this.#htmlInput.setAttribute('max', String(this.#max));
-                break;
-            case 'value':
-                if (newValue === null) {
-                    break;
-                }
-                const value = JSON.parse(newValue);
-                if (Array.isArray(value)) {
-                    this.setValue(value);
-                }
-                else {
-                    const n = Number(value);
-                    if (!Number.isNaN(n)) {
-                        this.setValue(n);
-                    }
-                }
-                break;
-            case 'step':
-                step = Number(newValue);
-                if (Number.isNaN(step)) {
-                    step = undefined;
-                }
-                else {
-                    step = step;
-                }
-                this.#htmlSlider.setAttribute('step', step ? String(step) : 'any');
-                break;
-            case 'input-step':
-                step = Number(newValue);
-                if (Number.isNaN(step)) {
-                    step = undefined;
-                }
-                else {
-                    step = step;
-                }
-                this.#htmlInput.setAttribute('step', step ? String(step) : 'any');
-                break;
-            case 'has-input':
-                if (newValue === null) {
-                    hide(this.#htmlInput);
-                }
-                else {
-                    show(this.#htmlInput);
-                }
-                break;
-            /*
-            case 'data-label':
-                this.#htmlText.innerHTML = newValue;
-                this.#htmlText.classList.remove('i18n');
-                break;
-            case 'data-i18n':
-                this.#htmlText.setAttribute('data-i18n', newValue);
-                this.#htmlText.innerHTML = newValue;
-                this.#htmlText.classList.add('i18n');
-                break;
-            case 'data-position':
-                this.#htmlText.setAttribute('data-position', newValue);
-                break;
-                */
-        }
-    }
-    static get observedAttributes() {
-        return super.observedAttributes.concat(['label', 'min', 'max', 'input-step', 'has-input', 'append-icon', 'prepend-icon', 'value']);
-    }
-}
-let definedSlider = false;
-function defineHarmonySlider() {
-    if (!definedSlider) {
-        defineElement('harmony-slider', HTMLHarmonySliderElement);
-        definedSlider = true;
-        injectGlobalCss();
-    }
+function defineHarmonySlideshow(suffix = '') {
+    defineElement('harmony-slideshow' + suffix, HTMLHarmonySlideshowElement);
+    injectGlobalCss();
 }
 
 var splitterCSS = ":host {\n\tdisplay: flex;\n\tpointer-events: none;\n\t/*--harmony-color-picker-shadow-gap: var(--harmony-color-picker-gap, 0.5rem);*/\n\t--harmony-splitter-shadow-gutter-thickness: var(--harmony-splitter-gutter-thickness, 0.3rem);\n\t--harmony-splitter-shadow-gutter-bg-color: var(--harmony-splitter-gutter-bg-color, black);\n}\n\n:host(.vertical) {\n\tflex-direction: row;\n}\n\n:host(.horizontal) {\n\tflex-direction: column;\n}\n\n:host .gutter {\n\tflex: 0 0 var(--harmony-splitter-shadow-gutter-thickness);\n\tpointer-events: all;\n\tbackground-color: var(--harmony-splitter-shadow-gutter-bg-color);\n}\n\n:host(.vertical) .gutter {\n\tcursor: ew-resize;\n}\n\n:host(.horizontal) .gutter {\n\tcursor: ns-resize;\n}\n\n:host .panel {\n\tflex: 0 0 50%;\n\tdisplay: flex;\n\tpointer-events: none;\n}\n";
@@ -4426,156 +7154,9 @@ class HTMLHarmonySplitterElement extends HTMLElement {
         return ['orientation'];
     }
 }
-let definedSplitter = false;
-function defineHarmonySplitter() {
-    if (!definedSplitter) {
-        defineElement('harmony-splitter', HTMLHarmonySplitterElement);
-        definedSplitter = true;
-        injectGlobalCss();
-    }
-}
-
-var switchCSS = ":host {\n\t--harmony-switch-shadow-width: var(--harmony-switch-width, 4rem);\n\t--harmony-switch-shadow-height: var(--harmony-switch-height, 2rem);\n\t--harmony-switch-shadow-on-background-color: var(--harmony-switch-on-background-color, #1072eb);\n\t--harmony-switch-shadow-on-background-color-hover: var(--harmony-switch-on-background-color-hover, #1040c1);\n\t--harmony-switch-shadow-slider-width: var(--harmony-switch-slider-width, 1.4rem);\n\t--harmony-switch-shadow-slider-height: var(--harmony-switch-slider-height, 1.4rem);\n\t--harmony-switch-shadow-slider-margin: var(--harmony-switch-slider-margin, 0.3rem);\n\t--harmony-switch-shadow-slider-border-width: var(--harmony-switch-slider-border-width, 0rem);\n\t--slot-width: var(--harmony-switch-slot-width, auto);\n\t--prepend-width: var(--harmony-switch-prepend-width, var(--slot-width));\n\t--append-width: var(--harmony-switch-append-width, var(--slot-width));\n\n\tdisplay: inline-flex;\n\tuser-select: none;\n\tcursor: pointer;\n\tjustify-content: space-between;\n}\n\n:host>* {\n\tflex-grow: 0;\n}\n\n.label {\n\tmargin: auto 0;\n\tfont-weight: bold;\n\tflex: 1;\n}\n\nslot{\n\tdisplay: inline-block;\n}\n\nslot[name=\"prepend\"] {\n\twidth: var(--prepend-width);\n}\n\nslot[name=\"append\"] {\n\twidth: var(--append-width);\n}\n\n.harmony-switch-outer {\n\tdisplay: flex;\n\theight: var(--harmony-switch-shadow-height);\n\tborder-radius: calc(var(--harmony-switch-shadow-height) * 0.5);\n\talign-items: center;\n\tmargin-left: 0.25rem;\n\ttransition: background-color 0.25s linear;\n\twidth: var(--harmony-switch-shadow-width);\n}\n\n.harmony-switch-outer {\n\tbackground-color: var(--harmony-ui-input-background-primary);\n}\n\n.harmony-switch-outer:hover {\n\tbackground-color: var(--harmony-ui-input-background-secondary);\n}\n\n.harmony-switch-outer.on {\n\tbackground-color: var(--harmony-ui-accent-primary);\n}\n\n.harmony-switch-outer.on:hover {\n\tbackground-color: var(--harmony-ui-accent-secondary);\n}\n\n.harmony-switch-inner {\n\tdisplay: inline-block;\n\theight: var(--harmony-switch-shadow-slider-height);\n\twidth: var(--harmony-switch-shadow-slider-width);\n\tborder-radius: calc(var(--harmony-switch-shadow-slider-height) * 0.5);\n\ttransition: all 0.25s;\n\tposition: relative;\n\tleft: var(--harmony-switch-shadow-slider-margin);\n\tborder: var(--harmony-switch-shadow-slider-border-width) solid;\n\tbox-sizing: border-box;\n\tborder-color: var(--harmony-ui-input-border-primary);\n\tbackground-color: var(--harmony-ui-input-background-tertiary);\n}\n\n.harmony-switch-outer.ternary .harmony-switch-inner {\n\tleft: calc(50% - var(--harmony-switch-shadow-slider-width) * 0.5);\n}\n\n.harmony-switch-outer.off .harmony-switch-inner {\n\tleft: var(--harmony-switch-shadow-slider-margin);\n}\n\n.harmony-switch-outer.on .harmony-switch-inner {\n\tleft: calc(100% - var(--harmony-switch-shadow-slider-width) - var(--harmony-switch-shadow-slider-margin));\n}\n\n.harmony-switch-outer.ternary.off {\n\tbackground-color: red;\n}\n\n.harmony-switch-outer.ternary.off:hover {\n\tbackground-color: red;\n}\n\n.harmony-switch-outer.ternary.on {\n\tbackground-color: green;\n}\n\n.harmony-switch-outer.ternary.on:hover {\n\tbackground-color: green;\n}\n";
-
-class HTMLHarmonySwitchElement extends HTMLHarmonyElement {
-    #shadowRoot;
-    #disabled = false;
-    #htmlLabel;
-    #htmlSwitchOuter;
-    #state = false;
-    #ternary = false;
-    createElement() {
-        this.#shadowRoot = this.attachShadow({ mode: 'closed' });
-        void shadowRootStyle(this.#shadowRoot, switchCSS);
-        I18n.observeElement(this.#shadowRoot);
-        this.#htmlLabel = createElement('div', {
-            parent: this.#shadowRoot,
-            class: 'label',
-        });
-        createElement('slot', {
-            parent: this.#shadowRoot,
-            name: 'prepend',
-            $click: () => this.state = false,
-        });
-        this.#htmlSwitchOuter = createElement('span', {
-            parent: this.#shadowRoot,
-            class: 'harmony-switch-outer',
-            child: createElement('span', { class: 'harmony-switch-inner' }),
-            $click: () => this.toggle(),
-        });
-        createElement('slot', {
-            parent: this.#shadowRoot,
-            name: 'append',
-            $click: () => this.state = true,
-        });
-        this.#refresh();
-    }
-    set disabled(disabled) {
-        this.#disabled = disabled ? true : false;
-        this.classList[this.#disabled ? 'add' : 'remove']('disabled');
-    }
-    get disabled() {
-        return this.#disabled;
-    }
-    set state(state) {
-        if (this.#state != state) {
-            this.#state = state;
-            this.dispatchEvent(new CustomEvent('change', { detail: { state: state, value: state } }));
-        }
-        else {
-            this.#state = state;
-        }
-        this.#refresh();
-    }
-    get state() {
-        return this.#state;
-    }
-    set checked(checked) {
-        this.state = checked;
-    }
-    get checked() {
-        return this.#state;
-    }
-    set ternary(ternary) {
-        this.#ternary = ternary;
-        this.#refresh();
-    }
-    get ternary() {
-        return this.#ternary;
-    }
-    toggle() {
-        if (this.#ternary) {
-            if (this.#state === false) {
-                this.state = undefined;
-            }
-            else if (this.#state === undefined) {
-                this.state = true;
-            }
-            else {
-                this.state = false;
-            }
-        }
-        else {
-            this.state = !this.#state;
-        }
-        this.#refresh();
-    }
-    #refresh() {
-        this.#htmlSwitchOuter?.classList.remove('on', 'off', 'ternary');
-        if (this.#ternary) {
-            this.#htmlSwitchOuter?.classList.add('ternary');
-        }
-        if (this.#state === undefined) {
-            return;
-        }
-        this.#htmlSwitchOuter?.classList.add(this.#state ? 'on' : 'off');
-    }
-    onAttributeChanged(name, oldValue, newValue) {
-        switch (name) {
-            case 'data-label':
-                if (this.#htmlLabel) {
-                    this.#htmlLabel.innerHTML = newValue;
-                }
-                this.#htmlLabel?.classList.remove('i18n');
-                break;
-            case 'data-i18n':
-                this.#htmlLabel?.setAttribute('data-i18n', newValue);
-                if (this.#htmlLabel) {
-                    this.#htmlLabel.innerHTML = newValue;
-                }
-                this.#htmlLabel?.classList.add('i18n');
-                break;
-            case 'disabled':
-                this.disabled = toBool(newValue);
-                break;
-            case 'ternary':
-                this.ternary = true;
-            case 'state':
-                if (newValue == '' || newValue == 'undefined') {
-                    this.state = undefined;
-                }
-                else {
-                    if (newValue == 'true' || newValue == '1') {
-                        this.state = true;
-                    }
-                    else {
-                        this.state = false;
-                    }
-                }
-                break;
-        }
-    }
-    static get observedAttributes() {
-        return ['data-label', 'data-i18n', 'disabled', 'ternary', 'state'];
-    }
-}
-let definedSwitch = false;
-function defineHarmonySwitch() {
-    if (!definedSwitch) {
-        defineElement('harmony-switch', HTMLHarmonySwitchElement);
-        definedSwitch = true;
-        injectGlobalCss();
-    }
+function defineHarmonySplitter(suffix = '') {
+    defineElement('harmony-splitter' + suffix, HTMLHarmonySplitterElement);
+    injectGlobalCss();
 }
 
 class HTMLHarmonyTabElement extends HTMLElement {
@@ -4614,7 +7195,7 @@ class HTMLHarmonyTabElement extends HTMLElement {
     }
     connectedCallback() {
         const parentElement = this.parentElement;
-        if (parentElement && parentElement.tagName == 'HARMONY-TAB-GROUP') {
+        if (parentElement && parentElement.tagName.startsWith('HARMONY-TAB-GROUP')) {
             parentElement.addTab(this);
             this.#group = parentElement;
         }
@@ -4631,6 +7212,7 @@ class HTMLHarmonyTabElement extends HTMLElement {
                 break;
             case 'disabled':
                 this.disabled = toBool(newValue);
+                break;
             case 'data-closable':
                 display(this.#htmlClose, toBool(newValue));
                 break;
@@ -4638,7 +7220,7 @@ class HTMLHarmonyTabElement extends HTMLElement {
     }
     set disabled(disabled) {
         this.#disabled = disabled ? true : false;
-        this.#header.classList[this.#disabled ? 'add' : 'remove']('disabled');
+        addRemoveClass(this.#header, 'disabled', this.#disabled);
     }
     get disabled() {
         return this.#disabled;
@@ -4667,12 +7249,7 @@ class HTMLHarmonyTabElement extends HTMLElement {
             }
         }
         display(this, active);
-        if (active) {
-            this.#header.classList.add('activated');
-        }
-        else {
-            this.#header.classList.remove('activated');
-        }
+        addRemoveClass(this.#header, 'activated', active);
         if (active && this.#group) {
             this.#group.activateTab(this);
         }
@@ -4701,13 +7278,9 @@ class HTMLHarmonyTabElement extends HTMLElement {
         return ['data-i18n', 'data-text', 'disabled', 'data-closable'];
     }
 }
-let definedTab = false;
-function defineHarmonyTab() {
-    if (!definedTab) {
-        defineElement('harmony-tab', HTMLHarmonyTabElement);
-        definedTab = true;
-        injectGlobalCss();
-    }
+function defineHarmonyTab(suffix = '') {
+    defineElement('harmony-tab' + suffix, HTMLHarmonyTabElement);
+    injectGlobalCss();
 }
 
 var tabGroupCSS = ":host,\nharmony-tab-group {\n\twidth: 100%;\n\theight: 100%;\n\tdisplay: flex;\n\tflex-direction: column;\n\tposition: relative;\n}\n\n.harmony-tab-group-header {\n\tbackground-color: var(--main-bg-color-bright);\n\tdisplay: flex;\n\toverflow: auto hidden;\n\twidth: 100%;\n\tscrollbar-width: none;\n}\n\n.harmony-tab-group-content {\n\tflex: 1;\n\tbackground-color: var(--main-bg-color-dark);\n\toverflow: auto;\n\twidth: 100%;\n}\n";
@@ -4801,25 +7374,26 @@ class HTMLHarmonyTabGroupElement extends HTMLElement {
         this.#content.innerText = '';
     }
 }
-let definedTabGroup = false;
-function defineHarmonyTabGroup() {
-    if (!definedTabGroup) {
-        defineElement('harmony-tab-group', HTMLHarmonyTabGroupElement);
-        definedTabGroup = true;
-        injectGlobalCss();
-    }
+function defineHarmonyTabGroup(suffix = '') {
+    defineElement('harmony-tab-group' + suffix, HTMLHarmonyTabGroupElement);
+    injectGlobalCss();
 }
 
-var toggleButtonCSS = ":host {\n\tcursor: pointer;\n\tdisplay: inline-block;\n\tposition: relative;\n}\n\non,\noff {\n\theight: 100%;\n\twidth: 100%;\n\tbackground-size: 100% auto;\n\tbox-sizing: border-box;\n}\n";
+var toggleButtonCSS = ":host {\n\tcursor: pointer;\n\tdisplay: inline-block;\n\tposition: relative;\n\tdisplay: flex;\n\talign-items: center;\n}\n\n.label {\n\tfont-size: 1.5rem;\n}\n\non,\noff {\n\theight: 100%;\n\twidth: 100%;\n\tbackground-size: 100% auto;\n\tbox-sizing: border-box;\n}\n";
 
 class HTMLHarmonyToggleButtonElement extends HTMLElement {
     #state = false;
     #shadowRoot;
+    #htmlLabel;
     #htmlSlotOn;
     #htmlSlotOff;
     constructor() {
         super();
         this.#shadowRoot = this.attachShadow({ mode: 'closed' });
+        this.#htmlLabel = createElement('div', {
+            parent: this.#shadowRoot,
+            class: 'label',
+        });
         this.#htmlSlotOn = createElement('slot', {
             parent: this.#shadowRoot,
             name: 'on',
@@ -4840,8 +7414,23 @@ class HTMLHarmonyToggleButtonElement extends HTMLElement {
         this.#refresh();
     }
     attributeChangedCallback(name, oldValue, newValue) {
-        if (name == 'state') {
-            this.state = toBool(newValue);
+        switch (name) {
+            case 'state':
+                this.state = toBool(newValue);
+                break;
+            case 'data-label':
+                if (this.#htmlLabel) {
+                    this.#htmlLabel.innerText = newValue;
+                }
+                this.#htmlLabel?.classList.remove('i18n');
+                break;
+            case 'data-i18n':
+                this.#htmlLabel?.setAttribute('data-i18n', newValue);
+                if (this.#htmlLabel) {
+                    this.#htmlLabel.innerText = newValue;
+                }
+                this.#htmlLabel?.classList.add('i18n');
+                break;
         }
     }
     get state() {
@@ -4893,503 +7482,22 @@ class HTMLHarmonyToggleButtonElement extends HTMLElement {
         this.#shadowRoot.adoptedStyleSheets.push(styleSheet);
     }
     static get observedAttributes() {
-        return ['state'];
+        return ['state', 'data-label', 'data-i18n'];
     }
 }
-let definedToggleButton = false;
-function defineHarmonyToggleButton() {
-    if (!definedToggleButton) {
-        defineElement('harmony-toggle-button', HTMLHarmonyToggleButtonElement);
-        definedToggleButton = true;
-        injectGlobalCss();
-    }
+function defineHarmonyToggleButton(suffix = '') {
+    defineElement('harmony-toggle-button' + suffix, HTMLHarmonyToggleButtonElement);
+    injectGlobalCss();
 }
 
-var treeCSS = ":host {\n\t--child-margin: var(--harmony-tree-child-margin, 1rem);\n\t--header-bg-color: var(--harmony-tree-header-bg-color, var(--main-bg-color-dark, black));\n\t--header-bg-color-hover: var(--harmony-tree-header-bg-color-hover, var(--main-bg-color-bright, #41454d));\n\t--selected-bg-color: var(--harmony-tree-selected-bg-color, var(--accent-primary, rgb(26, 172, 201)));\n\tcolor: var(--main-text-color-dark2, white);\n}\n\n.item {\n\twidth: 100%;\n}\n\n.header {\n\twidth: 100%;\n\theight: 1rem;\n\tbackground-color: var(--header-bg-color);\n\tcursor: pointer;\n\tdisplay: flex;\n\tgap: 0.2rem;\n\talign-items: center;\n}\n\n.header:hover{\n\tbackground-color: var(--header-bg-color-hover);\n}\n\n.title {\n\tflex: 1;\n}\n\n.childs {\n\tmargin-left: var(--child-margin);\n}\n\n.root>.header {\n\tdisplay: var(--harmony-tree-display-root, none);\n}\n\n.root>.childs {\n\tmargin-left: unset;\n}\n\n.actions {\n\tdisplay: flex;\n\tflex: 0;\n\tvisibility: hidden;\n}\n\n.header:hover>.actions {\n\tvisibility: visible;\n}\n\n.header.selected {\n\tbackground-color: var(--selected-bg-color);\n}\n";
-
-var TreeItemKind;
-(function (TreeItemKind) {
-    TreeItemKind["Root"] = "root";
-    TreeItemKind["Directory"] = "directory";
-    TreeItemKind["File"] = "file";
-    TreeItemKind["Item"] = "item";
-})(TreeItemKind || (TreeItemKind = {}));
-class TreeItem {
-    name;
-    icon;
-    kind;
-    parent;
-    childs = new Set;
-    actions = new Set();
-    userData;
-    constructor(name, options = {}) {
-        this.name = name;
-        this.icon = options.icon;
-        this.kind = options.kind ?? TreeItemKind.File;
-        this.parent = options.parent;
-        this.userData = options.userData;
-        if (options.parent) {
-            options.parent.addChild(this);
-        }
-        if (options.childs) {
-            for (const child of options.childs) {
-                this.addChild(child);
-            }
-        }
-        this.#sortByName();
-    }
-    addChild(child) {
-        this.childs.add(child);
-    }
-    #sortByName() {
-        this.childs[Symbol.iterator] = function* () {
-            yield* [...this.values()].sort((a, b) => {
-                return a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1;
-            });
-        };
-    }
-    getPath(separator = '/') {
-        let path = '';
-        if (this.parent) {
-            const parentPath = this.parent.getPath(separator);
-            if (parentPath) {
-                path = parentPath + separator;
-            }
-        }
-        return path + this.name;
-    }
-    getLevel() {
-        if (this.parent) {
-            return 1 + this.parent.getLevel();
-        }
-        return 0;
-    }
-    addAction(action) {
-        this.actions.add(action);
-    }
-    addActions(actions) {
-        for (const action of actions) {
-            this.actions.add(action);
-        }
-    }
-    removeAction(action) {
-        this.actions.delete(action);
-    }
-    static createFromPathList(paths, options = {}) {
-        class element {
-            tree;
-            childs = new Map();
-            constructor(tree) {
-                this.tree = tree;
-            }
-        }
-        const root = new TreeItem(options.rootName ?? '', { userData: options.rootUserData ?? options.userData, kind: TreeItemKind.Root });
-        const top = new element(root);
-        for (const [path, perElementUserData] of paths.entries()) {
-            const segments = path.split(options.pathSeparator ?? '/');
-            let current = top;
-            let parent = root;
-            for (let i = 0, l = segments.length; i < l; i++) {
-                const s = segments[i];
-                if (s == '') {
-                    continue;
-                }
-                let kind = TreeItemKind.Directory;
-                if (i == l - 1) {
-                    kind = TreeItemKind.File;
-                }
-                if (!current.childs.has(s)) {
-                    current.childs.set(s, new element(new TreeItem(s, { parent: parent, kind: kind, userData: perElementUserData != path ? perElementUserData : options.userData })));
-                }
-                parent = current.childs.get(s).tree;
-                current = current.childs.get(s);
-            }
-        }
-        return root;
-    }
-    #matchFilter(filter) {
-        if (!filter) {
-            return true;
-        }
-        if (filter.name) {
-            if (!this.name.toLowerCase().includes(filter.name.toLowerCase())) {
-                return false;
-            }
-            if (this.kind != TreeItemKind.File) {
-                return false;
-            }
-        }
-        if (filter.kinds) {
-            let match = false;
-            for (const tf of filter.kinds) {
-                if (tf === this.kind) {
-                    match = true;
-                    break;
-                }
-            }
-            if (!match) {
-                return false;
-            }
-        }
-        if (filter.kind !== undefined) {
-            if (filter.kind !== this.kind) {
-                return false;
-            }
-        }
-        return true;
-    }
-    *walk(filter) {
-        const stack = [this];
-        let current;
-        do {
-            current = stack.pop();
-            if (!current) {
-                break;
-            }
-            if (current.#matchFilter(filter)) {
-                yield current;
-            }
-            for (const child of current.childs) {
-                stack.push(child);
-            }
-        } while (current);
-    }
-}
-class HTMLHarmonyTreeElement extends HTMLHarmonyElement {
-    #shadowRoot;
-    #root;
-    #htmlContextMenu;
-    #isInitialized = new Set();
-    #isExpanded = new Map();
-    #filter;
-    #isVisible = new Set();
-    #actions = new Map();
-    #itemElements = new Map();
-    #elementItem = new Map();
-    #selectedItem = null;
-    #rootLevel;
-    #sticky = new Set();
-    #dynamicSheet = new CSSStyleSheet();
-    #cssLevel = new Set();
-    createElement() {
-        this.#shadowRoot = this.attachShadow({ mode: 'closed' });
-        void shadowRootStyle(this.#shadowRoot, treeCSS);
-        this.#shadowRoot.adoptedStyleSheets.push(this.#dynamicSheet);
-        I18n.observeElement(this.#shadowRoot);
-        this.#refresh();
-        this.addEventListener('scroll', () => this.#handleScroll());
-    }
-    adoptStyle(css) {
-        this.initElement();
-        void shadowRootStyle(this.#shadowRoot, css);
-    }
-    #refresh() {
-        if (!this.#shadowRoot) {
-            return;
-        }
-        if (!this.#root) {
-            return;
-        }
-        this.#createItem(this.#root, null, true);
-        this.#refreshFilter();
-    }
-    #refreshFilter() {
-        for (const [item, itemElement] of this.#itemElements) {
-            const show = (!this.#filter || this.#isVisible.has(item)) && this.#isFullyExpanded(item);
-            display(itemElement.element, show);
-        }
-    }
-    #isFullyExpanded(item) {
-        let current = item.parent;
-        if (!current) {
-            return true;
-        }
-        do {
-            if (!this.#isExpanded.get(current)) {
-                return false;
-            }
-            current = current.parent;
-        } while (current);
-        return true;
-    }
-    setRoot(root) {
-        this.#root = root;
-        this.#shadowRoot?.replaceChildren();
-        this.#refresh();
-    }
-    #buildContextMenu(contextMenu, x, y) {
-        if (!this.#htmlContextMenu) {
-            defineHarmonyMenu();
-            this.#htmlContextMenu = createElement('harmony-menu');
-        }
-        this.#htmlContextMenu.showContextual(contextMenu, x, y);
-    }
-    #contextMenuHandler(event, item) {
-        if (!event.shiftKey) {
-            this.dispatchEvent(new CustomEvent('contextmenu', {
-                detail: {
-                    item: item,
-                    buildContextMenu: (menu) => this.#buildContextMenu(menu, event.clientX, event.clientY),
-                },
-            }));
-            event.preventDefault();
-            event.stopPropagation();
-        }
-    }
-    #createItem(item, predecessor, createExpanded) {
-        let element;
-        const itemElement = this.#itemElements.get(item);
-        if (itemElement) {
-            element = itemElement.element;
-            if (predecessor) {
-                predecessor.after(element);
-            }
-            else {
-                this.#shadowRoot?.append(element);
-            }
-        }
-        else {
-            const itemLevel = item.getLevel();
-            let header;
-            let actions;
-            this.#addCssLevel(itemLevel);
-            element = createElement('div', {
-                class: `item level${itemLevel}`,
-                parent: this.#shadowRoot,
-                childs: [
-                    header = createElement('div', {
-                        class: 'header',
-                        childs: [
-                            createElement('div', {
-                                class: 'padding',
-                            }),
-                            createElement('div', {
-                                class: 'title',
-                                innerText: item.name,
-                            }),
-                            actions = createElement('div', {
-                                class: 'actions',
-                            }),
-                        ],
-                        $click: () => {
-                            if (this.#isExpanded.get(item)) {
-                                this.collapseItem(item);
-                            }
-                            else {
-                                this.expandItem(item);
-                                this.#refreshFilter();
-                            }
-                            this.dispatchEvent(new CustomEvent('itemclick', { detail: { item: item } }));
-                        },
-                        $contextmenu: (event) => this.#contextMenuHandler(event, item),
-                    }),
-                ]
-            });
-            if (predecessor) {
-                predecessor.after(element);
-            }
-            this.#itemElements.set(item, { element: element, header: header, actions: actions });
-            this.#elementItem.set(element, item);
-        }
-        if (item.kind == TreeItemKind.Root && item.name == '') {
-            element.classList.add('root');
-        }
-        if (item.kind) {
-            element.classList.add(`type-${item.kind}`);
-        }
-        if (createExpanded || this.#isExpanded.get(item)) {
-            this.expandItem(item);
-        }
-        this.refreshActions(item);
-        return element;
-    }
-    expandItem(item) {
-        if (item.parent) {
-            this.expandItem(item.parent);
-        }
-        const element = this.#itemElements.get(item)?.element;
-        if (!element) {
-            return;
-        }
-        if (this.#isExpanded.get(item)) {
-            return;
-        }
-        this.#isExpanded.set(item, true);
-        if (!this.#isInitialized.has(item)) {
-            let predecessor = element;
-            for (const child of item.childs) {
-                const childElement = this.#createItem(child, predecessor, false);
-                predecessor = childElement;
-            }
-            this.#isInitialized.add(item);
-        }
-        else {
-            for (const child of item.childs) {
-                this.showItem(child);
-            }
-        }
-    }
-    collapseItem(item) {
-        this.#isExpanded.set(item, false);
-        for (const child of item.childs) {
-            this.hideItem(child);
-        }
-    }
-    showItem(item) {
-        const element = this.#itemElements.get(item);
-        if (element) {
-            show(element.element);
-        }
-        if (this.#isExpanded.get(item)) {
-            for (const child of item.childs) {
-                this.showItem(child);
-            }
-        }
-    }
-    hideItem(item) {
-        const element = this.#itemElements.get(item);
-        if (element) {
-            hide(element.element);
-        }
-        for (const child of item.childs) {
-            this.hideItem(child);
-        }
-    }
-    selectItem(item, scrollIntoView = true) {
-        if (item == this.#selectedItem) {
-            return;
-        }
-        if (this.#selectedItem) {
-            this.#itemElements.get(this.#selectedItem)?.header?.classList.remove('selected');
-        }
-        if (item) {
-            if (item.parent) {
-                this.expandItem(item.parent);
-            }
-            const itemElement = this.#itemElements.get(item)?.header;
-            itemElement?.classList.add('selected');
-            if (scrollIntoView) {
-                setTimeout(() => {
-                    itemElement?.scrollIntoView({ block: 'center' });
-                }, 0);
-            }
-        }
-        this.#selectedItem = item;
-    }
-    addAction(name, img, tooltip) {
-        const action = {
-            name: name,
-            tooltip: tooltip,
-        };
-        if (typeof img == 'string') {
-            action.innerHTML = img;
-        }
-        else {
-            action.element = img;
-        }
-        this.#actions.set(name, action);
-    }
-    refreshActions(item) {
-        const htmlActions = this.#itemElements.get(item)?.actions;
-        htmlActions?.replaceChildren();
-        for (const actionName of item.actions) {
-            const action = this.#actions.get(actionName);
-            if (action) {
-                createElement('div', {
-                    child: action.element,
-                    innerHTML: action.innerHTML,
-                    parent: htmlActions,
-                    i18n: {
-                        title: action.tooltip,
-                    },
-                    $click: (event) => this.#actionHandler(event, item, actionName),
-                });
-            }
-        }
-    }
-    #actionHandler(event, item, action) {
-        this.dispatchEvent(new CustomEvent('itemaction', {
-            detail: {
-                item: item,
-                action: action,
-            },
-        }));
-        event.preventDefault();
-        event.stopPropagation();
-    }
-    setFilter(filter) {
-        this.#filter = filter;
-        this.#isVisible.clear();
-        if (this.#filter && this.#root) {
-            for (const item of this.#root.walk(this.#filter)) {
-                let current = item;
-                do {
-                    this.#isVisible.add(current);
-                    current = current.parent;
-                } while (current);
-            }
-        }
-        this.#refresh();
-    }
-    #handleScroll() {
-        let stickyHeight = 0;
-        for (const sticky of this.#sticky) {
-            const rect = sticky.getBoundingClientRect();
-            stickyHeight += rect.height;
-        }
-        const rect = this.getBoundingClientRect();
-        const elements = this.#shadowRoot.elementsFromPoint(rect.x + 1, rect.y + stickyHeight + 1);
-        if (!elements) {
-            return;
-        }
-        for (const element of elements) {
-            let treeItem = this.#elementItem.get(element);
-            if (!treeItem) {
-                continue;
-            }
-            treeItem = treeItem.parent;
-            if (!treeItem) {
-                continue;
-            }
-            this.#setSticky(treeItem);
-            break;
-        }
-    }
-    #addCssLevel(level) {
-        if (level == 0) {
-            return;
-        }
-        if (!this.#cssLevel.has(level)) {
-            this.#cssLevel.add(level);
-            this.#dynamicSheet.insertRule(`.level${level} .padding{width: ${level}rem}`);
-        }
-    }
-    #setSticky(item) {
-        for (const treeItemElement of this.#sticky) {
-            treeItemElement.style.cssText = '';
-        }
-        this.#sticky.clear();
-        let current = item;
-        while (current) {
-            const treeItemElement = this.#itemElements.get(current);
-            if (treeItemElement) {
-                this.#sticky.add(treeItemElement.element);
-                treeItemElement.element.style.cssText = `position:sticky;top:${current.getLevel()}rem;`;
-            }
-            current = current.parent;
-        }
-    }
-}
-let definedTree = false;
-function defineHarmonyTree() {
-    if (!definedTree) {
-        defineElement('harmony-tree', class extends HTMLHarmonyTreeElement {
-        });
-        defineElement('h-tree', class extends HTMLHarmonyTreeElement {
-        });
-        definedTree = true;
-        injectGlobalCss();
-    }
+/**
+ * Wrapper around window.prompt(), but the message is an i18n key.
+ * @param messageI18n The i18n key of text to display to the user.
+ * @param defaultValue A string containing the default value displayed in the text input field.
+ * @returns A string containing the text entered by the user, or null.
+ */
+function promptI18n$1(messageI18n, defaultValue) {
+    return prompt(I18n.getString(messageI18n), defaultValue);
 }
 
 var index$3 = /*#__PURE__*/Object.freeze({
@@ -5401,6 +7509,7 @@ var index$3 = /*#__PURE__*/Object.freeze({
     HTMLHarmonyColorPickerElement: HTMLHarmonyColorPickerElement,
     HTMLHarmonyCopyElement: HTMLHarmonyCopyElement,
     HTMLHarmonyFileInputElement: HTMLHarmonyFileInputElement,
+    HTMLHarmonyFilterElement: HTMLHarmonyFilterElement,
     HTMLHarmonyInfoBoxElement: HTMLHarmonyInfoBoxElement,
     get HTMLHarmonyInfoBoxElementType () { return HTMLHarmonyInfoBoxElementType; },
     HTMLHarmonyItemElement: HTMLHarmonyItemElement,
@@ -5419,6 +7528,11 @@ var index$3 = /*#__PURE__*/Object.freeze({
     HTMLHarmonyToggleButtonElement: HTMLHarmonyToggleButtonElement,
     HTMLHarmonyTooltipElement: HTMLHarmonyTooltipElement,
     HTMLHarmonyTreeElement: HTMLHarmonyTreeElement,
+    get HarmonyFilterListType () { return HarmonyFilterListType; },
+    HarmonyPanel: HarmonyPanel,
+    HarmonyTab: HarmonyTab,
+    HarmonyTabGroup: HarmonyTabGroup,
+    HarmonyTree: HarmonyTree,
     I18n: I18n,
     I18nElements: I18nElements,
     get I18nEvents () { return I18nEvents; },
@@ -5429,10 +7543,14 @@ var index$3 = /*#__PURE__*/Object.freeze({
     get ManipulatorUpdatedEventType () { return ManipulatorUpdatedEventType; },
     TreeItem: TreeItem,
     get TreeItemKind () { return TreeItemKind; },
+    addRemoveClass: addRemoveClass,
+    adoptStyle: adoptStyle,
+    adoptStyleSheet: adoptStyleSheet,
     cloneEvent: cloneEvent,
     createElement: createElement,
     createElementNS: createElementNS,
     createShadowRoot: createShadowRoot,
+    createShadowRootNS: createShadowRootNS,
     defineElement: defineElement,
     defineHarmony2dManipulator: defineHarmony2dManipulator,
     defineHarmonyAccordion: defineHarmonyAccordion,
@@ -5440,6 +7558,7 @@ var index$3 = /*#__PURE__*/Object.freeze({
     defineHarmonyColorPicker: defineHarmonyColorPicker,
     defineHarmonyCopy: defineHarmonyCopy,
     defineHarmonyFileInput: defineHarmonyFileInput,
+    defineHarmonyFilter: defineHarmonyFilter,
     defineHarmonyInfoBox: defineHarmonyInfoBox,
     defineHarmonyItem: defineHarmonyItem,
     defineHarmonyLabelProperty: defineHarmonyLabelProperty,
@@ -5463,12 +7582,15 @@ var index$3 = /*#__PURE__*/Object.freeze({
     getCustomElementRegistry: getCustomElementRegistry,
     hide: hide,
     isVisible: isVisible,
+    promptI18n: promptI18n$1,
     shadowRootStyle: shadowRootStyle,
     shadowRootStyleSync: shadowRootStyleSync,
     show: show,
     styleInject: styleInject,
+    svgNamespace: svgNamespace,
     toggle: toggle,
     updateElement: updateElement,
+    updateShadowRoot: updateShadowRoot,
     visible: visible$1
 });
 
@@ -13238,34 +15360,12 @@ var index$2 = /*#__PURE__*/Object.freeze({
     vec4: vec4
 });
 
-function loadScript(script) {
-    return new Promise((resolve) => {
-        createElement('script', {
-            src: script,
-            parent: document.body,
-            events: {
-                load: () => resolve(true),
-            }
-        });
-    });
-}
-async function loadScripts(scripts) {
-    const promises = [];
-    for (const script of scripts) {
-        promises.push(loadScript(script));
-    }
-    await Promise.all(promises);
-    return true;
-}
-
 function saveFile(file) {
     const link = document.createElement('a');
     link.setAttribute('href', URL.createObjectURL(file));
     link.setAttribute('download', file.name);
     link.click();
 }
-
-var notificationsContainerCSS = ":host {\r\n\tposition: fixed;\r\n\tz-index: 10000;\r\n\tdisplay: flex;\r\n\toverflow: hidden;\r\n\twidth: 100%;\r\n\theight: 100%;\r\n\tpointer-events: none;\r\n}\r\n\r\n.inner {\r\n\tposition: absolute;\r\n\tdisplay: flex;\r\n}\r\n\r\n.inner>* {\r\n\tpointer-events: all;\r\n}\r\n\r\n.top {\r\n\twidth: 100%;\r\n\tflex-direction: column;\r\n}\r\n\r\n.bottom {\r\n\twidth: 100%;\r\n\tflex-direction: column-reverse;\r\n\tbottom: 0;\r\n}\r\n\r\n.left,\r\n.right {\r\n\tflex-direction: column;\r\n\tjustify-content: center;\r\n\theight: 100%;\r\n}\r\n\r\n.top-right,\r\n.top-left {\r\n\tpadding: 1rem;\r\n\tflex-direction: column;\r\n}\r\n\r\n.top-right,\r\n.right,\r\n.bottom-right {\r\n\tright: 0;\r\n}\r\n\r\n.bottom-right,\r\n.bottom-left {\r\n\tbottom: 0;\r\n\tpadding: 1rem;\r\n\tflex-direction: column-reverse;\r\n}\r\n\r\n.copy {\r\n\tposition: absolute;\r\n\tcolor: white;\r\n\tbackground-color: blue;\r\n\tborder-radius: 0.5rem;\r\n\tpadding: 0.2rem;\r\n}\r\n";
 
 var NotificationsPlacement;
 (function (NotificationsPlacement) {
@@ -13293,54 +15393,165 @@ var NotificationEvents;
     NotificationEvents["Added"] = "notificationadded";
     NotificationEvents["Removed"] = "notificationremoved";
 })(NotificationEvents || (NotificationEvents = {}));
-let htmlInner;
-createShadowRoot('div', {
-    parent: document.body,
-    adoptStyle: notificationsContainerCSS,
-    childs: [
-        htmlInner = createElement('div'),
-        createElement('div', {
-            class: 'copy',
-            hidden: true,
-            innerHTML: contentCopySVG,
-        }),
-    ],
-});
-I18n.observeElement(htmlInner);
-setNotificationsPlacement(NotificationsPlacement.TopRight);
-function setNotificationsPlacement(placement) {
-    htmlInner.className = `inner ${placement}`;
-}
+NotificationsPlacement.TopRight;
 new EventTarget();
 
-var optionsManagerCSS = ":host{\r\n\tposition: absolute;\r\n\twidth: 100%;\r\n\theight: 100%;\r\n\toverflow: auto;\r\n\tz-index: 10000;\r\n\tdisplay: flex;\r\n\talign-items: center;\r\n\tjustify-content: center;\r\n\ttop:0px;\r\n\tleft: 0px;\r\n}\r\n\r\n#options-manager-inner{\r\n\tposition: relative;\r\n\t/*background-color: rgba(255, 255, 255, 1.0);*/\r\n\tbackground-color: var(--theme-popup-bg-color);\r\n\tcolor: var(--main-text-color-dark2);\r\n\tpadding:10px;\r\n\toverflow: hidden;\r\n\tmax-height: 70%;\r\n\tmax-width: 75%;\r\n\tdisplay: flex;\r\n\tflex-direction: column;\r\n\topacity: 0.9;\r\n}\r\n\r\n#options-manager-inner h1{\r\n\ttext-transform: capitalize;\r\n\ttext-align: center;\r\n}\r\n\r\n#options-manager-inner-filter{\r\n\twidth:100%;\r\n}\r\n\r\n.options-manager-button{\r\n\tcursor:pointer;\r\n\twhite-space: nowrap;\r\n\ttext-transform: capitalize;\r\n}\r\n\r\n#options-manager-inner table{\r\n\ttext-align: left;\r\n\toverflow: hidden auto;\r\n\tdisplay: block;\r\n\theight: 100%;\r\n}\r\n\r\n#options-manager-inner thead{\r\n\tposition: sticky;\r\n\t/*display: block;*/\r\n\ttop: 0px;\r\n\tbackground-color: var(--theme-popup-bg-color);\r\n}\r\n\r\n#options-manager-inner thead th{\r\n\tposition: sticky;\r\n\ttop: 0px;\r\n\tbackground-color: var(--theme-popup-bg-color);\r\n}\r\n\r\n#options-manager-inner th{\r\n\ttext-transform: capitalize;\r\n}\r\n\r\n#options-manager-inner th button, #options-manager-inner td button{\r\n\twidth: 100%;\r\n}\r\n\r\n#options-manager-title{\r\n\tcursor:move;\r\n}\r\n\r\n[draggable=true] {\r\n\tcursor: move;\r\n}\r\n\r\n[draggable=true] *{\r\n\tcursor: initial;\r\n}\r\n\r\n#options-manager-outer kbd{\r\n\tbackground-color: #eee;\r\n\tborder-radius: 0.25rem;\r\n\tborder: 0.1rem solid #b4b4b4;\r\n\tbox-shadow: 0 0.06rem 0.06rem rgba(0, 0, 0, .2), 0 0.1rem 0 0 rgba(255, 255, 255, .7) inset;\r\n\tcolor: #333;\r\n\tdisplay: inline-block;\r\n\tline-height: 1;\r\n\tpadding: 0.15rem;\r\n\twhite-space: nowrap;\r\n\tfont-weight: 1000;\r\n\tfont-size: 1.3rem;\r\n}\r\n";
-
-class OptionsManager extends EventTarget {
-    static #instance;
-    #defaultValues = new Map();
-    #currentValues = new Map();
-    #categories = new Map();
-    #dirtyCategories = true;
-    #initPromiseResolve;
-    #initPromise = new Promise((resolve) => this.#initPromiseResolve = resolve);
-    #currentFilter = '';
-    #optionsManagerRows = new Set();
-    #htmlOptionsTable;
-    #htmlOptionsManagerContentThead;
-    #uniqueId = 0;
-    #shadowRoot;
-    logException = false;
-    constructor() {
-        if (OptionsManager.#instance) {
-            return OptionsManager.#instance;
+/**
+ * Set2 holds a key-key pair using an underlying Set
+ * Any value can be used as either keys
+ */
+class Set2 {
+    #map = new Map();
+    clear() {
+        this.#map.clear();
+    }
+    delete(key1, key2) {
+        return this.#map.get(key1)?.delete(key2) ?? false;
+    }
+    forEach(callbackfn, thisArg) {
+        this.#map.forEach((value, key1) => {
+            value.forEach((key2) => callbackfn.call(thisArg, key1, key2, this));
+        });
+    }
+    getMap() {
+        return this.#map;
+    }
+    getSubSet(key1) {
+        return this.#map.get(key1);
+    }
+    has(key1, key2) {
+        return this.#map.get(key1)?.has(key2) ?? false;
+    }
+    add(key1, key2) {
+        if (!this.#map.has(key1)) {
+            this.#map.set(key1, new Set());
         }
-        super();
-        OptionsManager.#instance = this;
+        this.#map.get(key1).add(key2);
+        return this;
+    }
+    get size() {
+        let size = 0;
+        for (const [, m] of this.#map) {
+            size += m.size;
+        }
+        return size;
+    }
+    [Symbol.iterator] = () => {
+        const iterator1 = this.#map.entries();
+        let iterator2 = null;
+        let current1;
+        const next = () => {
+            if (iterator2 == null) {
+                current1 = iterator1.next();
+                if (current1.done) {
+                    return { done: true };
+                }
+                iterator2 = current1.value[1].keys();
+            }
+            const current2 = iterator2.next();
+            if (current2.done) {
+                iterator2 = null;
+                return next();
+            }
+            return { value: [current1.value[0], current2.value], done: false };
+        };
+        return {
+            next: next,
+            [Symbol.iterator]() {
+                return this;
+            },
+        };
+    };
+}
+
+class BugReporter {
+    static #eventTarget = new EventTarget();
+    static #dispatched = new Set2();
+    static addEventListener(type, callback, options) {
+        this.#eventTarget.addEventListener(type, callback, options);
+    }
+    static removeEventListener(type, callback, options) {
+        this.#eventTarget.removeEventListener(type, callback, options);
+    }
+    static reportBug(severity, message) {
+        if (this.#dispatched.has(severity, message)) {
+            return;
+        }
+        this.#dispatched.add(severity, message);
+        this.#eventTarget.dispatchEvent(new CustomEvent('report', {
+            detail: {
+                severity,
+                message,
+            },
+        }));
+    }
+}
+
+class Item {
+    data;
+    next = null;
+    constructor(data) {
+        this.data = data;
+    }
+}
+
+/**
+ * Static version of MyEventTarget
+ */
+class StaticEventTarget {
+    static eventTarget = new EventTarget();
+    static addEventListener(type, callback, options) {
+        this.eventTarget.addEventListener(type, callback, options);
+    }
+    static dispatchEvent(event) {
+        return this.eventTarget.dispatchEvent(event);
+    }
+    static removeEventListener(type, callback, options) {
+        this.eventTarget.removeEventListener(type, callback, options);
+    }
+}
+
+function setTimeoutPromise(timeout, signal) {
+    return new Promise((resolve, reject) => {
+        const timeoutID = setTimeout(resolve, timeout);
+        if (signal) {
+            if (signal.aborted) {
+                clearTimeout(timeoutID);
+                reject(new Error('timeout aborted'));
+            }
+            else {
+                signal.addEventListener('abort', () => {
+                    clearTimeout(timeoutID);
+                    reject(new Error('timeout aborted'));
+                });
+            }
+        }
+    });
+}
+
+var optionsManagerCSS = ":host {\r\n\tposition: absolute;\r\n\twidth: 100%;\r\n\theight: 100%;\r\n\toverflow: auto;\r\n\tz-index: 10000;\r\n\tdisplay: flex;\r\n\talign-items: center;\r\n\tjustify-content: center;\r\n\ttop: 0px;\r\n\tleft: 0px;\r\n}\r\n\r\n#options-manager-inner {\r\n\tposition: relative;\r\n\t/*background-color: rgba(255, 255, 255, 1.0);*/\r\n\tbackground-color: var(--theme-popup-bg-color);\r\n\tcolor: var(--main-text-color-dark2);\r\n\tpadding: 10px;\r\n\toverflow: hidden;\r\n\tmax-height: 70%;\r\n\tmax-width: 75%;\r\n\tdisplay: flex;\r\n\tflex-direction: column;\r\n\topacity: 0.9;\r\n}\r\n\r\n#options-manager-inner h1 {\r\n\ttext-transform: capitalize;\r\n\ttext-align: center;\r\n}\r\n\r\n#options-manager-inner-filter {\r\n\twidth: 100%;\r\n}\r\n\r\n.options-manager-button {\r\n\tcursor: pointer;\r\n\twhite-space: nowrap;\r\n\ttext-transform: capitalize;\r\n}\r\n\r\n#options-manager-inner table {\r\n\ttext-align: left;\r\n\toverflow: hidden auto;\r\n\tdisplay: block;\r\n\theight: 100%;\r\n}\r\n\r\n#options-manager-inner thead {\r\n\tposition: sticky;\r\n\t/*display: block;*/\r\n\ttop: 0px;\r\n\tbackground-color: var(--theme-popup-bg-color);\r\n}\r\n\r\n#options-manager-inner thead th {\r\n\tposition: sticky;\r\n\ttop: 0px;\r\n\tbackground-color: var(--theme-popup-bg-color);\r\n}\r\n\r\n#options-manager-inner th {\r\n\ttext-transform: capitalize;\r\n}\r\n\r\n#options-manager-inner th button,\r\n#options-manager-inner td button {\r\n\twidth: 100%;\r\n}\r\n\r\n#options-manager-title {\r\n\tcursor: move;\r\n}\r\n\r\n[draggable=true] {\r\n\tcursor: move;\r\n}\r\n\r\n[draggable=true] * {\r\n\tcursor: initial;\r\n}\r\n\r\n#options-manager-outer kbd {\r\n\tbackground-color: #eee;\r\n\tborder-radius: 0.25rem;\r\n\tborder: 0.1rem solid #b4b4b4;\r\n\tbox-shadow: 0 0.06rem 0.06rem rgba(0, 0, 0, .2), 0 0.1rem 0 0 rgba(255, 255, 255, .7) inset;\r\n\tcolor: #333;\r\n\tdisplay: inline-block;\r\n\tline-height: 1;\r\n\tpadding: 0.15rem;\r\n\twhite-space: nowrap;\r\n\tfont-weight: 1000;\r\n\tfont-size: 1.3rem;\r\n}\r\n\r\n.copy-button * {\r\n\tcursor: pointer;\r\n}\r\n\r\n.flash-ok {\r\n\tanimation-name: flashOk;\r\n\tanimation-duration: 1.5s;\r\n}\r\n\r\n.flash-error {\r\n\tanimation-name: flashError;\r\n\tanimation-duration: 1.5s;\r\n}\r\n\r\n@keyframes flashOk {\r\n\t0% {\r\n\t\tcolor: #189c1e;\r\n\t}\r\n\r\n\t100% {\r\n\t\tcolor: unset;\r\n\t}\r\n}\r\n\r\n@keyframes flashError {\r\n\t0% {\r\n\t\tcolor: #a32a15;\r\n\t}\r\n\r\n\t100% {\r\n\t\tcolor: unset;\r\n\t}\r\n}\r\n";
+
+const OptionsManagerEvents = new EventTarget();
+class OptionsManager {
+    static #defaultValues = new Map();
+    static #currentValues = new Map();
+    static #categories = new Map();
+    static #dirtyCategories = true;
+    static #initPromiseResolve;
+    static #initPromise = new Promise((resolve) => this.#initPromiseResolve = resolve);
+    static #currentFilter = '';
+    static #optionsManagerRows = new Set();
+    static #htmlOptionsTable;
+    static #htmlOptionsManagerContentThead;
+    static #uniqueId = 0;
+    static #shadowRoot;
+    static logException = false;
+    static {
         this.#defaultValues[Symbol.iterator] = function* () {
             yield* [...this.entries()].sort((a, b) => { return a[0] < b[0] ? -1 : 1; });
         };
     }
-    async init(parameters) {
+    static async init(parameters) {
         if (parameters.url) {
             await this.#initFromURL(parameters.url);
         }
@@ -13348,31 +15559,31 @@ class OptionsManager extends EventTarget {
             this.#initFromJSON(parameters.json);
         }
     }
-    async #initFromURL(url) {
+    static async #initFromURL(url) {
         const response = await fetch(url);
         this.#initFromJSON(await response.json());
     }
-    #initFromJSON(json) {
+    static #initFromJSON(json) {
         if (json) {
             if (json.categories) {
                 json.categories.forEach((category) => this.#addCategory(category));
             }
             this.#addCategory('');
             if (json.options) {
-                json.options.forEach((option /*TODO:better type*/) => this.addOption(option));
+                json.options.forEach((option) => this.#addOption(option));
             }
             if (this.#initPromiseResolve) {
                 this.#initPromiseResolve();
             }
         }
     }
-    #addCategory(name) {
+    static #addCategory(name) {
         this.#categories.set(name.toLowerCase(), []);
         this.#dirtyCategories = true;
     }
-    #refreshCategories() {
+    static #refreshCategories() {
         if (this.#dirtyCategories) {
-            for (const [categoryName, category] of this.#categories) {
+            for (const [, category] of this.#categories) {
                 category.length = 0;
             }
             for (const [optionName, option] of this.#defaultValues) {
@@ -13393,7 +15604,7 @@ class OptionsManager extends EventTarget {
         }
         this.#dirtyCategories = false;
     }
-    addOption(option /*TODO:better type*/) {
+    static #addOption(option) {
         if (!option) {
             return;
         }
@@ -13442,9 +15653,10 @@ class OptionsManager extends EventTarget {
             }
         }
     }
-    setItem(name, value) {
+    static setItem(name, value) {
         try {
             if (typeof localStorage != 'undefined') {
+                // Note: undefined is stored as 'undefined', which is not valid JSON: see getItem()
                 localStorage.setItem(name, JSON.stringify(value));
                 if (this.#currentValues.has(name)) {
                     if (value == this.#currentValues.get(name)) {
@@ -13461,7 +15673,7 @@ class OptionsManager extends EventTarget {
             }
         }
     }
-    async getSubItem(name, subName) {
+    static async getSubItem(name, subName) {
         try {
             const option = await this.getOption(name);
             if (option && option.type == 'map') {
@@ -13477,7 +15689,7 @@ class OptionsManager extends EventTarget {
             }
         }
     }
-    async setSubItem(name, subName, value) {
+    static async setSubItem(name, subName, value) {
         try {
             const option = await this.getOption(name);
             if (option && option.type == 'map') {
@@ -13496,7 +15708,7 @@ class OptionsManager extends EventTarget {
             }
         }
     }
-    removeSubItem(name, subName) {
+    static removeSubItem(name, subName) {
         try {
             const map = this.#currentValues.get(name) ?? {};
             if (map && (typeof map == 'object')) {
@@ -13511,28 +15723,31 @@ class OptionsManager extends EventTarget {
             }
         }
     }
-    #valueChanged(name, value) {
+    static #valueChanged(name, value) {
         const option = this.#defaultValues.get(name);
         if (!option) {
             return;
         }
         const context = option.context;
-        this.dispatchEvent(new CustomEvent(name, { detail: { name: name, value: value, context: context } }));
+        OptionsManagerEvents.dispatchEvent(new CustomEvent(name, { detail: { name: name, value: value, context: context } }));
         let lastIndex = name.lastIndexOf('.');
         while (lastIndex != -1) {
             const wildCardName = name.slice(0, lastIndex);
-            this.dispatchEvent(new CustomEvent(wildCardName + '.*', { detail: { name: name, value: value, context: context } }));
+            OptionsManagerEvents.dispatchEvent(new CustomEvent(wildCardName + '.*', { detail: { name: name, value: value, context: context } }));
             lastIndex = name.lastIndexOf('.', lastIndex - 1);
         }
-        this.dispatchEvent(new CustomEvent('*', { detail: { name: name, value: value, context: context } }));
+        OptionsManagerEvents.dispatchEvent(new CustomEvent('*', { detail: { name: name, value: value, context: context } }));
     }
-    getItem(name) {
+    static getItem(name) {
         try {
             if (typeof localStorage != 'undefined') {
                 const value = localStorage.getItem(name);
                 if (value) {
-                    const parsedValue = JSON.parse(value);
-                    return parsedValue;
+                    if (value == 'undefined') {
+                        // 'undefined' is not valid JSON
+                        return undefined;
+                    }
+                    return JSON.parse(value);
                 }
             }
         }
@@ -13545,7 +15760,7 @@ class OptionsManager extends EventTarget {
             return this.#defaultValues.get(name)?.defaultValue;
         }
     }
-    removeItem(name) {
+    static removeItem(name) {
         this.#defaultValues.delete(name);
         try {
             if (typeof localStorage != 'undefined') {
@@ -13559,7 +15774,7 @@ class OptionsManager extends EventTarget {
             }
         }
     }
-    resetItem(name) {
+    static resetItem(name) {
         const item = this.#defaultValues.get(name);
         if (item) {
             const defaultValue = item.defaultValue;
@@ -13567,12 +15782,12 @@ class OptionsManager extends EventTarget {
             this.setItem(name, defaultValue);
         }
     }
-    resetItems(names) {
+    static resetItems(names) {
         for (const name of names) {
             this.resetItem(name);
         }
     }
-    resetAllItems() {
+    static resetAllItems() {
         for (const [item, option] of this.#defaultValues) {
             if (option.protected) {
                 continue;
@@ -13580,7 +15795,7 @@ class OptionsManager extends EventTarget {
             this.resetItem(item);
         }
     }
-    clear() {
+    static clear() {
         this.#defaultValues.clear();
         try {
             if (typeof localStorage != 'undefined') {
@@ -13594,11 +15809,11 @@ class OptionsManager extends EventTarget {
             }
         }
     }
-    #filter(filter) {
+    static #filter(filter) {
         this.#currentFilter = String(filter).toLowerCase();
         this.#applyFilter();
     }
-    #applyFilter() {
+    static #applyFilter() {
         for (const row of this.#optionsManagerRows) {
             //let row = i[0];
             const optionName = row.getAttribute('user-data-option-name')?.toLowerCase();
@@ -13613,7 +15828,7 @@ class OptionsManager extends EventTarget {
             }
         }
     }
-    #initPanel() {
+    static #initPanel() {
         this.#shadowRoot = createShadowRoot('options-manager', {
             parent: document.body,
             adoptStyle: optionsManagerCSS,
@@ -13664,10 +15879,31 @@ class OptionsManager extends EventTarget {
         this.#htmlOptionsTable = createElement('table', { parent: optionsManagerInner });
         this.#htmlOptionsManagerContentThead = createElement('thead', { parent: this.#htmlOptionsTable });
     }
-    #populateOptionRow(option) {
+    static #populateOptionRow(option) {
         const htmlRow = createElement('tr');
         const htmlResetButtonCell = createElement('td');
-        const htmlOptionNameCell = createElement('td', { innerHTML: option.name });
+        const htmlOptionNameCell = createElement('td', {
+            childs: [
+                createElement('span', {
+                    class: 'copy-button',
+                    innerHTML: contentCopySVG,
+                    $click: async () => {
+                        try {
+                            await navigator.clipboard.writeText(option.name);
+                            htmlOptionNameCell.classList.add('flash-ok');
+                            await setTimeoutPromise(1500);
+                            htmlOptionNameCell.classList.remove('flash-ok');
+                        }
+                        catch (e) {
+                            htmlOptionNameCell.classList.add('flash-error');
+                            await setTimeoutPromise(1500);
+                            htmlOptionNameCell.classList.remove('flash-error');
+                        }
+                    },
+                }),
+                option.name,
+            ]
+        });
         const htmlDefaultValueCell = createElement('td');
         const htmlUserValueCell = createElement('td');
         const myValue = this.getItem(option.name);
@@ -13687,7 +15923,7 @@ class OptionsManager extends EventTarget {
         }
         return htmlRow;
     }
-    #populateMapOptionRow(option) {
+    static #populateMapOptionRow(option) {
         const htmlRow = createElement('tbody', { innerHTML: `<td></td><td colspan="3">${option.name}</td>` });
         const userValue = this.getItem(option.name);
         if (userValue && typeof userValue === 'object') {
@@ -13698,14 +15934,14 @@ class OptionsManager extends EventTarget {
                 const htmlSubNameCell = createElement('td', { innerHTML: key });
                 const htmlSubValueCell = createElement('td');
                 htmlSubRow.append(htmlRemoveButtonCell, htmlSubNameCell, htmlSubValueCell);
-                createElement('input', { value: value, parent: htmlSubValueCell });
+                createElement('input', { value: String(value), parent: htmlSubValueCell });
             }
         }
         return htmlRow;
     }
-    #addOptionRow(option) {
+    static #addOptionRow(option) {
         if (option.editable === false) {
-            return;
+            return null;
         }
         let htmlRow;
         if (option.type == 'map') {
@@ -13717,7 +15953,7 @@ class OptionsManager extends EventTarget {
         htmlRow.setAttribute('user-data-option-name', option.name);
         return htmlRow;
     }
-    #refreshPanel() {
+    static #refreshPanel() {
         this.#refreshCategories();
         if (this.#htmlOptionsManagerContentThead) {
             this.#htmlOptionsManagerContentThead.innerText = '';
@@ -13735,7 +15971,7 @@ class OptionsManager extends EventTarget {
             row.remove();
         }
         this.#optionsManagerRows.clear();
-        for (const [categoryName, category] of this.#categories) {
+        for (const [, category] of this.#categories) {
             for (const option of category) {
                 const htmlRow = this.#addOptionRow(option);
                 if (htmlRow) {
@@ -13747,11 +15983,11 @@ class OptionsManager extends EventTarget {
         I18n.i18n();
         this.#applyFilter();
     }
-    #fillCell(cell, type, value) {
+    static #fillCell(cell, type, value) {
         switch (type) {
             case 'string':
                 if (value) {
-                    cell.innerHTML = value;
+                    cell.innerText = value;
                 }
                 break;
             case 'shortcut':
@@ -13759,7 +15995,7 @@ class OptionsManager extends EventTarget {
                     const arr = value.split('+');
                     for (const key of arr) {
                         createElement('kbd', {
-                            innerHTML: key,
+                            innerText: key,
                             parent: cell,
                         });
                     }
@@ -13768,16 +16004,16 @@ class OptionsManager extends EventTarget {
                 break;
             default:
                 if (value) {
-                    cell.innerHTML = value;
+                    cell.innerText = value;
                 }
         }
     }
-    #getUniqueId() {
+    static #getUniqueId() {
         return 'options-manager-' + (this.#uniqueId++);
     }
-    #createInput(optionName, option, value, resetButton) {
+    static #createInput(optionName, option, value, resetButton) {
         if (!option) {
-            return;
+            return null;
         }
         const showHideResetButton = () => {
             let defaultValue = this.#defaultValues.get(optionName)?.defaultValue;
@@ -13796,7 +16032,7 @@ class OptionsManager extends EventTarget {
             case 'number':
             case 'integer':
                 htmlElement = createElement('input', {
-                    value: value,
+                    value: String(value),
                     events: {
                         change: (event) => {
                             const value = event.target.value.trim();
@@ -13861,14 +16097,20 @@ class OptionsManager extends EventTarget {
             case 'list':
                 this.#getUniqueId();
                 htmlElement = createElement('select', {
-                    value: value,
+                    value: String(value),
                     events: {
                         change: (event) => { this.setItem(optionName, event.target.value); showHideResetButton(); }
                     }
                 });
                 if (option.datalist) {
                     for (const o of option.datalist) {
-                        createElement('option', { innerHTML: o, parent: htmlElement });
+                        if (typeof o === 'string' || typeof o === 'number' || o === undefined || o === null) {
+                            createElement('option', { innerText: String(o), parent: htmlElement });
+                        }
+                        else {
+                            // array
+                            createElement('option', { innerText: o[0], parent: htmlElement, value: o[1] });
+                        }
                     }
                 }
                 htmlElement.value = value;
@@ -13923,14 +16165,14 @@ class OptionsManager extends EventTarget {
         showHideResetButton();
         return htmlElement;
     }
-    showOptionsManager() {
+    static showOptionsManager() {
         if (!this.#shadowRoot) {
             this.#initPanel();
         }
         this.#refreshPanel();
         show(this.#shadowRoot?.host);
     }
-    async getOptionsPerType(type) {
+    static async getOptionsPerType(type) {
         await this.#initPromise;
         const ret = new Map();
         for (const option of this.#defaultValues.values()) {
@@ -13941,15 +16183,15 @@ class OptionsManager extends EventTarget {
         }
         return ret;
     }
-    async getOption(name) {
+    static async getOption(name) {
         await this.#initPromise;
         return this.#defaultValues.get(name);
     }
-    async getOptionType(name) {
+    static async getOptionType(name) {
         await this.#initPromise;
         return this.#defaultValues.get(name)?.type;
     }
-    async getList(name) {
+    static async getList(name) {
         await this.#initPromise;
         const option = this.#defaultValues.get(name);
         if (option && option.type == 'list') {
@@ -14006,17 +16248,25 @@ class Shortcut {
             (keyBoardEvent.key.toUpperCase() == this.#key);
     }
 }
+const WINDOW_CONTEXT = 'window';
 class ShortcutHandler {
     static #shortcuts = new Map();
     static #eventTarget = new EventTarget();
+    // List of activated key codes. See https://developer.mozilla.org/en-US/docs/Web/API/UI_Events/Keyboard_event_code_values
+    static #keyboardCodeState = new Map();
+    // List of activated keys. See https://developer.mozilla.org/en-US/docs/Web/API/UI_Events/Keyboard_event_key_values
+    static #keyboardKeyState = new Map();
+    static #knowContextes = new Set2();
     static {
-        this.addContext('window', document);
+        this.addContext(WINDOW_CONTEXT, document);
     }
     static #handleKeyDown(contextName, event) {
+        this.#handleKey(contextName, event, true);
         const contexts = contextName.split(',');
-        for (const [name, shortcuts] of this.#shortcuts) {
-            for (const shortcut of shortcuts) {
-                for (const context of contexts) {
+        for (const context of contexts) {
+            this.#eventTarget.dispatchEvent(new CustomEvent(event.key, { detail: event }));
+            for (const [name, shortcuts] of this.#shortcuts) {
+                for (const shortcut of shortcuts) {
                     if (shortcut.match(context, event)) {
                         this.#eventTarget.dispatchEvent(new CustomEvent(name, { detail: event }));
                         event.preventDefault();
@@ -14026,15 +16276,46 @@ class ShortcutHandler {
             }
         }
     }
-    static addContext(name, element) {
-        element.addEventListener('keydown', (event) => this.#handleKeyDown(name, event));
+    static #handleKeyUp(contextName, event) {
+        this.#handleKey(contextName, event, false);
     }
-    static setShortcuts(contextName, shortcutMap) {
-        if (!shortcutMap) {
+    static #handleKey(contextName, event, state) {
+        if (contextName === WINDOW_CONTEXT) {
+            this.#keyboardCodeState.set(event.code, state);
+            this.#keyboardKeyState.set(event.key, state);
+        }
+    }
+    static getCodeState(code) {
+        return this.#keyboardCodeState.get(code) ?? false;
+    }
+    static getKeyState(key) {
+        return this.#keyboardKeyState.get(key) ?? false;
+    }
+    static getControlState() {
+        return this.#keyboardKeyState.get('Control') ?? false;
+    }
+    static getAltState() {
+        return this.#keyboardKeyState.get('Alt') ?? false;
+    }
+    static getShiftState() {
+        return this.#keyboardKeyState.get('Shift') ?? false;
+    }
+    static addContext(name, element) {
+        // Prevents an identical pair context / element from being added several times
+        if (this.#knowContextes.has(name, element)) {
             return;
         }
+        element.addEventListener('keydown', (event) => this.#handleKeyDown(name, event));
+        element.addEventListener('keyup', (event) => this.#handleKeyUp(name, event));
+        this.#knowContextes.add(name, element);
+    }
+    static clearShortcuts() {
         this.#shortcuts.clear();
+    }
+    static setShortcuts(contextName, shortcutMap) {
         for (const [name, shortcut] of shortcutMap) {
+            // Delete a previous shortcut of the same name
+            this.#shortcuts.delete(name);
             this.addShortcut(contextName, name, shortcut);
         }
     }
@@ -14061,7 +16342,7 @@ class ShortcutHandler {
     }
 }
 
-var storageCSS = ":host{\n\tdisplay: block;\n\twidth: 100%;\n\theight: 100%;\n\tbackground-color: black;\n}\n";
+var storageCSS = ":host{\n\tdisplay: block;\n\twidth: 100%;\n\theight: 100%;\n\tbackground-color: black;\n\tposition: absolute;\n\ttop: 0px;\n}\n";
 
 const SEPARATOR = '/';
 var EntryType;
@@ -14076,6 +16357,7 @@ class PersistentStorage {
     static #htmlTree;
     static #dirty = true;
     static #filter = { name: '' };
+    static #panel;
     static async estimate() {
         return navigator.storage.estimate();
     }
@@ -14085,27 +16367,35 @@ class PersistentStorage {
         }
         defineHarmonyTree();
         this.#shadowRoot = createShadowRoot('persistent-storage', {
-            parent: document.body,
+            //parent: document.body,
             adoptStyle: storageCSS,
-            childs: [
-                this.#htmlFilter = createElement('input', {
-                    $input: (event) => this.#setFilter(event.target.value),
-                }),
-                this.#htmlTree = createElement('harmony-tree', {
-                    $contextmenu: (event) => {
-                        console.info(event, event.detail.item);
-                        event.detail.buildContextMenu({
-                            path: { i18n: '#path', f: () => console.info(event.detail.item?.getPath(SEPARATOR)) },
-                            delete: {
-                                i18n: '#delete', f: () => {
-                                    if (event.detail.item) ;
-                                }
-                            },
-                        });
-                    }
-                }),
-            ],
         });
+        this.#panel = new HarmonyPanel({
+            titleI18n: '#storage_manager',
+        });
+        this.#htmlFilter = createElement('input', {
+            class: 'filter',
+            hidden: true,
+            $input: (event) => this.#setFilter(event.target.value),
+        });
+        this.#htmlTree = createElement('harmony-tree', {
+            $contextmenu: (event) => {
+                console.info(event, event.detail.item);
+                event.detail.buildContextMenu({
+                    path: { i18n: '#path', f: () => console.info(event.detail.item?.getPath(SEPARATOR)) },
+                    delete: {
+                        i18n: '#delete', f: () => {
+                            if (event.detail.item) {
+                                this.deleteFile((event.detail.item.getPath(SEPARATOR)));
+                                this.#dirty = true;
+                                void this.#refresh();
+                            }
+                        }
+                    },
+                });
+            }
+        });
+        this.#panel.append(this.#htmlFilter, this.#htmlTree);
     }
     static async createFile(path) {
         return this.#getHandle(path, 'file', true);
@@ -14128,6 +16418,7 @@ class PersistentStorage {
             }
         }
         catch (e) {
+            console.error('Error while clearing the storage: ' + String(e));
             return false;
         }
         return true;
@@ -14142,26 +16433,18 @@ class PersistentStorage {
         do {
             current = stack.pop();
             if (current) {
-                /*
-                if ((filter === undefined) || current.#matchFilter(filter)) {
-                    childs.add(current);
-                }
-                    */
-                if (options.recursive && current.kind == 'directory') {
-                    for await (const handle of current.values()) {
+                for await (const handle of current.values()) {
+                    if (options.recursive && current.kind == 'directory') {
                         stack.push(handle);
-                        yield handle;
                     }
+                    yield handle;
                 }
             }
         } while (current);
-        //return await this.#removeEntry(path, 'directory', recursive);
         return null;
     }
     static async #removeEntry(path, kind, recursive) {
         path = cleanPath(path);
-        path.split(SEPARATOR);
-        //console.info(splittedPath);
         let current = await navigator.storage.getDirectory();
         const pathElements = path.split(SEPARATOR);
         for (let i = 0; i < pathElements.length - 1; i++) {
@@ -14171,21 +16454,17 @@ class PersistentStorage {
             }
             current = await current.getDirectoryHandle(subPath, { create: false });
         }
-        if (current.kind == kind) {
-            try {
-                await current.removeEntry(pathElements[pathElements.length - 1], { recursive: recursive });
-                return true;
-            }
-            catch (e) {
-                console.info(e);
-            }
+        try {
+            await current.removeEntry(pathElements[pathElements.length - 1], { recursive: recursive });
+            return true;
+        }
+        catch (e) {
+            console.info(e);
         }
         return false;
     }
     static async #getHandle(path, kind, create) {
         path = cleanPath(path);
-        path.split(SEPARATOR);
-        //console.info(splittedPath);
         let current = await navigator.storage.getDirectory();
         const pathElements = path.split(SEPARATOR);
         for (let i = 0; i < pathElements.length - 1; i++) {
@@ -14213,7 +16492,9 @@ class PersistentStorage {
                 return await fileHandle.getFile();
             }
         }
-        catch (e) { }
+        catch (e) {
+            console.error(`Error while reading the file ${path} : ${String(e)}`);
+        }
         return null;
     }
     static async readFile(path) {
@@ -14226,22 +16507,40 @@ class PersistentStorage {
         }
         return file.text();
     }
-    static async writeFile(path, file, options) {
+    static async readFileAsJSON(path) {
+        const file = await this.#readFile(path);
+        if (!file) {
+            return null;
+        }
+        const content = await file.text();
         try {
-            const fileHandle = await this.#getHandle(path, 'file', false);
+            return JSON.parse(content);
+        }
+        catch (e) {
+            return null;
+        }
+    }
+    static async writeFile(path, content, options) {
+        try {
+            const fileHandle = await this.#getHandle(path, 'file', true);
             if (fileHandle) {
                 const writable = await fileHandle.createWritable(options);
-                await writable.write(file);
+                await writable.write(content);
                 await writable.close();
+                this.#dirty = true;
                 return true;
             }
         }
-        catch (e) { }
+        catch (e) {
+            console.error('Error while writing the file:' + String(e));
+        }
         return false;
     }
-    static async showPanel() {
+    static getPanel() {
         this.#initPanel();
-        this.#refresh();
+        //parent.append(this.#panel!);
+        void this.#refresh();
+        return this.#panel;
     }
     static async #refresh() {
         if (this.#dirty) {
@@ -14251,14 +16550,14 @@ class PersistentStorage {
     }
     static async #getRoot(entry) {
         const root = await this.#getElement(entry);
-        root.isRoot = true;
+        //root.isRoot = true;
         return root;
     }
     static async #getElement(entry, parent) {
         const childs = [];
         const tree = new TreeItem(entry.name, { childs: childs, parent: parent, userData: entry });
         if (entry.kind == 'directory') {
-            for await (const [key, value] of entry.entries()) {
+            for await (const [, value] of entry.entries()) {
                 if (this.#matchFilter(value)) {
                     childs.push(await this.#getElement(value, tree));
                 }
@@ -14269,7 +16568,7 @@ class PersistentStorage {
     static #setFilter(name) {
         this.#filter.name = name;
         this.#dirty = true;
-        this.#refresh();
+        void this.#refresh();
     }
     static #matchFilter(entry) {
         return entry.name.includes(this.#filter.name);
@@ -14284,13 +16583,33 @@ function cleanPath(path) {
     return path;
 }
 
+function loadScript(script) {
+    return new Promise((resolve) => {
+        createElement('script', {
+            src: script,
+            parent: document.body,
+            events: {
+                load: () => resolve(true),
+            }
+        });
+    });
+}
+async function loadScripts(scripts) {
+    const promises = [];
+    for (const script of scripts) {
+        promises.push(loadScript(script));
+    }
+    await Promise.all(promises);
+    return true;
+}
+
 let initialized$1 = false;
 let pyodide;
 let readyPromiseResolve;
 const readyPromise = new Promise((resolve) => readyPromiseResolve = resolve);
 async function getPyodide() {
     if (!initialized$1) {
-        initPyodide();
+        await initPyodide();
     }
     await readyPromise;
     return pyodide;
@@ -14306,19 +16625,29 @@ async function initPyodide() {
     pyodide = await globalThis.loadPyodide({ jsglobals: {} });
     pyodide.setDebug(true);
     pyodide.setStderr({ batched: (msg) => console.log(msg) });
+    for (const [name, module] of modules) {
+        pyodide.registerJsModule(name, module);
+    }
     readyPromiseResolve(true);
     return true;
 }
+const modules = new Map();
 async function registerPyodideModule(name, module) {
-    const pyodide = await getPyodide();
-    pyodide.registerJsModule(name, module);
+    if (pyodide) {
+        // If pyodide is already initialized, register the module
+        pyodide.registerJsModule(name, module);
+    }
+    else {
+        // Save the module for later
+        modules.set(name, module);
+    }
 }
 
-var scriptEditorCSS = ":host {\n\tdisplay: flex;\n\tflex-direction: column;\n\theight: 100%;\n\twidth: 100%;\n}\n\n.error {\n\tpadding: 0.5rem;\n\tcolor: red;\n}\n\n.widget {\n\tborder-top: 2px solid;\n\tborder-top-color: currentcolor;\n\tborder-bottom: 2px solid;\n\tborder-bottom-color: currentcolor;\n\t/*\n\tmargin: 5px 0px;\n\tpadding: 10px 40px;\n\t*/\n\twhite-space: nowrap;\n}\n\n\n.widget .error {\n\tborder-color: rgb(170, 90, 90);\n}\n\n.widget .text {\n\tpadding: 1rem;\n\tmax-height: 10rem;\n\toverflow: auto;\n}\n\n.tabs {\n\theight: unset;\n}\n";
+var scriptEditorCSS = ":host {\n\tdisplay: flex;\n\tflex-direction: column;\n\theight: 100%;\n\twidth: 100%;\n}\n\n.error {\n\tpadding: 0.5rem;\n\tcolor: red;\n}\n\n.widget {\n\tborder-top: 2px solid;\n\tborder-top-color: currentcolor;\n\tborder-bottom: 2px solid;\n\tborder-bottom-color: currentcolor;\n\t/*\n\tmargin: 5px 0px;\n\tpadding: 10px 40px;\n\t*/\n\twhite-space: nowrap;\n}\n\n\n.widget .error {\n\tborder-color: rgb(170, 90, 90);\n}\n\n.widget .text {\n\tpadding: 1rem;\n\tmax-height: 10rem;\n\toverflow: auto;\n}\n\n.tabs {\n\theight: unset;\n}\n\n.infos{\n\tfont-size: 1.2rem;\n}\n\n.script-warning{\n\tfont-size: 1.5rem;\n}\n";
 
 const ACE_EDITOR_URI$1 = 'https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js';
 const SCRIPT_PATH = '/scripts/';
-class ScriptEditor {
+class ScriptEditor extends MyEventTarget {
     #aceEditorResolve;
     #aceEditorReady = new Promise((resolve) => this.#aceEditorResolve = resolve);
     #initialized = false;
@@ -14327,11 +16656,13 @@ class ScriptEditor {
     #sessions = new Map;
     #currentSession = null;
     #htmlSaveButton;
+    #htmlInfos;
     #htmlFileTabs;
     #knownScripts = new Map();
     #scriptsInitialized = false;
     #activeScript;
     constructor() {
+        super();
         window.addEventListener('beforeunload', (event) => this.#beforeUnload(event));
     }
     get htmlElement() {
@@ -14387,8 +16718,13 @@ class ScriptEditor {
             $click: () => { this.#stop() },
         }) as HTMLButtonElement;
         */
-        createElement('harmony-info-box', {
+        this.#htmlInfos = createElement('div', {
             parent: this.#shadowRoot,
+            class: 'infos',
+        });
+        createElement('harmony-info-box', {
+            parent: this.#htmlInfos,
+            class: 'script-warning',
             type: 'error',
             i18n: '#script_warning',
         });
@@ -14425,6 +16761,17 @@ class ScriptEditor {
             });
         }
         this.#initTabs();
+    }
+    addInfo(type, children) {
+        if (!this.#initialized) {
+            console.error('You must initialize the editor before using this method');
+            return;
+        }
+        createElement('harmony-info-box', {
+            parent: this.#htmlInfos,
+            type,
+            childs: children,
+        });
     }
     async #initTabs() {
         this.#scriptsInitialized = true;
@@ -14484,12 +16831,14 @@ class ScriptEditor {
         this.#refreshTitle();
     }
     #refreshTitle() {
+        let detail = false;
         for (const [, knownScript] of this.#knownScripts) {
             if (knownScript.modified) {
+                detail = true;
                 break;
             }
         }
-        //Controller.dispatchEvent<boolean>(ControllerEvent.SetTitleModified, { detail });
+        this.dispatchEvent(new CustomEvent('has-modified-script', { detail }));
     }
     #newScript() {
         let index = 1;
@@ -14593,6 +16942,13 @@ class ScriptEditor {
             },
         });
     }
+    setAnnotations() {
+        /*
+        if (shaderName == this.#editorShaderName) {
+            this.#scriptEditor.getSession().setAnnotations(ShaderManager.getCustomSourceAnnotations(shaderName));
+        }
+        */
+    }
     async #addSession(name, content) {
         await this.#aceEditorReady;
         const ace = globalThis.ace;
@@ -14620,6 +16976,7 @@ class ScriptEditor {
         }
     }
     #addLineWidget(session, element) {
+        // eslint-disable-next-line @typescript-eslint/no-require-imports
         const LineWidgets = require("ace/line_widgets").LineWidgets;
         if (!session.widgetManager) {
             session.widgetManager = new LineWidgets(session);
@@ -47580,7 +49937,7 @@ var GraphicsEvent;
     GraphicsEvent["TouchMove"] = "touchmove";
     GraphicsEvent["TouchCancel"] = "touchcancel";
 })(GraphicsEvent || (GraphicsEvent = {}));
-class GraphicsEvents extends StaticEventTarget {
+class GraphicsEvents extends StaticEventTarget$1 {
     static isGraphicsEvents = true;
     static tick(delta, time, speed, context) {
         this.dispatchEvent(new CustomEvent(GraphicsEvent.Tick, { detail: { delta, time, speed, context } }));
@@ -57873,7 +60230,7 @@ function DecompressLZMA(properties, compressedDatas, uncompressedSize) {
 
 const PROPERTY_ADDED = 'propertyadded';
 const PROPERTY_CHANGED = 'propertychanged';
-class TimelineObserver extends StaticEventTarget {
+class TimelineObserver extends StaticEventTarget$1 {
     /*
         parentChanged(child: Entity, oldParent: Entity | null, newParent: Entity | null) {
             this.dispatchEvent(new CustomEvent(PARENT_CHANGED, { detail: { child: child, oldParent: oldParent, newParent: newParent } }));
@@ -108175,7 +110532,7 @@ class NodeGui {
                 $click: async () => {
                     await navigator.clipboard.writeText(valueHtml.value);
                     valueHtml.classList.add('flash');
-                    await setTimeoutPromise(1500);
+                    await setTimeoutPromise$1(1500);
                     valueHtml.classList.remove('flash');
                 },
             });
@@ -121756,7 +124113,7 @@ var WeaponManagerEvents;
     WeaponManagerEvents["Success"] = "success";
     WeaponManagerEvents["Failure"] = "failure";
 })(WeaponManagerEvents || (WeaponManagerEvents = {}));
-class WeaponManager extends StaticEventTarget {
+class WeaponManager extends StaticEventTarget$1 {
     static #htmlWeaponsDiv;
     static #htmlPaintsDiv;
     static weapons = {};

@@ -9,13 +9,12 @@ const readyPromise = new Promise<boolean>((resolve) => readyPromiseResolve = res
 
 export async function getPyodide(): Promise<PyodideAPI> {
 	if (!initialized) {
-		initPyodide();
+		await initPyodide();
 	}
 	await readyPromise;
 
 	return pyodide;
 }
-
 
 export async function initPyodide(): Promise<boolean> {
 	if (initialized) {
@@ -31,11 +30,21 @@ export async function initPyodide(): Promise<boolean> {
 	pyodide.setDebug(true);
 	pyodide.setStderr({ batched: (msg) => console.log(msg) });
 
+	for (const [name, module] of modules) {
+		pyodide.registerJsModule(name, module);
+	}
+
 	readyPromiseResolve(true);
 	return true;
 }
 
+const modules = new Map<string, any>();
 export async function registerPyodideModule(name: string, module: any) {
-	const pyodide = await getPyodide();
-	pyodide.registerJsModule(name, module);
+	if (pyodide) {
+		// If pyodide is already initialized, register the module
+		pyodide.registerJsModule(name, module);
+	} else {
+		// Save the module for later
+		modules.set(name, module);
+	}
 }

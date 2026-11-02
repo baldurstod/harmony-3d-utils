@@ -1,8 +1,8 @@
-import fs from 'fs';
-import child_process from 'child_process';
-import typescript from '@rollup/plugin-typescript';
-import css from 'rollup-plugin-import-css';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
+import typescript from '@rollup/plugin-typescript';
+import child_process from 'child_process';
+import fs from 'fs';
+import css from 'rollup-plugin-import-css';
 
 const TEMP_BUILD = './dist/dts/index.js';
 
@@ -29,6 +29,7 @@ export default [
 		],
 		external: [
 			'harmony-3d',
+			'harmony-browser-utils',
 			'harmony-tf2-utils',
 			'harmony-ui',
 			'harmony-utils',
